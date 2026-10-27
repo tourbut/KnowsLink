@@ -1,17 +1,64 @@
 ---
 title: SAR-AUTOSETUP-001-QA — Claude Code·Codex 자동 설정 큰 틀 검수 보고
 status: draft
-updated: 2026-10-27
+updated: 2026-10-28
 owner: tester
-tasks: [SAR-AUTOSETUP-001-QA, SAR-AUTOSETUP-001-QA2]
-summary: "1차(10-23)는 N1–N6·갱신·S7·자격 경계를 확인했다. 2차(10-27, QA2)는 로그인한 격리 Claude Code 실세션으로 N7–N8·AC-02·AC-04를 PASS 확인했다(3분 24초). 갱신(AC-07)은 호스트 플러그인이 2개 이상이면 실패하는 결함 O-04(high)를 찾았다. Codex는 사용자 결정 D040으로 제외."
+tasks: [SAR-AUTOSETUP-001-QA, SAR-AUTOSETUP-001-QA2, SAR-AUTOSETUP-001-QA3]
+summary: "QA3(10-28)에서 0.1.1이 호스트 플러그인 3개 환경의 0.1.0→0.1.1 갱신과 같은 명령 재실행을 통과해 O-04가 해소됐다(미해결 high 0). 1차(10-23)는 N1–N6·갱신·S7·자격 경계를 확인했다. 2차(10-27, QA2)는 로그인한 격리 Claude Code 실세션으로 N7–N8·AC-02·AC-04를 PASS 확인했다(3분 24초). 갱신(AC-07)은 호스트 플러그인이 2개 이상이면 실패하는 결함 O-04(high)를 찾았다. Codex는 사용자 결정 D040으로 제외."
 ---
 
 # SAR-AUTOSETUP-001-QA — 큰 틀 검수 보고
 
 독립 동작 QA(lite, 새 사용자 흐름 1회)다. 제품 코드는 고치지 않았다. 운영 relay·실제 Google 계정·실제 상대·사용자 실제 `~/.claude`·`~/.codex`는 쓰지 않았다.
 
-**최종 결론(QA2 반영, 2026-10-27): Claude 쪽 AC-01·02·04 PASS, AC-07(갱신)은 O-04 때문에 조건부.** 아래 `QA2` 절이 최신 판정이다. 1차(10-23) 절은 기록으로 남기고 해당 행에 QA2 판정을 덧붙였다. 미해결 high **1건(O-04)**, critical 0. Codex 항목은 사용자 결정 D040으로 이번에 제외했다.
+**최신 결론(QA3, 2026-10-28): O-04 해소, 미해결 high 0.** 아래 `QA3 재검증` 절이 최신 판정이다. 이전 결론: **(QA2 반영, 2026-10-27): Claude 쪽 AC-01·02·04 PASS, AC-07(갱신)은 O-04 때문에 조건부.** 아래 `QA2` 절이 최신 판정이다. 1차(10-23) 절은 기록으로 남기고 해당 행에 QA2 판정을 덧붙였다. 미해결 high **1건(O-04)**, critical 0. Codex 항목은 사용자 결정 D040으로 이번에 제외했다.
+
+## QA3 재검증 (SAR-AUTOSETUP-001-QA3, 2026-10-28)
+
+독립 동작 QA(lite)다. 제품 코드는 고치지 않았다. 운영 relay·운영 agent·실제 상대·실제 `~/.claude`·`~/.codex`는 쓰지 않았다. 로그인 자격 파일은 열지 않았다(크기·수정시각만: 559바이트, 시작·끝 동일, [전](ev/qa3-cred-stat-before.txt)/[후](ev/qa3-cred-stat-after.txt)). 삭제·`git worktree remove`·이동 정리는 하지 않았다.
+
+**결론: O-04 해소. 다중 플러그인 갱신·0.1.0→0.1.1 갱신·같은 명령 재실행·재시작 뒤 세션 연결 PASS, `[F-10]` 안내 PASS. 미해결 high 0, critical 0.** 새 관찰 O-05(low–medium), O-06(info)를 아래에 적었다.
+
+### 환경
+
+| 항목 | 값 |
+|---|---|
+| 제품 SHA | main `0349ca73`(0.1.1). 0.1.0 산출물은 `66407760`에서 빌드(Claude ZIP `2d2c1884…`, QA2의 0.1.0과 같은 해시). 둘 다 격리 `git worktree add --detach`에서 빌드, 제품 파일 변경 0 |
+| 호스트 | Windows 11 Pro 26300, Windows PowerShell 5.1, Claude Code 2.1.311, Node 22.22.2 |
+| 로그인 | QA2와 같은 사용자 로그인 격리 `CLAUDE_CONFIG_DIR`(`…utosetup-001-qa\claude-config`). 시작 전 호스트 CLI(`claude plugin uninstall`/`marketplace remove`)로 QA2의 knowslink 항목만 해제했다 |
+| relay | 격리 Postgres 17 컨테이너(15483) + 시험 fixture(합성 회원 a·b, Google 콜백만 대행) 포트 18443. 한 relay가 `/install/0.1.0/`과 `/install/0.1.1/`을 함께 낸다 |
+| 호스트 플러그인 | `knowslink`(설치기가 등록) + **실제 둘째 플러그인** `qa3-other@qa3-other-mkt`(격리 폴더 안에 만든 로컬 마켓플레이스, 호스트 CLI로 설치·해제) + Orca가 주입한 inline `orca-agent-view@inline` = `plugin list --json` 항목 **3개** |
+| 도구 | [qa3-install_run.py](tools/qa3-install_run.py)(`QA_VERSION`으로 설치 버전 지정), [qa3-fixture.sh](tools/qa3-fixture.sh), 기존 `qa.py`·`snap.py`(포트만 18443) |
+
+### 판정
+
+| 항목 | 판정 | 근거 |
+|---|---|---|
+| 0.1.0 신규 설치(기준 상태) | **PASS**(항목 2개 호스트) | 플러그인 2개(inline+knowslink)에서 설치 완료, agent 1, 친구 1 |
+| 갱신 0.1.0→0.1.1, 호스트 3개 항목(AC-07·S5) | **PASS** | 같은 화면 명령 URL만 0.1.1로: `작업: 기존 설치 갱신 (현재 0.1.0 → 새 0.1.1)` → `갱신 완료. 에이전트·키·친구는 그대로입니다.` 5.3초, 종료 0, 브라우저 단계 0([로그](ev/qa3-claude-update-010-to-011-multi.log.txt)). 전후 agent ID·`agent.json`·`private.pem` 포함 private 폴더 해시 `d24dfb72…` 동일·웹 agent 수 1·친구 수 1 동일([전](ev/qa3-snap-before-update.txt)/[후](ev/qa3-snap-after-update.txt)). 이전 설치 `.previous-*` 보존 |
+| 0.1.1→0.1.1 같은 명령 재실행(3개 항목) | **PASS** | `갱신 완료`, 5.3초, 종료 0, 해시·agent 수·친구 수 동일([로그](ev/qa3-claude-rerun-011-multi.log.txt), [후](ev/qa3-snap-after-rerun.txt)) |
+| 갱신 뒤 Claude Code 다시 열기 → `/knowslink-session on` | **PASS** | 새 `claude` 프로세스에서 `KnowsLink 연결됨: 세션 92366785 · 내 agent agent_745dc7… · 대기 0건`. 같은 agent. 한계: 이번에는 헤드리스(`claude -p`)로 열었다(QA2는 대화형 터미널). 발송 승인 대화상자는 다시 검증하지 않았다 |
+| 예상 밖 오류 `[F-10]` | **PASS** | 합성 실패: `LOCALAPPDATA`를 비워 동의 전에 실패시켰다(3개 항목 호스트). `[F-10] 예상하지 못한 오류로 멈췄습니다: …` / `이미 바뀐 것: 없음` / `다음 행동: 같은 명령을 다시 실행하세요…`, 종료 1, 설치·키 변화 없음([로그](ev/qa3-claude-s6-f10-synthetic.log.txt)). 동의 뒤 단계의 F-10(`바뀐 것: 설치 기록 위치`)은 실행하지 못했다 |
+| 자격 경계 | **PASS** | 자격 파일 크기·수정시각 동일. 설치기가 바꾼 호스트 설정은 `settings.json`의 knowslink 두 항목뿐(설치 로그의 계획 문구와 일치). 출력·ev에서 지문 전체·토큰·개인키 0건(지문 앞 8자, agent ID 앞 6자만 남김) |
+
+### O-04 판정: **해소**
+
+QA2 재현 조건(호스트 `plugin list --json` 항목이 2개 이상이고 knowslink가 그중 하나)을 더 강하게(항목 3개, 실제 둘째 플러그인 포함) 만들었는데 0.1.1 갱신·재실행이 통과했다. 같은 조건의 0.1.0 첫 설치는 아래 O-05처럼 실패했다([실패 로그](ev/qa3-claude-010-firstinstall-3plugins-fail.log.txt)). 즉 같은 환경에서 0.1.0은 실패하고 0.1.1은 통과한다.
+
+### 새 관찰
+
+| ID | 심각도 | 내용 | 재현·영향 |
+|---|---|---|---|
+| O-05 | low–medium(0.1.0 한정, 0.1.1에서 해소) | 공개 0.1.0은 호스트 항목이 3개일 때 **첫 설치도** 실패한다. 호스트 등록(`marketplace add`·`plugin install`)까지 마친 뒤 등록 확인에서 `[ERROR] "1"개의 인수가 있는 "GetFullPath"을(를) 호출하는 동안 예외가 발생했습니다`로 종료(종료 코드 1). 키·agent는 아직 만들기 전이라 데이터 손실은 없으나 호스트 설정에는 knowslink가 등록된 채 남는다. QA2는 항목 2개라 첫 설치가 통과했다 | 재현: 항목 3개 호스트에서 0.1.0 명령. 원인은 O-04와 같은 `ConvertFrom-Json` 배열 미펼침(등록 확인 쪽). 0.1.1은 같은 확인 단계를 3개 항목에서 통과했다(갱신 경로가 같은 확인을 지난다). 0.1.1 **신규** 설치는 이번에 따로 실행하지 않았다(아래 한계). 조치: 0.1.1 게시로 신규 사용자는 해소 |
+| O-06 | info–low | 0.1.1 갱신 뒤에도 호스트의 플러그인 캐시(`plugins/cache/…/knowslink/0.1.0`)는 0.1.0 그대로이고 `plugin list`의 version도 0.1.0, `folderVersion`만 0.1.1이다. 설치기가 `plugin install`을 다시 실행하지만 호스트는 이미 설치된 것으로 보고 캐시를 갱신하지 않는다. MCP 서버는 설치 폴더의 절대 경로 `plugin.js`(0.1.1)로 실행되고, 훅·스킬은 캐시(0.1.0)에서 로드된다. 0.1.0과 0.1.1은 훅·스킬이 같아 동작 차이가 없다 | 재현: 갱신 뒤 `claude plugin list --json`의 `installPath`·`version` 확인. 이후 버전이 훅·스킬을 바꾸면 갱신해도 반영되지 않을 수 있다 → dev 판단(설치기가 갱신 때 `plugin update` 또는 제거 후 재설치 필요 여부) |
+
+### QA3 한계
+
+- Google 로그인·동의는 fixture 대행이다(1·2차와 같음). 사용자 실계정 비밀번호 입력 0.
+- 0.1.1 신규 설치(항목 3개 호스트)는 직접 실행하지 않았다. 0.1.0→0.1.1 갱신이 같은 등록 확인 단계를 통과한 것으로 갈음했다.
+- 세션 재연결은 헤드리스 `claude -p`로 확인했다. 대화형 화면·발송 승인·도착 알림은 QA2 결과에 의존한다.
+- Codex는 D040으로 제외했다. 호스트 3개 항목은 inline 1 + 실제 로컬 마켓플레이스 플러그인 1 + knowslink다. 외부 마켓플레이스에서 받은 플러그인은 쓰지 않았다.
+- 남긴 임시 경로(삭제 안 함): `D:\workspace\KnowsLink\.devtoolsutosetup-001-qa3\`(워크트리 `src-new`·`src-old`, 상자 `work\claude-A·claude-C`, `rel`, `other-mkt`, 로그), Docker 컨테이너 `kl-autosetup-qa3-pg`(실행 중), 포트 18443의 fixture 프로세스. 격리 로그인 폴더에는 knowslink 0.1.1과 `qa3-other` 플러그인이 설치된 채 남았다.
 
 ## QA2 실세션 검수 (SAR-AUTOSETUP-001-QA2, 2026-10-27)
 
@@ -146,7 +193,7 @@ summary: "1차(10-23)는 N1–N6·갱신·S7·자격 경계를 확인했다. 2�
 
 ## 관찰·결함
 
-1차 시점 심각도 high 0, 미해결 critical 0. QA2에서 high O-04가 추가됐다(위 QA2 절).
+1차 시점 심각도 high 0, 미해결 critical 0. QA2에서 high O-04가 추가됐고 QA3에서 해소됐다(위 QA3 절).
 
 | ID | 심각도 | 내용 | 재현·영향 |
 |---|---|---|---|

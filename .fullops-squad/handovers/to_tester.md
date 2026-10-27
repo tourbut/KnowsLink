@@ -111,6 +111,13 @@ QA2가 찾은 O-04(high)를 dev가 고쳤다(main `1e18baa0`, dev d8c996b4). `Ge
 
 ## 완료 보고
 
-브랜치 / SHA / 변경 이유 / 검토 필요 / 검증한 것과 못 한 것 / 산출물·로그 링크 / 남은 일.
+- 브랜치 / SHA: fullops/tester / 완료 커밋(worker_done에 기록)
+- 변경 이유: O-04 수정(0.1.1) 재검증. 제품 코드 변경 0, 보고서·증거·도구만.
+- 결과: 호스트 항목 3개(inline+실제 로컬 플러그인+knowslink)에서 0.1.0→0.1.1 갱신·같은 명령 재실행 PASS, agent/키 해시/웹 agent/친구 동일, 재시작 뒤 `/knowslink-session on` 같은 agent, `[F-10]` 안내 PASS. O-04 해소, 미해결 high 0.
+- 검토 필요: O-05(0.1.0은 항목 3개에서 첫 설치도 실패, 0.1.1에서 해소), O-06(갱신 뒤 호스트 플러그인 캐시·훅·스킬은 0.1.0 유지, MCP만 0.1.1) — dev 판단.
+- 못 한 것: 0.1.1 신규 설치(3개 항목) 직접 실행, 동의 뒤 단계 F-10, 대화형 세션 화면.
+- 산출물: `.fullops-squad/docs/evaluations/qa-reports/SAR-AUTOSETUP-001-QA-test/report.md`(QA3 절), `ev/qa3-*`, `tools/qa3-*`.
+- 남은 임시 경로(삭제 안 함): `D:\workspace\KnowsLink\.devtoolsutosetup-001-qa3\`, Docker `kl-autosetup-qa3-pg`, 포트 18443 fixture 프로세스, 격리 로그인 폴더의 knowslink 0.1.1·`qa3-other` 플러그인.
+- 남은 일: coor 사용자 승인 후 ops 운영 교체(0.1.1 게시·relay 배포·서버 override 제거).
 항목당 1~2줄, 상세는 보고서 링크. worker_done 본문 첫 줄은 `[완료] SAR-AUTOSETUP-001-QA3 | 브랜치 fullops/tester | SHA <브랜치 HEAD>` 한 줄로 쓴다.
 처리는 `fullops-work`, 회신은 `fullops-orca` 스킬을 따른다.
