@@ -115,3 +115,12 @@ D12 ops-guide.
 브랜치 / SHA / 변경 이유 / 검토 필요 / 검증한 것과 못 한 것 / 산출물·로그 링크 / 남은 일.
 항목당 1~2줄, 상세는 `qa-reports/SAR-CONNECT-SIMPLE-001-FOLLOWUP-DEV-test/report.md`. worker_done 본문 첫 줄은 `[완료] SAR-CONNECT-SIMPLE-001-FOLLOWUP-DEV | 브랜치 fullops/dev | SHA <브랜치 HEAD>` 한 줄로 쓴다.
 처리는 `fullops-work`, 회신은 `fullops-orca` 스킬을 따른다.
+
+### 결과
+
+- 브랜치 / SHA: `fullops/dev` / `76aebcc6`(구현), `80aca1cb`(보고·packet outcomes), finish 커밋은 이 뒤.
+- 변경 이유: relay install 변수·`/install:ro` 마운트를 `compose.ops.yaml`로 옮겨 서버 로컬 override 없이 repo가 추적한다. adapters 런타임 취약점 4건(high 2·moderate 2)을 semver 호환 patch로 0건으로 만들었다.
+- 검토 필요: `adapters/package.json` `zod` 정확 고정 4.6.5→4.6.7(patch). lockfile은 body-parser 2.4.0·fast-uri 3.1.9·ip-address 10.7.5·qs 6.17.0. `beta.sh`는 수정 불필요(이미 같은 두 파일 사용).
+- 검증한 것: compose config override 유무 동일·EXIT 0, STATE_DIR 누락 거절, `npm audit`(·`--omit=dev`) 0건, `npm run check`·`npm test` EXIT 0, `make lint`는 `test_public_config.sh`의 로컬 cloudflared 부재 외 통과, `test_shell_guard.py` 0, gate lint ERROR 0. 못 한 것: `make test`의 `go test -race`(Go 변경 없음), 운영 서버.
+- 산출물: [보고](../docs/evaluations/qa-reports/SAR-CONNECT-SIMPLE-001-FOLLOWUP-DEV-test/report.md), D12 ops-guide 자동 설정 0.1.0 절.
+- 남은 일: ops가 이 커밋을 배포한 뒤 서버 `knowslink-state/compose.install.yaml`을 D12 절차대로 `.retired`로 바꾼다.
