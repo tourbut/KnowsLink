@@ -469,7 +469,7 @@ func (s *Service) connectAPI(path string) http.HandlerFunc {
 				return map[string]string{"error": parseErr.Error()}, nil
 			}
 			if e != nil {
-				return map[string]string{"error": e.Error()}, nil
+				return errorBody(e), nil
 			}
 			var result any
 			switch path {
@@ -485,7 +485,7 @@ func (s *Service) connectAPI(path string) http.HandlerFunc {
 				result, e = st.completeConnection(c.Token, c.Client, c.Proof, now)
 			}
 			if e != nil {
-				return map[string]string{"error": e.Error()}, nil
+				return errorBody(e), nil
 			}
 			return result, nil
 		})

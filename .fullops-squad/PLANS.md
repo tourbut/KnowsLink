@@ -2142,3 +2142,6 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 - [ ] SAR-CONNECT-SIMPLE-001-DEV → designer: designer 시각 검수(CS-AC-17) (완료 보고 자동 등재 2026-10-26) — 대기(coor 2026-10-27): FIX-DEV SHA에서 배정.
 - [x] SAR-CONNECT-SIMPLE-001-DEV → coor: coor 독립 코드 리뷰 배정. main 체크아웃의 CRLF `registry.json` 재체크아웃 여부는 사용자 (완료 보고 자동 등재 2026-10-26) — REVIEW2 조건부 수락, main 116e3e8a 병합. registry.json: main 체크아웃 git status 깨끗(변경 없음)으로 확인, 조치 불필요.
 - [x] SAR-CONNECT-SIMPLE-001-DEV → coor: coor 결정 (완료 보고 자동 등재 2026-10-26) — 위 항목과 같은 조각, 처리 완료.
+- [ ] SAR-CONNECT-SIMPLE-001-FIX-DEV → tester: tester 독립 QA(CS-AC-01–16) (완료 보고 자동 등재 2026-10-27)
+- [ ] SAR-CONNECT-SIMPLE-001-FIX-DEV → designer: designer 시각 검수(CS-AC-17) (완료 보고 자동 등재 2026-10-27)
+- [ ] SAR-CONNECT-SIMPLE-001-FIX-DEV → coor: 배포 뒤 실연결(CS-AC-18)은 coor 배정 (완료 보고 자동 등재 2026-10-27)
