@@ -1,10 +1,10 @@
 ---
 title: SAR-CONNECT-SIMPLE-001-DEV 자체 검사 보고
 status: draft
-updated: 2026-10-26
+updated: 2026-10-27
 owner: dev
 tasks: [SAR-CONNECT-SIMPLE-001-DEV]
-summary: 에이전트 한도 제거·키 저장 전 시도 분리·기본 이름·재시도 폴더·실패 사유·연결 화면 구현을 격리 Postgres·합성 fixture·Windows C:/D: 실측으로 검사했다. CS-AC-01–16의 DEV 검사가 통과했고 tester QA·designer 시각 검수(CS-AC-17)는 후속이다.
+summary: "에이전트 한도 제거·키 저장 전 시도 분리·기본 이름·재시도 폴더·실패 사유·연결 화면 구현을 격리 Postgres·합성 fixture·Windows C:/D: 실측으로 검사했다. CS-AC-01–16의 DEV 검사가 통과했고 tester QA·designer 시각 검수(CS-AC-17)는 후속이다."
 ---
 
 # SAR-CONNECT-SIMPLE-001-DEV 자체 검사 보고
