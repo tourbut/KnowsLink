@@ -41,6 +41,10 @@ summary: 기존 제품 계획 보존과 Google 연결 구현의 독립 검토 �
 - OPS 배정: task_60054516e2a4 / ctx_626d8f3c3217 / term_c0ca1a14-3b7d-4b57-8b9a-c736120a9914, 착수 확인. 질문 msg_94c4b58774d3(compose에 KNOWSLINK_INSTALL_DIR·install 마운트 없음) → coor 답 A: 서버 로컬 override(relay env·:ro 마운트만), D12 기록, 후속 dev가 compose.ops.yaml로 옮김.
 - OPS 통합 2026-10-27: msg_c4a1be536c86 ops d4ef2f4d. 운영 relay 4fdd149b→bf67dfcb(중단 약18초, healthy·restart0·migrate0), /install/0.1.0/ 3파일 공개(서버 로컬 compose.install.yaml), probe 21/21·보존 39/39, live agent 30. need skip(코드 0), --no-ff e5819ac7, lint ERROR 0, push, ops release. 후속: dev가 override 두 줄을 compose.ops.yaml로 이전(PLANS 대기).
 - LIVE 배정 준비: SAR-AUTOSETUP-001-QA 인박스를 handovers/pending/SAR-AUTOSETUP-001-QA-tester.md로 대기(D040). tester fresh 세션, claude sonnet-5-5 high(tester 후보 중 실패 경계·연동 회귀 검증 항목). 지시서 handovers/to_tester.md SAR-CONNECT-SIMPLE-001-LIVE. 배정 task_42334558ac95 / ctx_1e8d20dd92fe / term_2102cbe4-5ef7-48a4-ab57-f1f007c1cf85, 착수 확인(계정 주소는 spec으로만 전달).
+- LIVE 진행 2026-10-27: tester 질문 3건 처리 — (1) Grok 쪽 옛 knowslink-link 번들로 새 연결 불가 → coor A: 새 prefix /workspace/.knowslink-live·MCP knowslink-live 추가(기존 불변). (2) 회원 A 동의 승인 주체 → 사용자 '내가 눌렀다', 친구 해제 후 재요청 → 사용자 승인. (3) 시험 메시지 1건 → 사용자 승인.
+- LIVE 통합 2026-10-27: msg_19d1485e1899 tester df32f90c, CS-AC-18 PASS(두 회원 새 agent 연결·친구 재요청·수락·이름 표시·시험 메시지 1건 수신 sender 'Grok Bot'), high 이상 0, 옛 시나리오 기대 4건 갱신. need skip, --no-ff 31214d26, lint ERROR 0. tester release는 user_takeover로 retained(강제 안 함). tester 인박스에 SAR-AUTOSETUP-001-QA 복귀(D040). SAR-CONNECT-SIMPLE-001 완료.
+- [ ] 대기: dev — 새 설치 npm audit 4건(moderate 2, high 2) 의존성 범위 확인(SAR-CONNECT-SIMPLE-001-LIVE 관찰 1).
+- [ ] 사용자 판단 대기: Grok Bot 컴퓨터의 /workspace/.knowslink-live·MCP knowslink-live와 새 agent(Grok Bot, Claude Code) 유지/정리(제거 방법은 LIVE report.md).
 - [ ] 대기: dev — 서버 로컬 compose.install.yaml(relay env KNOWSLINK_INSTALL_DIR·:ro install 마운트)을 compose.ops.yaml로 옮겨 repo 추적(SAR-CONNECT-SIMPLE-001-OPS 후속).
 
 ## 작업 파일 위치 정리 — 2026-10-24
