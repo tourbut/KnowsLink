@@ -81,6 +81,17 @@ func TestAttemptsAreNotAgents(t *testing.T) {
 	}
 }
 
+// C1: an attempt approved by the old flow already had its agent. Once that agent is revoked and swept, a late
+// completion is refused instead of making the same agent ID again.
+func TestOldAttemptNeverRemakesAgent(t *testing.T) {
+	st, now := connectionFixture()
+	token, proof, c := approvedDevice(t, st, now, "old")
+	c.Name = "" // the old flow made the agent at approval and kept no name on the attempt
+	if _, err := st.completeConnection(token, supportedClient, proof, now); err == nil || err.Error() != "invalid_auth" || st.Agents[c.Agent] != nil {
+		t.Fatal("swept agent ID made again", err)
+	}
+}
+
 // newStateLike gives a fixture a fresh connection map with the same owner, so a helper's attempt stays separate.
 func newStateLike(st *State) *State {
 	other := newState()

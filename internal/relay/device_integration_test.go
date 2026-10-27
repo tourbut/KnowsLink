@@ -145,7 +145,7 @@ func TestGoogleDeviceHTTP(t *testing.T) {
 		}
 	})
 
-	begin := func(host string) (string, string) {
+	begin := func(host string) (string, string, func() *httptest.ResponseRecorder) {
 		t.Helper()
 		fixture, now := connectionFixture()
 		token, c, private := deviceFixture(t, fixture, now)
@@ -158,7 +158,15 @@ func TestGoogleDeviceHTTP(t *testing.T) {
 		auth = u.Query()
 		expect(t, do("GET", "/auth/google/callback?code=fixture&state="+auth.Get("state"), "", true, true), 200, "/connect/"+id)
 		poll, _ := json.Marshal(map[string]string{"token": token, "client": c.Client, "proof": proof})
-		return id, string(poll)
+		finish := func() *httptest.ResponseRecorder { // saves the key of an approved attempt
+			var approved map[string]string
+			_ = json.Unmarshal(do("POST", "/v1/connect/poll", string(poll), false, false).Body.Bytes(), &approved)
+			c.Owner, c.Agent = approved["owner"], approved["agent"]
+			completion := base64.RawURLEncoding.EncodeToString(ed25519.Sign(private, connectionBytes(token, c)))
+			payload, _ := json.Marshal(map[string]string{"token": token, "client": c.Client, "proof": completion})
+			return do("POST", "/v1/connect/complete", string(payload), false, false)
+		}
+		return id, string(poll), finish
 	}
 	// A-04 default name, A-01 no agent before the key is saved, M-02 the attempt and its removal, W-01 the revisit.
 	s.mutateState(t, func(st *State) {
@@ -166,7 +174,7 @@ func TestGoogleDeviceHTTP(t *testing.T) {
 			m.Name = "합성 회원" // the agents page asks for a member name first
 		}
 	})
-	id, poll := begin("claude")
+	id, poll, _ := begin("claude")
 	expect(t, do("GET", "/connect/"+id, "", true, false), 200, `value="Claude Code"`, "1. 지문 비교", "지문이 같습니다. 연결합니다")
 	expect(t, do("POST", "/home/device-confirm", "connection="+id+"&name=Claude+Code", true, false), 303)
 	expect(t, do("GET", "/connect/"+id, "", true, false), 200, "연결을 승인했습니다", "Claude Code")
@@ -190,8 +198,42 @@ func TestGoogleDeviceHTTP(t *testing.T) {
 		t.Fatal("signed-out revisit revealed the connection")
 	}
 	cookies[sessionCookie] = session
+	// M-02: another member's attempt and a consumed one are never removed.
+	s.mutateState(t, func(st *State) {
+		st.Connections["foreign-attempt"] = &Connection{Owner: "other-owner", Client: supportedClient, Device: true, State: "prepared", Exp: time.Now().Add(connectionTTL)}
+	})
+	expect(t, do("POST", "/home/attempt-remove", "connection=foreign-attempt", true, false), 403)
+	expect(t, do("POST", "/home/attempt-remove", "connection="+firstID, true, false), 403)
+	s.mutateState(t, func(st *State) {
+		if st.Connections["foreign-attempt"] == nil || st.Connections[firstID] == nil || st.Connections[firstID].State != "consumed" {
+			t.Fatal("attempt-remove removed an attempt it does not own")
+		}
+		delete(st.Connections, "foreign-attempt")
+	})
+	// L-04 at key save: with 19 agents today, two consented attempts both pass consent; the second saved key is
+	// refused with when to retry (E agent_rate, CS-AC-04).
+	first, _, finishFirst := begin("")
+	second, _, finishSecond := begin("")
+	s.mutateState(t, func(st *State) {
+		for _, m := range st.Members {
+			made := 0
+			for _, a := range st.Agents {
+				if a.Owner == m.Owner && time.Since(a.Created) < 24*time.Hour {
+					made++
+				}
+			}
+			for i := made; i < agentRate-1; i++ {
+				st.Agents[fmt.Sprint("agent_today", i)] = &Agent{Owner: m.Owner, Keys: map[string]*Key{}, Created: time.Now()}
+			}
+		}
+		st.Rates = map[string][]time.Time{}
+	})
+	expect(t, do("POST", "/home/device-confirm", "connection="+first+"&name=First", true, false), 303)
+	expect(t, do("POST", "/home/device-confirm", "connection="+second+"&name=Second", true, false), 303)
+	expect(t, finishFirst(), 200, "connected")
+	expect(t, finishSecond(), 429, `"error":"agent_rate"`, `"retry_at"`)
 	// L-04 at consent: past the 24h rate the browser refuses and the polling client learns when to retry (E agent_rate).
-	id, poll = begin("")
+	id, poll, _ = begin("")
 	s.mutateState(t, func(st *State) {
 		for _, m := range st.Members {
 			for i := range agentRate {

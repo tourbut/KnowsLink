@@ -172,7 +172,9 @@ func (st *State) connection(token string, now time.Time) (*Connection, error) {
 		return nil, fault("invalid_auth")
 	}
 	a := st.Agents[c.Agent]
-	reserved := c.Device && c.State == "approved" && a == nil // the agent is made when its key is saved (A-01)
+	// The agent is made when its key is saved (A-01). Only an attempt approved by this flow carries Name; an older
+	// attempt's agent already existed, so a missing one was revoked and swept and its ID is never made again (C1).
+	reserved := c.Device && c.State == "approved" && a == nil && c.Name != ""
 	if (!reserved && (a == nil || a.Owner != c.Owner || a.Revoked)) || st.Owners[c.Owner] == nil || !st.Owners[c.Owner].Active {
 		return nil, fault("invalid_auth")
 	}
