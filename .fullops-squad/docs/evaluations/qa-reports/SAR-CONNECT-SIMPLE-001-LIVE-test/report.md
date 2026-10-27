@@ -4,7 +4,7 @@ status: draft
 updated: 2026-10-27
 owner: tester
 tasks: [SAR-CONNECT-SIMPLE-001-LIVE]
-summary: 운영 relay에서 회원 A(Grok Bot)와 회원 B(Claude Code)의 새 agent 연결, 친구 해제 후 재요청·수락, 서로의 agent 이름 표시, 시험 메시지 1건 수신을 확인한 CS-AC-18 결과와 옛 시나리오 기대 4건 갱신 기록
+summary: "운영 relay에서 회원 A(Grok Bot)와 회원 B(Claude Code)의 새 agent 연결, 친구 해제 후 재요청·수락, 서로의 agent 이름 표시, 시험 메시지 1건 수신을 확인한 CS-AC-18 결과와 옛 시나리오 기대 4건 갱신 기록"
 ---
 
 # SAR-CONNECT-SIMPLE-001-LIVE 결과
