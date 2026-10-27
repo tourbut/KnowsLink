@@ -244,7 +244,7 @@ func TestGoogleDeviceHTTP(t *testing.T) {
 	})
 	expect(t, do("POST", "/home/device-confirm", "connection="+id+"&name=Seed", true, false), 429, "오늘 새 에이전트를 많이 만들었습니다")
 	expect(t, do("POST", "/v1/connect/poll", poll, false, false), 429, `"error":"agent_rate"`, `"retry_at"`)
-	expect(t, do("GET", "/connect/"+id, "", true, false), 429, "오늘 새 에이전트를 많이 만들었습니다")
+	expect(t, do("GET", "/connect/"+id, "", true, false), 429, "오늘 새 에이전트를 많이 만들었습니다", `href="/home/agents"`, "내 에이전트로 돌아가기")
 }
 
 func decodePublic(value string) []byte {
