@@ -2157,3 +2157,5 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 - [x] SAR-CONNECT-SIMPLE-001-FIX-DEV → designer: designer 시각 검수(CS-AC-17) (완료 보고 자동 등재 2026-10-27)
 - [ ] SAR-CONNECT-SIMPLE-001-FIX-DEV → coor: 배포 뒤 실연결(CS-AC-18)은 coor 배정 (완료 보고 자동 등재 2026-10-27)
 - [x] SAR-CONNECT-SIMPLE-001-UI-FIX-DEV → coor: 재검수 배정(coor). 남은 임시 자료 경로는 보고서 끝에 있다 (완료 보고 자동 등재 2026-10-27)
+- [ ] SAR-CONNECT-SIMPLE-001-OPS → tester: tester: 배포된 운영에서 CS-AC-18 실연결(Grok=회원 A (완료 보고 자동 등재 2026-10-27)
+- [ ] SAR-CONNECT-SIMPLE-001-OPS → dev: 옛 CONNECT 시나리오 기대값 4건 갱신. dev: `compose.install.yaml`의 두 줄을 `compose.ops.yaml`로 옮겨 repo가 추적하게 한다(override 파일 제거) (완료 보고 자동 등재 2026-10-27)
