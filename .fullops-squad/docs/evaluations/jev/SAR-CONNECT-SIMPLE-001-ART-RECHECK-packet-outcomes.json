@@ -1,0 +1,56 @@
+{
+ "task_key": "SAR-CONNECT-SIMPLE-001-ART-RECHECK",
+ "attempt": "47c7de52bbd746769bf7d08fc85ddb82",
+ "packet_input_sha256": "59e42193e175ac31c10a68483cea526df533669104d19c9c93443e30de568391",
+ "items": [
+  {
+   "path": ".fullops-squad/FULLOPS.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "전문을 읽었다. 인박스·finish·고정 SHA·미해결 critical/high 차단 규약을 적용했다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-CONNECT-SIMPLE-001-ART-test/report.md",
+   "category": "document_update",
+   "status": "no_change",
+   "reason": "fixture 방법과 결함 표·수정 지시안을 재검수 기준으로 읽었다. 지시서 파일 소유권이 RECHECK 폴더뿐이라 이전 보고는 고치지 않고 새 RECHECK 보고에서 링크했다."
+  },
+  {
+   "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-CONNECT-SIMPLE-001-ART-test/report.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "fixture 방법과 결함 표·수정 지시안을 재검수 기준으로 읽었다. 지시서 파일 소유권이 RECHECK 폴더뿐이라 이전 보고는 고치지 않고 새 RECHECK 보고에서 링크했다."
+  },
+  {
+   "path": ".fullops-squad/project.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "기술 기준·검증 명령을 확인했다. 제품 코드 변경이 없어 product-lint·test 대상이 없다."
+  },
+  {
+   "path": ".fullops-squad/rules/common/README.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "공통 기준 우선순위를 확인했다. 검수만 해서 바꾸지 않았다."
+  },
+  {
+   "path": ".fullops-squad/rules/common/coding-style.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "코드 변경이 없어 적용 대상이 없다. 일회성 스크립트는 gitignore local 폴더에 두고 커밋하지 않았다."
+  },
+  {
+   "path": ".fullops-squad/rules/common/security.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "합성 계정·격리 DB·loopback fixture만 썼다. 커밋한 measure.json의 연결 ID를 <id>로 가렸다."
+  },
+  {
+   "path": ".fullops-squad/rules/common/testing.md",
+   "category": "document_read",
+   "status": "no_change",
+   "reason": "lite·담당과 반복 범위를 적용해 V-CS-01–06 화면만 1폭씩 다시 봤다. 판정에 링크한 캡처만 커밋했다."
+  }
+ ],
+ "uncertainty_review": "패킷 partial=True와 미확인 4건(PLANS.md, service-member-ui.md, module-design.md, ops-guide.md)을 확인했다. D04 service-member-ui.md는 직접 grep으로 V-CS-02 KO 문장 반영과 EN 이름 도움말 미정렬을 확인했다. 나머지는 재검수 판정에 필요하지 않다."
+}

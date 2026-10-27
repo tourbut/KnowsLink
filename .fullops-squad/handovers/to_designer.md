@@ -17,7 +17,7 @@ test_level: lite
 
 - 작성일: 2026-10-27
 - From / To: coor → designer
-- 상태: ready
+- 상태: done
 - 테스트 레벨 / 하위 에이전트 레벨: lite / standard
 - 승인된 범위: fullops/designer에서 재검수 보고·판정 캡처 커밋, main 06af3fe2 격리 로컬 relay·합성 fixture 실행, 커밋·push.
 - 추가 승인이 필요한 행위: 운영 relay·agent 사용, 실제 발송, 제품 코드 수정, D02 변경.
@@ -45,9 +45,9 @@ SAR-CONNECT-SIMPLE-001-ART(9ed04461)가 V-CS-01 medium으로 CS-AC-17 FAIL을 �
 
 ## 해야 할 일과 파일 소유권
 
-- [ ] V-CS-01: EN Google 실패 화면 1폭(1440) 캡처로 h1·`<title>`이 'Google sign-in'인지 확인.
-- [ ] V-CS-02–06: KO·EN 390 한 폭에서 동의 직후 문장, 버튼 aria 이름(접근성 트리), agent_rate 복귀 링크, 클라이언트 줄 표시 이름, 시도 최신순을 확인.
-- [ ] CS-AC-17 최종 판정(PASS/FAIL).
+- [x] V-CS-01: EN Google 실패 화면 1폭(1440) 캡처로 h1·`<title>`이 'Google sign-in'인지 확인.
+- [x] V-CS-02–06: KO·EN 390 한 폭에서 동의 직후 문장, 버튼 aria 이름(접근성 트리), agent_rate 복귀 링크, 클라이언트 줄 표시 이름, 시도 최신순을 확인.
+- [x] CS-AC-17 최종 판정(PASS/FAIL).
 
 파일 소유권: `docs/evaluations/qa-reports/SAR-CONNECT-SIMPLE-001-ART-RECHECK-test/`만 쓴다.
 
@@ -101,3 +101,17 @@ SAR-CONNECT-SIMPLE-001-ART(9ed04461)가 V-CS-01 medium으로 CS-AC-17 FAIL을 �
 ## 완료 보고
 
 worker_done 첫 줄은 `[완료] SAR-CONNECT-SIMPLE-001-ART-RECHECK | 브랜치 fullops/designer | SHA <HEAD>`.
+
+- 브랜치 fullops/designer. 보고 커밋 `0c26ca1a`. 대상 main `06af3fe2`.
+- 판정: CS-AC-17 PASS. V-CS-01–06 모두 수정 확인. critical·high·medium 0.
+  - V-CS-01: EN 1440 Google 실패 세 원인 모두 h1 'Google sign-in', `<title>` 'Google sign-in · KnowsLink'.
+  - V-CS-02: KO 동의 직후 문장이 designer 결정 문장과 같다('Codex이' 없음).
+  - V-CS-03: 접근성 트리 버튼 이름이 '이 시도 정리: <클라이언트> · HH:MM 시작', '이름 저장: 이름 없는 에이전트 · <구분값>'(EN 같은 형식)으로 겹치지 않는다.
+  - V-CS-04: `agent_rate` 복귀 링크가 '내 에이전트로 돌아가기' → `/home/agents`.
+  - V-CS-05: 로그인 전·동의 화면 클라이언트 줄이 'Claude Code'.
+  - V-CS-06: KO·EN 모두 시작 시각 최신순(Grok Bot → Codex → Node 로컬 클라이언트).
+- 방법: `06af3fe2` archive 사본 + 이전 ART fixture, 격리 Postgres `kl-csart-pg` 새 DB `csrecheck`, headless Chrome CDP 13화면. 가로 넘침 0.
+- not_run: 실제 Google OAuth, 상태 변경 POST 전이, 실제 200% 확대·스크린리더, 테마(제품에 없음), V-CS-02–06의 320·1440 재캡처(배치 변경 없음).
+- 남은 일: D04 이름 도움말 EN을 기존 문자열 'Friends also see this name. Enter 1–40 characters.'로 맞추는 designer 후속(이번 파일 소유권 밖).
+- 검사: FullOps lint `--from 06af3fe2318d` ERROR 0, WARNING 1(PLANS.md SIZE-001, 기존). product-lint는 Windows에 `make`가 없어 실행 불가다. 제품 코드 변경은 없다.
+- 보고서: [report.md](../docs/evaluations/qa-reports/SAR-CONNECT-SIMPLE-001-ART-RECHECK-test/report.md). fixture 사본·로그는 `.fullops-squad/local/SAR-CONNECT-SIMPLE-001-ART-RECHECK/`(gitignore). 컨테이너와 fixture 프로세스는 정지했다.
