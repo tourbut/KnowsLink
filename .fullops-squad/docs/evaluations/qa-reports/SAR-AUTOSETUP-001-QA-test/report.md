@@ -28,6 +28,7 @@ summary: "1차(10-23)는 N1–N6·갱신·S7·자격 경계를 확인했다. 2�
 | relay | 격리 Postgres 17(Compose 프로젝트 `knowslink-autosetup-qa2`, 15482) + 1차 시험 fixture(합성 회원 a·b 친구 1쌍, Google 콜백만 대행) |
 | 합성 상대 B | 회원 b 이름으로 설치한 Codex 설치기 산출물의 `plugin.js`를 스크립트 MCP 클라이언트로 구동([qa2-b_step.mjs](tools/qa2-b_step.mjs)). **Codex 호스트 세션은 쓰지 않았다**(상대 역할만) |
 | 실세션 | Orca 터미널에서 `CLAUDE_CONFIG_DIR`을 위 폴더로 두고 `claude` 실행([화면 1](ev/qa2-claude-session-1.screen.txt), [재시작 후](ev/qa2-claude-session-restart.screen.txt)) |
+| 설치 기록 | [Claude 설치(N1–N6, 17.8초)](ev/qa2-claude-install.log.txt), [합성 상대 B 설치](ev/qa2-peer-B-install.log.txt) |
 | 도구 | [qa2-install_run.py](tools/qa2-install_run.py)(`QA_CLAUDE_CONFIG`로 로그인 폴더 지정), [qa2-fixture.sh](tools/qa2-fixture.sh), [qa2-b_step.mjs](tools/qa2-b_step.mjs), [qa2-repro.ps1](tools/qa2-repro.ps1) |
 
 ### AC 판정

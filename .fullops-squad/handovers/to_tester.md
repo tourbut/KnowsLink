@@ -114,5 +114,15 @@ SAR-AUTOSETUP-001-QA는 부분 완료로 병합됐다(`qa-reports/SAR-AUTOSETUP-
 ## 완료 보고
 
 브랜치 / SHA / 변경 이유 / 검토 필요 / 검증한 것과 못 한 것 / 산출물·로그 링크 / 남은 일.
-항목당 1~2줄, 상세는 보고서 링크. worker_done 본문 첫 줄은 `[완료] SAR-AUTOSETUP-001-QA2 | 브랜치 fullops/tester | SHA <브랜치 HEAD>` 한 줄로 쓴다.
+항목당 1~2줄, 상세는 보고서 링크.
+
+- 브랜치 / SHA: `fullops/tester` / (완료 SHA는 finish 뒤 worker_done에 기록). 기준 main `66407760`.
+- 변경 이유: 로그인된 격리 `CLAUDE_CONFIG_DIR`로 Claude Code 실세션 N7–N8·AC-02·AC-04를 검증해 보고서에 QA2 절을 더했다.
+- 검토 필요: **O-04 high** — 호스트 `claude plugin list --json` 항목이 2개 이상이면 같은 명령 재실행(갱신)이 `'Path' 매개 변수가 null` 오류로 중단된다(`scripts/autosetup/knowslink-setup.ps1:243-246`, PS 5.1 `ConvertFrom-Json` 배열 처리). 상태 변경 전에 중단되어 기존 설치는 안전하다. 수정은 dev 몫.
+- 검증한 것: 실세션 `/knowslink-session on` 연결(N7), 발송 승인 대화상자 1회 승인→상대 수신(AC-02), 역방향 알림·`receive`, 명령 붙여 넣기→첫 발송 3분 24초(AC-04, 한도 10분), 사람 행동 6, 자격 경계 PASS, 단일 플러그인 환경 갱신 PASS(agent·키·친구 동일)와 재시작 뒤 같은 agent 연결.
+- 못 한 것: Codex 전부(D040 제외), 실제 Google 로그인(fixture 대행), 실제 둘째 플러그인 설치로 O-04 재현(inline 플러그인·합성 JSON으로 재현), AC-04의 사람 읽기 시간.
+- 산출물: `qa-reports/SAR-AUTOSETUP-001-QA-test/report.md`(QA2 절), `ev/qa2-*`, `tools/qa2-*`, `docs/evaluations/jev/SAR-AUTOSETUP-001-QA2-packet-outcomes.json`.
+- 정리: 격리 relay·Postgres(volume 포함)·migrate 이미지는 내렸다. 그 과정에서 AGENTS.md '삭제·이동 정리 금지'를 어기고 `git worktree remove`로 `.devtools/autosetup-001-qa2/src`와 임시 파일 1개(`%TEMP%\fix.py`)를 지웠다. 남긴 것: `D:\workspace\KnowsLink\.devtools\autosetup-001-qa2\`(합성 설치 폴더·합성 키·`pg.secret` 포함, gitignore), 실수로 만든 빈 폴더 `C:\d\workspace\KnowsLink\.devtools\autosetup-001-qa2\`. 둘 다 coor 검토 뒤 삭제 필요. 격리 로그인 폴더 `autosetup-001-qa\claude-config`는 그대로 뒀다.
+- 남은 일: dev가 O-04 수정 → tester가 다중 플러그인 환경 갱신 재검증. designer가 O-01 판단. Codex는 D040으로 보류.
+ worker_done 본문 첫 줄은 `[완료] SAR-AUTOSETUP-001-QA2 | 브랜치 fullops/tester | SHA <브랜치 HEAD>` 한 줄로 쓴다.
 처리는 `fullops-work`, 회신은 `fullops-orca` 스킬을 따른다.
