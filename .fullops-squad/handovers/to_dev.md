@@ -117,3 +117,10 @@ D12(ops-guide 배포 순서), D10(필요 시 L1 책임 한 줄). 그 외 없음.
 
 브랜치 / SHA / 변경 이유 / 검토 필요 / 검증한 것과 못 한 것 / 산출물·로그 링크 / 남은 일.
 항목당 1~2줄로 쓰고 상세는 `qa-reports/SAR-CONNECT-SIMPLE-001-FIX-DEV-test/report.md` 링크로 대신한다. worker_done 본문 첫 줄은 `[완료] SAR-CONNECT-SIMPLE-001-FIX-DEV | 브랜치 fullops/dev | SHA <HEAD>` 한 줄로 쓴다.
+
+- 브랜치 / SHA: `fullops/dev` / 코드 `fd0eb2d5b02e3c1dd32806fa4e24babb1436b18d`(기준 `116e3e8a`). 이후 커밋은 QA 보고·완료 기록만 바꾼다.
+- 변경 이유: M1 `connectAPI` 오류가 `errorBody`를 거쳐 complete의 `agent_rate`에 `retry_at`을 준다. L1 device 예약을 `Connection.Name`이 있는 시도로 한정해 구버전 시도의 철회·정리된 agent ID를 다시 만들지 않는다(C1). L2 D12 배포 순서. L3 `attempt-remove` 음성 테스트.
+- 검토 필요: L1 예약 한정(`connections.go` `connection()`)의 독립 리뷰. 이 흐름의 동의는 항상 이름(1–40자)을 기록하므로 새 시도에는 영향이 없다.
+- 검증한 것: Linux 격리 `make lint`·`make test`·`go test -race -tags=integration ./internal/relay` EXIT=0(`fd0eb2d5`), L1 테스트 RED→GREEN, FullOps lint ERROR 0(깨끗한 detached worktree, `make` 실행 불가 2는 Linux 결과로 대신). 못 한 것: M1 integration 테스트의 수정 전 RED 실행.
+- 산출물·로그: [DEV QA 보고](../docs/evaluations/qa-reports/SAR-CONNECT-SIMPLE-001-FIX-DEV-test/report.md), 원시 로그 `D:/workspace/KnowsLink/.devtools/connect-simple-001-fixdev/`, D10·D12 갱신.
+- 남은 일: tester 독립 QA(CS-AC-01–16), designer 시각 검수(CS-AC-17), 배포 뒤 실연결(CS-AC-18)은 coor 배정.
