@@ -139,7 +139,9 @@ func (st *State) deviceOutcome(c *Connection) map[string]any {
 }
 
 func (s *Service) devicePage(w http.ResponseWriter, r *http.Request) {
+	back := "/home"
 	value, err := s.transaction(r.Context(), func(st *State, now time.Time) (any, error) {
+		back = "/home"
 		id, session, retry, e := s.memberHit(w, st, r, now, memberRate)
 		if !retry.IsZero() {
 			return refusal{429, limited(retry), false, false}, nil
@@ -148,6 +150,7 @@ func (s *Service) devicePage(w http.ResponseWriter, r *http.Request) {
 		// Only the member who started the attempt learns its state or agent name; anyone else keeps the generic refusal.
 		if c != nil && c.Device && c.Owner != "" && e == nil && st.Members[id].Owner == c.Owner {
 			if c.State == "refused" {
+				back = "/home/agents" // a refused key connection returns to the agents it was for (V-CS-04)
 				refusedErr := agentRefused{c.Refused, c.Retry}
 				return refusal{statusFor(refusedErr), safeProblem(refusedErr), false, false}, nil
 			}
@@ -162,7 +165,7 @@ func (s *Service) devicePage(w http.ResponseWriter, r *http.Request) {
 			return refusal{403, "이 연결을 시작한 Google 계정으로 다시 시작하세요.", false, false}, nil
 		}
 		public, _ := base64.RawURLEncoding.DecodeString(c.Public)
-		v := map[string]any{"Title": "내 클라이언트 연결", "ConnectionID": r.PathValue("id"), "Fingerprint": fingerprint(public), "Exp": clock(c.Exp), "State": c.State, "Google": s.Google != nil, "Here": "/connect/" + r.PathValue("id")}
+		v := map[string]any{"Title": "내 클라이언트 연결", "ConnectionID": r.PathValue("id"), "Fingerprint": fingerprint(public), "Exp": clock(c.Exp), "Client": clientName(c.Host), "State": c.State, "Google": s.Google != nil, "Here": "/connect/" + r.PathValue("id")}
 		v["Login"] = c.Owner == "" || e != nil || now.Sub(session.Verified) >= reauthWindow
 		if c.Owner != "" {
 			v["Name"] = st.defaultName(c.Owner, c.Host, responseLang(w))
@@ -174,7 +177,7 @@ func (s *Service) devicePage(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	if v, ok := value.(refusal); ok {
-		refused(w, "클라이언트 연결", v)
+		refusedTo(w, "클라이언트 연결", v, back)
 		return
 	}
 	render(w, 200, "device", value.(map[string]any))

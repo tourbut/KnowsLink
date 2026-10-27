@@ -2152,3 +2152,4 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 - [x] SAR-CONNECT-SIMPLE-001-FIX-DEV → tester: tester 독립 QA(CS-AC-01–16) (완료 보고 자동 등재 2026-10-27)
 - [x] SAR-CONNECT-SIMPLE-001-FIX-DEV → designer: designer 시각 검수(CS-AC-17) (완료 보고 자동 등재 2026-10-27)
 - [ ] SAR-CONNECT-SIMPLE-001-FIX-DEV → coor: 배포 뒤 실연결(CS-AC-18)은 coor 배정 (완료 보고 자동 등재 2026-10-27)
+- [ ] SAR-CONNECT-SIMPLE-001-UI-FIX-DEV → coor: 재검수 배정(coor). 남은 임시 자료 경로는 보고서 끝에 있다 (완료 보고 자동 등재 2026-10-27)

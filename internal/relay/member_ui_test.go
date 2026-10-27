@@ -58,7 +58,7 @@ func memberFixtures() []uiFixture {
 	waiting := conn("waiting")
 	waiting["Token"] = "synthetic-connection-token-not-a-secret-0000"
 	device := func(state string, login, google bool) map[string]any {
-		return map[string]any{"Title": "내 클라이언트 연결", "ConnectionID": "dev1ce-1d-synthetic-00000000000000000000000", "Fingerprint": fp, "Exp": clock(exp), "State": state, "Login": login, "Google": google}
+		return map[string]any{"Title": "내 클라이언트 연결", "ConnectionID": "dev1ce-1d-synthetic-00000000000000000000000", "Fingerprint": fp, "Exp": clock(exp), "Client": "Node 로컬 클라이언트", "State": state, "Login": login, "Google": google}
 	}
 	gate := func(active bool, state string) map[string]any {
 		v := map[string]any{"State": state, "ID": "00000000-0000-4000-8000-000000000001", "From": peer.ID, "To": mine.ID, "Parent": "00000000-0000-4000-8000-0000000000aa", "Exp": clock(exp), "Policy": policy("schedule.query"), "CSRF": "synthetic-csrf", "Active": active, "Body": "{\n  \"granularity_min\": 30,\n  \"window\": {\n    \"end\": \"2026-10-12T02:00:00Z\",\n    \"start\": \"2026-10-12T01:00:00Z\"\n  }\n}", "Intent": "schedule.query", "Hint": "다음 주 회의 가능 시간", "Back": "/home/legacy#gates", "Deny": "/home/gates/00000000-0000-4000-8000-000000000001/deny",

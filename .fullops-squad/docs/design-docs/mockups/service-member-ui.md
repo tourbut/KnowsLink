@@ -2,9 +2,9 @@
 id: D04
 title: 사람 친구와 에이전트 대화의 화면설계서
 status: review
-updated: 2026-10-26
+updated: 2026-10-27
 owner: designer
-tasks: [SAR-SERVICE-UI-001-DESIGN, SAR-SERVICE-UI-001-VISUAL, SAR-FRONTEND-POLISH-001-VISUAL, SAR-HUMAN-PEER-001, SAR-HUMAN-PEER-001-VISUAL, SAR-LANDING-GUIDE-001, SAR-LANDING-GUIDE-001-DEV, SAR-SCHEDULE-001-VISUAL, SAR-PUBLISH-001, SAR-PUBLISH-001-D04, SAR-PUBLISH-002-DOCS, SAR-AUTOSETUP-001, SAR-AUTOSETUP-001-ART, SAR-CONNECT-SIMPLE-001]
+tasks: [SAR-SERVICE-UI-001-DESIGN, SAR-SERVICE-UI-001-VISUAL, SAR-FRONTEND-POLISH-001-VISUAL, SAR-HUMAN-PEER-001, SAR-HUMAN-PEER-001-VISUAL, SAR-LANDING-GUIDE-001, SAR-LANDING-GUIDE-001-DEV, SAR-SCHEDULE-001-VISUAL, SAR-PUBLISH-001, SAR-PUBLISH-001-D04, SAR-PUBLISH-002-DOCS, SAR-AUTOSETUP-001, SAR-AUTOSETUP-001-ART, SAR-CONNECT-SIMPLE-001, SAR-CONNECT-SIMPLE-001-UI-FIX-DEV]
 summary: 이름과 대화 중심의 정보 구조·토큰·반응형 화면·상태 및 후속 수락 기준
 ---
 
@@ -594,7 +594,7 @@ Codex details 링크는 [adapters Codex 절](../../../../adapters/README.md#code
 
 | 상태 | 제목 | KO 본문 | EN 본문 | 링크 |
 |---|---|---|---|---|
-| 동의 직후·키 저장 대기 | 연결을 승인했습니다 | 시작한 앱으로 돌아가세요. 앱이 키를 저장하면 '내 에이전트'에 `<이름>`이 '키 등록됨'으로 보입니다. 승인만으로는 아직 연결되지 않았습니다. | Go back to the app you started from. When it saves the key, `<name>` shows as "Key registered" in My agents. Approval alone doesn't connect it yet. | 내 에이전트로 이동 |
+| 동의 직후·키 저장 대기 | 연결을 승인했습니다 | 시작한 앱으로 돌아가세요. 앱이 키를 저장하면 '내 에이전트'에서 `<이름>`의 상태가 '키 등록됨'으로 바뀝니다. 승인만으로는 아직 연결되지 않았습니다. | Go back to the app you started from. When it saves the key, `<name>` shows as "Key registered" in My agents. Approval alone doesn't connect it yet. | 내 에이전트로 이동 |
 | 완료(키 저장됨) | 이 연결은 완료됐습니다 | `<이름>` 에이전트에 키가 등록됐습니다. 이 링크는 다시 쓸 수 없습니다. 메시지를 받을 세션은 앱에서 연결하세요. | The key for `<name>` is registered. This link can't be used again. Connect the receiving session in the app. | 내 에이전트로 이동 |
 | 만료 | 이 연결은 만료됐습니다 | 키가 연결되지 않았습니다. 시작한 앱에서 다시 연결하면 새 링크를 만듭니다. | No key was connected. Connect again from the app you started from to get a new link. | 내 에이전트로 이동 |
 | 취소 | 이 연결은 취소됐습니다 | 키가 연결되지 않았습니다. 시작한 앱에서 다시 연결하면 새 링크를 만듭니다. | No key was connected. Connect again from the app you started from to get a new link. | 내 에이전트로 이동 |

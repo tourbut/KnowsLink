@@ -47,6 +47,17 @@ func TestAttemptsAreNotAgents(t *testing.T) {
 	if len(st.ownAttempts("owner")) != 3 || !states["prepared"] || !states["approved"] || !states["expired"] {
 		t.Fatal("in-progress list", st.ownAttempts("owner"))
 	}
+	// V-CS-06: newest start first, then ID, the same for every member and reload.
+	list := st.ownAttempts("owner")
+	for i := 1; i < len(list); i++ {
+		a, b := st.Connections[list[i-1].ID].Exp, st.Connections[list[i].ID].Exp
+		if a.Before(b) || a.Equal(b) && list[i-1].ID > list[i].ID {
+			t.Fatal("attempt order", list)
+		}
+	}
+	if list[2].State != "expired" {
+		t.Fatal("oldest attempt not last", list)
+	}
 	for i := range agentRate - 1 {
 		st.Agents[fmt.Sprint("agent_n", i)] = &Agent{Owner: "owner", Keys: map[string]*Key{}, Created: now}
 	}
@@ -192,6 +203,15 @@ func TestConnectFailureMessages(t *testing.T) {
 	if body := w.Body.String(); !strings.Contains(body, `action="/auth/google"`) || !strings.Contains(body, `value="conn-id"`) || !strings.Contains(body, "다른 계정 선택") {
 		t.Fatal("account chooser missing")
 	}
+	// V-CS-01: the English title and heading of the failure are English.
+	body := renderEN(t, "refusal", map[string]any{"Title": "Google 로그인", "Problem": "p", "Back": "/", "Retry": "conn-id"})
+	for _, tag := range []string{"title", "h1"} {
+		start := strings.Index(body, "<"+tag)
+		end := strings.Index(body[start:], "</"+tag+">")
+		if start < 0 || end < 0 || hangul.MatchString(body[start:start+end]) || !strings.Contains(body[start:start+end], "Google sign-in") {
+			t.Fatal("EN", tag, body)
+		}
+	}
 }
 
 func TestConnectScreens(t *testing.T) {
@@ -203,7 +223,7 @@ func TestConnectScreens(t *testing.T) {
 	if attempts < 0 || unnamed < attempts || list < unnamed {
 		t.Fatal("M-01 order")
 	}
-	for _, want := range []string{"Claude Code · 10:42 시작", "동의 완료 · 키 저장 확인 필요", `action="/home/attempt-remove"`, `value="attempt-1"`, "이름 없는 에이전트 · a1b2", `action="/home/agent-name"`, `value="agent_u"`} {
+	for _, want := range []string{"Claude Code · 10:42 시작", `aria-label="이 시도 정리: Claude Code · 10:42 시작"`, `aria-label="이름 저장: 이름 없는 에이전트 · a1b2"`, "동의 완료 · 키 저장 확인 필요", `action="/home/attempt-remove"`, `value="attempt-1"`, "이름 없는 에이전트 · a1b2", `action="/home/agent-name"`, `value="agent_u"`} {
 		if !strings.Contains(body, want) {
 			t.Fatal("missing", want)
 		}

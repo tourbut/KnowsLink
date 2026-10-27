@@ -182,14 +182,25 @@ func (st *State) ownAttempts(owner string) []ownAttempt {
 		if !c.Device || c.Owner != owner || (c.State != "prepared" && c.State != "approved" && c.State != "expired") {
 			continue
 		}
-		client := hostNames[c.Host]
-		if client == "" {
-			client = "Node 로컬 클라이언트"
-		}
-		out = append(out, ownAttempt{id, client, c.Exp.Add(-connectionTTL).In(kst).Format("15:04"), c.State})
+		out = append(out, ownAttempt{id, clientName(c.Host), c.Exp.Add(-connectionTTL).In(kst).Format("15:04"), c.State})
 	}
-	sort.Slice(out, func(i, j int) bool { return out[i].ID < out[j].ID })
+	// Newest start first; every attempt shares connectionTTL, so the deadline orders the starts.
+	sort.Slice(out, func(i, j int) bool {
+		a, b := st.Connections[out[i].ID].Exp, st.Connections[out[j].ID].Exp
+		if !a.Equal(b) {
+			return a.After(b)
+		}
+		return out[i].ID < out[j].ID
+	})
 	return out
+}
+
+// clientName is how the attempt title and its connection link name the starting client.
+func clientName(host string) string {
+	if name := hostNames[host]; name != "" {
+		return name
+	}
+	return "Node 로컬 클라이언트"
 }
 
 // inviteNotice tells the inviter whether the submit made a new pending invite or kept the current one unchanged.

@@ -183,7 +183,7 @@ func TestDeviceFailureBoundaries(t *testing.T) {
 func TestDeviceConsentTemplate(t *testing.T) {
 	for _, state := range []string{"login", "prepared", "approved"} {
 		w := httptest.NewRecorder()
-		v := map[string]any{"Title": "connect", "ConnectionID": "public-id", "Fingerprint": "SHA256:public", "State": state, "Login": state == "login", "Google": true}
+		v := map[string]any{"Title": "connect", "ConnectionID": "public-id", "Fingerprint": "SHA256:public", "State": state, "Client": "Claude Code", "Login": state == "login", "Google": true}
 		if state == "approved" {
 			v = map[string]any{"Title": "연결을 승인했습니다", "Outcome": state, "Name": "Claude Code"}
 		}
@@ -194,6 +194,12 @@ func TestDeviceConsentTemplate(t *testing.T) {
 		}
 		if state == "prepared" && !strings.Contains(body, "/home/device-confirm") {
 			t.Fatal("missing explicit consent")
+		}
+		if state != "approved" && !strings.Contains(body, "<dd>Claude Code</dd>") {
+			t.Fatal("client line is not the host name")
+		}
+		if state == "approved" && !strings.Contains(body, "'내 에이전트'에서 Claude Code의 상태가") {
+			t.Fatal("approved outcome text")
 		}
 		if state == "login" && !strings.Contains(body, "/auth/google") {
 			t.Fatal("missing Google login")

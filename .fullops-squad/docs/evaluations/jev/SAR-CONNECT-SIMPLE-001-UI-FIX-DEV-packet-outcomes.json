@@ -1,0 +1,182 @@
+{
+  "task_key": "SAR-CONNECT-SIMPLE-001-UI-FIX-DEV",
+  "attempt": "f24c4be2e09f4fa6a0417a2a146d4de2",
+  "packet_input_sha256": "506cc1c93de53aa452ed07cea70c217963307991cc6bcd467bb6b7b1a378e479",
+  "items": [
+    {
+      "path": ".fullops-squad/FULLOPS.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "읽었다. 역할 인박스·독립 리뷰·완료 기록 규약을 적용했다. 규약은 바꾸지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-CONNECT-SIMPLE-001-ART-test/report.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "결함 표 V-CS-01–06의 위치·재현·수정 지시안과 V-CS-02 designer 결정 문장을 그대로 반영했다. 보고서는 바꾸지 않았다."
+    },
+    {
+      "path": ".fullops-squad/project.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "검증 명령(make lint·make test)과 Windows make 부재를 확인해 Linux 격리 clone에서 실행했다. 파일은 바꾸지 않았다."
+    },
+    {
+      "path": ".fullops-squad/rules/common/README.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "공통 규칙 적용 범위와 작업 파일 위치를 확인했다. 로그는 기존 예외 경로 .devtools에 두었다."
+    },
+    {
+      "path": ".fullops-squad/rules/common/coding-style.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "기존 template·refusalTo·hostNames를 재사용하고 새 추상화 없이 clientName 하나만 더했다."
+    },
+    {
+      "path": ".fullops-squad/rules/common/security.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "다른 회원 비노출 분기(devicePage 소유자 확인)는 그대로 두고 복귀 링크만 바꿨다. 비밀값은 로그에서 가렸다."
+    },
+    {
+      "path": ".fullops-squad/rules/common/testing.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "lite: 변경 동작마다 기존 테스트에 단언을 더하고 make lint·make test·integration을 실행했다. 캡처는 만들지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/crud-design.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "상태 변경 경로를 바꾸지 않아 갱신할 내용이 없다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/data-model.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "데이터 모델 변경이 없다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/interface-design.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "HTTP 경로·응답 형식 변경이 없다. 거절 화면 복귀 링크만 바뀌었다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-MVP-001-UI.md",
+      "category": "document_update",
+      "status": "no_change",
+      "reason": "이 과제의 화면은 service-member-ui.md 범위라 바꾸지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/service-member-ui.md",
+      "category": "document_update",
+      "status": "completed",
+      "reason": "D04 동의 직후 재방문 KO 칸을 designer 결정 문장으로 바꾸고 front matter를 stamp했다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/module-design.md",
+      "category": "document_update",
+      "status": "completed",
+      "reason": "D10 A-05·M, W-01–W-04, W-02 행에 clientName·정렬·aria-label·복귀·EN 제목과 테스트를 더했다."
+    },
+    {
+      "path": ".fullops-squad/docs/operations/user-guide.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "사용자 안내 문구와 무관한 화면 세부 수정이라 바꾸지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/planning/product-specs/SAR-AUTOSETUP-001.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제품 규칙 확인용 문서다. 이 과제는 화면 세부 수정이라 규칙을 바꾸지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/planning/product-specs/SAR-COMPETE-001.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제품 규칙 확인용 문서다. 이 과제는 화면 세부 수정이라 규칙을 바꾸지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/planning/product-specs/SAR-CONNECT-SIMPLE-001.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제품 규칙 확인용 문서다. 이 과제는 화면 세부 수정이라 규칙을 바꾸지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/planning/product-specs/SAR-HUMAN-PEER.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제품 규칙 확인용 문서다. 이 과제는 화면 세부 수정이라 규칙을 바꾸지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/planning/product-specs/SAR-MVP.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제품 규칙 확인용 문서다. 이 과제는 화면 세부 수정이라 규칙을 바꾸지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/planning/product-specs/SAR-PUBLIC-SERVICE.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제품 규칙 확인용 문서다. 이 과제는 화면 세부 수정이라 규칙을 바꾸지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/planning/product-specs/SAR-PUBLISH-001.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제품 규칙 확인용 문서다. 이 과제는 화면 세부 수정이라 규칙을 바꾸지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/planning/product-specs/SAR-SCHEDULE-001.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제품 규칙 확인용 문서다. 이 과제는 화면 세부 수정이라 규칙을 바꾸지 않았다."
+    },
+    {
+      "path": ".fullops-squad/docs/planning/product-specs/SAR-SETUP-001.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "제품 규칙 확인용 문서다. 이 과제는 화면 세부 수정이라 규칙을 바꾸지 않았다."
+    },
+    {
+      "path": "docs/system-design.md",
+      "category": "document_read",
+      "status": "no_change",
+      "reason": "구조 변경이 없다."
+    },
+    {
+      "path": "internal/relay/google.go",
+      "category": "direct_edit",
+      "status": "no_change",
+      "reason": "Title 'Google 로그인'은 그대로 두고 EN 사전에 번역을 더해 해결했다(V-CS-01). 코드 변경은 없다."
+    },
+    {
+      "path": "internal/relay/human_pages.go",
+      "category": "direct_edit",
+      "status": "completed",
+      "reason": "진행 중인 연결·이름을 정할 에이전트 버튼에 카드 형식 aria-label을 더했다(V-CS-03)."
+    },
+    {
+      "path": "internal/relay/i18n_en_member.go",
+      "category": "direct_edit",
+      "status": "completed",
+      "reason": "'Google 로그인', 두 aria-label EN, 새 approved KO 문장 키를 반영했다(V-CS-01·02·03)."
+    },
+    {
+      "path": "internal/relay/member_agents.go",
+      "category": "direct_edit",
+      "status": "completed",
+      "reason": "clientName을 더하고 ownAttempts를 시작 최신순·ID순으로 정렬했다(V-CS-05·06)."
+    },
+    {
+      "path": "internal/relay/member_pages.go",
+      "category": "direct_edit",
+      "status": "completed",
+      "reason": "device approved KO 문장을 바꾸고 클라이언트 줄을 {{tr .Client}}로 바꿨다(V-CS-02·05)."
+    }
+  ],
+  "uncertainty_review": "packet unknown 6건 중 service-member-ui.md·module-design.md·google.go는 직접 열어 위 항목대로 처리했다. PLANS.md·ops-guide.md는 열지 않았다. 이 과제는 배포 절차·대기 과제를 바꾸지 않아 갱신 대상이 아니다. 나머지 참조 후보는 화면 세부 수정과 무관해 읽지 않았다."
+}
