@@ -37,6 +37,7 @@ summary: 기존 제품 계획 보존과 Google 연결 구현의 독립 검토 �
 - UI-FIX-DEV 병합 2026-10-27: msg_7be09e2bd7cd dev 061c4142, V-CS-01–06 반영. need skip(코드 9파일 85줄) coor diff 확인. --no-ff 06af3fe2, 병합 lint ERROR 0, push, dev release, 전 워크트리 동기화. 다음: SAR-CONNECT-SIMPLE-001-ART-RECHECK(designer, jev opus-5-5 high, 기준 06af3fe2).
 - ART-RECHECK 배정: task_bd47dcb05642 / ctx_ff65a97dc94a / term_582d4ea3-f81b-4a01-9be0-c33ec1f8df58, opus-5-5 high, designer ce24d290. 착수 확인.
 - ART-RECHECK 통합 2026-10-27: msg_72ddb8858193 designer da983fed, V-CS-01–06 수정 확인, CS-AC-17 PASS(critical/high/medium 0). need skip, --no-ff f4a3982e, lint ERROR 0, push, designer release, 전 워크트리 동기화. SAR-CONNECT-SIMPLE-001 1단계(CS-AC-01–17) 완료. tester 인박스에 SAR-AUTOSETUP-001-QA 복귀(D040 대기). 남은 일: 운영 배포(relay 먼저, 사용자 승인 D042) → tester 2단계 실연결 CS-AC-18(회원 A=Grok, 회원 B=Claude Code, ego 브라우저 에이전트 진행)·이전 CONNECT 시나리오 기대 갱신 4건. designer 후속: D04 이름 도움말 EN을 기존 문자열로 맞춤(low).
+- FullOps 1.10.0 적용 2026-10-27(bf67dfcb). D042 '배포 진행', D043 '자동 설정 함께 공개'(main에 SAR-AUTOSETUP-001 화면이 함께 있어 설치 파일 0.1.0·/install ingress도 게시). OPS 배정: ops fresh 세션, claude sonnet-5-5 high(ops 후보 하나, 직렬 운영 절차·지난 배포와 같은 순서). 지시서 handovers/to_ops.md.
 
 ## 작업 파일 위치 정리 — 2026-10-24
 

@@ -1,0 +1,64 @@
+{
+  "version": "jev-route-v4",
+  "task_key": "SAR-CONNECT-SIMPLE-001-OPS",
+  "requested_model": "~typesafe/jev-latest",
+  "route": "unresolved",
+  "role": null,
+  "deliverables": [
+    "D12",
+    "D13"
+  ],
+  "thresholds": {
+    "simple": 0.8,
+    "role": 0.6,
+    "deliverable": 0.5
+  },
+  "answers": {
+    "scope": {
+      "choice": "implementation",
+      "probabilities": {
+        "implementation": 0.95,
+        "product": 0.05
+      },
+      "confidence": 0.9
+    },
+    "role": {
+      "choice": "ops",
+      "probabilities": {
+        "dev": 0.5,
+        "ops": 0.5,
+        "tester": 0
+      },
+      "confidence": 0.25
+    },
+    "docs": {
+      "D01": 0.15,
+      "D02": 0.17,
+      "D03": 0.28,
+      "D04": 0.3,
+      "D05": 0.3,
+      "D06": 0.25,
+      "D07": 0.22,
+      "D08": 0.29,
+      "D09": 0.3,
+      "D10": 0.46,
+      "D11": 0.38,
+      "D12": 0.82,
+      "D13": 0.75
+    }
+  },
+  "usage": {
+    "input_tokens": 2512,
+    "output_tokens": 314,
+    "cost": 0.000105504
+  },
+  "error": null,
+  "docs_status": "complete",
+  "unresolved_deliverables": [],
+  "additional_deliverables": [],
+  "latency_seconds": 0.46,
+  "response_model": "typesafe/jev-1.14-20261014",
+  "model": null,
+  "head": "bf67dfcbb4f7164149901d847edc0aa0e5783dc7",
+  "requires_packet": true
+}

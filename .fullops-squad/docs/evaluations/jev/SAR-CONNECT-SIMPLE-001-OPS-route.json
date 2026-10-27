@@ -1,0 +1,82 @@
+{
+  "version": "jev-route-v4",
+  "task_key": "SAR-CONNECT-SIMPLE-001-OPS",
+  "requested_model": "~typesafe/jev-latest",
+  "route": "implementation",
+  "role": "ops",
+  "deliverables": [
+    "D12",
+    "D13"
+  ],
+  "thresholds": {
+    "simple": 0.8,
+    "role": 0.6,
+    "deliverable": 0.5
+  },
+  "answers": {
+    "scope": {
+      "choice": "implementation",
+      "probabilities": {
+        "implementation": 0.95,
+        "product": 0.05
+      },
+      "confidence": 0.9
+    },
+    "role": {
+      "choice": "dev",
+      "probabilities": {
+        "dev": 0.69,
+        "ops": 0.31,
+        "tester": 0
+      },
+      "confidence": 0.53
+    },
+    "docs": {
+      "D01": 0.14,
+      "D02": 0.14,
+      "D03": 0.21,
+      "D04": 0.16,
+      "D05": 0.19,
+      "D06": 0.16,
+      "D07": 0.17,
+      "D08": 0.26,
+      "D09": 0.19,
+      "D10": 0.35,
+      "D11": 0.18,
+      "D12": 0.75,
+      "D13": 0.7
+    }
+  },
+  "usage": {
+    "input_tokens": 2494,
+    "output_tokens": 314,
+    "cost": 0.000104748
+  },
+  "error": null,
+  "docs_status": "complete",
+  "unresolved_deliverables": [],
+  "additional_deliverables": [],
+  "latency_seconds": 0.455,
+  "response_model": "typesafe/jev-1.14-20261014",
+  "original_role": "dev",
+  "original_route": "implementation",
+  "override_reason": "운영 배포는 orca-agents.md 라우팅 기준상 ops 책임(배포·운영)",
+  "model": {
+    "agent": "claude",
+    "provider": "anthropic",
+    "model": "claude-sonnet-5-5",
+    "effort": "high",
+    "source": "user"
+  },
+  "head": "bf67dfcbb4f7164149901d847edc0aa0e5783dc7",
+  "requires_packet": true,
+  "attempt": "f3d4ffbc37374ae0ad4f81329276933a",
+  "instruction_sha256": "d2c070f88454d3b622d77bab88a31a55f642c9ae3ebf6fe1e4aeb805101621a8",
+  "options": {
+    "model": "~typesafe/jev-latest",
+    "offline": false,
+    "payload_cache_bypass": false,
+    "policy": "route-v4"
+  },
+  "input_sha256": "5e1fb7270e7507457e5086ddbe89b433f15fed09b29025fd694099dcc1a7532c"
+}
