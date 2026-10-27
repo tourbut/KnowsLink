@@ -1,0 +1,269 @@
+# Server scripts run through the task-local verified SSH transport (EXIT is in the matching .log). Secrets are never in these scripts.
+
+##### mkw.txt
+set -o errexit -o nounset -o pipefail
+W=/home/shin/deploy/knowslink-state/connect001-ops-20261027
+test ! -e "$W"
+mkdir -m 0700 "$W"
+stat -c "workspace mode=%a" "$W"
+date -u +%FT%TZ
+
+##### baseline.txt
+set -o errexit -o nounset -o pipefail
+S=/home/shin/deploy/knowslink-state; W=$S/connect001-ops-20261027; D=/home/shin/deploy/knowslink
+chmod 0600 "$W/observe.txt" "$W/release.bundle"
+umask 077
+date -u +%FT%TZ >"$W/baseline.utc"
+bash "$W/observe.txt" >"$W/baseline.json"
+python3 "$D/deploy/knowslink/verify.py" local
+git -C "$D" rev-parse HEAD
+git -C "$D" status --porcelain | wc -l | sed 's/^/dirty_lines=/'
+docker inspect -f '{{.Name}} {{.State.Status}} restarts={{.RestartCount}}' knowslink-relay-1 knowslink-cloudflared-1
+curl -s -o /dev/null -m 10 -w 'healthz_local=%{http_code}\n' http://127.0.0.1:8080/healthz
+# live agents = not revoked and owner active (internal/relay/connections.go liveAgents); L-03 needs <=200 (refuse 2000 is 10x)
+docker exec knowslink-postgres-1 psql -X -U knowslink -Atc "select 'live_agents='||count(*)||' total_agents='||(select count(*) from relay_state, jsonb_object_keys(coalesce(data->'Agents','{}'::jsonb)))||' owners='||(select count(*) from relay_state, jsonb_object_keys(coalesce(data->'Owners','{}'::jsonb))) from relay_state, jsonb_each(coalesce(data->'Agents','{}'::jsonb)) a where coalesce((a.value->>'Revoked')::boolean,false)=false and coalesce((data->'Owners'->(a.value->>'Owner')->>'Active')::boolean,false)=true"
+echo "backup_files=$(ls "$S/backups" | wc -l)"
+crontab -l | grep -c prune-backups | sed 's/^/prune_cron_lines=/'
+tail -2 "$S/deploy-history.log"
+ls -ld "$S" "$S/install" 2>&1 | sed 's/^/state_dir: /' || true
+stat -c 'env mode=%a bytes=%s' "$S/.env"
+grep -c '^KNOWSLINK_INSTALL_DIR=' "$S/.env" | sed 's/^/env_install_dir_lines=/' || true
+id -u | sed 's/^/server_uid=/'
+echo BASELINE_OK
+
+##### build.txt
+set -o errexit -o nounset -o pipefail
+D=/home/shin/deploy/knowslink; S=/home/shin/deploy/knowslink-state; W=$S/connect001-ops-20261027
+OLD=4fdd149b27d3ff251a73128120dce9f8bb136620; NEW=bf67dfcbb4f7164149901d847edc0aa0e5783dc7
+TAG=knowslink-rollback:4fdd149b-connect001-20261027
+test "$(git -C "$D" rev-parse HEAD)" = "$OLD"
+test -z "$(git -C "$D" status --porcelain)"
+printf 'e7a0ef307425588658e0e7afd89ca8a340d0eef68fe50e326e651ca9951b4224  %s\n' "$W/release.bundle" | sha256sum -c -
+git -C "$D" bundle verify "$W/release.bundle"
+git -C "$D" fetch -q "$W/release.bundle" origin/main:refs/tmp/connect001
+git -C "$D" cat-file -e "$NEW^{commit}"
+git -C "$D" merge-base --is-ancestor "$OLD" "$NEW"
+git -C "$D" diff --exit-code "$OLD" "$NEW" -- db Dockerfile go.mod go.sum Makefile sqlc.yaml compose.yaml
+echo 'schema/dependency/compose diff=0 (no migration, no new dependency)'
+echo "deploy diff files: $(git -C "$D" diff --name-only "$OLD" "$NEW" -- deploy | tr '\n' ' ')"
+git -C "$D" diff --stat "$OLD" "$NEW" -- . ':!.fullops-squad' | tail -1
+OLDIMG=$(docker inspect -f '{{.Image}}' knowslink-relay-1)
+test "$OLDIMG" = "$(docker image inspect knowslink-relay:latest --format '{{.Id}}')"
+printf '%s\n' "$OLDIMG" >"$W/previous-relay-image.txt"; echo "OLDIMG=$OLDIMG"
+! docker image inspect "$TAG" >/dev/null 2>&1
+docker tag "$OLDIMG" "$TAG"
+test "$(docker image inspect "$TAG" --format '{{.Id}}')" = "$OLDIMG"
+docker image inspect "$TAG" --format 'ROLLBACK_TAG_IMAGE={{.Id}}'
+git -C "$D" checkout -q --detach "$NEW"
+export KNOWSLINK_STATE_DIR=$S KNOWSLINK_UID=$(id -u) KNOWSLINK_GID=$(id -g)
+cd "$D"
+docker compose -p knowslink -f compose.yaml -f deploy/knowslink/compose.ops.yaml --env-file "$S/.env" config --quiet
+docker compose -p knowslink -f compose.yaml -f deploy/knowslink/compose.ops.yaml --env-file "$S/.env" build relay migrate
+echo 'BUILD_EXIT=0'
+printf 'HEAD='; git rev-parse HEAD
+test -z "$(git status --porcelain)"
+docker inspect -f '{{.Name}} {{.Image}} {{.State.Health.Status}}' knowslink-relay-1
+docker image inspect knowslink-relay:latest --format 'NEW_RELAY_IMAGE={{.Id}}'
+docker image inspect "$TAG" --format 'ROLLBACK_STILL={{.Id}}'
+echo BUILD_OK
+
+##### stage.txt
+set -o errexit -o nounset -o pipefail
+S=/home/shin/deploy/knowslink-state; W=$S/connect001-ops-20261027; D=/home/shin/deploy/knowslink
+R=$W/release-0.1.0
+cd "$R"
+printf '%s\n' \
+ '767c0e87ca6d7c151f7eccf08914137ec6518cbf00293a0fa1015ced09ce403e  knowslink-claude-plugin.zip' \
+ '498644fe3110d357bfcfc41f68a6b1fcf62f0110a38198a50b263bcea3711b3c  knowslink-codex-plugin.zip' \
+ '33b3ba372340edeef216c8f6fd4c6be548244faf4b782bd6cadde1b674fe16fe  knowslink-setup.ps1' | sha256sum -c -
+# install root is new; a published version never changes (package_plugin.py refuses an existing version directory)
+test ! -e "$S/install"
+install -d -m 0755 "$S/install" "$S/install/0.1.0"
+install -m 0644 knowslink-claude-plugin.zip knowslink-codex-plugin.zip knowslink-setup.ps1 "$S/install/0.1.0/"
+stat -c '%a %U %s %n' "$S/install" "$S/install/0.1.0" "$S/install/0.1.0/"*
+(cd "$S/install/0.1.0" && printf '%s\n' \
+ '767c0e87ca6d7c151f7eccf08914137ec6518cbf00293a0fa1015ced09ce403e  knowslink-claude-plugin.zip' \
+ '498644fe3110d357bfcfc41f68a6b1fcf62f0110a38198a50b263bcea3711b3c  knowslink-codex-plugin.zip' \
+ '33b3ba372340edeef216c8f6fd4c6be548244faf4b782bd6cadde1b674fe16fe  knowslink-setup.ps1' | sha256sum -c -)
+# server-local override (D043, coor-approved option A): only the relay gets the env and a read-only bind mount; no secrets
+test ! -e "$S/compose.install.yaml"
+cat >"$S/compose.install.yaml" <<'YML'
+# SAR-CONNECT-SIMPLE-001-OPS: serve /install/<version>/ from the host install folder. Server-local; repo does not track it yet.
+services:
+  relay:
+    environment:
+      KNOWSLINK_INSTALL_DIR: /install
+    volumes:
+      - /home/shin/deploy/knowslink-state/install:/install:ro
+YML
+chmod 0644 "$S/compose.install.yaml"
+stat -c '%a %n' "$S/compose.install.yaml"
+export KNOWSLINK_STATE_DIR=$S KNOWSLINK_UID=$(id -u) KNOWSLINK_GID=$(id -g)
+cd "$D"
+docker compose -p knowslink -f compose.yaml -f deploy/knowslink/compose.ops.yaml -f "$S/compose.install.yaml" --env-file "$S/.env" config --quiet
+echo 'compose config with override: ok'
+# only the relay service differs from the current config, by exactly the env var and the mount
+docker compose -p knowslink -f compose.yaml -f deploy/knowslink/compose.ops.yaml --env-file "$S/.env" config >"$W/config.before.yaml"
+docker compose -p knowslink -f compose.yaml -f deploy/knowslink/compose.ops.yaml -f "$S/compose.install.yaml" --env-file "$S/.env" config >"$W/config.after.yaml"
+chmod 0600 "$W/config.before.yaml" "$W/config.after.yaml"
+diff "$W/config.before.yaml" "$W/config.after.yaml" | sed -E 's/(PASSWORD|SECRET|TOKEN|KEY|URL)([A-Z_]*):.*/\1\2: [redacted]/' || true
+echo STAGE_OK
+
+##### deploy.txt
+set -o errexit -o nounset -o pipefail
+D=/home/shin/deploy/knowslink; S=/home/shin/deploy/knowslink-state; W=$S/connect001-ops-20261027
+NEW=bf67dfcbb4f7164149901d847edc0aa0e5783dc7; FIX=knowslink-connect001-rehearse-20261027
+export KNOWSLINK_STATE_DIR=$S KNOWSLINK_UID=$(id -u) KNOWSLINK_GID=$(id -g)
+DC="docker compose -p knowslink -f compose.yaml -f deploy/knowslink/compose.ops.yaml -f $S/compose.install.yaml --env-file $S/.env"
+cd "$D"
+test "$(git rev-parse HEAD)" = "$NEW"
+test -z "$(git status --porcelain)"
+test "$(docker inspect -f '{{.State.Health.Status}}' knowslink-relay-1)" = healthy
+test "$(docker image inspect knowslink-rollback:4fdd149b-connect001-20261027 --format '{{.Id}}')" = "$(cat "$W/previous-relay-image.txt")"
+$DC config --quiet
+STOPPED=0; UPDONE=0
+trap 'rc=$?; if [ $rc -ne 0 ] && [ "$STOPPED" = 1 ] && [ "$UPDONE" = 0 ]; then echo "TRAP: pre-up failure rc=$rc; restarting old relay container"; docker start knowslink-relay-1 || true; fi' EXIT
+umask 077
+bash "$W/observe.txt" >"$W/before.json"
+STOPPED=1
+echo "STOP_BEGIN=$(date -u +%FT%TZ)"
+docker compose -p knowslink -f compose.yaml -f deploy/knowslink/compose.ops.yaml --env-file "$S/.env" stop relay
+E1=$(docker exec knowslink-postgres-1 psql -X -U knowslink -Atc 'select epoch from relay_state')
+sleep 2
+E2=$(docker exec knowslink-postgres-1 psql -X -U knowslink -Atc 'select epoch from relay_state')
+test "$E1" = "$E2"; echo "FROZEN_EPOCH=$E1"
+OTHER=$(docker exec knowslink-postgres-1 psql -X -U knowslink -Atc "select count(*) from pg_stat_activity where datname='knowslink' and backend_type='client backend' and pid<>pg_backend_pid()")
+test "$OTHER" = 0; echo "OTHER_DB_CLIENTS=$OTHER"
+FROZEN=$(docker exec knowslink-postgres-1 psql -X -U knowslink -Atc 'select md5(data::text) from relay_state')
+printf '%s\n' "$FROZEN" >"$W/frozen-data.md5"
+bash "$W/observe.txt" >"$W/frozen.json"
+OUT=$S/backups/4fdd149b-pre-connect001-$(date -u +%Y%m%dT%H%M%SZ).dump
+(set -o noclobber; docker exec knowslink-postgres-1 pg_dump -U knowslink -Fc knowslink >"$OUT")
+printf '%s\n' "$OUT" >"$W/backup.path"
+docker exec -i knowslink-postgres-1 pg_restore --list <"$OUT" >"$W/backup.list"
+stat -c 'backup mode=%a bytes=%s' "$OUT"
+echo "BACKUP_FILE=$(basename "$OUT")"
+sha256sum "$OUT"
+printf 'TOC_LINES='; wc -l <"$W/backup.list"
+IMG=postgres:17-alpine@sha256:b0f9560a2de083e2cc7382e75f808c7381a32852a7ec49117deedb300e552b24
+docker run -i -e EXPECTED_MD5="$FROZEN" --network none --name "$FIX" --user postgres --entrypoint sh "$IMG" -c '
+set -eu
+initdb -D /tmp/pgd -A trust >/dev/null
+pg_ctl -D /tmp/pgd -o "-c listen_addresses= -c unix_socket_directories=/tmp" -w -l /tmp/pg.log start >/dev/null
+export PGHOST=/tmp
+createdb rehearse
+pg_restore -d rehearse --no-owner --no-privileges --exit-on-error
+ACTUAL_MD5=$(psql -d rehearse -Atc "select md5(data::text) from relay_state")
+test "$ACTUAL_MD5" = "$EXPECTED_MD5"; echo "RESTORED_FULL_STATE_DIGEST_MATCH=true"
+psql -d rehearse -v ON_ERROR_STOP=1 -Atc "select '\''restored goose='\''||(select max(version_id) from goose_db_version)||'\'' guard='\''||(select count(*) from pg_trigger where tgname='\''human_writer_guard'\'')||'\'' rows='\''||count(*)||'\'' epoch='\''||max(epoch)||'\'' HumanModel='\''||max(data->>'\''HumanModel'\'') from relay_state"
+if psql -d rehearse -v ON_ERROR_STOP=1 -Atc "update relay_state set data=data-'\''HumanModel'\''" >/tmp/guard.log 2>&1; then
+ echo "FAIL downgrade accepted"; exit 42
+else
+ grep -q "human authorization writer downgrade refused" /tmp/guard.log
+ echo "restored writer downgrade refused"
+fi
+pg_ctl -D /tmp/pgd -m fast stop >/dev/null
+' <"$OUT"
+echo "REHEARSAL_EXIT=0 retained=$FIX"
+UPDONE=1
+$DC up -d --no-build --wait relay
+$DC ps -a
+echo "UP_DONE=$(date -u +%FT%TZ)"
+python3 "$D/deploy/knowslink/verify.py" local
+printf '%s 4fdd149b27d3ff251a73128120dce9f8bb136620 -> bf67dfcbb4f7164149901d847edc0aa0e5783dc7 release manual verified bundle+backup+retained-isolation+rollback-tag+install-override\n' "$(date -u +%FT%TZ)" >>"$S/deploy-history.log"
+bash "$W/observe.txt" >"$W/after.json"
+docker inspect -f '{{.Name}} {{.Image}} {{.State.Health.Status}} restarts={{.RestartCount}}' knowslink-relay-1
+printf 'MIGRATE_EXIT='; docker inspect -f '{{.State.ExitCode}}' knowslink-migrate-1
+docker logs knowslink-migrate-1
+echo "RELAY_LOG_LINES=$(docker logs knowslink-relay-1 2>&1 | wc -l)"
+echo "RELAY_ERROR_PANIC=$(docker logs knowslink-relay-1 2>&1 | grep -c -i -E 'error|panic' || true)"
+echo "RELAY_CAPACITY_WARNING=$(docker logs knowslink-relay-1 2>&1 | grep -c 'agent capacity warning' || true)"
+docker logs knowslink-relay-1 2>&1 | tail -5
+printf 'relay INSTALL_DIR env: '; docker exec knowslink-relay-1 printenv KNOWSLINK_INSTALL_DIR
+docker exec knowslink-relay-1 ls -l /install/0.1.0
+docker inspect -f 'relay mounts: {{range .Mounts}}{{.Type}} {{.Destination}} rw={{.RW}}; {{end}}readonly_rootfs={{.HostConfig.ReadonlyRootfs}}' knowslink-relay-1
+for f in knowslink-setup.ps1 knowslink-claude-plugin.zip knowslink-codex-plugin.zip; do curl -s -o /dev/null -m 10 -w "local /install/0.1.0/$f %{http_code} %{content_type} %{size_download}\n" http://127.0.0.1:8080/install/0.1.0/$f; done
+curl -s -o /dev/null -m 10 -w 'local other name %{http_code}\n' http://127.0.0.1:8080/install/0.1.0/other.txt
+curl -s -o /dev/null -m 10 -w 'local other version %{http_code}\n' http://127.0.0.1:8080/install/0.1.1/knowslink-setup.ps1
+echo 'DEPLOY_EXIT=0'
+
+##### ingress.txt
+set -o errexit -o nounset -o pipefail
+S=/home/shin/deploy/knowslink-state; W=$S/connect001-ops-20261027; D=/home/shin/deploy/knowslink; LIVE=$S/tunnel/config.yml
+BK=$W/config.yml.pre-connect001; CAND=$W/config.candidate.yml; CF=/home/shin/.local/bin/cloudflared
+umask 077
+test "$(git -C "$D" rev-parse HEAD)" = bf67dfcbb4f7164149901d847edc0aa0e5783dc7
+echo "== repo ingress check on server checkout (before live change)"
+(cd "$D" && python3 scripts/check_public_ingress.py)
+test ! -e "$BK"
+cp -p "$LIVE" "$BK"
+sha256sum "$LIVE" "$BK"
+stat -c 'backup mode=%a bytes=%s' "$BK"
+python3 - <<'PY'
+import re,subprocess
+S='/home/shin/deploy/knowslink-state'; W=S+'/connect001-ops-20261027'; D='/home/shin/deploy/knowslink'
+live=open(S+'/tunnel/config.yml').read()
+old_repo=subprocess.check_output(['git','-C',D,'show','4fdd149b27d3ff251a73128120dce9f8bb136620:deploy/knowslink/tunnel/public-ingress.yml'],text=True)
+new_repo=open(D+'/deploy/knowslink/tunnel/public-ingress.yml').read()
+rule=lambda t: re.search(r"path: '(.+)'",t)[1]
+old,new=rule(old_repo),rule(new_repo)
+assert rule(live)==old, 'live path rule must equal the 4fdd149b repo rule'
+assert live.count(old)==1
+assert new.startswith(old[:-2]) and new.endswith('|/install/[0-9]+\\.[0-9]+\\.[0-9]+/knowslink-[a-z0-9-]+\\.(ps1|zip))$'), 'new rule must only append the install alternative'
+open(W+'/config.candidate.yml','w').write(live.replace(old,new))
+print('live rule == 4fdd149b repo rule; candidate rule == bf67dfcb repo rule; only /install alternative added')
+PY
+echo "changed lines: $(diff "$LIVE" "$CAND" | grep -c '^[<>]')"
+"$CF" --version | head -1
+"$CF" tunnel --config "$CAND" ingress validate
+for p in /install/0.1.0/knowslink-setup.ps1 /install/0.1.0/knowslink-claude-plugin.zip /install/0.1.0/knowslink-codex-plugin.zip /install/0.1.0/other.txt /install/ /install/0.1.0/ /install/0.1/knowslink-setup.ps1 /privacy /terms / /home /owner /v1/owners /healthz; do
+ printf 'candidate %-48s ' "$p"; "$CF" tunnel --config "$CAND" ingress rule "https://link.knowslog.com$p" | grep 'Matched rule' | sed -n 1p || true
+done
+APPLIED=0
+trap 'rc=$?; if [ $rc -ne 0 ] && [ "$APPLIED" = 1 ]; then echo "TRAP: failure rc=$rc; restoring backup config and restarting cloudflared"; cat "$BK" >"$LIVE"; docker restart knowslink-cloudflared-1 >/dev/null || true; fi' EXIT
+APPLIED=1
+cat "$CAND" >"$LIVE"
+test "$(sha256sum <"$LIVE")" = "$(sha256sum <"$CAND")"
+stat -c 'live after mode=%a owner=%U' "$LIVE"
+T0=$(date -u +%FT%TZ); echo "RESTART_BEGIN=$T0"
+docker restart knowslink-cloudflared-1
+echo "RESTART_RETURNED=$(date -u +%FT%TZ)"
+for i in $(seq 1 30); do n=$(docker logs --since "$T0" knowslink-cloudflared-1 2>&1 | grep -c 'Registered tunnel connection' || true); [ "$n" -ge 4 ] && break; sleep 1; done
+sleep 3
+echo "REGISTERED_CONNECTIONS=$(docker logs --since "$T0" knowslink-cloudflared-1 2>&1 | grep -c 'Registered tunnel connection' || true)"
+echo "TUNNEL_ERR_LINES=$(docker logs --since "$T0" knowslink-cloudflared-1 2>&1 | grep -c -E '\bERR\b|error' || true)"
+docker inspect -f 'cloudflared status={{.State.Status}} restarts={{.RestartCount}} started={{.State.StartedAt}}' knowslink-cloudflared-1
+APPLIED=0
+echo "== repo ingress check after live change"
+(cd "$D" && python3 scripts/check_public_ingress.py)
+python3 - <<'PY'
+import re
+S='/home/shin/deploy/knowslink-state'; D='/home/shin/deploy/knowslink'
+live=re.search(r"path: '(.+)'",open(S+'/tunnel/config.yml').read())[1]; repo=re.search(r"path: '(.+)'",open(D+'/deploy/knowslink/tunnel/public-ingress.yml').read())[1]
+print('live_path_rule == repo_path_rule(bf67dfcb):',live==repo)
+PY
+echo INGRESS_APPLY_EXIT=0
+
+##### final.txt
+set -o errexit -o nounset -o pipefail
+S=/home/shin/deploy/knowslink-state; W=$S/connect001-ops-20261027; D=/home/shin/deploy/knowslink
+umask 077
+echo "FINAL_OBSERVE_UTC=$(date -u +%FT%TZ)"
+bash "$W/observe.txt" >"$W/final.json"
+docker inspect -f '{{.Name}} {{.State.Status}} restarts={{.RestartCount}} started={{.State.StartedAt}}' knowslink-cloudflared-1 knowslink-relay-1
+docker inspect -f 'relay health={{.State.Health.Status}} image={{.Image}}' knowslink-relay-1
+echo "relay_error_panic_lines=$(docker logs knowslink-relay-1 2>&1 | grep -c -i -E 'error|panic' || true)"
+echo "relay_capacity_warning_lines=$(docker logs knowslink-relay-1 2>&1 | grep -c 'agent capacity warning' || true)"
+echo "relay_log_lines=$(docker logs knowslink-relay-1 2>&1 | wc -l)"
+printf 'MIGRATE_EXIT='; docker inspect -f '{{.State.ExitCode}}' knowslink-migrate-1
+git -C $D rev-parse HEAD; git -C $D status --porcelain | wc -l | sed 's/^/dirty_lines=/'
+docker image inspect knowslink-rollback:4fdd149b-connect001-20261027 --format 'rollback_tag={{.Id}}'
+docker inspect -f 'fixture {{.Name}} status={{.State.Status}} exit={{.State.ExitCode}} net={{.HostConfig.NetworkMode}}' knowslink-connect001-rehearse-20261027
+curl -s -o /dev/null -m 10 -w 'healthz_local=%{http_code}\n' http://127.0.0.1:8080/healthz
+python3 $D/deploy/knowslink/verify.py local
+docker exec knowslink-postgres-1 psql -X -U knowslink -Atc "select 'live_agents='||count(*) from relay_state, jsonb_each(coalesce(data->'Agents','{}'::jsonb)) a where coalesce((a.value->>'Revoked')::boolean,false)=false and coalesce((data->'Owners'->(a.value->>'Owner')->>'Active')::boolean,false)=true"
+echo "backup_files=$(ls $S/backups | wc -l)"; ls $S/backups | tail -1
+stat -c 'state .env mode=%a' $S/.env; grep -c '^KNOWSLINK_INSTALL_DIR=' $S/.env | sed 's/^/env_install_dir_lines=/' || true
+stat -c '%a %n' $S/compose.install.yaml $S/tunnel/config.yml
+tail -2 $S/deploy-history.log
+(cd $D && python3 scripts/check_public_ingress.py)

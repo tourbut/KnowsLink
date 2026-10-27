@@ -1,0 +1,26 @@
+FINAL_OBSERVE_UTC=2026-10-27T13:29:36Z
+/knowslink-cloudflared-1 running restarts=0 started=2026-10-27T13:28:20.015600302Z
+/knowslink-relay-1 running restarts=0 started=2026-10-27T13:27:37.3627562Z
+relay health=healthy image=sha256:ff7b47e0a9970fc7c543b70d83732b6b6127d340238348da8b290b33e954d630
+relay_error_panic_lines=0
+relay_capacity_warning_lines=0
+relay_log_lines=1
+MIGRATE_EXIT=0
+bf67dfcbb4f7164149901d847edc0aa0e5783dc7
+dirty_lines=0
+rollback_tag=sha256:95852e24153d947fb21eecb06a70a935f99d9116f5dfc4684a1fc95a25be6a0e
+fixture /knowslink-connect001-rehearse-20261027 status=exited exit=0 net=none
+healthz_local=200
+local checks ok: health 200, unknown 404, owner/api 401, loopback-only relay, private Postgres, limits, 0600/0700
+live_agents=30
+backup_files=8
+8a93e38-pre-release001-20261017T093752Z.dump
+state .env mode=600
+env_install_dir_lines=0
+644 /home/[redacted]/deploy/knowslink-state/compose.install.yaml
+600 /home/[redacted]/deploy/knowslink-state/tunnel/config.yml
+2026-10-21T23:57:30Z 7c6ef3734a38a8f273714aa2915dc2f14f83a7e4 -> 4fdd149b27d3ff251a73128120dce9f8bb136620 release manual verified bundle+backup+retained-isolation+rollback-tag
+2026-10-27T13:27:43Z 4fdd149b27d3ff251a73128120dce9f8bb136620 -> bf67dfcbb4f7164149901d847edc0aa0e5783dc7 release manual verified bundle+backup+retained-isolation+rollback-tag+install-override
+Public ingress: Google/member and policy paths only; owner, administrative APIs and trial remain outside this rule
+
+EXIT=0

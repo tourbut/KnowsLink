@@ -1,0 +1,123 @@
+{
+ "label": "after",
+ "utc": "2026-10-27T13:28:38.066555+00:00",
+ "checks": [
+  {
+   "name": "install knowslink-setup.ps1",
+   "pass": true,
+   "status": 200,
+   "content_type": "text/plain; charset=utf-8",
+   "bytes": 34875,
+   "sha256_matches_release": true
+  },
+  {
+   "name": "install knowslink-claude-plugin.zip",
+   "pass": true,
+   "status": 200,
+   "content_type": "application/zip",
+   "bytes": 336625,
+   "sha256_matches_release": true
+  },
+  {
+   "name": "install knowslink-codex-plugin.zip",
+   "pass": true,
+   "status": 200,
+   "content_type": "application/zip",
+   "bytes": 327763,
+   "sha256_matches_release": true
+  },
+  {
+   "name": "install neighbour /install/0.1.0/other.txt",
+   "pass": true,
+   "status": 404
+  },
+  {
+   "name": "install neighbour /install/0.1.1/knowslink-setup.ps1",
+   "pass": true,
+   "status": 404
+  },
+  {
+   "name": "install neighbour /install/0.1/knowslink-setup.ps1",
+   "pass": true,
+   "status": 404
+  },
+  {
+   "name": "install neighbour /install/0.1.0/",
+   "pass": true,
+   "status": 404
+  },
+  {
+   "name": "install neighbour /install/",
+   "pass": true,
+   "status": 404
+  },
+  {
+   "name": "install neighbour /install/0.1.0/a/knowslink-setup.ps1",
+   "pass": true,
+   "status": 404
+  },
+  {
+   "name": "install neighbour /install/0.1.0/knowslink-setup.PS1",
+   "pass": true,
+   "status": 404
+  },
+  {
+   "name": "install neighbour /install/0.1.0/..%2fknowslink-setup.ps1",
+   "pass": true,
+   "status": 404
+  },
+  {
+   "name": "install neighbour /install/0.1.0/knowslink-evil.zip",
+   "pass": true,
+   "status": 404
+  },
+  {
+   "name": "landing",
+   "pass": true,
+   "status": 200
+  },
+  {
+   "name": "/home/agents anonymous redirect",
+   "pass": true,
+   "status": 303,
+   "location": "/?n=expired"
+  },
+  {
+   "name": "privacy",
+   "pass": true,
+   "status": 200
+  },
+  {
+   "name": "terms",
+   "pass": true,
+   "status": 200
+  },
+  {
+   "name": "connect/start host field",
+   "pass": true,
+   "status": 422,
+   "error": "invalid_signature"
+  },
+  {
+   "name": "owner api stays blocked",
+   "pass": true,
+   "status": 404
+  },
+  {
+   "name": "blocked /owner",
+   "pass": true,
+   "status": 404
+  },
+  {
+   "name": "blocked /v1/owners",
+   "pass": true,
+   "status": 404
+  },
+  {
+   "name": "blocked /healthz",
+   "pass": true,
+   "status": 404
+  }
+ ],
+ "all_pass": true
+}

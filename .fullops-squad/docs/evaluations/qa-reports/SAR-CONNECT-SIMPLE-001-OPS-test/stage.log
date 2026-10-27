@@ -1,0 +1,25 @@
+knowslink-claude-plugin.zip: OK
+knowslink-codex-plugin.zip: OK
+knowslink-setup.ps1: OK
+755 [redacted] 4096 /home/[redacted]/deploy/knowslink-state/install
+755 [redacted] 4096 /home/[redacted]/deploy/knowslink-state/install/0.1.0
+644 [redacted] 336625 /home/[redacted]/deploy/knowslink-state/install/0.1.0/knowslink-claude-plugin.zip
+644 [redacted] 327763 /home/[redacted]/deploy/knowslink-state/install/0.1.0/knowslink-codex-plugin.zip
+644 [redacted] 34875 /home/[redacted]/deploy/knowslink-state/install/0.1.0/knowslink-setup.ps1
+knowslink-claude-plugin.zip: OK
+knowslink-codex-plugin.zip: OK
+knowslink-setup.ps1: OK
+644 /home/[redacted]/deploy/knowslink-state/compose.install.yaml
+compose config with override: ok
+76a77
+>       KNOWSLINK_INSTALL_DIR: /install
+112a114,119
+>     volumes:
+>       - type: bind
+>         source: /home/[redacted]/deploy/knowslink-state/install
+>         target: /install
+>         read_only: true
+>         bind: {}
+STAGE_OK
+
+EXIT=0

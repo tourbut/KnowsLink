@@ -2,13 +2,21 @@
 id: D13
 title: 인수인계서
 status: draft
-updated: 2026-10-22
+updated: 2026-10-27
 owner: dev
-tasks: [SAR-SERVICE-UI-001-OPS, SAR-BETA-001-OPS, SAR-MVP-002-DEV, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX, SAR-MVP-003-BIDIRECTIONAL-OPS, SAR-MVP-003-BIDIRECTIONAL-OPS-RENEW, SAR-PUBLIC-SERVICE-OPEN-PREP, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SSE-INSTALL-001-OPS, SAR-SSE-INSTALL-001-OAUTH-RETURN-OPS, SAR-HUMAN-PEER-001-DEV, SAR-HUMAN-PEER-001-OPS, SAR-REFACTOR-001-OPS, SAR-REFACTOR-002-OPS, SAR-RELEASE-001-OPS, SAR-RELEASE-002-OPS, SAR-UX-ISSUES-002-NAMES-DEV, SAR-UX-ISSUES-002-APPROVAL-DEV, SAR-UX-ISSUES-002-CONNECT-DEV, SAR-UX-ISSUES-002-LANG-DEV, SAR-UX-ISSUES-002-LOWS-DEV, SAR-SCHEDULE-001-DEV, SAR-RELEASE-003-OPS, SAR-PUBLISH-001-DEV, SAR-PUBLISH-001-OPS]
+tasks: [SAR-CONNECT-SIMPLE-001-OPS, SAR-SERVICE-UI-001-OPS, SAR-BETA-001-OPS, SAR-MVP-002-DEV, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX, SAR-MVP-003-BIDIRECTIONAL-OPS, SAR-MVP-003-BIDIRECTIONAL-OPS-RENEW, SAR-PUBLIC-SERVICE-OPEN-PREP, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SSE-INSTALL-001-OPS, SAR-SSE-INSTALL-001-OAUTH-RETURN-OPS, SAR-HUMAN-PEER-001-DEV, SAR-HUMAN-PEER-001-OPS, SAR-REFACTOR-001-OPS, SAR-REFACTOR-002-OPS, SAR-RELEASE-001-OPS, SAR-RELEASE-002-OPS, SAR-UX-ISSUES-002-NAMES-DEV, SAR-UX-ISSUES-002-APPROVAL-DEV, SAR-UX-ISSUES-002-CONNECT-DEV, SAR-UX-ISSUES-002-LANG-DEV, SAR-UX-ISSUES-002-LOWS-DEV, SAR-SCHEDULE-001-DEV, SAR-RELEASE-003-OPS, SAR-PUBLISH-001-DEV, SAR-PUBLISH-001-OPS]
 summary: 베타 배포의 현재 상태와 인수 항목 및 남은 일을 기록한다
 ---
 
 # KnowsLink 본인 전용 합성 베타 인수인계서 (D13)
+
+## 현재 운영 상태 (2026-10-27, SAR-CONNECT-SIMPLE-001-OPS)
+
+실제 운영 제품은 `bf67dfcbb4f7164149901d847edc0aa0e5783dc7`다(연결 단순화·agent 한도 제거·자동 설정 0.1.0 공개. 사용자 결정 D042·D043). 직전 `4fdd149b`에서 22:27:25~22:27:43 KST(13:27:25Z~13:27:43Z)에 약18초 중단하고 전환했다. relay healthy·restart0·migrate0이며 새 schema/migration은 없다. 증거는 [운영 보고](../evaluations/qa-reports/SAR-CONNECT-SIMPLE-001-OPS-test/report.md), 절차·명령은 [D12 적용 결과](ops-guide.md#sar-connect-simple-001-ops-운영-적용-결과-2026-10-27)다. 아래 이전 날짜의 현재 상태는 당시 관측이다.
+
+인수 항목: (1) 새 private 백업 `backups/4fdd149b-pre-connect001-20261027T132730Z.dump`(0600·11464bytes)는 격리 복원 digest가 frozen DB와 같다. 이전 relay 이미지는 `knowslink-rollback:4fdd149b-connect001-20261027`로 보존했다. (2) `https://link.knowslog.com/install/0.1.0/`의 `knowslink-setup.ps1`(`text/plain; charset=utf-8`)·`knowslink-claude-plugin.zip`·`knowslink-codex-plugin.zip`이 비로그인 200이고 다른 이름·버전은 404다. 설치 폴더는 서버 `knowslink-state/install/0.1.0/`이며 새 버전은 새 폴더로 올린다. (3) 공개 Tunnel 규칙에 `/install/<semver>/knowslink-*.(ps1|zip)` 한 대안만 더했다. live config 원본은 서버 `connect001-ops-20261027/config.yml.pre-connect001`이다. (4) **서버 로컬 compose override** `knowslink-state/compose.install.yaml`(repo 밖)이 relay에 `KNOWSLINK_INSTALL_DIR=/install`과 install 폴더 읽기 전용 마운트를 준다. relay를 다시 만드는 모든 compose 호출에 `-f`로 얹는다(D12 명령). 운영 `.env`는 바꾸지 않았다. 후속(dev): 두 줄을 `compose.ops.yaml`로 옮겨 repo가 추적하게 한다. (5) agent 한도 제거 뒤 live agent는 30개(경고 1000·거절 2000)이며 첫 기동에 용량 경고가 없다. 회원·agent·친구 digest는 전후 같다. (6) rollback: `4fdd149b` 이미지로 코드만 되돌린다(D12 순서). 이전 relay는 새 클라이언트의 `host`를 거절하고 `/install`은 404다. (7) 실계정 로그인·발송, 실세션 연결 시험(CS-AC-18)과 자동 설정 실세션 QA, 실제 rollback은 실행하지 않았다(tester 과제).
+
+비현행: 아래 SAR-PUBLISH-001-OPS 이후 상태 중 ‘서버 checkout `7c6ef373`·운영 제품 `4fdd149b`’ 문장은 이 상태로 대체됐다.
 
 ## 현재 운영 상태 (2026-10-22, SAR-PUBLISH-001-OPS)
 
