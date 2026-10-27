@@ -25,6 +25,7 @@ summary: 기존 제품 계획 보존과 Google 연결 구현의 독립 검토 �
 - DEV 배정: SAR-CONNECT-SIMPLE-001-DEV route implementation→dev, run_1701a184c359 / task_dbf3aa815187 / ctx_bf6e45146604 / term_fdba1934-69f7-4f8b-9257-6d8c14e30c44, fresh Claude opus-5-5 high(jev). dev 기준 9ad346fe(main ec33a3fc + packet). 착수 확인.
 - DEV 완료 2026-10-26: msg_a55618173415, dev d1a401b5(코드 후보 310fdd73). review need required(코드 38파일 1890줄) → 사용자 D041 '리뷰 진행 후 병합'. lint(snapshot, 기준 3fa283e0) DOC-003 ERROR 1(DEV 보고서 front matter) → coor가 deliverables.py --stamp로 0fff4ca0 커밋(내용 변경 없음), REVIEW 키 abandon. 리뷰 SAR-CONNECT-SIMPLE-001-DEV-REVIEW2: snapshot .fullops-review-c2abd5fcb84c40629f94ed889951b536, 0fff4ca0, lint ERROR 0·WARNING 20·make 실행 불가 2(Linux 결과로 사유 기록), reviewer task_98cc484c9b4d / ctx_007188ba712c / term_e22c43e1, claude-opus-5-5 high(jev reviewer, effective 동일), reviewer 식별자 reviewer-ecfad14e(snapshot 기록과 result 일치시켜 cleanup 불일치 재발 방지). 착수 확인. 남은 일: 리뷰 수락 → main 병합·push → tester(pending 초안)·designer ART CS-AC-17 → relay 먼저 배포(사용자 승인) → 실연결 재시험. registry.json CRLF 재체크아웃은 사용자 결정 대기.
 - 보류(배정 안 함): SAR-CONNECT-SIMPLE-001-DEV-REVIEW — jev reviewer 모델 선택(-model-reviewer.json)만 한 키다. lint DOC-003로 snapshot을 abandon했고, 같은 모델 tuple로 SAR-CONNECT-SIMPLE-001-DEV-REVIEW2(ctx_007188ba712c)에 배정했다. 재개 조건 없음(REVIEW2가 대체).
+- 병합 2026-10-27: REVIEW2(msg_563b9b021a39) 조건부 수락 critical/high 0, medium 1·low 3, review.py check 통과. coor 커밋 19ab5468(리뷰 기록) 뒤 0fff4ca0 --no-ff 병합 116e3e8a. 비FF라 병합 결과 lint.py --from 19ab5468 ERROR 0·WARNING 20·make 실행 불가 2. origin/main push, 0fff4ca0 조상 확인. reviewer·dev 세션 release, snapshot cleanup --finished. main 체크아웃·designer·dev·ops·tester 116e3e8a 동기화. 후속 SAR-CONNECT-SIMPLE-001-FIX-DEV(medium M1 retry_at, low L1 agent ID 재생성, L2 D12 배포 순서, L3 attempt-remove 음성 테스트) → dev fresh opus-5-5 high(jev), 이전 dev 세션은 문맥 466k·캐시 만료로 retain 불가.
 
 ## 작업 파일 위치 정리 — 2026-10-24
 
@@ -2136,7 +2137,7 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 - [ ] SAR-AUTOSETUP-001-DEV → ops: release 배포물 게시·KNOWSLINK_INSTALL_DIR·ingress 운영 반영(사용자 승인 뒤)
 - [ ] SAR-AUTOSETUP-001-ART → dev: dev — V-01 수정(`internal/relay/human_pages.go` 입력란 행 수). 수정 뒤 designer가 320px 4조합만 재확인 (완료 보고 자동 등재 2026-10-23)
 - [ ] SAR-AUTOSETUP-001-ART → tester: DB 컨테이너는 정리했다. tester 실세션 검수(D040 대기)는 별도다 (완료 보고 자동 등재 2026-10-25)
-- [ ] SAR-CONNECT-SIMPLE-001-DEV → tester: tester 독립 QA(CS-AC-01–16 재현 (완료 보고 자동 등재 2026-10-26)
-- [ ] SAR-CONNECT-SIMPLE-001-DEV → designer: designer 시각 검수(CS-AC-17) (완료 보고 자동 등재 2026-10-26)
-- [ ] SAR-CONNECT-SIMPLE-001-DEV → coor: coor 독립 코드 리뷰 배정. main 체크아웃의 CRLF `registry.json` 재체크아웃 여부는 사용자 (완료 보고 자동 등재 2026-10-26)
-- [ ] SAR-CONNECT-SIMPLE-001-DEV → coor: coor 결정 (완료 보고 자동 등재 2026-10-26)
+- [ ] SAR-CONNECT-SIMPLE-001-DEV → tester: tester 독립 QA(CS-AC-01–16 재현 (완료 보고 자동 등재 2026-10-26) — 대기(coor 2026-10-27): FIX-DEV SHA에서 한 번 배정(tester 인박스는 AUTOSETUP-QA·D040 대기라 pending 초안 유지).
+- [ ] SAR-CONNECT-SIMPLE-001-DEV → designer: designer 시각 검수(CS-AC-17) (완료 보고 자동 등재 2026-10-26) — 대기(coor 2026-10-27): FIX-DEV SHA에서 배정.
+- [x] SAR-CONNECT-SIMPLE-001-DEV → coor: coor 독립 코드 리뷰 배정. main 체크아웃의 CRLF `registry.json` 재체크아웃 여부는 사용자 (완료 보고 자동 등재 2026-10-26) — REVIEW2 조건부 수락, main 116e3e8a 병합. registry.json: main 체크아웃 git status 깨끗(변경 없음)으로 확인, 조치 불필요.
+- [x] SAR-CONNECT-SIMPLE-001-DEV → coor: coor 결정 (완료 보고 자동 등재 2026-10-26) — 위 항목과 같은 조각, 처리 완료.
