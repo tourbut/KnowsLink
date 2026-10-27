@@ -3,7 +3,7 @@ title: SAR-CONNECT-SIMPLE-001-TESTER — 에이전트 한도 제거와 연결 �
 status: draft
 updated: 2026-10-27
 owner: tester
-tasks: [SAR-CONNECT-SIMPLE-001-QA]
+tasks: [SAR-CONNECT-SIMPLE-001-QA, SAR-CONNECT-SIMPLE-001-LIVE]
 summary: "격리 relay fixture에서 실제 배포 클라이언트(plugin.js)와 Handler로 CS-AC-01–16을 확인하는 시나리오, 허용 요청, fixture 제어, 통과 조건"
 ---
 
@@ -43,7 +43,7 @@ summary: "격리 relay fixture에서 실제 배포 클라이언트(plugin.js)와
 | CS-AC-14 | `s_grok.py` | 이 SHA의 Grok 패키지 zip과 설치기 `defaults.json` 형태로, 환경 변수 없이 동의 전 요청 0건·확인 없는 connect 거절·동의 뒤 연결·자동 폴더. 환경 변수 설치는 잘못된 defaults보다 env가 이긴다. defaults 없는 패키지는 held다. |
 | CS-AC-15 | `package_plugin.py --host grok --verify` | 종료코드 0. |
 | CS-AC-16 | `s_security.py` | 디스크의 비밀 문자열(private.pem 본문·credential·토큰) 12–39개가 모든 캡처·로그에 0건이다. 패턴 검색 0건이다. 비친구 회원의 이메일·agent ID가 화면에 없다. |
-| 이전 시나리오 회귀 | `regress-ux002/checks.py`, `mutate.py` | [SAR-UX-ISSUES-002-CONNECT-TESTER](SAR-UX-ISSUES-002-CONNECT-TESTER.md)의 재개·만료·취소·device 승인 뒤 미저장 행이 그대로다. 규칙이 바뀐 기대(한도·선택지 목록)는 따로 적는다. |
+| 이전 시나리오 회귀 | `regress-ux002/checks.py`, `mutate.py` | [SAR-UX-ISSUES-002-CONNECT-TESTER](SAR-UX-ISSUES-002-CONNECT-TESTER.md)의 재개·만료·취소·device 승인 뒤 미저장 행이 그대로다. 규칙이 바뀐 기대 4건(선택지 6개, Claude Code 자동 설정 안내, agent 0개 화면 `use` 6개, 여섯째 생성 허용)은 [SAR-UX-ISSUES-002-CONNECT-TESTER의 현행 규칙 기대 갱신](SAR-UX-ISSUES-002-CONNECT-TESTER.md#현행-규칙-기대-갱신-sar-connect-simple-001-live-2026-10-27)에 적었다. |
 
 ## 시나리오 밖 (인계)
 
@@ -51,4 +51,4 @@ summary: "격리 relay fixture에서 실제 배포 클라이언트(plugin.js)와
 - Dots 원격 경로의 기본 이름과 이름 없는 agent 생성 여부: fixture에 원격 OAuth 클라이언트가 없다.
 - Claude Code·Codex 도구의 보낸·받은·상태 출력 이름(CS-AC-09 일부)과 실제 Grok Bot·Linux `install_bot_mcp.sh` 실행.
 - 실제 Google 화면의 계정 선택·실패 문구, 1440·390·320px·키보드(CS-AC-17): designer 시각 검수(ART).
-- 실연결 재검증(CS-AC-18): 운영 배포 뒤 같은 과제의 2단계로 따로 배정한다. 1단계 PASS와 섞지 않는다.
+- 실연결 재검증(CS-AC-18): 운영 배포 뒤 [SAR-CONNECT-SIMPLE-001-LIVE 보고](../qa-reports/SAR-CONNECT-SIMPLE-001-LIVE-test/report.md)에서 따로 기록한다. 1단계 PASS와 섞지 않는다.

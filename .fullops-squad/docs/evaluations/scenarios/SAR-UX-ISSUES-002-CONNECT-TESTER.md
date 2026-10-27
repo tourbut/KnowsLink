@@ -1,9 +1,9 @@
 ---
 title: SAR-UX-ISSUES-002-CONNECT-TESTER — 연결 안내·재개·보낸 요청 코드 끝 4자 독립 QA 시나리오
 status: draft
-updated: 2026-10-20
+updated: 2026-10-27
 owner: tester
-tasks: [SAR-UX-ISSUES-002-CONNECT-TESTER]
+tasks: [SAR-UX-ISSUES-002-CONNECT-TESTER, SAR-CONNECT-SIMPLE-001-LIVE]
 summary: "격리 connect fixture에서 U8 호스트 선택지·재개 행, U7 연결 화면 접근성·복귀, O-NM-03 보낸 요청 코드 끝 4자, low 3건 회귀를 HTTP와 실제 브라우저 키 입력으로 확인하는 시나리오와 통과 조건"
 ---
 
@@ -55,3 +55,14 @@ summary: "격리 connect fixture에서 U8 호스트 선택지·재개 행, U7 �
 | 회귀 | `checks.py`, `mutate.py`, `browser.mjs` | 이전 PASS 핵심(5선택지·재개 행·중복 생성 방지·O-NM-03·3폭 넘침 0). |
 
 `checks.py`의 O-NM-03 기대값은 fixture 인스턴스마다 바뀌는 임의 코드 접미를 하드코딩하고 있었다(`XXK2`·`Z-3N`). 새 fixture에서 매번 같은 판정을 하도록 b·a의 친구 코드에서 끝 4자를 읽게 바꿨다. 판정 기준은 같다.
+
+## 현행 규칙 기대 갱신 (SAR-CONNECT-SIMPLE-001-LIVE, 2026-10-27)
+
+SAR-AUTOSETUP-001과 SAR-CONNECT-SIMPLE-001이 아래 네 기대를 바꿨다. 위 표의 옛 기대는 당시 DEV SHA의 근거로 두고, 현행 main(`3d67c5d8`)을 다시 돌릴 때는 아래 기대를 쓴다. 근거는 [SAR-CONNECT-SIMPLE-001-QA 보고](../qa-reports/SAR-CONNECT-SIMPLE-001-QA-test/report.md)의 '이전 시나리오 회귀'다. 제품 코드와 옛 `checks.py`·`mutate.py`는 바꾸지 않았다. 재실행하면 아래 네 항목은 옛 기대 때문에 FAIL로 나오며 제품 결함이 아니다.
+
+| 옛 check (파일) | 옛 기대 | 현행 기대 | 바뀐 이유 |
+|---|---|---|---|
+| `choices_five_in_design_order_and_text` (`checks.py`) | 선택지 5개 | 선택지 6개, 순서: 웹에서 바로 사용 · Grok Bot (내 컴퓨터) · Dots (원격) · Claude Code 작업 세션 (내 컴퓨터) · Codex 작업 세션 (내 컴퓨터) · 지원 확인이 필요한 호스트. 4·5번 보조 문구는 '자동 설정 · 시험 환경 확인 (…)', 5번은 '도착 알림 없음'을 덧붙인다. 6번에 명령이 없다. | SAR-AUTOSETUP-001, [D04](../../design-docs/mockups/service-member-ui.md) 선택지 표 |
+| `guide_claude_adapters_link_and_session_on` (`checks.py`) | Claude Code 안내에 adapters 링크와 `/knowslink-session on`만 있다. | 4번(Claude Code) 안내는 자동 설정 명령 한 줄과 `/knowslink-session on`, 시험 환경 문구를 함께 보인다. 세션 연결은 계속 '앱에서 확인 필요'다. | SAR-AUTOSETUP-001 |
+| `agents_c_zero_agents_first_agent_prompt_and_selector` (`checks.py`) | agent 0개 회원 화면에 `name="use"` 5개 | `name="use"` 6개. '첫 에이전트를 추가하세요'와 agent 카드 0개는 그대로다. | 선택지 6개 |
+| `sixth_agent_with_new_attempt_refused_nothing_created` (`mutate.py`) | 활성 agent 5개일 때 새 시도의 여섯째 생성을 거절한다. | 회원당 개수 한도가 없다(L-01). 여섯째 생성이 303으로 만들어지고 거절하지 않는다. 대신 24시간 20개(`agent_rate`)와 서비스 용량 한도만 거절한다. | SAR-CONNECT-SIMPLE-001 L-01. CS-AC-01·04 |
