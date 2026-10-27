@@ -35,6 +35,7 @@ summary: 기존 제품 계획 보존과 Google 연결 구현의 독립 검토 �
 - UI-FIX-DEV 배정 준비: SAR-CONNECT-SIMPLE-001-UI-FIX-DEV(V-CS-01 medium + V-CS-02–06 low, D04 V-CS-02 문장 한 칸) → dev fresh opus-5-5 high(jev), 기준 e426f03b. 뒤에 designer EN 1폭 재검수.
 - UI-FIX-DEV 배정: task_a218ca4c7250 / ctx_e17c38053317 / term_9f28e1a9-4f32-49e9-87a8-0ca93a0e8fbe, opus-5-5 high effective 일치, dev 2ec104f8. 착수 확인.
 - UI-FIX-DEV 병합 2026-10-27: msg_7be09e2bd7cd dev 061c4142, V-CS-01–06 반영. need skip(코드 9파일 85줄) coor diff 확인. --no-ff 06af3fe2, 병합 lint ERROR 0, push, dev release, 전 워크트리 동기화. 다음: SAR-CONNECT-SIMPLE-001-ART-RECHECK(designer, jev opus-5-5 high, 기준 06af3fe2).
+- ART-RECHECK 배정: task_bd47dcb05642 / ctx_ff65a97dc94a / term_582d4ea3-f81b-4a01-9be0-c33ec1f8df58, opus-5-5 high, designer ce24d290. 착수 확인.
 
 ## 작업 파일 위치 정리 — 2026-10-24
 
