@@ -2177,3 +2177,4 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 - [ ] SAR-CONNECT-SIMPLE-001-OPS → dev: 옛 CONNECT 시나리오 기대값 4건 갱신. dev: `compose.install.yaml`의 두 줄을 `compose.ops.yaml`로 옮겨 repo가 추적하게 한다(override 파일 제거) (완료 보고 자동 등재 2026-10-27)
 - [ ] SAR-AUTOSETUP-001-O04-DEV → tester: tester 다중 플러그인 갱신 (완료 보고 자동 등재 2026-10-28)
 - [ ] SAR-AUTOSETUP-001-O04-DEV → ops: ops `/install/0.1.1/` 게시 후 relay 화면 명령 배포(사용자 승인) (완료 보고 자동 등재 2026-10-28)
+- [ ] SAR-AUTOSETUP-001-QA3 → coor: coor 사용자 승인 후 ops 운영 교체(0.1.1 게시 (완료 보고 자동 등재 2026-10-28)
