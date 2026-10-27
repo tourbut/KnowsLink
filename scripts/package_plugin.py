@@ -52,7 +52,7 @@ def package(host, verify):
         prefix = "" if host == "claude-desktop" else "knowslink/"
         for name, path in sources:
             add(archive, prefix + name, path.read_bytes())
-        add(archive, prefix + "package.json", json.dumps({"name": "knowslink", "version": "0.1.0", "private": True, "type": "module", "engines": {"node": ">=22.22.2 <23"}}) + "\n")
+        add(archive, prefix + "package.json", json.dumps({"name": "knowslink", "version": "0.1.1", "private": True, "type": "module", "engines": {"node": ">=22.22.2 <23"}}) + "\n")
         notices = []
         packages = json.loads((ROOT / "adapters/package-lock.json").read_text())["packages"]
         for name, metadata in sorted(packages.items()):
@@ -165,7 +165,7 @@ def cloud_package(app_id, verify):
     # Cloud plugins reference an already registered app; bundling MCP makes this Desktop-only.
     if not re.fullmatch(r"(?:asdk_app_|connector_|templated_apps_)[A-Za-z0-9_-]{1,128}", app_id or ""):
         raise ValueError("--app-id requires the actual registered OpenAI app ID (without plugin_)")
-    manifest = {"$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json", "name": "knowslink", "version": "0.1.0", "description": "Approved member text through a separately connected Google installation.", "author": {"name": "KnowsLink"}, "extensions": {"com.openai": {"apps": "./.app.json", "interface": {"displayName": "KnowsLink", "shortDescription": "Approved member text", "longDescription": "Connect Google explicitly. Receive verified text; send only on the user's request. Arrival events carry no message body.", "developerName": "KnowsLink", "category": "Productivity"}}}}
+    manifest = {"$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json", "name": "knowslink", "version": "0.1.1", "description": "Approved member text through a separately connected Google installation.", "author": {"name": "KnowsLink"}, "extensions": {"com.openai": {"apps": "./.app.json", "interface": {"displayName": "KnowsLink", "shortDescription": "Approved member text", "longDescription": "Connect Google explicitly. Receive verified text; send only on the user's request. Arrival events carry no message body.", "developerName": "KnowsLink", "category": "Productivity"}}}}
     compatibility = {"name": manifest["name"], "version": manifest["version"], "description": manifest["description"], "author": manifest["author"], "apps": "./.app.json", "skills": "./skills/", "interface": manifest["extensions"]["com.openai"]["interface"]}
     app = {"apps": {"knowslink": {"id": app_id, "required": True}}}
     skill = """---

@@ -1,9 +1,9 @@
 ---
 title: SAR-AUTOSETUP-001-DEV — Windows 11 Claude Code·Codex 자동 설정 기술 계획
 status: draft
-updated: 2026-10-23
+updated: 2026-10-28
 owner: dev
-tasks: [SAR-AUTOSETUP-001-DEV]
+tasks: [SAR-AUTOSETUP-001-DEV, SAR-AUTOSETUP-001-O04-DEV]
 summary: 한 줄 PowerShell 설치기·고정 배포물·호스트 등록·Google 연결 재개·갱신 교체의 기술 선택 근거와 한계
 ---
 
@@ -52,6 +52,13 @@ summary: 한 줄 PowerShell 설치기·고정 배포물·호스트 등록·Googl
 ## 범위 밖과 한계
 
 - 실제 호스트 세션의 `/knowslink-session on`·발송 승인 대화상자(AC-02·AC-03)는 사람 입력이 필요하다. DEV는 등록된 MCP 설정을 확인했고 실제 세션 발송은 tester 큰 틀 검수에서 확인한다. 세션·발송 코드는 바꾸지 않았다.
-- 운영 relay 배포·`/install/0.1.0/` 게시는 ops 후속이다(사용자 승인). 게시 전에는 회원 화면 명령이 404다.
+- 운영 relay 배포·`/install/<버전>/` 게시는 ops 후속이다(사용자 승인). 0.1.0은 게시됐고 O-04 수정본 0.1.1은 게시 전이다.
 - 이 PC의 Claude Code는 `2.1.308`이라 모든 실행이 '검증하지 않은 환경' 동의를 거쳤다. 완료 화면의 '시험 환경 확인' 문구는 `2.1.302`에서만 나온다.
 - macOS·Linux·ARM Windows 실측은 하지 않았다. ARM은 Node arm64 zip을 쓰도록만 했다.
+
+## O-04 수정 (SAR-AUTOSETUP-001-O04-DEV, 2026-10-28)
+
+- 원인: Windows PowerShell 5.1 `ConvertFrom-Json`은 JSON 배열을 배열 한 개로 돌려줘 `Get-Registered`의 `@(Get-HostJson …) | Where-Object`가 항목 2개 이상에서 배열 전체를 통과시켰다. `Get-HostJson`이 `ForEach-Object { $_ }`로 항목을 펼치도록 고쳤다. 같은 호출을 쓰는 등록 확인(Claude `plugin list`, Codex `mcp list`)도 한 번에 고쳐졌다.
+- 예상 밖 오류는 `[F-10]` 실패 안내(실패 단계·바뀐 것·다음 행동)로 끝나고 설치 기록에 단계를 남긴다.
+- 회귀 테스트: `scripts/autosetup/test_get_registered.py`(`make test`)가 `test-get-registered.ps1`을 `powershell.exe`·`pwsh`에서 실행한다. 없는 셸은 건너뛴다.
+- 버전: 공개된 0.1.0 폴더는 바꾸지 않으므로 플러그인·설치기 버전을 0.1.1로 올렸다(매니페스트 5곳, `mcp.ts`, `package_plugin.py`, `verify_grok_plugin.py`, 회원 화면 명령, README). 운영 교체는 D12 '자동 설정 0.1.1 교체 후보' 절의 ops 후속이다.

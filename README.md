@@ -204,13 +204,13 @@ KnowsLink 이벤트는 도착 metadata이며 본문은 receive로 읽는다. 구
 
 ## Claude Code·Codex 자동 설정 (Windows 11)
 
-SAR-AUTOSETUP-001 DEV 후보다. 배포물은 아직 운영 relay에 게시하지 않았다(ops 후속). 회원 화면 **어디에서 사용할까요?**에서 Claude Code 또는 Codex를 고르면 다음 형태의 명령 한 줄이 보인다. 그 컴퓨터의 PowerShell에 붙여 넣는다.
+운영에는 0.1.0이 게시돼 있으나 같은 명령 재실행(갱신)이 호스트 플러그인 2개 이상에서 실패하는 결함(O-04)이 있다. 수정본 0.1.1은 아직 운영에 게시하지 않았다(ops 후속). 회원 화면 **어디에서 사용할까요?**에서 Claude Code 또는 Codex를 고르면 다음 형태의 명령 한 줄이 보인다. 그 컴퓨터의 PowerShell에 붙여 넣는다.
 
 ```powershell
-& ([scriptblock]::Create((irm https://link.knowslog.com/install/0.1.0/knowslink-setup.ps1))) -App claude -Lang ko
+& ([scriptblock]::Create((irm https://link.knowslog.com/install/0.1.1/knowslink-setup.ps1))) -App claude -Lang ko
 ```
 
-- `-App`은 `claude` 또는 `codex`다. `-Lang`은 `ko` 또는 `en`이며 설치기 출력 언어다. `0.1.0`은 고정 버전이다.
+- `-App`은 `claude` 또는 `codex`다. `-Lang`은 `ko` 또는 `en`이며 설치기 출력 언어다. `0.1.1`은 고정 버전이다.
 - 설치기는 호스트·버전·OS·기존 설치를 확인하고 설치 계획(설치 폴더, 에이전트 폴더, 바꿀 호스트 설정 항목)을 보인다. 동의 전에는 파일을 쓰지 않는다.
 - 동의하면 플러그인 ZIP과 Node `22.22.2`를 내려받아 SHA-256을 확인한다. 맞지 않으면 아무것도 바꾸지 않고 멈춘다. 저장소·Node·설치 경로는 준비하지 않아도 된다.
 - 설치 폴더는 `%LOCALAPPDATA%\KnowsLink\<claude|codex>-NN`이다. 호스트 사용자 설정에는 KnowsLink 항목만 더한다. Claude Code는 `settings.json`의 `extraKnownMarketplaces.knowslink-plugins`·`enabledPlugins`, Codex는 `config.toml`의 `[marketplaces.knowslink-plugins]`·`[plugins."knowslink@knowslink-plugins"]`다. 다른 MCP 항목·승인 모드·모델·로그인 정보는 바꾸지 않는다.

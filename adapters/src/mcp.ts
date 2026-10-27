@@ -24,7 +24,7 @@ import { failureOf, lang, type Reason } from "./reasons.js";
 import type { ReceivedText } from "./text.js";
 
 const server = new McpServer(
-  { name: "knowslink", version: "0.1.0" },
+  { name: "knowslink", version: "0.1.1" },
   { capabilities: { logging: {} } },
 );
 const synthetic = process.env.KNOWSLINK_MODE === "synthetic-loopback";

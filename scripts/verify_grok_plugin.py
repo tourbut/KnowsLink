@@ -29,13 +29,13 @@ def main():
         grok("plugin", "validate", str(package / "knowslink"))
         grok("plugin", "install", str(package / "knowslink"), "--trust")
         plugins = json.loads(grok("plugin", "list", "--json"))
-        assert [(plugin["name"], plugin["version"]) for plugin in plugins] == [("knowslink", "0.1.0")], plugins
+        assert [(plugin["name"], plugin["version"]) for plugin in plugins] == [("knowslink", "0.1.1")], plugins
         doctor = json.loads(grok("mcp", "doctor", "knowslink", "--json"))
         checks = {check["label"]: check["passed"] for server in doctor["servers"] for check in server["checks"]}
         assert doctor["healthy_count"] == 1 and checks.get("9 tools discovered"), doctor
         installed = Path(plugins[0]["path"]) / "dist/plugin.js"
         subprocess.run(["node", "adapters/dist/mcp.test.js", str(installed)], cwd=ROOT, check=True)
-    print("PASS: isolated Grok CLI plugin validate/install, knowslink 0.1.0 listed, mcp doctor healthy with 9 tools; installed bundle held under this node (not Grok Bot app registration)", flush=True)
+    print("PASS: isolated Grok CLI plugin validate/install, knowslink 0.1.1 listed, mcp doctor healthy with 9 tools; installed bundle held under this node (not Grok Bot app registration)", flush=True)
 
 
 if __name__ == "__main__":

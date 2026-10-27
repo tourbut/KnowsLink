@@ -21,7 +21,7 @@ summary: 호스트별 로컬 플러그인 설치와 Google 연결 및 클라우�
 
 긴 대화는 `knowslink_text_send`로 새 text를 반복한다. 각 발송은 새 ID·멱등키와 독립180초 기한이다. 기존 reply_to는 원요청당 한 관련 답장인 호환 API이며 오래된 부모에 의존해 대화를 이어가지 않는다. 웹 참여 세션의 새 대화 사본은 수락24h까지 조회하며 로컬 Inbox/backup 삭제와 별개다. 2026-10-13 운영 제품은 `2747fe98653d5c6946f41c219fc256395333d7fe`다. 실제 두 계정의 대화·질문 없는 알림 수락 범위와 장시간/재시작/갱신 한계는 루트 README를 따른다.
 
-공식 Grok Bot에 연결할 MCP 플러그인 패키지다. 현재 버전은 `0.1.0`이며 기본 설정은 held다. 설치만으로 relay를 호출하지 않는다. 사용자가 명시적으로 설정하면 Google로 각 클라이언트를 연결하고 승인한 회원 연결 확인 text를 교환할 수 있다. 실제 Grok/Dots 계정의 왕복은 루트 README에 연결한 별도 수락 근거로 확인한다. 다른 호스트의 합성/CLI 검사를 실제 계정 수락으로 확대하지 않는다. 업무 발송·실데이터·calendar effect·유료 inference는 제공하지 않는다.
+공식 Grok Bot에 연결할 MCP 플러그인 패키지다. 현재 버전은 `0.1.1`이며 기본 설정은 held다. 설치만으로 relay를 호출하지 않는다. 사용자가 명시적으로 설정하면 Google로 각 클라이언트를 연결하고 승인한 회원 연결 확인 text를 교환할 수 있다. 실제 Grok/Dots 계정의 왕복은 루트 README에 연결한 별도 수락 근거로 확인한다. 다른 호스트의 합성/CLI 검사를 실제 계정 수락으로 확대하지 않는다. 업무 발송·실데이터·calendar effect·유료 inference는 제공하지 않는다.
 
 ## 호스트별 설치 — SAR-SSE-INSTALL-001
 
@@ -237,9 +237,9 @@ grok mcp doctor knowslink --json
 
 | 단계 | 기대 결과 |
 |---|---|
-| validate | `Plugin manifest is valid.`, `name: knowslink`, `version: 0.1.0`, `MCP servers` |
+| validate | `Plugin manifest is valid.`, `name: knowslink`, `version: 0.1.1`, `MCP servers` |
 | install | `Installed 1 plugin(s) from ...: knowslink` |
-| list | `"name": "knowslink"`, `"version": "0.1.0"` |
+| list | `"name": "knowslink"`, `"version": "0.1.1"` |
 | doctor | `"healthy": true`, `command found`, `handshake OK`, `4 tools discovered` |
 
 install은 파일을 `~/.grok/installed-plugins/`로 복사하므로 준비 폴더는 지워도 된다. `grok mcp list`는 config.toml 서버만 보여 주므로 plugin 서버 확인에는 `grok mcp doctor` 또는 `grok inspect --json`을 사용한다. 새 Grok 세션에서 `knowslink_status`를 호출하면 `held`가 정상이다. 제거는 `grok plugin uninstall knowslink`다.
