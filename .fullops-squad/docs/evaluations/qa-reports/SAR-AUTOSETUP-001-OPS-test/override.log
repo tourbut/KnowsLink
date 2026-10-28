@@ -1,0 +1,48 @@
+repo compose.ops.yaml install lines=1
+config without override: ok
+SAME_relay
+SAME_all_services
+  read_only: true
+  KNOWSLINK_INSTALL_DIR: /install
+  read_only: true
+  target: /install
+  read_only: true
+before: 81452ca51dfc966b72cfa885f6e8ae9c19aefab15727f8cbfb51946a9f488bb8 started=2026-10-28T13:19:12.651912946Z restarts=0
+-rw-r--r-- 1 [redacted] [redacted] 277 10월 27 22:26 /home/[redacted]/deploy/knowslink-state/compose.install.yaml.retired
+OVERRIDE_RETIRED=2026-10-28T13:20:40Z
+UP_BASE_DONE=2026-10-28T13:20:42Z
+after: 81452ca51dfc966b72cfa885f6e8ae9c19aefab15727f8cbfb51946a9f488bb8 started=2026-10-28T13:19:12.651912946Z restarts=0 health=healthy
+relay mounts: bind /home/[redacted]/deploy/knowslink-state/install -> /install rw=false; 
+relay INSTALL_DIR env: /install
+local checks ok: health 200, unknown 404, owner/api 401, loopback-only relay, private Postgres, limits, 0600/0700
+local /install/0.1.1/knowslink-setup.ps1 200
+local /install/0.1.1/knowslink-claude-plugin.zip 200
+local /install/0.1.1/knowslink-codex-plugin.zip 200
+local /install/0.1.0/knowslink-setup.ps1 200
+local /install/0.1.0/knowslink-claude-plugin.zip 200
+local /install/0.1.0/knowslink-codex-plugin.zip 200
+/home/[redacted]/deploy/knowslink-state/install/0.1.0/knowslink-claude-plugin.zip: OK
+/home/[redacted]/deploy/knowslink-state/install/0.1.0/knowslink-codex-plugin.zip: OK
+/home/[redacted]/deploy/knowslink-state/install/0.1.0/knowslink-setup.ps1: OK
+06b64bc2c2ed7584e711f33c10ccb40dac26607f62dbfe92914f3ebfb48bdb0b  knowslink-claude-plugin.zip
+0eacd83ba3dc2235c3abb7a42882bc10dcc491dd0a71970776e6fbefddfe14ae  knowslink-codex-plugin.zip
+c4d6825dd5519cbd6166e588123e83d0624ab6a45db6239e1d2e47b1b91a4dfe  knowslink-setup.ps1
+RELAY_LOG_LINES=1
+RELAY_ERROR_PANIC=0
+OVERRIDE_OK
+ Container knowslink-postgres-1 Running 
+ Container knowslink-relay-1 Running 
+ Container knowslink-postgres-1 Waiting 
+ Container knowslink-postgres-1 Healthy 
+ Container knowslink-migrate-1 Starting 
+ Container knowslink-migrate-1 Started 
+ Container knowslink-migrate-1 Waiting 
+ Container knowslink-migrate-1 Exited 
+ Container knowslink-relay-1 Waiting 
+ Container knowslink-postgres-1 Waiting 
+ Container knowslink-migrate-1 Waiting 
+ Container knowslink-relay-1 Healthy 
+ Container knowslink-postgres-1 Healthy 
+ Container knowslink-migrate-1 Exited 
+
+EXIT=0

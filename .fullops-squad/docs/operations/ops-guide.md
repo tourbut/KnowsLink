@@ -4,16 +4,36 @@ title: 운영자설명서
 status: draft
 updated: 2026-10-28
 owner: dev
-tasks: [SAR-PUBLISH-001-OPS, SAR-DEPLOY-001-OPS, SAR-BETA-001-OPS, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX, SAR-MVP-003-BIDIRECTIONAL, SAR-MVP-003-BIDIRECTIONAL-OPS, SAR-MVP-003-BIDIRECTIONAL-OPS-RENEW, SAR-PUBLIC-SERVICE-OPS-READINESS, SAR-PUBLIC-SERVICE-OPEN-PREP, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV, SAR-AUTO-RECEIVE-001-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SSE-INSTALL-001-TESTER, SAR-SSE-INSTALL-001-OPS, SAR-SSE-INSTALL-001-OAUTH-RETURN-DEV, SAR-SSE-INSTALL-001-OAUTH-RETURN-OPS, SAR-GROK-WEBHOOK-001-DEV, SAR-SERVICE-UI-001-OPS, SAR-HUMAN-PEER-001-DEV, SAR-HUMAN-PEER-001-OPS, SAR-REFACTOR-001-OPS, SAR-REFACTOR-002-OPS, SAR-RELEASE-001-OPS, SAR-RELEASE-002-OPS, SAR-RELEASE-003-OPS, SAR-PUBLISH-001-DEV, SAR-PUBLISH-001-RETENTION, SAR-PUBLISH-001-P03-DEPLOY, SAR-CONNECT-SIMPLE-001-DEV, SAR-CONNECT-SIMPLE-001-FIX-DEV, SAR-CONNECT-SIMPLE-001-OPS, SAR-CONNECT-SIMPLE-001-FOLLOWUP-DEV, SAR-AUTOSETUP-001-O04-DEV]
+tasks: [SAR-PUBLISH-001-OPS, SAR-DEPLOY-001-OPS, SAR-BETA-001-OPS, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX, SAR-MVP-003-BIDIRECTIONAL, SAR-MVP-003-BIDIRECTIONAL-OPS, SAR-MVP-003-BIDIRECTIONAL-OPS-RENEW, SAR-PUBLIC-SERVICE-OPS-READINESS, SAR-PUBLIC-SERVICE-OPEN-PREP, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV, SAR-AUTO-RECEIVE-001-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SSE-INSTALL-001-TESTER, SAR-SSE-INSTALL-001-OPS, SAR-SSE-INSTALL-001-OAUTH-RETURN-DEV, SAR-SSE-INSTALL-001-OAUTH-RETURN-OPS, SAR-GROK-WEBHOOK-001-DEV, SAR-SERVICE-UI-001-OPS, SAR-HUMAN-PEER-001-DEV, SAR-HUMAN-PEER-001-OPS, SAR-REFACTOR-001-OPS, SAR-REFACTOR-002-OPS, SAR-RELEASE-001-OPS, SAR-RELEASE-002-OPS, SAR-RELEASE-003-OPS, SAR-PUBLISH-001-DEV, SAR-PUBLISH-001-RETENTION, SAR-PUBLISH-001-P03-DEPLOY, SAR-CONNECT-SIMPLE-001-DEV, SAR-CONNECT-SIMPLE-001-FIX-DEV, SAR-CONNECT-SIMPLE-001-OPS, SAR-CONNECT-SIMPLE-001-FOLLOWUP-DEV, SAR-AUTOSETUP-001-O04-DEV, SAR-AUTOSETUP-001-OPS]
 upstream: [D02, D03]
 summary: 서버 관찰 이력과 본인 전용 합성 베타 배포 구성·검증·복귀 절차 및 held 항목을 기록한다
 ---
 
 # KnowsLink 운영자설명서 (D12) — 현재 서버 배포 계획
 
+## SAR-AUTOSETUP-001-OPS 운영 적용 결과 (2026-10-28)
+
+현재 운영 제품은 `c6dfc39ac4f6dabddc5864ad611437b84ded383e`다(자동 설정 0.1.1 공개: 설치기 O-04 수정, 화면 명령 0.1.1, `compose.ops.yaml`의 relay install env·마운트. 사용자 결정 D044). 직전 `bf67dfcbb4f7164149901d847edc0aa0e5783dc7`에서 같은 무삭제 bundle·rollback 태그·build·writer stop·새 private 백업·격리 복원·relay up 순서로 적용했다. 근거는 [운영 보고](../evaluations/qa-reports/SAR-AUTOSETUP-001-OPS-test/report.md)다. 아래 날짜별 절은 당시 기록이다.
+
+- 중단은 13:19:00Z~13:19:18Z(22:19:00~22:19:18 KST, 2026-10-28), 약18초다. relay healthy·restart0·migrate0이다. schema·`db/`·`compose.yaml`·Dockerfile·Go 의존성 변경은 없다. 전환 5분 뒤 error/panic 0이다.
+- 백업은 `backups/bf67dfcb-pre-autosetup011-20261028T131905Z.dump`, 0600·12571bytes·TOC25줄, SHA256 `000989324dcad1d8937ba91084bab9b443212e4f3cd1564f89df02ee209aa233`다. 격리 복원 digest가 frozen DB와 같다. rollback 태그는 `knowslink-rollback:bf67dfcb-autosetup011-20261028`(이전 relay 이미지 `sha256:ff7b47e0a997…e954d630`)다. 실제 rollback은 실행하지 않았다. 이 백업은 2026-11-11 이후 14일 자동 정리 대상이 된다.
+- **자동 설정 0.1.1 공개**: 서버 `/home/shin/deploy/knowslink-state/install/0.1.1/`(폴더 0755·파일 0644)에 `knowslink-setup.ps1`(SHA256 `c4d6825dd551…4dfe`), `knowslink-claude-plugin.zip`(`06b64bc2c2ed…b0b`), `knowslink-codex-plugin.zip`(`0eacd83ba3dc…14ae`)를 두었다. `c6dfc39a` 소스에서 `scripts/package_plugin.py --release`(운영 relay URL 기본값)로 만들었다. 공개 `https://link.knowslog.com/install/0.1.1/*` 세 파일이 200이고 설치기 안의 두 ZIP SHA-256이 ZIP과 같다. `install/0.1.0/`은 그대로 200이다(삭제하지 않는다). 회원 화면 명령(`use=claude`)은 `install/0.1.1/`을 가리킨다(실행 중 relay 바이너리에서 확인). 0.1.0 설치 사용자는 0.1.1 명령을 한 번 실행해 갱신한다(에이전트·키·친구 유지). 옛 0.1.0 명령은 플러그인이 여러 개인 환경에서 첫 설치도 실패한다(O-05). 근거: relay는 요청마다 파일을 읽어 재시작 없이 새 버전을 낸다. Tunnel 규칙은 임의 semver를 이미 허용해 바꾸지 않았다.
+- **서버 override 대체 완료**: `c6dfc39a`의 `compose.ops.yaml`이 relay에 `KNOWSLINK_INSTALL_DIR: /install`과 `${KNOWSLINK_STATE_DIR}/install:/install:ro`를 직접 넣는다. override 없는 `config`와 있는 `config`가 같음을 확인한 뒤 13:20:40Z에 서버 `knowslink-state/compose.install.yaml`을 `compose.install.yaml.retired`로 개명했다(삭제하지 않음). `up -d --no-build --wait relay`는 relay를 재생성하지 않았다(컨테이너 ID·시작 시각 같음). 이후 `/install/0.1.0/`·`/install/0.1.1/` 모두 200이다.
+- **compose 호출 규칙(현행)**: 서버 checkout이 `c6dfc39a` 이후이면 override 없이 두 파일만 쓴다. `beta.sh`의 `dc`도 같은 두 파일이므로 `beta.sh up`·`deploy`가 만드는 relay에도 install 마운트가 들어간다.
+
+```sh
+cd /home/shin/deploy/knowslink
+export KNOWSLINK_STATE_DIR=/home/shin/deploy/knowslink-state KNOWSLINK_UID=$(id -u) KNOWSLINK_GID=$(id -g)
+docker compose -p knowslink -f compose.yaml -f deploy/knowslink/compose.ops.yaml --env-file /home/shin/deploy/knowslink-state/.env <명령>
+```
+
+- **예외(되돌릴 때만)**: 서버 checkout을 `bf67dfcb` 이하로 되돌리면 그 커밋의 `compose.ops.yaml`에는 install 항목이 없다. 그때는 `compose.install.yaml.retired`를 `compose.install.yaml`로 되돌리고 세 번째 `-f /home/shin/deploy/knowslink-state/compose.install.yaml`을 얹어야 `/install`이 유지된다. 빠지면 `/install`이 404가 된다(회원 기능은 그대로).
+- **relay 코드 rollback(c6dfc39a→bf67dfcb)**: writer(relay) 중단 → 새 백업 → 서버 checkout을 `bf67dfcb`로 → `docker tag knowslink-rollback:bf67dfcb-autosetup011-20261028 knowslink-relay:latest` → 위 예외의 override를 얹어 `up -d --no-build --wait relay`. schema·migration 변경이 없어 코드 전용 복귀다. 영향: 회원 화면 명령이 0.1.0으로 돌아간다. `/install/0.1.1/` 폴더는 지우지 않는다. 과거 DB 덮기·Down·삭제 정리는 금지한다.
+- 미실행: 실계정 로그인·발송, 회원 화면 렌더링, 설치기를 사용자 PC에서 실행하는 실세션 QA(tester 과제, AC-07·S5), 실제 rollback.
+
 ## SAR-CONNECT-SIMPLE-001-OPS 운영 적용 결과 (2026-10-27)
 
-현재 운영 제품은 `bf67dfcbb4f7164149901d847edc0aa0e5783dc7`다(연결 단순화 SAR-CONNECT-SIMPLE-001과 자동 설정 SAR-AUTOSETUP-001 0.1.0 공개. 사용자 결정 D042·D043). 직전 `4fdd149b27d3ff251a73128120dce9f8bb136620`에서 같은 무삭제 bundle·rollback 태그·build·writer stop·새 private 백업·격리 복원·relay up 순서로 적용했다. 근거는 [운영 보고](../evaluations/qa-reports/SAR-CONNECT-SIMPLE-001-OPS-test/report.md)다. 아래 날짜별 절은 당시 기록이다.
+당시 운영 제품은 `bf67dfcbb4f7164149901d847edc0aa0e5783dc7`였다(현재는 위 SAR-AUTOSETUP-001-OPS 절. 연결 단순화 SAR-CONNECT-SIMPLE-001과 자동 설정 SAR-AUTOSETUP-001 0.1.0 공개. 사용자 결정 D042·D043). 직전 `4fdd149b27d3ff251a73128120dce9f8bb136620`에서 같은 무삭제 bundle·rollback 태그·build·writer stop·새 private 백업·격리 복원·relay up 순서로 적용했다. 근거는 [운영 보고](../evaluations/qa-reports/SAR-CONNECT-SIMPLE-001-OPS-test/report.md)다. 아래 날짜별 절은 당시 기록이다.
 
 - 중단은 13:27:25Z~13:27:43Z(22:27:25~22:27:43 KST, 2026-10-27), 약18초다. relay healthy·restart0·migrate0이다. schema·`db/`·`compose.yaml`·Dockerfile·의존성 변경은 없다. `deploy/`는 `tunnel/public-ingress.yml`만 바뀌었다.
 - 백업은 `backups/4fdd149b-pre-connect001-20261027T132730Z.dump`, 0600·11464bytes·TOC25줄, SHA256 `c6662ff7532b7c652d49d777486e458dd0100cb5cce56e42fb1d5b743df2ea0d`다. 격리 복원 digest가 frozen DB와 같다. rollback 태그는 `knowslink-rollback:4fdd149b-connect001-20261027`(이전 relay 이미지 `sha256:95852e24153d…a6be25a0e`)다. 실제 rollback은 실행하지 않았다. 이 백업은 2026-11-10 이후 14일 자동 정리 대상이 된다.
@@ -23,7 +43,7 @@ summary: 서버 관찰 이력과 본인 전용 합성 베타 배포 구성·검�
 ### 자동 설정 0.1.0 공개: 설치 폴더·compose override·ingress
 
 - 설치 폴더 `/home/shin/deploy/knowslink-state/install/0.1.0/`(폴더 0755·파일 0644): `knowslink-setup.ps1`(SHA256 `33b3ba372340…16fe`), `knowslink-claude-plugin.zip`(`767c0e87ca6d…403e`), `knowslink-codex-plugin.zip`(`498644fe3110…1b3c`). `scripts/package_plugin.py --release <install 폴더>`(운영 relay URL 기본값)로 `bf67dfcb` 소스에서 만들었다. 게시한 버전 폴더는 바꾸지 않는다. 새 버전은 새 폴더로 올리고 설치기 안의 URL·SHA-256이 그 버전을 가리키게 한다.
-- **compose override (SAR-CONNECT-SIMPLE-001-FOLLOWUP-DEV로 repo 이전)**: `bf67dfcb`의 `compose.yaml`·`compose.ops.yaml`은 relay에 `KNOWSLINK_INSTALL_DIR`를 넘기지 않아, 적용 당시 서버 로컬 파일 `/home/shin/deploy/knowslink-state/compose.install.yaml`(0644, repo 밖, 비밀 없음)로 연결했다(coor 승인 옵션 A). 이후 커밋의 `deploy/knowslink/compose.ops.yaml`이 relay에 같은 두 항목(`KNOWSLINK_INSTALL_DIR: /install`, `${KNOWSLINK_STATE_DIR}/install:/install:ro`)을 직접 넣는다. `KNOWSLINK_STATE_DIR`가 비면 다른 마운트와 같이 compose가 거절한다. 서버 override 내용은 아래와 같고, 새 `compose.ops.yaml`과 함께 얹어도 `config` 결과가 같다(중복 마운트 오류 없음, [보고](../evaluations/qa-reports/SAR-CONNECT-SIMPLE-001-FOLLOWUP-DEV-test/report.md)).
+- **compose override (SAR-CONNECT-SIMPLE-001-FOLLOWUP-DEV로 repo 이전, 2026-10-28 SAR-AUTOSETUP-001-OPS에서 서버 파일 개명 보관 완료)**: `bf67dfcb`의 `compose.yaml`·`compose.ops.yaml`은 relay에 `KNOWSLINK_INSTALL_DIR`를 넘기지 않아, 적용 당시 서버 로컬 파일 `/home/shin/deploy/knowslink-state/compose.install.yaml`(0644, repo 밖, 비밀 없음)로 연결했다(coor 승인 옵션 A). 이후 커밋의 `deploy/knowslink/compose.ops.yaml`이 relay에 같은 두 항목(`KNOWSLINK_INSTALL_DIR: /install`, `${KNOWSLINK_STATE_DIR}/install:/install:ro`)을 직접 넣는다. `KNOWSLINK_STATE_DIR`가 비면 다른 마운트와 같이 compose가 거절한다. 서버 override 내용은 아래와 같고, 새 `compose.ops.yaml`과 함께 얹어도 `config` 결과가 같다(중복 마운트 오류 없음, [보고](../evaluations/qa-reports/SAR-CONNECT-SIMPLE-001-FOLLOWUP-DEV-test/report.md)).
 
 ```yaml
 services:
@@ -34,7 +54,7 @@ services:
       - /home/shin/deploy/knowslink-state/install:/install:ro
 ```
 
-- **compose 호출 규칙**: 서버 checkout이 이 변경을 포함한 커밋이면 override 없이 두 파일만 쓴다. `beta.sh`의 `dc`도 같은 두 파일을 쓰므로 `beta.sh up`·`deploy`가 만드는 relay에도 install 마운트가 들어간다(`beta.sh` 수정 불필요). 서버 checkout이 아직 `bf67dfcb` 이하이면 override를 세 번째 `-f`로 계속 얹는다. 빠지면 `/install`이 404가 된다(회원 기능은 그대로).
+- **compose 호출 규칙(2026-10-28부터 위 절의 현행 규칙이 우선)**: 서버 checkout이 이 변경을 포함한 커밋이면 override 없이 두 파일만 쓴다. `beta.sh`의 `dc`도 같은 두 파일을 쓰므로 `beta.sh up`·`deploy`가 만드는 relay에도 install 마운트가 들어간다(`beta.sh` 수정 불필요). 서버 checkout이 아직 `bf67dfcb` 이하이면 override를 세 번째 `-f`로 계속 얹는다. 빠지면 `/install`이 404가 된다(회원 기능은 그대로).
 
 ```sh
 cd /home/shin/deploy/knowslink
@@ -43,22 +63,22 @@ docker compose -p knowslink -f compose.yaml -f deploy/knowslink/compose.ops.yaml
 # bf67dfcb 이하 checkout만: -f /home/shin/deploy/knowslink-state/compose.install.yaml 을 compose.ops.yaml 뒤에 더한다
 ```
 
-- **override 제거 절차(이후 ops 과제, 서버 미실행)**: (1) 이 변경을 포함한 커밋으로 평소 배포 순서(백업·rollback 태그·relay up)를 마친다. 배포 중에는 override를 계속 얹는다. (2) 새 checkout에서 override 없는 `config relay`와 override를 얹은 `config relay`를 파일에 저장하지 않고 `diff <(…) <(…) >/dev/null && echo SAME`으로 비교하고(`config` 전문은 비밀값을 포함한다), `config relay | grep -E 'KNOWSLINK_INSTALL_DIR|target: /install|read_only: true'`로 `KNOWSLINK_INSTALL_DIR: /install`과 `target: /install`·`read_only: true`가 있는지 본다. (3) 결과가 같으면 relay 재생성 없이 `compose.install.yaml`을 `compose.install.yaml.retired`로 이름만 바꾼다(삭제하지 않는다). 컨테이너 정의가 같으므로 `up -d --no-build --wait relay`를 해도 재생성되지 않아야 한다(재생성되면 relay가 약 20초 끊기므로 배포 창에서만 실행). (4) 확인: `docker inspect knowslink-relay-1 --format '{{json .Mounts}}'`에 `/install` RO 바인드, 공개 `https://link.knowslog.com/install/0.1.0/knowslink-setup.ps1` 200. 되돌리는 법: `.retired`를 원래 이름으로 돌리고 위 규칙에 세 번째 `-f`를 다시 얹는다.
+- **override 제거 절차(2026-10-28 SAR-AUTOSETUP-001-OPS에서 실행 완료, 결과는 위 절)**: (1) 이 변경을 포함한 커밋으로 평소 배포 순서(백업·rollback 태그·relay up)를 마친다. 배포 중에는 override를 계속 얹는다. (2) 새 checkout에서 override 없는 `config relay`와 override를 얹은 `config relay`를 파일에 저장하지 않고 `diff <(…) <(…) >/dev/null && echo SAME`으로 비교하고(`config` 전문은 비밀값을 포함한다), `config relay | grep -E 'KNOWSLINK_INSTALL_DIR|target: /install|read_only: true'`로 `KNOWSLINK_INSTALL_DIR: /install`과 `target: /install`·`read_only: true`가 있는지 본다. (3) 결과가 같으면 relay 재생성 없이 `compose.install.yaml`을 `compose.install.yaml.retired`로 이름만 바꾼다(삭제하지 않는다). 컨테이너 정의가 같으므로 `up -d --no-build --wait relay`를 해도 재생성되지 않아야 한다(재생성되면 relay가 약 20초 끊기므로 배포 창에서만 실행). (4) 확인: `docker inspect knowslink-relay-1 --format '{{json .Mounts}}'`에 `/install` RO 바인드, 공개 `https://link.knowslog.com/install/0.1.0/knowslink-setup.ps1` 200. 되돌리는 법: `.retired`를 원래 이름으로 돌리고 위 규칙에 세 번째 `-f`를 다시 얹는다.
 
 - **공개 ingress**: 공개 Tunnel `path` 정규식에 `|/install/[0-9]+\.[0-9]+\.[0-9]+/knowslink-[a-z0-9-]+\.(ps1|zip)` 한 대안만 더했다(repo `public-ingress.yml`과 같음, 반영 전후 `scripts/check_public_ingress.py` 통과). 원본은 `connect001-ops-20261027/config.yml.pre-connect001`(0600)이다. 13:28:19Z에 cloudflared를 한 번 재시작했고 약1초 끊겼다. 공개 `https://link.knowslog.com/install/0.1.0/knowslink-setup.ps1`은 200 `text/plain; charset=utf-8`, ZIP 2개는 200 `application/zip`이고 다른 이름·버전·하위 경로는 404다. 서버 `connect001-ops-20261027/`는 작업물(0700)이다.
 - **되돌리는 법**(공개 중단만): 설치 파일 공개를 멈추려면 `config.yml.pre-connect001`을 `tunnel/config.yml`로 되돌리고 cloudflared를 재시작한다(규칙 한 대안이 빠져 `/install`이 다시 404). relay 쪽은 `bf67dfcb` 이하 checkout에서 `compose.install.yaml`을 빼고 relay를 다시 띄우면 변수·마운트가 사라진다. 이후 커밋에서는 `compose.ops.yaml`에서 두 항목을 빼는 새 릴리스가 필요하다. 설치 폴더 파일은 삭제하지 않고 둔다.
 - **relay 코드 rollback**: writer(relay) 중단 → 새 백업 → 서버 checkout을 `4fdd149b`로 → `docker tag knowslink-rollback:4fdd149b-connect001-20261027 knowslink-relay:latest` → 위 규칙의 `up -d --no-build --wait relay`. schema·migration 변경이 없어 코드 전용 복귀다. `bf67dfcb` 이하로 되돌릴 때는 `compose.install.yaml`(또는 `.retired`를 되살린 파일)을 세 번째 `-f`로 얹어야 `/install`이 유지된다. 영향: 이전 relay는 `/v1/connect/start`의 `host`를 `invalid_schema`(422)로 거절해 새 클라이언트가 `unreachable`로 보이고, `/install`은 200을 못 줄 수 있다(404). 과거 DB 덮기·Down·삭제 정리는 금지한다.
 - 미실행: 실계정 로그인·발송, 설치기를 사용자 PC에서 실행하는 실세션 QA(CS-AC-18, 자동 설정 실세션 QA는 tester 과제), 실제 rollback.
 
-### 자동 설정 0.1.1 교체 후보 (O-04 수정, SAR-AUTOSETUP-001-O04-DEV, 서버 미실행)
+### 자동 설정 0.1.1 교체 (O-04 수정, SAR-AUTOSETUP-001-O04-DEV, 2026-10-28 적용 완료)
 
-공개된 0.1.0 설치기는 호스트 플러그인이 2개 이상이면 같은 명령 재실행(갱신)이 실패한다(O-04, Windows PowerShell 5.1 `ConvertFrom-Json` 배열 처리). 게시한 버전 폴더는 바꾸지 않으므로 수정본은 새 버전 0.1.1로 낸다. 아래는 ops 과제 후보이며 사용자 승인 뒤에만 실행한다.
+공개된 0.1.0 설치기는 호스트 플러그인이 2개 이상이면 같은 명령 재실행(갱신)이 실패한다(O-04, Windows PowerShell 5.1 `ConvertFrom-Json` 배열 처리). 게시한 버전 폴더는 바꾸지 않으므로 수정본은 새 버전 0.1.1로 냈다. 적용 결과는 위 SAR-AUTOSETUP-001-OPS 절과 [운영 보고](../evaluations/qa-reports/SAR-AUTOSETUP-001-OPS-test/report.md)다. 다음 버전을 낼 때도 같은 순서를 쓴다.
 
-1. 수정을 포함한 main 커밋을 고정하고 그 소스에서 `python3 scripts/package_plugin.py --release <빈 작업 폴더>`(운영 relay URL 기본값)를 실행한다. `adapters/.claude-plugin/plugin.json`의 `0.1.1` 폴더가 새로 생기며 이미 있으면 멈춘다. 설치기 안의 URL·SHA-256은 그 폴더 파일을 가리킨다.
-2. 서버 `/home/shin/deploy/knowslink-state/install/0.1.1/`(폴더 0755·파일 0644)에 세 파일을 둔다. `0.1.0/` 폴더는 지우지 않는다. relay는 요청마다 파일을 읽으므로 재시작이 필요 없고, ingress 규칙은 임의 semver를 이미 허용하므로 Tunnel도 바꾸지 않는다.
-3. 공개 `https://link.knowslog.com/install/0.1.1/` 세 파일이 200이고 설치기 안의 두 SHA-256이 ZIP과 같은지 확인한다. 이 확인이 끝나기 전에는 회원 화면 명령을 0.1.1로 바꾸지 않는다(404 방지).
-4. 그다음에 회원 화면 명령이 `install/0.1.1/`을 가리키는 relay 코드(`internal/relay/human_pages.go`)를 평소 배포 순서(백업·rollback 태그·relay up)로 적용한다. 이 코드는 DB migration이 없다.
-5. 되돌리는 법: relay 코드는 rollback 태그로 되돌리면 화면이 0.1.0 명령으로 돌아간다. 0.1.1 폴더는 삭제하지 않는다. 0.1.0을 이미 설치한 사용자는 0.1.1 명령을 한 번 실행하면 갱신되고(에이전트·키·친구 유지), 옛 0.1.0 명령은 다단 플러그인 환경에서 계속 실패하므로 안내를 새 명령으로 바꾼다.
+1. 수정을 포함한 main 커밋을 고정하고 그 소스(`git archive`로 푼 깨끗한 사본, `npm ci`·`npm run build`)에서 `python3 scripts/package_plugin.py --release <빈 작업 폴더>`(운영 relay URL 기본값)를 실행한다. `adapters/.claude-plugin/plugin.json`의 버전 폴더가 새로 생기며 이미 있으면 멈춘다. 설치기 안의 URL·SHA-256은 그 폴더 파일을 가리킨다.
+2. 서버 `/home/shin/deploy/knowslink-state/install/<버전>/`(폴더 0755·파일 0644)에 세 파일을 둔다. 이전 버전 폴더는 지우지 않는다. relay는 요청마다 파일을 읽으므로 재시작이 필요 없고, ingress 규칙은 임의 semver를 이미 허용하므로 Tunnel도 바꾸지 않는다.
+3. 공개 `https://link.knowslog.com/install/<버전>/` 세 파일이 200이고 설치기 안의 두 SHA-256이 ZIP과 같은지 확인한다. 이 확인이 끝나기 전에는 회원 화면 명령을 새 버전으로 바꾸지 않는다(404 방지).
+4. 그다음에 회원 화면 명령이 새 버전을 가리키는 relay 코드(`internal/relay/human_pages.go`)를 평소 배포 순서(백업·rollback 태그·relay up)로 적용한다. 이 코드는 DB migration이 없다.
+5. 되돌리는 법: relay 코드는 rollback 태그로 되돌리면 화면이 이전 명령으로 돌아간다. 새 버전 폴더는 삭제하지 않는다.
 6. 후속 검증: tester가 호스트 플러그인이 2개 이상인 환경에서 같은 명령 재실행(갱신)을 다시 확인한다(AC-07·S5).
 
 ## SAR-CONNECT-SIMPLE-001-DEV agent 용량 경계

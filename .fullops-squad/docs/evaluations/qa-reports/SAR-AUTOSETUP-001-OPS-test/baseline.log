@@ -1,0 +1,38 @@
+2026-10-28T13:15:40Z
+local checks ok: health 200, unknown 404, owner/api 401, loopback-only relay, private Postgres, limits, 0600/0700
+bf67dfcbb4f7164149901d847edc0aa0e5783dc7
+dirty_lines=0
+/knowslink-relay-1 running restarts=0
+/knowslink-cloudflared-1 running restarts=0
+healthz_local=200
+live_agents=32 owners=24
+backup_files=7
+2026-10-21T23:57:30Z 7c6ef3734a38a8f273714aa2915dc2f14f83a7e4 -> 4fdd149b27d3ff251a73128120dce9f8bb136620 release manual verified bundle+backup+retained-isolation+rollback-tag
+2026-10-27T13:27:43Z 4fdd149b27d3ff251a73128120dce9f8bb136620 -> bf67dfcbb4f7164149901d847edc0aa0e5783dc7 release manual verified bundle+backup+retained-isolation+rollback-tag+install-override
+-rw-r--r-- 1 [redacted] [redacted]  277 10월 27 22:26 /home/[redacted]/deploy/knowslink-state/compose.install.yaml
+
+/home/[redacted]/deploy/knowslink-state/install/:
+total 4
+drwxr-xr-x 2 [redacted] [redacted] 4096 10월 27 22:26 0.1.0
+
+/home/[redacted]/deploy/knowslink-state/install/0.1.0/:
+total 692
+-rw-r--r-- 1 [redacted] [redacted] 336625 10월 27 22:26 knowslink-claude-plugin.zip
+-rw-r--r-- 1 [redacted] [redacted] 327763 10월 27 22:26 knowslink-codex-plugin.zip
+-rw-r--r-- 1 [redacted] [redacted]  34875 10월 27 22:26 knowslink-setup.ps1
+767c0e87ca6d7c151f7eccf08914137ec6518cbf00293a0fa1015ced09ce403e  /home/[redacted]/deploy/knowslink-state/install/0.1.0/knowslink-claude-plugin.zip
+498644fe3110d357bfcfc41f68a6b1fcf62f0110a38198a50b263bcea3711b3c  /home/[redacted]/deploy/knowslink-state/install/0.1.0/knowslink-codex-plugin.zip
+33b3ba372340edeef216c8f6fd4c6be548244faf4b782bd6cadde1b674fe16fe  /home/[redacted]/deploy/knowslink-state/install/0.1.0/knowslink-setup.ps1
+ls: cannot access '/home/[redacted]/deploy/knowslink-state/install/0.1.1': No such file or directory
+env mode=600 bytes=450
+knowslink-relay:latest ff7b47e0a997
+knowslink-rollback:4fdd149b-connect001-20261027 95852e24153d
+knowslink-rollback:7c6ef373-p03-20261022 69f62b72483b
+knowslink-rollback:4787e85-publish001-20261022 0e0eb8b44e47
+knowslink-rollback:7b4f9bc-release003-20261021 9646febaf412
+knowslink-rollback:1dd6800-release002-20261020 4893d0f51333
+knowslink-rollback:8a93e38-release001-20261017 482d3197fe7c
+knowslink-rollback:2747fe9-refactor002-20261014 12f1313a1460
+BASELINE_OK
+
+EXIT=0
