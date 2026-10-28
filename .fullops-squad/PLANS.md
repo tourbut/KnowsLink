@@ -52,6 +52,7 @@ summary: 기존 제품 계획 보존과 Google 연결 구현의 독립 검토 �
 - QA3 배정 준비: tester fresh, claude sonnet-5-5 medium(명확한 재현·좁은 경로 재검증). 지시서 handovers/to_tester.md. 통과 시 사용자 승인 받아 ops 운영 교체. 배정 task_357c08368800 / ctx_2c032d756430 / term_ca628e4b-984f-44c3-9239-bfdafa908abf.
 - QA3 통합 2026-10-28: msg_f997330f60cd tester 4b8ff3ef. 플러그인 3개 호스트에서 0.1.0→0.1.1 갱신·재실행·재시작 뒤 세션 연결·[F-10] PASS, O-04 해소, high 0. 관찰 O-05(공개 0.1.0은 3개 환경에서 첫 설치도 실패), O-06(갱신 뒤 호스트 캐시의 훅·스킬은 0.1.0 유지, MCP만 0.1.1, dev 판단). 남은 임시: .devtools/autosetup-001-qa3/, Docker kl-autosetup-qa3-pg, 포트 18443 fixture. --no-ff 1adcc7b9, lint ERROR 0, tester release.
 - D044 '운영 교체 진행'(2026-10-28). OPS 배정 준비: ops fresh, claude sonnet-5-5 high(ops 후보). 지시서 handovers/to_ops.md SAR-AUTOSETUP-001-OPS. 배정 task_d0ab813e4088 / ctx_ecf85d36b31f / term_0d227d5d-93c3-43ea-a147-f965016acbad.
+- AUTOSETUP OPS 통합 2026-10-28: msg_896e7cd7a58e ops e57539db. /install/0.1.1/ 게시(0.1.0 유지), relay c6dfc39a(중단 약18초, healthy·restart0·migrate0, rollback 태그 knowslink-rollback:bf67dfcb-autosetup011-20261028), compose.install.yaml → .retired(repo compose.ops.yaml config 동일 확인), 공개 26/26×3, 보존 41/41. 호스트 cloudflared-orca가 13:21:38Z 별도 재시작(KnowsLink 무관). 남은 일: 서버 .retired 파일 정리(사용자 판단), 운영 0.1.1 실세션 QA는 미실행.
 - [ ] 대기: dev — O-06 갱신 뒤 호스트 플러그인 캐시(훅·스킬)가 이전 버전으로 남는 점 판단.
 - [ ] 대기: designer — O-01 S1 Claude 행동 6/6 경계(검증 버전 밖 2.1.311에서 `y` 1개 추가) 판단.
 - [x] 배정(FOLLOWUP-DEV): dev — 새 설치 npm audit 4건(moderate 2, high 2) 의존성 범위 확인(SAR-CONNECT-SIMPLE-001-LIVE 관찰 1).
