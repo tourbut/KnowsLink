@@ -1,0 +1,72 @@
+STOP_BEGIN=2026-10-28T13:19:00Z
+FROZEN_EPOCH=2267807
+OTHER_DB_CLIENTS=0
+backup mode=600 bytes=12571
+BACKUP_FILE=bf67dfcb-pre-autosetup011-20261028T131905Z.dump
+000989324dcad1d8937ba91084bab9b443212e4f3cd1564f89df02ee209aa233  /home/[redacted]/deploy/knowslink-state/backups/bf67dfcb-pre-autosetup011-20261028T131905Z.dump
+TOC_LINES=25
+RESTORED_FULL_STATE_DIGEST_MATCH=true
+restored goose=2 guard=1 rows=1 epoch=2267807 HumanModel=1
+restored writer downgrade refused
+REHEARSAL_EXIT=0 retained=knowslink-autosetup011-rehearse-20261028
+NAME                      IMAGE                                                                                                     COMMAND                  SERVICE       CREATED         STATUS                     PORTS
+knowslink-cloudflared-1   cloudflare/cloudflared:2026.9.1@sha256:b269e8abd07a5bf6f3f4be65d5050b2174eca89c56a0241a8ff32a16aec454e4   "cloudflared --no-au…"   cloudflared   3 weeks ago     Up 24 hours                
+knowslink-migrate-1       knowslink-migrate                                                                                         "/app/migrate"           migrate       7 seconds ago   Exited (0) 6 seconds ago   
+knowslink-postgres-1      postgres:17-alpine@sha256:b0f9560a2de083e2cc7382e75f808c7381a32852a7ec49117deedb300e552b24                "docker-entrypoint.s…"   postgres      3 weeks ago     Up 3 weeks (healthy)       5432/tcp
+knowslink-relay-1         knowslink-relay                                                                                           "/app/relay"             relay         7 seconds ago   Up 5 seconds (healthy)     127.0.0.1:8080->8080/tcp
+UP_DONE=2026-10-28T13:19:18Z
+local checks ok: health 200, unknown 404, owner/api 401, loopback-only relay, private Postgres, limits, 0600/0700
+/knowslink-relay-1 sha256:dfc3ffeb259eb77959a3ad63f79d848130080ff99336c74eac2b1ee14e7eefa3 healthy restarts=0
+MIGRATE_EXIT=0
+RELAY_LOG_LINES=1
+RELAY_ERROR_PANIC=0
+RELAY_CAPACITY_WARNING=0
+2026/10/28 13:19:12 relay starting; vendor effects and disclosure disabled; email login configured=false; google login configured=true; synthetic signup=false
+relay INSTALL_DIR env: /install
+/install/0.1.0:
+total 692
+-rw-r--r--    1 1000     1000        336625 Oct 27 13:26 knowslink-claude-plugin.zip
+-rw-r--r--    1 1000     1000        327763 Oct 27 13:26 knowslink-codex-plugin.zip
+-rw-r--r--    1 1000     1000         34875 Oct 27 13:26 knowslink-setup.ps1
+
+/install/0.1.1:
+total 692
+-rw-r--r--    1 1000     1000        337538 Oct 28 13:15 knowslink-claude-plugin.zip
+-rw-r--r--    1 1000     1000        328676 Oct 28 13:15 knowslink-codex-plugin.zip
+-rw-r--r--    1 1000     1000         35823 Oct 28 13:15 knowslink-setup.ps1
+relay mounts: bind /install rw=false; readonly_rootfs=true
+local /install/0.1.1/knowslink-setup.ps1 200 text/plain; charset=utf-8 35823
+local /install/0.1.1/knowslink-claude-plugin.zip 200 application/zip 337538
+local /install/0.1.1/knowslink-codex-plugin.zip 200 application/zip 328676
+local /install/0.1.0/knowslink-setup.ps1 200 text/plain; charset=utf-8 34875
+local /install/0.1.0/knowslink-claude-plugin.zip 200 application/zip 336625
+local /install/0.1.0/knowslink-codex-plugin.zip 200 application/zip 327763
+local other name 404
+screen_command_0.1.1_in_binary=1 screen_command_0.1.0_in_binary=0
+DEPLOY_EXIT=0
+ Container knowslink-relay-1 Stopping 
+ Container knowslink-relay-1 Stopped 
+sh: locale: not found
+2026-10-28 13:19:06.368 UTC [12] WARNING:  no usable system locales were found
+ Container knowslink-postgres-1 Running 
+ Container knowslink-migrate-1 Recreate 
+ Container knowslink-migrate-1 Recreated 
+ Container knowslink-relay-1 Recreate 
+ Container knowslink-relay-1 Recreated 
+ Container knowslink-postgres-1 Waiting 
+ Container knowslink-postgres-1 Healthy 
+ Container knowslink-migrate-1 Starting 
+ Container knowslink-migrate-1 Started 
+ Container knowslink-migrate-1 Waiting 
+ Container knowslink-migrate-1 Exited 
+ Container knowslink-relay-1 Starting 
+ Container knowslink-relay-1 Started 
+ Container knowslink-migrate-1 Waiting 
+ Container knowslink-relay-1 Waiting 
+ Container knowslink-postgres-1 Waiting 
+ Container knowslink-postgres-1 Healthy 
+ Container knowslink-migrate-1 Exited 
+ Container knowslink-relay-1 Healthy 
+2026/10/28 13:19:12 SQL migrations completed
+
+EXIT=0

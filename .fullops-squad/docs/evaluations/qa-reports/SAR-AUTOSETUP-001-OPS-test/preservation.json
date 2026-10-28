@@ -1,0 +1,252 @@
+{
+  "utc_stages": {
+    "baseline": "2026-10-28T13:15:40.852336+00:00",
+    "before": "2026-10-28T13:18:58.981188+00:00",
+    "frozen": "2026-10-28T13:19:03.417472+00:00",
+    "after": "2026-10-28T13:19:18.814249+00:00",
+    "pre-override": "2026-10-28T13:20:38.826330+00:00",
+    "after-override": "2026-10-28T13:20:43.380322+00:00",
+    "final": "2026-10-28T13:24:40.340770+00:00",
+    "final2": "2026-10-28T13:24:53.181160+00:00"
+  },
+  "passed": 41,
+  "total": 41,
+  "assertions": [
+    {
+      "assertion": "state map HTTP digest equal at all 8 stages",
+      "pass": true
+    },
+    {
+      "assertion": "state map Gates digest equal at all 8 stages",
+      "pass": true
+    },
+    {
+      "assertion": "state map Pairs digest equal at all 8 stages",
+      "pass": true
+    },
+    {
+      "assertion": "state map Agents digest equal at all 8 stages",
+      "pass": true
+    },
+    {
+      "assertion": "state map Owners digest equal at all 8 stages",
+      "pass": true
+    },
+    {
+      "assertion": "state map Friends digest equal at all 8 stages",
+      "pass": true
+    },
+    {
+      "assertion": "state map Members digest equal at all 8 stages",
+      "pass": true
+    },
+    {
+      "assertion": "state map Messages digest equal at all 8 stages",
+      "pass": true
+    },
+    {
+      "assertion": "state map Sessions digest equal at all 8 stages",
+      "pass": true
+    },
+    {
+      "assertion": "state map Challenges digest equal at all 8 stages",
+      "pass": true
+    },
+    {
+      "assertion": "state map Identities digest equal at all 8 stages",
+      "pass": true
+    },
+    {
+      "assertion": "state map Connections digest equal at all 8 stages",
+      "pass": true
+    },
+    {
+      "assertion": "state map Idempotency digest equal at all 8 stages",
+      "pass": true
+    },
+    {
+      "assertion": "state map GoogleAttempts digest equal at all 8 stages",
+      "pass": true
+    },
+    {
+      "assertion": "state map counts equal at all stages except volatile Rates",
+      "pass": true,
+      "detail": {
+        "Pairs": 13,
+        "Agents": 32,
+        "Owners": 24,
+        "Friends": 1,
+        "Members": 2,
+        "Messages": 1
+      }
+    },
+    {
+      "assertion": "Remote digests/counts, inbox and subscription metadata equal at all stages",
+      "pass": true
+    },
+    {
+      "assertion": "frozen equals before for every state digest incl. Rates (writer stopped)",
+      "pass": true
+    },
+    {
+      "assertion": "schema sha256 equal at all stages",
+      "pass": true
+    },
+    {
+      "assertion": "HumanModel=1 and goose2/guard1/rows1 at all stages (no migration)",
+      "pass": true
+    },
+    {
+      "assertion": ".env, tunnel.uuid, access.aud and tunnel/config.yml hash+mode unchanged at all stages (env and ingress untouched)",
+      "pass": true
+    },
+    {
+      "assertion": "tunnel credential json hash+mode equal at all stages",
+      "pass": true
+    },
+    {
+      "assertion": "state and backups directory modes 0700 at all stages",
+      "pass": true
+    },
+    {
+      "assertion": "existing 7 backups preserved (hash/mode/bytes); exactly one new backup, unchanged afterwards",
+      "pass": true,
+      "detail": {
+        "before_count": 7,
+        "after_count": 8
+      }
+    },
+    {
+      "assertion": "new backup is mode 0600",
+      "pass": true,
+      "detail": {
+        "bytes": 12571,
+        "sha256": "000989324dcad1d8937ba91084bab9b443212e4f3cd1564f89df02ee209aa233"
+      }
+    },
+    {
+      "assertion": "before: every container identical to baseline",
+      "pass": true
+    },
+    {
+      "assertion": "frozen: only relay stopped (writer stop); every other container identical to baseline",
+      "pass": true
+    },
+    {
+      "assertion": "after: only relay and migrate containers changed",
+      "pass": true,
+      "detail": [
+        "/knowslink-migrate-1",
+        "/knowslink-relay-1"
+      ]
+    },
+    {
+      "assertion": "pre-override: only relay and migrate containers changed",
+      "pass": true,
+      "detail": [
+        "/knowslink-migrate-1",
+        "/knowslink-relay-1"
+      ]
+    },
+    {
+      "assertion": "after-override: only relay and migrate containers changed",
+      "pass": true,
+      "detail": [
+        "/knowslink-migrate-1",
+        "/knowslink-relay-1"
+      ]
+    },
+    {
+      "assertion": "final: only relay and migrate containers changed",
+      "pass": true,
+      "detail": [
+        "/knowslink-migrate-1",
+        "/knowslink-relay-1"
+      ]
+    },
+    {
+      "assertion": "final2: only relay and migrate containers changed",
+      "pass": true,
+      "detail": [
+        "/knowslink-migrate-1",
+        "/knowslink-relay-1"
+      ]
+    },
+    {
+      "assertion": "Postgres and KnowsLink cloudflared containers unchanged through final2",
+      "pass": true
+    },
+    {
+      "assertion": "only new container since baseline is the retained restore fixture",
+      "pass": true
+    },
+    {
+      "assertion": "relay switch: relay image changed; relay healthy with restarts 0 at final2",
+      "pass": true
+    },
+    {
+      "assertion": "override removal did not recreate relay (container id and start time same before/after)",
+      "pass": true
+    },
+    {
+      "assertion": "shared orca/s8/mcp public statuses equal at all stages",
+      "pass": true
+    },
+    {
+      "assertion": "host cloudflared (cloudflared-orca user service, not KnowsLink) PID: same through after-override; new at final (service restarted 2026-10-28T13:21:38Z after its config.yml was edited at 13:21:07Z by someone else)",
+      "pass": true,
+      "detail": {
+        "baseline": [
+          "2039731"
+        ],
+        "before": [
+          "2039731"
+        ],
+        "frozen": [
+          "2039731"
+        ],
+        "after": [
+          "2039731"
+        ],
+        "pre-override": [
+          "2039731"
+        ],
+        "after-override": [
+          "2039731"
+        ],
+        "final": [
+          "2354559"
+        ],
+        "final2": [
+          "2354559"
+        ]
+      }
+    },
+    {
+      "assertion": "listeners 127.0.0.1:8080 and 5432 restored; frozen had only 5432",
+      "pass": true
+    },
+    {
+      "assertion": "no other active DB writer at frozen and later",
+      "pass": true
+    },
+    {
+      "assertion": "checkout bf67dfcb at baseline; c6dfc39a and clean from before on",
+      "pass": true
+    },
+    {
+      "assertion": "epoch never decreased",
+      "pass": true,
+      "detail": [
+        2267562,
+        2267805,
+        2267807,
+        2267825,
+        2267947,
+        2267975,
+        2268212,
+        2268236
+      ]
+    }
+  ]
+}

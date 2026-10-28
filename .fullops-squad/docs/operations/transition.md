@@ -2,13 +2,21 @@
 id: D13
 title: 인수인계서
 status: draft
-updated: 2026-10-27
+updated: 2026-10-28
 owner: dev
-tasks: [SAR-CONNECT-SIMPLE-001-OPS, SAR-SERVICE-UI-001-OPS, SAR-BETA-001-OPS, SAR-MVP-002-DEV, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX, SAR-MVP-003-BIDIRECTIONAL-OPS, SAR-MVP-003-BIDIRECTIONAL-OPS-RENEW, SAR-PUBLIC-SERVICE-OPEN-PREP, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SSE-INSTALL-001-OPS, SAR-SSE-INSTALL-001-OAUTH-RETURN-OPS, SAR-HUMAN-PEER-001-DEV, SAR-HUMAN-PEER-001-OPS, SAR-REFACTOR-001-OPS, SAR-REFACTOR-002-OPS, SAR-RELEASE-001-OPS, SAR-RELEASE-002-OPS, SAR-UX-ISSUES-002-NAMES-DEV, SAR-UX-ISSUES-002-APPROVAL-DEV, SAR-UX-ISSUES-002-CONNECT-DEV, SAR-UX-ISSUES-002-LANG-DEV, SAR-UX-ISSUES-002-LOWS-DEV, SAR-SCHEDULE-001-DEV, SAR-RELEASE-003-OPS, SAR-PUBLISH-001-DEV, SAR-PUBLISH-001-OPS]
+tasks: [SAR-AUTOSETUP-001-OPS, SAR-CONNECT-SIMPLE-001-OPS, SAR-SERVICE-UI-001-OPS, SAR-BETA-001-OPS, SAR-MVP-002-DEV, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX, SAR-MVP-003-BIDIRECTIONAL-OPS, SAR-MVP-003-BIDIRECTIONAL-OPS-RENEW, SAR-PUBLIC-SERVICE-OPEN-PREP, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SSE-INSTALL-001-OPS, SAR-SSE-INSTALL-001-OAUTH-RETURN-OPS, SAR-HUMAN-PEER-001-DEV, SAR-HUMAN-PEER-001-OPS, SAR-REFACTOR-001-OPS, SAR-REFACTOR-002-OPS, SAR-RELEASE-001-OPS, SAR-RELEASE-002-OPS, SAR-UX-ISSUES-002-NAMES-DEV, SAR-UX-ISSUES-002-APPROVAL-DEV, SAR-UX-ISSUES-002-CONNECT-DEV, SAR-UX-ISSUES-002-LANG-DEV, SAR-UX-ISSUES-002-LOWS-DEV, SAR-SCHEDULE-001-DEV, SAR-RELEASE-003-OPS, SAR-PUBLISH-001-DEV, SAR-PUBLISH-001-OPS]
 summary: 베타 배포의 현재 상태와 인수 항목 및 남은 일을 기록한다
 ---
 
 # KnowsLink 본인 전용 합성 베타 인수인계서 (D13)
+
+## 현재 운영 상태 (2026-10-28, SAR-AUTOSETUP-001-OPS)
+
+실제 운영 제품은 `c6dfc39ac4f6dabddc5864ad611437b84ded383e`다(자동 설정 0.1.1 공개·설치기 O-04 수정·화면 명령 0.1.1·repo `compose.ops.yaml` install 마운트. 사용자 결정 D044). 직전 `bf67dfcb`에서 22:19:00~22:19:18 KST(13:19:00Z~13:19:18Z)에 약18초 중단하고 전환했다. relay healthy·restart0·migrate0이며 새 schema/migration은 없다. 증거는 [운영 보고](../evaluations/qa-reports/SAR-AUTOSETUP-001-OPS-test/report.md), 절차·명령은 [D12 적용 결과](ops-guide.md#sar-autosetup-001-ops-운영-적용-결과-2026-10-28)다. 아래 이전 날짜의 현재 상태는 당시 관측이다.
+
+인수 항목: (1) 새 private 백업 `backups/bf67dfcb-pre-autosetup011-20261028T131905Z.dump`(0600·12571bytes)는 격리 복원 digest가 frozen DB와 같다. 이전 relay 이미지는 `knowslink-rollback:bf67dfcb-autosetup011-20261028`로 보존했다. (2) `https://link.knowslog.com/install/0.1.1/`의 `knowslink-setup.ps1`·`knowslink-claude-plugin.zip`·`knowslink-codex-plugin.zip`이 비로그인 200이고 SHA-256이 산출물과 같다. `/install/0.1.0/`도 그대로 200이다(삭제하지 않는다). 설치 폴더는 서버 `knowslink-state/install/<버전>/`이며 새 버전은 새 폴더로 올린다. 회원 화면의 `use=claude` 명령은 0.1.1을 가리킨다. (3) **서버 로컬 override 대체 완료**: `knowslink-state/compose.install.yaml`은 `compose.install.yaml.retired`로 개명 보관했다(삭제 안 함). install env·`:ro` 마운트는 repo `compose.ops.yaml`에서 오므로 compose 호출은 `compose.yaml`+`compose.ops.yaml` 두 파일이면 된다(D12 현행 규칙). `bf67dfcb` 이하로 되돌릴 때만 `.retired`를 되살려 세 번째 `-f`로 얹는다. 운영 `.env`·Tunnel 설정은 바꾸지 않았다. (4) live agent 32개·owner 24개(경고 1000·거절 2000)이며 첫 기동·5분 뒤 error/panic·용량 경고 0이다. 회원·agent·친구·연결 digest는 전후 같다. (5) rollback: `bf67dfcb` 이미지로 코드만 되돌린다(D12 순서). 되돌리면 화면 명령이 0.1.0으로 돌아가고 `/install/0.1.1/` 폴더는 그대로 둔다. (6) 0.1.0을 설치한 사용자와 플러그인이 여러 개인 환경은 0.1.1 명령을 한 번 실행해야 한다(O-05). 옛 0.1.0 명령은 다단 환경에서 계속 실패한다. (7) 호스트 사용자 서비스 `cloudflared-orca`(Orca 터널)가 13:21:38Z에 이 과제와 무관하게 재시작됐다(다른 곳에서 그 config 수정). KnowsLink 컨테이너는 영향이 없다. (8) 실계정 로그인·발송, 회원 화면 렌더링, 설치기 실세션 QA(AC-07·S5, tester 과제), 실제 rollback은 실행하지 않았다.
+
+비현행: 아래 SAR-CONNECT-SIMPLE-001-OPS의 ‘운영 제품 `bf67dfcb`’, ‘공개 0.1.0만’, ‘서버 로컬 compose override가 install을 준다’ 문장은 이 상태로 대체됐다.
 
 ## 현재 운영 상태 (2026-10-27, SAR-CONNECT-SIMPLE-001-OPS)
 
