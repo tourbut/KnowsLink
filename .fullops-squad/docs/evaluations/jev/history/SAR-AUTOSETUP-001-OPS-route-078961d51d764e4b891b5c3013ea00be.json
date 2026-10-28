@@ -1,0 +1,73 @@
+{
+  "version": "jev-route-v4",
+  "task_key": "SAR-AUTOSETUP-001-OPS",
+  "requested_model": "~typesafe/jev-latest",
+  "route": "implementation",
+  "role": "ops",
+  "deliverables": [
+    "D12",
+    "D13"
+  ],
+  "thresholds": {
+    "simple": 0.8,
+    "role": 0.6,
+    "deliverable": 0.5
+  },
+  "answers": {
+    "scope": {
+      "choice": "implementation",
+      "probabilities": {
+        "implementation": 0.95,
+        "product": 0.05
+      },
+      "confidence": 0.9
+    },
+    "role": {
+      "choice": "ops",
+      "probabilities": {
+        "dev": 0.31,
+        "ops": 0.6900000000000001,
+        "tester": 0
+      },
+      "confidence": 0.54
+    },
+    "docs": {
+      "D01": 0.15,
+      "D02": 0.37,
+      "D03": 0.32,
+      "D04": 0.23,
+      "D05": 0.29,
+      "D06": 0.22,
+      "D07": 0.22,
+      "D08": 0.24,
+      "D09": 0.25,
+      "D10": 0.47,
+      "D11": 0.17,
+      "D12": 0.76,
+      "D13": 0.67
+    }
+  },
+  "usage": {
+    "input_tokens": 2502,
+    "output_tokens": 314,
+    "cost": 0.000105084
+  },
+  "error": null,
+  "docs_status": "complete",
+  "unresolved_deliverables": [],
+  "additional_deliverables": [],
+  "latency_seconds": 0.717,
+  "response_model": "typesafe/jev-1.14-20261014",
+  "original_role": "ops",
+  "original_route": "implementation",
+  "override_reason": "운영 배포는 ops",
+  "model": {
+    "agent": "claude",
+    "provider": "anthropic",
+    "model": "claude-sonnet-5-5",
+    "effort": "high",
+    "source": "user"
+  },
+  "head": "1adcc7b9974e14f9f746bf3483c24777223acf76",
+  "requires_packet": true
+}

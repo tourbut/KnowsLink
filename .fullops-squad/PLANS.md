@@ -50,6 +50,9 @@ summary: 기존 제품 계획 보존과 Google 연결 구현의 독립 검토 �
 - O04-DEV 배정 준비: dev fresh, claude sonnet-5-5 high(기존 패턴 따르는 단일 파일 버그 수정·테스트). 지시서 handovers/to_dev.md. 이후: tester 재검증 → 사용자 승인 뒤 ops 운영 교체(새 버전, zod patch 포함, 서버 override 제거 함께). 배정 task_df8df74c4f1e / ctx_70b61e1c578d / term_67d15df8-0350-4fbe-9fb0-5832050acefd.
 - O04-DEV 통합 2026-10-28: msg_95dd4d3c000e dev d8c996b4. Get-HostJson PS5.1 배열 펼침(Claude·Codex 등록 확인 함께), 예상 밖 오류 [F-10] S6 형식, 회귀 테스트 0·1·2+ (PS5.1·PS7 10/10, 수정 전 재현), 0.1.1로 버전 상향, D12 운영 교체 후보. need skip(코드 27줄), --no-ff 1e18baa0, lint ERROR 0, dev release.
 - QA3 배정 준비: tester fresh, claude sonnet-5-5 medium(명확한 재현·좁은 경로 재검증). 지시서 handovers/to_tester.md. 통과 시 사용자 승인 받아 ops 운영 교체. 배정 task_357c08368800 / ctx_2c032d756430 / term_ca628e4b-984f-44c3-9239-bfdafa908abf.
+- QA3 통합 2026-10-28: msg_f997330f60cd tester 4b8ff3ef. 플러그인 3개 호스트에서 0.1.0→0.1.1 갱신·재실행·재시작 뒤 세션 연결·[F-10] PASS, O-04 해소, high 0. 관찰 O-05(공개 0.1.0은 3개 환경에서 첫 설치도 실패), O-06(갱신 뒤 호스트 캐시의 훅·스킬은 0.1.0 유지, MCP만 0.1.1, dev 판단). 남은 임시: .devtools/autosetup-001-qa3/, Docker kl-autosetup-qa3-pg, 포트 18443 fixture. --no-ff 1adcc7b9, lint ERROR 0, tester release.
+- D044 '운영 교체 진행'(2026-10-28). OPS 배정 준비: ops fresh, claude sonnet-5-5 high(ops 후보). 지시서 handovers/to_ops.md SAR-AUTOSETUP-001-OPS.
+- [ ] 대기: dev — O-06 갱신 뒤 호스트 플러그인 캐시(훅·스킬)가 이전 버전으로 남는 점 판단.
 - [ ] 대기: designer — O-01 S1 Claude 행동 6/6 경계(검증 버전 밖 2.1.311에서 `y` 1개 추가) 판단.
 - [x] 배정(FOLLOWUP-DEV): dev — 새 설치 npm audit 4건(moderate 2, high 2) 의존성 범위 확인(SAR-CONNECT-SIMPLE-001-LIVE 관찰 1).
 - [ ] 사용자 판단 대기: Grok Bot 컴퓨터의 /workspace/.knowslink-live·MCP knowslink-live와 새 agent(Grok Bot, Claude Code) 유지/정리(제거 방법은 LIVE report.md).
