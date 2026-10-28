@@ -112,5 +112,14 @@ D12 ops-guide, D13 transition.
 ## 완료 보고
 
 브랜치 / SHA / 변경 이유 / 검토 필요 / 검증한 것과 못 한 것 / 산출물·로그 링크 / 남은 일.
-항목당 1~2줄, 상세는 보고서 링크. worker_done 본문 첫 줄은 `[완료] SAR-AUTOSETUP-001-OPS | 브랜치 fullops/ops | SHA <브랜치 HEAD>` 한 줄로 쓴다.
+항목당 1~2줄, 상세는 보고서 링크.
+
+- 브랜치 / SHA: `fullops/ops` / 기록 커밋 `e5bf4308`(기준 `1adcc7b9`; 운영 배포 제품은 main `c6dfc39ac4f6dabddc5864ad611437b84ded383e`).
+- 변경 이유: 사용자 결정 D044. 자동 설정 0.1.1(O-04 수정)을 서버에 게시하고 relay를 `c6dfc39a`로 전환했으며, 서버 로컬 `compose.install.yaml`을 repo `compose.ops.yaml`로 대체했다. 서버 변경: checkout `bf67dfcb`→`c6dfc39a`, relay 이미지, `install/0.1.1/` 3파일, 새 백업 1개, override 개명 보관.
+- 검토 필요: (1) 호스트 사용자 서비스 `cloudflared-orca`가 13:21:38Z에 이 과제와 무관하게 재시작됐다(다른 곳의 config 수정, 보고서 보존 절). (2) `compose.install.yaml.retired`가 서버에 남는다. 삭제하지 않았다. (3) 이전 지시서 문구의 live agent 30개는 32개로 늘었다(정상 증가).
+- 검증한 것: 제품 diff에 migration·Go 의존성·Dockerfile 변경 0. 공개 `/install/0.1.1/` 세 파일 200·SHA-256 일치·설치기 안 ZIP 해시 일치, `/install/0.1.0/` 그대로 200(26/26 ×3회). relay healthy·restart 0·migrate 0, 중단 약18초(13:19:00Z~13:19:18Z), 첫 기동·5분 뒤 error/panic 0. 화면 명령 0.1.1은 실행 중 relay 바이너리 문자열로 확인(0.1.1 1건, 0.1.0 0건). override 없는 `config`==있는 `config`, 개명 후 relay 재생성 없음. 보존 8단계 비교 41/41.
+- 못 한 것: 실계정 로그인·발송, 회원 화면 렌더링, 설치기 실세션 QA(AC-07·S5), 실제 rollback. 호스트 `make lint`는 Windows에서 실행 불가(unavailable, 문서·운영 기록만 변경).
+- 산출물·로그: [보고서](../docs/evaluations/qa-reports/SAR-AUTOSETUP-001-OPS-test/report.md), 같은 폴더 `commands.txt`·`*.log`·`probe-*.json`·`preservation.json`. D12 `ops-guide.md`, D13 `transition.md` 갱신. 원본은 `.devtools/autosetup-001-ops/`.
+- 남은 일: tester가 플러그인 2개 이상 환경에서 0.1.1 갱신 재실행(AC-07·S5)을 실세션으로 확인한다. 안정 확인 뒤 coor가 서버 `compose.install.yaml.retired` 정리 여부를 정한다(지금은 보관).
+ worker_done 본문 첫 줄은 `[완료] SAR-AUTOSETUP-001-OPS | 브랜치 fullops/ops | SHA <브랜치 HEAD>` 한 줄로 쓴다.
 처리는 `fullops-work`, 회신은 `fullops-orca` 스킬을 따른다.
