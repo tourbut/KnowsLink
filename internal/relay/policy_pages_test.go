@@ -2,6 +2,7 @@
 package relay
 
 import (
+	"net/http"
 	"net/http/httptest"
 	"os"
 	"path/filepath"
@@ -92,5 +93,21 @@ func TestPolicyLinks(t *testing.T) {
 	account := renderHumanPage(t, "human-account", v)
 	if !strings.Contains(account, `<p class="links"><a href="/">서비스 안내</a> <a href="/privacy">개인정보처리방침</a> <a href="/terms">서비스 약관</a></p>`) {
 		t.Fatal("settings policy links")
+	}
+}
+
+// A language switch the browser would not store still explains itself on the policy page, as on every other page.
+func TestPolicyPageUnsavedLanguageNotice(t *testing.T) {
+	for cookie, want := range map[string]bool{"": true, "en": false} {
+		w := httptest.NewRecorder()
+		r := httptest.NewRequest("GET", "/privacy?lang=en", nil)
+		if cookie != "" {
+			r.AddCookie(&http.Cookie{Name: langCookie, Value: cookie})
+		}
+		browserLang(w, r)
+		(&Service{}).policyPage("privacy")(w, r)
+		if body := w.Body.String(); !strings.Contains(body, `<html lang="en">`) || strings.Contains(body, "applies to this page only") != want {
+			t.Fatalf("cookie %q: notice shown must be %v", cookie, want)
+		}
 	}
 }

@@ -16,7 +16,7 @@ var enHuman = map[string]string{
 	"친구에게 이 코드를 직접 공유하세요. 입력란에서 전체 선택(Ctrl+A 또는 ⌘A)한 뒤 복사(Ctrl+C 또는 ⌘C)합니다. 이 코드는 친구 요청을 찾는 데만 쓰이며 로그인이나 연결 권한이 아닙니다.": "Share this code with your friend directly. Select all in the field (Ctrl+A or ⌘A), then copy (Ctrl+C or ⌘C). This code is only used to find friend requests; it is not a sign-in or connection permission.",
 	"메시지는 24시간 안에 사라집니다": "Messages disappear within 24 hours",
 	"보존 안내": "Retention notice",
-	"각 메시지는 수락 시각부터 최대 24시간 보관합니다. 전달 기한은 최대 180초이며 보존 기간과 다릅니다. 기한이 지나도 자동 재발송하지 않습니다. 서버 대화에서 사라진 뒤에도 클라이언트 사본과 최대 7일의 보호된 백업에는 남을 수 있습니다.": "Each message is kept for up to 24 hours from the time it was accepted. The delivery deadline is at most 180 seconds and differs from the retention period. Nothing is resent automatically after the deadline. After a message leaves the server conversation it may remain in client copies and in protected backups for up to 7 days.",
+	"각 메시지는 수락 시각부터 최대 24시간 보관합니다. 전달 기한은 최대 180초이며 보존 기간과 다릅니다. 기한이 지나도 자동 재발송하지 않습니다. 서버 대화에서 사라진 뒤에도 클라이언트 사본과 최대 14일의 보호된 백업에는 남을 수 있습니다.": "Each message is kept for up to 24 hours from the time it was accepted. The delivery deadline is at most 180 seconds and differs from the retention period. Nothing is resent automatically after the deadline. After a message leaves the server conversation it may remain in client copies and in protected backups for up to 14 days.",
 	"최근 대화":                 "Recent conversations",
 	"새 대화":                  "New conversation",
 	"승인 {{.PendingGates}}건": "Approvals: {{.PendingGates}}",
@@ -54,7 +54,6 @@ var enHuman = map[string]string{
 	"차단 해제":          "Remove block",
 	"다시 연결하려면 새 친구 요청과 수락이 필요합니다.": "To connect again, a new friend request and acceptance are needed.",
 	"친구 목록": "Friend list",
-	"차단 해제: {{name .Name}} / {{.ID}}":    "Remove block: {{name .Name}} / {{.ID}}",
 	"아직 친구가 없습니다. 친구가 공유한 코드로 요청을 보내세요.": "No friends yet. Send a request with the code your friend shared.",
 	"친구 추가":         "Add friend",
 	"내 친구 코드":       "My friend code",
@@ -145,11 +144,9 @@ var enHuman = map[string]string{
 	"https://github.com/tourbut/KnowsLink/blob/main/README.md#dots-신규-연결":      "https://github.com/tourbut/KnowsLink/blob/main/README.md#dots-%EC%8B%A0%EA%B7%9C-%EC%97%B0%EA%B2%B0",
 	"Dots 신규 연결 문서":                                                            "Dots new connection guide (in Korean)",
 	"Claude Code 작업 세션 (내 컴퓨터)":                                                "Claude Code work session (your computer)",
-	"을 다시 실행하세요.":                                                              " again.",
 	"https://github.com/tourbut/KnowsLink/blob/main/adapters/README.md#claude-code-작업-세션-연결--sar-session-peer-001-dev": "https://github.com/tourbut/KnowsLink/blob/main/adapters/README.md#claude-code-%EC%9E%91%EC%97%85-%EC%84%B8%EC%85%98-%EC%97%B0%EA%B2%B0--sar-session-peer-001-dev",
 	"Claude Code 작업 세션 연결 문서": "Claude Code work session connection guide (in Korean)",
-	"을 실행하세요.":                ".",
-	"세션 연결":                   "Session connection",
+	"세션 연결": "Session connection",
 	"앱에서 확인 필요. 서버는 세션 연결을 확인하지 않으므로 세션에서": "Check in the app. The server does not verify the session connection, so check it in the session with",
 	"로 확인하세요. 도착 알림은 알림일 뿐이며 본문은 세션에서":     ". Arrival notices are only notices; read the text in the session with",
 	"로 확인합니다.":       ".",
@@ -242,19 +239,11 @@ var enHuman = map[string]string{
 	"작업 화면으로 돌아가기": "Back to work screen",
 	"승인 목록으로 돌아가기": "Back to approval list",
 
-	// human_http.go / human.go handler text; the badge labels and the remote client label also show on these pages
-	"대기":               "Pending",
-	"전달됨":              "Delivered",
-	"만료":               "Expired",
-	"실패":               "Failed",
+	// human_http.go / human.go handler text; the remote client label also shows on these pages
 	"원격 호스트":           "Remote host",
 	"Node 22 로컬 클라이언트": "Node 22 local client",
-	"연결 필요":            "Needs connection",
-	"등록됨":              "Registered",
-	"철회":               "Revoked",
 	"요청을 보냈습니다. 가능한 요청은 상대가 확인할 수 있습니다.": "Request sent. If the request is possible, the other person can see it.",
 	"언어를 저장했습니다. 다음 화면부터 이 언어로 표시합니다.":   "Language saved. Screens from now on are shown in this language.",
-	"요청 대기":   "Awaiting reply",
 	"%v — 친구": "%v — Friend",
 	"이 발송은 이미 접수됐습니다. 대화에서 전달 상태를 확인하세요.": "This message was already accepted. Check its delivery status in the conversation.",
 	"입력을 확인하세요.": "Check your input.",
@@ -329,7 +318,4 @@ var enHuman = map[string]string{
 	"이 에이전트로 연결하려면 연결·키 관리에서 시작하세요. 쓰지 않는 에이전트라면 직접 철회할 수 있습니다. 자동 철회는 없습니다.":           "To connect with this agent, start from Connection and key management. If you do not use this agent, you can revoke it yourself. There is no automatic revocation.",
 	"연결 상태 확인": "Check connection status",
 	"지문 확인":    "Check fingerprint",
-
-	// human_pages_test.go fixture label rendered through {{tr $r.Next}}; keeps the English screen check free of Korean.
-	"합성 다음 행동": "Synthetic next step",
 }

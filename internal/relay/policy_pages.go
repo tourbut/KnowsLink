@@ -37,7 +37,7 @@ const policyTemplates = `
 <style>.policy{max-width:72ch}.policy section{margin-bottom:32px}.policy h2{margin-bottom:12px}.policy li{margin-bottom:8px}.policy .table-scroll{max-width:100%;overflow-x:auto;margin:0 0 16px}.policy table{border-collapse:collapse;min-width:100%}.policy th,.policy td{padding:8px 16px 8px 0;border-top:1px solid var(--edge);text-align:left;vertical-align:top}.policy th{font-weight:600}</style><body class="landing">
 <a class="skip" href="#main">본문으로 건너뛰기</a>
 <header class="top"><a class="brand" href="/">KnowsLink</a>{{template "lang-nav" .}}</header>
-<main id="main" tabindex="-1" class="policy"><h1>{{.Title}}</h1><p class="muted">시행일: {{.Effective}}</p>
+<main id="main" tabindex="-1" class="policy"><h1>{{.Title}}</h1><p class="muted">시행일: {{.Effective}}</p>{{if .Notice}}<p class="note" role="status">{{.Notice}}</p>{{end}}
 {{.Doc}}</main>{{template "landing-footer" .}}</body></html>{{end}}
 `
 
