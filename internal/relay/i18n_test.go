@@ -48,6 +48,11 @@ func dumpMissing(t *testing.T, label string, missing []string) {
 }
 
 func TestTranslationCoversTemplates(t *testing.T) {
+	for k := range enMember {
+		if _, dup := enHuman[k]; dup {
+			t.Errorf("key in both tables, enHuman silently wins: %q", k)
+		}
+	}
 	_, missing := translateTemplate(memberSource, en)
 	dumpMissing(t, "template runs", missing)
 	// Every English value keeps the same template actions as its Korean key and carries no Korean but the language name.
@@ -108,7 +113,7 @@ func TestTranslationCoversGoText(t *testing.T) {
 				return true
 			}
 			for key := range en {
-				if strings.Contains(key, strings.TrimSpace(s)) {
+				if strings.Contains(key, "%") && strings.Contains(key, strings.TrimSpace(s)) {
 					return true
 				}
 			}
@@ -386,6 +391,15 @@ func TestLanguageChoiceOrderAndLink(t *testing.T) {
 	if body := w.Body.String(); strings.Contains(body, `role="status"`) {
 		t.Fatal("stored cookie must not show the unsaved notice")
 	}
+	// A member's saved value beats the ?lang= hint, so the hint did not choose the page and no notice shows.
+	w = httptest.NewRecorder()
+	r = httptest.NewRequest("GET", "/?lang=en", nil)
+	browserLang(w, r)
+	memberLang(w, r, &Member{Locale: "ko"})
+	render(w, 200, "start", (&Service{}).startView(""))
+	if body := w.Body.String(); strings.Contains(body, `role="status"`) || w.Header().Get("Content-Language") != "ko" {
+		t.Fatal("saved language must not show the unsaved notice", w.Header())
+	}
 }
 
 // A member whose saved value decides the language sees the settings link instead of browser links that would do
@@ -469,9 +483,20 @@ func TestLanguagePartsAndMarkers(t *testing.T) {
 	for lang, part := range map[string]string{"ko": `<span lang="en">English</span>를`, "en": `Choose <span lang="ko">한국어</span> or English.`} {
 		w := httptest.NewRecorder()
 		w.Header().Set("Content-Language", lang)
-		render(w, 422, "refusal", map[string]any{"Title": "설정", "Problem": problem})
+		v := humanPageFixture()
+		v["Title"], v["Section"], v["Problem"] = "설정", "account", problem
+		render(w, 422, "human-account", v)
 		if !strings.Contains(w.Body.String(), part) {
 			t.Fatalf("%s problem lacks the language part %q", lang, part)
+		}
+	}
+	// The failed language save returns to Settings, and its back link says so.
+	for lang, link := range map[string]string{"ko": `<a href="/home/account#language">설정</a>`, "en": `<a href="/home/account#language">Settings</a>`} {
+		w := httptest.NewRecorder()
+		w.Header().Set("Content-Language", lang)
+		render(w, 503, "refusal", map[string]any{"Title": "설정", "Back": "/home/account#language"})
+		if !strings.Contains(w.Body.String(), link) {
+			t.Fatalf("%s refusal back link %q missing", lang, link)
 		}
 	}
 	w := httptest.NewRecorder()

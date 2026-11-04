@@ -3,10 +3,36 @@ package relay
 
 import (
 	"context"
+	"net/http"
 	"net/http/httptest"
 	"strings"
 	"testing"
+
+	"github.com/jackc/pgx/v5/pgxpool"
 )
+
+// A database failure while checking the session is not an expired session: the cookie stays and no expiry is shown.
+func TestSessionLookupFailureKeepsCookie(t *testing.T) {
+	pool, err := pgxpool.New(context.Background(), "postgres://x@127.0.0.1:1/x?connect_timeout=1") // nothing listens
+	if err != nil {
+		t.Fatal(err)
+	}
+	defer pool.Close()
+	s := &Service{Pool: pool}
+	for _, tc := range []struct {
+		method, path string
+		handler      http.HandlerFunc
+		status       int
+	}{{"GET", "/", s.startPage, 200}, {"POST", "/auth/reauth", s.authReauth, 503}} {
+		r := httptest.NewRequest(tc.method, tc.path, nil)
+		r.AddCookie(&http.Cookie{Name: sessionCookie, Value: "synthetic-session"})
+		w := httptest.NewRecorder()
+		tc.handler(w, r)
+		if w.Code != tc.status || len(w.Result().Cookies()) != 0 || strings.Contains(w.Body.String(), "세션이 끝났습니다") {
+			t.Fatalf("%s %s: %d %v", tc.method, tc.path, w.Code, w.Result().Cookies())
+		}
+	}
+}
 
 func TestLandingConfiguredLoginAndPublicContent(t *testing.T) {
 	for _, mode := range []string{"google", "both", "email", "none"} {

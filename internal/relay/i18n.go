@@ -5,11 +5,11 @@ package relay
 import (
 	"fmt"
 	"html/template"
+	"maps"
 	"net/http"
 	"net/url"
 	"regexp"
 	"strings"
-	"sync"
 )
 
 const (
@@ -54,6 +54,7 @@ func memberLang(w http.ResponseWriter, r *http.Request, m *Member) {
 	w.Header().Set("Content-Language", pageLang(r, m))
 	if m != nil && validLang(m.Locale) {
 		w.Header().Set(langSavedHeader, "1")
+		w.Header().Del(langUnsavedHeader)
 	}
 }
 
@@ -113,7 +114,7 @@ func tr(lang, s string) string {
 	if v, ok := en[s]; ok {
 		return v
 	}
-	for _, p := range enPatterns() {
+	for _, p := range enPatterns {
 		m := p.re.FindStringSubmatch(s)
 		if m == nil {
 			continue
@@ -137,44 +138,38 @@ type langPattern struct {
 	verbs []byte
 }
 
-var (
-	patternOnce sync.Once
-	patternList []langPattern
-)
-
-func enPatterns() []langPattern {
-	patternOnce.Do(func() {
-		for key, value := range en {
-			if !strings.Contains(key, "%s") && !strings.Contains(key, "%v") {
-				continue
-			}
-			expr, verbs := "^", []byte{}
-			for len(key) > 0 {
-				i := strings.IndexAny(key, "%")
-				if i < 0 || i+1 >= len(key) || (key[i+1] != 's' && key[i+1] != 'v') {
-					expr += regexp.QuoteMeta(key)
-					break
-				}
-				expr += regexp.QuoteMeta(key[:i]) + "(.*?)"
-				verbs = append(verbs, key[i+1])
-				key = key[i+2:]
-			}
-			patternList = append(patternList, langPattern{regexp.MustCompile(expr + "$"), value, verbs})
+var enPatterns = func() (out []langPattern) {
+	for key, value := range en {
+		if !strings.Contains(key, "%s") && !strings.Contains(key, "%v") {
+			continue
 		}
-	})
-	return patternList
-}
+		expr, verbs := "^", []byte{}
+		for len(key) > 0 {
+			i := strings.IndexByte(key, '%')
+			if i < 0 || i+1 >= len(key) || (key[i+1] != 's' && key[i+1] != 'v') {
+				expr += regexp.QuoteMeta(key)
+				break
+			}
+			expr += regexp.QuoteMeta(key[:i]) + "(.*?)"
+			verbs = append(verbs, key[i+1])
+			key = key[i+2:]
+		}
+		out = append(out, langPattern{regexp.MustCompile(expr + "$"), value, verbs})
+	}
+	return out
+}()
 
 // badges map a stored state to its tone, mark and label in both languages; the same Korean word can be a button
 // elsewhere (거절 = Decline), so badge labels keep their own English column instead of the shared table.
 var badges = map[string][4]string{
 	"연결 완료": {"ok", "✓", "연결 완료", "Connected"}, "활성": {"ok", "✓", "활성", "Active"}, "미연결": {"warn", "…", "미연결", "Not connected"}, "연결 대기": {"warn", "…", "연결 대기", "Awaiting connection"}, "철회": {"off", "—", "철회", "Revoked"},
 	"pending": {"warn", "…", "대기", "Pending"}, "active": {"ok", "✓", "연결됨", "Connected"}, "approved": {"ok", "✓", "승인", "Approved"}, "denied": {"off", "—", "거절", "Denied"}, "expired": {"off", "—", "만료", "Expired"}, "revoked": {"off", "—", "철회", "Revoked"},
-	"queued": {"warn", "…", "대기", "Pending"}, "leased": {"warn", "…", "대기", "Pending"}, "delivered": {"ok", "✓", "전달됨", "Delivered"}, "completed": {"ok", "✓", "처리 완료", "Completed"}, "failed": {"off", "!", "실패", "Failed"},
-	"cancelled": {"off", "—", "취소", "Cancelled"}, "removed": {"off", "—", "해제", "Removed"}, "blocked": {"off", "—", "차단", "Blocked"}, "registered": {"ok", "✓", "등록됨", "Registered"}, "unconnected": {"off", "—", "연결 필요", "Needs connection"}, "등록됨": {"ok", "✓", "등록됨", "Registered"}, "연결 필요": {"off", "—", "연결 필요", "Needs connection"},
+	"queued": {"warn", "…", "대기", "Pending"}, "leased": {"warn", "…", "대기", "Pending"}, "delivered": {"ok", "✓", "전달됨", "Delivered"}, "failed": {"off", "!", "실패", "Failed"},
+	"cancelled": {"off", "—", "취소", "Cancelled"}, "removed": {"off", "—", "해제", "Removed"}, "blocked": {"off", "—", "차단", "Blocked"}, "등록됨": {"ok", "✓", "등록됨", "Registered"}, "연결 필요": {"off", "—", "연결 필요", "Needs connection"},
 	"unavailable": {"off", "!", "확인할 수 없음", "Cannot be checked"},
 }
 
+// badge renders a state with text and a symbol so color never carries the meaning alone (D04 §8.5).
 func badge(lang, state string) template.HTML {
 	b, ok := badges[state]
 	if !ok {
@@ -313,10 +308,7 @@ func parsePages(lang string) *template.Template {
 
 var en = func() map[string]string {
 	m := map[string]string{"한국어": "한국어"}
-	for _, part := range []map[string]string{enMember, enHuman} {
-		for k, v := range part {
-			m[k] = v
-		}
-	}
+	maps.Copy(m, enMember)
+	maps.Copy(m, enHuman)
 	return m
 }()

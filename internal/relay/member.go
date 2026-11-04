@@ -98,7 +98,7 @@ func (s *Service) startPage(w http.ResponseWriter, r *http.Request) {
 			return nil, err
 		}); err == nil {
 			v["Authenticated"] = true
-		} else {
+		} else if err.Error() == "invalid_auth" {
 			setCookie(w, sessionCookie, "", -1)
 			v["Notice"] = notices["expired"]
 		}
@@ -376,7 +376,11 @@ func (s *Service) authReauth(w http.ResponseWriter, r *http.Request) {
 		return started{pending, code, email, retry, false, !ok}, nil
 	})
 	if err != nil {
-		expired(w, r)
+		if err.Error() == "invalid_auth" {
+			expired(w, r)
+		} else {
+			refused(w, "내 에이전트", refusal{503, "일시적으로 처리할 수 없습니다. 잠시 뒤 다시 시도하세요.", false, false})
+		}
 		return
 	}
 	result := value.(started)

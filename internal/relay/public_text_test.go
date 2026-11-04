@@ -9,8 +9,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http/httptest"
-	"os"
-	"path/filepath"
 	"strings"
 	"testing"
 	"time"
@@ -286,19 +284,6 @@ func TestMemberReceiptView(t *testing.T) {
 		}
 		if strings.Contains(body, "<script>") || strings.Contains(body, "<textarea") {
 			t.Fatal("untrusted HTML or composer")
-		}
-	}
-	// Optional artifact generation uses the exact Go templates and public fixture IDs; no session or credential is rendered.
-	if dir := os.Getenv("KNOWSLINK_UI_ARTIFACT_DIR"); dir != "" {
-		for _, state := range []string{"queued", "failed:expired"} {
-			if err := os.WriteFile(filepath.Join(dir, "receipt-"+state+".html"), []byte(renderPage(state)), 0600); err != nil {
-				t.Fatal(err)
-			}
-		}
-		w := httptest.NewRecorder()
-		render(w, 200, "home", map[string]any{"Title": "내 KnowsLink", "AgentDetails": []memberAgent{{ID: "agent_0123456789012345678901", Status: "연결 완료"}}})
-		if err := os.WriteFile(filepath.Join(dir, "home.html"), w.Body.Bytes(), 0600); err != nil {
-			t.Fatal(err)
 		}
 	}
 }

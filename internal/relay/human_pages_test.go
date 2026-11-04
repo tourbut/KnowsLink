@@ -31,7 +31,7 @@ func humanPageFixture() map[string]any {
 		"CanSend": true, "Attempt": "synthetic-attempt", "Code": "synthetic-friend-code", "Recent": true,
 		"PendingGates": 1, "ConversationID": "conversation-a", "Legacy": true,
 		"Choices": useChoices, "Use": "claude", "Start": "first", "SentRequests": 1,
-		"Resume": map[string]agentResume{"agent_a": {"키 등록 전 · 지문 확인 필요", "합성 다음 행동", "/home/connections/c", "지문 확인"}},
+		"Resume": map[string]agentResume{"agent_a": {"키 등록 전 · 지문 확인 필요", "내 컴퓨터에 표시된 지문과 같은지 확인하세요. 다르면 취소하세요.", "/home/connections/c", "지문 확인"}},
 	}
 }
 
