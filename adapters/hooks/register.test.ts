@@ -100,7 +100,7 @@ function connected(
     for (const event of events)
       yield { stream: "stdout" as const, text: `${JSON.stringify(event)}\n` };
     await alive;
-    return { code: 0, signal: null };
+    return { value: { code: 0, signal: null } };
   });
   on("tool.call", { tool: "AskUserQuestion" }, async (_$, e) => {
     const question = e.questions[0].question;
@@ -282,6 +282,16 @@ test("a received body never runs a command, a tool or a reply by itself", async 
     ),
   ).toBe(true);
   release();
+});
+
+test("a repeat on while the watcher is still binding starts no second watcher", async ($, on) => {
+  const { seen, release } = connected(on, () => "보내기", []);
+  const first = $.command.run({ command: "knowslink-session", args: "on" });
+  const again = $.command.run({ command: "knowslink-session", args: "on" });
+  release();
+  const [a, b] = await Promise.all([first, again]);
+  expect(seen.spawns).toBe(1);
+  expect(b.text).toBe(a.text);
 });
 
 test("a replaced session is released at once and its text tools are denied", async ($, on) => {

@@ -50,7 +50,8 @@ const folder = join(root, "agent");
 const queue: TextEnvelope[] = [];
 const acks: string[] = [];
 const seenIds: string[] = [];
-let mode: "ok" | "fail500" | "revoked" = "ok";
+let mode: "ok" | "fail500" | "html502" | "revoked" = "ok";
+let ackFailures = 0;
 let inFlight = 0;
 let maxInFlight = 0;
 let copyBeforeAck = true;
@@ -67,6 +68,12 @@ const relay = createServer(async (req, res) => {
     if (mode === "fail500") {
       res.statusCode = 500;
       return res.end(JSON.stringify({ error: "unavailable" }));
+    }
+    if (mode === "html502") {
+      // What cloudflared or the edge answers while the relay restarts: not JSON.
+      res.statusCode = 502;
+      res.setHeader("Content-Type", "text/html");
+      return res.end("<html><body>Bad gateway</body></html>");
     }
     const head = queue[0];
     return res.end(
@@ -99,6 +106,11 @@ const relay = createServer(async (req, res) => {
   const body = JSON.parse(raw) as { id: string };
   if (url === "/v1/text/seen") seenIds.push(body.id);
   if (url === "/v1/text/ack") {
+    if (ackFailures > 0) {
+      ackFailures--;
+      res.statusCode = 500;
+      return res.end(JSON.stringify({ error: "unavailable" }));
+    }
     if (!(await exists(join(folder, "inbox", `${body.id}.json`))))
       if (!(await exists(join(folder, "inbox", `${body.id}.read`))))
         copyBeforeAck = false;
@@ -229,6 +241,11 @@ try {
   got = await s.call("knowslink_text_receive");
   assert.equal(got.error, "relay HTTP 500 unavailable");
   assert.match(got.next, /not a key or friend problem/);
+  // A non-JSON outage page keeps its status, so it is still an outage and not "failed".
+  mode = "html502";
+  got = await s.call("knowslink_text_receive");
+  assert.equal(got.error, "relay HTTP 502");
+  assert.match(got.next, /not a key or friend problem/);
   assert.equal(s.stderr(), "");
   await s.client.close();
   const closed = createServer();
@@ -246,8 +263,23 @@ try {
     /^Error: relay unreachable$/,
   );
 
-  // 5. Opt-out keeps manual-only behavior.
+  // 4b. An ACK that fails after the local store still announces the stored message once.
   mode = "ok";
+  const ackLost = envelope("ack fails once");
+  queue.push(ackLost);
+  ackFailures = 1;
+  s = await connect();
+  await wait(() => s.notices.length === 1, "notice despite failed ACK");
+  assert.equal(s.notices[0]!.id, ackLost.id);
+  status = (await s.call("knowslink_status")).autoReceive;
+  assert.equal(status.state, "backoff");
+  assert.equal(status.lastReceivedId, ackLost.id);
+  got = await s.call("knowslink_text_receive");
+  assert.equal(got.message.id, ackLost.id);
+  await s.client.close();
+  queue.shift();
+
+  // 5. Opt-out keeps manual-only behavior.
   s = await connect({ KNOWSLINK_AUTO_RECEIVE: "off" });
   assert.equal((await s.call("knowslink_status")).autoReceive.state, "off");
   const m2 = envelope("manual only");

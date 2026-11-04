@@ -9,7 +9,7 @@ import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { join, basename, dirname } from "node:path";
 import { pathToFileURL } from "node:url";
 import { setTimeout } from "node:timers/promises";
-import { Adapter, relayBase } from "./core.js";
+import { AGENT, Adapter, relayBase } from "./core.js";
 import { complete } from "./connect.js";
 import { privateDirectory, privatePath } from "./private-files.js";
 
@@ -88,11 +88,14 @@ export async function beginLogin(base: string, folder: string) {
 export async function approvedAttempt(
   folder: string,
 ): Promise<Record<string, string> | null> {
-  const p = await readFile(join(folder, "pending.json"), "utf8").then(
-    (raw) => JSON.parse(raw) as Record<string, string>,
-    () => null,
-  );
-  return p && p.state !== "consumed" && p.mode === "register" ? p : null;
+  try {
+    const p = JSON.parse(
+      await readFile(join(folder, "pending.json"), "utf8"),
+    ) as Record<string, string> | null;
+    return p && p.state !== "consumed" && p.mode === "register" ? p : null;
+  } catch {
+    return null; // An unreadable attempt file is a dead leftover (R-01), not a failure.
+  }
 }
 async function completeLogin(folder: string): Promise<"connected"> {
   await complete(folder);
@@ -144,7 +147,7 @@ export async function finishLogin(
     response.state !== "approved" ||
     !response.owner ||
     !response.agent ||
-    !/^[a-z][a-z0-9_:-]*$/.test(response.agent)
+    !AGENT.test(response.agent)
   )
     throw new Error("invalid approval");
   await writeFile(
@@ -155,8 +158,23 @@ export async function finishLogin(
   return completeLogin(folder);
 }
 
-export async function waitForLogin(folder: string): Promise<void> {
-  while ((await finishLogin(folder)) === "waiting") await setTimeout(10000);
+// No HTTP answer, timeouts, 5xx, rate limits and 1 s admission (capacity) refusals say nothing about the attempt itself; keep polling.
+export const transient = (e: unknown) =>
+  /unreachable|timed out|HTTP 5\d\d|rate_limited|HTTP 429 capacity|empty relay response/.test(
+    String((e as Error)?.message ?? e),
+  );
+export async function waitForLogin(
+  folder: string,
+  expires: string,
+): Promise<void> {
+  const deadline = Date.parse(expires) + 60000; // same bound as setup-connect
+  while (
+    (await finishLogin(folder).catch((e: unknown) => {
+      if (transient(e) && Date.now() < deadline) return "waiting" as const;
+      throw e;
+    })) === "waiting"
+  )
+    await setTimeout(10000);
 }
 async function main(): Promise<void> {
   const [, , base, folder] = process.argv;
@@ -166,7 +184,7 @@ async function main(): Promise<void> {
   process.stdout.write(
     `자기 브라우저에서 Google 로그인: ${login.url}\n지문: ${login.fingerprint}\n로그인 후 같은 지문을 확인하고 승인하세요. 이 명령이 연결을 자동 저장합니다.\n`,
   );
-  await waitForLogin(folder);
+  await waitForLogin(folder, login.expires);
   process.stdout.write("연결 완료. 이 클라이언트에만 자격을 저장했습니다.\n");
 }
 if (

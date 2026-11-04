@@ -2,7 +2,9 @@
 import { randomBytes, sign } from "node:crypto";
 import { readFile } from "node:fs/promises";
 import {
+  AGENT,
   Adapter,
+  relayBase,
   signingBytes,
   uuid7,
   validText,
@@ -122,38 +124,24 @@ export async function testTransport(): Promise<TestTransport | null> {
   )
     return null;
   if (
-    !/^[a-z][a-z0-9_:-]*$/.test(AGENT_ID) ||
-    !/^[a-z][a-z0-9_:-]*$/.test(KNOWSLINK_TEST_PEER) ||
+    !AGENT.test(AGENT_ID) ||
+    !AGENT.test(KNOWSLINK_TEST_PEER) ||
     AGENT_ID === KNOWSLINK_TEST_PEER ||
     !/^[A-Za-z0-9_:-]+$/.test(AGENT_KID)
   )
     throw new Error("invalid trial identity");
-  const url = new URL(RELAY_URL);
-  if (
-    url.username ||
-    url.password ||
-    url.pathname !== "/" ||
-    url.search ||
-    url.hash
-  )
-    throw new Error("invalid trial URL");
+  const origin = relayBase(RELAY_URL);
   const headers: Record<string, string> = {};
   if (process.env.KNOWSLINK_MODE === "test-remote") {
-    if (
-      url.origin !== "https://link.knowslog.com" ||
-      (url.port && url.port !== "443")
-    )
+    if (origin !== "https://link.knowslog.com")
       throw new Error("unapproved remote origin");
     if (!CF_ACCESS_CLIENT_ID || !CF_ACCESS_CLIENT_SECRET) return null;
     headers["CF-Access-Client-Id"] = CF_ACCESS_CLIENT_ID;
     headers["CF-Access-Client-Secret"] = CF_ACCESS_CLIENT_SECRET;
-  } else if (
-    url.protocol !== "http:" ||
-    !["127.0.0.1", "localhost", "[::1]"].includes(url.hostname)
-  )
+  } else if (!origin.startsWith("http:"))
     throw new Error("trial loopback required");
   return new TestTransport(
-    url.origin,
+    origin,
     AGENT_CREDENTIAL,
     AGENT_ID,
     AGENT_KID,

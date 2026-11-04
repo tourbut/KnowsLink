@@ -75,15 +75,15 @@ try {
       error: `webhook HTTP ${status}`,
     });
   }
-  reply = async () => {
-    throw Object.assign(new TypeError("fetch failed"), {
-      cause: { code: "ENOTFOUND" },
+  for (const code of ["ENOTFOUND", "EAI_AGAIN"]) {
+    reply = async () => {
+      throw Object.assign(new TypeError("fetch failed"), { cause: { code } });
+    };
+    assert.deepEqual(await ring(), {
+      state: "retry",
+      error: "webhook_unreachable",
     });
-  };
-  assert.deepEqual(await ring(), {
-    state: "retry",
-    error: "webhook_unreachable",
-  });
+  }
   // A silent peer: only the wake's own timeout ends it (the held timer stands in for the open socket).
   const slow = (async (_u: string | URL | Request, init?: RequestInit) =>
     new Promise<Response>((_, reject) => {

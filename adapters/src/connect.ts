@@ -8,7 +8,7 @@ import {
 import { readFile, writeFile } from "node:fs/promises";
 import { join, basename } from "node:path";
 import { pathToFileURL } from "node:url";
-import { Adapter, relayBase } from "./core.js";
+import { AGENT, Adapter, relayBase } from "./core.js";
 import { privateDirectory, privatePath } from "./private-files.js";
 
 type Grant = {
@@ -26,7 +26,6 @@ type Pending = Grant & {
   public: string;
   name?: unknown;
 };
-export { relayBase } from "./core.js";
 function proof(p: Pending, privateKey: string): string {
   return sign(
     null,
@@ -64,7 +63,7 @@ export async function prepare(
     grant.client !== "node-local" ||
     grant.state !== "waiting" ||
     !["register", "rotate"].includes(grant.mode) ||
-    !/^[a-z][a-z0-9_:-]*$/.test(grant.agent) ||
+    !AGENT.test(grant.agent) ||
     !Number.isFinite(Date.parse(grant.exp)) ||
     Date.parse(grant.exp) <= Date.now()
   )

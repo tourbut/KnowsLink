@@ -1,7 +1,13 @@
 // Private connection storage checks POSIX ownership/modes or Windows ACLs, and rejects links on either platform.
 import { execFile } from "node:child_process";
-import { chmod, lstat, mkdir, readdir } from "node:fs/promises";
+import { chmod, lstat, mkdir, readdir, stat } from "node:fs/promises";
 import { promisify } from "node:util";
+
+export const exists = (path: string) =>
+  stat(path).then(
+    () => true,
+    () => false,
+  );
 
 // The folder cannot be made or proven private; the connection reports reason private_folder (D02 R-02).
 export class PrivateFolderError extends Error {

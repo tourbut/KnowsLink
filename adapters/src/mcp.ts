@@ -1,9 +1,9 @@
-// MCP connector stays held by default; explicit local trial or member-folder modes enable manual transport.
+// MCP connector stays held by default; explicit local trial, synthetic or member-folder modes enable the tools, and a connected public-node folder also receives automatically unless KNOWSLINK_AUTO_RECEIVE=off.
 import { defaultFolder } from "./defaults.js";
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import { randomInt } from "node:crypto";
-import { access, readFile } from "node:fs/promises";
+import { readFile } from "node:fs/promises";
 import { join } from "node:path";
 import { z } from "zod";
 import { trialMode, testTransport } from "./test-transport.js";
@@ -19,6 +19,7 @@ import { GrokWake } from "./grok-wake.js";
 import { localAdapter } from "./core.js";
 import { approvedAttempt, finishLogin } from "./login.js";
 import { CodexSession } from "./codex-session.js";
+import { exists } from "./private-files.js";
 import { setupConnect, type SetupEvent } from "./setup-connect.js";
 import { failureOf, lang, type Reason } from "./reasons.js";
 import type { ReceivedText } from "./text.js";
@@ -104,9 +105,12 @@ async function startAuto(): Promise<void> {
   )
     return;
   try {
+    const transport = await memberTransport(folder);
+    const inbox = await Inbox.open(folder);
+    if (auto) return; // A concurrent call already started this process's one loop.
     auto = new AutoReceiver(
-      await memberTransport(folder),
-      await Inbox.open(folder),
+      transport,
+      inbox,
       announce,
       GrokWake.fromEnv(process.env),
     );
@@ -120,20 +124,18 @@ const trialResult = (value: unknown, isError = false) => ({
   content: [{ type: "text" as const, text: JSON.stringify(value) }],
   isError,
 });
+const status = (state: string) => ({
+  state,
+  transport: "pull",
+  actualConnection:
+    process.env.KNOWSLINK_MODE === "public-node"
+      ? "configured_unverified"
+      : "held",
+  webhook: false,
+  evidenceFetch: false,
+});
 const result = (state: string, isError = false) =>
-  trialResult(
-    {
-      state,
-      transport: "pull",
-      actualConnection:
-        process.env.KNOWSLINK_MODE === "public-node"
-          ? "configured_unverified"
-          : "held",
-      webhook: false,
-      evidenceFetch: false,
-    },
-    isError,
-  );
+  trialResult(status(state), isError);
 // A-06: display names only, never keys or credentials. A failed relay lookup falls back to the local name.
 const unnamed = (agent: string) => `이름 없는 에이전트 (${agent})`;
 async function named(t: TextTransport, agent: string, local = "") {
@@ -152,11 +154,6 @@ async function localAgent(folder: string) {
     return null;
   }
 }
-const exists = (path: string) =>
-  access(path).then(
-    () => true,
-    () => false,
-  );
 async function connected(folder: string, fingerprint?: string) {
   void startAuto();
   return trialResult({
@@ -303,7 +300,7 @@ server.registerTool(
             ? "synthetic_only"
             : "held",
       );
-    const base = result("public_node_configured_unverified");
+    const base = status("public_node_configured_unverified");
     const autoReceive = auto
       ? { ...auto.status, pending: (await auto.inbox.pending()).length }
       : {
@@ -314,7 +311,7 @@ server.registerTool(
     const folder = process.env.KNOWSLINK_AGENT_FOLDER;
     const me = folder ? await localAgent(folder) : null;
     return trialResult({
-      ...JSON.parse(base.content[0]!.text),
+      ...base,
       ...(me ? { me, sharedAgent: shared() } : {}),
       autoReceive,
     });

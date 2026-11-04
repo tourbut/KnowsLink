@@ -50,9 +50,13 @@ export function signingBytes(envelope: Envelope): Buffer {
     `SILENT-AGENT-RELAY\0relay.v1\0Ed25519\0${sig.kid}\0${canonical(unsigned)}`,
   );
 }
+// Must match internal/relay/protocol.go agentPattern/uuidPattern; no g/y flags, so shared .test() stays stateless.
+export const AGENT = /^[a-z][a-z0-9_:-]*$/;
+export const MESSAGE_ID =
+  /^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/;
 export function validText(text: string): boolean {
   return (
-    !!text.trim() &&
+    /[^\p{White_Space}]/u.test(text) && // Same blank rule as Go's strings.TrimSpace.
     Buffer.byteLength(text) <= 4096 &&
     !/[\uD800-\uDFFF]/u.test(text)
   );
@@ -141,9 +145,14 @@ export class Adapter {
         if (size > 65536) throw new Error("relay response too large");
         chunks.push(chunk.value);
       }
-      const value: unknown = JSON.parse(Buffer.concat(chunks).toString("utf8"));
+      const raw = Buffer.concat(chunks).toString("utf8");
       if (!response.ok) {
-        const error = value as { error?: unknown; retry_at?: unknown };
+        let error: { error?: unknown; retry_at?: unknown } | null = null;
+        try {
+          error = JSON.parse(raw);
+        } catch {
+          // Edge/tunnel pages (cloudflared 502, Cloudflare 530) are not JSON; the status alone still names the outage.
+        }
         const known = new Set([
           "invalid_auth",
           "sender_not_allowed",
@@ -174,7 +183,7 @@ export class Adapter {
             : "";
         throw new Error(`relay HTTP ${response.status}${code}${retry}`);
       }
-      return value as T;
+      return JSON.parse(raw) as T;
     } finally {
       await reader.cancel();
     }
@@ -224,8 +233,18 @@ export class Adapter {
       message.sig.alg !== "Ed25519"
     )
       throw new Error("invalid envelope");
+    if (
+      !(await this.signedBy(message.from, message.sig, signingBytes(message)))
+    )
+      throw new Error("invalid signature");
+  }
+  protected async signedBy(
+    from: string,
+    sig: { kid: string; value: string },
+    bytes: Buffer,
+  ): Promise<boolean> {
     const { public: key } = await this.request<{ public: string }>(
-      `/v1/keys/${encodeURIComponent(message.from)}/${encodeURIComponent(message.sig.kid)}`,
+      `/v1/keys/${encodeURIComponent(from)}/${encodeURIComponent(sig.kid)}`,
     );
     const publicKey = createPublicKey({
       key: Buffer.concat([
@@ -235,15 +254,7 @@ export class Adapter {
       type: "spki",
       format: "der",
     });
-    if (
-      !verify(
-        null,
-        signingBytes(message),
-        publicKey,
-        Buffer.from(message.sig.value, "base64url"),
-      )
-    )
-      throw new Error("invalid signature");
+    return verify(null, bytes, publicKey, Buffer.from(sig.value, "base64url"));
   }
   async once(
     gate: boolean,
@@ -313,19 +324,11 @@ export async function localAdapter(): Promise<Adapter | null> {
   ) {
     return null;
   }
-  const url = new URL(RELAY_URL);
-  if (
-    url.protocol !== "http:" ||
-    !["127.0.0.1", "localhost", "[::1]"].includes(url.hostname) ||
-    url.username ||
-    url.password ||
-    url.search ||
-    url.hash ||
-    url.pathname !== "/"
-  )
+  const base = relayBase(RELAY_URL);
+  if (!base.startsWith("http:"))
     throw new Error("synthetic adapter requires loopback relay");
   return new Adapter(
-    url.origin,
+    base,
     AGENT_CREDENTIAL,
     AGENT_ID,
     AGENT_KID,
@@ -333,6 +336,7 @@ export async function localAdapter(): Promise<Adapter | null> {
   );
 }
 
+// localAdapter, setupTrial and testTransport read an http: result as loopback-only; keep that if this ever loosens.
 export function relayBase(raw: string): string {
   const u = new URL(raw);
   if (

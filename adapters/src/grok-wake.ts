@@ -106,7 +106,13 @@ export class GrokWake {
       });
     } catch (e) {
       const code = (e as { cause?: { code?: string } }).cause?.code;
-      return code === "ECONNREFUSED" || code === "ENOTFOUND"
+      return [
+        "ECONNREFUSED",
+        "ENOTFOUND",
+        "EAI_AGAIN",
+        "ENETUNREACH",
+        "EHOSTUNREACH",
+      ].includes(code ?? "")
         ? { state: "retry", error: `${peer}_unreachable` }
         : { state: "uncertain", error: `${peer}_no_response` };
     }

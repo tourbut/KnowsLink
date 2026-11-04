@@ -6,7 +6,8 @@ import { chmod, lstat, mkdtemp, readFile, rm } from "node:fs/promises";
 import { createServer } from "node:http";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
-import { complete, prepare, relayBase } from "./connect.js";
+import { complete, prepare } from "./connect.js";
+import { relayBase } from "./core.js";
 import { privatePath } from "./private-files.js";
 
 async function assertPrivate(path: string, mode: number) {

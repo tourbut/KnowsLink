@@ -1,10 +1,11 @@
 // Installer connection step: new/resumed/cancelled attempts, lost completion (F-07) and the stored-key short cut.
 import assert from "node:assert/strict";
-import { mkdtemp, readdir, rm } from "node:fs/promises";
+import { mkdtemp, readdir, rm, writeFile } from "node:fs/promises";
 import { createServer } from "node:http";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { beginLogin } from "./login.js";
+import { privateDirectory } from "./private-files.js";
 import { setupConnect, type SetupEvent } from "./setup-connect.js";
 
 const root = await mkdtemp(join(tmpdir(), "kl-setup-"));
@@ -161,8 +162,19 @@ try {
   const fresh = await run(lost, true);
   assert.equal(fresh.outcome, "connected");
   assert.equal(tokens.length, starts + 1);
+
+  // An unreadable attempt file (empty pending.json) is a dead leftover: kept aside, a new link starts (R-01).
+  const broken = join(root, "broken-private");
+  await privateDirectory(broken);
+  await writeFile(join(broken, "pending.json"), "", { mode: 0o600 });
+  const recovered = await run(broken);
+  assert.equal(recovered.outcome, "connected");
+  assert.equal(recovered.events[0]!.state, "waiting");
+  assert(
+    (await readdir(root)).some((n) => n.startsWith("broken-private.unused-")),
+  );
   process.stdout.write(
-    "PASS: setup-connect new/resume/cancel/F-07 confirm-first/fresh restart/stored key without relay call\n",
+    "PASS: setup-connect new/resume/cancel/F-07 confirm-first/fresh restart/stored key without relay call/unreadable attempt file\n",
   );
 } finally {
   server.closeAllConnections();

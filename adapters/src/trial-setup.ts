@@ -3,21 +3,13 @@ import { generateKeyPairSync, sign } from "node:crypto";
 import { mkdir, writeFile } from "node:fs/promises";
 import { resolve, join } from "node:path";
 import { pathToFileURL } from "node:url";
-import { Adapter } from "./core.js";
+import { Adapter, relayBase } from "./core.js";
 
 export async function setupTrial(base: string) {
-  const url = new URL(base);
-  if (
-    url.protocol !== "http:" ||
-    !["127.0.0.1", "localhost", "[::1]"].includes(url.hostname) ||
-    url.pathname !== "/" ||
-    url.username ||
-    url.password ||
-    url.search ||
-    url.hash
-  )
+  const origin = relayBase(base);
+  if (!origin.startsWith("http:"))
     throw new Error("local operator URL required");
-  const api = new Adapter(url.origin, "", "unused", "key1", "");
+  const api = new Adapter(origin, "", "unused", "key1", "");
   const agents = [];
   for (const agent of ["trial_codex", "trial_grok"]) {
     const owner = await api.request<{ owner: string; credential: string }>(
@@ -38,13 +30,7 @@ export async function setupTrial(base: string) {
       ),
       privateKey,
     ).toString("base64url");
-    const ownerAPI = new Adapter(
-      url.origin,
-      owner.credential,
-      agent,
-      "key1",
-      "",
-    );
+    const ownerAPI = new Adapter(origin, owner.credential, agent, "key1", "");
     const registration = await ownerAPI.request<{ credential: string }>(
       "/v1/agents",
       { agent, kid: "key1", public: publicBytes, proof },
@@ -58,21 +44,18 @@ export async function setupTrial(base: string) {
   }
   const a = agents[0]!,
     b = agents[1]!;
-  await new Adapter(url.origin, a.credential, a.agent, "key1", a.pem).request(
+  await new Adapter(origin, a.credential, a.agent, "key1", a.pem).request(
     "/v1/invites",
     { agent: a.agent, target: b.agent },
   );
-  await new Adapter(
-    url.origin,
-    b.owner.credential,
-    b.agent,
-    "key1",
-    b.pem,
-  ).request("/v1/invite-decision", {
-    agent: a.agent,
-    target: b.agent,
-    decision: "accept",
-  });
+  await new Adapter(origin, b.owner.credential, b.agent, "key1", b.pem).request(
+    "/v1/invite-decision",
+    {
+      agent: a.agent,
+      target: b.agent,
+      decision: "accept",
+    },
+  );
   return { a, b };
 }
 async function main() {
