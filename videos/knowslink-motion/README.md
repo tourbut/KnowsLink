@@ -32,7 +32,7 @@ Windows에서 폴더 경로가 길면 `node_modules` 안 Chromium 압축 해제�
 node render.mjs selfcheck              # seek 순수성 assert + 프레임0 = 프레임839
 node render.mjs beats <dir>            # 비트당 1프레임(b01..b28, 비트 + 0.25초)
 node render.mjs stills <dir> 0,6.25    # 임의 시각 PNG
-node render.mjs video v02              # renders/v02/knowslink-motion.mp4
+node render.mjs video <버전>           # renders/<버전>/knowslink-motion.mp4 (아직 없는 새 버전, 예: v04)
 ```
 
 최종 후보는 `renders/v03/`(H.264 고정 QP 18, 마지막 프레임 I-frame). v01·v02는 수정 근거로 보존한다. 검수 기록: `.fullops-squad/docs/evaluations/qa-reports/SAR-MOTION-INTRO-001-DEV-test/a2/report.md`.
@@ -46,7 +46,7 @@ node render.mjs video v02              # renders/v02/knowslink-motion.mp4
 ```sh
 .venv/Scripts/python analyze.py pick assets/audio/mixkit-dry-gin-868.mp3 --out beats.json   # 구간 자동 선택
 .venv/Scripts/python analyze.py pick assets/audio/mixkit-dry-gin-868.mp3 --out beats.json --start 63.9674   # 오프셋 지정
-node render.mjs video v02
+node render.mjs video <새 버전>
 ```
 
 영상 타임라인은 0.5초 그리드에 고정이라 음원 쪽 `segment_start_sec`만 바뀐다.
