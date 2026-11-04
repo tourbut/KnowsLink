@@ -135,11 +135,13 @@ async function turnOn($: Engine, take: boolean): Promise<string> {
   const argv = [...config.argv, "watch", config.folder, "--session", alias];
   if (take) argv.push("--take");
   const child = $.process.spawn({ argv });
-  const timer = $.clock.after(20000, () =>
+  const timer = $.clock.after(20000, () => {
+    // An unbound watcher must not lock out a later on, which off cannot reach.
+    if (starting === first) starting = null;
     resolveFirst(
       "KnowsLink 연결 확인 응답이 없습니다. /knowslink-session status 로 다시 확인하세요.",
-    ),
-  );
+    );
+  });
   const current: Link = {
     alias,
     agent: "",

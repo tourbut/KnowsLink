@@ -311,7 +311,7 @@ ingress:
 | 영속 볼륨 | `knowslink_postgres-data` (Compose가 생성). `down -v`를 쓰지 않는다. |
 | 게시 포트 | `127.0.0.1:8080` → relay만. Postgres·cloudflared는 게시하지 않는다. |
 | 네트워크 | `knowslink_database`(internal), `knowslink_ingress`. 기존 네트워크에 연결하지 않는다. |
-| ops 소유 파일(후속 생성) | `deploy/knowslink/compose.ops.yaml`(override), `deploy/knowslink/tunnel/config.yml.tmpl`, 검증 스크립트. 루트 `deploy/` 경로의 소유를 coor가 후속 지시서에서 확인한다. |
+| ops 소유 파일(후속 생성) | `deploy/knowslink/compose.ops.yaml`(override), `deploy/knowslink/tunnel/public-ingress.yml`(SAR-REFACTOR-003에서 `config.yml.tmpl` 제거), 검증 스크립트. 루트 `deploy/` 경로의 소유를 coor가 후속 지시서에서 확인한다. |
 
 ## 5. 백업과 rollback
 

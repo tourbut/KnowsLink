@@ -294,6 +294,20 @@ test("a repeat on while the watcher is still binding starts no second watcher", 
   expect(b.text).toBe(a.text);
 });
 
+test("a watcher that never binds does not lock out a later on", async ($, on) => {
+  const { seen, release, clock } = connected(on, () => "보내기", []);
+  const first = $.command.run({ command: "knowslink-session", args: "on" });
+  await clock.settle();
+  await clock.advance(20000);
+  expect((await first).text).toMatch(/응답이 없습니다/);
+  const again = $.command.run({ command: "knowslink-session", args: "on" });
+  await clock.settle();
+  expect(seen.spawns).toBe(2);
+  release();
+  await clock.advance(20000);
+  await again;
+});
+
 test("a replaced session is released at once and its text tools are denied", async ($, on) => {
   const { seen, release, clock } = connected(on, () => "보내기", [
     { event: "knowslink_session_bound", agent: "claude_a" },

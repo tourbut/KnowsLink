@@ -185,6 +185,7 @@ coor는 안정된 최종 SHA에 독립 snapshot 리뷰와 tester QA를 배정한
 2. 종료는 D11의 `unexpose`(외부 접근만) 또는 `stop`(전체)이다. 전체 철회는 D12 11.3이다.
 3. held 유지: DEC-03 공개 한도, 실제 신원, 실데이터, 실제 벤더, 무제한 공개.
 4. 구성 갱신이 필요하면 `beta.sh deploy <sha>`와 새 독립 리뷰를 거친다. 코드 변경 SHA에서 `expose`를 다시 하기 전 `access_apply.py check`를 통과해야 한다.
+   (SAR-REFACTOR-003에서 `expose`·`access_apply.py`를 제거했다. 이 항목은 당시 기록이며 현재 공개 경로는 D12 "비용 없는 Tunnel 적용"을 따른다.)
 
 ## SAR-MVP-002 DEV 플러그인 준비 인계
 
