@@ -5,6 +5,7 @@ import (
 	"crypto/ed25519"
 	"crypto/rand"
 	"encoding/json"
+	"fmt"
 	"strings"
 	"testing"
 	"time"
@@ -78,6 +79,25 @@ func TestTrialMessageSafety(t *testing.T) {
 	}
 	if len(st.Messages[firstID].Envelope) != 0 || len(st.Messages[firstID].Inbox) != 0 {
 		t.Fatal("claimed trial payload retained")
+	}
+	// Trials never hold the four service-wide claim slots: five more in a row all claim.
+	for i := range 5 {
+		id := fmt.Sprintf("0199a3f2-4c10-7a11-8b22-3344556677%x", 0xb0+i)
+		if _, err = st.ingest("agent_a", message(id, fmt.Sprintf("trial-capacity-%02d", i), "ping", now.Add(time.Minute)), "", now); err != nil {
+			t.Fatal(err)
+		}
+		if lease, err = st.operate("test-pull", "token-b", command{}, now); err != nil || lease == nil {
+			t.Fatal("trial pull", err)
+		}
+		c := command{ID: id, Token: lease.(map[string]any)["lease_token"].(string)}
+		for _, operation := range []string{"test-persist", "test-ack", "test-claim"} {
+			if _, err = st.operate(operation, "token-b", c, now); err != nil {
+				t.Fatal(i, operation, err)
+			}
+		}
+	}
+	if !st.claimCapacity() {
+		t.Fatal("trial claims hold claim capacity")
 	}
 	st.Pairs[pairID("agent_a", "agent_b")].State = "revoked"
 	if _, err = st.ingest("agent_a", e, "", now); err == nil {

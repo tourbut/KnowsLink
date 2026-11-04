@@ -114,17 +114,7 @@ func (f *fixture) mutate(fn func(*State)) {
 }
 func TestPostgresSafety(t *testing.T) {
 	databaseURL := os.Getenv("TEST_DATABASE_URL")
-	if databaseURL == "" {
-		t.Fatal("TEST_DATABASE_URL is required; run make verify-mvp")
-	}
-	if os.Getenv("TEST_SYNTHETIC_DATABASE") != "1" {
-		t.Fatal("isolated database marker required")
-	}
-	pool, err := pgxpool.New(context.Background(), databaseURL)
-	if err != nil {
-		t.Fatal(err)
-	}
-	defer pool.Close()
+	pool := messagePool(t)
 	t.Run("auth_first_atomic_replay_and_rollback", func(t *testing.T) {
 		f := setup(t, pool)
 		raw := f.message(firstID, "idempotency-key-01")
@@ -367,18 +357,7 @@ func TestPostgresSafety(t *testing.T) {
 }
 
 func TestGateFailureStates(t *testing.T) {
-	databaseURL := os.Getenv("TEST_DATABASE_URL")
-	if databaseURL == "" {
-		t.Fatal("TEST_DATABASE_URL is required; run make verify-mvp")
-	}
-	if os.Getenv("TEST_SYNTHETIC_DATABASE") != "1" {
-		t.Fatal("isolated database marker required")
-	}
-	pool, err := pgxpool.New(context.Background(), databaseURL)
-	if err != nil {
-		t.Fatal(err)
-	}
-	defer pool.Close()
+	pool := messagePool(t)
 	for _, state := range []string{"denied", "expired", "revoked", "unavailable"} {
 		t.Run(state, func(t *testing.T) {
 			f := setup(t, pool)
@@ -408,18 +387,7 @@ func TestGateFailureStates(t *testing.T) {
 	}
 }
 func TestApprovalAndResultInstanceBinding(t *testing.T) {
-	databaseURL := os.Getenv("TEST_DATABASE_URL")
-	if databaseURL == "" {
-		t.Fatal("TEST_DATABASE_URL is required; run make verify-mvp")
-	}
-	if os.Getenv("TEST_SYNTHETIC_DATABASE") != "1" {
-		t.Fatal("isolated database marker required")
-	}
-	pool, err := pgxpool.New(context.Background(), databaseURL)
-	if err != nil {
-		t.Fatal(err)
-	}
-	defer pool.Close()
+	pool := messagePool(t)
 	f := setup(t, pool)
 	receipt := f.send(f.message(firstID, "idempotency-key-01"), "agent_a", "", 200)
 	claim := f.deliver(firstID)
@@ -446,18 +414,7 @@ func TestApprovalAndResultInstanceBinding(t *testing.T) {
 }
 
 func TestPendingAndConcurrentAccept(t *testing.T) {
-	databaseURL := os.Getenv("TEST_DATABASE_URL")
-	if databaseURL == "" {
-		t.Fatal("TEST_DATABASE_URL is required; run make verify-mvp")
-	}
-	if os.Getenv("TEST_SYNTHETIC_DATABASE") != "1" {
-		t.Fatal("isolated database marker required")
-	}
-	pool, err := pgxpool.New(context.Background(), databaseURL)
-	if err != nil {
-		t.Fatal(err)
-	}
-	defer pool.Close()
+	pool := messagePool(t)
 	f := setup(t, pool)
 	f.call("POST", "/v1/invites", f.tokens["agent_a"], map[string]any{"agent": "agent_a", "target": "agent_c"}, 200)
 	f.mutate(func(st *State) {
@@ -493,5 +450,15 @@ func TestPendingAndConcurrentAccept(t *testing.T) {
 	_ = json.Unmarshal(w.Body.Bytes(), &contacts)
 	if len(contacts) != 1 || contacts[0] != "agent_a" {
 		t.Fatal("duplicate active relation")
+	}
+}
+
+// RC-01: the calendar routes are gone; a request to them reaches no handler.
+func TestCalendarRoutesRetired(t *testing.T) {
+	f := setup(t, messagePool(t))
+	for _, path := range []string{"/home/calendar/connect", "/home/calendar/disconnect"} {
+		if w := f.request("POST", path, "", nil, ""); w.Code != http.StatusNotFound {
+			t.Fatal(path, w.Code)
+		}
 	}
 }

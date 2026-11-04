@@ -46,12 +46,10 @@ func statusFor(err error) int {
 		return 401
 	case "sender_not_allowed", "human_invite_required", "disclosure_denied", "invalid_csrf":
 		return 403
-	case "idempotency_conflict", "id_collision", "duplicate_gate", "duplicate_result", "already_claimed", "invalid_lease", "invalid_gate", "key_exists":
+	case "idempotency_conflict", "id_collision", "duplicate_gate", "duplicate_result", "already_claimed", "invalid_lease", "invalid_gate", "key_exists", "capacity", "service_capacity":
 		return 409
 	case "rate_limited", "agent_rate":
 		return 429
-	case "capacity", "service_capacity":
-		return 409
 	case "unavailable", "abnormal_clock":
 		return 503
 	default:
@@ -215,10 +213,8 @@ func (s *Service) Handler() http.Handler {
 	protected := crossOrigin.Handler(mux)
 	ratedTest := s.testHandler(mux)
 	bounded := s.boundedHTTP(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		w.Header().Set("Cache-Control", "no-store")
+		// boundedHTTP sets the shared security headers; admitted pages only widen form-action for the Google login form.
 		w.Header().Set("Content-Security-Policy", "default-src 'none'; style-src 'unsafe-inline'; form-action 'self' https://accounts.google.com; frame-ancestors 'none'; base-uri 'none'")
-		w.Header().Set("Referrer-Policy", "no-referrer")
-		w.Header().Set("X-Content-Type-Options", "nosniff")
 		if strings.HasPrefix(r.URL.Path, "/v1/test/") {
 			ratedTest.ServeHTTP(w, r)
 			return
@@ -232,7 +228,7 @@ func (s *Service) Handler() http.Handler {
 }
 func respond(w http.ResponseWriter, result any, err error) {
 	if err != nil {
-		writeJSON(w, statusFor(err), map[string]string{"error": err.Error()})
+		writeJSON(w, statusFor(err), errorBody(err))
 		return
 	}
 	writeJSON(w, 200, result)
@@ -257,10 +253,7 @@ func (s *Service) operation(path string) http.HandlerFunc {
 	}
 }
 func (st *State) operate(path, token string, c command, now time.Time) (any, error) {
-	testOnly := strings.HasPrefix(path, "test-")
-	if testOnly {
-		path = strings.TrimPrefix(path, "test-")
-	}
+	path, testOnly := strings.CutPrefix(path, "test-")
 	kind := "agent"
 	switch path {
 	case "agents", "keys", "key-revoke", "invite-decision", "unpair", "owner-revoke":
@@ -346,7 +339,7 @@ func (st *State) operateAs(path, principal, kind string, c command, now time.Tim
 		st.sweep(now)
 		return map[string]string{"state": "revoked"}, nil
 	case "invites":
-		if st.HumanModel == 1 && !st.SyntheticSignup {
+		if !st.SyntheticSignup {
 			return nil, fault("human_invite_required")
 		}
 		a, b := st.Agents[c.Agent], st.Agents[c.Target]
@@ -411,7 +404,7 @@ func (st *State) operateAs(path, principal, kind string, c command, now time.Tim
 		st.sweep(now)
 		return p, nil
 	case "pull":
-		return st.leaseMessageFor(principal, now, testOnly)
+		return st.leaseMatching(principal, now, testOnly, false)
 	case "persist", "ack":
 		m, err := st.leased(principal, c.ID, c.Token, now)
 		if err != nil {
@@ -449,13 +442,13 @@ func (st *State) operateAs(path, principal, kind string, c command, now time.Tim
 		if !st.claimCapacity() {
 			return nil, fault("capacity")
 		}
-		m.Claimed = true
-		m.ClaimToken = randomToken()
+		claim := randomToken()
+		m.Claimed, m.ClaimToken = true, claim
 		if m.Receipt.Intent == "relay.test.message" {
-			m.Envelope = nil
-			m.Inbox = nil
+			// A trial's work ends at claim and it can never be a parent (parentRouting), so it holds no claim slot.
+			m.Envelope, m.Inbox, m.ClaimToken = nil, nil, ""
 		}
-		return map[string]string{"claim": m.ClaimToken, "policy": policy(m.Receipt.Intent)}, nil
+		return map[string]string{"claim": claim, "policy": policy(m.Receipt.Intent)}, nil
 	case "gate-consume":
 		g := st.Gates[c.ID]
 		if g == nil || g.To != principal || g.State != "approved" || g.Consumed || !now.Before(g.Exp) {
@@ -488,28 +481,16 @@ func csrf(token, id string) string {
 	return base64.RawURLEncoding.EncodeToString(mac.Sum(nil))
 }
 
-// The gate page shares the member visual tokens; the verified summary leads and the raw body stays in technical detail.
+// ownerAuth returns the CSRF key (also the owner credential) and the page to return to.
+type ownerAuth func(r *http.Request) (string, string)
 
-// ownerAuth returns the CSRF key, the owner resolver, and the page to return to.
-type ownerAuth func(r *http.Request) (string, func(*State, time.Time) (string, error), string)
-
-func basicOwner(r *http.Request) (string, func(*State, time.Time) (string, error), string) {
-	token := ownerToken(r)
-	return token, func(st *State, _ time.Time) (string, error) { return st.principal(token, "owner") }, "/owner"
-}
-func sessionOwner(r *http.Request) (string, func(*State, time.Time) (string, error), string) {
-	token := readCookie(r, sessionCookie)
-	return token, func(st *State, now time.Time) (string, error) {
-		id, _, err := st.session(token, now)
-		if err != nil {
-			return "", err
-		}
-		return st.Members[id].Owner, nil
-	}, "/home"
+func basicOwner(r *http.Request) (string, string) { return ownerToken(r), "/owner" }
+func sessionOwner(r *http.Request) (string, string) {
+	return readCookie(r, sessionCookie), "/home"
 }
 
 func (s *Service) gateOwner(w http.ResponseWriter, st *State, r *http.Request, now time.Time, auth ownerAuth, clean bool) (string, error) {
-	_, resolve, back := auth(r)
+	token, back := auth(r)
 	if back == "/home" {
 		rates := memberRate
 		if clean {
@@ -524,7 +505,7 @@ func (s *Service) gateOwner(w http.ResponseWriter, st *State, r *http.Request, n
 		}
 		return st.Members[id].Owner, nil
 	}
-	owner, err := resolve(st, now)
+	owner, err := st.principal(token, "owner")
 	rates := anonymousRate(s.clientIP(r))
 	if err == nil {
 		rates = memberRate(owner)
@@ -558,7 +539,7 @@ func verifiedGate(st *State, g *Gate, now time.Time) (*Envelope, bool) {
 	return e, g.State == "pending" && st.current(m) && st.current(h) && now.Before(g.Exp) && now.Before(m.Receipt.Exp)
 }
 func (s *Service) gateView(w http.ResponseWriter, r *http.Request, auth ownerAuth) (any, error) {
-	token, _, back := auth(r)
+	token, back := auth(r)
 	return s.transaction(r.Context(), func(st *State, now time.Time) (any, error) {
 		owner, err := s.gateOwner(w, st, r, now, auth, false)
 		if err != nil {
@@ -624,7 +605,7 @@ func (s *Service) gatePage(auth ownerAuth) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		view, err := s.gateView(w, r, auth)
 		if err != nil {
-			_, _, back := auth(r)
+			_, back := auth(r)
 			gateError(w, r, back, err)
 			return
 		}
@@ -633,7 +614,7 @@ func (s *Service) gatePage(auth ownerAuth) http.HandlerFunc {
 }
 func (s *Service) gateDecision(auth ownerAuth) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
-		token, _, back := auth(r)
+		token, back := auth(r)
 		r.Body = http.MaxBytesReader(w, r.Body, 8*1024)
 		parseErr := r.ParseForm()
 		_, err := s.transaction(r.Context(), func(st *State, now time.Time) (any, error) {
@@ -652,11 +633,10 @@ func (s *Service) gateDecision(auth ownerAuth) http.HandlerFunc {
 			if g == nil || g.Owner != owner || g.State != "pending" || !now.Before(g.Exp) {
 				return nil, fault("invalid_gate")
 			}
-			m := st.Messages[g.Parent]
-			h := st.Messages[g.ID]
-			if _, active := verifiedGate(st, g, now); !active || m == nil || h == nil {
+			if _, active := verifiedGate(st, g, now); !active {
 				return nil, fault("invalid_gate")
 			}
+			h := st.Messages[g.ID]
 			decision := r.PostForm.Get("decision")
 			if decision != "approve" && decision != "deny" {
 				return nil, fault("invalid_schema")

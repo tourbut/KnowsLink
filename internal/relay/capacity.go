@@ -186,6 +186,9 @@ func (s *Service) boundedHTTP(next http.Handler) http.Handler {
 		if form || strings.HasPrefix(r.URL.Path, "/v1/connect/") {
 			limit = 8192
 		}
+		if form && r.URL.Path == "/home/conversation/send" {
+			limit = 16384 // 4096 UTF-8 text bytes percent-encode to ~12 KB; matches humanAction's reader (HP-10)
+		}
 		raw, readErr := io.ReadAll(http.MaxBytesReader(inner, r.Body, limit))
 		r.Body = io.NopCloser(bytes.NewReader(raw))
 		r = r.WithContext(context.WithValue(r.Context(), requestBodyKey{}, raw))
@@ -193,6 +196,9 @@ func (s *Service) boundedHTTP(next http.Handler) http.Handler {
 		if form {
 			formErr = r.ParseForm()
 			r.Body = io.NopCloser(bytes.NewReader(raw))
+			if formErr != nil {
+				r.Form, r.PostForm = nil, nil // the handler re-parses and refuses with its own error
+			}
 		}
 		credential := ""
 		if readErr == nil && formErr == nil {
@@ -291,6 +297,14 @@ func (s *Service) boundedHTTP(next http.Handler) http.Handler {
 		r = r.WithContext(context.WithValue(r.Context(), requestBudgetKey{}, true))
 		next.ServeHTTP(w, r)
 	})
+}
+
+// rateLimited gives every JSON API the same actual retry instant, rounded up to the whole second both formats carry
+// so a client retrying at it is not refused (and counted) again.
+func rateLimited(w http.ResponseWriter, retry time.Time) {
+	retry = retry.Add(time.Second - 1).Truncate(time.Second)
+	w.Header().Set("Retry-After", retry.Format(http.TimeFormat))
+	writeJSON(w, 429, map[string]string{"error": "rate_limited", "retry_at": retry.Format(time.RFC3339)})
 }
 func capacityResponse(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Retry-After", "1")

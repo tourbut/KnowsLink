@@ -66,6 +66,7 @@ func TestSaturationGuidance(t *testing.T) {
 // re-invite with a new generation and a new explicit acceptance, and no old decision or message reactivates it.
 func TestRelationshipPolicy(t *testing.T) {
 	st, now := connectionFixture()
+	st.SyntheticSignup = true // /v1/invites exists only for the local synthetic signup
 	st.Owners["other"] = &Owner{Active: true}
 	st.Agents["agent_b"] = &Agent{Owner: "other", Keys: map[string]*Key{}}
 	id := pairID("agent_a", "agent_b")
@@ -120,6 +121,7 @@ func TestRelationshipPolicy(t *testing.T) {
 	}
 	st = newState()
 	_ = json.Unmarshal(saved, st)
+	st.SyntheticSignup = true
 	st.sweep(exp)
 	if decide("other", "accept", exp) == nil || st.Pairs[id].State != "expired" || pendingCount() != 0 {
 		t.Fatal("accept at deadline")

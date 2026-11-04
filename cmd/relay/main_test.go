@@ -1,4 +1,4 @@
-// Readiness checks prove DB failure is safe and business paths remain unavailable.
+// Readiness checks prove DB failure is safe and the probe leaks no error text.
 package main
 
 import (
@@ -10,7 +10,7 @@ import (
 	"testing"
 )
 
-func TestReadinessAndUnavailableBusinessPaths(t *testing.T) {
+func TestReadiness(t *testing.T) {
 	for _, test := range []struct {
 		method, path string
 		pingError    error
@@ -19,9 +19,6 @@ func TestReadinessAndUnavailableBusinessPaths(t *testing.T) {
 		{http.MethodGet, "/healthz", nil, http.StatusOK},
 		{http.MethodGet, "/healthz", errors.New("example-secret"), http.StatusServiceUnavailable},
 		{http.MethodPost, "/healthz", nil, http.StatusMethodNotAllowed},
-		{http.MethodPost, "/ingest", nil, http.StatusNotFound},
-		{http.MethodPost, "/approve", nil, http.StatusNotFound},
-		{http.MethodPost, "/exec", nil, http.StatusNotFound},
 	} {
 		response := httptest.NewRecorder()
 		healthHandler(func(context.Context) error { return test.pingError }).ServeHTTP(response, httptest.NewRequest(test.method, test.path, nil))

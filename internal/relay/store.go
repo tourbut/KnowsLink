@@ -77,7 +77,6 @@ type Gate struct {
 	Generation                                         int64
 	Exp                                                time.Time
 	Consumed                                           bool
-	Lookup                                             json.RawMessage `json:",omitempty"` // retired calendar lookup, cleared by retireCalendars
 }
 type State struct {
 	HumanModel      int
@@ -98,9 +97,8 @@ type State struct {
 	Rates           map[string][]time.Time
 	HTTP            map[string]admission
 	Connections     map[string]*Connection
-	Calendars       map[string]*legacyCalendar `json:",omitempty"` // retired calendar connections, cleared by retireCalendars
-	TestAgents      map[string]bool            `json:"-"`
-	SyntheticSignup bool                       `json:"-"`
+	TestAgents      map[string]bool `json:"-"`
+	SyntheticSignup bool            `json:"-"`
 }
 
 func newState() *State {
@@ -125,6 +123,8 @@ type Service struct {
 	ClientIPHeader  string
 	// InstallDir holds released auto-setup files (<version>/<file>); empty serves none.
 	InstallDir string
+	// Stopping is cancelled on shutdown; it ends SSE streams so Shutdown can drain and their admissions are released.
+	Stopping context.Context
 }
 
 func randomToken() string {
@@ -160,15 +160,18 @@ func (s *Service) transaction(ctx context.Context, operation func(*State, time.T
 	if !row.Now.Valid || !row.Clock.Valid || now.Before(row.Clock.Time) {
 		return nil, fault("abnormal_clock")
 	}
-	state := newState()
-	if err = json.Unmarshal(row.Data, state); err != nil {
-		return nil, fault("unavailable")
+	load := func() (*State, error) {
+		st := newState()
+		if err := json.Unmarshal(row.Data, st); err != nil {
+			return nil, fault("unavailable")
+		}
+		st.TestAgents, st.SyntheticSignup = s.TestAgents, s.SyntheticSignup
+		return st, st.migrateHuman(now)
 	}
-	if err = state.migrateHuman(now); err != nil {
+	state, err := load()
+	if err != nil {
 		return nil, err
 	}
-	state.TestAgents = s.TestAgents
-	state.SyntheticSignup = s.SyntheticSignup
 	beforeEvents := state.eventVersion(now)
 	state.sweep(now)
 	orphans := s.reclaim(state)
@@ -176,15 +179,9 @@ func (s *Service) transaction(ctx context.Context, operation func(*State, time.T
 	// Even a rejected request commits only cleanup and its spent request budget, never partial operation state.
 	if opErr != nil {
 		rates := state.Rates
-		state = newState()
-		if err = json.Unmarshal(row.Data, state); err != nil {
-			return nil, fault("unavailable")
-		}
-		if err = state.migrateHuman(now); err != nil {
+		if state, err = load(); err != nil {
 			return nil, err
 		}
-		state.TestAgents = s.TestAgents
-		state.SyntheticSignup = s.SyntheticSignup
 		state.sweep(now)
 		s.reclaim(state)
 		state.Rates = rates
@@ -296,27 +293,19 @@ func (st *State) sweep(now time.Time) {
 			delete(st.Gates, id)
 			continue
 		}
-		// Expiry below already clears transport and claims; retained history needs no authorization scan.
-		if now.Before(m.Receipt.Exp) && !st.current(m) {
-			if m.Receipt.State != "delivered" {
-				m.Receipt.State = "failed:revoked"
-			}
-			m.Envelope = nil
-			m.Inbox = nil
-			m.LeaseToken = ""
-			m.ClaimToken = ""
-		}
-		if !now.Before(m.Receipt.Exp) {
-			if m.Completion == "" && m.Claimed {
-				m.Completion = "failed:expired"
+		// Expiry clears transport and claims before any authorization scan; expired history needs none.
+		if expired := !now.Before(m.Receipt.Exp); expired || !st.current(m) {
+			failure := "failed:revoked"
+			if expired {
+				failure = "failed:expired"
+				if m.Completion == "" && m.Claimed {
+					m.Completion = failure
+				}
 			}
 			if m.Receipt.State != "delivered" {
-				m.Receipt.State = "failed:expired"
+				m.Receipt.State = failure
 			}
-			m.Envelope = nil
-			m.Inbox = nil
-			m.LeaseToken = ""
-			m.ClaimToken = ""
+			m.Envelope, m.Inbox, m.LeaseToken, m.ClaimToken = nil, nil, "", ""
 		}
 		if m.Receipt.State == "leased" && !now.Before(m.LeaseUntil) {
 			m.LeaseToken = ""
@@ -345,7 +334,6 @@ func (st *State) sweep(now time.Time) {
 			if g.State == "pending" || (g.State == "approved" && !g.Consumed) {
 				g.State = "unavailable"
 			}
-			continue
 		}
 	}
 }
@@ -367,7 +355,7 @@ func (st *State) principal(token, kind string) (string, error) {
 				continue
 			}
 			for _, k := range a.Keys {
-				if !k.Revoked && (k.Credential == hash || (a.Credential == hash && a.Credential != "")) {
+				if !k.Revoked && (k.Credential == hash || a.Credential == hash) {
 					return id, nil
 				}
 			}
@@ -406,10 +394,7 @@ func (st *State) parentFor(agent, id string, now time.Time) (*Message, error) {
 	return m, nil
 }
 func (st *State) leaseMessage(agent string, now time.Time) (any, error) {
-	return st.leaseMessageFor(agent, now, false)
-}
-func (st *State) leaseMessageFor(agent string, now time.Time, testOnly bool) (any, error) {
-	return st.leaseMatching(agent, now, testOnly, false)
+	return st.leaseMatching(agent, now, false, false)
 }
 func (st *State) leaseMatching(agent string, now time.Time, testOnly, publicOnly bool) (any, error) {
 	var selected *Message
@@ -542,8 +527,7 @@ func (st *State) ingest(agent string, e *Envelope, claim string, now time.Time) 
 				return nil, fault("duplicate_gate")
 			}
 		}
-		st.Gates[e.ID] = &Gate{ID: e.ID, Owner: b.Owner, Parent: e.ReplyTo, Digest: digest, From: parent.Receipt.From, To: parent.Receipt.To, Policy: policy(parent.Receipt.Intent), State: "pending", Generation: generation, Exp: exp}
-		st.Gates[e.ID].Digest = parent.Receipt.Digest
+		st.Gates[e.ID] = &Gate{ID: e.ID, Owner: b.Owner, Parent: e.ReplyTo, Digest: parent.Receipt.Digest, From: parent.Receipt.From, To: parent.Receipt.To, Policy: policy(parent.Receipt.Intent), State: "pending", Generation: generation, Exp: exp}
 	}
 	raw, err := Canonical(e.Raw)
 	if err != nil {
@@ -560,9 +544,6 @@ func (st *State) ingest(agent string, e *Envelope, claim string, now time.Time) 
 	st.Messages[e.ID] = m
 	st.Idempotency[scope] = e.ID
 	if e.Intent == "relay.result" {
-		if parent.Completion != "" {
-			return nil, fault("duplicate_result")
-		}
 		parent.Completion = fmt.Sprint(e.Body["status"])
 		parent.Envelope = nil
 		parent.Inbox = nil

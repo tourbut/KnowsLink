@@ -65,7 +65,7 @@ sqlc v1.30.0으로 실제 singleton schema와 업무 transaction 쿼리를 생�
 Context7 `resolve-library-id` 후 `query-docs`로 확인했다. 비공개 코드와 비밀값은 조회하지 않았다.
 
 - `/jackc/pgx/v5.10.0`: pgxpool.New·Ping·Close와 stdlib의 `sql.Open("pgx", ...)`. [고정 버전 소스](https://github.com/jackc/pgx/tree/v5.10.0). 실제 설치 버전도 5.10.0이다.
-- `/pressly/goose`: NewProvider·DialectPostgres·Up·ErrNoMigrations. Context7은 버전 없는 main 근거를 반환했다. 실제 3.28.0의 `provider.go`, `provider_options.go`, `provider_errors.go`를 로컬 module cache에서 대조했다. [3.28.0 공식 소스](https://github.com/pressly/goose/blob/v3.28.0/provider.go)와 `WithDisableGlobalRegistry(true)`의 실제 설치 API를 확인했다.
+- `/pressly/goose`: NewProvider·DialectPostgres·Up. Context7은 버전 없는 main 근거를 반환했다. 실제 3.28.0의 `provider.go`, `provider_options.go`, `provider_errors.go`를 로컬 module cache에서 대조했다. [3.28.0 공식 소스](https://github.com/pressly/goose/blob/v3.28.0/provider.go)와 `WithDisableGlobalRegistry(true)`의 실제 설치 API를 확인했다.
 - `/typescript-eslint/typescript-eslint`: recommended flat config 배열. 버전별 Context7 근거가 없어 설치한 8.71.0의 peer 범위와 ESLint 10의 실제 lint 실행을 대조했다. [공식 flat config 문서](https://eslint.org/docs/latest/use/configure/configuration-files)도 확인했다.
 - `/websites/sqlc_dev_en`: config version 2·Postgres·pgx/v5와 schema·query 필요 조건을 확인했다. [공식 configuration](https://docs.sqlc.dev/en/latest/reference/config.html)을 따른다. 이번 CLI는 v1.30.0이며 WithTx·:execrows·FOR UPDATE와 clock_timestamp timestamptz cast를 실제 생성·DB에서 검증한다.
 - [Go 공식 배포 목록](https://go.dev/dl/?mode=json)에서 1.27.1을 확인했다. 실제 도구 체인과 Docker build 버전이 일치한다.

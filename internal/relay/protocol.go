@@ -24,6 +24,7 @@ var uuidPattern = regexp.MustCompile(`^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89a
 var kidPattern = regexp.MustCompile(`^[A-Za-z0-9_:-]+$`)
 var extensionPattern = regexp.MustCompile(`^[a-z0-9-]+(\.[a-z0-9-]+)+$`)
 var tracePattern = regexp.MustCompile(`^[0-9a-f]{2}-[0-9a-f]{32}-[0-9a-f]{16}-[0-9a-f]{2}$`)
+var sha256Pattern = regexp.MustCompile(`^[0-9a-f]{64}$`)
 
 type Envelope struct {
 	V        string           `json:"v"`
@@ -150,7 +151,7 @@ func Parse(raw []byte) (*Envelope, error) {
 	if e.ReplyTo != "" && !uuidPattern.MatchString(e.ReplyTo) {
 		return nil, fault("invalid_schema")
 	}
-	if _, ok := e.Raw["sig"].(map[string]any); !ok || !object(e.Raw["sig"], []string{"alg", "kid", "value"}) {
+	if !object(e.Raw["sig"], []string{"alg", "kid", "value"}) {
 		return nil, fault("invalid_schema")
 	}
 	body, err := Canonical(e.Body)
@@ -207,7 +208,7 @@ func Parse(raw []byte) (*Envelope, error) {
 		}
 		previous = ref
 		for k, v := range item {
-			if _, ok := text(v); !ok || k == "sha256" && !regexp.MustCompile(`^[0-9a-f]{64}$`).MatchString(v.(string)) {
+			if s, ok := text(v); !ok || k == "sha256" && !sha256Pattern.MatchString(s) {
 				return nil, fault("invalid_schema")
 			}
 		}
