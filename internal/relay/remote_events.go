@@ -18,8 +18,6 @@ import (
 	"sort"
 	"strings"
 	"time"
-
-	"github.com/jackc/pgx/v5"
 )
 
 const remoteEvent = "knowslink.text.arrived"
@@ -80,9 +78,6 @@ func (s *Service) remoteSubscription(w http.ResponseWriter, r *http.Request, ins
 			delete(st.remote().Subscriptions, id)
 			return nil, nil
 		})
-		if err == nil {
-			s.remoteNotify(r.Context())
-		}
 		remoteResult(w, in.ID, map[string]any{}, err)
 		return
 	}
@@ -96,18 +91,14 @@ func (s *Service) remoteSubscription(w http.ResponseWriter, r *http.Request, ins
 			remoteResult(w, in.ID, nil, fault("invalid_schema"))
 			return
 		}
-		if *p.TTL < 3600000 {
-			ttl = time.Duration(*p.TTL) * time.Millisecond
-		}
-	}
-	if ttl < time.Minute {
-		ttl = time.Minute
+		ttl = max(time.Duration(min(*p.TTL, 3600000))*time.Millisecond, time.Minute)
 	}
 	// Reserve a short verification lease before external work; refreshes with the same secret reuse verified state.
 	lease := randomToken()
 	verify := true
 	_, err := s.transaction(r.Context(), func(st *State, now time.Time) (any, error) {
-		principal, i, e := st.remotePrincipal(bearer(r), s.remoteOrigin()+"/mcp", now)
+		// remoteInstall already refuses an expired installation.
+		principal, _, e := st.remotePrincipal(bearer(r), s.remoteOrigin()+"/mcp", now)
 		if e != nil || principal != install {
 			return nil, fault("invalid_auth")
 		}
@@ -120,21 +111,18 @@ func (s *Service) remoteSubscription(w http.ResponseWriter, r *http.Request, ins
 		if sub != nil && now.Before(sub.LeaseUntil) {
 			return nil, fault("capacity")
 		}
-		count := 0
-		for _, v := range rs.Subscriptions {
-			if v.Install == install {
-				count++
-			}
-		}
-		if sub == nil && (count >= 4 || len(rs.Subscriptions) >= 128) {
-			return nil, fault("capacity")
-		}
 		if sub == nil {
+			count := 0
+			for _, v := range rs.Subscriptions {
+				if v.Install == install {
+					count++
+				}
+			}
+			if count >= 4 || len(rs.Subscriptions) >= 128 {
+				return nil, fault("capacity")
+			}
 			sub = &remoteSubscription{Install: install, URL: p.Delivery.URL, Exp: now.Add(time.Minute)}
 			rs.Subscriptions[id] = sub
-		}
-		if !now.Before(i.Exp) {
-			return nil, fault("invalid_auth")
 		}
 		sub.Lease, sub.LeaseUntil = lease, now.Add(15*time.Second)
 		return nil, nil
@@ -369,14 +357,14 @@ func (st *State) claimRemote(now time.Time) remoteWork {
 		sub.Lease = randomToken()
 		sub.LeaseUntil = now.Add(15 * time.Second)
 		sub.Attempts++
-		copy := *sub
-		work.Delivery = &remoteDelivery{id, copy}
+		work.Delivery = &remoteDelivery{id, *sub}
 		return work
 	}
 	return work
 }
 
-func (st *State) finishRemote(job remoteDelivery, status int, failed bool, now time.Time) {
+// finishRemote judges only the HTTP status: 0 means no answer; a 2xx or 4xx with an oversized or broken body was still answered.
+func (st *State) finishRemote(job remoteDelivery, status int, now time.Time) {
 	if st.Remote == nil {
 		return
 	}
@@ -390,7 +378,7 @@ func (st *State) finishRemote(job remoteDelivery, status int, failed bool, now t
 		delete(st.Remote.Subscriptions, job.ID)
 		return
 	}
-	if !failed && status >= 200 && status < 300 || sub.Attempts >= 3 || (!failed && status >= 400 && status < 500 && status != 429) {
+	if status >= 200 && status < 300 || sub.Attempts >= 3 || status >= 400 && status < 500 && status != 429 {
 		sub.Seen = sub.Pending
 		sub.Pending = ""
 		sub.EventID = ""
@@ -418,17 +406,14 @@ func (s *Service) deliverRemote(ctx context.Context, job remoteDelivery) {
 	if err != nil || !valid {
 		return
 	}
+	// sweepRemote already cleared OldSecret on DB time once the rotation overlap ended.
 	sub := job.Subscription
-	old := ""
-	if time.Now().Before(sub.Rotated.Add(time.Minute)) {
-		old = sub.OldSecret
-	}
 	body, _ := json.Marshal(map[string]any{"eventId": sub.EventID, "name": remoteEvent, "timestamp": sub.EventAt.UTC().Format(time.RFC3339Nano), "data": map[string]bool{"arrival": true}, "cursor": nil})
-	status, _, sendErr := remotePost(ctx, remoteHTTPClient(), sub.EventID, job.ID, sub.URL, sub.Secret, old, body)
+	status, _, _ := remotePost(ctx, remoteHTTPClient(), sub.EventID, job.ID, sub.URL, sub.Secret, sub.OldSecret, body)
 	finishCtx, done := context.WithTimeout(ctx, 2*time.Second)
 	defer done()
 	_, _ = s.transaction(finishCtx, func(st *State, now time.Time) (any, error) {
-		st.finishRemote(job, status, sendErr != nil, now)
+		st.finishRemote(job, status, now)
 		return nil, nil
 	})
 }
@@ -440,32 +425,15 @@ func (s *Service) RemoteEvents(ctx context.Context) {
 	}
 	for ctx.Err() == nil {
 		s.remoteListen(ctx)
-		if ctx.Err() != nil {
-			return
-		}
-		timer := time.NewTimer(5 * time.Second)
 		select {
 		case <-ctx.Done():
-			timer.Stop()
-			return
-		case <-timer.C:
+		case <-time.After(5 * time.Second):
 		}
 	}
 }
 func (s *Service) remoteListen(ctx context.Context) {
-	setup, cancel := context.WithTimeout(ctx, 3*time.Second)
-	conn, err := pgx.ConnectConfig(setup, s.Pool.Config().ConnConfig.Copy())
-	if err == nil {
-		_, err = conn.Exec(setup, "LISTEN knowslink_text")
-	}
-	cancel()
-	if conn != nil {
-		defer func() {
-			c, done := context.WithTimeout(context.Background(), time.Second)
-			defer done()
-			_ = conn.Close(c)
-		}()
-	}
+	conn, release, err := s.listen(ctx)
+	defer release()
 	if err != nil {
 		return
 	}

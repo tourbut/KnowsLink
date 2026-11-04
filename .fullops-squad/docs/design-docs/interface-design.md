@@ -224,7 +224,7 @@ Grok Bot Auto Review/Allow once는 KnowsLink owner approve를 대신하지 않�
 | POST /v1/test/persist·ack·claim | 시험 ID만 허용, 기존 lease/recipient/TTL/current 검사 |
 | GET /v1/test/receipts/{id} | 자기 endpoint의 시험 receipt metadata |
 
-HTTP 입력은 64 KiB로 제한한다. 시험 payload는 claim 직후 삭제한다. lease/persist/ACK만으로 text를 model에 노출하지 않는다. 시험 부모로 gate나 업무 result를 만들 수 없다. 수동 회신은 별도 trial send이며 첫 ID를 text에 넣어 대조한다.
+HTTP 입력은 32 KiB(rawEnvelopeLimit 32768 bytes)로 제한한다. 시험 payload는 claim 직후 삭제한다. lease/persist/ACK만으로 text를 model에 노출하지 않는다. 시험 부모로 gate나 업무 result를 만들 수 없다. 수동 회신은 별도 trial send이며 첫 ID를 text에 넣어 대조한다.
 
 MCP `knowslink_test_send` 입력은 `{text,idempotency_key}`다. recipient·URL·credential 입력은 없다. `knowslink_test_receive`는 입력이 없다. 성공 출력은 `{state:received,message:{id,from,to,text,exp,untrusted:true}}`이며 빈 queue는 `{state:empty,message:null}`다. 원문 노출 예외는 이 승인된 시험 도구에만 적용한다.
 

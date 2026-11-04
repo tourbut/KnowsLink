@@ -92,7 +92,7 @@ func (s *Service) testHandler(normal http.Handler) http.Handler {
 
 func (s *Service) testSend(w http.ResponseWriter, r *http.Request) {
 	// Parse signed fields once with the same strict parser as the normal transport.
-	raw, err := io.ReadAll(http.MaxBytesReader(w, r.Body, 64*1024))
+	raw, err := io.ReadAll(http.MaxBytesReader(w, r.Body, rawEnvelopeLimit))
 	if err != nil {
 		respond(w, nil, fault("invalid_json"))
 		return

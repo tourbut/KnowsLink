@@ -69,6 +69,18 @@ func TestRemoteOAuthHTTP(t *testing.T) {
 	metadata := do(s, "GET", "/.well-known/oauth-protected-resource/mcp", "", "", "", false)
 	expect(t, metadata, 200, "https://example.com/mcp")
 	expect(t, do(s, "POST", "/mcp", `{"jsonrpc":"2.0","id":1,"method":"server/discover"}`, "application/json", "wrong", false), 401, "invalid_token")
+	// Refusal probes spend their own client-IP bucket so the main flow keeps its anonymous rate budget.
+	probe := func(method, path, body string) *httptest.ResponseRecorder {
+		r := httptest.NewRequest(method, "https://example.com"+path, strings.NewReader(body))
+		r.Header.Set("Content-Type", "application/json")
+		r.RemoteAddr = "198.51.100.7:1234"
+		w := httptest.NewRecorder()
+		s.Handler().ServeHTTP(w, r)
+		return w
+	}
+	expect(t, probe("POST", "/remote/oauth/register", `{"client_name":"x","redirect_uris":["http://chatgpt.com/callback"]}`), 400, "invalid_redirect_uri")
+	expect(t, probe("POST", "/remote/oauth/register", `{"client_name":"x","redirect_uris":["https://chatgpt.com/callback"],"grant_types":["implicit"]}`), 400, "invalid_client_metadata")
+	expect(t, probe("POST", "/remote/oauth/register", `{"client_name":"x","redirect_uris":["https://chatgpt.com/callback"],"response_types":["token"]}`), 400, "invalid_client_metadata")
 	var agents []string
 	for range 2 {
 		w := do(s, "POST", "/remote/oauth/register", `{"client_name":"test host","redirect_uris":["https://chatgpt.com/callback"],"token_endpoint_auth_method":"none","grant_types":["authorization_code","refresh_token"],"response_types":["code"]}`, "application/json", "", false)
@@ -79,6 +91,22 @@ func TestRemoteOAuthHTTP(t *testing.T) {
 		_ = json.Unmarshal(w.Body.Bytes(), &client)
 		verifier := oauth2.GenerateVerifier()
 		q := url.Values{"response_type": {"code"}, "client_id": {client.ID}, "redirect_uri": {"https://chatgpt.com/callback"}, "resource": {"https://example.com/mcp"}, "scope": {remoteScope}, "state": {"original-state"}, "code_challenge": {oauth2.S256ChallengeFromVerifier(verifier)}, "code_challenge_method": {"S256"}}
+		// The real client_id keeps the unregistered_redirect case on the redirect allowlist, not the client lookup.
+		for name, mutate := range map[string]func(url.Values){
+			"unregistered_redirect": func(v url.Values) { v.Set("redirect_uri", "https://evil.example/callback") },
+			"unknown_client":        func(v url.Values) { v.Set("client_id", "nope") },
+			"plain_pkce":            func(v url.Values) { v.Set("code_challenge_method", "plain") },
+			"wrong_resource":        func(v url.Values) { v.Set("resource", "https://other.example/mcp") },
+		} {
+			bad := url.Values{}
+			for k, v := range q {
+				bad[k] = append([]string(nil), v...)
+			}
+			mutate(bad)
+			if w := probe("GET", "/remote/oauth/authorize?"+bad.Encode(), ""); w.Code != 400 || w.Header().Get("Location") != "" {
+				t.Fatal("authorize accepted", name, w.Code)
+			}
+		}
 		w = do(s, "GET", "/remote/oauth/authorize?"+q.Encode(), "", "", "", true)
 		expect(t, w, 303)
 		consent := w.Header().Get("Location")
@@ -115,6 +143,9 @@ func TestRemoteOAuthHTTP(t *testing.T) {
 		expect(t, w, 200, "2026-07-28", "events")
 		w = do(other, "POST", "/mcp", `{"jsonrpc":"2.0","id":2,"method":"tools/call","params":{"name":"knowslink_status","arguments":{}}}`, "application/json", tokens.Access, false)
 		expect(t, w, 200, "automatic_send")
+		// A 4096-byte text JSON-escaped as \uXXXX exceeds 8 KiB but stays within the raw envelope budget.
+		long := `{"jsonrpc":"2.0","id":6,"method":"tools/call","params":{"name":"knowslink_send","arguments":{"to":"agent_unknown","text":"` + strings.Repeat(`한`, 1365) + `x","idempotency_key":"remote-long-key-01"}}}`
+		expect(t, do(other, "POST", "/mcp", long, "application/json", tokens.Access, false), 200, `"jsonrpc"`)
 		var out struct {
 			Result struct {
 				Value struct {

@@ -59,7 +59,7 @@ func (st *State) sendOwnerText(member, from, to, body, attempt string, now time.
 	if !st.messageCapacity(false) {
 		return nil, fault("capacity")
 	}
-	message := &Message{Receipt: Receipt{ID: remoteUUID(now), From: from, To: to, Intent: publicTextIntent, Digest: digest, Exp: now.Add(180 * time.Second), Accepted: now, State: "queued"}, Key: key, Scope: scope, Generation: generation, Deliver: "agent"}
+	message := &Message{Receipt: Receipt{ID: remoteUUID(now), From: from, To: to, Intent: publicTextIntent, Digest: digest, Exp: now.Add(publicTextTTL), Accepted: now, State: "queued"}, Key: key, Scope: scope, Generation: generation, Deliver: "agent"}
 	st.copyConversation(message, body, "owner")
 	if message.Conversation == nil || !st.current(message) {
 		return nil, fault("sender_not_allowed")

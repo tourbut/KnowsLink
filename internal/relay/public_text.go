@@ -14,6 +14,7 @@ import (
 
 const publicTextIntent = "knowslink.text"
 const rawEnvelopeLimit = 32768
+const publicTextTTL = 180 * time.Second
 
 type PublicText struct {
 	V       string    `json:"v"`
@@ -102,7 +103,7 @@ func (st *State) ingestPublicText(agent string, e *PublicText, now time.Time) (a
 	if !now.Before(exp) {
 		return nil, fault("expired")
 	}
-	if exp.After(now.Add(180 * time.Second)) {
+	if exp.After(now.Add(publicTextTTL)) {
 		return nil, fault("ttl_too_long")
 	}
 	if st.Messages[e.ID] != nil {
