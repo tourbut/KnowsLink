@@ -14,12 +14,9 @@ import (
 var kst = time.FixedZone("KST", 9*60*60)
 
 var notices = map[string]string{
-	"logout":         "로그아웃했습니다. 연결한 에이전트의 키와 자격은 그대로입니다.",
-	"all":            "모든 브라우저에서 로그아웃했습니다. 연결한 에이전트의 키와 자격은 그대로입니다.",
-	"expired":        "세션이 끝났습니다. 다시 로그인하세요.",
-	"invited":        "초대를 보냈습니다. 상대 소유자가 이 초대를 수락하기 전에는 메시지를 주고받을 수 없습니다.",
-	"invite-pending": "두 에이전트 사이에 이미 대기 중인 초대가 있습니다. 새 초대를 만들지 않았고 기한도 그대로입니다. 받은 초대라면 아래 관계 목록에서 수락하거나 거절하세요.",
-	"invite-active":  "이미 연결된 관계입니다. 새 초대를 만들지 않았고 현재 관계를 그대로 유지합니다.",
+	"logout":  "로그아웃했습니다. 연결한 에이전트의 키와 자격은 그대로입니다.",
+	"all":     "모든 브라우저에서 로그아웃했습니다. 연결한 에이전트의 키와 자격은 그대로입니다.",
+	"expired": "세션이 끝났습니다. 다시 로그인하세요.",
 }
 
 func readCookie(r *http.Request, name string) string {
@@ -98,7 +95,7 @@ func (s *Service) startPage(w http.ResponseWriter, r *http.Request) {
 			return nil, err
 		}); err == nil {
 			v["Authenticated"] = true
-		} else {
+		} else if err.Error() == "invalid_auth" {
 			setCookie(w, sessionCookie, "", -1)
 			v["Notice"] = notices["expired"]
 		}
@@ -119,7 +116,7 @@ func (s *Service) deliverCode(w http.ResponseWriter, r *http.Request, st started
 		err = s.Mail(r.Context(), st.Email, "KnowsLink 확인 코드", "KnowsLink 확인 코드: "+st.Code+"\n\n이 코드는 10분 동안 한 번만 쓸 수 있습니다.\n요청하지 않았다면 이 메일을 무시하세요. 코드를 다른 사람에게 알려주지 마세요.\n")
 	}
 	if err != nil {
-		log.Print("verification mail not sent")
+		log.Printf("verification mail not sent: %v", err)
 		_, _ = s.transaction(context.WithoutCancel(r.Context()), func(state *State, _ time.Time) (any, error) {
 			delete(state.Challenges, hashToken(st.Pending))
 			return nil, nil
@@ -169,12 +166,16 @@ func (s *Service) authStart(w http.ResponseWriter, r *http.Request) {
 
 func (s *Service) verifyPage(w http.ResponseWriter, r *http.Request) {
 	pending := readCookie(r, pendingCookie)
-	value, _ := s.transaction(r.Context(), func(st *State, now time.Time) (any, error) {
+	value, err := s.transaction(r.Context(), func(st *State, now time.Time) (any, error) {
 		if c := st.Challenges[hashToken(pending)]; pending != "" && c != nil && now.Before(c.Exp) {
 			return c, nil
 		}
 		return nil, nil
 	})
+	if err != nil {
+		render(w, 503, "start", s.startView("일시적으로 처리할 수 없습니다. 잠시 뒤 다시 시도하세요."))
+		return
+	}
 	c, _ := value.(*Challenge)
 	if c == nil {
 		render(w, 410, "start", s.startView("확인 코드가 만료되었거나 더 이상 쓸 수 없습니다. 새 코드를 요청하세요."))
@@ -266,26 +267,14 @@ func (s *Service) legacyHomePage(w http.ResponseWriter, r *http.Request) {
 			return nil, err
 		}
 		m := st.Members[id]
-		agents, pairs := []string{}, []memberPair{}
-		for agent, a := range st.Agents {
-			if a.Owner == m.Owner {
-				agents = append(agents, agent)
-			}
-		}
+		pairs := []memberPair{}
 		for _, p := range st.Pairs {
 			if a, b := st.Agents[p.A], st.Agents[p.B]; (a != nil && a.Owner == m.Owner) || (b != nil && b.Owner == m.Owner) {
 				v := memberPair{Pair: p, Incoming: st.Agents[p.Recipient] != nil && st.Agents[p.Recipient].Owner == m.Owner}
-				for _, side := range [][2]string{{p.A, p.B}, {p.B, p.A}} {
-					if own := st.Agents[side[0]]; own != nil && own.Owner == m.Owner && !own.Revoked {
-						v.Own, v.Other = side[0], side[1]
-						break
-					}
-				}
 				v.MineAgent, v.PeerAgent = st.visibleAgent(m.Owner, v.Mine()), st.visibleAgent(m.Owner, v.Peer())
 				pairs = append(pairs, v)
 			}
 		}
-		sort.Strings(agents)
 		// Received invites first, then sent, connected, and ended relationships (D04 R-11).
 		rank := func(p memberPair) int {
 			switch {
@@ -305,7 +294,7 @@ func (s *Service) legacyHomePage(w http.ResponseWriter, r *http.Request) {
 			return pairID(pairs[i].A, pairs[i].B) < pairID(pairs[j].A, pairs[j].B)
 		})
 		gates := st.gateRows(m.Owner, now)
-		details, active, incoming, pending := ownAgents(st, m.Owner), 0, 0, 0
+		details, incoming, pending := ownAgents(st, m.Owner), 0, 0
 		// Pair rows reuse the widened discriminators of the agent list so colliding own agents stay distinct.
 		shorts := map[string]string{}
 		for _, a := range details {
@@ -314,11 +303,6 @@ func (s *Service) legacyHomePage(w http.ResponseWriter, r *http.Request) {
 		for i := range pairs {
 			if short := shorts[pairs[i].MineAgent.ID]; short != "" {
 				pairs[i].MineAgent.Short = short
-			}
-		}
-		for _, a := range details {
-			if a.Status != "철회" {
-				active++
 			}
 		}
 		for _, p := range pairs {
@@ -332,8 +316,8 @@ func (s *Service) legacyHomePage(w http.ResponseWriter, r *http.Request) {
 			}
 		}
 		return map[string]any{"Title": "기존 연결", "Masked": maskEmail(m.Email), "Member": id, "Absolute": clock(session.Created.Add(sessionAbsolute)),
-			"Recent": now.Sub(session.Verified) < reauthWindow, "Agents": agents, "AgentDetails": details, "Pairs": pairs, "Gates": gates, "Notice": notices[r.URL.Query().Get("n")],
-			"ActiveAgents": active, "IncomingInvites": incoming, "PendingGates": pending}, nil
+			"Recent": now.Sub(session.Verified) < reauthWindow, "AgentDetails": details, "Pairs": pairs, "Gates": gates, "Notice": notices[r.URL.Query().Get("n")],
+			"IncomingInvites": incoming, "PendingGates": pending}, nil
 	})
 	if err != nil {
 		if err.Error() == "invalid_auth" {
@@ -358,6 +342,10 @@ func (s *Service) authReauth(w http.ResponseWriter, r *http.Request) {
 		}
 		return st.Members[id].Issuer == googleIssuer, nil
 	})
+	if err != nil && err.Error() != "invalid_auth" {
+		refused(w, "내 에이전트", refusal{503, "일시적으로 처리할 수 없습니다. 잠시 뒤 다시 시도하세요.", false, false})
+		return
+	}
 	if err == nil && value.(bool) {
 		s.googleStart(w, r, true)
 		return
@@ -376,7 +364,11 @@ func (s *Service) authReauth(w http.ResponseWriter, r *http.Request) {
 		return started{pending, code, email, retry, false, !ok}, nil
 	})
 	if err != nil {
-		expired(w, r)
+		if err.Error() == "invalid_auth" {
+			expired(w, r)
+			return
+		}
+		refused(w, "내 에이전트", refusal{503, "일시적으로 처리할 수 없습니다. 잠시 뒤 다시 시도하세요.", false, false})
 		return
 	}
 	result := value.(started)
@@ -432,7 +424,11 @@ func (s *Service) logout(all bool) http.HandlerFunc {
 			return refusal{}, nil
 		})
 		if err != nil {
-			expired(w, r)
+			if err.Error() == "invalid_auth" {
+				expired(w, r)
+				return
+			}
+			refused(w, "내 에이전트", refusal{503, "일시적으로 처리할 수 없습니다. 잠시 뒤 다시 시도하세요.", false, false})
 			return
 		}
 		if v := value.(refusal); v.status != 0 {

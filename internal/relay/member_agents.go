@@ -8,14 +8,13 @@ import (
 	"net/http"
 	"sort"
 	"strconv"
+	"strings"
 	"time"
 )
 
 type memberPair struct {
 	*Pair
 	Incoming bool
-	// Own and Other name the member's live agent and the counterpart for a manual re-invite; Own is "" when none.
-	Own, Other string
 	// MineAgent and PeerAgent label Mine and Peer; a non-friend counterpart stays an unnamed identifier.
 	MineAgent, PeerAgent humanAgent
 }
@@ -203,16 +202,6 @@ func clientName(host string) string {
 	return "Node 로컬 클라이언트"
 }
 
-// inviteNotice tells the inviter whether the submit made a new pending invite or kept the current one unchanged.
-func inviteNotice(before string) string {
-	switch before {
-	case "pending":
-		return "invite-pending"
-	case "active":
-		return "invite-active"
-	}
-	return "invited"
-}
 func (s *Service) agentRoutes(mux *http.ServeMux) {
 	mux.HandleFunc("POST /v1/connect/start", s.deviceAPI(true))
 	mux.HandleFunc("POST /v1/connect/poll", s.deviceAPI(false))
@@ -271,12 +260,12 @@ func (s *Service) memberAction(path string) http.HandlerFunc {
 				name, valid := validName(r.FormValue("name"))
 				if !valid {
 					c := st.Connections[r.FormValue("connection")]
-					if c == nil || !c.Device {
+					if c == nil || !c.Device || c.Owner != owner {
 						return fail(fault("invalid_auth"))
 					}
 					public, _ := base64.RawURLEncoding.DecodeString(c.Public)
 					problem, kept := nameRefusal(r.FormValue("name"))
-					return map[string]any{"FormTemplate": "device", "FormStatus": 422, "Title": "내 클라이언트 연결", "ConnectionID": r.FormValue("connection"), "Name": kept, "State": c.State, "Fingerprint": fingerprint(public), "Exp": clock(c.Exp), "Problem": problem}, nil
+					return map[string]any{"FormTemplate": "device", "FormStatus": 422, "Title": "내 클라이언트 연결", "ConnectionID": r.FormValue("connection"), "Name": kept, "Client": clientName(c.Host), "Here": "/connect/" + r.FormValue("connection"), "Fingerprint": fingerprint(public), "Exp": clock(c.Exp), "Problem": problem}, nil
 				}
 				if e := st.approveDevice(r.FormValue("connection"), owner, name, now); e != nil {
 					return fail(e)
@@ -296,7 +285,7 @@ func (s *Service) memberAction(path string) http.HandlerFunc {
 				// A repeated submit of the same form (double click, resend) returns the agent it already made.
 				attempt := r.FormValue("attempt")
 				scope := agentCreateKey(owner, attempt)
-				if len(attempt) < 16 || len(attempt) > 96 {
+				if len(attempt) < 16 || len(attempt) > 96 || strings.ContainsRune(attempt, 0) {
 					scope = ""
 				} else if made := st.Agents[st.Idempotency[scope]]; made != nil && made.Owner == owner && !made.Revoked {
 					return "/home/agents#agent-" + st.Idempotency[scope], nil
@@ -319,7 +308,7 @@ func (s *Service) memberAction(path string) http.HandlerFunc {
 				if e != nil {
 					return fail(e)
 				}
-				return map[string]any{"Title": "에이전트 연결", "Token": t, "ConnectionID": hashToken(t), "Agent": agent, "Name": agentName(st.Agents[agent]), "Short": shortID(agent), "Owner": owner, "Client": supportedClient, "Mode": r.FormValue("mode"), "State": "waiting", "Exp": clock(now.Add(connectionTTL))}, nil
+				return map[string]any{"Title": "에이전트 연결", "Token": t, "ConnectionID": hashToken(t), "Agent": agent, "Name": agentName(st.Agents[agent]), "Short": shortID(agent), "Client": supportedClient, "Mode": r.FormValue("mode"), "State": "waiting", "Exp": clock(now.Add(connectionTTL))}, nil
 			case "attempt-remove":
 				// A client attempt has no key or agent yet, so removing it revokes nothing and keeps no record (A-02).
 				c := st.Connections[r.FormValue("connection")]
@@ -367,26 +356,15 @@ func (s *Service) memberAction(path string) http.HandlerFunc {
 						return fail(fault("sender_not_allowed"))
 					}
 				}
-				before := ""
-				if p := st.Pairs[pairID(c.Agent, c.Target)]; p != nil {
-					before = p.State
-				}
 				_, e := st.operateAs(path, owner, "owner", c, now, false)
 				if e != nil {
 					return fail(e)
-				}
-				if path == "invites" {
-					return "/home?n=" + inviteNotice(before), nil
 				}
 			}
 			return "/home", nil
 		})
 		if err != nil {
-			if err.Error() == "invalid_auth" {
-				expired(w, r)
-			} else {
-				refusedTo(w, "내 에이전트", refusal{503, "일시적으로 처리할 수 없습니다. 잠시 뒤 다시 시도하세요.", false, false}, memberBack(path))
-			}
+			refusedTo(w, "내 에이전트", refusal{503, "일시적으로 처리할 수 없습니다. 잠시 뒤 다시 시도하세요.", false, false}, memberBack(path))
 			return
 		}
 		switch v := value.(type) {
@@ -433,16 +411,7 @@ func (s *Service) connectionPage(w http.ResponseWriter, r *http.Request) {
 			return refusal{403, "연결을 조회할 수 없습니다.", false, false}, nil
 		}
 		public, _ := base64.RawURLEncoding.DecodeString(c.Public)
-		var unsure *agentResume
-		// An approved attempt past its deadline keeps its state until cleanup (A-02) but asks for the same check.
-		if a := st.Agents[c.Agent]; c.Device && (c.State == "expired" || c.State == "approved" && !now.Before(c.Exp)) && a != nil && activeKeys(a) == 0 {
-			unsure = &deviceUnsure // approved, then expired: the same check the agent card asks for (U8 승인 후 응답 유실)
-		}
-		state := c.State
-		if unsure != nil {
-			state = "expired" // past its deadline the page offers no completion command or cancel
-		}
-		return map[string]any{"Unsure": unsure, "Title": "에이전트 연결", "ConnectionID": r.PathValue("id"), "Agent": c.Agent, "Name": agentName(st.Agents[c.Agent]), "Short": shortID(c.Agent), "Client": c.Client, "Mode": c.Mode, "State": state, "Fingerprint": fingerprint(public), "Exp": clock(c.Exp)}, nil
+		return map[string]any{"Title": "에이전트 연결", "ConnectionID": r.PathValue("id"), "Agent": c.Agent, "Name": agentName(st.Agents[c.Agent]), "Short": shortID(c.Agent), "Client": c.Client, "Mode": c.Mode, "State": c.State, "Fingerprint": fingerprint(public), "Exp": clock(c.Exp)}, nil
 	})
 	if err != nil {
 		if err.Error() == "invalid_auth" {
@@ -477,7 +446,7 @@ func (s *Service) connectAPI(path string) http.HandlerFunc {
 				return retry, nil
 			}
 			if parseErr != nil {
-				return map[string]string{"error": parseErr.Error()}, nil
+				return errorBody(parseErr), nil
 			}
 			if e != nil {
 				return errorBody(e), nil

@@ -49,8 +49,7 @@ const memberSource = `
 <p class="muted">다시 받기는 이전 요청 60초 뒤부터 가능합니다. 새 코드를 받으면 이전 코드는 쓸 수 없습니다.</p>
 <p><a href="/">다른 주소로 시작</a></p></section></main></html>{{end}}
 {{define "connection"}}{{template "head" .}}<main id="main" class="page">{{template "intro" .}}
-{{if .Unsure}}<p class="note" role="status">{{tr .Unsure.State}}. {{tr .Unsure.Next}}</p><p><a href="{{.Unsure.Link}}">{{tr .Unsure.LinkText}}</a></p>
-{{else if or (eq .State "expired") (eq .State "cancelled")}}<p class="note" role="status">{{if eq .State "expired"}}만료되었습니다.{{else}}취소되었습니다.{{end}} 새 키가 연결되지 않았습니다. 이전 연결 수단은 다시 쓸 수 없습니다. 내 에이전트의 연결·키 관리에서 새로 시작하세요.</p>
+{{if or (eq .State "expired") (eq .State "cancelled")}}<p class="note" role="status">{{if eq .State "expired"}}만료되었습니다.{{else}}취소되었습니다.{{end}} 새 키가 연결되지 않았습니다. 이전 연결 수단은 다시 쓸 수 없습니다. 내 에이전트의 연결·키 관리에서 새로 시작하세요.</p>
 {{else}}<ol class="steps" aria-label="연결 단계">
 <li{{if or .Token (eq .State "waiting")}} aria-current="step"{{end}}><span class="n">1</span> 연결 수단 발급됨: 내 컴퓨터에서 준비</li>
 <li{{if and (not .Token) (eq .State "prepared")}} aria-current="step"{{end}}><span class="n">2</span> 지문 확인: 내 컴퓨터에 표시된 지문과 같은지 확인</li>
@@ -98,12 +97,11 @@ const memberSource = `
 <p>public-node 자동 수신이 켜져 있으면 수신 client가 로컬 inbox에 자동 저장합니다. 호스트 화면 표시는 조건부이므로 보이지 않으면 수신 client에서 수동 receive(knowslink_text_receive)를 실행하세요. 정상 idle pull은 10초 이상 간격입니다. queued는 상대 수신 성공이 아닙니다.</p>
 <p>불확실한 재시도는 같은 멱등키·같은 내용의 요청 상태를 조회하세요. 멱등키 충돌이면 이전 내용을 확인하고 별도 승인된 새 메시지에 새 멱등키를 쓰세요. 인증 키 재발급과는 다릅니다.</p></details></section>{{end}}
 {{if not .Anonymous}}<p><a href="/home/agents">내 에이전트로 돌아가기</a> <a href="/home/legacy#receipts">관리 화면으로 돌아가기</a></p>{{end}}</main></html>{{end}}
-{{define "home"}}{{template "legacy-home" .}}{{end}}
 {{define "legacy-home"}}{{template "head" .}}<div class="layout">
 <nav class="toc" aria-labelledby="toc-h"><span id="toc-h" class="toc-title">이 화면에서 찾기</span><a href="#agents">에이전트</a><a href="#pairs">관계</a><a href="#gates">승인 요청</a><a href="#receipts">요청 상태 조회</a><a href="#account">계정</a></nav>
 <main id="main">{{template "intro" .}}
 {{if or .IncomingInvites .PendingGates}}<div class="todo" role="region" aria-label="확인 필요"><strong>확인 필요</strong><ul>{{if .IncomingInvites}}<li><a href="#pairs">받은 관계 초대 {{.IncomingInvites}}건</a></li>{{end}}{{if .PendingGates}}<li><a href="#gates">승인 요청 {{.PendingGates}}건</a></li>{{end}}</ul></div>{{end}}
-<section id="agents" aria-labelledby="agents-h"><div class="sechead"><h2 id="agents-h">에이전트</h2><span class="muted">활성 {{.ActiveAgents}}/5</span><a class="button primary" href="/home/agents">에이전트 추가</a></div>
+<section id="agents" aria-labelledby="agents-h"><div class="sechead"><h2 id="agents-h">에이전트</h2><a class="button primary" href="/home/agents">에이전트 추가</a></div>
 <p class="muted">연결 완료는 키가 등록되었다는 뜻이며 지금 접속 중이라는 뜻은 아닙니다. 식별자를 눌러 전체 선택 후 복사하세요. 연결은 Node 22가 있는 내 컴퓨터에서 실행합니다.</p>
 {{if not .Recent}}<div class="note"><p>키·연결 권한 변경에는 5분 안의 재확인이 필요합니다. 먼저 로그인을 다시 확인하세요.</p><form method="post" action="/auth/reauth"><button aria-label="로그인 다시 확인 (키·연결 변경 전)">로그인 다시 확인</button></form></div>{{end}}
 {{if not .AgentDetails}}<p>아직 연결한 에이전트가 없습니다.</p><a class="button primary" href="/home/agents">에이전트 추가</a>{{end}}

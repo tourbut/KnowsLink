@@ -77,7 +77,7 @@ func (st *State) humanMember(owner string) (string, *Member) {
 	return "", nil
 }
 
-func (st *State) migrateHuman(now time.Time) error {
+func (st *State) migrateHuman() error {
 	if st.HumanModel > 1 || st.HumanModel < 0 {
 		return fault("unavailable")
 	}

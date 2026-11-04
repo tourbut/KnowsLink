@@ -296,7 +296,7 @@ func TestMemberReceiptView(t *testing.T) {
 			}
 		}
 		w := httptest.NewRecorder()
-		render(w, 200, "home", map[string]any{"Title": "내 KnowsLink", "AgentDetails": []memberAgent{{ID: "agent_0123456789012345678901", Status: "연결 완료"}}})
+		render(w, 200, "legacy-home", map[string]any{"Title": "내 KnowsLink", "AgentDetails": []memberAgent{{ID: "agent_0123456789012345678901", Status: "연결 완료"}}})
 		if err := os.WriteFile(filepath.Join(dir, "home.html"), w.Body.Bytes(), 0600); err != nil {
 			t.Fatal(err)
 		}

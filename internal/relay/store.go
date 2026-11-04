@@ -166,7 +166,7 @@ func (s *Service) transaction(ctx context.Context, operation func(*State, time.T
 			return nil, fault("unavailable")
 		}
 		st.TestAgents, st.SyntheticSignup = s.TestAgents, s.SyntheticSignup
-		return st, st.migrateHuman(now)
+		return st, st.migrateHuman()
 	}
 	state, err := load()
 	if err != nil {

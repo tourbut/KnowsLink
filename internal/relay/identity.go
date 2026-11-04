@@ -12,6 +12,7 @@ import (
 	"net/mail"
 	"strings"
 	"time"
+	"unicode/utf8"
 )
 
 // Product defaults (D02 SAR-PUBLIC-SERVICE operation defaults).
@@ -151,7 +152,8 @@ func maskEmail(email string) string {
 	if at < 1 {
 		return "***"
 	}
-	return email[:1] + "***" + email[at:]
+	_, size := utf8.DecodeRuneInString(email)
+	return email[:size] + "***" + email[at:]
 }
 
 func sixDigits() string {
@@ -288,9 +290,13 @@ func (st *State) sweepIdentity(now time.Time) {
 		}
 	}
 	for key, hits := range st.Rates {
+		cutoff := now.Add(-time.Hour)
+		if strings.HasPrefix(key, "http:") || strings.HasPrefix(key, "cleanup") {
+			cutoff = now.Add(-time.Minute) // minute buckets: hit() ignores older entries anyway
+		}
 		kept := hits[:0]
 		for _, t := range hits {
-			if t.After(now.Add(-time.Hour)) {
+			if t.After(cutoff) {
 				kept = append(kept, t)
 			}
 		}

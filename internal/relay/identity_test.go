@@ -22,7 +22,7 @@ func TestNormalizeEmail(t *testing.T) {
 			t.Fatalf("accepted %q", in)
 		}
 	}
-	if maskEmail("someone@example.com") != "s***@example.com" {
+	if maskEmail("someone@example.com") != "s***@example.com" || maskEmail("한글@example.com") != "한***@example.com" {
 		t.Fatal("mask")
 	}
 }
@@ -65,6 +65,13 @@ func TestRollingWindowBoundary(t *testing.T) {
 	st.sweepIdentity(now.Add(2 * time.Hour))
 	if len(st.Rates) != 0 {
 		t.Fatal("rates retained past an hour")
+	}
+	// Minute buckets leave the persisted state after their window; hour send buckets stay.
+	st.hit(now, anonymousRate("ip1")...)
+	st.startChallenge("a@b.co", "ip1", now)
+	st.sweepIdentity(now.Add(2 * time.Minute))
+	if st.Rates["http:ip:ip1"] != nil || st.Rates["http:new"] != nil || st.Rates["send:email:"+hashToken("a@b.co")] == nil {
+		t.Fatal("sweep windows", st.Rates)
 	}
 }
 

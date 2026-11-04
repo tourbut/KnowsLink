@@ -2,7 +2,6 @@
 package relay
 
 import (
-	"bytes"
 	"os"
 	"path/filepath"
 	"regexp"
@@ -27,7 +26,7 @@ func memberFixtures() []uiFixture {
 		{ID: "agent_2b3c4d5e6f708192a3b4c5d6", Status: "연결 완료", Name: "합성 서버 도우미", Client: supportedClient, Short: "0c5d9e3a", KeyFull: true, Keys: []memberKey{{"key_03", fp, "활성"}}},
 		{ID: "agent_9e8d7c6b5a4f3e2d1c0b9a87", Status: "철회", Name: "철회한 도우미", Client: supportedClient, Short: "e2a7f610", Keys: []memberKey{{"key_04", fp, "철회"}}},
 	}
-	pair := func(a, b, inviter, state string, gen int64, incoming bool, own, other string) memberPair {
+	pair := func(a, b, inviter, state string, gen int64, incoming bool) memberPair {
 		p := &Pair{A: a, B: b, Inviter: inviter, Recipient: b, State: state, Generation: gen}
 		if inviter == b {
 			p.Recipient = a
@@ -35,23 +34,23 @@ func memberFixtures() []uiFixture {
 		if state == "pending" {
 			p.Exp = exp
 		}
-		v := memberPair{Pair: p, Incoming: incoming, Own: own, Other: other}
+		v := memberPair{Pair: p, Incoming: incoming}
 		v.MineAgent = humanAgent{ID: v.Mine(), Name: "합성 노트북 도우미", Client: supportedClient, Short: "3f9a01c2"}
 		v.PeerAgent = humanAgent{ID: v.Peer(), Name: "확인할 수 없는 에이전트"}
 		return v
 	}
 	pairs := []memberPair{
-		pair("agent_0a1b2c3d4e5f60718293a4b5", "agent_77665544332211009988aabb", "agent_77665544332211009988aabb", "pending", 3, true, "agent_0a1b2c3d4e5f60718293a4b5", "agent_77665544332211009988aabb"),
-		pair("agent_0a1b2c3d4e5f60718293a4b5", "agent_ccddeeff0011223344556677", "agent_0a1b2c3d4e5f60718293a4b5", "pending", 1, false, "agent_0a1b2c3d4e5f60718293a4b5", "agent_ccddeeff0011223344556677"),
-		pair("agent_0a1b2c3d4e5f60718293a4b5", "agent_2b3c4d5e6f708192a3b4c5d6", "agent_0a1b2c3d4e5f60718293a4b5", "active", 2, false, "agent_0a1b2c3d4e5f60718293a4b5", "agent_2b3c4d5e6f708192a3b4c5d6"),
-		pair("agent_2b3c4d5e6f708192a3b4c5d6", "agent_8899aabbccddeeff00112233", "agent_2b3c4d5e6f708192a3b4c5d6", "revoked", 4, false, "agent_2b3c4d5e6f708192a3b4c5d6", "agent_8899aabbccddeeff00112233"),
-		pair("agent_9e8d7c6b5a4f3e2d1c0b9a87", "agent_5566778899aabbccddeeff00", "agent_9e8d7c6b5a4f3e2d1c0b9a87", "denied", 1, false, "", ""),
+		pair("agent_0a1b2c3d4e5f60718293a4b5", "agent_77665544332211009988aabb", "agent_77665544332211009988aabb", "pending", 3, true),
+		pair("agent_0a1b2c3d4e5f60718293a4b5", "agent_ccddeeff0011223344556677", "agent_0a1b2c3d4e5f60718293a4b5", "pending", 1, false),
+		pair("agent_0a1b2c3d4e5f60718293a4b5", "agent_2b3c4d5e6f708192a3b4c5d6", "agent_0a1b2c3d4e5f60718293a4b5", "active", 2, false),
+		pair("agent_2b3c4d5e6f708192a3b4c5d6", "agent_8899aabbccddeeff00112233", "agent_2b3c4d5e6f708192a3b4c5d6", "revoked", 4, false),
+		pair("agent_9e8d7c6b5a4f3e2d1c0b9a87", "agent_5566778899aabbccddeeff00", "agent_9e8d7c6b5a4f3e2d1c0b9a87", "denied", 1, false),
 	}
 	peer := humanAgent{ID: "agent_77665544332211009988aabb", Name: "확인할 수 없는 에이전트", Short: "5e0c7a12"}
 	mine := humanAgent{ID: "agent_0a1b2c3d4e5f60718293a4b5", Name: "합성 노트북 도우미", Client: supportedClient, Short: "3f9a01c2"}
 	gates := []gateRow{{ID: "00000000-0000-4000-8000-000000000001", State: "pending", Kind: "일정 가능 시간 확인", Exp: clock(exp), From: peer, To: mine}, {ID: "00000000-0000-4000-8000-000000000002", State: "denied", Kind: "일정 확정", Exp: clock(exp), From: peer, To: mine}}
 	home := map[string]any{"Title": "기존 연결", "Masked": "m***@example.test", "Member": "mem_0123456789abcdef0123456789abcdef", "Absolute": "2026-10-18 21:00:00 KST", "Recent": true,
-		"AgentDetails": agents, "Pairs": pairs, "Gates": gates, "ActiveAgents": 3, "IncomingInvites": 1, "PendingGates": 1}
+		"AgentDetails": agents, "Pairs": pairs, "Gates": gates, "IncomingInvites": 1, "PendingGates": 1}
 	conn := func(state string) map[string]any {
 		return map[string]any{"Title": "에이전트 연결", "ConnectionID": "c0nnect10n-1d-synthetic-0000000000000000000", "Agent": "agent_0a1b2c3d4e5f60718293a4b5", "Client": supportedClient, "Mode": "register", "State": state, "Fingerprint": fp, "Exp": clock(exp)}
 	}
@@ -87,8 +86,8 @@ func memberFixtures() []uiFixture {
 		{"verify", "verify", map[string]any{"Title": "확인 코드 입력", "Masked": "m***@example.test", "Email": "m@example.test", "Exp": clock(exp), "Problem": "코드가 맞지 않습니다. 남은 시도: 4회."}},
 		{"google-complete-home", "google-complete", map[string]any{"Title": "Google 로그인 확인 완료", "Notice": "신원을 확인했습니다. 계속해서 연결을 확인하세요.", "Next": "/home"}},
 		{"google-complete-connect", "google-complete", map[string]any{"Title": "Google 로그인 확인 완료", "Next": "/connect/dev1ce-1d"}},
-		{"home", "home", home},
-		{"home-empty", "home", map[string]any{"Title": "내 에이전트", "Masked": "m***@example.test", "Member": "mem_0123456789abcdef0123456789abcdef", "Absolute": "2026-10-18 21:00:00 KST", "ActiveAgents": 0, "Notice": notices["invited"]}},
+		{"home", "legacy-home", home},
+		{"home-empty", "legacy-home", map[string]any{"Title": "내 에이전트", "Masked": "m***@example.test", "Member": "mem_0123456789abcdef0123456789abcdef", "Absolute": "2026-10-18 21:00:00 KST", "Notice": notices["logout"]}},
 		{"connection-token", "connection", waiting},
 		{"connection-waiting", "connection", conn("waiting")},
 		{"connection-prepared", "connection", conn("prepared")},
@@ -107,12 +106,12 @@ func memberFixtures() []uiFixture {
 		{"refusal-create", "refusal", map[string]any{"Title": "내 에이전트", "Problem": keyRecordsFull, "Back": "/home", "Create": true}},
 		{"refusal-login", "refusal", map[string]any{"Title": "내 에이전트", "Problem": "로그인 세션이 유효하지 않습니다. 다시 로그인하세요.", "Back": "/"}},
 		{"refusal-limited", "refusal", map[string]any{"Title": "내 에이전트", "Problem": limited(exp), "Back": "/home"}},
-		{"gate-active", "gate", active},
-		{"gate-closed", "gate", gate(false, "denied")},
-		{"gate-expired", "gate", gate(false, "expired")},
-		{"gate-commit-hint", "gate", commit},
-		{"gate-unavailable", "gate", unavailable},
-		{"home-no-gates", "home", map[string]any{"Title": "기존 연결", "Masked": "m***@example.test", "Member": "mem_0123456789abcdef0123456789abcdef", "Absolute": "2026-10-18 21:00:00 KST", "Recent": true, "AgentDetails": agents[:1], "ActiveAgents": 1}},
+		{"gate-active", "human-gate", active},
+		{"gate-closed", "human-gate", gate(false, "denied")},
+		{"gate-expired", "human-gate", gate(false, "expired")},
+		{"gate-commit-hint", "human-gate", commit},
+		{"gate-unavailable", "human-gate", unavailable},
+		{"home-no-gates", "legacy-home", map[string]any{"Title": "기존 연결", "Masked": "m***@example.test", "Member": "mem_0123456789abcdef0123456789abcdef", "Absolute": "2026-10-18 21:00:00 KST", "Recent": true, "AgentDetails": agents[:1]}},
 		{"receipt-anonymous-limited", "receipt", map[string]any{"Title": "요청 상태 조회", "Problem": limited(exp), "Focus": "receipt-problem", "Unavailable": true, "Anonymous": true}},
 		// The OAuth consent pages reuse memberStyle with their own markup.
 		{"remote-login", "remote", map[string]any{"Name": "Synthetic Host", "Redirect": "https://callback.test/oauth", "Login": true, "ID": "rem0te-1d"}},
@@ -122,17 +121,7 @@ func memberFixtures() []uiFixture {
 
 func renderFixture(t *testing.T, f uiFixture) string {
 	t.Helper()
-	var b bytes.Buffer
-	var err error
-	name := f.tmpl
-	if name == "gate" {
-		name = "human-gate"
-	}
-	err = memberPages.ExecuteTemplate(&b, name, f.data)
-	if err != nil {
-		t.Fatal(f.name, err)
-	}
-	return b.String()
+	return renderHumanPage(t, f.tmpl, f.data)
 }
 
 var (
@@ -227,7 +216,7 @@ func TestLegacyMemberPageDoesNotCreateRelationships(t *testing.T) {
 	for _, c := range []struct {
 		status string
 	}{{"연결 완료"}, {"미연결"}, {"철회"}} {
-		body := renderFixture(t, uiFixture{"invite-" + c.status, "home", map[string]any{"Title": "홈", "ActiveAgents": 1,
+		body := renderFixture(t, uiFixture{"invite-" + c.status, "legacy-home", map[string]any{"Title": "홈",
 			"AgentDetails": []memberAgent{{ID: "agent_a", Status: c.status}}, "Pairs": []memberPair{{Pair: &Pair{A: "agent_a", B: "agent_b", State: "active"}}}}})
 		for _, action := range []string{`id="from-agent"`, `action="/home/invites"`, `action="/home/invite-decision"`, `action="/home/invite-deny"`, `action="/home/agents"`} {
 			if strings.Contains(body, action) {

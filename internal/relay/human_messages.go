@@ -30,7 +30,7 @@ func (st *State) sendOwnerText(member, from, to, body, attempt string, now time.
 	if _, eligible := st.humanMember(m.Owner); eligible == nil {
 		return nil, fault("sender_not_allowed")
 	}
-	if !utf8.ValidString(body) || strings.TrimSpace(body) == "" || len(body) > 4096 || len(attempt) < 16 || len(attempt) > 96 {
+	if !utf8.ValidString(body) || strings.TrimSpace(body) == "" || strings.ContainsRune(body, 0) || len(body) > 4096 || len(attempt) < 16 || len(attempt) > 96 {
 		return nil, fault("invalid_schema")
 	}
 	for _, r := range attempt {

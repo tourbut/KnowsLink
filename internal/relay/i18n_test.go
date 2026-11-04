@@ -226,9 +226,6 @@ func TestEnglishScreensHaveNoKorean(t *testing.T) {
 	for _, f := range memberFixtures() {
 		data, _ := asciiData(f.data).(map[string]any)
 		name := f.tmpl
-		if name == "gate" {
-			name = "human-gate"
-		}
 		if f.data["Member"] == nil && (name == "verify" || name == "refusal" || name == "device") {
 			data["Here"] = "/auth/verify"
 		}
@@ -277,7 +274,7 @@ func TestComposedHandlerTextTranslates(t *testing.T) {
 		}
 	}
 	st.Connections = map[string]*Connection{}
-	states = append(states, st.agentResume("a", now).State, deviceUnsure.State)
+	states = append(states, st.agentResume("a", now).State)
 	for _, s := range states {
 		if got := tr("en", s); got == s || hangul.MatchString(got) {
 			t.Errorf("resume state untranslated: %q -> %q", s, got)

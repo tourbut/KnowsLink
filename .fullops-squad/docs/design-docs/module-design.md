@@ -292,7 +292,7 @@ POLICY 48d12fa의 관계 반복·재초대 의미는 기준 4a 코드와 이미 
 | 파일 | 변경 | 검사 |
 |---|---|---|
 | connections.go | `agentLimit`: 새 agent를 막는 한도 이름(total·records·active)을 반환한다. `agentCapacity`는 이 함수를 사용한다. 한도 값·순서 집행은 같다 | TestSaturationGuidance, 기존 TestAgentAndPairCapacity·TestRevokedRecordRetention |
-| member_agents.go | `agentLimits`·`keyRecordsFull`·`connectLimit`·`agentProblem`: create·connect의 409를 실제 한도별 안내로 바꾼다. `inviteNotice`: 초대 제출 결과를 새 pending·기존 pending 유지·active 유지로 구분한다. `memberAgent.KeyFull`, `memberPair.Own/Other` | TestSaturationGuidance, TestMemberPagesShowNextSteps, TestPublicAgentHTTP 두 하위 검사 |
+| member_agents.go | `agentLimits`·`keyRecordsFull`·`connectLimit`·`agentProblem`: create·connect의 409를 실제 한도별 안내로 바꾼다. `memberAgent.KeyFull` | TestSaturationGuidance, TestMemberPagesShowNextSteps, TestPublicAgentHTTP 두 하위 검사 |
 | member.go | `refusal.create`와 거부 화면의 새 에이전트 만들기 버튼(당시 문구 "새 agent 만들기"), 초대 notice 3종, 홈의 철회 agent 보존 안내·철회 전 경고·키 기록 포화 안내, 관계 상태별 안내·종료 관계의 수동 새 초대 버튼, 종료 관계의 관계 철회 버튼 제거 | TestMemberPagesShowNextSteps, TestPublicAgentHTTP |
 
 TestRelationshipPolicy는 State 단위 관계 행렬이다. 같은/반대 방향 pending 반복의 수·세대·기한·수신자 불변, pending 메시지 거부, 발신 owner 결정 거부, 기한 직전 수락과 기한 도달 거부, 만료 뒤 새 기한·새 세대, active 반복 불변, 양측 각각의 unpair와 옛 메시지·옛 결정 거부, 양방향 재초대의 새 수락과 새 세대, 거절 뒤 늦은 수락 거부와 pending slot 해제, 타 owner 결정·unpair 거부, 같은 owner 자동 수락 없음, 송신 pending 상한의 다음 재초대가 세대를 만들지 않음, 재시작 뒤 상태 유지, 비활성 owner·철회 agent 재초대 거부를 확인한다.

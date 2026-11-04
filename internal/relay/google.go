@@ -58,8 +58,7 @@ func googleAttemptCookie(w http.ResponseWriter, value string, maxAge int) {
 }
 
 func (s *Service) googleFailure(w http.ResponseWriter, status int, problem string) {
-	v := s.startView(problem)
-	render(w, status, "start", v)
+	render(w, status, "start", s.startView(problem))
 }
 
 func (s *Service) googleStart(w http.ResponseWriter, r *http.Request, reauth bool) {
@@ -280,20 +279,15 @@ func (st *State) finishGoogleLogin(a *googleAttempt, subject, email string, now 
 		}
 	}
 	result := st.signIn(googleIssuer, subject, email, a.CurrentHash, a.Member, now)
-	if result.Problem == "" && a.Connection != "" {
-		id, _, e := st.session(result.Session, now)
-		if e != nil {
-			return verifyResult{Problem: "invalid_auth"}
+	if result.Problem == "" {
+		owner := st.Members[st.Identities[googleIssuer+"|"+subject]].Owner
+		if a.Connection != "" {
+			c := st.Connections[a.Connection]
+			c.Owner, c.State = owner, "prepared"
 		}
-		c := st.Connections[a.Connection]
-		c.Owner, c.State = st.Members[id].Owner, "prepared"
-	}
-	if result.Problem == "" && a.Remote != "" {
-		id, _, e := st.session(result.Session, now)
-		if e != nil {
-			return verifyResult{Problem: "invalid_auth"}
+		if a.Remote != "" {
+			st.remote().Attempts[a.Remote].Owner = owner
 		}
-		st.remote().Attempts[a.Remote].Owner = st.Members[id].Owner
 	}
 	return result
 }

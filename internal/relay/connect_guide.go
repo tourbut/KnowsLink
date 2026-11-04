@@ -24,10 +24,6 @@ type agentResume struct{ State, Next, Link, LinkText string }
 
 const keyManage = "/home/legacy#agents"
 
-// deviceUnsure is the U8 '승인 후 응답 유실' state: the server cannot know whether the client saved its key, so the
-// agent card and the connection page both ask for that check before any new registration.
-var deviceUnsure = agentResume{"확인 필요 · 승인 뒤 클라이언트 저장을 확인하지 못함", "시작한 클라이언트의 저장 결과를 먼저 확인하세요. 쓰지 않는 에이전트라면 직접 철회할 수 있습니다. 자동 철회는 없습니다.", keyManage, "연결·키 관리"}
-
 func (st *State) agentResume(id string, now time.Time) agentResume {
 	a := st.Agents[id]
 	// The newest attempt wins; tombstones stay 24h after expiry, so an ended attempt is still explainable.
@@ -40,9 +36,6 @@ func (st *State) agentResume(id string, now time.Time) agentResume {
 	}
 	if last != nil && now.Before(last.Exp) {
 		page := "/home/connections/" + lastID
-		if last.Device {
-			page = "/connect/" + lastID
-		}
 		r := agentResume{}
 		switch last.State {
 		case "waiting":
@@ -71,9 +64,6 @@ func (st *State) agentResume(id string, now time.Time) agentResume {
 	}
 	if activeKeys(a) > 0 {
 		return agentResume{"키 등록됨", "앱에서 연결 상태를 확인하세요. 클라이언트가 자격을 저장하지 못했다면 기존 키를 덮어쓰지 말고 그 키를 철회한 뒤 새 키 추가로 다시 연결하세요.", keyManage, "연결·키 관리"}
-	}
-	if last != nil && last.Device && (last.State == "approved" || last.State == "expired") {
-		return deviceUnsure
 	}
 	if last != nil && last.State != "consumed" {
 		ended := "이전 시도 만료"
