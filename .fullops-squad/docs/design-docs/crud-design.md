@@ -135,6 +135,8 @@ start는 Device 요청만 생성한다. Google callback은 요청의 Owner와 pr
 
 D018로 아래 '캘린더 연결 CRUD' 절의 연결 동의·승인 조회·결과 공개·연결 해제·lookup sweep을 모두 제거했다. 남은 캘린더 CRUD는 relay 기동 때 한 번 실행하는 정리 삭제뿐이다.
 
+> SAR-REFACTOR-003: 운영 상태에 캘린더 연결이 남지 않아(SAR-PUBLISH-001-OPS) 기동 정리 `RetireCalendars`·`calendar_retire.go`, legacy 필드 `State.Calendars`·`Gate.Lookup`·`googleAttempt.Calendar`, env `KNOWSLINK_CALENDAR_KEY`를 지웠다. 이 절의 기동 정리 설명은 그 전 기록이다.
+
 | 동작 | 생성 | 갱신 | 삭제 |
 |---|---|---|---|
 | 기동 정리(`RetireCalendars`) | — | lookup이 있던 미consume `pending`·`approved` gate → `denied`, 모든 `Gate.Lookup` → 빈 값 | `State.Calendars` 전체, calendar 표시 진행 중 Google attempt. commit 뒤 키가 유효하면 토큰마다 provider revoke 요청 1회 |

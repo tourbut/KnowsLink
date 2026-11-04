@@ -1,4 +1,4 @@
-// Package config validates development settings without exposing secret values.
+// Package config validates relay settings from the environment without exposing secret values.
 package config
 
 import (

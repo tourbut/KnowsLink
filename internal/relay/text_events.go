@@ -111,6 +111,9 @@ func (s *Service) textEvents(w http.ResponseWriter, r *http.Request) {
 	}()
 	ctx, cancel := context.WithTimeout(r.Context(), eventLifetime)
 	defer cancel()
+	if s.Stopping != nil {
+		defer context.AfterFunc(s.Stopping, cancel)()
+	}
 	setup, done := context.WithTimeout(ctx, 3*time.Second)
 	// Dedicated connections cannot consume the pool needed for pull/ACK. Shared admissions cap them at 16.
 	conn, err := pgx.ConnectConfig(setup, s.Pool.Config().ConnConfig.Copy())

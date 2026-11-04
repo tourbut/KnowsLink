@@ -264,7 +264,7 @@ TypeScript 검사는 Go 서버를 통해 policy 없음 deny와 gate approve 후 
 |---|---|---|
 | connections.go | owner/agent/client bound PoP·10분 grant·key credential·quota·pending expiry | TestConnectionApprovalAndKeyCredentials, TestConnectionFailureExpiryAndCancellation, TestAgentAndPairCapacity |
 | member_agents.go·member.go | 자기 agent/지문·지원 client·확인/취소 UI. 관계 세대는 hidden 값으로만 전달한다(SAR-SERVICE-UI-001-DEV 이후 화면 숫자 표시 없음) | TestPublicAgentHTTP; UX-04–05 직접 검수 후속 |
-| api_rate.go | agent API stable principal·별도 cleanup budget·DB 재시작 유지 | 기존 TestEmailIdentity, TestPublicAgentHTTP·TestPostgresSafety |
+| capacity.go | agent API stable principal·별도 cleanup budget·DB 재시작 유지 | 기존 TestEmailIdentity, TestPublicAgentHTTP·TestPostgresSafety |
 | http.go·store.go | 공용 owner 동작과 키별 current-auth·철회·pair cap | 기존 업무/게이트/시험 회귀와 새 key credential 검사 |
 | adapters/src/connect.ts | Node local prepare/complete·로컬 private key·0700/0600 설정 | connect.test.ts 실제 HTTP·PoP·파일 권한·URL·1회 완료 |
 
@@ -278,7 +278,7 @@ Node 검사는 mock relay와 실제 crypto/파일 I/O를 사용한다. Go 검사
 | connections.go | 보존 상수, agent·키 기록 상한, `revokeKeys`, 철회 agent 24h 삭제와 관련 pair 삭제 | TestRevokedRecordRetention, TestPublicAgentHTTP/revoked_record_saturation_concurrency_restart_and_retention |
 | store.go | Agent.Changed. 거부 transaction도 rate 기록을 저장 | TestPublicAgentHTTP/invalid_session_pages_spend_anonymous_budget |
 | member.go·member_agents.go | `memberHit`: 세션 확인과 회원/익명 budget 소비를 한 곳에서 수행. connect 429 응답 공용화. agent 철회 시각 기록 | 같은 integration, malformed_connection_requests_spend_anonymous_budget |
-| api_rate.go | `rateLimited`: 실제 retry 시각을 초 단위 올림으로 header·body에 표시 | malformed_connection_requests_spend_anonymous_budget, 기존 TestEmailIdentity |
+| capacity.go | `rateLimited`: 실제 retry 시각을 초 단위 올림으로 header·body에 표시 | malformed_connection_requests_spend_anonymous_budget, 기존 TestEmailIdentity |
 | http.go | 합성 keys 경로 키 기록 상한, 반복 key-revoke의 철회 시각 유지, 없는 agent pair 거부 | TestRevokedRecordRetention |
 | member.go·member_agents.go(UI) | `refusal` template·`refused`: 거부 화면의 홈/로그인 링크와 재확인 버튼. 지문 `<code>`, 줄바꿈·select 스타일, 열린 연결만 취소, `memberPair.Deadline` KST | TestMemberPagesShowNextSteps, 기존 TestPublicAgentHTTP·TestEmailIdentity 문구 검사; designer 좁은 재검수 후속 |
 
@@ -313,7 +313,7 @@ integration은 실제 Postgres HTTP에서 초대 notice redirect 3종, 반대 �
 | capacity.go·store.go | 공통 queue100/gate100/receipt20000/claim4·shared HTTP16/4·owner당 Clean 1·본문 선수신 입장·TTL 정리·현재 세대·(commit 시각, epoch) 순서 snapshot(remember)·종료 실패 기록 회수(reclaim)·owner 제어/agent ACK 공정성 단위(agentsUnit) | TestSharedCapacitiesAndCleanupClassification, TestSharedMessageCapacityHTTP, TestSharedExecutionClaimHTTP, TestHTTPConcurrencyAcrossInstances, TestHTTPSlowBodyAndCleanupAdmission, TestValidCredentialCleanupFlood, TestFailedFinishReclaimedAtNextCommit, TestOwnerControlNotHeldByOwnAgentAcks |
 | cleanup_admission.go | 정리 입장 판정: 무상태 자격·같은 출처·gate CSRF·본문(cleanupCredential), 자기 기록(cleanupTarget), 커밋 snapshot의 자격 색인(kind·principal)으로 DB 전 자기 기록 대조와 공정성 단위 결정(cleanupOwner), 신규 포화 중 증명 못한 정리 자격의 lock 없는 단일 재조회(refresh, ReadRelay) | TestCleanupAdmissionNeedsVerifiedOwnRecord, TestRememberKeepsNewestCommit, TestCleanupSnapshotAcrossProcessesAndRestart, TestCleanupProvenWhileSnapshotStaleAndNewFull, TestValidCredentialCleanupFlood |
 | member_receipt.go·member.go | 자기 agent/요청별 metadata·queued/수신/답장/실패 구분·수동 안내 | TestMemberReceiptView, TestPublicNodeProcesses, TestPublicMessageHTTPBoundaries |
-| http.go·member_agents.go·api_rate.go | 공통 rate 차감·gate 검증본문/서명·deny 입장·현재 owner/CSRF·결정 뒤 정식 gate 화면 | TestPublicHTTPAdmissionAndGateSafety, TestEmailIdentity/member_gate_deny_form_returns_to_result와 기존 신원/gate 회귀 |
+| http.go·member_agents.go·capacity.go | 공통 rate 차감·gate 검증본문/서명·deny 입장·현재 owner/CSRF·결정 뒤 정식 gate 화면 | TestPublicHTTPAdmissionAndGateSafety, TestEmailIdentity/member_gate_deny_form_returns_to_result와 기존 신원/gate 회귀 |
 | adapters text.ts·core.ts·connect.ts | private 연결 폴더·명시 text CLI·서명 확인·persist/ACK·안전 오류 코드·relayBase 재사용 | TestPublicNodeProcesses의 실제 Node CLI/MCP + 기존 adapter 검사 |
 | mcp.ts·public-check.ts | public-node opt-in·명시 승인 send/관련 reply·수동 receive/receipt·untrusted 데이터 | 실제 독립 MCP 두 프로세스의 ID 대조와 mcp.test.ts held/discovery |
 
@@ -388,13 +388,15 @@ FullOps DESIGN 규칙은 Go 문자열 안의 CSS를 검사하지 않는다. 대�
 
 D018로 아래 '캘린더 연동 모듈' 절의 `calendar.go`와 그 검사 파일을 지웠다. 그 절은 철회 전 기록이다.
 
+> SAR-REFACTOR-003: 운영 상태에 캘린더 연결이 남지 않아(SAR-PUBLISH-001-OPS) 기동 정리 `RetireCalendars`·`calendar_retire.go`, legacy 필드 `State.Calendars`·`Gate.Lookup`·`googleAttempt.Calendar`, env `KNOWSLINK_CALENDAR_KEY`를 지웠다. 이 절의 기동 정리 설명은 그 전 기록이다.
+
 - `calendar_retire.go`: `Service.RetireCalendars(ctx, key)`는 `cmd/relay/main.go`가 요청을 받기 전에 한 번 부른다. `State.retireCalendars`는 한 transaction 안에서 `State.Calendars`를 지우고 모든 `Gate.Lookup`을 비운다. lookup이 있던 미consume `pending`·`approved` gate는 `denied`로 끝내고 calendar 표시 Google attempt를 지운다. commit 뒤 `revokeSealed`가 member ID를 GCM additional data로 봉인을 열어 `https://oauth2.googleapis.com/revoke`에 한 번 POST한다(5초 timeout). 키가 없거나 base64 32바이트가 아니면 revoke 없이 지운다. 로그는 개수만 남긴다. legacy 타입 `legacyCalendar{Sealed}`와 정리 파일은 운영 상태에 연결이 없음을 확인한 뒤 지운다(파일의 `shortcut:` 주석).
 - `google.go`: `ConfigureGoogle`의 `calendarKey` 인자와 calendar attempt를 지웠다. 로그인 scope는 `openid email`이다. `googleAttempt.Calendar`는 정리용 legacy 필드다.
 - `store.go`·`http.go`·`protocol.go`: `CalendarReady`·`sweepLookups`·`scheduleAllowed`·disclosure 대조·`disclosureShape`를 지웠다. `relay.result` `done`은 `disclosure_denied`다. `gate-consume`은 항상 `disclosure:false`다. `GET /v1/gates/{id}`는 저장 상태를 그대로 보인다. `owner-revoke`는 캘린더를 다루지 않는다.
 - `gate_summary.go`·`human_pages.go`·`i18n_en_*.go`: '공개되는 내용' 행·`calendarGateScope`·설정 '캘린더 연결' 절·미연결 승인 불가 문구와 그 영어판을 지웠다. 두 일정 intent의 승인 상세는 U5 고정 문구다.
 - `policy_pages.go`: `GET /privacy`·`GET /terms` 처리기 `policyPage`. `policy/{privacy,terms}.{ko,en}.html` 정적 본문을 embed로 한 번 읽는다. 시행일은 상수 `policyEffective`(`2026-10-22`) 하나다. 배포일이 바뀌면 이 상수만 바꾼다. 로그인 회원의 저장 언어를 적용하고 세션 조회 실패는 무시한다. `landing_pages.go`의 하단(`landing-footer`)·`#start` 안내와 `human_pages.go` 설정 링크가 두 페이지로 간다. `member.go`가 경로를 등록한다.
 - `adapters/src/core.ts`·`synthetic.ts`: SAR-SCHEDULE-001 이전 판으로 되돌렸다. 승인된 gate를 consume한 뒤 결과는 항상 `denied`다. 합성 `schedule.query`의 기간은 다시 고정 값이다(D010 범위 검사가 없다).
-- 검사: `calendar_retire_integration_test.go`(`TestRetireCalendars`, `TestCalendarRoutesRetired`, `TestRetireCalendarsKeepsConsumedGate`), `policy_pages_test.go`(`TestPolicyPages`, `TestPolicyLinks`), `landing_integration_test.go` `TestPolicyPagesPublic`, `publish_browser_fixture_test.go`(태그 `integration && publishfixture`, 합성 legacy 상태·로컬 revoke 대상의 격리 fixture), `scripts/check_public_ingress.py`.
+- 검사: `integration_test.go` `TestCalendarRoutesRetired`, `policy_pages_test.go`(`TestPolicyPages`, `TestPolicyLinks`), `landing_integration_test.go` `TestPolicyPagesPublic`, `scripts/check_public_ingress.py`.
 
 ## 캘린더 연동 모듈 — SAR-SCHEDULE-001-DEV
 

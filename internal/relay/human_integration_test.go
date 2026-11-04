@@ -155,7 +155,15 @@ func TestHumanPostgres(t *testing.T) {
 	form.Set("from", aa)
 	form.Set("to", ab)
 	form.Set("text", strings.Repeat("한", 1366))
-	expect(t, a.do("POST", "/home/conversation/send", form), 422)
+	expect(t, a.do("POST", "/home/conversation/send", form), 422, `action="/home/conversation/send"`)
+	// 4096 UTF-8 bytes percent-encode past the 8 KiB form cap; the composer route admits them (HP-10).
+	form.Set("text", strings.Repeat("한", 1365)+"x")
+	form.Set("attempt", "human-long-korean-01")
+	expect(t, a.do("POST", "/home/conversation/send", form), 303)
+	// A malformed form reaches the handler's own refusal instead of acting on the pairs that decoded.
+	form.Set("text", "합성 형식 오류")
+	form.Set("attempt", "human-malformed-form-01")
+	expect(t, a.do("POST", "/home/conversation/send?x=%zz", form), 422)
 	expect(t, c.do("GET", conversationURL(aa, ab), nil), 403)
 	lease := publicCall(t, h, "/v1/text/pull", tokens["a"], map[string]string{}, 200)
 	pending := lease["envelope"].(map[string]any)["id"].(string)

@@ -1,4 +1,4 @@
-// Relay serves local synthetic relay.v1 transport and owner human-gate UI.
+// Relay serves the relay.v1 API, member and owner web pages, and install files.
 package main
 
 import (
@@ -10,6 +10,7 @@ import (
 	"os/signal"
 	"syscall"
 	"time"
+	_ "time/tzdata" // the runtime image has no zoneinfo; schedule.commit validates IANA zones with LoadLocation
 
 	"github.com/jackc/pgx/v5/pgxpool"
 	"github.com/tourbut/KnowsLink/internal/config"
@@ -51,15 +52,11 @@ func run(ctx context.Context) error {
 	if err != nil {
 		return err
 	}
-	service := &relay.Service{Pool: pool, TestAgents: testAgents, SyntheticSignup: os.Getenv("KNOWSLINK_SYNTHETIC_SIGNUP") == "1", InstallDir: os.Getenv("KNOWSLINK_INSTALL_DIR")}
+	service := &relay.Service{Pool: pool, Stopping: ctx, TestAgents: testAgents, SyntheticSignup: os.Getenv("KNOWSLINK_SYNTHETIC_SIGNUP") == "1", InstallDir: os.Getenv("KNOWSLINK_INSTALL_DIR")}
 	googleCtx, googleCancel := context.WithTimeout(ctx, 6*time.Second)
 	service.Google, err = relay.ConfigureGoogle(googleCtx, os.Getenv("KNOWSLINK_GOOGLE_CLIENT_ID"), os.Getenv("KNOWSLINK_GOOGLE_CLIENT_SECRET"), os.Getenv("KNOWSLINK_GOOGLE_REDIRECT_URL"))
 	googleCancel()
 	if err != nil {
-		return err
-	}
-	// D018: retired calendar connections are revoked (when the optional key is still set) and deleted before serving.
-	if err = service.RetireCalendars(ctx, os.Getenv("KNOWSLINK_CALENDAR_KEY")); err != nil {
 		return err
 	}
 	if smtpURL := os.Getenv("KNOWSLINK_SMTP_URL"); smtpURL != "" {

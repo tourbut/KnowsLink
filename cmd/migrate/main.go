@@ -51,10 +51,6 @@ func run() error {
 		return errors.New("database ping failed")
 	}
 	provider, err := goose.NewProvider(goose.DialectPostgres, db, os.DirFS(directory), goose.WithDisableGlobalRegistry(true))
-	if errors.Is(err, goose.ErrNoMigrations) {
-		log.Print("no SQL migrations; no-op (no business schema exists)")
-		return nil
-	}
 	if err != nil {
 		return errors.New("SQL migration configuration failed")
 	}

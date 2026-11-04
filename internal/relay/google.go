@@ -27,7 +27,6 @@ type googleAttempt struct {
 	Connection                           string
 	Remote                               string
 	Receipt                              bool
-	Calendar                             bool `json:",omitempty"` // retired calendar consent, dropped by retireCalendars
 	Created, Exp                         time.Time
 }
 

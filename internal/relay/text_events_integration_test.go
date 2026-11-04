@@ -137,3 +137,32 @@ func TestTextEventsHTTP(t *testing.T) {
 		time.Sleep(10 * time.Millisecond)
 	}
 }
+
+// Shutdown ends open streams through Service.Stopping, so Shutdown drains and the admission record is deleted.
+func TestTextEventsEndOnStopping(t *testing.T) {
+	f := setup(t, messagePool(t))
+	f.mutate(func(st *State) { st.Members["member_b"] = &Member{Owner: f.owners["agent_b"], Active: true} })
+	stopping, stop := context.WithCancel(context.Background())
+	defer stop()
+	server := httptest.NewServer((&Service{Pool: f.s.Pool, Stopping: stopping}).Handler())
+	defer server.Close()
+	req, _ := http.NewRequest("GET", server.URL+"/v1/text/events", nil)
+	req.Header.Set("Authorization", "Bearer "+f.tokens["agent_b"])
+	res, err := (&http.Client{Timeout: 10 * time.Second}).Do(req)
+	if err != nil || res.StatusCode != 200 {
+		t.Fatal("stream admission", err)
+	}
+	defer res.Body.Close()
+	if line, err := bufio.NewReader(res.Body).ReadString('\n'); err != nil || line != "event: ready\n" {
+		t.Fatal("ready", line, err)
+	}
+	stop()
+	if _, err := io.ReadAll(res.Body); err != nil {
+		t.Fatal("stream did not end on stopping", err)
+	}
+	count := -1
+	f.mutate(func(st *State) { count = len(st.Streams) })
+	if count != 0 {
+		t.Fatal("stream admission left after stopping", count)
+	}
+}

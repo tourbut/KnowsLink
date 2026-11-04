@@ -106,6 +106,8 @@ State.HTTP는 무작위 입장 token을 키로 하는 `{Clean,Exp,Owner}` map이
 
 ## 캘린더 legacy 필드 — SAR-PUBLISH-001-DEV
 
+> SAR-REFACTOR-003: 운영 상태에 캘린더 연결이 남지 않아(SAR-PUBLISH-001-OPS) 기동 정리 `RetireCalendars`·`calendar_retire.go`, legacy 필드 `State.Calendars`·`Gate.Lookup`·`googleAttempt.Calendar`, env `KNOWSLINK_CALENDAR_KEY`를 지웠다. 이 절의 기동 정리 설명은 그 전 기록이다.
+
 D018로 서버 캘린더 연결을 제거했다. 아래 '캘린더 연결과 조회 기록' 절의 필드는 새로 쓰지 않는다. 일회 정리 `calendar_retire.go`가 읽기 위해서만 다음 legacy 필드를 남긴다.
 
 - `State.Calendars map[memberID]*legacyCalendar{Sealed []byte}`: 정리가 봉인 토큰을 revoke 요청에 쓰려고 읽는다. 첫 기동의 정리 transaction이 map 전체를 지운다. 다른 기존 필드(`State`, `Changed`)는 읽지 않는다.
