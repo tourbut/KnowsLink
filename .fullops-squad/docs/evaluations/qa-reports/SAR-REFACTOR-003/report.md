@@ -4,7 +4,7 @@ status: draft
 updated: 2026-11-05
 owner: coor
 tasks: [SAR-REFACTOR-003]
-summary: 점검 162건 중 확인 159건을 영역별로 반영·보류한 내역, 독립 리뷰, Windows·Linux 고정 SHA 검증 결과를 기록한다.
+summary: "점검 162건 중 확인 159건을 영역별로 반영·보류한 내역, 독립 리뷰, Windows·Linux 고정 SHA 검증 결과를 기록한다."
 ---
 
 # SAR-REFACTOR-003 결과
@@ -23,7 +23,8 @@ summary: 점검 162건 중 확인 159건을 영역별로 반영·보류한 내�
 | `952f6eaa` | 기준선 | 0 | 0(재실행, 첫 실행은 컨테이너 docker CLI 부재) | 0 | 0 | 0 | 0 | `abnormal_clock` 2건 간헐 실패, 3회 재실행 0 |
 | `29ce3d47` | 영역 병합 | 0 | 0 | 0 | 0 | 0 | 0 | 0 (186 s) |
 | `3140acde` | 리뷰 SHA | 0 | 0 | 0 | 0 | 0 | 0 | 0 (150 s) |
-| FINAL_SHA | 최종 | FINAL_ROW |
+| `97195a76` | 리뷰 수정 | 0 | 0 | 0 | 0 | 0 | 0 | 0 (115 s) |
+| `02dd8c54` | 최종 후보 | 0 | 0 | 0 | 0 | 0 | 0 | 0 (102 s) |
 
 - **Linux 검사 환경:** 로컬 Docker 컨테이너(node 22.23, Go 1.27.1, gcc, docker CLI)와 격리 Postgres 17(compose와 같은 digest)이다. 운영 서버는 쓰지 않았다. 매 실행마다 해당 SHA의 bundle을 새로 clone했다.
 - **Windows 검사:**
