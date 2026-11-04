@@ -12,13 +12,14 @@ from tempfile import TemporaryDirectory
 from zipfile import ZipFile, ZipInfo, ZIP_DEFLATED
 
 ROOT = Path(__file__).resolve().parents[1]
-FILES = [".cursor-plugin/plugin.json", "mcp.json", ".grok-plugin/plugin.json", ".mcp.json", "README.md", "skills/knowslink/SKILL.md", "dist/plugin.js"]
+VERSION = json.loads((ROOT / "adapters/.claude-plugin/plugin.json").read_text(encoding="utf-8"))["version"]
+PRODUCTION_RELAY = "https://link.knowslog.com"
 COMMON = ["README.md", "skills/knowslink/SKILL.md", "dist/plugin.js"]
 HOST_FILES = {
-    "grok": {name: name for name in FILES},
-    "claude": {**{name: name for name in COMMON}, ".claude-plugin/plugin.json": ".claude-plugin/plugin.json", "config/local.mcp.json": "config/local.mcp.json", "hooks/hooks.json": "hooks/hooks.json", "hooks/register.ts": "hooks/register.ts", "hooks/register.test.ts": "hooks/register.test.ts"},
+    "grok": {name: name for name in [".cursor-plugin/plugin.json", "mcp.json", ".grok-plugin/plugin.json", ".mcp.json", *COMMON]},
+    "claude": {name: name for name in [*COMMON, ".claude-plugin/plugin.json", "config/local.mcp.json", "hooks/hooks.json", "hooks/register.ts", "hooks/register.test.ts"]},
     "codex": {**{name: name for name in COMMON}, ".codex-plugin/plugin.json": ".codex-plugin/plugin.json", ".mcp.json": "config/local.mcp.json"},
-    "claude-desktop": {**{name: name for name in COMMON}, "manifest.json": "manifest.json"},
+    "claude-desktop": {name: name for name in [*COMMON, "manifest.json"]},
 }
 
 
@@ -52,9 +53,9 @@ def package(host, verify):
         prefix = "" if host == "claude-desktop" else "knowslink/"
         for name, path in sources:
             add(archive, prefix + name, path.read_bytes())
-        add(archive, prefix + "package.json", json.dumps({"name": "knowslink", "version": "0.1.1", "private": True, "type": "module", "engines": {"node": ">=22.22.2 <23"}}) + "\n")
+        add(archive, prefix + "package.json", json.dumps({"name": "knowslink", "version": VERSION, "private": True, "type": "module", "engines": {"node": ">=22.22.2 <23"}}) + "\n")
         notices = []
-        packages = json.loads((ROOT / "adapters/package-lock.json").read_text())["packages"]
+        packages = json.loads((ROOT / "adapters/package-lock.json").read_text(encoding="utf-8"))["packages"]
         for name, metadata in sorted(packages.items()):
             if not name or metadata.get("dev"):
                 continue
@@ -62,7 +63,7 @@ def package(host, verify):
             licenses = sorted(path for path in directory.iterdir() if path.is_file() and path.name.lower().startswith(("license", "copying")))
             if not licenses:
                 raise RuntimeError(f"Missing third-party license: {name}")
-            notices.append(f"{name} {metadata['version']}\n" + "\n".join(path.read_text() for path in licenses))
+            notices.append(f"{name} {metadata['version']}\n" + "\n".join(path.read_text(encoding="utf-8") for path in licenses))
         add(archive, prefix + "THIRD_PARTY_NOTICES.txt", "\n\n".join(notices))
     print(f"Plugin: {output.relative_to(ROOT)}; sha256: {sha256(output.read_bytes()).hexdigest()}")
     if verify:
@@ -80,13 +81,12 @@ def package(host, verify):
                 private = destination.with_name("prepared-private")
                 assert not private.exists(), "Preparation must not create credentials or start login"
                 config_name = "config/local.mcp.json" if host == "claude" else ".mcp.json"
-                configured = json.loads((destination / "knowslink" / config_name).read_text())["mcpServers"]["knowslink"]
+                configured = json.loads((destination / "knowslink" / config_name).read_text(encoding="utf-8"))["mcpServers"]["knowslink"]
                 assert Path(configured["args"][0]).is_file()
                 assert configured["env"]["KNOWSLINK_AGENT_FOLDER"] == str(private)
                 assert configured["env"]["KNOWSLINK_HOST"] == host
+                (Path(temporary) / "other-private").mkdir()
                 for target in (destination, Path(temporary) / "other"):
-                    if target != destination:
-                        target.with_name("other-private").mkdir()
                     try:
                         install(output, host, target, True)
                     except ValueError:
@@ -116,13 +116,13 @@ def install(output, host, destination, connect):
     config_files = {"grok": [".mcp.json", "mcp.json"], "claude": ["config/local.mcp.json"], "codex": [".mcp.json"]}
     for name in config_files[host]:
         path = plugin / name
-        config = json.loads(path.read_text())
+        config = json.loads(path.read_text(encoding="utf-8"))
         server = config["mcpServers"]["knowslink"]
         # Codex 0.162.0 does not expand plugin-root variables in MCP args; use this durable installation path.
         server.update(command=node, args=[str(plugin / "dist/plugin.js")])
         if connect:
             # KNOWSLINK_HOST names the default agent on the consent page (A-04).
-            server["env"] = {"KNOWSLINK_MODE": "public-node", "RELAY_URL": "https://link.knowslog.com", "KNOWSLINK_AGENT_FOLDER": str(private), "KNOWSLINK_HOST": host}
+            server["env"] = {"KNOWSLINK_MODE": "public-node", "RELAY_URL": PRODUCTION_RELAY, "KNOWSLINK_AGENT_FOLDER": str(private), "KNOWSLINK_HOST": host}
             if host == "claude":
                 # Only the session the owner switches on with /knowslink-session on receives (SP-01); the mod's watcher pulls, not every MCP process.
                 server["env"]["KNOWSLINK_AUTO_RECEIVE"] = "off"
@@ -135,19 +135,14 @@ def install(output, host, destination, connect):
         print(f"New private connection folder (created only on explicit Google connect): {private}", flush=True)
 
 
-PRODUCTION_RELAY = "https://link.knowslog.com"
-
-
 def release(directory, relay):
     # The relay serves <directory>/<version>/ at /install/<version>/ (KNOWSLINK_INSTALL_DIR); a published version never changes.
-    version = json.loads((ROOT / "adapters/.claude-plugin/plugin.json").read_text())["version"]
+    version = VERSION
     target = directory.resolve() / version
-    target.mkdir(parents=True, exist_ok=False)
     values = {"__VERSION__": version, "__BASE__": f"{relay}/install/{version}", "__RELAY__": relay}
-    for host in ("claude", "codex"):
-        built = package(host, False)
-        shutil.copyfile(built, target / built.name)
-        values[f"__SHA_{host.upper()}__"] = sha256(built.read_bytes()).hexdigest()
+    built = [package(host, False) for host in ("claude", "codex")]
+    for host, path in zip(("claude", "codex"), built):
+        values[f"__SHA_{host.upper()}__"] = sha256(path.read_bytes()).hexdigest()
     script = (ROOT / "scripts/autosetup/knowslink-setup.ps1").read_text(encoding="utf-8")
     for key, value in values.items():
         script = script.replace(key, value)
@@ -156,7 +151,11 @@ def release(directory, relay):
         script = script.replace("$OpenBrowser = $true # __OPEN_BROWSER__", "$OpenBrowser = $false")
     if re.search(r"__[A-Z_]+__", script.replace("# __OPEN_BROWSER__", "")):
         raise RuntimeError("Unfilled installer placeholder")
-    (target / "knowslink-setup.ps1").write_text(script, encoding="utf-8")
+    # Create the immutable version folder only after every input check, so a failed run can be retried.
+    target.mkdir(parents=True, exist_ok=False)
+    for path in built:
+        shutil.copyfile(path, target / path.name)
+    (target / "knowslink-setup.ps1").write_text(script, encoding="utf-8", newline="\n")
     print(f"Auto-setup {version}: {target}; command: & ([scriptblock]::Create((irm {values['__BASE__']}/knowslink-setup.ps1))) -App claude -Lang ko")
     return target
 
@@ -165,7 +164,7 @@ def cloud_package(app_id, verify):
     # Cloud plugins reference an already registered app; bundling MCP makes this Desktop-only.
     if not re.fullmatch(r"(?:asdk_app_|connector_|templated_apps_)[A-Za-z0-9_-]{1,128}", app_id or ""):
         raise ValueError("--app-id requires the actual registered OpenAI app ID (without plugin_)")
-    manifest = {"$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json", "name": "knowslink", "version": "0.1.1", "description": "Approved member text through a separately connected Google installation.", "author": {"name": "KnowsLink"}, "extensions": {"com.openai": {"apps": "./.app.json", "interface": {"displayName": "KnowsLink", "shortDescription": "Approved member text", "longDescription": "Connect Google explicitly. Receive verified text; send only on the user's request. Arrival events carry no message body.", "developerName": "KnowsLink", "category": "Productivity"}}}}
+    manifest = {"$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json", "name": "knowslink", "version": VERSION, "description": "Approved member text through a separately connected Google installation.", "author": {"name": "KnowsLink"}, "extensions": {"com.openai": {"apps": "./.app.json", "interface": {"displayName": "KnowsLink", "shortDescription": "Approved member text", "longDescription": "Connect Google explicitly. Receive verified text; send only on the user's request. Arrival events carry no message body.", "developerName": "KnowsLink", "category": "Productivity"}}}}
     compatibility = {"name": manifest["name"], "version": manifest["version"], "description": manifest["description"], "author": manifest["author"], "apps": "./.app.json", "skills": "./skills/", "interface": manifest["extensions"]["com.openai"]["interface"]}
     app = {"apps": {"knowslink": {"id": app_id, "required": True}}}
     skill = """---

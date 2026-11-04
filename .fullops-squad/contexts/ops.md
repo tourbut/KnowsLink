@@ -123,3 +123,9 @@ preservation 비교의 HEAD 기준은 build 단계가 checkout을 옮기므로 b
 7c6ef373을 같은 무삭제 bundle·rollback 태그·새0600 백업·격리 복원·up으로 적용하고 운영 env의 캘린더 키를 지웠다. 정책 페이지 `/privacy|/terms`를 live ingress에 더했다. [운영 보고](../docs/evaluations/qa-reports/SAR-PUBLISH-001-OPS-test/report.md).
 정리 줄이 없으면 줄 부재가 아니라 상태 JSON(`Calendars` 키·연결 수)으로 판정한다. 이번에는 연결이 처음부터 0이었다. 백업 보존 문안(P-03)은 실제 자동 정리가 없어 문안과 다르다. 배포 전에 서버의 실제 정리 방식부터 확인한다.
 Git Bash가 `/home/...` 인자를 Windows 경로로 바꿔 sftp put이 ENOENT로 실패했다(`MSYS_NO_PATHCONV=1`). 셸 가드가 스크립트 안의 삭제 명령 문자열까지 막아 임시 파일 대신 변수와 `printf`로 `.env`를 다시 썼다. `git checkout <sha> --`는 워크트리 HEAD를 옮기므로 확인용에 쓰지 않는다.
+
+## 2026-11-05 — SAR-REFACTOR-003 (DEV, 서버 미적용)
+
+`beta.sh deploy`는 origin fetch 실패를 경고만 하고 진행한다. 먼저 `git -C /home/shin/deploy/knowslink fetch <bundle> <ref>`로 커밋을 받고 `beta.sh deploy <sha>`를 실행한다. 없는 SHA는 여전히 `unknown commit`으로 멈춘다.
+`verify.py regression`은 baseline과 현재 양쪽에서 knowslink project를 빼고 비교한다(위 baseline 결함 해소). `verify.py public`은 D12 기준 모든 미인증 probe의 404를 요구한다(위 Access 302 전제 해소). 모든 검사는 assert 대신 `-O`에서도 실패하는 명시 gate다.
+`access_apply.py`·`access_trial_plan.py`·`tunnel/config.yml.tmpl`과 `beta.sh` `render-config`·`expose`·`seed`·`owner-login`은 제거했다(git 기록에 남음). 위 기록의 해당 명령은 역사다.

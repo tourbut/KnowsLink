@@ -215,6 +215,8 @@ Dots/Work Cloud는 후보 배포 후 Custom MCP에 `https://link.knowslog.com/mc
 
 ## 시험 절차
 
+SAR-REFACTOR-003에서 `beta.sh seed`·`owner-login`을 제거했다. 아래 절차는 과거 기록이며 현재 서버에서 실행할 수 없다.
+
 1. 서버 터미널에서 합성 시험 자료를 만든다.
    `/home/shin/deploy/knowslink/deploy/knowslink/beta.sh seed`
    기대: `UI candidate: http://127.0.0.1:8080/owner/gates/<id>`가 출력된다. 이 gate는 생성 후 180초에 만료된다.

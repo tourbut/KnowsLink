@@ -5,8 +5,6 @@ set -euo pipefail
 SRC=${KNOWSLINK_SRC:-$(git -C "$(dirname "$0")" rev-parse --show-toplevel)}
 DEPLOY=${KNOWSLINK_DEPLOY:-/home/shin/deploy/knowslink}
 STATE=${KNOWSLINK_STATE_DIR:-/home/shin/deploy/knowslink-state}
-HOST=link.knowslog.com
-TEAM=${KNOWSLINK_TEAM:-scshin88}
 POSTGRES_IMAGE=postgres:17-alpine@sha256:b0f9560a2de083e2cc7382e75f808c7381a32852a7ec49117deedb300e552b24
 export KNOWSLINK_STATE_DIR=$STATE KNOWSLINK_UID=$(id -u) KNOWSLINK_GID=$(id -g)
 
@@ -47,28 +45,13 @@ restore_verify() { # restore a dump into a throwaway container with no network; 
   name=knowslink-restore-check
   docker rm -f $name >/dev/null 2>&1 || true
   docker run -d --name $name --network none -e POSTGRES_HOST_AUTH_METHOD=trust "$POSTGRES_IMAGE" >/dev/null
-  trap 'docker rm -f '$name' >/dev/null 2>&1' RETURN
+  trap 'docker rm -f '$name' >/dev/null 2>&1 || true' EXIT  # RETURN would not fire when set -e aborts the function
   # the image starts a temporary init server first; ready is the second "ready to accept connections"
   for _ in $(seq 60); do [ "$(docker logs $name 2>&1 | grep -c 'ready to accept connections')" -ge 2 ] && break; sleep 1; done
   docker exec $name psql -U postgres -qc 'CREATE ROLE knowslink' -c 'CREATE DATABASE restored OWNER knowslink'
   docker exec -i $name pg_restore -U postgres -d restored --no-owner <"$dump"
   docker exec $name psql -U postgres -d restored -Atc \
     "select 'tables='||(select count(*) from information_schema.tables where table_schema='public')||' relay_state_rows='||(select count(*) from relay_state)"
-}
-
-seed() { # synthetic fixture on the server; adapters only talk to loopback. Gate expires 180 s after this runs
-  cd "$DEPLOY"
-  [ -d adapters/dist ] || { npm ci --prefix adapters --silent && npm run build --prefix adapters --silent; }
-  node adapters/dist/synthetic.js http://127.0.0.1:8080 --seed
-}
-
-owner_login() { # browser HTTP Basic prompt values for the synthetic owner B; for the beta owner's own terminal only
-  python3 - "$DEPLOY/build/qa-fixture.json" <<'PY'
-import json, sys
-owner = json.load(open(sys.argv[1]))["b"]["owner"]
-print("username:", owner["owner"])
-print("basic-auth value:", owner["credential"])
-PY
 }
 
 tunnel_create() {
@@ -78,14 +61,6 @@ tunnel_create() {
   [ -n "$uuid" ] || die "no tunnel id in output"
   mv "$STATE/tunnel/new.json" "$STATE/tunnel/$uuid.json"; chmod 0600 "$STATE/tunnel/$uuid.json"
   echo "$uuid" >"$STATE/tunnel.uuid"; echo "tunnel $uuid"
-}
-
-render_config() { # needs access.aud from access_apply.py
-  uuid=$(<"$STATE/tunnel.uuid"); aud=$(<"$STATE/access.aud")
-  sed -e "s/__TUNNEL_UUID__/$uuid/g" -e "s/__TEAM_NAME__/$TEAM/" -e "s/__AUD_TAG__/$aud/" \
-    "$DEPLOY/deploy/knowslink/tunnel/config.yml.tmpl" >"$STATE/tunnel/config.yml"
-  chmod 0600 "$STATE/tunnel/config.yml"
-  cloudflared tunnel --config "$STATE/tunnel/config.yml" ingress validate
 }
 
 render_public_config() { # render-only, no Access subscription or live config changes
@@ -106,7 +81,7 @@ render_public_config() { # render-only, no Access subscription or live config ch
 deploy() { # deploy <sha>: backup, move the detached checkout, rebuild. Also the rollback path (see D12 11.3)
   sha=${1:?usage: beta.sh deploy <sha>}
   current=$(git -C "$DEPLOY" rev-parse HEAD)
-  git -C "$DEPLOY" fetch -q origin
+  git -C "$DEPLOY" fetch -q origin || echo "origin fetch failed; using commits already in $DEPLOY" >&2
   git -C "$DEPLOY" cat-file -e "$sha^{commit}" || die "unknown commit $sha"
   git -C "$DEPLOY" diff --quiet "$current" "$sha" -- db/migrations \
     || die "db/migrations differ between $current and $sha; schema compatibility needs D12 section 5 review"
@@ -117,26 +92,13 @@ deploy() { # deploy <sha>: backup, move the detached checkout, rebuild. Also the
   python3 "$DEPLOY/deploy/knowslink/verify.py" local
 }
 
-expose() { # gate: live Access app/policy/aud/team verified against the tunnel config, DNS record absent
-  [ -s "$STATE/access.aud" ] || die "Access app not recorded; run access_apply.py first"
-  grep -q 'required: true' "$STATE/tunnel/config.yml" || die "origin JWT check missing in tunnel config"
-  python3 "$DEPLOY/deploy/knowslink/access_apply.py" check || die "live Access verification failed"
-  curl -fsS -o /dev/null "http://127.0.0.1:8080/healthz" || die "relay not healthy"
-  out=$(dig +short "$HOST" A) || die "dig failed; DNS state unknown"
-  [ -z "$out" ] || die "$HOST already resolves; not overwriting"
-  cloudflared tunnel route dns "$(<"$STATE/tunnel.uuid")" "$HOST"
-  dc --profile tunnel up -d cloudflared
-}
-
 { # braces: bash parses the whole dispatch first, so "deploy" may replace this file mid-run
 case "${1:-}" in
-  prepare|up|stop|unexpose|backup|expose|seed|deploy) "$1" "${@:2}" ;;
-  owner-login) owner_login ;;
+  prepare|up|stop|unexpose|backup|deploy) "$1" "${@:2}" ;;
   restore-verify) restore_verify "${@:2}" ;;
   tunnel-create) tunnel_create ;;
-  render-config) render_config ;;
   render-public-config) render_public_config ;;
-  *) die "usage: beta.sh prepare <sha>|up|stop|unexpose|backup|deploy <sha>|restore-verify <dump>|seed|owner-login|tunnel-create|render-config|render-public-config|expose" ;;
+  *) die "usage: beta.sh prepare <sha>|up|stop|unexpose|backup|deploy <sha>|restore-verify <dump>|tunnel-create|render-public-config" ;;
 esac
   exit
 }

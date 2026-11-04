@@ -88,12 +88,17 @@ def tokenize(command):
 
 def verb_of(words):
     """Skip env assignments, wrapper commands and their options/numbers; return (verb, index of the verb word)."""
+    first, wrapped = None, False
     for i, (value, _) in enumerate(words):
         name = os.path.basename(value.replace('\\', '/')).lower().removesuffix('.exe')
         if re.fullmatch(r'\w+=.*', value) or name in PREFIXES or (i and (value.startswith('-') or re.fullmatch(r'[\d.]+[smhd]?', value))):
+            wrapped = wrapped or name in PREFIXES
             continue
-        return name, i
-    return '', len(words)
+        first = first or (name, i)
+        # A wrapper option's value (sudo -u root, timeout -s KILL, env -u HOME) is not the wrapped command.
+        if not wrapped or name in VERBS | {'find', 'git', 'robocopy'}:
+            return name, i
+    return first or ('', len(words))
 
 
 def recursive(verb, args):
@@ -101,21 +106,21 @@ def recursive(verb, args):
         arg = value.lower().split(':')[0]  # PowerShell switch value: -r:$true
         if arg in ('-r', '/s') or arg.startswith(('-rec', '--r')):
             return True
-        if verb in ('rm', 'rmdir', 'rd', 'del', 'erase', 'ri', 'remove-item', 'shred') and re.fullmatch(r'-[a-z]{1,4}', arg) and 'r' in arg:
+        if verb != 'unlink' and re.fullmatch(r'-[a-z]{1,4}', arg) and 'r' in arg:
             return True
     return False
 
 
 def targets(args):
     out, skip = [], False
-    for value, single in args:
+    for value, _ in args:
         if skip:
-            out.append((value, single))
+            out.append(value)
             skip = False
         elif value.lower() in ('-path', '-literalpath', '-lp', '-pspath'):
             skip = True
         elif not value.startswith('-') and not re.fullmatch(r'/[A-Za-z]', value):
-            out.append((value, single))
+            out.append(value)
     return out
 
 
@@ -204,7 +209,7 @@ def check(command, root):
         found = targets(args)
         if not found:
             return 'deletion without explicit targets (pipeline or xargs input) cannot be verified'
-        for value, _ in found:
+        for value in found:
             if not value or UNVERIFIED.search(value) or re.fullmatch(r'[/\\]+|[A-Za-z]:[/\\]?|/[a-z]|/mnt/[a-z]/?', value):
                 return f'deletion target {value!r} is empty, a root, or contains a variable or wildcard'
     return None

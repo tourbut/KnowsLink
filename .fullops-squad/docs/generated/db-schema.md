@@ -16,7 +16,7 @@ summary: 실제 migration SQL에서 생성한 업무 테이블을 기록한다
 
 원천: `db/migrations/00001_relay.sql`
 
-SHA256: `43e0ce1ef61672c7d93f86fa6bbc2a38a8c9e4b266ec2d8f30076bca1dd1cce2`
+SHA256: `31aa978fb6e7d26eb4be7f65cd58c6abc286c0675bacd1856368221d095c7507`
 
 ```sql
 CREATE TABLE relay_state (

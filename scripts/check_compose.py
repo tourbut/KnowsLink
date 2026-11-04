@@ -35,4 +35,13 @@ for variable in ("DATABASE_URL", "POSTGRES_PASSWORD"):
     missing[variable] = ""
     failure = subprocess.run(command, env=missing, text=True, capture_output=True)
     assert failure.returncode != 0 and f"{variable} is required" in failure.stderr
-print("Compose: four services, one-shot migrate, private Postgres, loopback relay, optional Tunnel, synthetic signup closed")
+ops = dict(environment, KNOWSLINK_STATE_DIR="/srv/knowslink-state", KNOWSLINK_UID="1000", KNOWSLINK_GID="1000")
+result = subprocess.run(command[:2] + ["-f", "compose.yaml", "-f", "deploy/knowslink/compose.ops.yaml"] + command[2:], env=ops, text=True, capture_output=True)
+if result.returncode:
+    raise SystemExit("Compose OPS override configuration failed:\n" + result.stderr)
+merged = json.loads(result.stdout)["services"]
+assert set(merged) == set(services) and not merged["postgres"].get("ports"), "OPS override must keep the services and private Postgres"
+assert all(merged[name]["read_only"] for name in ("migrate", "relay", "cloudflared")), "OPS containers must be read-only"
+assert any(volume["target"] == "/install" and volume.get("read_only") for volume in merged["relay"]["volumes"]), "relay /install must be read-only"
+assert not (merged["cloudflared"].get("environment") or {}).get("TUNNEL_TOKEN"), "OPS cloudflared must use the config file, not a token"
+print("Compose: four services, one-shot migrate, private Postgres, loopback relay, optional Tunnel, synthetic signup closed, OPS override merges")

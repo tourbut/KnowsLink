@@ -48,6 +48,10 @@ DENY = [
     'ls | xargs rm',
     'env -i rm -rf build',
     'timeout 5 rm -rf build',
+    # Wrapper option values are not the wrapped command.
+    'timeout -s KILL 60 rm -rf "$TMP_DIR/"',
+    'sudo -u root rm -rf "$TMP_DIR/"',
+    'env -u HOME rm -rf "$TMP_DIR/"',
     'rm --rec build',
     'Remove-Item @p',
     'rd /s /q %TEMP%\\x',
@@ -99,6 +103,7 @@ ALLOW = [
     'git -C . clean -n',
     'git --no-pager log -1',
     'git -C . status',
+    'timeout 60 go test ./...',
     'python3 -c "print(1)"',
     'node -e "console.log(1)"',
     'Get-ChildItem -r:$true C:\\x',

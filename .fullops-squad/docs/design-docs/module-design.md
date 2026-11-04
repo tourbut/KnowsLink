@@ -236,7 +236,6 @@ TypeScript 검사는 Go 서버를 통해 policy 없음 deny와 gate approve 후 
 - `test-transport.ts`/`mcp.ts`: configured peer로만 trial send한다. 수신 text는 claim 뒤 untrusted data로 반환한다. 기존 업무 pull 도구는 synthetic 모드를 유지한다.
 - `trial-cli.ts`/`scripts/run_trial.py`: Codex 송신 stdin·수신 CLI와 private env 로딩을 제공한다. mode·credential은 tool/argv로 받지 않는다. launcher는 0600 소유 regular config를 요구하고 이전 agent env를 상속하지 않는다.
 - `trial-setup.ts`: local beta operator만 두 신규 시험 owner/agent·Ed25519 PoP·pair를 등록한다. private 목적지 재사용을 거부한다. agent별 키와 config를 분리하고 owner 기록은 운영자에게만 둔다.
-- `deploy/knowslink/access_trial_plan.py`: 단기 distinct service token·reusable non_identity policy·path 앱 본문과 보호된 Tunnel 후보를 생성한다. live mutation은 수행하지 않는다.
 
 검증은 TestTrialMessageSafety·TestTrialSchemaAndConfiguration·TestTrialHTTP, trial-boundaries.test.ts, trial-check.ts로 연결된다. `make verify-mvp`는 기존 업무/gate 회귀와 두 독립 MCP 프로세스의 실제 Postgres 왕복을 함께 검사한다. `make verify-grok-plugin`은 네 tool을 기대한다. default held·실제 계정 수락의 분리는 계속 유지한다. [실행 기록](../exec-plans/phases/SAR-MVP-003-BIDIRECTIONAL.md)에 ID·명령·exit code·남은 실제 조건을 기록한다.
 

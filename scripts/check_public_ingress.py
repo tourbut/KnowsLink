@@ -6,13 +6,15 @@ source = (Path(__file__).resolve().parents[1] / "deploy/knowslink/tunnel/public-
 pattern = re.search(r"^  path: '(.+)'$", source, re.M)
 assert pattern, "public path rule required"
 public = re.compile(pattern[1])
-for path in ("/", "/privacy", "/terms", "/auth/google", "/auth/google/callback", "/auth/reauth", "/home", "/home/device-confirm",
-             "/connect/" + "a" * 43, "/v1/connect/start", "/v1/connect/poll", "/v1/connect/complete",
-             "/lang/ko", "/lang/en", "/v1/text/send", "/v1/text/events", "/v1/text/seen", "/v1/contacts/agent_a", "/v1/keys/agent_a/key_a", "/v1/receipts/00000000-0000-7000-8000-000000000001",
+for path in ("/", "/privacy", "/terms", "/auth/google", "/auth/google/callback", "/auth/reauth",
+             "/auth/start", "/auth/verify", "/auth/logout", "/auth/logout-all", "/home", "/home/device-confirm",
+             "/connect/" + "a" * 43, "/v1/connect/start", "/v1/connect/poll", "/v1/connect/info", "/v1/connect/prepare", "/v1/connect/complete",
+             "/lang/ko", "/lang/en", "/v1/text/send", "/v1/text/pull", "/v1/text/persist", "/v1/text/ack", "/v1/text/events", "/v1/text/seen", "/v1/contacts/agent_a", "/v1/keys/agent_a/key_a", "/v1/receipts/00000000-0000-7000-8000-000000000001",
              "/mcp", "/.well-known/oauth-protected-resource", "/.well-known/oauth-protected-resource/mcp",
              "/.well-known/oauth-authorization-server", "/remote/oauth/register", "/remote/oauth/authorize",
              "/remote/oauth/token", "/remote/oauth/revoke", "/remote/consent/" + "a" * 43,
-             "/install/0.1.0/knowslink-setup.ps1", "/install/0.1.0/knowslink-claude-plugin.zip"):
+             "/install/0.1.0/knowslink-setup.ps1", "/install/0.1.0/knowslink-claude-plugin.zip",
+             "/install/0.1.0/knowslink-codex-plugin.zip"):
     assert public.fullmatch(path), f"member path blocked: {path}"
 for path in ("/owner", "/owner/gates/x", "/v1/owners", "/v1/agents", "/v1/keys", "/v1/key-revoke",
              "/v1/owner-revoke", "/lang", "/lang/", "/lang/fr", "/lang/ko/x", "/lang/KO", "/v1/contacts", "/v1/contacts/", "/v1/contacts/agent/extra", "/v1/contacts/Agent", "/v1/text/seen/extra", "/v1/authorize", "/v1/test/pull", "/healthz", "/_probe", "/homepage",
