@@ -61,7 +61,10 @@ func (s *Service) requestBuckets(st *State, r *http.Request, now time.Time, clea
 		principal, _ = st.principal(ownerToken(r), "owner")
 		owner = principal
 	case r.URL.Path == "/mcp":
-		principal = st.remoteAdmission(bearer(r), now)
+		// Remote tokens are recognized only by /mcp admission, never by the local credential API.
+		if _, i, err := st.remotePrincipal(bearer(r), s.remoteOrigin()+"/mcp", now); err == nil {
+			principal = i.Agent
+		}
 	}
 	if principal == "" {
 		return anonymousRate(s.clientIP(r)), ""

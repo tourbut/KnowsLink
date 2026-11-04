@@ -10,11 +10,15 @@ import (
 	"encoding/json"
 	"io"
 	"net/http"
+	"net/http/httptest"
 	"net/netip"
 	"net/url"
 	"strings"
 	"testing"
 	"time"
+
+	"github.com/jackc/pgx/v5/pgxpool"
+	"golang.org/x/oauth2"
 )
 
 func remoteFixture(t *testing.T, st *State, owner string, now time.Time) (string, *remoteInstall, string, url.Values) {
@@ -216,7 +220,7 @@ func TestRemoteDeliveryClaimsRetryAndRevocation(t *testing.T) {
 	if work = st.claimRemote(now); work.Delivery != nil || work.Next.IsZero() {
 		t.Fatal("double cross-process claim")
 	}
-	st.finishRemote(job, 503, false, now)
+	st.finishRemote(job, 503, now)
 	if st.claimRemote(now).Delivery != nil {
 		t.Fatal("retry ignored backoff")
 	}
@@ -224,7 +228,7 @@ func TestRemoteDeliveryClaimsRetryAndRevocation(t *testing.T) {
 	if second.Delivery == nil || second.Delivery.Subscription.EventID != job.Subscription.EventID {
 		t.Fatal("retry changed event ID")
 	}
-	st.finishRemote(*second.Delivery, 200, false, now.Add(time.Second))
+	st.finishRemote(*second.Delivery, 200, now.Add(time.Second))
 	if st.claimRemote(now.Add(2*time.Second)).Delivery != nil {
 		t.Fatal("duplicate acknowledged event")
 	}
@@ -246,7 +250,7 @@ func TestRemoteDeliveryClaimsRetryAndRevocation(t *testing.T) {
 		if work.Delivery == nil {
 			t.Fatal("terminal response fixture")
 		}
-		st.finishRemote(*work.Delivery, status, false, now.Add(time.Minute))
+		st.finishRemote(*work.Delivery, status, now.Add(time.Minute))
 		if st.Remote.Subscriptions["sub"] != nil {
 			t.Fatal("terminal delivery response retried")
 		}
@@ -338,10 +342,10 @@ func TestRemoteAdmissionAndEventVersions(t *testing.T) {
 	st, _, now := textFixture()
 	id, i, token, form := remoteFixture(t, st, "agent_a", now)
 	before := st.eventVersion(now)
-	if st.remoteAdmission(token, now) != i.Agent || st.liveCredentials()[hashToken(token)].kind != "remote" {
+	if _, got, e := st.remotePrincipal(token, form.Get("resource"), now); e != nil || got.Agent != i.Agent || st.liveCredentials()[hashToken(token)].kind != "remote" {
 		t.Fatal("remote admission identity")
 	}
-	if st.remoteAdmission(token, now.Add(time.Hour)) != "" {
+	if _, _, e := st.remotePrincipal(token, form.Get("resource"), now.Add(time.Hour)); e == nil {
 		t.Fatal("admission kept expired token")
 	}
 	st.remote().Subscriptions["sub"] = &remoteSubscription{Install: id, Secret: "test-secret", Exp: now.Add(time.Hour)}
@@ -350,7 +354,7 @@ func TestRemoteAdmissionAndEventVersions(t *testing.T) {
 		t.Fatal("subscription bookkeeping caused DB notification loop")
 	}
 	st.Agents[i.Agent].Keys[i.Kid].Revoked = true
-	if st.remoteAdmission(token, now) != "" || before == st.eventVersion(now) {
+	if _, _, e := st.remotePrincipal(token, form.Get("resource"), now); e == nil || before == st.eventVersion(now) {
 		t.Fatal("current key revocation did not change notification/admission")
 	}
 	st.sweepRemote(now)
@@ -393,5 +397,42 @@ func TestRemoteSubscriptionIdentityAndExpiry(t *testing.T) {
 	}
 	if !remoteEmpty(json.RawMessage(`{ }`)) {
 		t.Fatal("empty filter rejected")
+	}
+}
+
+// A DB failure after admission is a retryable 503, never an auth refusal that makes the host drop its tokens.
+func TestRemoteUnavailableIsNotAuthRefusal(t *testing.T) {
+	pool, err := pgxpool.New(context.Background(), "postgres://x@127.0.0.1:1/x?connect_timeout=1") // nothing listens
+	if err != nil {
+		t.Fatal(err)
+	}
+	defer pool.Close()
+	s := &Service{Pool: pool, Google: &GoogleLogin{config: oauth2.Config{RedirectURL: "https://relay.example/auth/google/callback"}}}
+	r := httptest.NewRequest("POST", "/mcp", strings.NewReader(`{"jsonrpc":"2.0","id":1,"method":"ping"}`))
+	r.Header.Set("Authorization", "Bearer "+strings.Repeat("A", 43))
+	w := httptest.NewRecorder()
+	s.remoteMCP(w, r)
+	if w.Code != 503 || w.Header().Get("WWW-Authenticate") != "" {
+		t.Fatal("mcp unavailable", w.Code, w.Header())
+	}
+	r = httptest.NewRequest("POST", "/remote/oauth/token", strings.NewReader("grant_type=refresh_token&refresh_token=x"))
+	r.Header.Set("Content-Type", "application/x-www-form-urlencoded")
+	w = httptest.NewRecorder()
+	s.remoteToken(w, r)
+	if w.Code != 503 || !strings.Contains(w.Body.String(), "temporarily_unavailable") {
+		t.Fatal("token unavailable", w.Code, w.Body.String())
+	}
+}
+
+// The install cap keeps the attempt and shows the capacity reason instead of an expired-request page.
+func TestRemoteInstallCapIsCapacityRefusal(t *testing.T) {
+	st, _, now := textFixture()
+	remoteFixture(t, st, "agent_a", now)
+	for len(st.remote().Installs) < 500 {
+		st.Remote.Installs[randomToken()] = &remoteInstall{}
+	}
+	a := &remoteAttempt{Client: "client", Redirect: "https://chatgpt.com/callback", Resource: "https://relay.example/mcp", Owner: "agent_a", Exp: now.Add(codeTTL)}
+	if _, e := st.approveRemote(a, "Dots", now); e != (agentRefused{Code: "service_capacity"}) {
+		t.Fatal("install cap refusal", e)
 	}
 }

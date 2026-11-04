@@ -40,7 +40,7 @@ func TestRemoteExhaustedLeaseWakesNewArrival(t *testing.T) {
 	if work.Delivery == nil || work.Delivery.Subscription.EventID == oldEvent || sub.Attempts != 1 {
 		t.Fatal("new arrival did not receive a separate event and attempt budget")
 	}
-	st.finishRemote(*work.Delivery, 200, false, later)
+	st.finishRemote(*work.Delivery, 200, later)
 	if work = st.claimRemote(later); work.Delivery != nil || !work.Next.Equal(sub.Exp) {
 		t.Fatal("acknowledged arrival should wait without immediate polling")
 	}
@@ -65,7 +65,7 @@ func TestRemoteClaimsRecheckCurrentAuthority(t *testing.T) {
 	if work.Delivery == nil || work.Delivery.ID != "first" {
 		t.Fatal("new arrival reused an empty pending result")
 	}
-	st.finishRemote(*work.Delivery, 200, false, now)
+	st.finishRemote(*work.Delivery, 200, now)
 	pair.State = "revoked"
 	if st.claimRemote(now).Delivery != nil {
 		t.Fatal("second subscription reused authority from the previous claim")

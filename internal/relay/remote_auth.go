@@ -11,12 +11,14 @@ import (
 	"encoding/json"
 	"net/http"
 	"net/url"
+	"slices"
 	"strings"
 	"time"
 )
 
 const remoteScope = "knowslink.text"
 const remoteLifetime = 30 * 24 * time.Hour
+const remoteAccessLifetime = time.Hour
 
 type remoteClient struct {
 	Name      string
@@ -152,21 +154,6 @@ func (s *Service) remoteOrigin() string {
 	return "https://" + u.Host
 }
 
-// Remote tokens are recognized only by /mcp admission, never by the local credential API.
-func (st *State) remoteAdmission(token string, now time.Time) string {
-	if st.Remote == nil {
-		return ""
-	}
-	t := st.Remote.Tokens[hashToken(token)]
-	if t == nil || t.Kind != "access" || !now.Before(t.Exp) {
-		return ""
-	}
-	i, e := st.remoteInstall(t.Install, now)
-	if e != nil {
-		return ""
-	}
-	return i.Agent
-}
 func (st *State) remoteCredentials(live map[string]honored) {
 	if st.Remote == nil {
 		return
@@ -174,7 +161,7 @@ func (st *State) remoteCredentials(live map[string]honored) {
 	for id, t := range st.Remote.Tokens {
 		if t.Kind == "access" {
 			if i, e := st.remoteInstall(t.Install, time.Time{}); e == nil {
-				live[id] = honored{kind: "remote", id: i.Agent, exp: t.Exp}
+				live[id] = honored{kind: "remote", id: i.Agent}
 			}
 		}
 	}
@@ -195,9 +182,8 @@ func (s *Service) remoteRoutes(mux *http.ServeMux) {
 	mux.HandleFunc("POST /remote/oauth/revoke", s.remoteRevoke)
 	mux.HandleFunc("GET /remote/consent/{id}", s.remoteConsent)
 	mux.HandleFunc("POST /remote/consent/{id}", s.remoteConsent)
+	// Stateless Streamable HTTP has no SSE or DELETE session, so ServeMux answers other /mcp methods 405 (Allow: POST).
 	mux.HandleFunc("POST /mcp", s.remoteMCP)
-	// Stateless Streamable HTTP has no server-to-client SSE session or persistent DELETE session.
-	mux.HandleFunc("GET /mcp", func(w http.ResponseWriter, r *http.Request) { w.WriteHeader(http.StatusMethodNotAllowed) })
 }
 
 func (s *Service) remoteMetadata(auth bool) http.HandlerFunc {
@@ -237,23 +223,13 @@ func (s *Service) remoteRegister(w http.ResponseWriter, r *http.Request) {
 		writeJSON(w, 400, map[string]string{"error": "invalid_client_metadata"})
 		return
 	}
-	for _, u := range in.Redirects {
-		if !remoteURL(u) {
-			writeJSON(w, 400, map[string]string{"error": "invalid_redirect_uri"})
-			return
-		}
+	if slices.ContainsFunc(in.Redirects, func(u string) bool { return !remoteURL(u) }) {
+		writeJSON(w, 400, map[string]string{"error": "invalid_redirect_uri"})
+		return
 	}
-	for _, g := range in.Grants {
-		if g != "authorization_code" && g != "refresh_token" {
-			writeJSON(w, 400, map[string]string{"error": "invalid_client_metadata"})
-			return
-		}
-	}
-	for _, v := range in.Responses {
-		if v != "code" {
-			writeJSON(w, 400, map[string]string{"error": "invalid_client_metadata"})
-			return
-		}
+	if slices.ContainsFunc(in.Grants, func(g string) bool { return g != "authorization_code" && g != "refresh_token" }) || slices.ContainsFunc(in.Responses, func(v string) bool { return v != "code" }) {
+		writeJSON(w, 400, map[string]string{"error": "invalid_client_metadata"})
+		return
 	}
 	id := randomToken()
 	_, err := s.transaction(r.Context(), func(st *State, now time.Time) (any, error) {
@@ -283,16 +259,7 @@ func (s *Service) remoteAuthorize(w http.ResponseWriter, r *http.Request) {
 	_, err := s.transaction(r.Context(), func(st *State, now time.Time) (any, error) {
 		rs := st.remote()
 		c := rs.Clients[q.Get("client_id")]
-		if c == nil || !now.Before(c.Exp) {
-			return nil, fault("invalid_auth")
-		}
-		allowed := false
-		for _, u := range c.Redirects {
-			if u == q.Get("redirect_uri") {
-				allowed = true
-			}
-		}
-		if !allowed {
+		if c == nil || !now.Before(c.Exp) || !slices.Contains(c.Redirects, q.Get("redirect_uri")) {
 			return nil, fault("invalid_auth")
 		}
 		if len(rs.Attempts) >= 1000 {
@@ -320,9 +287,10 @@ func (s *Service) remoteConsent(w http.ResponseWriter, r *http.Request) {
 		writeJSON(w, 400, map[string]string{"error": "invalid_request"})
 		return
 	}
+	id, token := r.PathValue("id"), readCookie(r, sessionCookie)
 	v, err := s.transaction(r.Context(), func(st *State, now time.Time) (any, error) {
 		rs := st.remote()
-		a := rs.Attempts[r.PathValue("id")]
+		a := rs.Attempts[id]
 		if a == nil || !now.Before(a.Exp) {
 			return nil, fault("invalid_auth")
 		}
@@ -330,22 +298,23 @@ func (s *Service) remoteConsent(w http.ResponseWriter, r *http.Request) {
 		if c == nil || !now.Before(c.Exp) {
 			return nil, fault("invalid_auth")
 		}
-		member, session, e := st.session(readCookie(r, sessionCookie), now)
+		member, session, e := st.session(token, now)
 		if e == nil {
 			memberLang(w, r, st.Members[member])
 		}
 		login := e != nil || a.Owner == "" || st.Members[member].Owner != a.Owner || st.Members[member].Issuer != googleIssuer || now.Sub(session.Verified) >= reauthWindow
+		view := map[string]any{"Name": c.Name, "Redirect": a.Redirect, "ID": id, "CSRF": csrf(token, id)}
 		if r.Method == "GET" {
-			v := map[string]any{"Name": c.Name, "Redirect": a.Redirect, "ID": r.PathValue("id"), "Login": login, "CSRF": csrf(readCookie(r, sessionCookie), r.PathValue("id"))}
+			view["Login"] = login
 			if !login {
-				v["AgentName"] = st.defaultName(a.Owner, "dots", "") // A-04: Dots, numbered when taken
+				view["AgentName"] = st.defaultName(a.Owner, "dots", "") // A-04: Dots, numbered when taken
 			}
-			return v, nil
+			return view, nil
 		}
 		if login {
 			return nil, fault("invalid_auth")
 		}
-		if !hmac.Equal([]byte(r.PostForm.Get("csrf")), []byte(csrf(readCookie(r, sessionCookie), r.PathValue("id")))) {
+		if !hmac.Equal([]byte(r.PostForm.Get("csrf")), []byte(csrf(token, id))) {
 			return nil, fault("invalid_csrf")
 		}
 		u, _ := url.Parse(a.Redirect)
@@ -353,7 +322,7 @@ func (s *Service) remoteConsent(w http.ResponseWriter, r *http.Request) {
 		q.Set("state", a.State)
 		q.Set("iss", s.remoteOrigin())
 		if r.PostForm.Get("decision") == "deny" {
-			delete(rs.Attempts, r.PathValue("id"))
+			delete(rs.Attempts, id)
 			q.Set("error", "access_denied")
 			u.RawQuery = q.Encode()
 			return u.String(), nil
@@ -363,17 +332,18 @@ func (s *Service) remoteConsent(w http.ResponseWriter, r *http.Request) {
 		}
 		name, valid := validName(r.PostForm.Get("name"))
 		if !valid {
-			problem, kept := nameRefusal(r.PostForm.Get("name"))
-			return map[string]any{"Name": c.Name, "Redirect": a.Redirect, "ID": r.PathValue("id"), "CSRF": csrf(readCookie(r, sessionCookie), r.PathValue("id")), "AgentName": kept, "Problem": problem}, nil
+			view["Problem"], view["AgentName"] = nameRefusal(r.PostForm.Get("name"))
+			return view, nil
 		}
 		code, e := st.approveRemote(a, name, now)
 		if _, refused := e.(agentRefused); refused {
-			return map[string]any{"Name": c.Name, "Redirect": a.Redirect, "ID": r.PathValue("id"), "CSRF": csrf(readCookie(r, sessionCookie), r.PathValue("id")), "AgentName": name, "Problem": safeProblem(e)}, nil
+			view["AgentName"], view["Problem"] = name, safeProblem(e)
+			return view, nil
 		}
 		if e != nil {
 			return nil, e
 		}
-		delete(rs.Attempts, r.PathValue("id"))
+		delete(rs.Attempts, id)
 		q.Set("code", code)
 		u.RawQuery = q.Encode()
 		return u.String(), nil
@@ -388,7 +358,7 @@ func (s *Service) remoteConsent(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	view, status := v.(map[string]any), 200
-	view["Here"] = "/remote/consent/" + r.PathValue("id")
+	view["Here"] = "/remote/consent/" + id
 	if view["Problem"] != nil {
 		status = 422
 	}
@@ -404,7 +374,7 @@ func (st *State) approveRemote(a *remoteAttempt, name string, now time.Time) (st
 	}
 	r := st.remote()
 	if len(r.Installs) >= 500 {
-		return "", fault("capacity")
+		return "", agentRefused{Code: "service_capacity"}
 	}
 	public, private, err := ed25519.GenerateKey(rand.Reader)
 	if err != nil {
@@ -508,9 +478,9 @@ func (st *State) exchangeRemote(form url.Values, resource string, now time.Time)
 	c.Exp = now.Add(remoteLifetime)
 	access := randomToken()
 	refresh := remoteRefreshToken(install, client, resource, randomToken(), i.Private)
-	r.Tokens[hashToken(access)] = &remoteToken{install, client, resource, "access", now.Add(time.Hour)}
+	r.Tokens[hashToken(access)] = &remoteToken{install, client, resource, "access", now.Add(remoteAccessLifetime)}
 	r.Tokens[hashToken(refresh)] = &remoteToken{install, client, resource, "refresh", now.Add(remoteLifetime)}
-	return map[string]any{"access_token": access, "token_type": "Bearer", "expires_in": 3600, "refresh_token": refresh, "scope": remoteScope, "resource": resource}, nil
+	return map[string]any{"access_token": access, "token_type": "Bearer", "expires_in": int(remoteAccessLifetime / time.Second), "refresh_token": refresh, "scope": remoteScope, "resource": resource}, nil
 }
 
 func (s *Service) remoteToken(w http.ResponseWriter, r *http.Request) {
@@ -522,6 +492,10 @@ func (s *Service) remoteToken(w http.ResponseWriter, r *http.Request) {
 	v, err := s.transaction(r.Context(), func(st *State, now time.Time) (any, error) {
 		return st.exchangeRemote(r.PostForm, s.remoteOrigin()+"/mcp", now)
 	})
+	if err != nil && statusFor(err) == 503 {
+		writeJSON(w, 503, map[string]string{"error": "temporarily_unavailable"})
+		return
+	}
 	_, refused := v.(remoteGrantRefusal)
 	if err != nil || refused {
 		writeJSON(w, 400, map[string]string{"error": "invalid_grant"})

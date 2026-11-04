@@ -73,6 +73,22 @@ func (st *State) enterStream(id, agent string, now time.Time) error {
 	return nil
 }
 
+// listen opens a dedicated LISTEN connection; dedicated connections cannot consume the pool needed for pull/ACK.
+func (s *Service) listen(ctx context.Context) (*pgx.Conn, func(), error) {
+	setup, done := context.WithTimeout(ctx, 3*time.Second)
+	defer done()
+	conn, err := pgx.ConnectConfig(setup, s.Pool.Config().ConnConfig.Copy())
+	if err != nil {
+		return nil, func() {}, err
+	}
+	_, err = conn.Exec(setup, "LISTEN knowslink_text")
+	return conn, func() {
+		c, cancel := context.WithTimeout(context.Background(), time.Second)
+		defer cancel()
+		_ = conn.Close(c)
+	}, err
+}
+
 func (s *Service) textEvents(w http.ResponseWriter, r *http.Request) {
 	if r.URL.RawQuery != "" || r.Header.Get("Authorization") == "" {
 		respond(w, nil, fault("invalid_auth"))
@@ -111,20 +127,9 @@ func (s *Service) textEvents(w http.ResponseWriter, r *http.Request) {
 	}()
 	ctx, cancel := context.WithTimeout(r.Context(), eventLifetime)
 	defer cancel()
-	setup, done := context.WithTimeout(ctx, 3*time.Second)
-	// Dedicated connections cannot consume the pool needed for pull/ACK. Shared admissions cap them at 16.
-	conn, err := pgx.ConnectConfig(setup, s.Pool.Config().ConnConfig.Copy())
-	if err == nil {
-		_, err = conn.Exec(setup, "LISTEN knowslink_text")
-	}
-	done()
-	if conn != nil {
-		defer func() {
-			closeCtx, closeCancel := context.WithTimeout(context.Background(), time.Second)
-			defer closeCancel()
-			_ = conn.Close(closeCtx)
-		}()
-	}
+	// Shared admissions cap dedicated LISTEN connections at 16.
+	conn, release, err := s.listen(ctx)
+	defer release()
 	if err != nil {
 		respond(w, nil, fault("unavailable"))
 		return
