@@ -55,7 +55,7 @@ export type Failure = {
   agent?: string;
   name?: string;
 };
-export function failure(reason: Reason, path = "", retryAt?: string): Failure {
+function failure(reason: Reason, path = "", retryAt?: string): Failure {
   const en = lang() === "en";
   const time = retryAt
     ? `${retryAt.slice(0, 16).replace("T", " ")} UTC`

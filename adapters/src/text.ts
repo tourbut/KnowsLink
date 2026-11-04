@@ -1,11 +1,19 @@
-// Explicit member connection-check CLI/MCP transport: private onboarding folder, signed short text, manual receive and no automatic reply.
-import { createPublicKey, sign, verify } from "node:crypto";
+// Explicit member connection-check CLI/MCP transport: private onboarding folder, signed short text, manual or always-on (watch) receive and no automatic reply.
+import { sign } from "node:crypto";
 import { readFile } from "node:fs/promises";
 import { join, basename } from "node:path";
 import { pathToFileURL } from "node:url";
-import { Adapter, canonical, relayBase, uuid7, validText } from "./core.js";
+import {
+  AGENT,
+  Adapter,
+  MESSAGE_ID,
+  canonical,
+  relayBase,
+  uuid7,
+  validText,
+} from "./core.js";
 import { privatePath } from "./private-files.js";
-import { AutoReceiver, Inbox } from "./inbox.js";
+import { AutoReceiver, Inbox, safeError } from "./inbox.js";
 import { GrokWake } from "./grok-wake.js";
 import { claimSession, holdsSession, releaseSession } from "./session-lock.js";
 
@@ -112,15 +120,12 @@ export class TextTransport extends Adapter {
       !confirmed ||
       !validText(text) ||
       !/^[\x20-\x7E]{16,128}$/.test(key) ||
-      !/^[a-z][a-z0-9_:-]*$/.test(peer) ||
+      !AGENT.test(peer) ||
       peer === this.agent ||
-      (replyTo !== undefined &&
-        !/^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/.test(
-          replyTo,
-        ))
+      (replyTo !== undefined && !MESSAGE_ID.test(replyTo))
     )
       throw new Error("invalid explicit text request");
-    let expiry = Date.now() + 180000;
+    let expiry = Date.now() + 170000; // under the relay's strict 180 s ceiling so a slightly fast client clock is not ttl_too_long
     if (replyTo) {
       const parent = await this.receipt(replyTo);
       if (
@@ -163,7 +168,7 @@ export class TextTransport extends Adapter {
     return this.request(`/v1/receipts/${encodeURIComponent(id)}`);
   }
   async contact(agent: string): Promise<Contact> {
-    if (!/^[a-z][a-z0-9_:-]*$/.test(agent)) throw new Error("invalid agent");
+    if (!AGENT.test(agent)) throw new Error("invalid agent");
     const c = await this.request<Record<string, unknown>>(
       `/v1/contacts/${encodeURIComponent(agent)}`,
     );
@@ -204,10 +209,8 @@ export class TextTransport extends Adapter {
     if (
       Object.keys(e).some((k) => !allowed.includes(k)) ||
       (e.v !== "knowslink.text.v1" && !ownerWritten) ||
-      !/^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/.test(
-        e.id,
-      ) ||
-      !/^[a-z][a-z0-9_:-]*$/.test(e.from) ||
+      !MESSAGE_ID.test(e.id) ||
+      !AGENT.test(e.from) ||
       e.to !== this.agent ||
       typeof e.text !== "string" ||
       !validText(e.text) ||
@@ -217,28 +220,11 @@ export class TextTransport extends Adapter {
     )
       throw new Error("invalid text envelope");
     // Owner text comes only from the authenticated relay inbox; it carries no agent signature.
-    if (e.v === "knowslink.text.v1") {
-      const key = await this.request<{ public: string }>(
-        `/v1/keys/${encodeURIComponent(e.from)}/${encodeURIComponent(e.sig.kid)}`,
-      );
-      const publicKey = createPublicKey({
-        key: Buffer.concat([
-          Buffer.from("302a300506032b6570032100", "hex"),
-          Buffer.from(key.public, "base64url"),
-        ]),
-        type: "spki",
-        format: "der",
-      });
-      if (
-        !verify(
-          null,
-          textSigningBytes(e),
-          publicKey,
-          Buffer.from(e.sig.value, "base64url"),
-        )
-      )
-        throw new Error("invalid text signature");
-    }
+    if (
+      e.v === "knowslink.text.v1" &&
+      !(await this.signedBy(e.from, e.sig, textSigningBytes(e)))
+    )
+      throw new Error("invalid text signature");
     const result: ReceivedText = {
       id: e.id,
       from: e.from,
@@ -268,7 +254,7 @@ export async function memberTransport(folder: string): Promise<TextTransport> {
     name?: unknown;
   } = JSON.parse(await readFile(join(folder, "agent.json"), "utf8"));
   if (
-    !/^[a-z][a-z0-9_:-]*$/.test(c.agent) ||
+    !AGENT.test(c.agent) ||
     !/^[A-Za-z0-9_:-]{1,128}$/.test(c.kid) ||
     !/^[A-Za-z0-9_-]{43}$/.test(c.credential)
   )
@@ -293,7 +279,7 @@ export async function configuredMemberTransport(): Promise<TextTransport | null>
 }
 // Always-on receive into the same private inbox the MCP server reads; prints metadata only, never text.
 // With a session alias the watcher is one work session's receiver: it binds the agent folder (SP-02) and ends once another session takes it (SP-09).
-export async function watch(
+async function watch(
   folder: string,
   session?: string,
   take = false,
@@ -399,6 +385,7 @@ async function main(): Promise<void> {
   let result: unknown;
   if (action === "send" && peer && key && confirmed === "--confirmed") {
     let input = "";
+    process.stdin.setEncoding("utf8"); // keeps a UTF-8 sequence split across chunks intact
     for await (const chunk of process.stdin) {
       input += String(chunk);
       if (Buffer.byteLength(input) > 4096) throw new Error("text too large");
@@ -424,13 +411,7 @@ if (
   import.meta.url === pathToFileURL(process.argv[1]).href
 ) {
   main().catch((e: unknown) => {
-    const safe =
-      e instanceof Error &&
-      /^(relay HTTP [0-9]{3}(?: [a-z_]+)?(?: retry_at=[0-9TZ:.-]+)?|relay unreachable)$/.test(
-        e.message,
-      )
-        ? e.message
-        : "text request failed";
+    const safe = safeError(e);
     process.stderr.write(
       /^relay (unreachable|HTTP 5)/.test(safe)
         ? `${safe}. relay와 통신할 수 없습니다. 키·친구 문제가 아닙니다. 잠시 뒤 다시 시도하세요. 불확실한 송신은 같은 key·내용으로 재시도하세요.\n`

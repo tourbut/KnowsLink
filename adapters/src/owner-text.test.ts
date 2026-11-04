@@ -1,7 +1,7 @@
 // The authenticated relay can deliver explicitly owner-written text without inventing an agent signature.
 import assert from "node:assert/strict";
 import { createServer } from "node:http";
-import { uuid7 } from "./core.js";
+import { uuid7, validText } from "./core.js";
 import { TextTransport, type OwnerTextEnvelope } from "./text.js";
 
 let envelope: Record<string, unknown> = {};
@@ -56,6 +56,7 @@ try {
     { to: "agent_c" },
     { from: "invalid sender" },
     { text: " " },
+    { text: "\u0085" }, // blank to Go's strings.TrimSpace, so the relay refuses it too
     { text: "한".repeat(1366) },
     { text: "\ud800" },
     { text: "\udfff" },
@@ -72,6 +73,7 @@ try {
       "invalid envelopes must never persist/ACK",
     );
   }
+  assert(validText("﻿"), "U+FEFF is not blank to the relay");
   console.log(
     "PASS: owner authorship, recipient binding, schema refusal and durable copy before ACK",
   );

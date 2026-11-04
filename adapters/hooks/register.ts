@@ -21,6 +21,8 @@ const INVISIBLE = /[\p{Cf}\p{Default_Ignorable_Code_Point}]/gu;
 // Claude Code 2.1.302 draws an AskUserQuestion question up to its first 2000 characters and ends a longer one with an ellipsis (O-RT-01).
 const ASK_MAX = 2000;
 let link: Link | null = null;
+// A repeat on while the watcher is still binding would start a second watcher over the first (cf. D-CR-01).
+let starting: Promise<string> | null = null;
 
 const visible = (text: string): string =>
   text
@@ -112,20 +114,27 @@ async function contact($: Engine, peer: string): Promise<string> {
 async function turnOn($: Engine, take: boolean): Promise<string> {
   if (link)
     return `KnowsLink 이미 연결됨: ${summary(link)}. 끄려면 /knowslink-session off`;
+  if (starting) return starting;
+  let resolveFirst: (text: string) => void = () => {};
+  const first = new Promise<string>((resolve) => (resolveFirst = resolve));
+  starting = first; // claimed before any await, so a concurrent on cannot slip past the check
   let config: { argv: string[]; folder: string };
+  let alias: string;
   try {
     config = await readConfig($);
+    alias =
+      (await $.session.id()).replace(/[^A-Za-z0-9_-]/g, "").slice(0, 8) ||
+      "session";
   } catch (e) {
-    return `KnowsLink 연결 불가: ${e instanceof Error ? e.message : "설정을 읽지 못했습니다"}`;
+    starting = null;
+    resolveFirst(
+      `KnowsLink 연결 불가: ${e instanceof Error ? e.message : "설정을 읽지 못했습니다"}`,
+    );
+    return first;
   }
-  const alias =
-    (await $.session.id()).replace(/[^A-Za-z0-9_-]/g, "").slice(0, 8) ||
-    "session";
   const argv = [...config.argv, "watch", config.folder, "--session", alias];
   if (take) argv.push("--take");
   const child = $.process.spawn({ argv });
-  let resolveFirst: (text: string) => void = () => {};
-  const first = new Promise<string>((resolve) => (resolveFirst = resolve));
   const timer = $.clock.after(20000, () =>
     resolveFirst(
       "KnowsLink 연결 확인 응답이 없습니다. /knowslink-session status 로 다시 확인하세요.",
@@ -160,12 +169,14 @@ async function turnOn($: Engine, take: boolean): Promise<string> {
               current.agent = String(event.agent ?? "");
               current.pending = Number(event.pending ?? 0);
               link = current;
+              if (starting === first) starting = null;
               $.ui.status(line(current));
               resolveFirst(
                 `KnowsLink 연결됨: 세션 ${alias} · 내 agent ${current.agent} · 대기 ${current.pending}건. 도착은 toast로 알립니다. 본문은 요청 때 knowslink_text_receive 로 외부 데이터로 봅니다.`,
               );
               break;
             case "knowslink_session_busy":
+              if (starting === first) starting = null;
               resolveFirst(
                 `KnowsLink 연결 보류: 다른 세션 ${String(event.session)} 이(가) ${String(event.since)} 부터 이 agent를 받고 있습니다. 전환하려면 /knowslink-session on --take`,
               );
@@ -214,6 +225,7 @@ async function turnOn($: Engine, take: boolean): Promise<string> {
       ended = { code: -1 };
     } finally {
       timer.cancel();
+      if (starting === first) starting = null;
       if (link === current) {
         link = null;
         $.ui.status(undefined);

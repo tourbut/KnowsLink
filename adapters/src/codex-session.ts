@@ -17,7 +17,7 @@ export type Notice = (m: ReceivedText, pending: number) => Promise<void>;
 const CONTROL = /[\p{Cc}\p{Cf}]/gu;
 // Same rule as the Claude Code dialog (hooks/register.ts): invisible code points are named, never drawn as nothing.
 const INVISIBLE = /[\p{Cf}\p{Default_Ignorable_Code_Point}]/gu;
-export const visible = (text: string): string =>
+const visible = (text: string): string =>
   text
     .replace(
       INVISIBLE,
@@ -41,9 +41,6 @@ export class CodexSession {
     private readonly notice: Notice,
   ) {}
 
-  get bound(): boolean {
-    return this.auto !== null;
-  }
   get inbox(): Inbox | null {
     return this.auto?.inbox ?? null;
   }
@@ -174,7 +171,7 @@ export class CodexSession {
       : "KnowsLink: 소유자가 이 발송을 승인하지 않았습니다. 답장은 소유자의 별도 승인이 있어야 보냅니다.";
   }
 
-  stop(reason: string): void {
+  private stop(reason: string): void {
     if (this.guard) clearInterval(this.guard);
     this.guard = null;
     this.auto?.stop();

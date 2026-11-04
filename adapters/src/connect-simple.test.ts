@@ -31,6 +31,7 @@ let requests = 0;
 let decision: "wait" | "approve" | "cancel" = "wait";
 // One injected answer per path: [status, body].
 const inject = new Map<string, [number, object]>();
+const injectOnce = new Map<string, [number, object]>();
 const queue: TextEnvelope[] = [];
 const relay = createServer(async (req, res) => {
   requests++;
@@ -42,6 +43,11 @@ const relay = createServer(async (req, res) => {
     res.statusCode = status;
     res.end(JSON.stringify(body));
   };
+  const once = injectOnce.get(url);
+  if (once) {
+    injectOnce.delete(url);
+    return reply(...once);
+  }
   const injected = inject.get(url);
   if (injected) return reply(...injected);
   if (url.startsWith("/v1/contacts/")) {
@@ -191,6 +197,13 @@ try {
   );
   inject.clear();
   decision = "approve";
+  // A 1 s admission refusal (429 capacity) says nothing about the attempt: polling continues and connects.
+  injectOnce.set("/v1/connect/complete", [
+    429,
+    { error: "capacity", retry_at: new Date(Date.now() + 1000).toISOString() },
+  ]);
+  r = await run(join(root, "admission"));
+  assert.equal(r.last.state, "connected");
   inject.set("/v1/connect/complete", [
     429,
     { error: "agent_rate", retry_at: "2026-10-27T01:02:03Z" },

@@ -1,22 +1,22 @@
 // Installer-driven Google connection (SAR-AUTOSETUP-001 AS-05/AS-11): begins, resumes or confirms one attempt in the
 // installation's private folder and reports only public status (URL, fingerprint, agent ID/name) as JSON lines.
 import { createHash } from "node:crypto";
-import { access, readFile, readdir, rename } from "node:fs/promises";
+import { readFile, readdir, rename } from "node:fs/promises";
 import { join } from "node:path";
 import { setTimeout } from "node:timers/promises";
 import { relayBase } from "./core.js";
-import { complete } from "./connect.js";
-import { approvedAttempt, beginLogin, finishLogin } from "./login.js";
+import {
+  approvedAttempt,
+  beginLogin,
+  finishLogin,
+  transient,
+} from "./login.js";
+import { exists } from "./private-files.js";
 import { failureOf } from "./reasons.js";
 
 export type SetupEvent = Record<string, string | undefined>;
 type Outcome = "connected" | "failed" | "unconfirmed";
 
-const exists = (path: string) =>
-  access(path).then(
-    () => true,
-    () => false,
-  );
 // A missing or unreadable attempt file is a dead leftover (R-01), not a failure.
 async function json(path: string): Promise<Record<string, string> | null> {
   try {
@@ -27,11 +27,6 @@ async function json(path: string): Promise<Record<string, string> | null> {
 }
 const sha = (data: string | Buffer) =>
   createHash("sha256").update(data).digest("base64url");
-// No HTTP answer, timeouts, 5xx and rate limits say nothing about the attempt itself; keep polling.
-const transient = (e: unknown) =>
-  /unreachable|timed out|HTTP 5\d\d|rate_limited|empty relay response/.test(
-    String((e as Error)?.message ?? e),
-  );
 
 // Every failure carries a D02 E reason and its text; an approved attempt that could not be confirmed keeps its agent and name (F-07).
 export async function setupConnect(
@@ -108,16 +103,11 @@ async function connect(
   const deadline = Date.parse(expires) || Date.now();
   while (probe !== "connected") {
     try {
-      if (await approvedAttempt(folder)) await complete(folder);
-      else if ((await finishLogin(folder)) === "waiting") {
-        await setTimeout(pollMs);
-        continue;
-      }
-      break;
+      if ((await finishLogin(folder)) === "connected") break;
     } catch (e) {
       if (!transient(e) || Date.now() >= deadline + 60000) throw e;
-      await setTimeout(pollMs);
     }
+    await setTimeout(pollMs);
   }
   const { agent, name } = JSON.parse(
     await readFile(join(folder, "agent.json"), "utf8"),

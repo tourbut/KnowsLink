@@ -13,13 +13,13 @@ summary: 호스트별 로컬 플러그인 설치와 Google 연결 및 클라우�
 
 ## 현재 사람 친구·대화와 호스트 안내
 
-현재 사용자 설치·기존 업데이트의 정본은 [루트 README](../README.md)다. 회원 화면 **내 에이전트 → 어디에서 사용할까요?**의 Grok Bot·Dots 선택지는 루트 README의 해당 절로, Claude Code 작업 세션 선택지는 아래 [Claude Code 작업 세션 연결](#claude-code-작업-세션-연결--sar-session-peer-001-dev) 절로 연결된다. 화면은 Codex·Hermes Agent를 ‘지원 확인이 필요한 호스트’로 안내하며 설치 명령을 보이지 않는다. Codex 작업 세션 연결의 DEV 실측 수준은 아래 [Codex 작업 세션 연결](#codex-작업-세션-연결--sar-codex-recv-001-dev) 절이며 회원 화면 안내 변경(D11)은 후속이다. 아래 패키지 표의 Codex·Claude Desktop 행은 패키지 검사 기록이며 회원 화면의 지원 표시가 아니다. 구성·개발·운영은 [문서 목차](../docs/README.md)를 따른다. 이 문서의 과거 시험·합성·legacy 절은 당시 근거로 보존한다.
+현재 사용자 설치·기존 업데이트의 정본은 [루트 README](../README.md)다. 회원 화면 **내 에이전트 → 어디에서 사용할까요?**의 Grok Bot·Dots 선택지는 루트 README의 해당 절로, Claude Code 작업 세션 선택지는 아래 [Claude Code 작업 세션 연결](#claude-code-작업-세션-연결--sar-session-peer-001-dev) 절로 연결된다. 화면은 Claude Code·Codex에 자동 설정 명령을 보이고 Hermes Agent 등은 ‘지원 확인이 필요한 호스트’로 안내한다. Codex 작업 세션 연결은 아래 [Codex 작업 세션 연결](#codex-작업-세션-연결--sar-codex-recv-001-dev) 절을 따른다. 아래 패키지 표의 Codex·Claude Desktop 행은 패키지 검사 기록이며 회원 화면의 지원 표시가 아니다. 구성·개발·운영은 [문서 목차](../docs/README.md)를 따른다. 이 문서의 과거 시험·합성·legacy 절은 당시 근거로 보존한다.
 
 웹에서 친구 수락을 마치면 양쪽 사람의 현재·앞으로 추가할 활성 agent가 연결된다. status/contacts의 현재 대상만 사용하며 친구 해제·차단·키 철회 뒤에는 저장된 대상이라도 보내지 않는다. 이름은 화면 표시용이고 ID와 credential을 대체하지 않는다.
 
 `knowslink_text_receive` 결과의 `authorship`은 `owner` 또는 `agent`다. owner는 회원이 웹 세션으로 작성한 메시지이며 agent Ed25519 서명이 아니다. authenticated relay의 전용 owner wire를 별도 검증한다. agent는 기존 signed wire를 검증한다. 둘 다 untrusted 입력으로 취급하고 명령/도구 실행의 허가로 사용하지 않는다. private Inbox에 durable 저장한 뒤 persist/ACK하는 순서는 그대로다.
 
-긴 대화는 `knowslink_text_send`로 새 text를 반복한다. 각 발송은 새 ID·멱등키와 독립180초 기한이다. 기존 reply_to는 원요청당 한 관련 답장인 호환 API이며 오래된 부모에 의존해 대화를 이어가지 않는다. 웹 참여 세션의 새 대화 사본은 수락24h까지 조회하며 로컬 Inbox/backup 삭제와 별개다. 2026-10-13 운영 제품은 `2747fe98653d5c6946f41c219fc256395333d7fe`다. 실제 두 계정의 대화·질문 없는 알림 수락 범위와 장시간/재시작/갱신 한계는 루트 README를 따른다.
+긴 대화는 `knowslink_text_send`로 새 text를 반복한다. 각 발송은 새 ID·멱등키와 독립된 최대 180초 기한이다. 기존 reply_to는 원요청당 한 관련 답장인 호환 API이며 오래된 부모에 의존해 대화를 이어가지 않는다. 웹 참여 세션의 새 대화 사본은 수락24h까지 조회하며 로컬 Inbox/backup 삭제와 별개다. 실제 두 계정의 대화·질문 없는 알림 수락 범위와 장시간/재시작/갱신 한계는 루트 README를 따른다.
 
 공식 Grok Bot에 연결할 MCP 플러그인 패키지다. 현재 버전은 `0.1.1`이며 기본 설정은 held다. 설치만으로 relay를 호출하지 않는다. 사용자가 명시적으로 설정하면 Google로 각 클라이언트를 연결하고 승인한 회원 연결 확인 text를 교환할 수 있다. 실제 Grok/Dots 계정의 왕복은 루트 README에 연결한 별도 수락 근거로 확인한다. 다른 호스트의 합성/CLI 검사를 실제 계정 수락으로 확대하지 않는다. 업무 발송·실데이터·calendar effect·유료 inference는 제공하지 않는다.
 
@@ -57,7 +57,7 @@ python3 scripts/package_plugin.py --release /absolute/new-release-dir
 
 - 결과는 `<dir>/<버전>/`의 `knowslink-setup.ps1`, `knowslink-claude-plugin.zip`, `knowslink-codex-plugin.zip`이다. 버전은 `.claude-plugin/plugin.json`의 `version`이다. 이미 있는 버전 폴더는 거부한다.
 - 설치기 원본은 `scripts/autosetup/knowslink-setup.ps1`이다. `--release`가 버전·배포 URL·서비스 URL·두 ZIP의 SHA-256을 채운다. Node `22.22.2` win-x64/arm64 zip의 SHA-256은 원본에 고정되어 있다. 채우지 않은 자리표시자가 남으면 실패한다.
-- relay는 `KNOWSLINK_INSTALL_DIR=<dir>`일 때 `GET /install/<버전>/<파일>`로 위 세 파일만 보낸다. 설치기는 `text/plain; charset=utf-8`이다. 공개 ingress 규칙은 `deploy/knowslink/tunnel/public-ingress.yml`에 같은 경로를 허용한다. 운영 게시는 ops 과제다.
+- relay는 `KNOWSLINK_INSTALL_DIR=<dir>`일 때 `GET /install/<버전>/<파일>`로 위 세 파일만 보낸다. 설치기는 `text/plain; charset=utf-8`이다. 공개 ingress 규칙은 `deploy/knowslink/tunnel/public-ingress.yml`에 같은 경로를 허용한다.
 - `--relay-url http://127.0.0.1:<port>`는 격리 fixture용 설치기를 만든다. 이때 설치기는 브라우저를 열지 않고 링크만 출력한다.
 - 설치기는 등록 MCP 설정에 `install()`과 같은 값을 쓴다: runtime `node.exe`, 설치 폴더의 `dist/plugin.js`, `public-node`·서비스 URL·`<설치>-private`, `KNOWSLINK_HOST=<claude|codex>`, Claude `KNOWSLINK_AUTO_RECEIVE=off`, Codex `KNOWSLINK_SESSION_HOST=codex`. 설치기는 `KNOWSLINK_LANG=<-Lang>`도 쓴다.
 - Google 연결 단계는 `node dist/plugin.js setup-connect <서비스 URL> <agent 폴더> [--fresh] [--host claude|codex] [--lang ko|en]`다. 공개 상태(`waiting` URL·지문·기한, `connected` agent ID·이름·지문, `failed`, `unconfirmed` agent ID·이름)만 JSON 줄로 출력한다. `failed`·`unconfirmed`는 `reason`(D02 E 사유 코드)과 `message`(`--lang` 문구), 시각이 있으면 `retry_at`을 담는다. 설치기는 이 문구를 F-06·F-07 줄에 보인다. `--host`는 동의 화면의 기본 이름을 정한다(A-04). 대기 중 시도는 이어서 기다린다. 취소·만료 시도는 `<폴더>.unused-<시각>`으로 옮기고 새로 시작한다. 빈 폴더는 비공개 권한을 설정·확인한 뒤 그대로 쓴다. 승인 뒤 응답을 잃은 시도는 저장 결과부터 다시 확인하며, `--fresh` 전에는 새 시도를 만들지 않는다. 승인된 시도는 연결 기한이 지나도 완료를 다시 보낸다(서버는 기한 + 24시간까지 받는다).
@@ -240,7 +240,7 @@ grok mcp doctor knowslink --json
 | validate | `Plugin manifest is valid.`, `name: knowslink`, `version: 0.1.1`, `MCP servers` |
 | install | `Installed 1 plugin(s) from ...: knowslink` |
 | list | `"name": "knowslink"`, `"version": "0.1.1"` |
-| doctor | `"healthy": true`, `command found`, `handshake OK`, `4 tools discovered` |
+| doctor | `"healthy": true`, `command found`, `handshake OK`, `9 tools discovered` |
 
 install은 파일을 `~/.grok/installed-plugins/`로 복사하므로 준비 폴더는 지워도 된다. `grok mcp list`는 config.toml 서버만 보여 주므로 plugin 서버 확인에는 `grok mcp doctor` 또는 `grok inspect --json`을 사용한다. 새 Grok 세션에서 `knowslink_status`를 호출하면 `held`가 정상이다. 제거는 `grok plugin uninstall knowslink`다.
 

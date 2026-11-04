@@ -10,17 +10,11 @@ import {
 } from "node:fs/promises";
 import { join } from "node:path";
 import { GrokWake, type WakeResult } from "./grok-wake.js";
-import { privateDirectory, privatePath } from "./private-files.js";
+import { MESSAGE_ID } from "./core.js";
+import { exists, privateDirectory, privatePath } from "./private-files.js";
 import type { ReceivedText, TextTransport } from "./text.js";
 
-const ID =
-  /^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/;
 const KEEP_READ_MS = 24 * 3600 * 1000; // Relay TTL is 180s, so a read marker only needs to outlive any re-lease of the same ID.
-const exists = (path: string) =>
-  stat(path).then(
-    () => true,
-    () => false,
-  );
 
 export class Inbox {
   private constructor(private readonly dir: string) {}
@@ -34,9 +28,9 @@ export class Inbox {
     }
     return new Inbox(dir);
   }
-  // Returns false for an ID already stored or already read, so a re-leased message is ACKed again but never re-announced.
+  // Returns false for an ID already stored or already read, so a re-leased message is ACKed again but never re-announced (the first notice follows this store, not the ACK).
   async store(m: ReceivedText): Promise<boolean> {
-    if (!ID.test(m.id)) throw new Error("invalid message ID");
+    if (!MESSAGE_ID.test(m.id)) throw new Error("invalid message ID");
     const file = join(this.dir, `${m.id}.json`);
     if ((await exists(file)) || (await exists(join(this.dir, `${m.id}.read`))))
       return false;
@@ -235,8 +229,8 @@ export class AutoReceiver {
     this.ticking = true;
     this.signaled = false;
     let delay = this.idleMs;
+    const fresh: { m?: ReceivedText } = {};
     try {
-      const fresh: { m?: ReceivedText } = {};
       const leased = await this.serial(() =>
         this.transport.receive(async (m) => {
           if (await this.inbox.store(m)) fresh.m = m;
@@ -246,15 +240,6 @@ export class AutoReceiver {
       this.status.state = "running";
       this.status.lastSuccessAt = new Date().toISOString();
       if (leased) delay = 0; // Drain queued messages; each one was ACKed, so this ends.
-      if (fresh.m) {
-        this.status.lastReceivedId = fresh.m.id;
-        try {
-          await this.notify(fresh.m, (await this.inbox.pending()).length);
-          this.status.hostNotice = "sent_unverified";
-        } catch {
-          this.status.hostNotice = "failed"; // The message stays in the local inbox for manual receive.
-        }
-      }
     } catch (e) {
       this.failures++;
       this.status.state = "backoff";
@@ -264,6 +249,16 @@ export class AutoReceiver {
       const retryAt = /retry_at=(\S+)$/.exec(this.status.lastError)?.[1];
       if (retryAt)
         delay = Math.max(delay, Date.parse(retryAt) - Date.now() || 0);
+    }
+    // Announce a locally stored message even if persist/ACK failed; a re-lease finds it stored and stays silent.
+    if (fresh.m) {
+      this.status.lastReceivedId = fresh.m.id;
+      try {
+        await this.notify(fresh.m, (await this.inbox.pending()).length);
+        this.status.hostNotice = "sent_unverified";
+      } catch {
+        this.status.hostNotice = "failed"; // The message stays in the local inbox for manual receive.
+      }
     }
     // Ring independently of relay health, so messages kept across a restart or a gateway outage still ring once.
     if (this.wake instanceof GrokWake)
