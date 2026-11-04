@@ -9,7 +9,7 @@ shells = [shell for shell in ("powershell.exe", "pwsh") if shutil.which(shell)]
 if not shells:
     print("SKIP: no PowerShell on PATH")
 for shell in shells:
-    done = subprocess.run([shell, "-NoProfile", "-File", str(script)], capture_output=True, text=True, encoding="utf-8", errors="replace")
+    done = subprocess.run([shell, "-NoProfile", "-ExecutionPolicy", "Bypass", "-File", str(script)], capture_output=True, text=True, encoding="utf-8", errors="replace")
     print(f"== {shell}\n{done.stdout}{done.stderr}", end="")
     if done.returncode:
         sys.exit(f"{shell} exited {done.returncode}")

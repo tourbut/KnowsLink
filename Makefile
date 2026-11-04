@@ -11,6 +11,7 @@ lint-go:
 	@set -eu; files="$$( $$(go env GOROOT)/bin/gofmt -l cmd internal)"; \
 	if [ -n "$$files" ]; then printf 'Go formatting violations:\n%s\n' "$$files"; exit 1; fi
 	go vet ./cmd/... ./internal/...
+	go vet -tags=integration,approvalfixture,autosetupfixture,browser,connectfixture,connectsimpleqa,landingfixture,langfixture,namesfixture,publishfixture,receiptfixture ./cmd/... ./internal/...
 	go mod verify
 
 lint-adapters:
@@ -22,7 +23,7 @@ lint-config:
 	python3 scripts/check_public_ingress.py
 	bash deploy/knowslink/test_public_config.sh
 	sh -n scripts/install_bot_mcp.sh
-	python3 -m py_compile scripts/check_compose.py scripts/verify_setup.py scripts/verify_runtime.py scripts/verify_mvp.py scripts/schema.py scripts/package_plugin.py scripts/verify_grok_plugin.py scripts/mail_sink.py scripts/shell_guard.py scripts/test_shell_guard.py scripts/autosetup/test_get_registered.py
+	python3 -m compileall -q -f scripts deploy
 
 test:
 	go test -race ./cmd/... ./internal/...

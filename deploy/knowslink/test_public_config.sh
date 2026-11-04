@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 # Check render-only public configuration, private file mode and failure propagation without live deployment or Cloudflare calls.
 set -euo pipefail
-root=$(git rev-parse --show-toplevel)
+root=$(cd "$(dirname "$0")/../.." && pwd)
 test_dir=$(mktemp -d)
 trap 'rm -rf "$test_dir"' EXIT
 mkdir -p "$test_dir/state/tunnel" "$test_dir/bin"
-export KNOWSLINK_DEPLOY="$root" KNOWSLINK_STATE_DIR="$test_dir/state"
+export KNOWSLINK_SRC="$root" KNOWSLINK_DEPLOY="$root" KNOWSLINK_STATE_DIR="$test_dir/state"
 export PATH="$test_dir/bin:$PATH"
 cat >"$test_dir/bin/cloudflared" <<'SH'
 #!/bin/sh

@@ -8,19 +8,18 @@ sources = sorted((root / "db/migrations").glob("*.sql"))
 target = root / ".fullops-squad/docs/generated/db-schema.md"
 sections = []
 for source in sources:
-    raw = source.read_text()
+    raw = source.read_text(encoding="utf-8")
     sql = raw.split("-- +goose Up\n", 1)[1].split("-- +goose Down", 1)[0].strip()
     sections.append(f"원천: `{source.relative_to(root).as_posix()}`\n\n"
-                    f"SHA256: `{hashlib.sha256(source.read_bytes()).hexdigest()}`\n\n"
+                    f"SHA256: `{hashlib.sha256(raw.encode()).hexdigest()}`\n\n"
                     f"```sql\n{sql}\n```\n\n")
-metadata = ""
-if target.exists() and target.read_text().startswith("---\n"):
-    metadata = "---\n" + target.read_text().split("---\n", 2)[1] + "---\n"
+old = target.read_text(encoding="utf-8") if target.exists() else ""
+metadata = "---\n" + old.split("---\n", 2)[1] + "---\n" if old.startswith("---\n") else ""
 target.parent.mkdir(parents=True, exist_ok=True)
 target.write_text(metadata + "\n# KnowsLink 업무 테이블 정의\n\n"
                   "이 문서는 `python3 scripts/schema.py`가 실제 migration SQL에서 생성한다.\n"
                   "실제 Postgres 적용·경합 검증은 `make verify-mvp`가 수행한다.\n\n"
                   + "".join(sections) +
                   "JSON 업무 엔티티와 CRUD 정본은 [데이터 모델](../design-docs/data-model.md)이다.\n"
-                  "DB 행 삭제는 WAL·backup의 완전 삭제를 뜻하지 않는다.\n")
+                  "DB 행 삭제는 WAL·backup의 완전 삭제를 뜻하지 않는다.\n", encoding="utf-8", newline="\n")
 print(target.relative_to(root))

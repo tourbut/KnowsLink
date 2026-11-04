@@ -1,11 +1,10 @@
-"""Beta checks: baseline/regression of shared services, local relay hardening, and public Access negatives."""
+"""Beta checks: baseline/regression of shared services, local relay hardening, and public 404 negatives."""
 import http.client
 import json
 import os
 import re
 import subprocess
 import sys
-import urllib.parse
 
 STATE = os.environ.get("KNOWSLINK_STATE_DIR", "/home/shin/deploy/knowslink-state")
 HOST = "link.knowslog.com"
@@ -14,6 +13,12 @@ SHARED = ["orca.knowslog.com", "s8.knowslog.com", "mcp.knowslog.com"]
 
 def run(*command):
     return subprocess.run(command, capture_output=True, text=True, check=True).stdout
+
+
+def need(condition, message):
+    """Explicit gate: unlike assert it still fails under PYTHONOPTIMIZE."""
+    if not condition:
+        raise SystemExit("verify failed: " + message)
 
 
 def fetch(scheme, host, path, headers=None, port=None):
@@ -41,25 +46,28 @@ def baseline():
 def regression():
     saved = json.load(open(os.path.join(STATE, "shared-baseline.json")))
     now = shared_state()
-    now["projects"] = [p for p in now["projects"] if p != "knowslink"]
-    assert now == saved, f"shared services changed: {now} != {saved}"
+    for state in (now, saved):
+        state["projects"] = [p for p in state["projects"] if p != "knowslink"]
+    need(now == saved, f"shared services changed: {now} != {saved}")
     print("shared services unchanged:", saved["codes"], "pids", saved["host_cloudflared_pids"])
 
 
 def local():
-    assert fetch("http", "127.0.0.1", "/healthz", port=8080)[0] == 200
-    assert fetch("http", "127.0.0.1", "/_probe", port=8080)[0] == 404
+    need(fetch("http", "127.0.0.1", "/healthz", port=8080)[0] == 200, "healthz != 200")
+    need(fetch("http", "127.0.0.1", "/_probe", port=8080)[0] == 404, "/_probe != 404")
     for path in ("/owner", "/v1/contacts", "/v1/receipts/x"):
-        assert fetch("http", "127.0.0.1", path, port=8080)[0] == 401, path
+        need(fetch("http", "127.0.0.1", path, port=8080)[0] == 401, f"{path} != 401")
     listeners = run("ss", "-ltnH")
-    assert re.search(r"127\.0\.0\.1:8080\b", listeners) and not re.search(r"(0\.0\.0\.0|\[::\]|\*):8080\b", listeners)
+    need(re.search(r"127\.0\.0\.1:8080\b", listeners) and not re.search(r"(0\.0\.0\.0|\[::\]|\*):8080\b", listeners),
+         "relay must listen on 127.0.0.1:8080 only")
     ports = run("docker", "ps", "--filter", "label=com.docker.compose.project=knowslink", "--format", "{{.Names}} {{.Ports}}")
-    assert "5432->" not in ports and ports.count("->") == 1, ports
+    need("5432->" not in ports and ports.count("->") == 1, ports)
     for name in ("postgres", "relay"):
         inspect = json.loads(run("docker", "inspect", f"knowslink-{name}-1"))[0]
-        assert inspect["HostConfig"]["RestartPolicy"]["Name"] == "unless-stopped" and inspect["HostConfig"]["Memory"] > 0
+        need(inspect["HostConfig"]["RestartPolicy"]["Name"] == "unless-stopped" and inspect["HostConfig"]["Memory"] > 0,
+             f"{name} restart policy/memory limit")
     for path in (".env", "tunnel"):
-        assert os.stat(os.path.join(STATE, path)).st_mode & 0o077 == 0, path
+        need(os.stat(os.path.join(STATE, path)).st_mode & 0o077 == 0, f"{path} not private")
     print("local checks ok: health 200, unknown 404, owner/api 401, loopback-only relay, private Postgres, limits, 0600/0700")
 
 
@@ -67,11 +75,8 @@ def public():
     probes = [("/healthz", {}), ("/owner", {}), ("/v1/registry", {}), ("/healthz", {"Cf-Access-Jwt-Assertion": "x.y.z"}),
               ("/healthz", {"CF-Access-Client-Id": "x.access", "CF-Access-Client-Secret": "x"})]
     for path, headers in probes:
-        status, location, body = fetch("https", HOST, path, headers)
-        assert status != 200 and b"relay" not in body.lower(), (path, status)
-        assert status in (302, 401, 403), (path, status)
-        if status == 302:
-            assert urllib.parse.urlparse(location).hostname.endswith("cloudflareaccess.com"), location
+        status, _, body = fetch("https", HOST, path, headers)
+        need(status == 404 and b"relay" not in body.lower(), f"{path} {status}")  # D12: tunnel http_status:404 fallback
         print("unauthenticated", path, bool(headers), "->", status)
 
 

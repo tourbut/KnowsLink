@@ -384,6 +384,8 @@ OPS 체크아웃의 제품 코드는 초기 골격이다. 기존 후보의 제�
 
 ## 11. 본인 전용 합성 베타 (SAR-BETA-001-OPS)
 
+SAR-REFACTOR-003에서 owner-only Access 도구(`access_apply.py`, `access_trial_plan.py`, `tunnel/config.yml.tmpl`)와 `beta.sh`의 `render-config`·`expose`·`seed`·`owner-login`을 제거했다. 11.2·11.6과 13.2의 해당 단계는 역사 기록이며 파일은 git 기록에만 남는다. 현재 공개 경로는 아래 "비용 없는 Tunnel 적용" 절을 따른다.
+
 범위는 합성 데이터와 사용자 본인 이메일 한 개다. 이메일은 Git 미추적 `/tmp/knowslink-beta-owner-email`(0600)에서만 읽는다. 문서·로그·Git에 쓰지 않는다. 전체 가입 제품 규칙은 바꾸지 않는다. 이번 접근 집단만 제한한다.
 
 ### 11.1 구성 (고정 파일: `deploy/knowslink/`)
@@ -391,10 +393,9 @@ OPS 체크아웃의 제품 코드는 초기 골격이다. 기존 후보의 제�
 | 파일 | 역할 |
 |---|---|
 | `compose.ops.yaml` | restart `unless-stopped`, 자원 제한(postgres 512m·1 CPU, relay 256m·0.5 CPU, cloudflared 128m), 로그 10m×3, relay/migrate/cloudflared의 cap_drop ALL·no-new-privileges·read_only. 값은 기술 설정이며 상품 정책이 아니다 |
-| `tunnel/config.yml.tmpl` | `link.knowslog.com` → `http://relay:8080`, 나머지 404. `originRequest.access.required: true`와 teamName·audTag로 원점에서 Access JWT를 검증한다 |
-| `beta.sh` | prepare·up·stop·unexpose·backup·restore-verify·seed·owner-login·tunnel-create·render-config·expose |
-| `access_apply.py` | 사용자 이메일만 allow인 reusable policy와 self-hosted app을 만든다. 기존 앱·정책·IdP를 덮어쓰지 않는다 |
-| `verify.py` | baseline·regression(공유 서비스)·local·public(미인증 negative) |
+| `tunnel/public-ingress.yml` | member allowlist rule. `render-public-config`가 `http_status:404` catch-all을 붙인 후보를 만든다 |
+| `beta.sh` | prepare·up·stop·unexpose·backup·deploy·restore-verify·tunnel-create·render-public-config |
+| `verify.py` | baseline·regression(공유 서비스)·local·public(미인증 probe 모두 404) |
 
 배포 체크아웃은 `/home/shin/deploy/knowslink`(detached)다. 상태는 `/home/shin/deploy/knowslink-state`(0700)에 둔다: `.env`(0600), `tunnel/`, `backups/`, `access.aud`. 체크아웃은 항상 깨끗하다. Compose project는 `knowslink`다.
 
@@ -408,10 +409,10 @@ OPS 체크아웃의 제품 코드는 초기 골격이다. 기존 후보의 제�
 
 ### 11.3 중단·복귀
 
-- 구성 갱신·코드 rollback: `beta.sh deploy <sha>`. 먼저 백업(0600)하고 `deploy-history.log`에 이전→새 SHA를 남긴 뒤 detached 체크아웃을 옮겨 재빌드하고 `verify.py local`을 실행한다. `db/migrations`가 현재와 다르면 중단한다. 이 경우 본 문서 5장 3항(격리 DB 검증 뒤 복원)을 따른다. rollback도 같은 명령에 이전 SHA를 준다. 현재 SHA의 정본은 `git -C /home/shin/deploy/knowslink rev-parse HEAD`다. `deploy-history.log`는 `beta.sh deploy`로 옮긴 기록만 담고 수동 체크아웃은 담지 않는다. `8a7ad36` 이전 SHA에는 `access_apply.py check`가 없다. 그 SHA의 `beta.sh expose`는 live 검증이 없는 이전 게이트다. 그러므로 `expose`는 `check` 명령이 있는 SHA에서만 실행한다. 이전 SHA의 `beta.sh`에 `deploy`가 없으면 한계가 있다. 이 경우 `git -C /home/shin/deploy/knowslink checkout --detach <sha>`로 직접 옮기고 `beta.sh up`을 실행한다. 2026-10-03에 `437f143`으로의 rollback과 앞으로의 이동을 실제 실행했다(둘 다 exit 0, 백업 생성, 이력 기록).
+- 구성 갱신·코드 rollback: `beta.sh deploy <sha>`. 서버에 origin 경로가 없으면 먼저 `git -C /home/shin/deploy/knowslink fetch <bundle> <ref>`로 커밋을 받는다(origin fetch 실패는 경고 뒤 진행하고 없는 SHA는 중단한다). 먼저 백업(0600)하고 `deploy-history.log`에 이전→새 SHA를 남긴 뒤 detached 체크아웃을 옮겨 재빌드하고 `verify.py local`을 실행한다. `db/migrations`가 현재와 다르면 중단한다. 이 경우 본 문서 5장 3항(격리 DB 검증 뒤 복원)을 따른다. rollback도 같은 명령에 이전 SHA를 준다. 현재 SHA의 정본은 `git -C /home/shin/deploy/knowslink rev-parse HEAD`다. `deploy-history.log`는 `beta.sh deploy`로 옮긴 기록만 담고 수동 체크아웃은 담지 않는다. 이전 SHA의 `beta.sh`에 `deploy`가 없으면 한계가 있다. 이 경우 `git -C /home/shin/deploy/knowslink checkout --detach <sha>`로 직접 옮기고 `beta.sh up`을 실행한다. 2026-10-03에 `437f143`으로의 rollback과 앞으로의 이동을 실제 실행했다(둘 다 exit 0, 백업 생성, 이력 기록).
 - 노출 중단: `beta.sh unexpose`(connector만 중지). 앱·DB·볼륨을 보존한다.
 - 전체 중지: `beta.sh stop`. `down -v`와 공유 자원 prune은 금지한다.
-- 전체 철회: `access_apply.py remove`, Cloudflare 대시보드에서 `link` CNAME과 `knowslink` Tunnel을 삭제한다. 기존 `orca` Tunnel·호스트 cloudflared는 건드리지 않는다.
+- 전체 철회: Cloudflare 대시보드에서 `link` CNAME과 `knowslink` Tunnel을 삭제한다. 기존 `orca` Tunnel·호스트 cloudflared는 건드리지 않는다.
 - 데이터 복구: `beta.sh backup`(0600 dump)과 `beta.sh restore-verify <dump>`(네트워크 없는 임시 컨테이너에 복원)로 검증한다. 라이브 DB에는 적용하지 않는다.
 
 ### 11.4 held
@@ -420,7 +421,7 @@ OPS 체크아웃의 제품 코드는 초기 골격이다. 기존 후보의 제�
 
 ### 11.5 비밀 취급 주의
 
-`beta.sh owner-login`은 합성 Basic 값을 터미널에 출력한다. 사용자 본인만 자기 터미널에서 실행한다. agent·자동화는 실행하지 않는다. 출력이 세션 기록에 남는다. `access_apply.py`는 토큰·이메일·응답 본문을 출력하지 않는다.
+합성 Basic 값을 출력하던 `beta.sh owner-login`은 제거했다. 비밀값(.env, Tunnel credential, 토큰)은 터미널·세션 기록에 출력하지 않는다.
 
 ### 11.6 적용 결과 (2026-10-03, 구성 `28bd1bb`)
 
@@ -572,7 +573,7 @@ coor msg_3319725732d2에서 로그인된 dashboard API GET은 success였다. 현
 3. 후보는 member allowlist 하나와 `http_status:404` catch-all이다. `/owner`, 모든 관리자 POST, `/v1/test/*`, `/healthz`와 미허용 경로는 relay로 전달하지 않는다. origin은 계속 loopback이며 공개 Postgres 포트는 없다. 이 과제에서 trial API 코드·설정 계약은 그대로지만 현재 운영 trial 앱은 부재다. 비활성 trial을 공개 경로로 복구하지 않는다. 나중에 trial을 재활성화하면 기존 독립 인증을 검증한 구체적 경로만 404 앞에 추가한다. shared host가 같은 config에 있으면 전체 후보로 덮지 말고 KnowsLink 호스트에만 member rule과 명시적 hostname 404 fallback을 병합한다. 다른 호스트 규칙과 마지막 catch-all을 보존한다.
 4. 실제 cloudflared `ingress validate`와 `ingress rule <URL>`로 `/`, `/auth/google/callback`, `/home`, `/connect/<43자 ID>`, `/v1/connect/start`, `/v1/text/send`, `/v1/keys/agent/key`, `/v1/receipts/<UUID>`의 relay 선택을 확인한다. `/owner`, `/v1/owners`, 정확한 `/v1/keys`, `/v1/authorize`, `/v1/test/pull`, `/healthz`, 미등록 경로는404 선택을 확인한다. allowlist rule의 `required:false`만 바꿔서는 edge Access가 해제되지 않는다.
 5. 먼저 검증된 ingress를 적용해 owner/admin/test의404 차단을 확인한다. 그 뒤 백업한 두 KnowsLink Access 앱만 제거한다. 정책·IdP·다른 앱은 그대로 둔다. 광범위 Everyone 허용·새 Bypass 앱·Access 청구 동의를 만들지 않는다. API가 권한·요금제 제한으로 거부하면 추가 결제 없이 blocker로 기록한다. 경로 제한 없이 Access만 먼저 제거하지 않는다. 기존 `beta.sh expose`는 owner-only bootstrap용이므로 이 전환에 사용하지 않는다. 기존 DNS는 유지하고 검증된 config로 해당 cloudflared 서비스만 재기동한다.
-6. 외부 익명 root/connect에서 Cloudflare 로그인 redirect가 사라졌는지 확인한다. 세션 없는 home은 서비스 로그인을 요구하고 잘못된 token/proof는401/422 JSON이어야 한다. owner/admin/test/미허용 경로는404여야 한다. 실제 Google 로그인·동의·로컬 저장, 두 클라이언트의 별도 키·관계 수락·명시 승인 text 왕복을 coor·사용자가 확인한다. 다른 공유 호스트의 기존 응답도 확인한다. 합성 검사는 이 수락을 대신하지 않는다.
+6. 외부 익명 root/connect에서 Cloudflare 로그인 redirect가 사라졌는지 확인한다. 세션 없는 home은 서비스 로그인을 요구하고 잘못된 token/proof는401/422 JSON이어야 한다. owner/admin/test/미허용 경로는404여야 한다(`verify.py public`이 이 404를 검사한다). 실제 Google 로그인·동의·로컬 저장, 두 클라이언트의 별도 키·관계 수락·명시 승인 text 왕복을 coor·사용자가 확인한다. 다른 공유 호스트의 기존 응답도 확인한다. 합성 검사는 이 수락을 대신하지 않는다.
 
 공식 근거는 [Tunnel 첫 일치 및 catch-all](https://developers.cloudflare.com/cloudflare-one/networks/connectors/cloudflare-tunnel/do-more-with-tunnels/local-management/configuration-file/)과 [Access application 경로](https://developers.cloudflare.com/cloudflare-one/access-controls/policies/app-paths/)다. Context7 Cloudflare 조회는 quota 초과여서 공식 문서로 대체했다. UI는 변경하지 않았으므로 직접 시각 수락은 기존 Google/동의 흐름에 한정된다.
 
