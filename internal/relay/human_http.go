@@ -366,10 +366,7 @@ func humanClock(t, now time.Time, lang string) string {
 func (s *Service) humanPage(path string) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		v, err := s.transaction(r.Context(), func(st *State, now time.Time) (any, error) {
-			id, session, retry, e := s.memberHit(w, st, r, now, memberRate)
-			if !retry.IsZero() {
-				return refusal{status: 429, problem: limited(retry)}, nil
-			}
+			id, session, e := s.memberHit(w, st, r, now)
 			if e != nil {
 				return nil, e
 			}
@@ -405,15 +402,8 @@ func (s *Service) humanAction(path string) http.HandlerFunc {
 		r.Body = http.MaxBytesReader(w, r.Body, 16384)
 		parseErr := r.ParseForm()
 		v, err := s.transaction(r.Context(), func(st *State, now time.Time) (any, error) {
-			rates := memberRate
 			decision := r.FormValue("decision")
-			if path == "friends/decision" && decision != "accept" {
-				rates = cleanupRate
-			}
-			id, session, retry, e := s.memberHit(w, st, r, now, rates)
-			if !retry.IsZero() {
-				return refusal{status: 429, problem: limited(retry)}, nil
-			}
+			id, session, e := s.memberHit(w, st, r, now)
 			if e != nil {
 				return nil, e
 			}

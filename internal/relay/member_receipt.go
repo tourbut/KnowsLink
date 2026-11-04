@@ -23,20 +23,12 @@ func (s *Service) memberReceipt(w http.ResponseWriter, r *http.Request) {
 	var draft receiptDraft
 	var checkedAt time.Time
 	_, err := s.transaction(r.Context(), func(st *State, now time.Time) (any, error) {
-		member, _, retry, err := s.memberHit(w, st, r, now, memberRate)
+		member, _, err := s.memberHit(w, st, r, now)
 		if err != nil {
-			if !retry.IsZero() {
-				view = map[string]any{"Title": "요청 상태 조회", "Status": 429, "Problem": limited(retry), "Focus": "receipt-problem", "Unavailable": true, "Anonymous": true}
-				return nil, nil
-			}
 			return nil, err
 		}
 		view, draft = st.receiptView(member, r, now)
 		checkedAt = now
-		if !retry.IsZero() {
-			view["Status"], view["Problem"], view["Focus"] = 429, limited(retry), "receipt-problem"
-			return nil, nil
-		}
 		if view["Problem"] != nil || (!r.URL.Query().Has("id") && draft.ID == "") {
 			return nil, nil
 		}

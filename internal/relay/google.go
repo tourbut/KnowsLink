@@ -73,10 +73,7 @@ func (s *Service) googleStart(w http.ResponseWriter, r *http.Request, reauth boo
 	}
 	state := randomToken()
 	value, err := s.transaction(r.Context(), func(st *State, now time.Time) (any, error) {
-		id, _, retry, sessionErr := s.memberHit(w, st, r, now, memberRate)
-		if !retry.IsZero() {
-			return nil, fault("rate_limited")
-		}
+		id, _, sessionErr := s.memberHit(w, st, r, now)
 		if reauth && (sessionErr != nil || st.Members[id].Issuer != googleIssuer) {
 			return nil, fault("invalid_auth")
 		}

@@ -16,15 +16,6 @@ type admission struct {
 	Owner string `json:",omitempty"`
 }
 
-type requestBudgetKey struct{}
-
-func (s *Service) requestHit(st *State, r *http.Request, now time.Time, buckets ...bucket) (bool, time.Time) {
-	if r.Context().Value(requestBudgetKey{}) == true {
-		return true, time.Time{}
-	}
-	return st.hit(now, buckets...)
-}
-
 // Classify the authenticated request once, before schema, CSRF or route rejection, without trusting the request's claimed agent ID.
 // Only a verified principal ending its own record spends cleanup budget; anonymous, foreign or malformed cleanup is new work.
 // cleanOwner names the unit of cleanup fairness, the owner or its agents (agentsUnit), and is "" for new work.
@@ -297,7 +288,6 @@ func (s *Service) boundedHTTP(next http.Handler) http.Handler {
 			respond(w, nil, fault("invalid_json"))
 			return
 		}
-		r = r.WithContext(context.WithValue(r.Context(), requestBudgetKey{}, true))
 		next.ServeHTTP(w, r)
 	})
 }

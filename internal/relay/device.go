@@ -69,9 +69,6 @@ func (s *Service) deviceAPI(start bool) http.HandlerFunc {
 		var input struct{ Token, Client, Kid, Public, Proof, Host string }
 		parseErr := decodeCommand(w, r, &input)
 		value, err := s.transaction(r.Context(), func(st *State, now time.Time) (any, error) {
-			if ok, retry := s.requestHit(st, r, now, anonymousRate(s.clientIP(r))...); !ok {
-				return retry, nil
-			}
 			var c *Connection
 			e := parseErr
 			if e == nil && start {
@@ -114,10 +111,6 @@ func errorBody(e error) map[string]string {
 }
 
 func connectionResponse(w http.ResponseWriter, value any, err error) {
-	if retry, ok := value.(time.Time); ok {
-		rateLimited(w, retry)
-		return
-	}
 	if v, ok := value.(map[string]string); ok && v["error"] != "" {
 		writeJSON(w, statusFor(fault(v["error"])), v)
 		return
@@ -141,10 +134,7 @@ func (st *State) deviceOutcome(c *Connection) map[string]any {
 func (s *Service) devicePage(w http.ResponseWriter, r *http.Request) {
 	back := "/home"
 	value, err := s.transaction(r.Context(), func(st *State, now time.Time) (any, error) {
-		id, session, retry, e := s.memberHit(w, st, r, now, memberRate)
-		if !retry.IsZero() {
-			return refusal{429, limited(retry), false, false}, nil
-		}
+		id, session, e := s.memberHit(w, st, r, now)
 		c := st.Connections[r.PathValue("id")]
 		// Only the member who started the attempt learns its state or agent name; anyone else keeps the generic refusal.
 		if c != nil && c.Device && c.Owner != "" && e == nil && st.Members[id].Owner == c.Owner {

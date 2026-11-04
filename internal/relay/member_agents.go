@@ -226,15 +226,7 @@ func (s *Service) memberAction(path string) http.HandlerFunc {
 		r.Body = http.MaxBytesReader(w, r.Body, 8192)
 		parseErr := r.ParseForm()
 		value, err := s.transaction(r.Context(), func(st *State, now time.Time) (any, error) {
-			clean := path == "cancel" || path == "attempt-remove" || path == "key-revoke" || path == "agent-revoke" || path == "unpair" || (path == "invite-decision" && r.FormValue("decision") == "deny")
-			rates := memberRate
-			if clean {
-				rates = cleanupRate
-			}
-			id, session, retry, e := s.memberHit(w, st, r, now, rates)
-			if !retry.IsZero() {
-				return refusal{429, limited(retry), false, false}, nil
-			}
+			id, session, e := s.memberHit(w, st, r, now)
 			if e != nil {
 				return refusal{401, "로그인 세션이 유효하지 않습니다. 다시 로그인하세요.", false, false}, nil
 			}
@@ -399,10 +391,7 @@ func memberBack(path string) string {
 }
 func (s *Service) connectionPage(w http.ResponseWriter, r *http.Request) {
 	value, err := s.transaction(r.Context(), func(st *State, now time.Time) (any, error) {
-		id, _, retry, e := s.memberHit(w, st, r, now, memberRate)
-		if !retry.IsZero() {
-			return refusal{429, limited(retry), false, false}, nil
-		}
+		id, _, e := s.memberHit(w, st, r, now)
 		if e != nil {
 			return nil, e
 		}
@@ -433,18 +422,6 @@ func (s *Service) connectAPI(path string) http.HandlerFunc {
 		parseErr := decodeCommand(w, r, &c)
 		value, err := s.transaction(r.Context(), func(st *State, now time.Time) (any, error) {
 			conn, e := st.connection(c.Token, now)
-			rates := anonymousRate(s.clientIP(r))
-			if e == nil {
-				for id, m := range st.Members {
-					if m.Owner == conn.Owner {
-						rates = memberRate(id)
-						break
-					}
-				}
-			}
-			if ok, retry := s.requestHit(st, r, now, rates...); !ok {
-				return retry, nil
-			}
 			if parseErr != nil {
 				return errorBody(parseErr), nil
 			}

@@ -489,39 +489,17 @@ func sessionOwner(r *http.Request) (string, string) {
 	return readCookie(r, sessionCookie), "/home"
 }
 
-func (s *Service) gateOwner(w http.ResponseWriter, st *State, r *http.Request, now time.Time, auth ownerAuth, clean bool) (string, error) {
+func (s *Service) gateOwner(w http.ResponseWriter, st *State, r *http.Request, now time.Time, auth ownerAuth) (string, error) {
 	token, back := auth(r)
 	if back == "/home" {
-		rates := memberRate
-		if clean {
-			rates = cleanupRate
-		}
-		id, _, retry, err := s.memberHit(w, st, r, now, rates)
-		if !retry.IsZero() {
-			return "", &budgetError{retry}
-		}
+		id, _, err := s.memberHit(w, st, r, now)
 		if err != nil {
 			return "", err
 		}
 		return st.Members[id].Owner, nil
 	}
-	owner, err := st.principal(token, "owner")
-	rates := anonymousRate(s.clientIP(r))
-	if err == nil {
-		rates = memberRate(owner)
-		if clean {
-			rates = cleanupRate(owner)
-		}
-	}
-	if ok, retry := s.requestHit(st, r, now, rates...); !ok {
-		return "", &budgetError{retry}
-	}
-	return owner, err
+	return st.principal(token, "owner")
 }
-
-type budgetError struct{ retry time.Time }
-
-func (e *budgetError) Error() string { return "rate_limited" }
 
 func verifiedGate(st *State, g *Gate, now time.Time) (*Envelope, bool) {
 	m, h := st.Messages[g.Parent], st.Messages[g.ID]
@@ -541,7 +519,7 @@ func verifiedGate(st *State, g *Gate, now time.Time) (*Envelope, bool) {
 func (s *Service) gateView(w http.ResponseWriter, r *http.Request, auth ownerAuth) (any, error) {
 	token, back := auth(r)
 	return s.transaction(r.Context(), func(st *State, now time.Time) (any, error) {
-		owner, err := s.gateOwner(w, st, r, now, auth, false)
+		owner, err := s.gateOwner(w, st, r, now, auth)
 		if err != nil {
 			return nil, err
 		}
@@ -583,10 +561,6 @@ func gateError(w http.ResponseWriter, r *http.Request, back string, err error) {
 	if back == "/home" {
 		list = "/home/legacy#gates"
 	}
-	if e, ok := err.(*budgetError); ok {
-		refusedTo(w, "요청 승인", refusal{status: 429, problem: limited(e.retry)}, list)
-		return
-	}
 	if back == "/home" && err.Error() == "invalid_auth" {
 		expired(w, r)
 		return
@@ -618,7 +592,7 @@ func (s *Service) gateDecision(auth ownerAuth) http.HandlerFunc {
 		r.Body = http.MaxBytesReader(w, r.Body, 8*1024)
 		parseErr := r.ParseForm()
 		_, err := s.transaction(r.Context(), func(st *State, now time.Time) (any, error) {
-			owner, err := s.gateOwner(w, st, r, now, auth, r.PostForm.Get("decision") == "deny")
+			owner, err := s.gateOwner(w, st, r, now, auth)
 			if err != nil {
 				return nil, err
 			}

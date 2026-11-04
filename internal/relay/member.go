@@ -136,9 +136,6 @@ func (s *Service) authStart(w http.ResponseWriter, r *http.Request) {
 	email, valid := NormalizeEmail(raw)
 	ip := s.clientIP(r)
 	value, err := s.transaction(r.Context(), func(st *State, now time.Time) (any, error) {
-		if ok, retry := s.requestHit(st, r, now, anonymousRate(ip)...); !ok {
-			return started{Retry: retry, Limited: true}, nil
-		}
 		if !valid {
 			return started{Invalid: true}, nil
 		}
@@ -187,17 +184,12 @@ func (s *Service) verifyPage(w http.ResponseWriter, r *http.Request) {
 type verified struct {
 	verifyResult
 	Email, Exp string
-	Retry      time.Time
-	Limited    bool
 }
 
 func (s *Service) authVerify(w http.ResponseWriter, r *http.Request) {
 	r.Body = http.MaxBytesReader(w, r.Body, 8*1024)
-	pending, code, ip := readCookie(r, pendingCookie), strings.TrimSpace(r.PostFormValue("code")), s.clientIP(r)
+	pending, code := readCookie(r, pendingCookie), strings.TrimSpace(r.PostFormValue("code"))
 	value, err := s.transaction(r.Context(), func(st *State, now time.Time) (any, error) {
-		if ok, retry := s.requestHit(st, r, now, anonymousRate(ip)...); !ok {
-			return verified{Retry: retry, Limited: true}, nil
-		}
 		v := verified{}
 		if c := st.Challenges[hashToken(pending)]; pending != "" && c != nil {
 			v.Email, v.Exp = c.Email, clock(c.Exp)
@@ -212,9 +204,6 @@ func (s *Service) authVerify(w http.ResponseWriter, r *http.Request) {
 	result := value.(verified)
 	again := map[string]any{"Title": "확인 코드 입력", "Masked": maskEmail(result.Email), "Email": result.Email, "Exp": result.Exp, "Here": "/auth/verify"}
 	switch {
-	case result.Limited:
-		again["Problem"] = limited(result.Retry)
-		render(w, 429, "verify", again)
 	case result.Problem == "wrong":
 		again["Problem"] = "코드가 맞지 않습니다. 남은 시도: " + strconv.Itoa(result.Remaining) + "회."
 		render(w, 401, "verify", again)
@@ -243,26 +232,19 @@ func expired(w http.ResponseWriter, r *http.Request) {
 	http.Redirect(w, r, "/?n=expired", http.StatusSeeOther)
 }
 
-// memberHit resolves the browser session and spends one request from the member's budget, or from the source IP's
-// anonymous budget when the session is invalid, so failed and refused requests count too (PS-11).
-// A non-zero retry means the budget refused the request; the transaction keeps the spent budget even on error.
-func (s *Service) memberHit(w http.ResponseWriter, st *State, r *http.Request, now time.Time, rates func(string) []bucket) (string, *Session, time.Time, error) {
+// memberHit resolves the browser session and sets the member's response language.
+// boundedHTTP has already spent the request budget (PS-11) before any handler runs.
+func (s *Service) memberHit(w http.ResponseWriter, st *State, r *http.Request, now time.Time) (string, *Session, error) {
 	id, session, err := st.session(readCookie(r, sessionCookie), now)
-	buckets := anonymousRate(s.clientIP(r))
 	if err == nil {
-		buckets = rates(id)
 		memberLang(w, r, st.Members[id])
 	}
-	_, retry := s.requestHit(st, r, now, buckets...)
-	return id, session, retry, err
+	return id, session, err
 }
 
 func (s *Service) legacyHomePage(w http.ResponseWriter, r *http.Request) {
 	value, err := s.transaction(r.Context(), func(st *State, now time.Time) (any, error) {
-		id, session, retry, err := s.memberHit(w, st, r, now, memberRate)
-		if !retry.IsZero() {
-			return refusal{429, limited(retry), false, false}, nil
-		}
+		id, session, err := s.memberHit(w, st, r, now)
 		if err != nil {
 			return nil, err
 		}
@@ -352,10 +334,7 @@ func (s *Service) authReauth(w http.ResponseWriter, r *http.Request) {
 	}
 	ip := s.clientIP(r)
 	value, err = s.transaction(r.Context(), func(st *State, now time.Time) (any, error) {
-		id, _, retry, err := s.memberHit(w, st, r, now, memberRate)
-		if !retry.IsZero() {
-			return started{Retry: retry, Limited: true}, nil
-		}
+		id, _, err := s.memberHit(w, st, r, now)
 		if err != nil {
 			return nil, err
 		}
@@ -406,10 +385,7 @@ func (s *Service) logout(all bool) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		token := readCookie(r, sessionCookie)
 		value, err := s.transaction(r.Context(), func(st *State, now time.Time) (any, error) {
-			id, session, retry, err := s.memberHit(w, st, r, now, cleanupRate)
-			if !retry.IsZero() {
-				return refusal{429, limited(retry), false, false}, nil
-			}
+			id, session, err := s.memberHit(w, st, r, now)
 			if err != nil {
 				return nil, err
 			}
