@@ -231,7 +231,7 @@ func (s *Service) memberAction(path string) http.HandlerFunc {
 				return refusal{401, "로그인 세션이 유효하지 않습니다. 다시 로그인하세요.", false, false}, nil
 			}
 			owner := st.Members[id].Owner
-			// Return refusals as values: rejected work must commit its request budget.
+			// Return refusals as values so the page renders them; admission already charged the request budget.
 			fail := func(e error) (any, error) {
 				return refusal{statusFor(e), safeProblem(e), e.Error() == "reauth_required", false}, nil
 			}

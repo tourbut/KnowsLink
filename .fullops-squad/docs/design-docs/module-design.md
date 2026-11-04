@@ -143,7 +143,7 @@ V04 해석(사용자 결정 2026-10-17): 세션 연결(`/knowslink-session on`�
 
 `human_http.go`의 `humanAgents`는 자기·친구 화면의 동일한 owner별 활성 agent 선택과 ID 정렬을 공유한다. `TestHumanAgentListsKeepOwnerAndFriendBoundaries`가 다른 owner·철회 agent 제외, 키 없는 agent 표시, 차단 뒤 접근 거부를 확인한다. template·문구·권한 판정은 유지한다.
 
-`device.go`의 `connectionResponse`는 device API와 connect API의 동일 응답 처리를 공유한다. `TestConnectionResponseKeepsRetryAndErrorPriority`가 retry 우선순위·Retry-After·명령 오류·transaction 오류·정상 응답을 확인한다. route·transaction·rate 집행은 유지한다.
+`device.go`의 `connectionResponse`는 device API와 connect API의 동일 응답 처리를 공유한다. `TestConnectionResponseErrorPriority`가 명령 오류·transaction 오류·정상 응답을 확인한다. 요청 budget은 `boundedHTTP` admission에서만 집행한다(SAR-REFACTOR-003에서 handler 쪽 중복 집행 코드 제거).
 
 adapter는 `core.ts`의 `validText`로 일반·시험 text의 공백·UTF-8 4096bytes·고립 surrogate 검사를 공유한다. `mcp.ts`는 기존 `trialResult`로 동일한 MCP text 응답 포장을 재사용한다. wire·서명·held/trial 상태와 수신 순서는 유지한다. 실행 근거와 보존 후보는 [리팩터링 기록](../exec-plans/phases/SAR-REFACTOR-001-DEV.md)과 [QA 보고](../evaluations/qa-reports/SAR-REFACTOR-001-DEV-test/report.md)에 기록한다.
 
