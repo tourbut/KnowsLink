@@ -136,10 +136,11 @@ async function turnOn($: Engine, take: boolean): Promise<string> {
   if (take) argv.push("--take");
   const child = $.process.spawn({ argv });
   const timer = $.clock.after(20000, () => {
-    // An unbound watcher must not lock out a later on, which off cannot reach.
+    // off cannot reach an unbound watcher: stop it and free the guard so a later on starts clean.
     if (starting === first) starting = null;
+    current.stop();
     resolveFirst(
-      "KnowsLink 연결 확인 응답이 없습니다. /knowslink-session status 로 다시 확인하세요.",
+      "KnowsLink 연결 확인 응답이 없어 시작을 멈췄습니다. /knowslink-session on 으로 다시 시도하세요.",
     );
   });
   const current: Link = {
