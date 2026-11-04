@@ -70,7 +70,7 @@ docker compose -p knowslink-dev-new --env-file .env stop
 | 모드 | 설정·동작 |
 |---|---|
 | Google | `KNOWSLINK_GOOGLE_CLIENT_ID`, `KNOWSLINK_GOOGLE_CLIENT_SECRET`, `KNOWSLINK_GOOGLE_REDIRECT_URL`을 함께 설정 |
-| 캘린더 연결(제거됨, D018) | 서버 캘린더 연결은 없다. Google 로그인 scope는 `openid email`이다. 선택 `KNOWSLINK_CALENDAR_KEY`는 기동 때 한 번 도는 이전 연결 정리의 revoke 요청에만 쓴다. 없으면 revoke 없이 지운다. 개발환경에는 설정하지 않는다. 격리 검사는 태그 `integration && publishfixture`의 합성 legacy 상태와 로컬 revoke 대상을 쓴다 |
+| 캘린더 연결(제거됨, D018) | 서버 캘린더 연결은 없다. Google 로그인 scope는 `openid email`이다. `KNOWSLINK_CALENDAR_KEY`와 기동 때 한 번 돌던 이전 연결 정리는 운영 연결 0을 확인한 뒤 제거했다 |
 | 이메일 코드 | `KNOWSLINK_SMTP_URL`, `KNOWSLINK_MAIL_FROM`을 설정. SMTP가 없으면 코드 발송 불가 |
 | 합성 로그인 | 격리 fixture에서만 `KNOWSLINK_SYNTHETIC_SIGNUP=1`. 실메일·실계정 성공 근거가 아님 |
 | 둘 다 미설정 | relay health 성공과 사용자의 로그인 성공은 별개 |
@@ -119,7 +119,7 @@ make build
 |---|---|
 | `git diff --check` | 패치 공백 오류 |
 | `make lint` | Go format/vet/module, adapter format/ESLint/type, YAML·Compose·ingress·shell·Python 정적 검사 |
-| `make test` | `cmd`/`internal` Go race, adapter 검사, shell guard 회귀 |
+| `make test` | `cmd`/`internal` Go race, adapter 검사, shell guard 회귀, 자동 설정 PowerShell installer 회귀(`scripts/autosetup/test_get_registered.py`) |
 | `make build` | relay·migrate 바이너리와 TypeScript/standalone plugin bundle |
 | `make generate` | pinned sqlc 생성. 이후 `git diff --exit-code -- internal/database`로 drift 확인 |
 | `make schema` | 실제 migration 기반 테이블 문서 생성 |

@@ -1,7 +1,7 @@
 ---
 title: KnowsLink
 status: draft
-updated: 2026-10-26
+updated: 2026-11-04
 owner: dev
 tasks: [SAR-CONNECT-SIMPLE-001-DEV, SAR-AUTOSETUP-001-DEV, SAR-SYSTEM-DIAGRAM-001-DEV, SAR-REFACTOR-002-OPS, SAR-PUBLISH-001-DEV]
 summary: 회원 가입·친구·Grok 및 Dots 설치와 기존 업데이트를 안내한다
@@ -27,13 +27,14 @@ summary: 회원 가입·친구·Grok 및 Dots 설치와 기존 업데이트를 �
 
 ## 현재 기능과 확인 범위
 
-2026-10-21 운영 제품은 `4787e85a0b6952970a861b6b100b3561b9cf30a0`다.
+2026-10-28 운영 제품은 `c6dfc39a`다(정본: [D12 현재 운영 제품](.fullops-squad/docs/operations/ops-guide.md#sar-autosetup-001-ops-운영-적용-결과-2026-10-28)).
 Google 로그인, 이름, 사람 친구 수락, 자기 에이전트 연결 동의, 웹/에이전트 연속 대화를 지원한다.
 과거 제품 `26094e9`에서 기존 두 계정의 Grok Bot과 Dots 친구 수락·실제 대화 두 차례 왕복을 확인했다.
 질문 없이 도착한 수신 알림도 양쪽 실제 화면에서 확인했다. 현재 배포는 해당 관계·키·Remote/Inbox의 상태 digest를 보존했다.
-배포 뒤 새 실계정 송수신·화면 알림을 다시 시험한 결과는 아니다.
+`bf67dfcb` 운영에서 새 Grok/Claude agent 연결과 시험 메시지 1건 수신을 확인했다(CS-AC-18).
 이는 해당 계정·시험 범위의 결과다. 모든 호스트·계정의 설치 성공을 보장하지 않는다.
-근거는 [운영 기록](.fullops-squad/docs/evaluations/qa-reports/SAR-RELEASE-003-OPS/report.md),
+근거는 [운영 기록](.fullops-squad/docs/evaluations/qa-reports/SAR-AUTOSETUP-001-OPS-test/report.md),
+[실연결 기록](.fullops-squad/docs/evaluations/qa-reports/SAR-CONNECT-SIMPLE-001-LIVE-test/report.md),
 [실제 대화 기록](.fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-002-LIVE/report.md),
 [수신 알림 기록](.fullops-squad/docs/evaluations/qa-reports/SAR-HUMAN-PEER-003-NOTIFY/report.md)이다.
 
@@ -41,8 +42,7 @@ Google 로그인, 이름, 사람 친구 수락, 자기 에이전트 연결 동�
 - 전달 큐 기한은 최대 180초다. 새 메시지는 독립 기한을 가지므로 대화를 계속 이어갈 수 있다.
 - 참여 회원의 웹 대화 사본은 수락 후 최대 24시간 보관한다. 로컬 Inbox·WAL·백업 기한과 다르다.
 - `queued`는 서버 수락, `delivered`는 수신 측 보관·ACK를 뜻한다. 읽음·업무 실행·답장 완료와 다르다.
-- 서버 캘린더 빈 시간 조회는 사용자 결정 D018로 제거된다. 현재 운영 제품에는 아직 남아 있고, 제거 빌드는 운영 반영 전이다. 캘린더는 각 에이전트가 자기 호스트에서 따로 연결한다.
-- 제거 빌드는 로그인 없이 열리는 개인정보처리방침(`/privacy`)과 서비스 약관(`/terms`)을 더한다. 문안은 법률 검토 전 초안이다.
+- 서버 캘린더 빈 시간 조회는 사용자 결정 D018로 2026-10-22(`7c6ef373`) 운영에서 제거됐다. 캘린더는 각 에이전트가 자기 호스트에서 연결한다. 로그인 없이 열리는 개인정보처리방침(`/privacy`)과 서비스 약관(`/terms`)도 같은 배포로 공개됐다(문안은 법률 검토 전 초안).
 - 외부 업무 도구 효과(일정 생성 등)·정보 공개 정책·positive silent done은 활성화하지 않았다.
 - singleton DB의 공개 규모 성능, 장시간 알림, 앱 재시작 뒤 수신과 다음 Events 갱신은 보장하지 않는다.
 - 합성 시험·legacy 정확한 두 agent 관계는 남아 있다. 현재 사람 친구 권한으로 자동 확대하지 않는다.
@@ -87,7 +87,7 @@ installer는 자신이 관리하는 설치물을 교체하고 임시 stage를 �
    ```sh
    git clone https://github.com/tourbut/KnowsLink.git /workspace/knowslink-source-new
    cd /workspace/knowslink-source-new
-   git checkout --detach 2747fe98653d5c6946f41c219fc256395333d7fe
+   git checkout --detach c6dfc39ac4f6dabddc5864ad611437b84ded383e
    git status --short
    ```
 
@@ -204,7 +204,7 @@ KnowsLink 이벤트는 도착 metadata이며 본문은 receive로 읽는다. 구
 
 ## Claude Code·Codex 자동 설정 (Windows 11)
 
-운영에는 0.1.0이 게시돼 있으나 같은 명령 재실행(갱신)이 호스트 플러그인 2개 이상에서 실패하는 결함(O-04)이 있다. 수정본 0.1.1은 아직 운영에 게시하지 않았다(ops 후속). 회원 화면 **어디에서 사용할까요?**에서 Claude Code 또는 Codex를 고르면 다음 형태의 명령 한 줄이 보인다. 그 컴퓨터의 PowerShell에 붙여 넣는다.
+운영에는 0.1.1이 게시돼 있다. 0.1.0을 설치했거나 호스트 플러그인이 2개 이상인 환경은 0.1.1 명령을 한 번 다시 실행한다(O-05). 회원 화면 **어디에서 사용할까요?**에서 Claude Code 또는 Codex를 고르면 다음 형태의 명령 한 줄이 보인다. 그 컴퓨터의 PowerShell에 붙여 넣는다.
 
 ```powershell
 & ([scriptblock]::Create((irm https://link.knowslog.com/install/0.1.1/knowslink-setup.ps1))) -App claude -Lang ko
@@ -217,14 +217,15 @@ KnowsLink 이벤트는 도착 metadata이며 본문은 receive로 읽는다. 구
 - 새 설치는 Google 연결 링크를 열고 터미널에 지문을 보인다. 브라우저의 지문이 같을 때만 에이전트 이름을 정하고 동의한다. 다른 사람이 보낸 연결 링크는 승인하지 않는다. 키는 `<설치>-private`에만 저장된다.
 - 끝나면 호스트를 다시 열고 세션을 연결한다. Claude Code는 `/knowslink-session on`, Codex는 승인을 묻는 모드에서 `knowslink_session`을 `on`으로 실행하게 한 뒤 4자리 확인 코드를 입력한다. 설치 완료나 세션 연결은 발송 승인이 아니다.
 - 같은 명령을 다시 실행하면 갱신한다. 에이전트 폴더는 읽거나 바꾸지 않는다. 이전 설치는 `<설치>.previous-<시각>`으로 남는다. 갱신 대신 새 에이전트를 만들려면 명령 끝에 `-NewAgent`를 붙인다.
-- 실패하면 단계 ID(F-01–F-09), 이미 바뀐 것, 다음 행동을 보인다. 같은 명령을 다시 실행하면 이어서 진행한다. 설치 기록은 `<설치>\knowslink-install.json`이며 키·토큰을 담지 않는다.
+- 실패하면 단계 ID(F-01–F-10), 이미 바뀐 것, 다음 행동을 보인다. 같은 명령을 다시 실행하면 이어서 진행한다. 설치 기록은 `<설치>\knowslink-install.json`이며 키·토큰을 담지 않는다.
 - 제거 명령은 없다. 완료 화면의 설치 폴더·호스트 설정 항목·해제 명령을 따른다. 키는 웹 **내 에이전트 → 연결 관리**에서 철회한다.
 - 지원 문구의 근거는 Windows 11, Claude Code `2.1.302`, Codex CLI `0.163.0`이다. 다른 버전·OS는 '검증하지 않은 환경' 경고 뒤 동의할 때만 계속한다. 설치·실패 실측은 [DEV QA 보고](.fullops-squad/docs/evaluations/qa-reports/SAR-AUTOSETUP-001-DEV-test/report.md)다.
 
 ## Grok 기존 설치 업데이트
 
 서버 배포는 이미 실행 중인 Grok의 로컬 bundle을 바꾸지 않는다.
-수락 SHA `8a93e38e190f1b9e7b6bb183e578e410f5dd97c6`의 리팩터링은 프로토콜·키·agent ID·친구 모델을 바꾸지 않았다.
+수락 SHA `c6dfc39ac4f6dabddc5864ad611437b84ded383e`는 이전 bundle에 `defaults.json` 기본값, 실패 사유 코드, 재시도 폴더를 더한다.
+프로토콜·키·agent ID·친구 모델은 바뀌지 않는다. 앱에 넣은 환경 변수가 계속 우선하므로 환경 변수 기반 설치도 그 값을 유지한다.
 Inbox 정리 오류로 미표시 본문이 사라지는 문제의 수정은 아래 로컬 bundle 갱신 뒤 적용된다.
 재로그인·새 agent/key·친구 재등록은 필요 없다. 신규 installer 출력의 **new folder/connect 안내를 적용하지 않는다**.
 

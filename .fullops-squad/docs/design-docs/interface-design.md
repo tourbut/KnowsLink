@@ -2,7 +2,7 @@
 id: D05
 title: 인터페이스설계서
 status: review
-updated: 2026-10-26
+updated: 2026-11-04
 owner: dev
 tasks: [SAR-AUTOSETUP-001-DEV, SAR-CODEX-RECV-001-DEV, SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-003-BIDIRECTIONAL, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-GOOGLE-CONNECT-001-DEV, SAR-AUTO-RECEIVE-001-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SSE-INSTALL-001-OAUTH-RETURN-DEV, SAR-SERVICE-UI-001-DEV, SAR-HUMAN-PEER-001-DEV, SAR-REFACTOR-002-DEV, SAR-LANDING-GUIDE-001-DEV, SAR-UX-ISSUES-002-RECEIPT-DEV, SAR-UX-ISSUES-002-NAMES-DEV, SAR-UX-ISSUES-002-APPROVAL-DEV, SAR-UX-ISSUES-002-CONNECT-DEV, SAR-UX-ISSUES-002-LANG-DEV, SAR-SCHEDULE-001-DEV, SAR-PUBLISH-001-DEV, SAR-CONNECT-SIMPLE-001-DEV]
 upstream: [D02]
@@ -238,7 +238,7 @@ MCP `knowslink_test_send` 입력은 `{text,idempotency_key}`다. recipient·URL�
 
 | 메서드·경로 | 인증 | 계약 |
 |---|---|---|
-| GET / | 없음 | 이메일 입력 화면. 유효 세션이면 303 `/home`. `n=logout|all|expired`는 고정 안내만 표시 |
+| GET / | 없음(세션 선택) | 항상 200 공개 안내. 세션 없으면 로그인 입력 화면. 유효 세션이면 redirect 없이 '로그인되어 있습니다.'와 `/home` 링크(입력 form 없음). 무효·만료 세션 cookie는 삭제하고 만료 안내 표시. `n=logout|all|expired`는 고정 안내만 표시 |
 | POST /auth/start | 없음 | form `email`. 유효하면 코드 메일 발송 후 303 `/auth/verify`와 `__Host-kl_pending`(600s). 형식 오류 422, 한도 429, 발송 실패·미설정 503 |
 | GET /auth/verify | pending cookie | 확인 대기 화면. 코드가 없거나 만료면 410 |
 | POST /auth/verify | pending cookie | form `code`. 성공 303 `/home`과 `__Host-kl_session`. 오답 401(남은 횟수), 만료·5회 오답·재사용 401, 회원 수용량 503, 비활성 403, 한도 429 |

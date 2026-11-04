@@ -1,30 +1,29 @@
 ---
 title: 운영·업데이트·복구
 status: draft
-updated: 2026-10-21
+updated: 2026-11-04
 owner: ops
-tasks: [SAR-REFACTOR-002-OPS, SAR-RELEASE-001-OPS, SAR-RELEASE-002-OPS, SAR-RELEASE-003-OPS, SAR-PUBLISH-001-DEV]
+tasks: [SAR-REFACTOR-002-OPS, SAR-RELEASE-001-OPS, SAR-RELEASE-002-OPS, SAR-RELEASE-003-OPS, SAR-PUBLISH-001-DEV, SAR-PUBLISH-001-OPS, SAR-CONNECT-SIMPLE-001-OPS, SAR-AUTOSETUP-001-OPS]
 summary: 현재 배포·백업·writer 보호와 클라이언트 갱신 및 복구 경계를 설명한다.
 ---
 
 # 운영·업데이트·복구
 
-2026-10-21 운영 제품은 `4787e85a0b6952970a861b6b100b3561b9cf30a0`다.
+2026-10-28 운영 제품은 `c6dfc39a`다(정본: [D12 현재 운영 제품](../.fullops-squad/docs/operations/ops-guide.md#sar-autosetup-001-ops-운영-적용-결과-2026-10-28)).
 공개 주소는 `https://link.knowslog.com`이며 Dots MCP endpoint는 `/mcp`다.
 이 문서는 현재 절차의 설명이다. 명령 실행·계정 발송·배포 승인을 대신하지 않는다.
 실제 경로·비밀 설정·공유 자원 목록은 접근이 제한된 운영 자료에서 확인한다.
 
 ## 현재 확인 범위
 
-[운영 적용 기록](../.fullops-squad/docs/evaluations/qa-reports/SAR-RELEASE-003-OPS/report.md)은 배포·백업·복원 리허설·보존·HTTPS smoke와 운영 env `KNOWSLINK_CALENDAR_KEY` 추가를 기록한다. 공개 ingress 변경은 없었다. 직전 [SAR-RELEASE-002-OPS 기록](../.fullops-squad/docs/evaluations/qa-reports/SAR-RELEASE-002-OPS/report.md)은 `/lang/(ko|en)` ingress 추가를 담는다.
-relay/Postgres health, schema·HumanModel·writer guard, 기존 회원·키·친구·Remote 설치·구독·Inbox 보존을 확인했다.
+[운영 적용 기록](../.fullops-squad/docs/evaluations/qa-reports/SAR-AUTOSETUP-001-OPS-test/report.md)은 배포·백업·복원 리허설·보존·HTTPS smoke와 자동 설정 0.1.1 게시를 기록한다. 공개 ingress 변경은 없었다.
+relay health, schema·HumanModel·writer guard, 기존 회원·agent·친구·Remote 설치·구독 보존을 확인했다.
 실제 친구 대화와 질문 없는 화면 알림은 별도 두 계정 시험의 근거다.
-그 시험 제품은 과거 `26094e9`다. 이번 배포는 직전 `7b4f9bc`의 상태 보존을 확인했고 실계정 로그인·캘린더 연결·조회 왕복은 실행하지 않았다.
-사용자 결정 D018로 서버 캘린더 연결은 제거된다. 제거 빌드(SAR-PUBLISH-001-DEV)는 아직 운영에 반영되지 않았다.
-제거 배포는 기존 캘린더 키를 둔 채 진행한다. 첫 기동 정리가 저장 연결을 revoke 요청 뒤 지우고 `calendar cleanup: connections=N revoked=M failed=K` 한 줄을 남긴다.
-정리를 확인한 뒤 운영 env에서 `KNOWSLINK_CALENDAR_KEY`를 지운다. 키 값은 Git·대화·로그에 남기지 않는다.
-`calendar.freebusy` scope 삭제·Calendar API 비활성화·브랜딩 URL 등록과 앱 게시는 소유자가 Cloud Console에서 직접 한다.
-제거 빌드는 `/privacy`·`/terms` 정책 페이지를 더한다. 공개 ingress 반영은 ops 과제다. 절차는 [인수인계](../.fullops-squad/docs/operations/transition.md)를 따른다.
+그 시험 제품은 과거 `26094e9`다. `bf67dfcb` 운영에서 새 Grok/Claude agent 연결과 시험 메시지 1건 수신을 확인했다([CS-AC-18](../.fullops-squad/docs/evaluations/qa-reports/SAR-CONNECT-SIMPLE-001-LIVE-test/report.md)).
+이번 배포는 직전 `bf67dfcb`의 상태 보존을 확인했고 실계정 로그인·발송은 실행하지 않았다.
+D018 캘린더 제거·`KNOWSLINK_CALENDAR_KEY` 삭제·`/privacy`·`/terms` ingress 추가는 SAR-PUBLISH-001-OPS(`7c6ef373`, 2026-10-22)에서 완료했다. 저장된 캘린더 연결은 0이었다.
+relay의 이 키 설정과 기동 때 캘린더 정리 코드도 이후 제거했다.
+`calendar.freebusy` scope 삭제·Calendar API 비활성화·브랜딩 URL 등록과 앱 게시는 소유자가 Cloud Console에서 직접 한다([인수인계](../.fullops-squad/docs/operations/transition.md)).
 새 계정 설치·부하·장시간 알림·다음 Events 갱신·앱 재시작 성공을 보장하지 않는다.
 자동 답장·외부 업무 실행은 활성화하지 않았다.
 
@@ -43,7 +42,7 @@ relay/Postgres health, schema·HumanModel·writer guard, 기존 회원·키·친
 7. 필요한 migration Up을 적용한다. 새 reader/writer만 기동한다. DB와 친구·철회·generation·Remote/Inbox를 보존한다.
 8. health·인증 거부·공개 allowlist·공유 서비스 보존을 검사한다. 승인된 범위의 수락 뒤 트래픽을 재개한다.
 
-최근 배포(`7b4f9bc`→`4787e85`)는 새 migration이 없었다. 백업과 network-none 복원에서도 goose 2·guard 1·HumanModel 1을 확인했다.
+최근 배포(`bf67dfcb`→`c6dfc39a`)는 새 migration이 없었다. 백업과 network-none 복원에서도 goose 2·guard 1·HumanModel 1을 확인했다.
 일반 `beta.sh deploy <sha>`는 migration 변경을 거부하며 모든 이행을 자동으로 처리하지 않는다.
 `beta.sh deploy`, `backup`, `restore-verify`는 내부 삭제·교체·임시 컨테이너 정리를 포함한다.
 삭제 금지 상황에서 실행하지 않는다. 최신 운영은 별도 bundle과 수동 보존 절차를 사용했다.
@@ -86,7 +85,7 @@ transport 삭제와 24시간 웹 사본 만료가 백업/WAL 영구 삭제를 �
 
 설치 본문은 [Grok 기존 업데이트](../README.md#grok-기존-설치-업데이트), [Dots 기존 업데이트](../README.md#dots-기존-연결-업데이트)를 따른다.
 Grok은 로컬 Node bundle이다. 서버만 배포하면 실행 중인 MCP·watcher는 바뀌지 않는다.
-이번 Inbox 정리 오류의 본문 보존 수정은 로컬 bundle 갱신 뒤 적용된다. 서버 배포만으로 해당 수정이 적용됐다고 판단하지 않는다.
+Inbox 정리 오류의 본문 보존 수정은 로컬 bundle 갱신 뒤 적용된다. 서버 배포만으로 해당 수정이 적용됐다고 판단하지 않는다.
 같은 prefix·Command·연결 폴더·key·agent ID·Inbox·webhook routine을 유지한다.
 MCP와 정확한 해당 폴더 watcher를 재시작한다. 넓은 process 종료나 신규 connect를 적용하지 않는다.
 installer의 신규 폴더 안내는 업데이트 절차가 아니다.

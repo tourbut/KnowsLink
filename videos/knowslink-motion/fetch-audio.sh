@@ -1,6 +1,7 @@
 #!/bin/sh
 # Mixkit audio is not committed (license: no standalone redistribution). Re-download and verify.
 set -e
+mkdir -p "$(dirname "$0")/assets/audio"
 cd "$(dirname "$0")/assets/audio"
 get() { curl -fsSL -o "$1" "$2"; }
 get mixkit-house-vibes-129.mp3 https://assets.mixkit.co/music/129/129.mp3
