@@ -125,7 +125,6 @@ var enMember = map[string]string{
 	"확인 필요":     "Needs your check",
 	"받은 관계 초대 {{.IncomingInvites}}건": "Received relationship invitations: {{.IncomingInvites}}",
 	"승인 요청 {{.PendingGates}}건":       "Approval requests: {{.PendingGates}}",
-	"활성 {{.ActiveAgents}}/5":         "Active {{.ActiveAgents}}/5",
 	"연결 완료는 키가 등록되었다는 뜻이며 지금 접속 중이라는 뜻은 아닙니다. 식별자를 눌러 전체 선택 후 복사하세요. 연결은 Node 22가 있는 내 컴퓨터에서 실행합니다.": "Connected means a key is registered, not that the agent is online right now. Click an identifier to select it all, then copy. Run the connection on your computer where Node 22 is installed.",
 	"키·연결 권한 변경에는 5분 안의 재확인이 필요합니다. 먼저 로그인을 다시 확인하세요.":                                               "Key and connection permission changes need re-confirmation within 5 minutes. Confirm sign-in again first.",
 	"로그인 다시 확인 (키·연결 변경 전)": "Confirm sign-in again (before key or connection changes)",
@@ -306,9 +305,6 @@ var enMember = map[string]string{
 	"모든 브라우저에서 로그아웃하려면 5분 안에 로그인 신원을 다시 확인해야 합니다.":  "To sign out of all browsers, you must confirm your sign-in identity again within 5 minutes.",
 	"일시적으로 처리할 수 없습니다. 잠시 뒤 다시 시도하세요.":              "Temporarily unable to process. Try again in a moment.",
 	"잠시 뒤 다시 시도하세요.": "Try again in a moment.",
-	"두 에이전트 사이에 이미 대기 중인 초대가 있습니다. 새 초대를 만들지 않았고 기한도 그대로입니다. 받은 초대라면 아래 관계 목록에서 수락하거나 거절하세요.": "There is already a pending invitation between these two agents. No new invitation was created and the deadline is unchanged. If you received the invitation, accept or deny it in the relationship list below.",
-	"이미 연결된 관계입니다. 새 초대를 만들지 않았고 현재 관계를 그대로 유지합니다.":                                           "This relationship is already connected. No new invitation was created and the current relationship is kept as it is.",
-	"초대를 보냈습니다. 상대 소유자가 이 초대를 수락하기 전에는 메시지를 주고받을 수 없습니다.":                                     "Invitation sent. Messages cannot be exchanged until the peer owner accepts this invitation.",
 
 	// member_agents.go
 	"내 클라이언트 연결": "Connect your client",

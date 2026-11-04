@@ -300,7 +300,6 @@ var enHuman = map[string]string{
 	"키 등록됨 · 원격 앱의 토큰 교환 확인":                            "Key registered · remote app token exchange confirmed",
 	"동의 완료 · 앱 복귀 확인 필요":                                "Consent complete · return to the app needs checking",
 	"확인 필요 · 앱의 토큰 교환을 확인하지 못함":                         "Check needed · the app’s token exchange could not be confirmed",
-	"확인 필요 · 승인 뒤 클라이언트 저장을 확인하지 못함":                    "Check needed · the client save after approval could not be confirmed",
 	"활성 키 없음":                                           "No active key",
 	"미사용 · 등록된 키 없음":                                    "Unused · no registered key",
 
@@ -312,7 +311,6 @@ var enHuman = map[string]string{
 	"연결을 시작한 앱에서 토큰 교환 결과를 확인하세요. 앱으로 이동한 것만으로 연결되지 않습니다.":                              "Check the token exchange result in the app that started the connection. Returning to the app alone does not connect.",
 	"시작한 앱에서 연결 상태를 먼저 확인하세요. 연결되지 않았다면 앱에서 연결을 다시 시작하세요. 이 에이전트는 자동으로 철회되지 않습니다.":      "First check the connection status in the app that started it. If it is not connected, start the connection again from the app. This agent is not revoked automatically.",
 	"앱에서 연결 상태를 확인하세요. 클라이언트가 자격을 저장하지 못했다면 기존 키를 덮어쓰지 말고 그 키를 철회한 뒤 새 키 추가로 다시 연결하세요.": "Check the connection status in the app. If the client failed to save its credentials, do not overwrite the existing key; revoke that key, then connect again by adding a new key.",
-	"시작한 클라이언트의 저장 결과를 먼저 확인하세요. 쓰지 않는 에이전트라면 직접 철회할 수 있습니다. 자동 철회는 없습니다.":              "First check the save result in the client that started it. If you do not use this agent, you can revoke it yourself. There is no automatic revocation.",
 	"이전 연결 수단은 다시 쓸 수 없습니다. 연결·키 관리에서 새로 시작하세요.":                                        "The previous connection token cannot be reused. Start again from Connection and key management.",
 	"이 에이전트로 다시 연결하려면 연결·키 관리에서 새 키 추가로 시작하세요. 쓰지 않는 에이전트라면 직접 철회할 수 있습니다.":             "To connect with this agent again, start by adding a new key in Connection and key management. If you do not use this agent, you can revoke it yourself.",
 	"이 에이전트로 연결하려면 연결·키 관리에서 시작하세요. 쓰지 않는 에이전트라면 직접 철회할 수 있습니다. 자동 철회는 없습니다.":           "To connect with this agent, start from Connection and key management. If you do not use this agent, you can revoke it yourself. There is no automatic revocation.",
