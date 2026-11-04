@@ -99,6 +99,14 @@ func TestGoogleDeviceHTTP(t *testing.T) {
 			})
 			expect(t, do("POST", "/home/device-confirm", "connection="+id+"&name=Synthetic+device", true, false), 422)
 			s.mutateState(t, func(st *State) { st.Sessions[hashToken(cookies[sessionCookie].Value)].Verified = time.Now() })
+			// An invalid name re-renders the starter's page in full; another owner's attempt stays the generic refusal.
+			expect(t, do("POST", "/home/device-confirm", "connection="+id+"&name=+++", true, false), 422, "<dt>클라이언트</dt><dd>"+clientName(c.Host)+"</dd>", "/lang/en?back=%2fconnect%2f"+id)
+			var owner string
+			s.mutateState(t, func(st *State) { owner, st.Connections[id].Owner = st.Connections[id].Owner, "owner_other" })
+			if w := do("POST", "/home/device-confirm", "connection="+id+"&name=+++", true, false); w.Code != 401 || strings.Contains(w.Body.String(), fingerprint(decodePublic(c.Public))) {
+				t.Fatal("foreign device attempt re-rendered", w.Code)
+			}
+			s.mutateState(t, func(st *State) { st.Connections[id].Owner = owner })
 		}
 		expect(t, do("POST", "/home/device-confirm", "connection="+id+"&name=Synthetic+device", true, false), 303)
 		expect(t, do("POST", "/home/device-confirm", "connection="+id+"&name=Synthetic+device", true, false), 401)

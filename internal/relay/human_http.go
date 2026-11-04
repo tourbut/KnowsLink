@@ -203,7 +203,7 @@ func (st *State) humanView(id string, session *Session, path string, r *http.Req
 			from, to, person, fa, ta = to, from, c.PersonA, c.AgentB, c.AgentA
 		}
 		if c.OwnerA == c.OwnerB {
-			person = "내 에이전트"
+			person = tr(lang, "내 에이전트")
 		}
 		conversations = append(conversations, humanConversation{ID: key, Name: person, FromName: fa, ToName: ta, State: humanTransport(msg.Receipt.State), URL: conversationURL(from, to)})
 	}
@@ -288,6 +288,7 @@ func (st *State) humanView(id string, session *Session, path string, r *http.Req
 		if !canSend && len(history) == 0 {
 			return nil, fault("sender_not_allowed")
 		}
+		sort.Slice(history, func(i, j int) bool { return history[i].Receipt.Accepted.Before(history[j].Receipt.Accepted) })
 		if canSend {
 			v["From"], v["To"] = humanAgentView(from, a), humanAgentView(to, b)
 			_, peer := st.humanMember(b.Owner)
@@ -295,15 +296,17 @@ func (st *State) humanView(id string, session *Session, path string, r *http.Req
 				v["Peer"] = humanFriend{Name: peer.Name}
 			}
 		} else {
-			c := history[0].Conversation
+			last := history[len(history)-1]
+			c := last.Conversation
 			fa, ta, person := c.AgentA, c.AgentB, c.PersonB
-			if history[0].Receipt.From != from {
+			if last.Receipt.From != from {
 				fa, ta, person = c.AgentB, c.AgentA, c.PersonA
 			}
 			v["From"], v["To"] = humanAgent{ID: from, Name: fa, Short: shortID(from)}, humanAgent{ID: to, Name: ta, Short: shortID(to)}
-			v["Peer"] = humanFriend{Name: person}
+			if c.OwnerA != c.OwnerB {
+				v["Peer"] = humanFriend{Name: person}
+			}
 		}
-		sort.Slice(history, func(i, j int) bool { return history[i].Receipt.Accepted.Before(history[j].Receipt.Accepted) })
 		rows := []humanMessage{}
 		for _, msg := range history {
 			c := msg.Conversation
@@ -350,19 +353,14 @@ func humanClock(t, now time.Time, lang string) string {
 	} else if t.Year() != now.Year() {
 		prefix = t.Format(year)
 	}
-	hour := t.Hour()
+	if lang == "en" {
+		return prefix + t.Format("3:04 PM")
+	}
 	part := "오전 "
-	if hour >= 12 {
+	if t.Hour() >= 12 {
 		part = "오후 "
 	}
-	hour %= 12
-	if hour == 0 {
-		hour = 12
-	}
-	if lang == "en" {
-		return prefix + strconv.Itoa(hour) + t.Format(":04 PM")
-	}
-	return prefix + part + strconv.Itoa(hour) + t.Format(":04")
+	return prefix + part + t.Format("3:04")
 }
 
 func (s *Service) humanPage(path string) http.HandlerFunc {
@@ -383,12 +381,9 @@ func (s *Service) humanPage(path string) http.HandlerFunc {
 		if err != nil {
 			if err.Error() == "invalid_auth" {
 				expired(w, r)
-			} else if path == "friend" {
-				refusedTo(w, "친구", refusal{status: statusFor(err), problem: safeProblem(err)}, "/home/friends")
-			} else {
-				refused(w, "대화", refusal{status: statusFor(err), problem: safeProblem(err)})
+				return
 			}
-			return
+			v = refusal{status: statusFor(err), problem: safeProblem(err)}
 		}
 		switch result := v.(type) {
 		case refusal:
@@ -519,7 +514,7 @@ func (s *Service) humanAction(path string) http.HandlerFunc {
 					if ve != nil {
 						return fail(e)
 					}
-					view["Problem"], view["Text"], view["Attempt"], view["FormStatus"] = safeProblem(e), r.FormValue("text"), r.FormValue("attempt"), statusFor(e)
+					view["FormTemplate"], view["Problem"], view["Text"], view["Attempt"], view["FormStatus"] = "human-conversation", safeProblem(e), r.FormValue("text"), r.FormValue("attempt"), statusFor(e)
 					return view, nil
 				}
 				return conversationURL(from, to), nil
@@ -554,10 +549,6 @@ func (s *Service) humanAction(path string) http.HandlerFunc {
 			status := 422
 			if name, ok := result["FormTemplate"].(string); ok {
 				template = name
-				status = result["FormStatus"].(int)
-			}
-			if path == "conversation/send" {
-				template = "human-conversation"
 				status = result["FormStatus"].(int)
 			}
 			render(w, status, template, result)

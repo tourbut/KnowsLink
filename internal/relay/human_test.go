@@ -271,7 +271,7 @@ func TestHumanConversationLifetimeReplayAndRevocation(t *testing.T) {
 			t.Fatal("semantic replay conflict", e)
 		}
 	}
-	for _, body := range []string{" \n ", strings.Repeat("한", 1366), string([]byte{255})} {
+	for _, body := range []string{" \n ", strings.Repeat("한", 1366), string([]byte{255}), "a\x00b"} {
 		if _, e := st.sendOwnerText(ids["a"], "agent_a1", "agent_b1", body, "owner-invalid-test", now); e == nil {
 			t.Fatal("invalid body")
 		}
@@ -319,6 +319,26 @@ func TestHumanConversationLifetimeReplayAndRevocation(t *testing.T) {
 	}
 }
 
+// A read-only conversation takes its header from the newest message and never names the member as a peer of their own agents.
+func TestHumanReadOnlyConversationHeader(t *testing.T) {
+	st, ids, _, now := humanFixture(t)
+	st.Members[ids["a"]].SelfConnect = true
+	for i, name := range []string{"Work", "Home"} {
+		st.Agents["agent_a1"].Name = name
+		if _, e := st.sendOwnerText(ids["a"], "agent_a1", "agent_a2", "self note", fmt.Sprintf("owner-self-note-%04d", i), now.Add(time.Duration(i)*time.Second)); e != nil {
+			t.Fatal(e)
+		}
+	}
+	st.Agents["agent_a2"].Keys["key1"].Revoked = true
+	r := httptest.NewRequest("GET", "/home/conversation?from=agent_a1&to=agent_a2", nil)
+	for i := 0; i < 20; i++ {
+		v, e := st.humanView(ids["a"], &Session{Verified: now}, "conversation", r, now.Add(time.Minute))
+		if e != nil || v["CanSend"] != false || v["Peer"] != nil || v["From"].(humanAgent).Name != "Home" {
+			t.Fatal("read-only header", e, v["Peer"], v["From"])
+		}
+	}
+}
+
 func TestHumanLegacyMigrationAndExecutionBoundary(t *testing.T) {
 	st, ids, keys, now := humanFixture(t)
 	st.HumanModel = 0
@@ -333,7 +353,7 @@ func TestHumanLegacyMigrationAndExecutionBoundary(t *testing.T) {
 	if e = json.Unmarshal(raw, restored); e != nil {
 		t.Fatal(e)
 	}
-	if e = restored.migrateHuman(now); e != nil {
+	if e = restored.migrateHuman(); e != nil {
 		t.Fatal(e)
 	}
 	st = restored
@@ -387,7 +407,7 @@ func TestHumanLegacyMigrationAndExecutionBoundary(t *testing.T) {
 		t.Fatal("inactive member revives legacy")
 	}
 	st.HumanModel = 2
-	if e = st.migrateHuman(now); e == nil {
+	if e = st.migrateHuman(); e == nil {
 		t.Fatal("unknown schema allowed")
 	}
 }

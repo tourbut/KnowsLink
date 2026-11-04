@@ -164,7 +164,7 @@ func (s *Service) transaction(ctx context.Context, operation func(*State, time.T
 	if err = json.Unmarshal(row.Data, state); err != nil {
 		return nil, fault("unavailable")
 	}
-	if err = state.migrateHuman(now); err != nil {
+	if err = state.migrateHuman(); err != nil {
 		return nil, err
 	}
 	state.TestAgents = s.TestAgents
@@ -180,7 +180,7 @@ func (s *Service) transaction(ctx context.Context, operation func(*State, time.T
 		if err = json.Unmarshal(row.Data, state); err != nil {
 			return nil, fault("unavailable")
 		}
-		if err = state.migrateHuman(now); err != nil {
+		if err = state.migrateHuman(); err != nil {
 			return nil, err
 		}
 		state.TestAgents = s.TestAgents

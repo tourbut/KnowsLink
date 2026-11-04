@@ -75,10 +75,9 @@ func TestConnectBrowserFixture(t *testing.T) {
 		registered := agent("registered", owners["a"], "Synthetic registered helper with a long English name")
 		st.Agents[registered].Keys["fixture-key"] = &Key{Public: public, Changed: now}
 		attempt("consumed", registered, "consumed", false, now.Add(-time.Minute))
-		// B: ended, uncertain and unused agents; C keeps no agent at all.
+		// B: ended and unused agents; C keeps no agent at all.
 		attempt("expired", agent("expired", owners["b"], "합성 만료 도우미"), "expired", false, now.Add(-time.Minute))
 		attempt("cancelled", agent("cancelled", owners["b"], "합성 취소 도우미"), "cancelled", false, now.Add(time.Minute))
-		attempt("device_lost", agent("device_lost", owners["b"], "합성 저장 확인 도우미"), "approved", true, now.Add(-time.Minute))
 		// O-NM-03 rows on A: existing, unknown, malformed, a cancelled one and a request from before tails were kept.
 		st.requestFriend(members["a"], st.Members[members["b"]].FriendCode, now)
 		for _, code := range []string{"fixture-unknown-zz99", "ab", "fixture-before-tail", "fixture-cancel-ca11"} {

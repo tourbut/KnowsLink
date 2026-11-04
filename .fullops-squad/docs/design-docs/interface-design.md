@@ -270,7 +270,7 @@ MCP `knowslink_test_send` 입력은 `{text,idempotency_key}`다. recipient·URL�
 | POST /home/agents | 새 무작위 ID의 미연결 자기 agent. 5분 재인증. optional `attempt`(16–96자)가 같은 회원의 이전 생성과 같으면 새 agent 없이 그 agent 위치로 303한다(중복 클릭·재전송). 성공·재전송 모두 `/home/agents#agent-{id}`로 복귀 |
 | POST /home/confirm·/home/cancel·/home/agent-revoke 복귀 | confirm은 `/home/connections/{grant hash}`, cancel은 `/home/agents#agent-{id}`, agent 철회는 `/home/agents`로 303한다. 회원 연결 동작의 거부 화면은 `/home/agents`(legacy 관계 동작은 `/home/legacy#pairs`)로 복귀한다. 호출자가 준 return URL은 받지 않는다 |
 | POST /home/connect | agent, client=node-local, mode=register 또는 rotate. 5분 재인증. 화면에서만 grant token 1회 표시 |
-| GET /home/connections/{grant hash} | 자기 연결 상태·지문·권한·기한. 원 token 재조회 없음. 승인 뒤 만료된 device 연결(에이전트 활성 키 0)은 ‘만료·새로 시작’ 대신 내 에이전트 카드와 같은 ‘확인 필요 · 승인 뒤 클라이언트 저장을 확인하지 못함’과 연결·키 관리 링크를 보인다(U8 승인 후 응답 유실). 없거나 남의 ID는 403이며 ‘내 에이전트로 돌아가기’로 복귀한다 |
+| GET /home/connections/{grant hash} | 자기 연결 상태·지문·권한·기한. 원 token 재조회 없음. 없거나 남의 ID는 403이며 ‘내 에이전트로 돌아가기’로 복귀한다 |
 | POST /home/confirm | connection=grant hash. 5분 재인증·prepared 상태 검사. 아직 키 미활성 |
 | POST /home/cancel | 자기 grant 무효화. 별도 정리 budget |
 | POST /home/key-revoke | agent,kid. 5분 재인증·선택 키 철회 |
@@ -299,8 +299,8 @@ MCP `knowslink_test_send` 입력은 `{text,idempotency_key}`다. recipient·URL�
 ### SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX 반복 초대·기록 포화 안내
 
 - `/v1/*` wire·상태 코드·오류 코드는 바꾸지 않았다. 아래는 회원 HTML 경로의 안내 변경이다.
-- `POST /home/invites` 성공은 `/home?n=invited`(새 pending), `/home?n=invite-pending`(같은/반대 방향의 기존 pending 유지), `/home?n=invite-active`(현재 active 유지)로 303 이동한다. 홈은 해당 안내를 `role="status"`로 표시한다. 반복 제출은 기한·세대를 바꾸지 않는다.
-- 홈 관계 목록: 받은 pending은 수락 전 메시지 불가를, 보낸 pending은 반복해도 기한이 바뀌지 않음을 안내한다. 거절·만료·철회 관계는 연결 종료·메시지 불가·새 초대와 새 수락 필요를 안내한다. 자기 살아 있는 agent가 있으면 같은 상대에 대한 `새 초대 보내기` 버튼(기존 `POST /home/invites`)을 표시한다. 종료 관계에는 관계 철회 버튼을 표시하지 않는다. 자동 재연결은 없다.
+- `POST /home/invites` 성공은 `/home?n=invited`(새 pending), `/home?n=invite-pending`(같은/반대 방향의 기존 pending 유지), `/home?n=invite-active`(현재 active 유지)로 303 이동한다. 홈은 해당 안내를 `role="status"`로 표시한다. 반복 제출은 기한·세대를 바꾸지 않는다. (HP 마이그레이션으로 대체됨: `POST /home/invites`는 거부되고 이 안내는 쓰지 않는다.)
+- 홈 관계 목록: 받은 pending은 수락 전 메시지 불가를, 보낸 pending은 반복해도 기한이 바뀌지 않음을 안내한다. 거절·만료·철회 관계는 연결 종료·메시지 불가·새 초대와 새 수락 필요를 안내한다. 자기 살아 있는 agent가 있으면 같은 상대에 대한 `새 초대 보내기` 버튼(기존 `POST /home/invites`)을 표시한다. 종료 관계에는 관계 철회 버튼을 표시하지 않는다. 자동 재연결은 없다. (HP 마이그레이션으로 대체됨: `새 초대 보내기` 버튼은 없고 친구 요청으로 다시 시작한다.)
 - `POST /home/agents` 409: owner 기록 포화는 철회 기록의 최소 24시간 보존·정리 뒤 홈에서 사라진 다음 다시 시도하라고 안내한다. 활성 5개는 철회 선택과 복구 불가를 안내한다. 전체 200개는 기존 운영 한도 문구다.
 - `POST /home/connect` 409: 키 기록 포화는 키 철회·대기로 공간이 생기지 않음과 새 agent 연결·각 상대 새 수락을 안내한다. 새 agent를 만들 수 있으면 거부 화면에 `새 에이전트 만들기` 버튼을 함께 표시한다. 만들 수 없으면 그 한도 안내를 덧붙인다. 활성 키 3개의 등록은 키 철회 또는 회전을 안내한다.
 - 홈 agent 카드: 철회 agent는 최소 24시간 보존 뒤 정리되면 목록에서 사라질 수 있음과 권한 복구·백업 영구 삭제가 아님을 표시한다. 키 기록 포화 agent는 연결 수단 발급 대신 교체 안내를 표시한다. agent 철회 버튼 앞에 모든 키·관계 종료와 복구 불가를 표시한다.

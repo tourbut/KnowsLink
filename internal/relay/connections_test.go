@@ -357,7 +357,7 @@ func TestMemberPagesShowNextSteps(t *testing.T) {
 	}
 	// Fingerprints wrap inside the card, and invite deadlines use the KST clock.
 	exp := time.Date(2026, 10, 7, 4, 19, 59, 162233000, time.UTC)
-	body := page(200, "home", map[string]any{"Title": "홈", "AgentDetails": []memberAgent{{ID: "agent_a", Status: "연결 완료", Keys: []memberKey{{"key_1", "SHA256:7_B9RdVzaKQSQRTfdqCvAAAAAAAAAAAAAAAAAAAAAAAAAAA", "활성"}}}},
+	body := page(200, "legacy-home", map[string]any{"Title": "홈", "AgentDetails": []memberAgent{{ID: "agent_a", Status: "연결 완료", Keys: []memberKey{{"key_1", "SHA256:7_B9RdVzaKQSQRTfdqCvAAAAAAAAAAAAAAAAAAAAAAAAAAA", "활성"}}}},
 		"Pairs": []memberPair{{Pair: &Pair{A: "agent_a", B: "agent_b", Inviter: "agent_a", Recipient: "agent_b", State: "pending", Generation: 1, Exp: exp}, Incoming: true}, {Pair: &Pair{A: "agent_a", B: "agent_c", State: "active"}}}})
 	has(body, `<code class="fp">SHA256:7_B9`, "이전 요청 기한: 2026-10-07 13:19:59 KST", "code{word-break:normal;overflow-wrap:anywhere}", "word-break:keep-all;overflow-wrap:break-word", "input,select,textarea{display:block;width:100%")
 	lacks(body, "+0000 UTC")
@@ -370,18 +370,17 @@ func TestMemberPagesShowNextSteps(t *testing.T) {
 	for _, c := range []struct {
 		state    string
 		incoming bool
-		own      string
 		want     string
 	}{
-		{"pending", true, "agent_a", "친구 요청으로 다시 시작하세요"},
-		{"pending", false, "agent_a", "친구 요청으로 다시 시작하세요"},
-		{"active", false, "agent_a", `action="/home/unpair"`},
-		{"denied", false, "agent_a", "이 연결로 새 메시지를 보낼 수 없습니다"},
-		{"expired", true, "agent_a", "이 연결로 새 메시지를 보낼 수 없습니다"},
-		{"revoked", false, "agent_a", "친구 요청으로 다시 시작하세요"},
-		{"revoked", false, "", "이 연결로 새 메시지를 보낼 수 없습니다"},
+		{"pending", true, "친구 요청으로 다시 시작하세요"},
+		{"pending", false, "친구 요청으로 다시 시작하세요"},
+		{"active", false, `action="/home/unpair"`},
+		{"denied", false, "이 연결로 새 메시지를 보낼 수 없습니다"},
+		{"expired", true, "이 연결로 새 메시지를 보낼 수 없습니다"},
+		{"revoked", false, "친구 요청으로 다시 시작하세요"},
+		{"revoked", false, "이 연결로 새 메시지를 보낼 수 없습니다"},
 	} {
-		body := page(200, "home", map[string]any{"Title": "홈", "Pairs": []memberPair{{Pair: &Pair{A: "agent_a", B: "agent_b", Inviter: "agent_a", Recipient: "agent_b", State: c.state, Generation: 2}, Incoming: c.incoming, Own: c.own, Other: "agent_b"}}})
+		body := page(200, "legacy-home", map[string]any{"Title": "홈", "Pairs": []memberPair{{Pair: &Pair{A: "agent_a", B: "agent_b", Inviter: "agent_a", Recipient: "agent_b", State: c.state, Generation: 2}, Incoming: c.incoming}}})
 		has(body, c.want)
 		open := c.state == "active"
 		if open != strings.Contains(body, `action="/home/unpair"`) {
@@ -389,7 +388,7 @@ func TestMemberPagesShowNextSteps(t *testing.T) {
 		}
 		reinvite := `<input type="hidden" name="agent" value="agent_a"><input type="hidden" name="target" value="agent_b"><button aria-label="새 초대 보내기: agent_b">새 초대 보내기</button>`
 		if strings.Contains(body, reinvite) {
-			t.Fatal("re-invite control", c.state, c.own)
+			t.Fatal("re-invite control", c.state)
 		}
 		if strings.Contains(body, `action="/home/invite-decision"`) {
 			t.Fatal("decision control", c.state)
@@ -404,14 +403,14 @@ func TestMemberPagesShowNextSteps(t *testing.T) {
 		lacks(relation, "자동")
 	}
 	// Agent cards: a revoked agent explains retention and disappearance; a key-full agent offers replacement, not connect.
-	body = page(200, "home", map[string]any{"Title": "홈", "AgentDetails": []memberAgent{{ID: "agent_r", Status: "철회"}}})
+	body = page(200, "legacy-home", map[string]any{"Title": "홈", "AgentDetails": []memberAgent{{ID: "agent_r", Status: "철회"}}})
 	has(body, "최소 24시간 보존", "목록에서 사라질 수 있습니다", "권한이 돌아오거나 백업까지 영구 삭제된 것은 아닙니다", "새 에이전트를 연결하고 상대와 새로 수락")
 	lacks(body, `action="/home/agent-revoke"`)
-	body = page(200, "home", map[string]any{"Title": "홈", "AgentDetails": []memberAgent{{ID: "agent_f", Status: "연결 완료", KeyFull: true}}})
+	body = page(200, "legacy-home", map[string]any{"Title": "홈", "AgentDetails": []memberAgent{{ID: "agent_f", Status: "연결 완료", KeyFull: true}}})
 	has(body, "새 키를 더 연결할 수 없습니다", "새 에이전트를 만들어 따로 연결", "되돌릴 수 없습니다", `action="/home/agent-revoke"`)
 	lacks(body, `action="/home/connect"`)
 	lacks(body, "24시간 보존")
-	body = page(200, "home", map[string]any{"Title": "홈", "AgentDetails": []memberAgent{{ID: "agent_l", Status: "미연결"}}})
+	body = page(200, "legacy-home", map[string]any{"Title": "홈", "AgentDetails": []memberAgent{{ID: "agent_l", Status: "미연결"}}})
 	has(body, `action="/home/connect"`, "되돌릴 수 없습니다")
 	// A replacement refusal offers the new-agent control beside the way back home.
 	w = httptest.NewRecorder()
