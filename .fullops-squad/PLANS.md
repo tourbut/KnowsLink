@@ -27,8 +27,8 @@ summary: 기존 제품 계획 보존과 Google 연결 구현의 독립 검토 �
   - F147: 'node-local' 표시
   - F056: 이전 영상 렌더 보존
   - F057·F160·F139·F043: 보존 또는 효과가 작은 항목
+- **통합(2026-11-05):** D045 사용자 답 "병합·push". `df3fec7e`를 origin/main에 fast-forward로 push했다(952f6eaa..df3fec7e). 본 체크아웃·designer·ops·tester는 df3fec7e로 동기화했다. dev는 추적 안 된 모션 작업(`videos/service-intro/`, SAR-MOTION-INTRO-001 캡처)이 있어 동기화하지 않았다. dev는 c5d8f018에 있고, 다음 dispatch 전에 최신 main df3fec7e로 맞춘다.
 - **남은 일:**
-  - main 병합·push는 사용자 확인 뒤 진행한다(`review.py need`가 required/ask, 코드 92개 파일).
   - 운영 relay 배포는 별도 승인이 필요하다.
   - adapter 변경은 다음 플러그인 릴리스(0.1.2) 때 게시한다.
 - **사용자 정리 대상(레포 밖·guard 범위 밖):**
