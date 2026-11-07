@@ -5,6 +5,7 @@ package main
 
 import (
 	"context"
+	"fmt"
 	"net/http"
 	"net/http/httptest"
 	"os"
@@ -15,6 +16,8 @@ import (
 
 	"github.com/jackc/pgx/v5"
 	"github.com/jackc/pgx/v5/pgxpool"
+	"github.com/jackc/pgx/v5/stdlib"
+	"github.com/pressly/goose/v3"
 	"github.com/tourbut/KnowsLink/internal/relay"
 )
 
@@ -24,8 +27,29 @@ func TestHealthzAnswersDuringLockWait(t *testing.T) {
 		t.Fatal("isolated database required")
 	}
 	ctx := context.Background()
+	// Its own database: go test runs packages in parallel, and a held row lock would stall the relay package's tests.
+	admin, err := pgx.Connect(ctx, url)
+	if err != nil {
+		t.Fatal(err)
+	}
+	defer func() { _ = admin.Close(ctx) }()
+	name := fmt.Sprintf("kl_healthz_%d", time.Now().UnixNano())
+	if _, err = admin.Exec(ctx, "CREATE DATABASE "+name); err != nil {
+		t.Fatal(err)
+	}
+	t.Cleanup(func() { _, _ = admin.Exec(ctx, "DROP DATABASE "+name+" WITH (FORCE)") })
 	cfg, err := relay.PoolConfig(url)
 	if err != nil {
+		t.Fatal(err)
+	}
+	cfg.ConnConfig.Database = name
+	sqlDB := stdlib.OpenDB(*cfg.ConnConfig)
+	defer func() { _ = sqlDB.Close() }()
+	provider, err := goose.NewProvider(goose.DialectPostgres, sqlDB, os.DirFS("../../db/migrations"), goose.WithDisableGlobalRegistry(true))
+	if err != nil {
+		t.Fatal(err)
+	}
+	if _, err = provider.Up(ctx); err != nil {
 		t.Fatal(err)
 	}
 	pool, err := pgxpool.NewWithConfig(ctx, cfg)
@@ -33,7 +57,7 @@ func TestHealthzAnswersDuringLockWait(t *testing.T) {
 		t.Fatal(err)
 	}
 	defer pool.Close()
-	holder, err := pgx.Connect(ctx, url)
+	holder, err := pgx.ConnectConfig(ctx, cfg.ConnConfig.Copy())
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -62,14 +86,9 @@ func TestHealthzAnswersDuringLockWait(t *testing.T) {
 			}
 		}()
 	}
-	observer, err := pgx.Connect(ctx, url)
-	if err != nil {
-		t.Fatal(err)
-	}
-	defer func() { _ = observer.Close(ctx) }()
 	var waiting int
 	for deadline := time.Now().Add(time.Second); waiting < 3 && time.Now().Before(deadline); time.Sleep(10 * time.Millisecond) {
-		if err = observer.QueryRow(ctx, "SELECT count(*) FROM pg_stat_activity WHERE wait_event_type = 'Lock' AND datname = current_database()").Scan(&waiting); err != nil {
+		if err = admin.QueryRow(ctx, "SELECT count(*) FROM pg_stat_activity WHERE wait_event_type = 'Lock' AND datname = $1", name).Scan(&waiting); err != nil {
 			t.Fatal(err)
 		}
 	}
