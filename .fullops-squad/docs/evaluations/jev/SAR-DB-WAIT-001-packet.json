@@ -1,7 +1,7 @@
 {
   "task_key": "SAR-DB-WAIT-001",
   "role": "dev",
-  "head": "8b23afe9e07688b78214fdb9dbf262b02b099bb4",
+  "head": "7cbfa6221f0f24c6a13f3758a4fdab29ea22e749",
   "attempt": "b60b839a146841d5b700e8f5bd8be577",
   "instruction_sha256": "2503aecd588aa1a15abfd3848ed52e3e984c145b89829c4978dfb3985356438f",
   "options": {
@@ -15,7 +15,6 @@
     ],
     "required": [
       ".fullops-squad/FULLOPS.md",
-      ".fullops-squad/handovers/to_dev.md",
       ".fullops-squad/project.md",
       ".fullops-squad/rules/common/README.md",
       ".fullops-squad/rules/common/coding-style.md",
@@ -372,15 +371,12 @@
       "videos/knowslink-motion/package.json": "b52a77927966db909a4adc88be014890082807a2ee5de91275c4094087a8e2f7",
       "videos/knowslink-motion/render.mjs": "ffb055a7d8ff5ba40a035c42a8c8e11fa9ca9499eda12ff791adfd4733d9776b"
     },
-    "search_results": {
-      "route": "7d377d45b0db09998c4685291f8e6cdd464ac7ce84c309986440e6be5b90d04d",
-      "context": "c6a95824a682faab7589c619202dce240e8f4676ca8d59ae0b5fdf991ded364f"
-    },
+    "search_results": {},
     "decisions": []
   },
-  "input_sha256": "f9e984b243be44c69d40a1bf5c4169fe2b63528d75e7d6087396aac83f72ea99",
+  "input_sha256": "f2d1a92e855724485707ff24354e0f14d422d785162eb6d8e79d294f7e6c30e1",
   "version": "jev-packet-v2",
-  "base": "8b23afe9e07688b78214fdb9dbf262b02b099bb4",
+  "base": "7cbfa6221f0f24c6a13f3758a4fdab29ea22e749",
   "worktree_dirty": true,
   "items": [
     {
@@ -397,75 +393,7 @@
       "status": "inferred",
       "priority": 0,
       "source_sha256": "ace0b3ac74bfd53a7614ec236bd22f8b4da624ae6dd8f4fd9b36dd10c7af8186",
-      "source_basis": "HEAD",
-      "context_signal": null
-    },
-    {
-      "path": ".fullops-squad/handovers/to_dev.md",
-      "categories": [
-        "document_read"
-      ],
-      "reasons": [
-        "required or existing context recommendation",
-        "symbol/keyword occurrence; reference semantics require verification"
-      ],
-      "evidence": [
-        {
-          "method": "string-search",
-          "symbol": "idle_in_transaction_session_timeout",
-          "line": 37,
-          "seeds": [
-            "inbox"
-          ]
-        },
-        {
-          "method": "string-search",
-          "symbol": "lock_timeout",
-          "line": 37,
-          "seeds": [
-            "inbox"
-          ]
-        },
-        {
-          "method": "string-search",
-          "symbol": "idle_in_transaction_session_timeout",
-          "line": 62,
-          "seeds": [
-            "inbox"
-          ]
-        },
-        {
-          "method": "string-search",
-          "symbol": "lock_timeout",
-          "line": 62,
-          "seeds": [
-            "inbox"
-          ]
-        },
-        {
-          "method": "string-search",
-          "symbol": "pg_column_compression",
-          "line": 80,
-          "seeds": [
-            "inbox"
-          ]
-        },
-        {
-          "method": "string-search",
-          "symbol": "abnormal_clock",
-          "line": 84,
-          "seeds": [
-            "inbox"
-          ]
-        }
-      ],
-      "doc_ids": [],
-      "required": true,
-      "status": "inferred",
-      "priority": 0,
-      "source_sha256": "2503aecd588aa1a15abfd3848ed52e3e984c145b89829c4978dfb3985356438f",
-      "source_basis": "HEAD",
-      "context_signal": null
+      "source_basis": "HEAD"
     },
     {
       "path": ".fullops-squad/project.md",
@@ -481,15 +409,7 @@
       "status": "inferred",
       "priority": 0,
       "source_sha256": "fc29df0d4540cea831c8d0a22eae75467e9e094de38e3954771354b4ad548ffe",
-      "source_basis": "HEAD",
-      "context_signal": {
-        "relevant": 0.16,
-        "evidence": 0.73,
-        "contradicts": 0.2,
-        "injection": 0.02,
-        "decision": "keep",
-        "reason": null
-      }
+      "source_basis": "HEAD"
     },
     {
       "path": ".fullops-squad/rules/common/README.md",
@@ -505,8 +425,7 @@
       "status": "inferred",
       "priority": 0,
       "source_sha256": "deccf1af12f00b265dc6a465dcabf369108b5f8b73bb7befc37b63a16ebe6a43",
-      "source_basis": "HEAD",
-      "context_signal": null
+      "source_basis": "HEAD"
     },
     {
       "path": ".fullops-squad/rules/common/coding-style.md",
@@ -522,8 +441,7 @@
       "status": "inferred",
       "priority": 0,
       "source_sha256": "a41631944d3beaa232a01d6cf8cdca7516ce98ccdfd588a01d73fd5437cae5fd",
-      "source_basis": "HEAD",
-      "context_signal": null
+      "source_basis": "tracked_worktree_overlay"
     },
     {
       "path": ".fullops-squad/rules/common/security.md",
@@ -539,8 +457,7 @@
       "status": "inferred",
       "priority": 0,
       "source_sha256": "d50e6f431b037879e67f303da3a8bd0c1b6e2750c6d7721e2894d66643cd6674",
-      "source_basis": "HEAD",
-      "context_signal": null
+      "source_basis": "tracked_worktree_overlay"
     },
     {
       "path": ".fullops-squad/rules/common/testing.md",
@@ -556,8 +473,7 @@
       "status": "inferred",
       "priority": 0,
       "source_sha256": "1f54ec402f46c465719b487b9d6caf390e243c1fa54e8eaf43e3b345ab730ecb",
-      "source_basis": "HEAD",
-      "context_signal": null
+      "source_basis": "HEAD"
     },
     {
       "path": "docs/system-design.md",
@@ -630,24 +546,14 @@
       "priority": 0,
       "source_sha256": "e5e2b5c3d3bc94214473ab31202f4524e98581f721591f8f2ce47f6cbff1bb76",
       "source_basis": "HEAD",
-      "context_signal": {
-        "relevant": 0.12,
-        "evidence": 0.21,
-        "contradicts": 0.23,
-        "injection": 0.01,
-        "decision": "keep",
-        "reason": null
-      },
       "sections": []
     },
     {
       "path": ".fullops-squad/docs/design-docs/database-design.md",
       "categories": [
-        "document_read",
         "document_update"
       ],
       "reasons": [
-        "required or existing context recommendation",
         "route/explicit update candidate"
       ],
       "evidence": [
@@ -666,15 +572,7 @@
       "status": "inferred",
       "priority": 1,
       "source_sha256": "b3a220fcb56c3d8c5bac9e0ab3cbbc6260fa00956d70193c25dfe1aac3783bf4",
-      "source_basis": "HEAD",
-      "context_signal": {
-        "relevant": 0.36,
-        "evidence": 0.54,
-        "contradicts": 0.58,
-        "injection": 0.02,
-        "decision": "conflict",
-        "reason": "contradicts task"
-      }
+      "source_basis": "HEAD"
     },
     {
       "path": ".fullops-squad/docs/design-docs/module-design.md",
@@ -703,42 +601,6 @@
       "source_basis": null
     },
     {
-      "path": ".fullops-squad/docs/design-docs/tech-stack.md",
-      "categories": [
-        "document_read"
-      ],
-      "reasons": [
-        "required or existing context recommendation",
-        "source mapping/reference; keep unchanged unless verified"
-      ],
-      "evidence": [
-        {
-          "method": "deliverable-index",
-          "id": "D03",
-          "source": [
-            "docs/design-docs/architecture.md",
-            "docs/design-docs/tech-stack.md"
-          ]
-        }
-      ],
-      "doc_ids": [
-        "D03"
-      ],
-      "required": false,
-      "status": "inferred",
-      "priority": 1,
-      "source_sha256": "5ed061204861de62dbcd461339735ab2f5a6a7e3e2cc546596796a4858ea83c9",
-      "source_basis": "HEAD",
-      "context_signal": {
-        "relevant": 0.09,
-        "evidence": 0.28,
-        "contradicts": 0.2,
-        "injection": 0.02,
-        "decision": "keep",
-        "reason": null
-      }
-    },
-    {
       "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-DEV-FIX.md",
       "categories": [
         "document_read"
@@ -761,7 +623,7 @@
       "status": "inferred",
       "priority": 1,
       "source_sha256": "ebe5eb2d7029d61beaa2941f8ba691f407b938004302ee5f9c04b0e7f4df2bef",
-      "source_basis": "HEAD"
+      "source_basis": "tracked_worktree_overlay"
     },
     {
       "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-DEV-FIX.md",
@@ -786,7 +648,7 @@
       "status": "inferred",
       "priority": 1,
       "source_sha256": "2585d95b9a162c8f1d2d53c91c14c7477c8166c81c8a8a869ad6d554f38ec456",
-      "source_basis": "HEAD"
+      "source_basis": "tracked_worktree_overlay"
     },
     {
       "path": ".fullops-squad/docs/exec-plans/phases/SAR-REFACTOR-003.md",
@@ -816,11 +678,9 @@
     {
       "path": ".fullops-squad/docs/generated/db-schema.md",
       "categories": [
-        "document_read",
         "document_update"
       ],
       "reasons": [
-        "required or existing context recommendation",
         "route/explicit update candidate"
       ],
       "evidence": [
@@ -839,15 +699,7 @@
       "status": "inferred",
       "priority": 1,
       "source_sha256": "2a67d3d0d69d584c2c4b6dc7ce7a56e4adf1cd137ce22243fbfa6890d93f05bf",
-      "source_basis": "HEAD",
-      "context_signal": {
-        "relevant": 0.19,
-        "evidence": 0.28,
-        "contradicts": 0.16,
-        "injection": 0.02,
-        "decision": "keep",
-        "reason": null
-      }
+      "source_basis": "HEAD"
     },
     {
       "path": ".fullops-squad/docs/operations/ops-guide.md",
@@ -928,14 +780,77 @@
       "source_basis": "HEAD"
     },
     {
+      "path": ".fullops-squad/handovers/to_dev.md",
+      "categories": [
+        "document_read"
+      ],
+      "reasons": [
+        "symbol/keyword occurrence; reference semantics require verification"
+      ],
+      "evidence": [
+        {
+          "method": "string-search",
+          "symbol": "idle_in_transaction_session_timeout",
+          "line": 37,
+          "seeds": [
+            "inbox"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "lock_timeout",
+          "line": 37,
+          "seeds": [
+            "inbox"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "idle_in_transaction_session_timeout",
+          "line": 62,
+          "seeds": [
+            "inbox"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "lock_timeout",
+          "line": 62,
+          "seeds": [
+            "inbox"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "pg_column_compression",
+          "line": 80,
+          "seeds": [
+            "inbox"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "abnormal_clock",
+          "line": 84,
+          "seeds": [
+            "inbox"
+          ]
+        }
+      ],
+      "doc_ids": [],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "2503aecd588aa1a15abfd3848ed52e3e984c145b89829c4978dfb3985356438f",
+      "source_basis": "HEAD"
+    },
+    {
       "path": "cmd/relay/main.go",
       "categories": [
-        "direct_edit",
-        "impact_check"
+        "direct_edit"
       ],
       "reasons": [
         "explicit edit seed/diff",
-        "required or existing context recommendation",
         "seed definition"
       ],
       "evidence": [
@@ -963,15 +878,7 @@
       "status": "inferred",
       "priority": 1,
       "source_sha256": "2b0b3a873ef900ac23d818cc9dfc5c02c697677921a098c6ddb35e88ae20b7dc",
-      "source_basis": "HEAD",
-      "context_signal": {
-        "relevant": 0.35,
-        "evidence": 0.55,
-        "contradicts": 0.2,
-        "injection": 0.01,
-        "decision": "keep",
-        "reason": null
-      }
+      "source_basis": "HEAD"
     },
     {
       "path": "cmd/relay/main_test.go",
@@ -999,62 +906,12 @@
       "source_basis": "HEAD"
     },
     {
-      "path": "db/migrations/00001_relay.sql",
-      "categories": [
-        "impact_check"
-      ],
-      "reasons": [
-        "required or existing context recommendation"
-      ],
-      "evidence": [],
-      "doc_ids": [],
-      "required": false,
-      "status": "inferred",
-      "priority": 1,
-      "source_sha256": "31aa978fb6e7d26eb4be7f65cd58c6abc286c0675bacd1856368221d095c7507",
-      "source_basis": "HEAD",
-      "context_signal": {
-        "relevant": 0.65,
-        "evidence": 0.65,
-        "contradicts": 0.34,
-        "injection": 0.01,
-        "decision": "keep",
-        "reason": null
-      }
-    },
-    {
-      "path": "db/migrations/00002_human_writer.sql",
-      "categories": [
-        "impact_check"
-      ],
-      "reasons": [
-        "required or existing context recommendation"
-      ],
-      "evidence": [],
-      "doc_ids": [],
-      "required": false,
-      "status": "inferred",
-      "priority": 1,
-      "source_sha256": "83cfa1aab7ddb803a0705434187af01386bbd8ccb60ab37a4cf5e9220c661f36",
-      "source_basis": "HEAD",
-      "context_signal": {
-        "relevant": 0.1,
-        "evidence": 0.15,
-        "contradicts": 0.51,
-        "injection": 0.03,
-        "decision": "keep",
-        "reason": null
-      }
-    },
-    {
       "path": "db/queries/relay.sql",
       "categories": [
-        "direct_edit",
-        "impact_check"
+        "direct_edit"
       ],
       "reasons": [
-        "explicit edit seed/diff",
-        "required or existing context recommendation"
+        "explicit edit seed/diff"
       ],
       "evidence": [],
       "doc_ids": [],
@@ -1062,97 +919,15 @@
       "status": "inferred",
       "priority": 1,
       "source_sha256": "8339645080a1f2a5174de2f16f8667d71242ec756da3f6d19ac0766a782e1c8f",
-      "source_basis": "HEAD",
-      "context_signal": {
-        "relevant": 0.43,
-        "evidence": 0.6,
-        "contradicts": 0.27,
-        "injection": 0.01,
-        "decision": "keep",
-        "reason": null
-      }
-    },
-    {
-      "path": "deploy/knowslink/beta.sh",
-      "categories": [
-        "impact_check"
-      ],
-      "reasons": [
-        "required or existing context recommendation"
-      ],
-      "evidence": [],
-      "doc_ids": [],
-      "required": false,
-      "status": "unknown",
-      "priority": 1,
-      "source_sha256": null,
-      "source_basis": null,
-      "context_signal": {
-        "relevant": 0.06,
-        "evidence": 0.12,
-        "contradicts": 0.44,
-        "injection": 0.01,
-        "decision": "keep",
-        "reason": null
-      }
-    },
-    {
-      "path": "docs/architecture.md",
-      "categories": [
-        "document_read"
-      ],
-      "reasons": [
-        "required or existing context recommendation"
-      ],
-      "evidence": [],
-      "doc_ids": [],
-      "required": false,
-      "status": "inferred",
-      "priority": 1,
-      "source_sha256": "f991945b9567e10c830a04c5b8d5a641112eb892bb884b0b808a77c3b3a28a75",
-      "source_basis": "HEAD",
-      "context_signal": {
-        "relevant": 0.13,
-        "evidence": 0.25,
-        "contradicts": 0.27,
-        "injection": 0.02,
-        "decision": "keep",
-        "reason": null
-      }
-    },
-    {
-      "path": "internal/config/config.go",
-      "categories": [
-        "impact_check"
-      ],
-      "reasons": [
-        "required or existing context recommendation"
-      ],
-      "evidence": [],
-      "doc_ids": [],
-      "required": false,
-      "status": "inferred",
-      "priority": 1,
-      "source_sha256": "a1c0731e306658f82f2c8febddc53d37d62b9b3ecc9e576cf4643baec7f8cfc4",
-      "source_basis": "HEAD",
-      "context_signal": {
-        "relevant": 0.19,
-        "evidence": 0.36,
-        "contradicts": 0.17,
-        "injection": 0.01,
-        "decision": "keep",
-        "reason": null
-      }
+      "source_basis": "tracked_worktree_overlay"
     },
     {
       "path": "internal/relay/capacity.go",
       "categories": [
-        "direct_edit",
-        "impact_check"
+        "direct_edit"
       ],
       "reasons": [
         "explicit edit seed/diff",
-        "required or existing context recommendation",
         "seed definition"
       ],
       "evidence": [
@@ -1192,63 +967,7 @@
       "status": "inferred",
       "priority": 1,
       "source_sha256": "9b5b7def2e292e1f81b00bb5e76777c9c0de94f6db3aecb36cd8f65ad520d35b",
-      "source_basis": "HEAD",
-      "context_signal": {
-        "relevant": 0.11,
-        "evidence": 0.13,
-        "contradicts": 0.21,
-        "injection": 0.01,
-        "decision": "keep",
-        "reason": null
-      }
-    },
-    {
-      "path": "internal/relay/cleanup.go",
-      "categories": [
-        "impact_check"
-      ],
-      "reasons": [
-        "required or existing context recommendation"
-      ],
-      "evidence": [],
-      "doc_ids": [],
-      "required": false,
-      "status": "inferred",
-      "priority": 1,
-      "source_sha256": "29ed63da91c6d0f70dd8224a6d1bf433fdea06ecb2c228225155315faa47b76e",
-      "source_basis": "HEAD",
-      "context_signal": {
-        "relevant": 0.5,
-        "evidence": 0.75,
-        "contradicts": 0.33,
-        "injection": 0.01,
-        "decision": "keep",
-        "reason": null
-      }
-    },
-    {
-      "path": "internal/relay/cleanup_admission.go",
-      "categories": [
-        "impact_check"
-      ],
-      "reasons": [
-        "required or existing context recommendation"
-      ],
-      "evidence": [],
-      "doc_ids": [],
-      "required": false,
-      "status": "unknown",
-      "priority": 1,
-      "source_sha256": null,
-      "source_basis": null,
-      "context_signal": {
-        "relevant": 0.04,
-        "evidence": 0.06,
-        "contradicts": 0.43,
-        "injection": 0.02,
-        "decision": "keep",
-        "reason": null
-      }
+      "source_basis": "HEAD"
     },
     {
       "path": "internal/relay/public_messages_integration_test.go",
@@ -1278,12 +997,10 @@
     {
       "path": "internal/relay/store.go",
       "categories": [
-        "direct_edit",
-        "impact_check"
+        "direct_edit"
       ],
       "reasons": [
-        "explicit edit seed/diff",
-        "required or existing context recommendation"
+        "explicit edit seed/diff"
       ],
       "evidence": [],
       "doc_ids": [],
@@ -1291,25 +1008,15 @@
       "status": "unknown",
       "priority": 1,
       "source_sha256": null,
-      "source_basis": null,
-      "context_signal": {
-        "relevant": 0.14,
-        "evidence": 0.18,
-        "contradicts": 0.23,
-        "injection": 0.01,
-        "decision": "keep",
-        "reason": null
-      }
+      "source_basis": null
     },
     {
       "path": "internal/relay/text_events.go",
       "categories": [
-        "direct_edit",
-        "impact_check"
+        "direct_edit"
       ],
       "reasons": [
-        "explicit edit seed/diff",
-        "required or existing context recommendation"
+        "explicit edit seed/diff"
       ],
       "evidence": [],
       "doc_ids": [],
@@ -1317,80 +1024,7 @@
       "status": "inferred",
       "priority": 1,
       "source_sha256": "1f7aeaaf1f6fcc0d74f1b5d82f22b8213d10e15fd4c233a13c5537842c2679a5",
-      "source_basis": "HEAD",
-      "context_signal": {
-        "relevant": 0.1,
-        "evidence": 0.15,
-        "contradicts": 0.17,
-        "injection": 0.01,
-        "decision": "keep",
-        "reason": null
-      }
-    },
-    {
-      "path": "scripts/schema.py",
-      "categories": [
-        "impact_check"
-      ],
-      "reasons": [
-        "required or existing context recommendation"
-      ],
-      "evidence": [],
-      "doc_ids": [],
-      "required": false,
-      "status": "inferred",
-      "priority": 1,
-      "source_sha256": "4ff105fe8fe9bd232caef9931be55a52d580f65459705859789db28ac2a89d06",
-      "source_basis": "HEAD",
-      "context_signal": {
-        "relevant": 0.11,
-        "evidence": 0.16,
-        "contradicts": 0.2,
-        "injection": 0.01,
-        "decision": "keep",
-        "reason": null
-      }
-    },
-    {
-      "path": "scripts/verify_runtime.py",
-      "categories": [
-        "impact_check"
-      ],
-      "reasons": [
-        "required or existing context recommendation"
-      ],
-      "evidence": [],
-      "doc_ids": [],
-      "required": false,
-      "status": "unknown",
-      "priority": 1,
-      "source_sha256": null,
-      "source_basis": null,
-      "context_signal": null
-    },
-    {
-      "path": "sqlc.yaml",
-      "categories": [
-        "impact_check"
-      ],
-      "reasons": [
-        "required or existing context recommendation"
-      ],
-      "evidence": [],
-      "doc_ids": [],
-      "required": false,
-      "status": "inferred",
-      "priority": 1,
-      "source_sha256": "2347a2765fcefcc1fe2d5acbd6e4f8cddbf306d3bac773a3d881ccf0fd2584a6",
-      "source_basis": "HEAD",
-      "context_signal": {
-        "relevant": 0.16,
-        "evidence": 0.29,
-        "contradicts": 0.21,
-        "injection": 0.02,
-        "decision": "keep",
-        "reason": null
-      }
+      "source_basis": "HEAD"
     }
   ],
   "snapshot": "HEAD search with tracked worktree and explicit/required local overlays",
@@ -1404,42 +1038,24 @@
       "internal/relay/text_events.go"
     ],
     "impact_check": [
-      "cmd/relay/main.go",
       "cmd/relay/main_test.go",
-      "db/migrations/00001_relay.sql",
-      "db/migrations/00002_human_writer.sql",
-      "db/queries/relay.sql",
-      "deploy/knowslink/beta.sh",
-      "internal/config/config.go",
-      "internal/relay/capacity.go",
-      "internal/relay/cleanup.go",
-      "internal/relay/cleanup_admission.go",
-      "internal/relay/public_messages_integration_test.go",
-      "internal/relay/store.go",
-      "internal/relay/text_events.go",
-      "scripts/schema.py",
-      "scripts/verify_runtime.py",
-      "sqlc.yaml"
+      "internal/relay/public_messages_integration_test.go"
     ],
     "document_read": [
       ".fullops-squad/FULLOPS.md",
-      ".fullops-squad/handovers/to_dev.md",
       ".fullops-squad/project.md",
       ".fullops-squad/rules/common/README.md",
       ".fullops-squad/rules/common/coding-style.md",
       ".fullops-squad/rules/common/security.md",
       ".fullops-squad/rules/common/testing.md",
       "docs/system-design.md",
-      ".fullops-squad/docs/design-docs/database-design.md",
-      ".fullops-squad/docs/design-docs/tech-stack.md",
       ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-DEV-FIX.md",
       ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-DEV-FIX.md",
       ".fullops-squad/docs/exec-plans/phases/SAR-REFACTOR-003.md",
-      ".fullops-squad/docs/generated/db-schema.md",
       ".fullops-squad/docs/operations/ops-guide.md",
       ".fullops-squad/docs/operations/transition.md",
       ".fullops-squad/docs/planning/business-plan.md",
-      "docs/architecture.md"
+      ".fullops-squad/handovers/to_dev.md"
     ],
     "document_update": [
       ".fullops-squad/docs/design-docs/database-design.md",
@@ -1453,6 +1069,10 @@
   "partial": true,
   "unknown": [
     {
+      "source": "route",
+      "reason": "task/role/SHA/attempt/instruction differs or absent; regenerate/bind route"
+    },
+    {
       "source": "find",
       "reason": "task/role/SHA/attempt/instruction differs or absent; regenerate/bind route"
     },
@@ -1462,13 +1082,7 @@
     },
     {
       "source": "context",
-      "reason": "producer uncertainty; inspect producer_status",
-      "error": null,
-      "input_partial": true,
-      "refused_paths": [],
-      "unsent_sources": {
-        "scripts/verify_runtime.py": "sensitive or oversized passage"
-      }
+      "reason": "task/role/SHA/attempt/instruction differs or absent; regenerate/bind route"
     },
     {
       "path": ".fullops-squad/PLANS.md",
@@ -1487,37 +1101,11 @@
       "reason": "missing, oversized, sensitive or invalid; manual inspection"
     },
     {
-      "path": "deploy/knowslink/beta.sh",
-      "reason": "missing, oversized, sensitive or invalid; manual inspection"
-    },
-    {
-      "path": "internal/relay/cleanup_admission.go",
-      "reason": "missing, oversized, sensitive or invalid; manual inspection"
-    },
-    {
       "path": "internal/relay/store.go",
-      "reason": "missing, oversized, sensitive or invalid; manual inspection"
-    },
-    {
-      "path": "scripts/verify_runtime.py",
       "reason": "missing, oversized, sensitive or invalid; manual inspection"
     }
   ],
-  "producer_status": {
-    "route": {
-      "error": null,
-      "docs_status": "complete",
-      "unresolved_deliverables": []
-    },
-    "context": {
-      "error": null,
-      "input_partial": true,
-      "refused_paths": [],
-      "unsent_sources": {
-        "scripts/verify_runtime.py": "sensitive or oversized passage"
-      }
-    }
-  },
+  "producer_status": {},
   "worker_decisions": [],
   "worker_decisions_mode": "annotations; original recommendations preserved",
   "fallback": "bounded string/definition search; dynamic references and language server semantics unverified",
@@ -1531,26 +1119,22 @@
     "cmd/relay/main.go",
     ".fullops-squad/docs/design-docs/database-design.md",
     ".fullops-squad/docs/design-docs/module-design.md",
-    ".fullops-squad/docs/design-docs/tech-stack.md",
     ".fullops-squad/docs/generated/db-schema.md",
     ".fullops-squad/docs/operations/ops-guide.md",
     ".fullops-squad/docs/operations/transition.md",
     ".fullops-squad/docs/planning/business-plan.md",
-    "db/migrations/00001_relay.sql",
-    "db/migrations/00002_human_writer.sql",
     "db/queries/relay.sql",
-    "deploy/knowslink/beta.sh",
-    "docs/architecture.md",
-    "internal/config/config.go",
-    "internal/relay/cleanup.go",
-    "internal/relay/cleanup_admission.go",
     "internal/relay/store.go",
     "internal/relay/text_events.go",
-    "scripts/schema.py"
+    ".fullops-squad/handovers/to_dev.md",
+    ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-DEV-FIX.md",
+    ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-DEV-FIX.md",
+    ".fullops-squad/docs/exec-plans/phases/SAR-REFACTOR-003.md",
+    "cmd/relay/main_test.go",
+    "internal/relay/public_messages_integration_test.go"
   ],
   "required_paths": [
     ".fullops-squad/FULLOPS.md",
-    ".fullops-squad/handovers/to_dev.md",
     ".fullops-squad/project.md",
     ".fullops-squad/rules/common/README.md",
     ".fullops-squad/rules/common/coding-style.md",
@@ -1559,13 +1143,5 @@
     "docs/system-design.md"
   ],
   "optional_context_paths": [],
-  "remaining_context_paths": [
-    "scripts/verify_runtime.py",
-    "sqlc.yaml",
-    ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-DEV-FIX.md",
-    ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-DEV-FIX.md",
-    ".fullops-squad/docs/exec-plans/phases/SAR-REFACTOR-003.md",
-    "cmd/relay/main_test.go",
-    "internal/relay/public_messages_integration_test.go"
-  ]
+  "remaining_context_paths": []
 }
