@@ -114,6 +114,8 @@ type Service struct {
 	readAt             time.Time     // start of the last refresh read, guarded by reading
 	cleaning           sync.Map      // fairness units holding the local cleanup channel
 	orphans            sync.Map      // shared admission tokens whose finish transaction failed
+	transactionOnce    sync.Once
+	transactionSlots   chan struct{} // bounds concurrent transactions so one pool connection stays free
 	Pool               *pgxpool.Pool
 	TestAgents         map[string]bool
 	// SyntheticSignup keeps the local /v1/owners fixture; public members require verified identity.
@@ -145,6 +147,10 @@ func pairID(a, b string) string {
 	return a + "/" + b
 }
 func (s *Service) transaction(ctx context.Context, operation func(*State, time.Time) (any, error)) (any, error) {
+	if err := s.enterTransaction(ctx); err != nil {
+		return nil, err
+	}
+	defer func() { <-s.transactionSlots }()
 	tx, err := s.Pool.Begin(ctx)
 	if err != nil {
 		return nil, fault("unavailable")

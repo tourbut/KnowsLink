@@ -267,7 +267,7 @@ func (s *Service) boundedHTTP(next http.Handler) http.Handler {
 			return
 		}
 		defer func() {
-			finishCtx, done := context.WithTimeout(context.WithoutCancel(ctx), 2*time.Second)
+			finishCtx, done := context.WithTimeout(context.WithoutCancel(ctx), finishWait)
 			defer done()
 			if _, err := s.transaction(finishCtx, func(st *State, _ time.Time) (any, error) { delete(st.HTTP, token); return nil, nil }); err != nil {
 				s.orphans.Store(token, nil) // the next commit reclaims it, so one owner's slot does not wait for the 30s expiry

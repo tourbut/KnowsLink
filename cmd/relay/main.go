@@ -35,7 +35,11 @@ func run(ctx context.Context) error {
 	if err != nil {
 		return err
 	}
-	pool, err := pgxpool.New(ctx, databaseURL)
+	poolConfig, err := relay.PoolConfig(databaseURL)
+	if err != nil {
+		return errors.New("database configuration failed")
+	}
+	pool, err := pgxpool.NewWithConfig(ctx, poolConfig)
 	if err != nil {
 		return errors.New("database configuration failed")
 	}
