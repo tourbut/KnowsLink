@@ -70,7 +70,12 @@ func TestStateFormatMigration(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	legacy.Messages[id] = &Message{Receipt: Receipt{ID: id, From: signed.From, To: signed.To, Digest: signed.Digest()}, Envelope: envelope}
+	// Same sender, recipient and authority as a fixture message, so the first sweep keeps the envelope as current.
+	sibling := legacy.Messages["message_00000"]
+	legacy.Messages[id] = &Message{Receipt: Receipt{ID: id, From: signed.From, To: signed.To, Digest: signed.Digest()}, Envelope: envelope, Kid: sibling.Kid, Scope: sibling.Scope, Generation: sibling.Generation}
+	for _, m := range legacy.Messages { // the fixture's fixed dates would let the first sweep purge the history
+		m.Receipt.Accepted, m.Receipt.Exp = time.Now().Add(-time.Minute), time.Now().Add(time.Hour)
+	}
 	raw, err := json.Marshal(legacy)
 	if err != nil {
 		t.Fatal(err)
