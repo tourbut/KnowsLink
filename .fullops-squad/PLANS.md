@@ -20,6 +20,7 @@ summary: 기존 제품 계획 보존과 Google 연결 구현의 독립 검토 �
 - **대기:** 개선 4(입장·해제 분리), 개선 5(잠금 없는 읽기), 개선 6(정규화)은 사용자 재개 지시를 기다린다.
 - **승인 필요:** main 병합·push와 운영 배포는 완료 보고와 독립 리뷰 뒤 사용자에게 확인한다.
 - **측정 근거:** `D:/workspace/KnowsLink/.devtools/db-wait/`와 `.devtools/rust-eval/results/`(gitignore)다.
+- **dev 결과(2026-11-07):** 개선 1·2·3 구현 완료(코드 `bcd79203`). 판정은 사용자 결정 D046대로 2회로 통과했다. 독립 리뷰, main 병합, 운영 이행은 대기다. [보고](docs/evaluations/qa-reports/SAR-DB-WAIT-001-DEV-test/report.md).
 
 ## 전반 리팩터링·코드 정비·불필요 파일 정리·로직 점검 — SAR-REFACTOR-003 (2026-11-04~05)
 
@@ -2221,3 +2222,5 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 - [ ] SAR-AUTOSETUP-001-O04-DEV → tester: tester 다중 플러그인 갱신 (완료 보고 자동 등재 2026-10-28)
 - [ ] SAR-AUTOSETUP-001-O04-DEV → ops: ops `/install/0.1.1/` 게시 후 relay 화면 명령 배포(사용자 승인) (완료 보고 자동 등재 2026-10-28)
 - [ ] SAR-AUTOSETUP-001-QA3 → coor: coor 사용자 승인 후 ops 운영 교체(0.1.1 게시 (완료 보고 자동 등재 2026-10-28)
+- [ ] SAR-DB-WAIT-001 → coor: coor: 독립 리뷰와 main 병합 판단 (완료 보고 자동 등재 2026-11-07)
+- [ ] SAR-DB-WAIT-001 → ops: ops: 운영 이행은 별도 승인 뒤 D12 절차로 수행 (완료 보고 자동 등재 2026-11-07)

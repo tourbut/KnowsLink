@@ -70,3 +70,5 @@ summary: dev의 유효 설계 원칙 요약과 최근 결정. 2026-10-10까지�
 - 2026-10-21 SAR-PUBLISH-001-DEV: 기능 제거는 그 과제 이전 커밋 이후의 변경이 그 과제뿐인지 `git log -- internal cmd`로 확인한 뒤 파일 단위로 되돌린다. 저장 상태 JSON의 필드를 바로 지우면 첫 transaction이 철회 없이 버리므로, legacy 필드를 남기고 HTTP 시작 전 정리 한 곳에서 철회·삭제한다. 언어별로 따로 쓴 문안은 run 번역 표 대신 embed 정적 HTML로 둔다. 한국어 조사가 링크 바로 뒤에 붙으면 영어 값에 앞 공백을 넣는다. headless Chrome 창은 최소 500px이라 390·320 측정은 `--allow-file-access-from-files`의 고정 폭 iframe으로 한다. [DEV 보고](../docs/evaluations/qa-reports/SAR-PUBLISH-001-DEV-test/report.md).
 
 - 2026-10-22 SAR-CODEX-RECV-001-DEV: Codex 세션 수신은 세션별 MCP 프로세스 결속 + MCP elicitation 승인으로 구현했다(`codex queue`·`turn/steer`·`inject_items`는 본문을 소유자 입력·대화 기록으로 넣어 제외). Codex YOLO는 elicitation을 보이지 않고 자동 수락하므로 단순 accept를 승인으로 쓰지 않고 대화상자의 일회 코드 입력을 요구한다. 호스트 승인 UI는 실제 기본 설정(YOLO 포함)으로도 실측한다. [DEV 보고](../docs/evaluations/qa-reports/SAR-CODEX-RECV-001-DEV-test/report.md).
+
+- 2026-11-07 SAR-DB-WAIT-001: 시스템이 백그라운드 명령을 중단했다고 알려도 하위 프로세스는 살아 있을 수 있다. 부분 결과를 보고하기 전에 프로세스와 로그 끝을 다시 확인한다. [보고](../docs/evaluations/qa-reports/SAR-DB-WAIT-001-DEV-test/report.md).
