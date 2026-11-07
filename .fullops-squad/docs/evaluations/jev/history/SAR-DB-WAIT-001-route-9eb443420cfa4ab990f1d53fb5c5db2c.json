@@ -1,0 +1,80 @@
+{
+  "version": "jev-route-v4",
+  "task_key": "SAR-DB-WAIT-001",
+  "requested_model": "~typesafe/jev-latest",
+  "route": "implementation",
+  "role": "dev",
+  "deliverables": [
+    "D10",
+    "D07",
+    "D08"
+  ],
+  "thresholds": {
+    "simple": 0.8,
+    "role": 0.6,
+    "deliverable": 0.5
+  },
+  "answers": {
+    "scope": {
+      "choice": "implementation",
+      "probabilities": {
+        "implementation": 0.98,
+        "product": 0.02
+      },
+      "confidence": 0.96
+    },
+    "role": {
+      "choice": "dev",
+      "probabilities": {
+        "dev": 1,
+        "ops": 0,
+        "tester": 0
+      },
+      "confidence": 1
+    },
+    "docs": {
+      "D01": 0.08,
+      "D02": 0.2,
+      "D03": 0.25,
+      "D04": 0.07,
+      "D05": 0.19,
+      "D06": 0.34,
+      "D07": 0.56,
+      "D08": 0.56,
+      "D09": 0.24,
+      "D10": 0.61,
+      "D11": 0.06,
+      "D12": 0.49,
+      "D13": 0.34
+    }
+  },
+  "usage": {
+    "input_tokens": 0,
+    "output_tokens": 0,
+    "cost": 0
+  },
+  "error": null,
+  "docs_status": "complete",
+  "unresolved_deliverables": [],
+  "additional_deliverables": [],
+  "latency_seconds": 0.0,
+  "response_model": "typesafe/jev-1.14-20261014",
+  "model": {
+    "agent": "claude",
+    "provider": "anthropic",
+    "model": "claude-opus-5-5",
+    "effort": "high",
+    "source": "user"
+  },
+  "head": "8b23afe9e07688b78214fdb9dbf262b02b099bb4",
+  "requires_packet": true,
+  "attempt": "b60b839a146841d5b700e8f5bd8be577",
+  "instruction_sha256": "2503aecd588aa1a15abfd3848ed52e3e984c145b89829c4978dfb3985356438f",
+  "options": {
+    "model": "~typesafe/jev-latest",
+    "offline": false,
+    "payload_cache_bypass": false,
+    "policy": "route-v4"
+  },
+  "input_sha256": "14889089b41be6fc901f8d9805ac7df56998208f0b6fa8adb8f33cc0d1e93282"
+}

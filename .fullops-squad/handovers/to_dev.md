@@ -108,40 +108,37 @@ route 추천은 D10, D07, D08이다. 개선 3을 구현하면 D08은 `make schem
 <!-- fullops-packet:start -->
 ### 탐색 근거와 읽을 구간
 
-정본: `.fullops-squad\docs\evaluations\jev\SAR-DB-WAIT-001-packet.json` / SHA `ebba73c53c284a742b96ef1ee097b0628c8d9fe7` / partial=True
+정본: `.fullops-squad\docs\evaluations\jev\SAR-DB-WAIT-001-packet.json` / SHA `8b23afe9e07688b78214fdb9dbf262b02b099bb4` / partial=True
 - `.fullops-squad/FULLOPS.md` (document_read) · 줄 전체/미확인 · inferred · 필수
-- `.fullops-squad/project.md` (document_read) · 줄 전체/미확인 · inferred · 필수
+- `.fullops-squad/handovers/to_dev.md` (document_read) · 줄 37, 37, 62, 62, 80, 84 · inferred · 필수
+- `.fullops-squad/project.md` (document_read) · 줄 전체/미확인 · inferred · 필수 · {'relevant': 0.16, 'evidence': 0.73, 'contradicts': 0.2, 'injection': 0.02, 'decision': 'keep', 'reason': None}
 - `.fullops-squad/rules/common/README.md` (document_read) · 줄 전체/미확인 · inferred · 필수
 - `.fullops-squad/rules/common/coding-style.md` (document_read) · 줄 전체/미확인 · inferred · 필수
 - `.fullops-squad/rules/common/security.md` (document_read) · 줄 전체/미확인 · inferred · 필수
 - `.fullops-squad/rules/common/testing.md` (document_read) · 줄 전체/미확인 · inferred · 필수
-- `docs/system-design.md` (document_read) · 줄 75, 76, 76, 79, 99, 168, 245, 266, 267, 269 · inferred · 필수
-- `.fullops-squad/PLANS.md` (document_update, document_read) · 줄 전체/미확인 · unknown
-- `.fullops-squad/docs/design-docs/architecture.md` (document_read) · 줄 전체/미확인 · inferred
-- `.fullops-squad/docs/design-docs/crud-design.md` (document_read) · 줄 전체/미확인 · inferred
-- `.fullops-squad/docs/design-docs/data-model.md` (document_read) · 줄 전체/미확인 · inferred
-- `.fullops-squad/docs/design-docs/database-design.md` (document_read, document_update) · 줄 전체/미확인 · inferred
-- `.fullops-squad/docs/design-docs/interface-design.md` (document_read) · 줄 전체/미확인 · inferred
-- `.fullops-squad/docs/design-docs/module-design.md` (document_read, document_update) · 줄 전체/미확인 · unknown
-- `.fullops-squad/docs/design-docs/tech-stack.md` (document_read) · 줄 전체/미확인 · inferred
-- `.fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER-FIX.md` (document_read) · 줄 54 · inferred
-- `.fullops-squad/docs/evaluations/qa-reports/SAR-MVP-001-TESTER.md` (document_read) · 줄 39 · inferred
-- `.fullops-squad/docs/evaluations/qa-reports/SAR-PUBLIC-MESSAGES-001-FIX-REVIEW-review/report.md` (document_read) · 줄 84 · inferred
-- `.fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-LANG-CODE-REVIEW-review/report.md` (document_read) · 줄 27, 36, 37 · inferred
-- `.fullops-squad/docs/evaluations/qa-reports/SAR-UX-ISSUES-002-RECEIPT-CODE-REVIEW-review/report.md` (document_read) · 줄 24 · inferred
-- `.fullops-squad/docs/evaluations/scenarios/SAR-MVP-001-TESTER-FIX.md` (document_read) · 줄 44 · inferred
-- `.fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-DEV-FIX.md` (document_read) · 줄 29 · inferred
-- `.fullops-squad/docs/exec-plans/phases/SAR-REFACTOR-003.md` (document_read) · 줄 30 · inferred
-- `.fullops-squad/docs/generated/db-schema.md` (document_read, document_update) · 줄 전체/미확인 · inferred
+- `docs/system-design.md` (document_read) · 줄 75, 76, 76, 79, 99, 168, 245, 266, 267, 269 · inferred · 필수 · {'relevant': 0.12, 'evidence': 0.21, 'contradicts': 0.23, 'injection': 0.01, 'decision': 'keep', 'reason': None}
+- `.fullops-squad/docs/design-docs/database-design.md` (document_read, document_update) · 줄 전체/미확인 · inferred · {'relevant': 0.36, 'evidence': 0.54, 'contradicts': 0.58, 'injection': 0.02, 'decision': 'conflict', 'reason': 'contradicts task'}
+- `.fullops-squad/docs/design-docs/module-design.md` (document_update) · 줄 전체/미확인 · unknown
+- `.fullops-squad/docs/design-docs/tech-stack.md` (document_read) · 줄 전체/미확인 · inferred · {'relevant': 0.09, 'evidence': 0.28, 'contradicts': 0.2, 'injection': 0.02, 'decision': 'keep', 'reason': None}
+- `.fullops-squad/docs/generated/db-schema.md` (document_read, document_update) · 줄 전체/미확인 · inferred · {'relevant': 0.19, 'evidence': 0.28, 'contradicts': 0.16, 'injection': 0.02, 'decision': 'keep', 'reason': None}
 - `.fullops-squad/docs/operations/ops-guide.md` (document_read) · 줄 전체/미확인 · unknown
 - `.fullops-squad/docs/operations/transition.md` (document_read) · 줄 전체/미확인 · inferred
-- `cmd/relay/main.go` (direct_edit, impact_check) · 줄 20, 29, 103 · inferred
-- `db/queries/relay.sql` (direct_edit, impact_check) · 줄 전체/미확인 · inferred
-- `internal/relay/capacity.go` (direct_edit, impact_check) · 줄 71, 77, 107, 297, 302 · inferred
-- `internal/relay/store.go` (direct_edit) · 줄 전체/미확인 · unknown
-- `internal/relay/text_events.go` (direct_edit, impact_check) · 줄 전체/미확인 · inferred
-나머지 참조 후보 415건은 정본 JSON의 remaining_context_paths에 있다. 완료 검사(packet-outcomes)는 위 목록만 요구한다.
-미확인 32건: route: task/role/SHA/attempt/instruction differs or absent; regenerate/bind route; find: producer uncertainty; inspect producer_status; documents-find: producer uncertainty; inspect producer_status; context: task/role/SHA/attempt/instruction differs or absent; regenerate/bind route; .fullops-squad/PLANS.md: missing, oversized, sensitive or invalid; manual inspection …. 정본의 unknown/producer_status 확인. bounded string/definition search; dynamic references and language server semantics unverified
+- `.fullops-squad/docs/planning/business-plan.md` (document_read) · 줄 전체/미확인 · inferred
+- `cmd/relay/main.go` (direct_edit, impact_check) · 줄 20, 29, 103 · inferred · {'relevant': 0.35, 'evidence': 0.55, 'contradicts': 0.2, 'injection': 0.01, 'decision': 'keep', 'reason': None}
+- `db/migrations/00001_relay.sql` (impact_check) · 줄 전체/미확인 · inferred · {'relevant': 0.65, 'evidence': 0.65, 'contradicts': 0.34, 'injection': 0.01, 'decision': 'keep', 'reason': None}
+- `db/migrations/00002_human_writer.sql` (impact_check) · 줄 전체/미확인 · inferred · {'relevant': 0.1, 'evidence': 0.15, 'contradicts': 0.51, 'injection': 0.03, 'decision': 'keep', 'reason': None}
+- `db/queries/relay.sql` (direct_edit, impact_check) · 줄 전체/미확인 · inferred · {'relevant': 0.43, 'evidence': 0.6, 'contradicts': 0.27, 'injection': 0.01, 'decision': 'keep', 'reason': None}
+- `deploy/knowslink/beta.sh` (impact_check) · 줄 전체/미확인 · unknown · {'relevant': 0.06, 'evidence': 0.12, 'contradicts': 0.44, 'injection': 0.01, 'decision': 'keep', 'reason': None}
+- `docs/architecture.md` (document_read) · 줄 전체/미확인 · inferred · {'relevant': 0.13, 'evidence': 0.25, 'contradicts': 0.27, 'injection': 0.02, 'decision': 'keep', 'reason': None}
+- `internal/config/config.go` (impact_check) · 줄 전체/미확인 · inferred · {'relevant': 0.19, 'evidence': 0.36, 'contradicts': 0.17, 'injection': 0.01, 'decision': 'keep', 'reason': None}
+- `internal/relay/capacity.go` (direct_edit, impact_check) · 줄 71, 77, 107, 297, 302 · inferred · {'relevant': 0.11, 'evidence': 0.13, 'contradicts': 0.21, 'injection': 0.01, 'decision': 'keep', 'reason': None}
+- `internal/relay/cleanup.go` (impact_check) · 줄 전체/미확인 · inferred · {'relevant': 0.5, 'evidence': 0.75, 'contradicts': 0.33, 'injection': 0.01, 'decision': 'keep', 'reason': None}
+- `internal/relay/cleanup_admission.go` (impact_check) · 줄 전체/미확인 · unknown · {'relevant': 0.04, 'evidence': 0.06, 'contradicts': 0.43, 'injection': 0.02, 'decision': 'keep', 'reason': None}
+- `internal/relay/store.go` (direct_edit, impact_check) · 줄 전체/미확인 · unknown · {'relevant': 0.14, 'evidence': 0.18, 'contradicts': 0.23, 'injection': 0.01, 'decision': 'keep', 'reason': None}
+- `internal/relay/text_events.go` (direct_edit, impact_check) · 줄 전체/미확인 · inferred · {'relevant': 0.1, 'evidence': 0.15, 'contradicts': 0.17, 'injection': 0.01, 'decision': 'keep', 'reason': None}
+- `scripts/schema.py` (impact_check) · 줄 전체/미확인 · inferred · {'relevant': 0.11, 'evidence': 0.16, 'contradicts': 0.2, 'injection': 0.01, 'decision': 'keep', 'reason': None}
+나머지 참조 후보 7건은 정본 JSON의 remaining_context_paths에 있다. 완료 검사(packet-outcomes)는 위 목록만 요구한다.
+미확인 11건: find: task/role/SHA/attempt/instruction differs or absent; regenerate/bind route; documents-find: task/role/SHA/attempt/instruction differs or absent; regenerate/bind route; context: producer uncertainty; inspect producer_status; .fullops-squad/PLANS.md: missing, oversized, sensitive or invalid; manual inspection; .fullops-squad/docs/design-docs/mockups/service-member-ui.md: missing, oversized, sensitive or invalid; manual inspection …. 정본의 unknown/producer_status 확인. bounded string/definition search; dynamic references and language server semantics unverified
 <!-- fullops-packet:end -->
 
 ## 완료 보고
