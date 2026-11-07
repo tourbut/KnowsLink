@@ -1,7 +1,7 @@
 ---
 title: KnowsLink 현재 계획
 status: draft
-updated: 2026-11-07
+updated: 2026-11-08
 owner: coor
 tasks: [FULLOPS-UPDATE-098, SAR-SETUP-001, SAR-SETUP-001-DEV, FULLOPS-UPDATE-0.9.10, SAR-PREP-002, SAR-MVP-002-INSTALL-FIX-DEV, FULLOPS-UPDATE-0.9.14, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-POLICY, SAR-PUBLIC-AGENTS-001-UI-FIX, SAR-PUBLIC-AGENTS-001-COOR, FULLOPS-WORKTREE-CLEANUP-2026-10-06, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-REVIEW, SAR-PUBLIC-MESSAGES-001-UI, SAR-PUBLIC-MESSAGES-001-UI-FIX, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-SERVICE-OPEN-PREP, SAR-PUBLIC-MESSAGES-001-FIX-3-REVIEW, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-PUBLIC-MESSAGES-001-UI-FIX-2, SAR-GOOGLE-LOGIN-001-DEV, FULLOPS-UPDATE-1.2.0, FULLOPS-UPDATE-1.3.0, SAR-GOOGLE-CONNECT-001-DEV, SAR-REFACTOR-001-OPS, SAR-REPO-DOCS-001-DEV, FULLOPS-UPDATE-1.4.2, SAR-SYSTEM-DIAGRAM-001-DEV, SAR-REFACTOR-002-OPS, SAR-LANDING-GUIDE-001, FULLOPS-UPDATE-1.4.4, SAR-CI-001, BOARD-CLEANUP-2026-10-18, SAR-UX-ISSUES-002-NAMES-DEV, SAR-UX-ISSUES-002-NAMES-TESTER, SAR-UX-ISSUES-002-NAMES-CODE-REVIEW, SAR-UX-ISSUES-002-NAMES-VISUAL, SAR-UX-ISSUES-002-APPROVAL-DEV, SAR-UX-ISSUES-002-APPROVAL-CODE-REVIEW, SAR-UX-ISSUES-002-APPROVAL-TESTER, SAR-UX-ISSUES-002-APPROVAL-VISUAL, SAR-UX-ISSUES-002-HOSTS-DESIGN, SAR-UX-ISSUES-002-CONNECT-DEV, SAR-UX-ISSUES-002-CONNECT-CODE-REVIEW, SAR-UX-ISSUES-002-CONNECT-TESTER, SAR-UX-ISSUES-002-CONNECT-VISUAL, SAR-UX-ISSUES-002-CONNECT-FIX-REVIEW, SAR-UX-ISSUES-002-LANG-DEV, SAR-UX-ISSUES-002-LANG-CODE-REVIEW, SAR-UX-ISSUES-002-LANG-TESTER, SAR-UX-ISSUES-002-LANG-VISUAL, SAR-UX-ISSUES-002-LOWS-DEV, SAR-RELEASE-002-OPS, SAR-SCHEDULE-001-DESIGN, SAR-CI-002-DEV, SAR-SCHEDULE-001-DEV, SAR-HOST-VERIFY-001-LIVE, SAR-CONNECT-SIMPLE-001, SAR-REFACTOR-003, SAR-DB-WAIT-001]
 summary: 기존 제품 계획 보존과 Google 연결 구현의 독립 검토 및 운영 인계
@@ -18,9 +18,17 @@ summary: 기존 제품 계획 보존과 Google 연결 구현의 독립 검토 �
   - `/`, `/privacy`, `/terms`의 세션 시각은 수 분에 한 번만 갱신한다.
   - 입장용 작은 행은 `synchronous_commit=off`를 허용하고, 장애 때 최근 요청 예산 기록 유실을 받아들인다.
 - **대기:** 개선 4(입장·해제 분리), 개선 5(잠금 없는 읽기), 개선 6(정규화)은 사용자 재개 지시를 기다린다.
-- **승인 필요:** main 병합·push와 운영 배포는 완료 보고와 독립 리뷰 뒤 사용자에게 확인한다.
+- **승인 필요:** 운영 이행은 별도 승인이 필요하다.
 - **측정 근거:** `D:/workspace/KnowsLink/.devtools/db-wait/`와 `.devtools/rust-eval/results/`(gitignore)다.
 - **dev 결과(2026-11-07):** 개선 1·2·3 구현 완료(코드 `bcd79203`). 판정은 사용자 결정 D046대로 2회로 통과했다. 독립 리뷰, main 병합, 운영 이행은 대기다. [보고](docs/evaluations/qa-reports/SAR-DB-WAIT-001-DEV-test/report.md).
+- **배정 기록:** run `run_64d85025b0a3`, task `task_c38013526dc4`, dispatch `ctx_ba3482281773`. worker는 종료됐고 터미널은 해제됐다.
+- **사용자 결정:**
+  - D046 "2회 결과로 판정". 전제였던 "3회차 5셀만 완료"는 dev의 오보였고 실제로는 27셀이 끝났다. 세 회차 모두 결론이 같다(p50 0.37~0.42배, 처리량 1.81~1.91배).
+  - D047 "리뷰 생략". `review.py need`가 required/ask(코드 19개 파일, 648줄)였고 사용자가 생략했다. 기록은 `docs/evaluations/qa-reports/SAR-DB-WAIT-001-review/waiver.json`이다.
+  - D048 "병합·push".
+- **통합(2026-11-08):** `9e84b4a5`를 origin/main에 fast-forward로 push했다(ebba73c5..9e84b4a5). worker lint(ERROR 0, make 불가 2건은 Linux 결과로 대체)를 재사용했다. 본 체크아웃·coor·dev·designer·ops·tester를 동기화했다.
+- **남은 일:** 운영 이행은 사용자 승인 뒤 ops가 D12 절차로 수행한다. `beta.sh deploy`는 migration 변경을 거부하므로 쓰지 않는다. 이행 후 구 코드로 복귀할 수 없다.
+- **미확인:** HTTP 경로 부하는 측정하지 않았다. 11-07 15:29:32에 Docker 이미지 10개가 외부에서 삭제됐고 주체를 모른다.
 
 ## 전반 리팩터링·코드 정비·불필요 파일 정리·로직 점검 — SAR-REFACTOR-003 (2026-11-04~05)
 
