@@ -1,6 +1,6 @@
 {
   "title": "KnowsLink",
-  "summary": "전반 정비 SAR-REFACTOR-003 main 통합(df3fec7e). 운영 배포는 사용자 승인 대기.",
+  "summary": "relay DB 대기 축소 SAR-DB-WAIT-001 진행 중(dev). SAR-REFACTOR-003 운영 배포는 사용자 승인 대기.",
   "phases": [
     {
       "name": "FullOps 운영 기반",
@@ -335,6 +335,16 @@
         "D13"
       ],
       "note": "148건 반영·리뷰 crit/high/med 0, main df3fec7e. 운영 배포는 승인 대기"
+    },
+    {
+      "name": "relay DB 대기 축소 (SAR-DB-WAIT-001)",
+      "status": "active",
+      "deliverables": [
+        "D07",
+        "D08",
+        "D10"
+      ],
+      "note": "dev 구현 중. 타임아웃·연결 수, json+lz4는 재측정 뒤 판정"
     }
   ]
 }
