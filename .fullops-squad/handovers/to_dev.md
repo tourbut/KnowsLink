@@ -67,12 +67,12 @@ coor가 ebba73c5에서 직접 확인한 내용:
 4. 측정은 기준 커밋 바이너리(12 연결), 개선 1·2 바이너리(4 연결), 개선 3 후보 바이너리를 같은 Postgres 컨테이너의 별도 DB에서 번갈아 돌린다. 하니스는 `.devtools/db-wait/`에 두고 실제 `transaction()`만 잰다.
 5. 개선 3은 작업 트리에서 후보를 만들어 측정하고, 판정을 통과할 때만 커밋한다.
 
-- [ ] 개선 1 멈춤 차단: relay의 모든 DB 연결에 `lock_timeout`, `idle_in_transaction_session_timeout`, TCP keepalive를 설정한다. 값은 측정으로 정한다. `idle_in_transaction_session_timeout`은 상한 20,000건에서 lock 안 계산 시간보다 커야 한다. `lock_timeout`은 HTTP `WriteTimeout` 10초 안에서 실패를 돌려줄 수 있어야 한다. 시간 초과는 기존 `unavailable` 응답으로 돌아가야 한다.
-- [ ] 개선 2 연결 수: 풀 상한을 4로 내린다. 프로세스 안에서 동시 트랜잭션 수를 제한해 연결 하나를 비워 둔다. 대기는 ctx를 따르고 상한 시간이 있어야 한다. 트랜잭션이 모두 잠금 대기 중이어도 `/healthz`는 응답해야 한다. 실제 `transaction()` 경로에서 12와 4를 비교해 효과를 기록한다. 효과가 없거나 나빠지면 이유와 숫자를 적고 되돌린다.
-- [ ] 측정 보강: 기존 하니스로 실제 `transaction()` 경로의 현재 `jsonb`와 `json`+lz4를 비교한다. 메시지 100/1,000/10,000건, 1·4·16 클라이언트, 운영 제한 조건이다. 같은 셀을 번갈아 3회 이상 돌려 호스트 흔들림을 적는다.
-- [ ] 개선 3 판정: 1,000건 단일 클라이언트 total p50이 현재의 50% 이하이고 16 클라이언트 처리량이 낮아지지 않으면 진행한다. 조건을 못 채우면 3을 구현하지 않고 숫자를 보고한다. 이 경우에도 개선 1·2는 완료한다.
-- [ ] 개선 3 구현(판정 통과 시): 새 goose migration으로 `data`를 `json` + lz4로 바꾸고 기존 행을 보존한다. HumanModel 가드는 숫자 컬럼으로 옮겨 `data`를 파싱하지 않게 한다. 구버전 writer가 가드를 우회해 쓰지 못하도록 컬럼 이름도 바꿔 SQL 오류로 실패하게 한다. Down은 지금처럼 실패 고정으로 둔다. `db/queries/relay.sql`, 생성된 `internal/database`, `text_events.go:167`의 직접 SELECT, 통합 시험의 raw SQL과 temp table, `scripts/verify_runtime.py`, `deploy/knowslink/beta.sh`를 함께 맞춘다. `make generate`와 `make schema` 결과를 커밋한다.
-- [ ] 문서: `docs/system-design.md`와 산출물의 해당 줄을 고친다. 개선 3을 구현했으면 배포 때 필요한 백업과 되돌리기 제약을 운영 문서에 적는다.
+- [x] 개선 1 멈춤 차단: relay의 모든 DB 연결에 `lock_timeout`, `idle_in_transaction_session_timeout`, TCP keepalive를 설정한다. 값은 측정으로 정한다. `idle_in_transaction_session_timeout`은 상한 20,000건에서 lock 안 계산 시간보다 커야 한다. `lock_timeout`은 HTTP `WriteTimeout` 10초 안에서 실패를 돌려줄 수 있어야 한다. 시간 초과는 기존 `unavailable` 응답으로 돌아가야 한다.
+- [x] 개선 2 연결 수: 풀 상한을 4로 내린다. 프로세스 안에서 동시 트랜잭션 수를 제한해 연결 하나를 비워 둔다. 대기는 ctx를 따르고 상한 시간이 있어야 한다. 트랜잭션이 모두 잠금 대기 중이어도 `/healthz`는 응답해야 한다. 실제 `transaction()` 경로에서 12와 4를 비교해 효과를 기록한다. 효과가 없거나 나빠지면 이유와 숫자를 적고 되돌린다.
+- [x] 측정 보강: 기존 하니스로 실제 `transaction()` 경로의 현재 `jsonb`와 `json`+lz4를 비교한다. 메시지 100/1,000/10,000건, 1·4·16 클라이언트, 운영 제한 조건이다. 같은 셀을 번갈아 3회 이상 돌려 호스트 흔들림을 적는다.
+- [x] 개선 3 판정: 1,000건 단일 클라이언트 total p50이 현재의 50% 이하이고 16 클라이언트 처리량이 낮아지지 않으면 진행한다. 조건을 못 채우면 3을 구현하지 않고 숫자를 보고한다. 이 경우에도 개선 1·2는 완료한다.
+- [x] 개선 3 구현(판정 통과 시): 새 goose migration으로 `data`를 `json` + lz4로 바꾸고 기존 행을 보존한다. HumanModel 가드는 숫자 컬럼으로 옮겨 `data`를 파싱하지 않게 한다. 구버전 writer가 가드를 우회해 쓰지 못하도록 컬럼 이름도 바꿔 SQL 오류로 실패하게 한다. Down은 지금처럼 실패 고정으로 둔다. `db/queries/relay.sql`, 생성된 `internal/database`, `text_events.go:167`의 직접 SELECT, 통합 시험의 raw SQL과 temp table, `scripts/verify_runtime.py`, `deploy/knowslink/beta.sh`를 함께 맞춘다. `make generate`와 `make schema` 결과를 커밋한다.
+- [x] 문서: `docs/system-design.md`와 산출물의 해당 줄을 고친다. 개선 3을 구현했으면 배포 때 필요한 백업과 되돌리기 제약을 운영 문서에 적는다.
 
 예상 규모: 개선 1·2는 코드 약 100줄과 시험이다. 개선 3은 migration, 쿼리, 시험 수정이다. SIZE-002가 나오면 실제 차이와 분할하지 않은 이유를 보고한다.
 
