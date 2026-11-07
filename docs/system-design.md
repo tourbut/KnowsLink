@@ -42,7 +42,7 @@ flowchart TB
   subgraph Server["비공개 서버·컨테이너 경계"]
     Tunnel["cloudflared Tunnel"]
     Relay["Go relay"]
-    DB[("Postgres JSONB 상태")]
+    DB[("Postgres JSON 상태")]
     Migrate["별도 SQL migrate"]
   end
   Web -->|"회원 HTTPS"| Edge
@@ -72,7 +72,7 @@ Cloudflare와 cloudflared는 별도 구성요소다. Tunnel은 DB에 직접 접�
 | Dots: [remote_mcp.go](../internal/relay/remote_mcp.go), [remote_auth.go](../internal/relay/remote_auth.go) | `/mcp` JSON-RPC와 설치별 OAuth 권한. 서버가 설치 키로 서명 | 설치별 개인키·Inbox는 private relay DB. 로컬 Grok 폴더와 다름 |
 | 공개 ingress: [public-ingress.yml](../deploy/knowslink/tunnel/public-ingress.yml) | 정확한 hostname·경로만 relay에 전달 | 이 fragment는 edge Access 정책 자체를 변경하지 않음 |
 | Tunnel: [compose.yaml](../compose.yaml), [compose.ops.yaml](../deploy/knowslink/compose.ops.yaml) | cloudflared가 외부 Tunnel과 내부 relay HTTP를 연결 | 운영 Tunnel 설정은 읽기 전용 mount. ingress network에만 연결 |
-| relay: [main.go](../cmd/relay/main.go), [http.go](../internal/relay/http.go) | 인증·권한·서명·기한·멱등·전달·화면, Cleanup·RemoteEvents loop | Postgres pool과 JSONB 상태. 업무 효과·자동 답장 엔진은 아님 |
+| relay: [main.go](../cmd/relay/main.go), [http.go](../internal/relay/http.go) | 인증·권한·서명·기한·멱등·전달·화면, Cleanup·RemoteEvents loop | Postgres pool과 JSON 상태. 업무 효과·자동 답장 엔진은 아님 |
 | DB: [store.go](../internal/relay/store.go), [relay.sql](../db/queries/relay.sql) | singleton 행 lock·epoch CAS·DB 시계·LISTEN/NOTIFY | 비공개 Postgres volume. DB 호스트 포트 게시 없음 |
 | migration: [main.go](../cmd/migrate/main.go), [SQL](../db/migrations/00002_human_writer.sql) | 별도 프로세스가 SQL-only Up 수행 | schema·goose version·writer trigger. relay 기동과 분리 |
 | Google: [google.go](../internal/relay/google.go) | OIDC code 교환·ID token 검증·회원 신원 연결 | Google 비밀 설정은 서버 환경. Google token을 Remote 설치에 저장하지 않음 |
@@ -80,7 +80,7 @@ Cloudflare와 cloudflared는 별도 구성요소다. Tunnel은 DB에 직접 접�
 | 선택 알림: [grok-wake.ts](../adapters/src/grok-wake.ts), [remote_events.go](../internal/relay/remote_events.go) | Grok routine doorbell 또는 Dots 서명 callback | Grok secret 파일은 로컬 private. Dots subscription·secret은 relay DB |
 
 Go는 `net/http`·`html/template`로 웹과 API를 함께 제공한다. 별도 React 서버나 프런트엔드 서비스는 없다.
-별도 queue broker·Redis·microservice는 없다. 전달 대기 상태도 같은 Postgres JSONB에 있다.
+별도 queue broker·Redis·microservice는 없다. 전달 대기 상태도 같은 Postgres JSON 상태에 있다.
 
 ## 회원·owner·agent·관계
 
@@ -261,7 +261,7 @@ gate 승인이 있어도 외부 업무 효과와 정보 공개 정책은 비활�
 
 ## DB 동시성·저장·보관
 
-실제 업무 테이블은 `relay_state(singleton, epoch, clock, data)`다. `data` 하나의 JSONB에 상태 map을 저장한다.
+실제 업무 테이블은 `relay_state(singleton, epoch, clock, state, human_model)`다. `state` 하나의 lz4 압축 `json`에 상태 map을 저장한다. `human_model`은 writer 가드가 읽는 숫자다.
 Member·Agent·Friend·Message·Remote 설치는 논리 구조다. 각각 별도 SQL 테이블이나 서비스가 아니다.
 [relay.sql](../db/queries/relay.sql)의 `LockRelay`는 `FOR UPDATE`와 DB 현재 시각을 반환한다.
 [store.go](../internal/relay/store.go)는 행 lock 안에서 상태를 읽고 권한·정리·operation을 적용한다.
@@ -277,6 +277,20 @@ RemoteEvents loop도 LISTEN으로 기다린다. callback 네트워크 작업은 
 전체 JSON 재직렬화와 전역 행 lock은 처리량 한계다. 공개 규모의 부하 성능은 측정하지 않았다.
 만료된 보관 이력은 만료 분기에서 transport·claim을 제거하므로 회원 권한 재탐색을 생략한다. 미만료 철회 검사는 그대로다.
 [합성 규모별 측정](../.fullops-squad/docs/evaluations/qa-reports/SAR-REFACTOR-002-DEV/report.md)은 이 비용을 분리하며 운영 처리량을 보증하지 않는다.
+`jsonb`를 `json`+lz4로 바꾸면 메시지 1,000건 단일 클라이언트 p50이 52 ms에서 21 ms로, 16 클라이언트 처리량이 19에서 37 tx/s로 바뀌었다. 이 값은 [합성 측정](../.fullops-squad/docs/evaluations/qa-reports/SAR-DB-WAIT-001-DEV-test/report.md)이며 운영 처리량을 보증하지 않는다.
+`json`은 `jsonb`와 달리 `\u0000`을 저장하므로 [store.go](../internal/relay/store.go)가 저장 직전에 같은 입력을 `unavailable`로 거부한다.
+
+relay의 모든 DB 연결은 [db_limits.go](../internal/relay/db_limits.go)의 `PoolConfig` 값을 쓴다. LISTEN 연결도 같은 설정을 복사한다.
+
+| 설정 | 값 | 이유 |
+|---|---|---|
+| `lock_timeout` | 1.5초 | 멈춘 세션이 행 lock을 쥐면 새 요청을 `unavailable`로 끝낸다 |
+| `idle_in_transaction_session_timeout` | 5초 | 멈춘 세션을 종료해 쓰기를 복구한다. 메시지 20,000건 계산 시간(최대 1.2초 측정)보다 크다 |
+| TCP keepalive·`tcp_user_timeout` | 5초, 2초 간격 3회, 합 11초 | 사라진 상대를 양쪽에서 감지한다 |
+| 풀 연결 | 4개 | 추가 연결은 Postgres 안에서 같은 lock만 기다린다 |
+| 동시 transaction | 3개, 슬롯 대기 2초 | 연결 하나를 `/healthz`와 lock 없는 재조회에 남긴다. 대기는 도착 순서다 |
+
+요청 하나의 최악 대기는 입장·처리 transaction 각 3.5초와 해제 2초의 합 9초다. 이 값은 HTTP 10초 안에 든다. 초과 응답은 기존 `unavailable`이다.
 
 | 데이터 | 보관·제거 경계 | 주의 |
 |---|---|---|

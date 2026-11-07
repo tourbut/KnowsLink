@@ -61,6 +61,9 @@ live Tunnel config는 원본을 백업하고 `cloudflared tunnel --config <후�
 
 `db/migrations/00002_human_writer.sql`은 HumanModel을 낮추는 JSON writer를 거부한다.
 Down은 의도적으로 실패하며 guard를 제거하지 않는다.
+`db/migrations/00003_relay_state_json.sql`은 `data`(jsonb)를 `state`(json, lz4)로 바꾸고 guard를 `human_model` 숫자 컬럼으로 옮긴다. Down도 실패한다.
+이 이행 뒤에는 구 코드가 `data` 컬럼을 찾지 못해 SQL 오류로 멈춘다. 복귀 경로는 이행 전 백업 복원뿐이며 백업 이후 변경을 잃는다. 기본은 전진 수정이다.
+절차는 [운영자설명서](../.fullops-squad/docs/operations/ops-guide.md#sar-db-wait-001-저장-형식-이행-운영-미적용)를 따른다. 운영 SQL은 `state`와 `human_model`을 쓴다.
 구 writer와 새 writer의 rolling 쓰기를 병행하지 않는다. 코드만 오래된 버전으로 되돌리지 않는다.
 
 신규 schema 이행은 **쓰기 중단·최신 private 백업·격리 복원 리허설·Up·새 writer 검사·재개** 순서다.
@@ -80,6 +83,12 @@ transport 삭제와 24시간 웹 사본 만료가 백업/WAL 영구 삭제를 �
 이번 전환 후 이전 이미지 주소는 조회할 수 없었다. 같은 직전 SHA로 별도 복구 후보 이미지를 다시 만들었다.
 원 이미지 동일성을 주장하지 않는다. 복구 후보의 태그·이미지 ID·원 실패는 운영 적용 기록을 따른다.
 다음 배포는 build 전에 현재 이미지를 고유 rollback 태그에 고정하고 실제 조회 가능 여부를 확인한다.
+
+## DB 대기 상한
+
+relay는 `lock_timeout` 1.5초, 유휴 transaction 종료 5초, 슬롯 대기 2초를 쓴다. 값과 이유는 [DB 동시성](system-design.md#db-동시성저장보관)을 따른다.
+503 `unavailable`이 이어지면 `pg_stat_activity`에서 lock 대기와 `idle in transaction` 세션을 먼저 확인한다. 멈춘 유휴 세션은 5초 뒤 스스로 끝난다.
+잠금을 쥔 세션이 결과를 보내는 중에 상대 프로세스만 멈추면 keepalive로 감지하지 못한다. 이 경우 해당 relay를 재시작한다.
 
 ## Grok·Dots 유지보수
 

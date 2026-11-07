@@ -128,7 +128,7 @@ func (s *Service) refresh(ctx context.Context, arrived time.Time) {
 	started := time.Now()
 	row, err := database.New(s.Pool).ReadRelay(ctx)
 	st := newState()
-	if err != nil || json.Unmarshal(row.Data, st) != nil {
+	if err != nil || json.Unmarshal(row.State, st) != nil {
 		return
 	}
 	st.TestAgents = s.TestAgents

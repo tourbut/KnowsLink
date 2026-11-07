@@ -2,9 +2,9 @@
 id: D08
 title: 테이블정의서
 status: review
-updated: 2026-10-12
+updated: 2026-11-07
 owner: dev
-tasks: [SAR-MVP-001-DEV, SAR-HUMAN-PEER-001-DEV]
+tasks: [SAR-MVP-001-DEV, SAR-HUMAN-PEER-001-DEV, SAR-DB-WAIT-001]
 upstream: [D02]
 summary: 실제 migration SQL에서 생성한 업무 테이블을 기록한다
 ---
@@ -46,6 +46,33 @@ $$;
 -- +goose StatementEnd
 CREATE TRIGGER human_writer_guard BEFORE UPDATE OF data ON relay_state
 FOR EACH ROW EXECUTE FUNCTION guard_human_writer();
+```
+
+원천: `db/migrations/00003_relay_state_json.sql`
+
+SHA256: `6e44e4b8e661f41be4ea0a51ae8095243b07b8e1ade49acd2f534148fbccc9e0`
+
+```sql
+DROP TRIGGER human_writer_guard ON relay_state;
+ALTER TABLE relay_state DROP CONSTRAINT relay_state_data_check;
+ALTER TABLE relay_state ADD COLUMN human_model integer NOT NULL DEFAULT 0;
+UPDATE relay_state SET human_model = COALESCE((data->>'HumanModel')::integer, 0);
+ALTER TABLE relay_state
+    ALTER COLUMN data DROP DEFAULT,
+    ALTER COLUMN data SET COMPRESSION lz4,
+    ALTER COLUMN data TYPE json USING data::json,
+    ALTER COLUMN data SET DEFAULT '{}'::json;
+ALTER TABLE relay_state RENAME COLUMN data TO state;
+ALTER TABLE relay_state ADD CONSTRAINT relay_state_state_check CHECK (json_typeof(state) = 'object');
+-- +goose StatementBegin
+CREATE OR REPLACE FUNCTION guard_human_writer() RETURNS trigger LANGUAGE plpgsql AS $$
+BEGIN
+    RAISE EXCEPTION 'human authorization writer downgrade refused';
+END;
+$$;
+-- +goose StatementEnd
+CREATE TRIGGER human_writer_guard BEFORE UPDATE OF human_model ON relay_state
+FOR EACH ROW WHEN (NEW.human_model < OLD.human_model) EXECUTE FUNCTION guard_human_writer();
 ```
 
 JSON 업무 엔티티와 CRUD 정본은 [데이터 모델](../design-docs/data-model.md)이다.

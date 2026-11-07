@@ -9,8 +9,9 @@ import (
 )
 
 type RelayState struct {
-	Singleton bool
-	Epoch     int64
-	Clock     pgtype.Timestamptz
-	Data      []byte
+	Singleton  bool
+	Epoch      int64
+	Clock      pgtype.Timestamptz
+	State      []byte
+	HumanModel int32
 }

@@ -1,9 +1,9 @@
 -- name: LockRelay :one
-SELECT epoch, clock, data, clock_timestamp()::timestamptz AS now FROM relay_state WHERE singleton = true FOR UPDATE;
+SELECT epoch, clock, state, clock_timestamp()::timestamptz AS now FROM relay_state WHERE singleton = true FOR UPDATE;
 
 -- name: SaveRelay :execrows
-UPDATE relay_state SET data = $1, epoch = epoch + 1, clock = $2
-WHERE singleton = true AND epoch = $3;
+UPDATE relay_state SET state = $1, human_model = $2, epoch = epoch + 1, clock = $3
+WHERE singleton = true AND epoch = $4;
 
 -- name: ReadRelay :one
-SELECT epoch, clock, data FROM relay_state WHERE singleton = true;
+SELECT epoch, clock, state FROM relay_state WHERE singleton = true;

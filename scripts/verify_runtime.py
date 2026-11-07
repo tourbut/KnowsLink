@@ -52,6 +52,10 @@ def main():
             tables = run(compose + ["exec", "-T", "postgres", "psql", "-U", "knowslink", "-d", "knowslink", "-Atc",
                                    "SELECT count(*) FROM information_schema.tables WHERE table_schema='public'"])
             assert tables.strip() == "2", "relay_state and goose version table must exist"
+            storage = run(compose + ["exec", "-T", "postgres", "psql", "-U", "knowslink", "-d", "knowslink", "-Atc",
+                                     "SELECT atttypid::regtype, attcompression FROM pg_attribute "
+                                     "WHERE attrelid='relay_state'::regclass AND attname='state'"])
+            assert storage.strip() == "json|l", "relay_state.state must be json with lz4 compression"
             run(compose + ["exec", "-T", "relay", "wget", "-q", "-O", "-", "http://127.0.0.1:8080/healthz"], diagnostic="ok")
             for binary in ("relay", "migrate"):
                 run(compose + ["exec", "-T", "relay", "env", "DATABASE_URL=", f"/app/{binary}"],

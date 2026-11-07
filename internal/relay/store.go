@@ -168,7 +168,7 @@ func (s *Service) transaction(ctx context.Context, operation func(*State, time.T
 	}
 	load := func() (*State, error) {
 		st := newState()
-		if err := json.Unmarshal(row.Data, st); err != nil {
+		if err := json.Unmarshal(row.State, st); err != nil {
 			return nil, fault("unavailable")
 		}
 		st.TestAgents, st.SyntheticSignup = s.TestAgents, s.SyntheticSignup
@@ -196,7 +196,10 @@ func (s *Service) transaction(ctx context.Context, operation func(*State, time.T
 	if err != nil {
 		return nil, fault("unavailable")
 	}
-	changed, err := q.SaveRelay(ctx, database.SaveRelayParams{Data: raw, Clock: row.Now, Epoch: row.Epoch})
+	if encodedNUL(raw) {
+		return nil, fault("unavailable")
+	}
+	changed, err := q.SaveRelay(ctx, database.SaveRelayParams{State: raw, HumanModel: int32(state.HumanModel), Clock: row.Now, Epoch: row.Epoch})
 	if err != nil || changed != 1 {
 		return nil, fault("unavailable")
 	}

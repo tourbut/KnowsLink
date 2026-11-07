@@ -2,14 +2,22 @@
 id: D07
 title: 데이터베이스설계서
 status: review
-updated: 2026-10-14
+updated: 2026-11-07
 owner: dev
-tasks: [SAR-MVP-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-SSE-INSTALL-001-DEV, SAR-HUMAN-PEER-001-DEV, SAR-REFACTOR-002-DEV]
+tasks: [SAR-MVP-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-SSE-INSTALL-001-DEV, SAR-HUMAN-PEER-001-DEV, SAR-REFACTOR-002-DEV, SAR-DB-WAIT-001]
 upstream: [D02]
 summary: singleton Postgres 상태와 epoch CAS 및 처리량 한계를 정의한다
 ---
 
 # KnowsLink DB 설계
+
+## SAR-DB-WAIT-001 저장 형식과 대기 상한
+
+migration `00003_relay_state_json.sql`은 `data`(jsonb)를 `state`(json, lz4)로 바꾸고 숫자 컬럼 `human_model`을 추가한다. 행 lock·epoch CAS·DB clock은 그대로다.
+guard는 JSON을 파싱하지 않고 `human_model`만 비교한다. `SaveRelay`가 State와 같은 값을 같은 문장에 쓴다. 컬럼 이름 변경으로 구 쿼리는 SQL 오류로 실패한다. Down은 실패 고정이다. 구조는 [D08](../generated/db-schema.md)이 정본이다.
+CHECK는 `json_typeof(state) = 'object'`다. `json`은 `\u0000`을 저장하므로 저장 직전 `encodedNUL`이 기존 `unavailable` 동작을 유지한다.
+`jsonb`를 쓰지 않아 Postgres 안의 파싱이 사라진다. 대신 행 크기가 약 7% 늘고(메시지 1,000건 42,286에서 45,204 byte) Go의 복사·파싱은 그대로다. 숫자·조건은 [측정 보고](../evaluations/qa-reports/SAR-DB-WAIT-001-DEV-test/report.md)를 따른다.
+대기 상한 값은 [시스템 설계](../../../docs/system-design.md#db-동시성저장보관)를 따른다. 이행과 복귀 경계는 [D12](../operations/ops-guide.md#sar-db-wait-001-저장-형식-이행-운영-미적용)를 따른다.
 
 ## SAR-REFACTOR-002 처리 비용 확인
 
@@ -36,7 +44,7 @@ Down은 의도적으로 오류를 내며 trigger를 제거하지 않는다. 코�
 
 
 실제 schema는 [생성 테이블 정의](../generated/db-schema.md)다.
-`relay_state(singleton,epoch,clock,data)`의 boolean PK·CHECK는 singleton 행을 보장한다.
+`relay_state(singleton,epoch,clock,state,human_model)`의 boolean PK·CHECK는 singleton 행을 보장한다.
 SQL-only migration 00001은 업무 행과 goose version table을 만든다.
 sqlc의 LockRelay는 FOR UPDATE와 DB 현재 시각을 반환한다. SaveRelay는 epoch CAS의 영향 행 수를 반환한다.
 성공한 CAS만 commit한다. 권한 작업과 상태 작업은 같은 lock을 사용한다.

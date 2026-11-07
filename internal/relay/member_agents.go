@@ -377,7 +377,7 @@ func (s *Service) memberAction(path string) http.HandlerFunc {
 }
 
 // agentCreateKey starts with "#", which no agent ID (agentPattern) may start with, so it never equals a message
-// idempotency key ("from/key"). It stays printable because Postgres JSONB rejects NUL.
+// idempotency key ("from/key"). It stays printable because the state refuses NUL (encodedNUL).
 func agentCreateKey(owner, attempt string) string { return "#agent-create/" + owner + "/" + attempt }
 
 // memberBack is the internal list a failed member action returns to: legacy pair actions to the pair list, the rest

@@ -34,7 +34,7 @@ func BenchmarkRetainedPostgres(b *testing.B) {
 			if err != nil {
 				b.Fatal(err)
 			}
-			if _, err := pool.Exec(ctx, "UPDATE relay_state SET data=$1, epoch=epoch+1, clock=clock_timestamp()", raw); err != nil {
+			if _, err := pool.Exec(ctx, "UPDATE relay_state SET state=$1, epoch=epoch+1, clock=clock_timestamp()", raw); err != nil {
 				b.Fatal(err)
 			}
 			s := &Service{Pool: pool}

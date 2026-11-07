@@ -51,7 +51,7 @@ restore_verify() { # restore a dump into a throwaway container with no network; 
   docker exec $name psql -U postgres -qc 'CREATE ROLE knowslink' -c 'CREATE DATABASE restored OWNER knowslink'
   docker exec -i $name pg_restore -U postgres -d restored --no-owner <"$dump"
   docker exec $name psql -U postgres -d restored -Atc \
-    "select 'tables='||(select count(*) from information_schema.tables where table_schema='public')||' relay_state_rows='||(select count(*) from relay_state)"
+    "select 'tables='||(select count(*) from information_schema.tables where table_schema='public')||' relay_state_rows='||(select count(*) from relay_state)||' state_type='||(select data_type from information_schema.columns where table_name='relay_state' and column_name in ('state','data'))||' human_model='||coalesce((select to_jsonb(r)->>'human_model' from relay_state r),'none')"
 }
 
 tunnel_create() {

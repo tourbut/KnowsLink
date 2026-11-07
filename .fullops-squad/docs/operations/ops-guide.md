@@ -2,14 +2,29 @@
 id: D12
 title: 운영자설명서
 status: draft
-updated: 2026-10-28
+updated: 2026-11-07
 owner: dev
-tasks: [SAR-PUBLISH-001-OPS, SAR-DEPLOY-001-OPS, SAR-BETA-001-OPS, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX, SAR-MVP-003-BIDIRECTIONAL, SAR-MVP-003-BIDIRECTIONAL-OPS, SAR-MVP-003-BIDIRECTIONAL-OPS-RENEW, SAR-PUBLIC-SERVICE-OPS-READINESS, SAR-PUBLIC-SERVICE-OPEN-PREP, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV, SAR-AUTO-RECEIVE-001-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SSE-INSTALL-001-TESTER, SAR-SSE-INSTALL-001-OPS, SAR-SSE-INSTALL-001-OAUTH-RETURN-DEV, SAR-SSE-INSTALL-001-OAUTH-RETURN-OPS, SAR-GROK-WEBHOOK-001-DEV, SAR-SERVICE-UI-001-OPS, SAR-HUMAN-PEER-001-DEV, SAR-HUMAN-PEER-001-OPS, SAR-REFACTOR-001-OPS, SAR-REFACTOR-002-OPS, SAR-RELEASE-001-OPS, SAR-RELEASE-002-OPS, SAR-RELEASE-003-OPS, SAR-PUBLISH-001-DEV, SAR-PUBLISH-001-RETENTION, SAR-PUBLISH-001-P03-DEPLOY, SAR-CONNECT-SIMPLE-001-DEV, SAR-CONNECT-SIMPLE-001-FIX-DEV, SAR-CONNECT-SIMPLE-001-OPS, SAR-CONNECT-SIMPLE-001-FOLLOWUP-DEV, SAR-AUTOSETUP-001-O04-DEV, SAR-AUTOSETUP-001-OPS]
+tasks: [SAR-PUBLISH-001-OPS, SAR-DEPLOY-001-OPS, SAR-BETA-001-OPS, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX, SAR-MVP-003-BIDIRECTIONAL, SAR-MVP-003-BIDIRECTIONAL-OPS, SAR-MVP-003-BIDIRECTIONAL-OPS-RENEW, SAR-PUBLIC-SERVICE-OPS-READINESS, SAR-PUBLIC-SERVICE-OPEN-PREP, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV, SAR-AUTO-RECEIVE-001-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SSE-INSTALL-001-TESTER, SAR-SSE-INSTALL-001-OPS, SAR-SSE-INSTALL-001-OAUTH-RETURN-DEV, SAR-SSE-INSTALL-001-OAUTH-RETURN-OPS, SAR-GROK-WEBHOOK-001-DEV, SAR-SERVICE-UI-001-OPS, SAR-HUMAN-PEER-001-DEV, SAR-HUMAN-PEER-001-OPS, SAR-REFACTOR-001-OPS, SAR-REFACTOR-002-OPS, SAR-RELEASE-001-OPS, SAR-RELEASE-002-OPS, SAR-RELEASE-003-OPS, SAR-PUBLISH-001-DEV, SAR-PUBLISH-001-RETENTION, SAR-PUBLISH-001-P03-DEPLOY, SAR-CONNECT-SIMPLE-001-DEV, SAR-CONNECT-SIMPLE-001-FIX-DEV, SAR-CONNECT-SIMPLE-001-OPS, SAR-CONNECT-SIMPLE-001-FOLLOWUP-DEV, SAR-AUTOSETUP-001-O04-DEV, SAR-AUTOSETUP-001-OPS, SAR-DB-WAIT-001]
 upstream: [D02, D03]
 summary: 서버 관찰 이력과 본인 전용 합성 베타 배포 구성·검증·복귀 절차 및 held 항목을 기록한다
 ---
 
 # KnowsLink 운영자설명서 (D12) — 현재 서버 배포 계획
+
+## SAR-DB-WAIT-001 저장 형식 이행 (운영 미적용)
+
+migration 3은 `relay_state.data`(jsonb)를 `state`(json, lz4)로 바꾼다. 이 절은 계획이며 운영에 적용하지 않았다. 운영 적용은 별도 승인이 필요하다.
+
+- `beta.sh deploy`는 migration 변경을 거부하므로 쓰지 않는다. 아래 순서를 수동으로 실행한다. 다른 project는 건드리지 않는다.
+- 쓰기를 중단한다. KnowsLink `cloudflared`와 `relay`만 중지하고 Postgres는 유지한다. 구 writer와 새 writer를 함께 돌리지 않는다.
+- `beta.sh backup`으로 이행 전 dump를 만들고 hash·크기를 기록한다. `beta.sh restore-verify <dump>`의 `state_type=jsonb`, `human_model=none`을 확인한다.
+- 같은 dump를 격리 DB에 복원하고 migration 3을 먼저 적용해 본다. `state_type=json`, 행 수, `human_model`, 상태 내용(`state::jsonb` 비교)을 확인한다.
+- 대상 SHA로 detached checkout 후 `beta.sh up`을 실행한다. `migrate`가 Up을 적용한다. 적용 중 `ACCESS EXCLUSIVE` lock을 쥔다.
+- goose 3, guard 1, `pg_column_compression(state)`=`lz4`, health, 인증 거부를 확인하고 트래픽을 재개한다. 상태가 작아 압축 이득이 없으면 이 값은 NULL일 수 있다.
+
+복귀 제약: 구 SHA는 `data` 컬럼이 없어 SQL 오류로 멈춘다(쓰기 손상 없음). Down은 실패 고정이다. 이행 후 쓰기가 있으면 이행 전 dump로 돌아갈 때 철회·키를 포함한 변경을 잃으므로 기본은 전진 수정이다.
+운영 SQL 변경: `data->>'HumanModel'`은 `human_model`로, 전체 상태 digest는 `state`로 바꾼다. `json`은 원문 텍스트라 이행 전후 비교는 `::jsonb`로 한다.
+대기 상한 진단은 [운영 문서](../../../docs/operations.md#db-대기-상한)를 따른다.
 
 ## SAR-AUTOSETUP-001-OPS 운영 적용 결과 (2026-10-28)
 

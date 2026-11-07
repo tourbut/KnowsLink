@@ -174,7 +174,7 @@ func TestHumanPostgres(t *testing.T) {
 	form.Set("text", "after removal")
 	expect(t, a.do("POST", "/home/conversation/send", form), 403)
 	// The schema trigger rejects the old writer and preserves already committed deny state.
-	if _, e = pool.Exec(context.Background(), `UPDATE relay_state SET data=data-'HumanModel'-'Friends'`); e == nil {
+	if _, e = pool.Exec(context.Background(), `UPDATE relay_state SET state='{}',human_model=0`); e == nil {
 		t.Fatal("old writer downgrade accepted")
 	}
 	s.mutateState(t, func(st *State) {
@@ -217,7 +217,7 @@ func TestHumanLegacyPostgres(t *testing.T) {
 	ctx := context.Background()
 	for _, sql := range []string{
 		`CREATE TEMP TABLE relay_state (LIKE public.relay_state INCLUDING ALL)`,
-		`CREATE TRIGGER human_writer_guard BEFORE UPDATE OF data ON relay_state FOR EACH ROW EXECUTE FUNCTION public.guard_human_writer()`,
+		`CREATE TRIGGER human_writer_guard BEFORE UPDATE OF human_model ON relay_state FOR EACH ROW WHEN (NEW.human_model < OLD.human_model) EXECUTE FUNCTION public.guard_human_writer()`,
 	} {
 		if _, err := pool.Exec(ctx, sql); err != nil {
 			t.Fatal(err)
@@ -237,7 +237,7 @@ func TestHumanLegacyPostgres(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	if _, err := pool.Exec(ctx, `INSERT INTO relay_state(singleton,data) VALUES(true,$1)`, raw); err != nil {
+	if _, err := pool.Exec(ctx, `INSERT INTO relay_state(singleton,state) VALUES(true,$1)`, raw); err != nil {
 		t.Fatal(err)
 	}
 	s := &Service{Pool: pool}
@@ -262,11 +262,11 @@ func TestHumanLegacyPostgres(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	if _, err = pool.Exec(ctx, `UPDATE relay_state SET data='{}'::jsonb`); err == nil {
+	if _, err = pool.Exec(ctx, `UPDATE relay_state SET state='{}',human_model=0`); err == nil {
 		t.Fatal("SQL old writer discarded migration")
 	}
 	var version int
-	if err = pool.QueryRow(ctx, `SELECT (data->>'HumanModel')::integer FROM relay_state`).Scan(&version); err != nil || version != 1 {
+	if err = pool.QueryRow(ctx, `SELECT human_model FROM relay_state`).Scan(&version); err != nil || version != 1 {
 		t.Fatal("SQL migration not durable", err)
 	}
 }

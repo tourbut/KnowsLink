@@ -2,6 +2,7 @@
 package relay
 
 import (
+	"bytes"
 	"context"
 	"net"
 	"strconv"
@@ -52,6 +53,27 @@ func PoolConfig(databaseURL string) (*pgxpool.Config, error) {
 	dialer := &net.Dialer{KeepAliveConfig: net.KeepAliveConfig{Enable: true, Idle: keepAliveIdle, Interval: keepAliveInterval, Count: keepAliveCount}}
 	cfg.ConnConfig.DialFunc = dialer.DialContext
 	return cfg, nil
+}
+
+// encodedNUL reports an escaped NUL in encoded JSON. The json column would store it, but the state has never held one:
+// jsonb refused it at save, and readers and operator jsonb casts rely on that. A preceding escaped backslash makes the
+// text a literal "\u0000", which is allowed.
+func encodedNUL(raw []byte) bool {
+	escape := []byte(`\u0000`)
+	for {
+		i := bytes.Index(raw, escape)
+		if i < 0 {
+			return false
+		}
+		backslashes := 0
+		for i-1-backslashes >= 0 && raw[i-1-backslashes] == '\\' {
+			backslashes++
+		}
+		if backslashes%2 == 0 {
+			return true
+		}
+		raw = raw[i+len(escape):]
+	}
 }
 
 // enterTransaction takes a transaction slot. Waiters are served in arrival order, so the wait stays bounded by the queue

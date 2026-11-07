@@ -116,7 +116,7 @@ Dots는 `knowslink.text.arrived`를 구독한다. 본문은 이벤트 payload가
 
 ## 저장과 보관 기한
 
-DB는 `relay_state(singleton, epoch, clock, data)` 한 행에 JSONB 상태를 보관한다.
+DB는 `relay_state(singleton, epoch, clock, state, human_model)` 한 행에 lz4 압축 `json` 상태를 보관한다.
 transaction의 행 lock과 epoch CAS가 여러 process의 상태 변경을 직렬화한다.
 DB 시계·generation·철회 상태를 함께 사용한다. 전체 JSON 재직렬화의 공개 규모 성능은 미측정이다.
 
@@ -130,6 +130,6 @@ DB 시계·generation·철회 상태를 함께 사용한다. 전체 JSON 재직�
 | Remote 설치 키·Inbox·callback secret | private relay DB·백업 권한과 설치/철회 수명 적용 |
 | WAL·백업·상대 클라이언트 사본 | 위 웹/transport 삭제와 별개. 즉시 영구 삭제를 보장하지 않음 |
 
-SQL migration 2의 `human_writer_guard`는 HumanModel을 낮추는 writer를 거부한다.
+`human_writer_guard`는 `human_model`을 낮추는 writer를 거부한다(migration 2에서 추가, migration 3에서 숫자 컬럼 기준으로 변경).
 과거 백업 전체 복원은 trigger가 탐지할 수 없다. [운영 복구](operations.md#schema와-writer-보호)를 먼저 따른다.
 필드·기한·상한 상세는 [DB 설계](../.fullops-squad/docs/design-docs/database-design.md)를 따른다.

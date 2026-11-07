@@ -62,3 +62,22 @@ func TestTransactionSlotWaitIsBounded(t *testing.T) {
 		t.Fatalf("freed slot refused: %v", err)
 	}
 }
+
+func TestEncodedNUL(t *testing.T) {
+	back := string(rune(92))
+	for _, test := range []struct {
+		raw  string
+		want bool
+	}{
+		{`{"a":"plain"}`, false},
+		{`{"a":"` + back + `u0000"}`, true},
+		{`{"a":"` + back + back + `u0000"}`, false},
+		{`{"a":"` + back + back + back + `u0000"}`, true},
+		{`{"a":"` + back + back + `u0000` + back + `u0000"}`, true},
+		{`{"a":"` + back + `u00001"}`, true},
+	} {
+		if got := encodedNUL([]byte(test.raw)); got != test.want {
+			t.Errorf("%s: got %t", test.raw, got)
+		}
+	}
+}
