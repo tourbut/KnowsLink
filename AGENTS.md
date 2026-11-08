@@ -21,6 +21,7 @@ hook은 명령 문자열 검사이며 완전한 보안 경계가 아니다. 스�
 레포 작업에 쓰는 도구·임시 산출물·검증 로그는 기본 체크아웃의 `.devtools/`(gitignore)에 둔다. 경로는 `git rev-parse --path-format=absolute --git-common-dir`의 상위 폴더 아래 `.devtools/`다(현재 `D:/workspace/KnowsLink/.devtools`). 모든 워크트리가 이 폴더를 공유한다.
 - 도구: `.devtools/node-v22.22.2-win-x64`, `.devtools/w64devkit`, `.devtools/ssh`, `.devtools/ssh-python`.
 - 과제 로그·bundle·캡처: `.devtools/<과제 폴더>/`. 레포 증거로 남길 것은 기존 규칙대로 `qa-reports/`에 커밋한다.
+- Docker: 시험용 컨테이너·볼륨·네트워크·이미지는 `kl-<과제>-` 접두어로 만들고, 검증이 끝나면 완료 보고 전에 지운다. 대상 이름을 지정한 `docker rm -f -v`·`docker volume rm`·`docker network rm`·`docker rmi`를 Docker 명령만 든 호출로 실행한다(같은 호출에 셸·인터프리터가 섞이면 guard가 막는다). 공용 기본 이미지, 다른 프로젝트 자원, `prune`은 건드리지 않는다. 남겨야 하면 이름과 이유를 완료 보고에 적는다.
 
 레포 밖(`%LOCALAPPDATA%`, `%TEMP%`, 홈 디렉터리)에 이 레포 전용 파일을 만들지 않는다. 호스트 세션 scratchpad는 세션 한정 임시 파일에만 쓴다. 레포 밖이 꼭 필요하면 사용자 승인 뒤 경로·용도·정리 시점을 이 절에 기록한다.
 예전 경로 `C:/Users/shin/AppData/Local/KnowsLinkDevTools/<X>`는 `.devtools/<X>`로 옮겼다. 과거 기록의 예전 경로는 이 대응으로 읽는다.
