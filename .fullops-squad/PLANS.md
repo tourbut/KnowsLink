@@ -2252,3 +2252,5 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 - [ ] SAR-AUTOSETUP-001-QA3 → coor: coor 사용자 승인 후 ops 운영 교체(0.1.1 게시 (완료 보고 자동 등재 2026-10-28)
 - [x] SAR-DB-WAIT-001 → coor: coor: 독립 리뷰와 main 병합 판단 (완료 보고 자동 등재 2026-11-07, D047 리뷰 생략, D048 병합, 2026-11-08 처리)
 - [ ] SAR-DB-WAIT-001 → ops: ops: 운영 이행은 별도 승인 뒤 D12 절차로 수행 (완료 보고 자동 등재 2026-11-07) — 보류: 사용자 승인 대기
+- [ ] SAR-MSG-EPHEMERAL-001 → ops: ops의 Vultr 운영 이행(사용자 승인 뒤, migration 3·4와 이행 직후 새 백업) (완료 보고 자동 등재 2026-11-12)
+- [ ] SAR-MSG-EPHEMERAL-001 → tester: tester 독립 QA (완료 보고 자동 등재 2026-11-12)
