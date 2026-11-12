@@ -37,7 +37,7 @@ func setup(t *testing.T, pool *pgxpool.Pool) *fixture {
 	if _, err := pool.Exec(ctx, `UPDATE relay_state SET state='{"HumanModel":1}',human_model=1,epoch=epoch+1,clock=clock_timestamp()`); err != nil {
 		t.Fatal(err)
 	}
-	f := &fixture{&Service{Pool: pool, SyntheticSignup: true}, nil, map[string]string{}, map[string]string{}, map[string]ed25519.PrivateKey{}, t}
+	f := &fixture{&Service{Redis: testRedis(), Pool: pool, SyntheticSignup: true}, nil, map[string]string{}, map[string]string{}, map[string]ed25519.PrivateKey{}, t}
 	f.handler = f.s.Handler()
 	for _, id := range []string{"agent_a", "agent_b", "agent_c"} {
 		f.addAgent(id)
@@ -198,7 +198,7 @@ func TestPostgresSafety(t *testing.T) {
 			t.Fatal(err)
 		}
 		defer restarted.Close()
-		f.s = &Service{Pool: restarted}
+		f.s = &Service{Redis: testRedis(), Pool: restarted}
 		f.handler = f.s.Handler()
 		f.call("POST", "/v1/claim", f.tokens["agent_b"], map[string]any{"id": firstID}, 409)
 	})

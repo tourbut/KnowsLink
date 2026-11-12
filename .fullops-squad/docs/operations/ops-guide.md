@@ -4,12 +4,26 @@ title: 운영자설명서
 status: draft
 updated: 2026-11-12
 owner: dev
-tasks: [SAR-PUBLISH-001-OPS, SAR-DEPLOY-001-OPS, SAR-BETA-001-OPS, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX, SAR-MVP-003-BIDIRECTIONAL, SAR-MVP-003-BIDIRECTIONAL-OPS, SAR-MVP-003-BIDIRECTIONAL-OPS-RENEW, SAR-PUBLIC-SERVICE-OPS-READINESS, SAR-PUBLIC-SERVICE-OPEN-PREP, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV, SAR-AUTO-RECEIVE-001-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SSE-INSTALL-001-TESTER, SAR-SSE-INSTALL-001-OPS, SAR-SSE-INSTALL-001-OAUTH-RETURN-DEV, SAR-SSE-INSTALL-001-OAUTH-RETURN-OPS, SAR-GROK-WEBHOOK-001-DEV, SAR-SERVICE-UI-001-OPS, SAR-HUMAN-PEER-001-DEV, SAR-HUMAN-PEER-001-OPS, SAR-REFACTOR-001-OPS, SAR-REFACTOR-002-OPS, SAR-RELEASE-001-OPS, SAR-RELEASE-002-OPS, SAR-RELEASE-003-OPS, SAR-PUBLISH-001-DEV, SAR-PUBLISH-001-RETENTION, SAR-PUBLISH-001-P03-DEPLOY, SAR-CONNECT-SIMPLE-001-DEV, SAR-CONNECT-SIMPLE-001-FIX-DEV, SAR-CONNECT-SIMPLE-001-OPS, SAR-CONNECT-SIMPLE-001-FOLLOWUP-DEV, SAR-AUTOSETUP-001-O04-DEV, SAR-AUTOSETUP-001-OPS, SAR-DB-WAIT-001, SAR-VULTR-MIGRATE-001]
+tasks: [SAR-PUBLISH-001-OPS, SAR-DEPLOY-001-OPS, SAR-BETA-001-OPS, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX, SAR-MVP-003-BIDIRECTIONAL, SAR-MVP-003-BIDIRECTIONAL-OPS, SAR-MVP-003-BIDIRECTIONAL-OPS-RENEW, SAR-PUBLIC-SERVICE-OPS-READINESS, SAR-PUBLIC-SERVICE-OPEN-PREP, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV, SAR-AUTO-RECEIVE-001-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SSE-INSTALL-001-TESTER, SAR-SSE-INSTALL-001-OPS, SAR-SSE-INSTALL-001-OAUTH-RETURN-DEV, SAR-SSE-INSTALL-001-OAUTH-RETURN-OPS, SAR-GROK-WEBHOOK-001-DEV, SAR-SERVICE-UI-001-OPS, SAR-HUMAN-PEER-001-DEV, SAR-HUMAN-PEER-001-OPS, SAR-REFACTOR-001-OPS, SAR-REFACTOR-002-OPS, SAR-RELEASE-001-OPS, SAR-RELEASE-002-OPS, SAR-RELEASE-003-OPS, SAR-PUBLISH-001-DEV, SAR-PUBLISH-001-RETENTION, SAR-PUBLISH-001-P03-DEPLOY, SAR-CONNECT-SIMPLE-001-DEV, SAR-CONNECT-SIMPLE-001-FIX-DEV, SAR-CONNECT-SIMPLE-001-OPS, SAR-CONNECT-SIMPLE-001-FOLLOWUP-DEV, SAR-AUTOSETUP-001-O04-DEV, SAR-AUTOSETUP-001-OPS, SAR-DB-WAIT-001, SAR-MSG-EPHEMERAL-001, SAR-VULTR-MIGRATE-001]
 upstream: [D02, D03]
 summary: 서버 관찰 이력과 본인 전용 합성 베타 배포 구성·검증·복귀 절차 및 held 항목을 기록한다
 ---
 
 # KnowsLink 운영자설명서 (D12) — 현재 서버 배포 계획
+
+## SAR-MSG-EPHEMERAL-001 메시지 휘발 저장 이행 (운영 미적용)
+
+이 절은 계획이다. 운영 적용·기존 메시지 삭제는 사용자 승인 뒤 ops가 실행한다. 대상 서버는 Vultr `knowslink-relay-01`이고 경로·compose 호출은 아래 SAR-VULTR-MIGRATE-001 절을 따른다(운영은 아직 goose 2). 2 GB 서버에서 한도 합은 relay 256 MB·Postgres 512 MB·Redis 192 MB·cloudflared 128 MB다. 선행으로 SAR-DB-WAIT-001(migration 3)이 같은 이행에 포함되거나 먼저 적용되어야 한다.
+
+- `beta.sh deploy`는 migration 변경을 거부하므로 쓰지 않는다. KnowsLink `cloudflared`·`relay`만 멈춘다. 다른 project는 건드리지 않는다.
+- `beta.sh backup`으로 이행 전 dump를 만든다. 이 dump에는 메시지가 들어 있다. 출력의 `message_state_rows`(이행 전 1)를 기록한다.
+- 같은 dump를 격리 DB에 복원하고 migration 3·4를 먼저 적용해 본다. 상태에 `Messages`·`Idempotency`·설치 `Inbox`가 없고 회원·agent·친구·`human_model`이 같은지 `state::jsonb`로 비교한다.
+- 대상 SHA로 detached checkout 후 `beta.sh up`. Redis가 healthy가 된 뒤 `migrate`가 Up을 적용하고 relay가 뜬다.
+- 확인: goose 4, `select count(*) from relay_state where state::jsonb ?| array['Messages','Idempotency']` = 0, `redis-cli CONFIG GET save|appendonly|maxmemory-policy` = 빈 값·`no`·`noeviction`, `/healthz` 200, Redis 포트 미게시.
+- 지운 tuple을 디스크에서 줄이려면 쓰기 중단 상태에서 `VACUUM (FULL) relay_state`를 실행한다(선택). WAL 파일은 checkpoint 뒤 재사용된다.
+- 이행 직후 새 `beta.sh backup`을 한 번 더 만든다(`message_state_rows=0`). `prune-backups.sh`는 가장 최근 dump 1개를 남기므로, 새 dump가 없으면 이행 전 dump가 14일 뒤에도 지워지지 않는다.
+- 이전 백업: Vultr와 홈서버 cron의 `prune-backups.sh`(D021)는 수정 시각 14일이 지난 `*.dump`를 매일 지운다. 이행 전 dump는 만든 날부터 최대 14일(+cron 주기 1일) 남는다. 홈서버에 남긴 `c6dfc39a-pre-vultr-20261112T124516Z.dump`와 그 이전 dump도 메시지를 담고 있으며, 홈서버에 새 dump가 생기지 않으면 가장 최근 1개는 지워지지 않는다. 삭제 여부의 별도 판단은 사용자 결정 대상이다.
+- 복귀 제약: 이전 SHA는 메시지를 다시 Postgres에 쓴다(D051 위반). 기본은 전진 수정이다. Redis를 멈추면 relay는 `unavailable`이고 health 503이다.
 
 ## SAR-VULTR-MIGRATE-001 운영 서버 Vultr 이전 (2026-11-12)
 

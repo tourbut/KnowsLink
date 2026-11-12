@@ -1,4 +1,5 @@
-// Postgres shared state serializes authorization, inbox, idempotency, and claims across relay processes.
+// The Postgres row lock serializes authorization, inbox, idempotency, and claims across relay processes; message
+// records themselves live only in Redis (ephemeral.go).
 package relay
 
 import (
@@ -13,6 +14,7 @@ import (
 	"time"
 
 	"github.com/jackc/pgx/v5/pgxpool"
+	"github.com/redis/go-redis/v9"
 	"github.com/tourbut/KnowsLink/internal/database"
 )
 
@@ -87,8 +89,9 @@ type State struct {
 	Owners          map[string]*Owner
 	Agents          map[string]*Agent
 	Pairs           map[string]*Pair
-	Messages        map[string]*Message
-	Idempotency     map[string]string
+	Messages        map[string]*Message `json:"-"`          // Redis only (ephemeral.go)
+	Idempotency     map[string]string   `json:"-"`          // Redis only (ephemeral.go)
+	Ephemeral       string              `json:",omitempty"` // random Redis key name of this commit's message records
 	Gates           map[string]*Gate
 	Members         map[string]*Member
 	Identities      map[string]string
@@ -117,7 +120,9 @@ type Service struct {
 	transactionOnce    sync.Once
 	transactionSlots   chan struct{} // bounds concurrent transactions so one pool connection stays free
 	Pool               *pgxpool.Pool
-	TestAgents         map[string]bool
+	// Redis holds message records without disk persistence; nil makes every transaction unavailable.
+	Redis      *redis.Client
+	TestAgents map[string]bool
 	// SyntheticSignup keeps the local /v1/owners fixture; public members require verified identity.
 	SyntheticSignup bool
 	Google          *GoogleLogin
@@ -166,10 +171,19 @@ func (s *Service) transaction(ctx context.Context, operation func(*State, time.T
 	if !row.Now.Valid || !row.Clock.Valid || now.Before(row.Clock.Time) {
 		return nil, fault("abnormal_clock")
 	}
+	var stored []byte // the Redis copy this row points to, read once
 	load := func() (*State, error) {
 		st := newState()
 		if err := json.Unmarshal(row.State, st); err != nil {
 			return nil, fault("unavailable")
+		}
+		if stored == nil {
+			if stored, err = readEphemeral(ctx, s.Redis, st.Ephemeral); err != nil {
+				return nil, err
+			}
+		}
+		if err := st.attachEphemeral(stored); err != nil {
+			return nil, err
 		}
 		st.TestAgents, st.SyntheticSignup = s.TestAgents, s.SyntheticSignup
 		return st, st.migrateHuman()
@@ -192,26 +206,37 @@ func (s *Service) transaction(ctx context.Context, operation func(*State, time.T
 		s.reclaim(state)
 		state.Rates = rates
 	}
-	raw, err := json.Marshal(state)
+	previous := state.Ephemeral
+	replaced, err := writeEphemeral(ctx, s.Redis, state, stored)
 	if err != nil {
+		return nil, err
+	}
+	// A copy written for a commit that surely did not happen would otherwise stay in Redis until its TTL.
+	// A Commit error is ambiguous, so that copy is kept and the TTL bounds it.
+	abandon := func() (any, error) {
+		if state.Ephemeral != previous {
+			retire(context.WithoutCancel(ctx), s.Redis, state.Ephemeral)
+		}
 		return nil, fault("unavailable")
 	}
-	if encodedNUL(raw) {
-		return nil, fault("unavailable")
+	raw, err := json.Marshal(state)
+	if err != nil || encodedNUL(raw) {
+		return abandon()
 	}
 	changed, err := q.SaveRelay(ctx, database.SaveRelayParams{State: raw, HumanModel: int32(state.HumanModel), Clock: row.Now, Epoch: row.Epoch})
 	if err != nil || changed != 1 {
-		return nil, fault("unavailable")
+		return abandon()
 	}
 	if beforeEvents != state.eventVersion(now) {
 		// Empty notifications cross processes and become visible only with this commit.
 		if _, err = tx.Exec(ctx, "SELECT pg_notify('knowslink_text', '')"); err != nil {
-			return nil, fault("unavailable")
+			return abandon()
 		}
 	}
 	if err = tx.Commit(ctx); err != nil {
 		return nil, fault("unavailable")
 	}
+	retire(context.WithoutCancel(ctx), s.Redis, replaced)
 	for _, token := range orphans {
 		s.orphans.Delete(token)
 	}
@@ -296,7 +321,7 @@ func (st *State) sweep(now time.Time) {
 	st.sweepIdentity(now)
 	st.sweepConnections(now)
 	for id, m := range st.Messages {
-		if now.Sub(m.Receipt.Accepted) >= 24*time.Hour {
+		if now.Sub(m.Receipt.Accepted) >= messageRetention {
 			delete(st.Idempotency, m.Receipt.From+"/"+m.Key)
 			delete(st.Messages, id)
 			delete(st.Gates, id)
@@ -328,9 +353,13 @@ func (st *State) sweep(now time.Time) {
 			}
 		}
 	}
-	for _, g := range st.Gates {
+	for id, g := range st.Gates {
 		parent := st.Messages[g.Parent]
 		h := st.Messages[g.ID]
+		if h == nil { // its approval request left Redis (retention or a Redis restart); the gate has nothing left to decide
+			delete(st.Gates, id)
+			continue
+		}
 		if !now.Before(g.Exp) {
 			g.State = "expired"
 			continue

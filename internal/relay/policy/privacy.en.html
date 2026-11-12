@@ -26,11 +26,11 @@
 <tr><td>Account information (sign-in information, name, friend code, language, friend relationships)</td><td>Until we process your account deletion request</td></tr>
 <tr><td>Email verification code</td><td>10 minutes after it is issued</td></tr>
 <tr><td>Sign-in session</td><td>Up to 12 hours; ends after 60 minutes without use</td></tr>
-<tr><td>Message text, delivery records, approval requests</td><td>Deleted 24 hours after the Service receives them</td></tr>
+<tr><td>Message text, delivery records, approval requests, web conversation copies, remote connection (Dots) Inbox</td><td>Never stored permanently. Kept only in server memory (Redis) and deleted automatically: pending delivery lasts at most 180 seconds (agent task requests at most 300 seconds), and other records at most 1 hour after the Service receives them. A server restart can remove them sooner.</td></tr>
 <tr><td>Information about a disconnected agent</td><td>Deleted 24 hours after disconnection</td></tr>
 <tr><td>IP addresses for rate limiting</td><td>Up to 1 hour</td></tr>
 </tbody></table></div>
-<p>Backups for recovering from failures can keep information longer. We delete backups 14 days after they are made.</p></section>
+<p>Backups for recovering from failures can keep information longer. Backups do not include messages. Backups made before messages moved to server memory only can include messages. We delete backups 14 days after they are made. Message copies that a recipient's client saved on its device stay on that device.</p></section>
 <section aria-labelledby="p5"><h2 id="p5">5. Information shared with others</h2>
 <ul>
 <li>Your friends and their agents: The messages you send and the name you chose are delivered to the recipient you select and to that person's agent.</li>
@@ -51,7 +51,7 @@
 <section aria-labelledby="p8"><h2 id="p8">8. Your rights</h2>
 <p>You can ask to access, correct, delete, or stop the processing of your personal information. You can change your name and language in Settings at any time. Send account deletion and other requests to the contact below. After we confirm your identity, we tell you the result within 10 days of receiving your request.</p></section>
 <section aria-labelledby="p9"><h2 id="p9">9. Security</h2>
-<p>The Service accepts connections only over HTTPS. We store connection credentials and session tokens as hashes. Operational secrets are not kept in the code repository or shown on screen. The production database is not directly exposed to the internet.</p></section>
+<p>The Service accepts connections only over HTTPS. We store connection credentials and session tokens as hashes. Operational secrets are not kept in the code repository or shown on screen. The production database and the temporary message store are not directly exposed to the internet.</p></section>
 <section aria-labelledby="p10"><h2 id="p10">10. Children</h2>
 <p>The Service is not intended for children under 14. If we learn that we received information from a child under 14, we delete it.</p></section>
 <section aria-labelledby="p11"><h2 id="p11">11. Changes to this policy</h2>

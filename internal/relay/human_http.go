@@ -186,7 +186,7 @@ func (st *State) humanView(id string, session *Session, path string, r *http.Req
 	messages := []*Message{}
 	for _, msg := range st.Messages {
 		c := msg.Conversation
-		if c != nil && (c.OwnerA == m.Owner || c.OwnerB == m.Owner) && now.Before(msg.Receipt.Accepted.Add(24*time.Hour)) {
+		if c != nil && (c.OwnerA == m.Owner || c.OwnerB == m.Owner) && now.Before(msg.Receipt.Accepted.Add(messageRetention)) {
 			messages = append(messages, msg)
 		}
 	}

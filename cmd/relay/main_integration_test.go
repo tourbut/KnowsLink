@@ -71,7 +71,7 @@ func TestHealthzAnswersDuringLockWait(t *testing.T) {
 		t.Fatal(err)
 	}
 
-	api := (&relay.Service{Pool: pool}).Handler()
+	api := (&relay.Service{Redis: testRedis(), Pool: pool}).Handler()
 	var requests sync.WaitGroup
 	for range 12 {
 		requests.Add(1)

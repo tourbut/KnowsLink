@@ -163,10 +163,9 @@ func (s *Service) textEvents(w http.ResponseWriter, r *http.Request) {
 	for {
 		// LISTEN precedes this read, closing the connect/send race. No reads run on heartbeat timeout.
 		readCtx, readDone := context.WithTimeout(ctx, 3*time.Second)
-		st, now, raw := newState(), time.Time{}, []byte(nil)
-		err = conn.QueryRow(readCtx, "SELECT state, clock_timestamp() FROM relay_state WHERE singleton = true").Scan(&raw, &now)
+		st, now, err := s.readEvents(readCtx, conn)
 		readDone()
-		if err != nil || json.Unmarshal(raw, st) != nil || st.HumanModel > 1 || st.HumanModel < 0 {
+		if err != nil || st.HumanModel > 1 || st.HumanModel < 0 {
 			return
 		}
 		current, authErr := st.principal(bearer(r), "agent")
@@ -204,5 +203,27 @@ func (s *Service) textEvents(w http.ResponseWriter, r *http.Request) {
 			}
 			break
 		}
+	}
+}
+
+// readEvents reads the committed row and its Redis message copy without a lock. A copy a later commit already
+// replaced reads as missing, so the row is read again; a copy still missing after that is an empty store.
+func (s *Service) readEvents(ctx context.Context, conn *pgx.Conn) (*State, time.Time, error) {
+	for attempt := 0; ; attempt++ {
+		st, now, raw := newState(), time.Time{}, []byte(nil)
+		if err := conn.QueryRow(ctx, "SELECT state, clock_timestamp() FROM relay_state WHERE singleton = true").Scan(&raw, &now); err != nil {
+			return nil, now, err
+		}
+		if err := json.Unmarshal(raw, st); err != nil {
+			return nil, now, err
+		}
+		stored, err := readEphemeral(ctx, s.Redis, st.Ephemeral)
+		if err != nil {
+			return nil, now, err
+		}
+		if st.Ephemeral != "" && len(stored) == 0 && attempt < 2 {
+			continue
+		}
+		return st, now, st.attachEphemeral(stored)
 	}
 }

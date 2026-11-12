@@ -2,14 +2,21 @@
 id: D06
 title: 엔티티정의서
 status: review
-updated: 2026-11-07
+updated: 2026-11-12
 owner: dev
-tasks: [SAR-MVP-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-GOOGLE-CONNECT-001-DEV, SAR-SSE-INSTALL-001-DEV, SAR-HUMAN-PEER-001-DEV, SAR-SCHEDULE-001-DEV, SAR-PUBLISH-001-DEV, SAR-CONNECT-SIMPLE-001-DEV, SAR-DB-WAIT-001]
+tasks: [SAR-MVP-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-GOOGLE-CONNECT-001-DEV, SAR-SSE-INSTALL-001-DEV, SAR-HUMAN-PEER-001-DEV, SAR-SCHEDULE-001-DEV, SAR-PUBLISH-001-DEV, SAR-CONNECT-SIMPLE-001-DEV, SAR-DB-WAIT-001, SAR-MSG-EPHEMERAL-001]
 upstream: [D02]
 summary: shared JSON 업무 엔티티와 권한 및 보존 경계를 정의한다
 ---
 
 # KnowsLink 업무 엔티티·DB·CRUD
+
+## SAR-MSG-EPHEMERAL-001 메시지 엔티티 위치
+
+- `Message`·`Idempotency`·`remoteInstall.Inbox`는 Postgres JSON에 쓰지 않는다. Redis 값 `ephemeral{Messages, Idempotency, Inboxes}`에만 있다. 필드 자체는 바뀌지 않았다.
+- `State.Ephemeral`(선택 문자열): 현재 commit의 Redis 키 이름. 메시지 내용과 무관한 random token이다. 빈 저장소이면 생략한다.
+- 모든 메시지 기록은 수락 1시간 뒤 삭제한다. 요청 사본이 사라진 `Gate`는 같은 sweep에서 삭제한다.
+- 상세 원자성·장애 처리는 [DB 설계](database-design.md)의 같은 과제 절을 따른다.
 
 ## SAR-CONNECT-SIMPLE-001-DEV agent·연결 시도 필드
 
@@ -33,7 +40,7 @@ summary: shared JSON 업무 엔티티와 권한 및 보존 경계를 정의한�
 | Agent.Name/Client | 표시 이름·연결 클라이언트. 이름 중복 허용, ID/키와 별개 |
 | State.Friends | 정렬한 회원쌍 → Friend. public random ID, A/B/Inviter, State, 당시 NameA/NameB, Generation, Exp, BlockA/BlockB, SuppressLegacy |
 | Message.Scope | self:/friend: 출처 또는 빈 legacy. Generation과 함께 current 검사 |
-| Message.Conversation | OwnerA/B, 당시 PersonA/B·AgentA/B, Text, Authorship(owner/agent). 신규 text만 수락부터24h |
+| Message.Conversation | OwnerA/B, 당시 PersonA/B·AgentA/B, Text, Authorship(owner/agent). 신규 text만 수락부터 1시간(SAR-MSG-EPHEMERAL-001, Redis에만 보관) |
 
 친구 pending은24h, active 전체400/회원20, pending 전체200/발신10/수신10이다. 종료 tombstone은 deny/세대/차단 근거이므로 자동 부활하지 않는다. 친구 기록20000 보호 상한은 새 요청만 막는다. 숨긴 가짜 outgoing placeholder도 실제 pending 한도에 포함한다. 요청자에게 대기로 보이는 기한 전 `blocked-pending`(상대 차단·수신 한도 보류)도 pending 전체·발신 한도에 포함하고 수신 한도에는 넣지 않는다. 수신 한도로 보류한 요청은 `Friend.Held`(생략 가능, 빈 값=양쪽 표시)에 받은 사람이 직전에 보던 종료 상태를 남기거나 처음 보는 행이면 `-`로 둔다. 그 행의 이전 방향은 `Friend.HeldFrom`·`HeldTail`(생략 가능)에 이전 요청자와 끝 4자로 남아, 받은 사람이 예전 발신자였으면 자기 보낸 기록으로 계속 본다(F-R1). 두 필드가 없는 기존 보류 행은 받은 쪽 기록으로 보인다. 받은 사람은 요청자가 취소·만료해도 그 값만 본다. 받은 사람이 보류 행에 차단을 보내도 보이는 대기 요청 차단처럼 `blocked-pending`이 유지되어 요청자에게 기한까지 대기로 보인다(F-R2). 이전 코드가 수신 한도·차단 경로에서 만든 대리 행은 지우지 않는다. 쌍 행이 없고 대리 행이 끝났으면 같은 코드 재요청 때 그 대리 행을 쌍 키로 옮겨 ID·세대를 유지한다. 대리 행이 대기 중이면 재요청은 무동작이다. 쌍 행과 대리 행이 이미 둘 다 있는 기존 데이터(차단 경로)는 합치지 않으며 요청자가 이미 본 2행이 그대로 남는다. 이때 대리 행이 대기 중이면 같은 코드 재요청은 없는 코드처럼 무동작이며 쌍 행을 다시 열지 않는다(F-R3). 되돌리기 시 이전 코드는 `Held`를 몰라 받은 사람에게 보류 행을 ‘해제’·종료 기록으로 보인다. 차단 상태는 상대 화면에 공개하지 않는다. 친구 코드는 권한이 아닌 요청 수단이다.
 
@@ -71,7 +78,7 @@ summary: shared JSON 업무 엔티티와 권한 및 보존 경계를 정의한�
 
 owner와 agent credential 원문은 발급 응답과 로컬 QA fixture에만 존재한다. DB는 hash만 보관한다.
 lease·claim token은 짧은 유효 권한이며 해당 message 안에 결속한다. 이를 로그에 남기지 않는다.
-Inbox는 원문과 같은 Postgres transaction에서 저장한다. ACK는 Inbox commit 뒤에만 성공한다.
+Inbox는 원문과 같은 transaction에서 저장한다(SAR-MSG-EPHEMERAL-001부터 Redis 사본, Postgres 행 lock 안). ACK는 Inbox commit 뒤에만 성공한다.
 
 
 회원 owner는 bearer credential이 없다. 회원 이메일은 로그인 매핑에만 쓴다. agent ID·contacts·receipt·rate key·로그에 넣지 않는다. 미확인 이메일은 Challenge의 최대 10분 동안만 남는다. 확인 코드와 세션 token 원문은 DB에 저장하지 않는다. 계정 비활성화·30일 정리는 후속 기능이다.

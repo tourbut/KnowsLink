@@ -57,7 +57,7 @@ func TestLandingConfiguredLoginAndPublicContent(t *testing.T) {
 					t.Fatal("login form must exist exactly once iff configured", action)
 				}
 			}
-			for _, want := range []string{`id="main"`, `id="how"`, `id="install"`, `id="examples"`, `id="start"`, "기능을 설명하기 위한 가상 예시", "내가 작성", "사용자 승인 후 발송", "최대 180초", "최대 24시간", "sh scripts/install_bot_mcp.sh", "/workspace/.knowslink/node/bin/node", "/workspace/.knowslink/knowslink/dist/plugin.js", "KNOWSLINK_AGENT_FOLDER=/workspace/.knowslink/connections/grok-new-01", "이미 연결했다면 새로 등록하지 마세요"} {
+			for _, want := range []string{`id="main"`, `id="how"`, `id="install"`, `id="examples"`, `id="start"`, "기능을 설명하기 위한 가상 예시", "내가 작성", "사용자 승인 후 발송", "최대 180초", "최대 1시간 서버 메모리(Redis)", "sh scripts/install_bot_mcp.sh", "/workspace/.knowslink/node/bin/node", "/workspace/.knowslink/knowslink/dist/plugin.js", "KNOWSLINK_AGENT_FOLDER=/workspace/.knowslink/connections/grok-new-01", "이미 연결했다면 새로 등록하지 마세요"} {
 				if !strings.Contains(body, want) {
 					t.Fatal("missing public requirement", want)
 				}

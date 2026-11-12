@@ -14,6 +14,29 @@ services:
       interval: 2s
       timeout: 3s
       retries: 20
+  # Messages live only here: no RDB or AOF, no published port, internal network only (D051).
+  # noeviction refuses writes at the memory cap, so the relay answers unavailable instead of silently dropping messages.
+  redis:
+    image: redis:8.10.2-alpine@sha256:9f8d2d789b9a1d1e3f283f979aa9cbf393373806472e1ccd460e2f9c869b833b
+    command:
+      - redis-server
+      - --save
+      - ""
+      - --appendonly
+      - "no"
+      - --protected-mode
+      - "no"
+      - --maxmemory
+      - 128mb
+      - --maxmemory-policy
+      - noeviction
+    user: "999:1000"
+    networks: [database]
+    healthcheck:
+      test: [CMD, redis-cli, ping]
+      interval: 2s
+      timeout: 3s
+      retries: 20
   migrate:
     build: .
     command: [/app/migrate]
@@ -28,6 +51,7 @@ services:
     build: .
     environment:
       DATABASE_URL: ${DATABASE_URL:?DATABASE_URL is required}
+      REDIS_URL: redis://redis:6379/0
       RELAY_ADDR: 0.0.0.0:8080
       KNOWSLINK_TEST_AGENTS: ${KNOWSLINK_TEST_AGENTS:-}
       KNOWSLINK_SYNTHETIC_SIGNUP: ${KNOWSLINK_SYNTHETIC_SIGNUP:-}
@@ -41,6 +65,8 @@ services:
     depends_on:
       migrate:
         condition: service_completed_successfully
+      redis:
+        condition: service_healthy
     networks: [database, ingress]
     healthcheck:
       test: [CMD, wget, -q, -O, /dev/null, "http://127.0.0.1:8080/healthz"]

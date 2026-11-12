@@ -1,7 +1,7 @@
 {
   "task_key": "SAR-MSG-EPHEMERAL-001",
   "role": "dev",
-  "head": "17acfa5e0b9800522854163b9d5df67b9870a159",
+  "head": "195cc084118918567f82fecb3e35b3949a0409e8",
   "attempt": "233358aeaabb4ee9999c668776723109",
   "instruction_sha256": "e5a62f938382c48fcc2c01fe74570550dcdd4a5cd2198fe4090944be806c184e",
   "options": {
@@ -383,14 +383,12 @@
       "videos/knowslink-motion/package.json": "b52a77927966db909a4adc88be014890082807a2ee5de91275c4094087a8e2f7",
       "videos/knowslink-motion/render.mjs": "ffb055a7d8ff5ba40a035c42a8c8e11fa9ca9499eda12ff791adfd4733d9776b"
     },
-    "search_results": {
-      "route": "37dc04034c6e037abdabe56f9c3aaafc875ee698f46e67ad7e1bb67e7d472ae6"
-    },
+    "search_results": {},
     "decisions": []
   },
-  "input_sha256": "2f0cd85b60cc2980468625134cf90d1a7cd3a5858ebb0d7790b10142693c4509",
+  "input_sha256": "311053574aca615ba469ecf6bccd7cd85d715ff14a7fd16f682f5270d7bfed46",
   "version": "jev-packet-v2",
-  "base": "17acfa5e0b9800522854163b9d5df67b9870a159",
+  "base": "195cc084118918567f82fecb3e35b3949a0409e8",
   "worktree_dirty": true,
   "items": [
     {
@@ -465,7 +463,7 @@
       "status": "inferred",
       "priority": 0,
       "source_sha256": "e5a62f938382c48fcc2c01fe74570550dcdd4a5cd2198fe4090944be806c184e",
-      "source_basis": "tracked_worktree_overlay"
+      "source_basis": "HEAD"
     },
     {
       "path": ".fullops-squad/project.md",
@@ -2579,6 +2577,10 @@
   "partial": true,
   "unknown": [
     {
+      "source": "route",
+      "reason": "task/role/SHA/attempt/instruction differs or absent; regenerate/bind route"
+    },
+    {
       "path": ".fullops-squad/PLANS.md",
       "reason": "missing, oversized, sensitive or invalid; manual inspection"
     },
@@ -2619,13 +2621,7 @@
       "reason": "missing, oversized, sensitive or invalid; manual inspection"
     }
   ],
-  "producer_status": {
-    "route": {
-      "error": null,
-      "docs_status": "complete",
-      "unresolved_deliverables": []
-    }
-  },
+  "producer_status": {},
   "worker_decisions": [],
   "worker_decisions_mode": "annotations; original recommendations preserved",
   "fallback": "bounded string/definition search; dynamic references and language server semantics unverified",

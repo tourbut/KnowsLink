@@ -186,7 +186,7 @@ func TestConnectionResumeAndCodeTail(t *testing.T) {
 		if resumeOf(s, y).State == resumeOf(s, z).State {
 			t.Fatal("expired attempt looks unused")
 		}
-		restarted := &Service{Pool: pool}
+		restarted := &Service{Redis: testRedis(), Pool: pool}
 		for _, id := range []string{x, y, z} {
 			if resumeOf(restarted, id) != resumeOf(s, id) {
 				t.Fatal("restart changed resume", id)

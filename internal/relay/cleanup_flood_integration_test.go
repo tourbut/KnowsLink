@@ -149,7 +149,7 @@ func TestValidCredentialCleanupFlood(t *testing.T) {
 func TestCleanupSnapshotAcrossProcessesAndRestart(t *testing.T) {
 	pool := messagePool(t)
 	f := setup(t, pool)
-	other := &Service{Pool: pool, SyntheticSignup: true}
+	other := &Service{Redis: testRedis(), Pool: pool, SyntheticSignup: true}
 	before := f.s
 	f.s, f.handler = other, other.Handler()
 	f.addAgent("agent_d")
@@ -160,7 +160,7 @@ func TestCleanupSnapshotAcrossProcessesAndRestart(t *testing.T) {
 	if before.cleanupOwner(r, f.tokens["agent_d_owner"]) != "" {
 		t.Fatal("stale snapshot knew another process's credential")
 	}
-	restarted := &Service{Pool: pool}
+	restarted := &Service{Redis: testRedis(), Pool: pool}
 	if restarted.cleanupOwner(r, f.tokens["agent_d_owner"]) != "" {
 		t.Fatal("restart without snapshot took cleanup")
 	}

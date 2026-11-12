@@ -1,9 +1,9 @@
 ---
 title: 현재 시스템 상세 설계
 status: draft
-updated: 2026-10-14
+updated: 2026-11-12
 owner: dev
-tasks: [SAR-SYSTEM-DIAGRAM-001-DEV, SAR-REFACTOR-002-DEV]
+tasks: [SAR-SYSTEM-DIAGRAM-001-DEV, SAR-REFACTOR-002-DEV, SAR-MSG-EPHEMERAL-001]
 summary: 구성·신뢰 경계와 Grok 및 Dots 전달 흐름을 실제 소스에 연결한다
 ---
 
@@ -43,6 +43,7 @@ flowchart TB
     Tunnel["cloudflared Tunnel"]
     Relay["Go relay"]
     DB[("Postgres JSON 상태")]
+    Redis[("Redis 메시지 임시 저장")]
     Migrate["별도 SQL migrate"]
   end
   Web -->|"회원 HTTPS"| Edge
@@ -51,6 +52,7 @@ flowchart TB
   Edge -->|"허용 경로"| Tunnel
   Tunnel -->|"내부 HTTP"| Relay
   Relay -->|"transaction / LISTEN"| DB
+  Relay -->|"메시지 사본 GET/SET (행 lock 안)"| Redis
   Migrate -->|"SQL Up"| DB
   Web -->|"로그인 동의"| Google
   Relay -->|"code 교환 / 신원 검증"| Google
@@ -67,13 +69,13 @@ Cloudflare와 cloudflared는 별도 구성요소다. Tunnel은 DB에 직접 접�
 
 | 구성요소·소스 | 프로토콜·책임 | 저장 위치·권한 경계 |
 |---|---|---|
-| 회원 웹: [human_http.go](../internal/relay/human_http.go), [member_pages.go](../internal/relay/member_pages.go) | HTTPS 세션·폼으로 이름·agent·친구·대화 관리 | 회원·세션·웹 사본은 relay DB. 브라우저 로그인은 agent 서명이 아님 |
+| 회원 웹: [human_http.go](../internal/relay/human_http.go), [member_pages.go](../internal/relay/member_pages.go) | HTTPS 세션·폼으로 이름·agent·친구·대화 관리 | 회원·세션은 relay DB, 웹 사본은 Redis 1시간. 브라우저 로그인은 agent 서명이 아님 |
 | Grok: [mcp.ts](../adapters/src/mcp.ts), [text.ts](../adapters/src/text.ts) | 로컬 stdio Command MCP, HTTPS text transport, 별도 watch 실행 가능 | 연결 폴더의 개인키·agent 자격·private Inbox. MCP stdout은 프로토콜 전용 |
-| Dots: [remote_mcp.go](../internal/relay/remote_mcp.go), [remote_auth.go](../internal/relay/remote_auth.go) | `/mcp` JSON-RPC와 설치별 OAuth 권한. 서버가 설치 키로 서명 | 설치별 개인키·Inbox는 private relay DB. 로컬 Grok 폴더와 다름 |
+| Dots: [remote_mcp.go](../internal/relay/remote_mcp.go), [remote_auth.go](../internal/relay/remote_auth.go) | `/mcp` JSON-RPC와 설치별 OAuth 권한. 서버가 설치 키로 서명 | 설치별 개인키는 private relay DB, Inbox는 Redis 1시간. 로컬 Grok 폴더와 다름 |
 | 공개 ingress: [public-ingress.yml](../deploy/knowslink/tunnel/public-ingress.yml) | 정확한 hostname·경로만 relay에 전달 | 이 fragment는 edge Access 정책 자체를 변경하지 않음 |
 | Tunnel: [compose.yaml](../compose.yaml), [compose.ops.yaml](../deploy/knowslink/compose.ops.yaml) | cloudflared가 외부 Tunnel과 내부 relay HTTP를 연결 | 운영 Tunnel 설정은 읽기 전용 mount. ingress network에만 연결 |
 | relay: [main.go](../cmd/relay/main.go), [http.go](../internal/relay/http.go) | 인증·권한·서명·기한·멱등·전달·화면, Cleanup·RemoteEvents loop | Postgres pool과 JSON 상태. 업무 효과·자동 답장 엔진은 아님 |
-| DB: [store.go](../internal/relay/store.go), [relay.sql](../db/queries/relay.sql) | singleton 행 lock·epoch CAS·DB 시계·LISTEN/NOTIFY | 비공개 Postgres volume. DB 호스트 포트 게시 없음 |
+| DB: [store.go](../internal/relay/store.go), [relay.sql](../db/queries/relay.sql) | singleton 행 lock·epoch CAS·DB 시계·LISTEN/NOTIFY | 비공개 Postgres volume. DB 호스트 포트 게시 없음. 메시지 기록은 [ephemeral.go](../internal/relay/ephemeral.go)로 Redis에만 |
 | migration: [main.go](../cmd/migrate/main.go), [SQL](../db/migrations/00002_human_writer.sql) | 별도 프로세스가 SQL-only Up 수행 | schema·goose version·writer trigger. relay 기동과 분리 |
 | Google: [google.go](../internal/relay/google.go) | OIDC code 교환·ID token 검증·회원 신원 연결 | Google 비밀 설정은 서버 환경. Google token을 Remote 설치에 저장하지 않음 |
 | 선택 SMTP: [mail.go](../internal/relay/mail.go), [main.go](../cmd/relay/main.go) | 설정 시 이메일 확인 코드 발송. 일반 메시지 알림 경로가 아님 | 서버 SMTP 설정과 DB의 확인 challenge. 미설정 시 이메일 로그인 비활성 |
@@ -192,7 +194,7 @@ MCP `notifications/message`는 metadata notice다. `sent_unverified`는 호스�
 sequenceDiagram
   participant Sender as 송신 agent
   participant Relay as Go relay
-  participant DB as Postgres 설치·Inbox·구독
+  participant DB as Postgres 설치·구독 + Redis Inbox
   participant Dots as Dots 호스트·callback
   Sender->>Relay: 서명 text send
   Relay->>DB: queued 저장 + 빈 NOTIFY (commit)
@@ -295,13 +297,20 @@ relay의 모든 DB 연결은 [db_limits.go](../internal/relay/db_limits.go)의 `
 | 데이터 | 보관·제거 경계 | 주의 |
 |---|---|---|
 | transport Envelope·Inbox | 최대 180초, ACK·만료·철회 시 원문 제거 | 서버가 수신 클라이언트의 사본까지 지우지 않음 |
-| 웹 Conversation 사본 | 수락 시점부터 최대 24시간, 당시 참여 owner 세션만 조회 | 관계 해제 후 남은 사본 열람은 전송 권한과 별개 |
-| receipt·멱등·gate metadata | 수락 24시간 뒤 sweep | 보관기한을 영구 dedupe로 해석하지 않음 |
+| 웹 Conversation 사본 | Redis에만, 수락 시점부터 최대 1시간, 당시 참여 owner 세션만 조회 | 관계 해제 후 남은 사본 열람은 전송 권한과 별개 |
+| receipt·멱등 / gate metadata | Redis에만 수락 1시간 뒤 sweep / gate는 요청 사본이 사라지면 Postgres에서 삭제 | 보관기한을 영구 dedupe로 해석하지 않음 |
 | Grok 로컬 Inbox | 미확인 `.json` 본문은 로컬에 남음 | transport 만료 뒤에도 로컬 표시 가능. 관련 답장 기한은 종료 |
 | Grok 읽음·wake marker | 24시간 정리 경계, 임시 파일은 1시간 경계 | 정리는 Inbox 사용 시 수행. 즉시 삭제 보장 아님 |
-| Dots 설치 Inbox | 명시 ACK 또는 기한·철회·현재 권한 상실 시 제거 | DB·백업의 private 사본. 무기한 로컬 Inbox와 다름 |
+| Dots 설치 Inbox | 명시 ACK 또는 기한·철회·현재 권한 상실 시 제거 | Redis에만, 최대 1시간. 백업에 없음. 무기한 로컬 Inbox와 다름 |
 | 키·철회 기록 | 살아 있는 agent의 철회 kid 기록 유지 | 같은 kid 재사용 방지. 키 철회로 기록 공간이 즉시 생기지 않음 |
 | WAL·백업·상대 사본 | 별도 운영 보존·권한 적용 | transport/웹 만료는 즉시 영구 삭제 보장이 아님 |
+
+## 메시지 임시 저장 (SAR-MSG-EPHEMERAL-001)
+
+메시지 기록(원문·Inbox 사본·웹 대화 사본·receipt·lease/claim·멱등)과 Dots 설치 Inbox는 Redis에만 있다. Postgres 행에는 Redis 키 이름만 있다.
+relay는 Postgres 행 lock을 먼저 잡고 같은 lock 안에서 Redis 사본을 읽고, 바뀐 경우 새 키를 쓴 뒤 행을 commit한다. 그래서 여러 process의 lease·claim·ACK·멱등 직렬화는 바뀌지 않는다.
+Redis는 RDB·AOF를 끄고 `noeviction`으로 운영한다. 가득 차거나 응답하지 않으면 요청은 `unavailable`이고 `/healthz`는 503이다.
+모든 메시지 기록은 수락 1시간 뒤 sweep이 지운다. Redis 재시작은 그 전에 지운다(D051).
 
 ## Schema·writer 보호와 운영 격리
 

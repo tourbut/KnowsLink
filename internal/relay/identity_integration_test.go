@@ -90,7 +90,7 @@ func identityService(t *testing.T, pool *pgxpool.Pool) (*Service, *inbox) {
 		t.Fatal(err)
 	}
 	mail := &inbox{codes: map[string]string{}}
-	return &Service{Pool: pool, Mail: mail.send}, mail
+	return &Service{Redis: testRedis(), Pool: pool, Mail: mail.send}, mail
 }
 func (s *Service) mutateState(t *testing.T, fn func(*State)) {
 	t.Helper()
@@ -157,7 +157,7 @@ func TestEmailIdentity(t *testing.T) {
 			t.Fatal("re-login changed member")
 		}
 		// Restart: a new process on the same database keeps the session.
-		restarted := newBrowser(&Service{Pool: pool, Mail: mail.send}, "192.0.2.2")
+		restarted := newBrowser(&Service{Redis: testRedis(), Pool: pool, Mail: mail.send}, "192.0.2.2")
 		restarted.cookies = other.cookies
 		expect(t, restarted.do("GET", "/home/legacy", nil), 200, first)
 		// Synthetic signup is closed unless explicitly enabled; a session cookie is not an owner or agent credential.
@@ -276,7 +276,7 @@ func TestEmailIdentity(t *testing.T) {
 		})
 		mail.fail = false
 		expect(t, b.do("POST", "/auth/start", url.Values{"email": {"fail@example.com"}}), 429, "이후 다시 시도")
-		unconfigured := newBrowser(&Service{Pool: pool}, "192.0.2.51")
+		unconfigured := newBrowser(&Service{Redis: testRedis(), Pool: pool}, "192.0.2.51")
 		expect(t, unconfigured.do("POST", "/auth/start", url.Values{"email": {"none@example.com"}}), 503)
 		// Anonymous source budget counts refused requests: 30 per rolling minute.
 		s.mutateState(t, func(st *State) { st.Rates = map[string][]time.Time{} })
@@ -323,7 +323,7 @@ func TestEmailIdentity(t *testing.T) {
 		expect(t, alice.do("GET", "/home", nil), 429)
 		expect(t, alice.do("POST", "/auth/logout-all", nil), 429)
 		// A new process on the same database keeps the counts; other principals still log in, load home, and log out.
-		restarted := &Service{Pool: pool, Mail: mail.send}
+		restarted := &Service{Redis: testRedis(), Pool: pool, Mail: mail.send}
 		flood.h, alice.h, bob.h = restarted.Handler(), restarted.Handler(), restarted.Handler()
 		expect(t, flood.do("POST", "/auth/verify", url.Values{"code": {"000000"}}), 429)
 		expect(t, alice.do("GET", "/home", nil), 429)

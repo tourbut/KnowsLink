@@ -3,7 +3,7 @@ title: 운영·업데이트·복구
 status: draft
 updated: 2026-11-12
 owner: ops
-tasks: [SAR-REFACTOR-002-OPS, SAR-RELEASE-001-OPS, SAR-RELEASE-002-OPS, SAR-RELEASE-003-OPS, SAR-PUBLISH-001-DEV, SAR-PUBLISH-001-OPS, SAR-CONNECT-SIMPLE-001-OPS, SAR-AUTOSETUP-001-OPS, SAR-VULTR-MIGRATE-001]
+tasks: [SAR-REFACTOR-002-OPS, SAR-RELEASE-001-OPS, SAR-RELEASE-002-OPS, SAR-RELEASE-003-OPS, SAR-PUBLISH-001-DEV, SAR-PUBLISH-001-OPS, SAR-CONNECT-SIMPLE-001-OPS, SAR-AUTOSETUP-001-OPS, SAR-MSG-EPHEMERAL-001, SAR-VULTR-MIGRATE-001]
 summary: 현재 배포·백업·writer 보호와 클라이언트 갱신 및 복구 경계를 설명한다.
 ---
 
@@ -54,7 +54,7 @@ build 전에 현재 실행 이미지에 과제 고유 rollback 태그를 붙이�
 live Tunnel config는 원본을 백업하고 `cloudflared tunnel --config <후보> ingress validate`로 확인한 뒤 적용한다. cloudflared 재시작은 약1~2초 끊김을 만든다.
 공개 주소를 짧은 간격으로 반복 호출하지 않는다. 약2~2.5회/초 관찰 루프가 두 번의 Tunnel 재시작에서 모두 1~2분 동안 429를 만들었다. 재시작 관찰은 공개 주소가 아니라 서버 측 cloudflared 등록 로그로 하고, 공개 확인은 1초 이상 간격으로 한다.
 
-백업에는 키·credential·Remote 설치 Inbox·callback secret이 포함될 수 있다.
+백업에는 키·credential·callback secret이 포함될 수 있다. SAR-MSG-EPHEMERAL-001 이행 뒤 새 백업에는 메시지·Remote 설치 Inbox가 없다(Redis에만 있음). 이행 전 백업에는 남아 있다.
 출력·공유·Git 저장을 금지한다. 접근권한과 보존기한을 별도로 관리한다.
 복원 리허설 통과는 실제 rollback 실행이나 WAL의 완전 삭제 증거가 아니다.
 
@@ -69,7 +69,7 @@ Down은 의도적으로 실패하며 guard를 제거하지 않는다.
 
 신규 schema 이행은 **쓰기 중단·최신 private 백업·격리 복원 리허설·Up·새 writer 검사·재개** 순서다.
 검사 대상은 legacy ID·키·철회·정확한 pair와 새 친구 권한의 거부 경계다.
-transport 삭제와 24시간 웹 사본 만료가 백업/WAL 영구 삭제를 뜻하지 않는다.
+transport 삭제와 1시간 웹 사본 만료(Redis)는 이행 전 백업/WAL의 영구 삭제를 뜻하지 않는다.
 
 복구가 필요하면 다음 경계를 지킨다.
 
@@ -84,6 +84,15 @@ transport 삭제와 24시간 웹 사본 만료가 백업/WAL 영구 삭제를 �
 이번 전환 후 이전 이미지 주소는 조회할 수 없었다. 같은 직전 SHA로 별도 복구 후보 이미지를 다시 만들었다.
 원 이미지 동일성을 주장하지 않는다. 복구 후보의 태그·이미지 ID·원 실패는 운영 적용 기록을 따른다.
 다음 배포는 build 전에 현재 이미지를 고유 rollback 태그에 고정하고 실제 조회 가능 여부를 확인한다.
+
+## 메시지 임시 저장소 Redis (SAR-MSG-EPHEMERAL-001)
+
+메시지·대화 사본·Dots Inbox는 Postgres가 아니라 디스크 저장 없는 Redis에만 있다(D049~D052). 운영 적용 전이다. 이행 순서는 [운영자설명서](../.fullops-squad/docs/operations/ops-guide.md#sar-msg-ephemeral-001-메시지-휘발-저장-이행-운영-미적용)를 따른다.
+
+- Compose 서비스 `redis`: RDB·AOF 끔, `maxmemory 128mb`·`noeviction`, 포트 미게시, internal network. relay는 `REDIS_URL=redis://redis:6379/0`을 쓴다.
+- Redis 재시작은 미전달 메시지·대화 사본·receipt·멱등 기록을 지운다. 이것은 받아들인 동작이다(D051). 재시작 중 요청은 `unavailable`, `/healthz`는 503이다. 복구 뒤 새 송신은 정상이다.
+- Redis를 백업하지 않는다. `beta.sh backup`은 상태 행에 메시지 key가 남았는지 `message_state_rows`로 보인다(이행 뒤 0).
+- 로그·오류 응답에는 본문을 쓰지 않는다. relay 로그는 기동 설정과 고정 오류 문장만 쓴다.
 
 ## DB 대기 상한
 

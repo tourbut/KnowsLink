@@ -41,7 +41,7 @@ type remoteInstall struct {
 	Owner, Agent, Kid string
 	Private           []byte
 	Exp               time.Time
-	Inbox             map[string]json.RawMessage
+	Inbox             map[string]json.RawMessage `json:"-"` // Redis only (ephemeral.go)
 }
 type remoteState struct {
 	Clients       map[string]*remoteClient

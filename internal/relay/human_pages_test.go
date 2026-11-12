@@ -114,7 +114,7 @@ func TestHumanFriendActionsMatchRequestDirection(t *testing.T) {
 func TestHumanConversationPinsTargetAndReadOnlyBoundary(t *testing.T) {
 	v := humanPageFixture()
 	body := renderHumanPage(t, "human-conversation", v)
-	for _, required := range []string{`name="from" value="agent_a"`, `name="to" value="agent_c"`, `name="attempt" value="synthetic-attempt"`, `action="/home/conversation/send"`, `<textarea id="message" name="text" required`, "a001", "c003", "내가 작성", "에이전트가 작성", "메시지는 24시간 안에 사라집니다", "대기", "전달됨", "새로고침"} {
+	for _, required := range []string{`name="from" value="agent_a"`, `name="to" value="agent_c"`, `name="attempt" value="synthetic-attempt"`, `action="/home/conversation/send"`, `<textarea id="message" name="text" required`, "a001", "c003", "내가 작성", "에이전트가 작성", "메시지는 서버에 영구 저장하지 않습니다", "최대 1시간 서버 메모리(Redis)", "대기", "전달됨", "새로고침"} {
 		if !strings.Contains(body, required) {
 			t.Fatal("missing", required)
 		}

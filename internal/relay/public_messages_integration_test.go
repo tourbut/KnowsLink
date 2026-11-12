@@ -212,7 +212,7 @@ func TestPublicMessageHTTPBoundaries(t *testing.T) {
 	publicCall(t, h, "/v1/claim", tokenB, map[string]string{"id": firstID}, 403)
 	reply := signedText(secondID, agentB, agentA, "public-http-reply-1", firstID, "reply", time.Now().Add(170*time.Second), keyB)
 	publicCall(t, h, "/v1/text/send", tokenB, reply, 200)
-	h = (&Service{Pool: pool}).Handler()
+	h = (&Service{Redis: testRedis(), Pool: pool}).Handler()
 	lease = publicCall(t, h, "/v1/text/pull", tokenA, map[string]string{}, 200)
 	delivery = map[string]string{"id": secondID, "token": lease["lease_token"].(string)}
 	expect(t, a.do("POST", "/home/friends/decision", url.Values{"friend": {friend.ID}, "generation": {fmt.Sprint(friend.Generation)}, "decision": {"remove"}}), 303)
@@ -278,7 +278,7 @@ func TestPublicHTTPAdmissionAndGateSafety(t *testing.T) {
 			st.HTTP[fmt.Sprint("busy", i)] = admission{Exp: time.Now().Add(20 * time.Second)}
 		}
 	})
-	f.handler = (&Service{Pool: pool}).Handler()
+	f.handler = (&Service{Redis: testRedis(), Pool: pool}).Handler()
 	expect(t, f.request("POST", "/v1/pull", f.tokens["agent_b"], []byte("{}"), ""), 429)
 	expect(t, post("/owner/gates/"+gateID, "approve"), 429)
 	w = post("/owner/gates/"+gateID+"/deny", "deny")
@@ -332,7 +332,7 @@ func TestSharedMessageCapacityHTTP(t *testing.T) {
 	if wins != 1 {
 		t.Fatal("remaining queue slot", wins)
 	}
-	f.handler = (&Service{Pool: pool}).Handler()
+	f.handler = (&Service{Redis: testRedis(), Pool: pool}).Handler()
 	f.send(f.message(firstID, "capacity-overflow-01"), "agent_a", "", 409)
 	// A valid already-leased ACK still ends transport while new queue work is full; replay consumes no slot.
 	lease := f.call("POST", "/v1/pull", f.tokens["agent_b"], map[string]string{}, 200)
@@ -383,7 +383,7 @@ func TestSharedExecutionClaimHTTP(t *testing.T) {
 	if wins != 4 {
 		t.Fatal("claim winners", wins)
 	}
-	f.handler = (&Service{Pool: pool}).Handler()
+	f.handler = (&Service{Redis: testRedis(), Pool: pool}).Handler()
 	unclaimed := ""
 	f.mutate(func(st *State) {
 		for _, id := range ids {
@@ -424,7 +424,7 @@ func TestHTTPConcurrencyAcrossInstances(t *testing.T) {
 		}
 		w.WriteHeader(200)
 	})
-	handlers := []http.Handler{f.s.boundedHTTP(next), (&Service{Pool: pool}).boundedHTTP(next)}
+	handlers := []http.Handler{f.s.boundedHTTP(next), (&Service{Redis: testRedis(), Pool: pool}).boundedHTTP(next)}
 	f.addAgent("agent_d")
 	f.addAgent("agent_e")
 	f.mutate(func(st *State) { st.Rates = map[string][]time.Time{} })

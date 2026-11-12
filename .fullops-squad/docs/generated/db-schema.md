@@ -2,9 +2,9 @@
 id: D08
 title: 테이블정의서
 status: review
-updated: 2026-11-07
+updated: 2026-11-12
 owner: dev
-tasks: [SAR-MVP-001-DEV, SAR-HUMAN-PEER-001-DEV, SAR-DB-WAIT-001]
+tasks: [SAR-MVP-001-DEV, SAR-HUMAN-PEER-001-DEV, SAR-DB-WAIT-001, SAR-MSG-EPHEMERAL-001]
 upstream: [D02]
 summary: 실제 migration SQL에서 생성한 업무 테이블을 기록한다
 ---
@@ -73,6 +73,21 @@ $$;
 -- +goose StatementEnd
 CREATE TRIGGER human_writer_guard BEFORE UPDATE OF human_model ON relay_state
 FOR EACH ROW WHEN (NEW.human_model < OLD.human_model) EXECUTE FUNCTION guard_human_writer();
+```
+
+원천: `db/migrations/00004_relay_state_no_messages.sql`
+
+SHA256: `47cf1f5c39cb1333c3041761b5e8ccd0aef74515b84bfb77cf9f9ff1b818001e`
+
+```sql
+UPDATE relay_state SET state = (
+    CASE WHEN jsonb_typeof(cleaned.s -> 'Remote' -> 'Installs') = 'object' THEN
+        jsonb_set(cleaned.s, '{Remote,Installs}', (
+            SELECT COALESCE(jsonb_object_agg(k, CASE WHEN jsonb_typeof(v) = 'object' THEN v - 'Inbox' ELSE v END), '{}'::jsonb)
+            FROM jsonb_each(cleaned.s -> 'Remote' -> 'Installs') AS install(k, v)))
+    ELSE cleaned.s END)::json
+FROM (SELECT singleton, state::jsonb - 'Messages' - 'Idempotency' AS s FROM relay_state) AS cleaned
+WHERE relay_state.singleton = cleaned.singleton;
 ```
 
 JSON 업무 엔티티와 CRUD 정본은 [데이터 모델](../design-docs/data-model.md)이다.

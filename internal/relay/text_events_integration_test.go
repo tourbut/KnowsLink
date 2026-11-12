@@ -23,7 +23,7 @@ func TestTextEventsHTTP(t *testing.T) {
 			st.Members[id] = &Member{Owner: owner, Active: true}
 		}
 	})
-	other := &Service{Pool: pool}
+	other := &Service{Redis: testRedis(), Pool: pool}
 	server := httptest.NewUnstartedServer(other.Handler())
 	server.Config.WriteTimeout = 10 * time.Second
 	server.Start()
@@ -144,7 +144,7 @@ func TestTextEventsEndOnStopping(t *testing.T) {
 	f.mutate(func(st *State) { st.Members["member_b"] = &Member{Owner: f.owners["agent_b"], Active: true} })
 	stopping, stop := context.WithCancel(context.Background())
 	defer stop()
-	server := httptest.NewServer((&Service{Pool: f.s.Pool, Stopping: stopping}).Handler())
+	server := httptest.NewServer((&Service{Redis: testRedis(), Pool: f.s.Pool, Stopping: stopping}).Handler())
 	defer server.Close()
 	req, _ := http.NewRequest("GET", server.URL+"/v1/text/events", nil)
 	req.Header.Set("Authorization", "Bearer "+f.tokens["agent_b"])

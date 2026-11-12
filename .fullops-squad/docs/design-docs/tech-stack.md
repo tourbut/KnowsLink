@@ -2,14 +2,20 @@
 id: D03
 title: KnowsLink 기술 스택
 status: review
-updated: 2026-10-12
+updated: 2026-11-12
 owner: dev
-tasks: [SAR-SETUP-001-DEV, SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX, SAR-GOOGLE-CONNECT-002-DEV, SAR-SSE-INSTALL-001-DEV, SAR-HUMAN-PEER-001-DEV]
+tasks: [SAR-SETUP-001-DEV, SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX, SAR-GOOGLE-CONNECT-002-DEV, SAR-SSE-INSTALL-001-DEV, SAR-HUMAN-PEER-001-DEV, SAR-MSG-EPHEMERAL-001]
 upstream: [D02]
 summary: 고정 버전과 실제 SQL 및 JCS API 근거를 기록한다
 ---
 
 # KnowsLink 기술 스택
+
+## SAR-MSG-EPHEMERAL-001 Redis 의존성 (DEP-001)
+
+- 추가: `github.com/redis/go-redis/v9` `v9.23.0`(2026-10-05 게시, go.mod 고정). 간접 의존성 `cespare/xxhash/v2`·`dgryski/go-rendezvous`·`go.uber.org/atomic`이 같이 들어왔다. 런타임 이미지는 `redis:8.10.2-alpine`(digest 고정)이다.
+- 필요성: 메시지를 디스크 없는 Redis에만 두는 사용자 결정 D050·D051. Go 표준 라이브러리에는 Redis 클라이언트가 없다. RESP를 직접 구현하면 연결 풀·시간 제한·재연결을 다시 만들어야 하고 검토 부담이 크다.
+- 사용 API: `redis.ParseURL`, `NewClient`, `Get(...).Bytes()`와 `redis.Nil`, `Set(key, value, ttl)`, `Del`, `Ping`, `Options.DisableIdentity`, `maintnotifications.ModeDisabled`. 근거는 Context7 `/redis/go-redis`(README: ParseURL, Get/redis.Nil, DisableIdentity, disable-maintnotifications 예제) 조회다.
 
 ## SAR-HUMAN-PEER-001 DEV 후보
 

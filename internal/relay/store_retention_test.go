@@ -25,7 +25,7 @@ func retentionFixture(count int) (*State, time.Time) {
 		id := fmt.Sprintf("message_%05d", i)
 		from, to := fmt.Sprintf("agent_%03d_0", i%100), fmt.Sprintf("agent_%03d_1", i%100)
 		st.Messages[id] = &Message{
-			Receipt: Receipt{ID: id, From: from, To: to, Intent: publicTextIntent, Accepted: now.Add(-time.Hour), Exp: now.Add(-time.Minute), State: "delivered"},
+			Receipt: Receipt{ID: id, From: from, To: to, Intent: publicTextIntent, Accepted: now.Add(-30 * time.Minute), Exp: now.Add(-time.Minute), State: "delivered"},
 			Key:     id, Kid: "key1", Scope: fmt.Sprintf("self:member_%03d", i%100), Generation: 1, Deliver: "agent",
 			Conversation: &ConversationCopy{Text: "synthetic retained conversation", Authorship: "agent"},
 		}
