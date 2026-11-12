@@ -1,6 +1,6 @@
 {
   "title": "KnowsLink",
-  "summary": "메시지 휘발성 Redis 보관 SAR-MSG-EPHEMERAL-001 진행 중(dev). SAR-DB-WAIT-001·SAR-REFACTOR-003 운영 이행은 사용자 승인 대기.",
+  "summary": "메시지 휘발성 Redis 보관 SAR-MSG-EPHEMERAL-001 main 반영. 운영(Vultr) 이행은 SAR-DB-WAIT-001과 함께 사용자 승인 대기.",
   "phases": [
     {
       "name": "FullOps 운영 기반",
@@ -354,7 +354,7 @@
         "D07",
         "D10"
       ],
-      "note": "리뷰 조건부 수락. 개인정보 문구 수정 중(D054), 병합·이행은 승인 대기"
+      "note": "main 반영(84214efd). Redis 한도 후속·운영 이행은 승인 대기"
     },
     {
       "name": "운영 서버 Vultr 이전 (SAR-VULTR-MIGRATE-001)",

@@ -30,6 +30,9 @@ summary: 기존 제품 계획 보존과 Google 연결 구현의 독립 검토 �
   - medium 1(개인정보 문구의 승인 요청 metadata): D054 "문구를 사실대로 수정". 같은 키를 reopen해 dev가 병합 전에 고친다.
   - medium 2(Redis가 128mb noeviction에 닿으면 ACK·sweep 같은 축소 쓰기도 거부되어 최대 1시간 unavailable): 후속이다. 운영 이행 전에 크기와 lock 시간을 측정하고, 축소 경로(relay 쪽 사본 크기 상한 또는 메시지별 키)를 dev 후속 과제로 설계한다. 재개 조건은 운영 이행 계획 수립이다.
   - low 1(interface-design 장애 범위 문장): reopen 범위에 넣었다. low 2(board note): coor가 병합 때 고친다.
+- **리뷰 수정:** dispatch `ctx_e65c2f94f185`, `12cbf840`(정책 ko·en, 시험, 문서). 완료 SHA는 `69626105`다. `review.py need` 9a5a07bd..69626105는 false(코드 3개 파일, 13줄)라 coor가 diff와 lint(ERROR 0)를 직접 확인했다.
+- **통합(2026-11-12):** D055 "병합·push". coor에서 `69626105`를 병합(`84214efd`)하고 main을 fast-forward해 origin에 push했다(075778d4..84214efd). 병합 결과 lint는 ERROR 0이다. make 2건은 Windows 실행 불가이고, `6fe42d32` 이후 제품 변경은 정책 HTML과 시험 3개 파일뿐이다. 역할 워크트리 4개를 동기화했다.
+- **보류:** 리뷰 snapshot 정리. `review.py cleanup`이 snapshot의 `.fullops-squad/local/outputs/`(FullOps 출력 축약 사본, 17 KB)를 이유로 멈췄다. 작업공간 밖이라 guard가 삭제를 막는다. 담당은 사용자다. 재개 조건은 그 폴더를 지운 뒤 coor가 `review.py cleanup --finished`를 다시 실행하는 것이다.
 
 ## 운영 서버 Vultr 이전 — SAR-VULTR-MIGRATE-001 (2026-11-12, 완료)
 
@@ -2261,7 +2264,7 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 - [ ] SAR-AUTOSETUP-001-QA3 → coor: coor 사용자 승인 후 ops 운영 교체(0.1.1 게시 (완료 보고 자동 등재 2026-10-28)
 - [x] SAR-DB-WAIT-001 → coor: coor: 독립 리뷰와 main 병합 판단 (완료 보고 자동 등재 2026-11-07, D047 리뷰 생략, D048 병합, 2026-11-08 처리)
 - [ ] SAR-DB-WAIT-001 → ops: ops: 운영 이행은 별도 승인 뒤 D12 절차로 수행 (완료 보고 자동 등재 2026-11-07) — 보류: 사용자 승인 대기
-- [ ] SAR-MSG-EPHEMERAL-001 → ops: ops의 Vultr 운영 이행(사용자 승인 뒤, migration 3·4와 이행 직후 새 백업) (완료 보고 자동 등재 2026-11-12)
-- [ ] SAR-MSG-EPHEMERAL-001 → tester: tester 독립 QA (완료 보고 자동 등재 2026-11-12)
-- [ ] SAR-MSG-EPHEMERAL-001 → coor: 리뷰 medium 2(Redis 한도 도달 시 축소 불가) 후속 과제 등재 (완료 보고 2026-11-12)
-- [ ] SAR-MSG-EPHEMERAL-001 → coor: 리뷰 수정 `12cbf840` 포함 main 병합 (완료 보고 2026-11-12)
+- [ ] SAR-MSG-EPHEMERAL-001 → ops: ops의 Vultr 운영 이행(사용자 승인 뒤, migration 3·4와 이행 직후 새 백업) (완료 보고 자동 등재 2026-11-12) — 보류: 사용자 승인 대기, medium 2 측정 선행
+- [ ] SAR-MSG-EPHEMERAL-001 → tester: tester 독립 QA (완료 보고 자동 등재 2026-11-12) — 보류: 운영 이행 계획과 함께 배정
+- [x] SAR-MSG-EPHEMERAL-001 → coor: 리뷰 medium 2(Redis 한도 도달 시 축소 불가) 후속 과제 등재 (완료 보고 2026-11-12, SAR-MSG-EPHEMERAL-001 절 "리뷰 결과"에 등재)
+- [x] SAR-MSG-EPHEMERAL-001 → coor: 리뷰 수정 `12cbf840` 포함 main 병합 (완료 보고 2026-11-12, D055, main 84214efd)
