@@ -1,6 +1,6 @@
 ---
 title: SAR-VULTR-MIGRATE-001 — 운영 relay를 홈서버에서 Vultr로 이전(대기 초안)
-status: done
+status: approved
 updated: 2026-11-12
 owner: ops
 tasks: [SAR-VULTR-MIGRATE-001]
