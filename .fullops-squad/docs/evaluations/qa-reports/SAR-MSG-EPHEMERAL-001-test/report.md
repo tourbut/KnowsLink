@@ -4,7 +4,7 @@ status: draft
 updated: 2026-11-12
 owner: dev
 tasks: [SAR-MSG-EPHEMERAL-001]
-summary: "메시지·대화 사본·Dots Inbox를 Redis에만 두는 구현의 검증 결과와 남은 일"
+summary: 메시지·대화 사본·Dots Inbox를 Redis에만 두는 구현의 검증 결과와 남은 일
 ---
 
 # SAR-MSG-EPHEMERAL-001 메시지 휘발 저장 검증
