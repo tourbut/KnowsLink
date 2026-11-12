@@ -1,6 +1,6 @@
 {
   "title": "KnowsLink",
-  "summary": "relay DB 대기 축소 SAR-DB-WAIT-001 main 반영 완료. 운영 이행과 SAR-REFACTOR-003 운영 배포는 사용자 승인 대기.",
+  "summary": "메시지 휘발성 Redis 보관 SAR-MSG-EPHEMERAL-001 진행 중(dev). SAR-DB-WAIT-001·SAR-REFACTOR-003 운영 이행은 사용자 승인 대기.",
   "phases": [
     {
       "name": "FullOps 운영 기반",
@@ -345,6 +345,16 @@
         "D10"
       ],
       "note": "개선 1·2·3 main 반영(9e84b4a5). 운영 이행은 승인 대기"
+    },
+    {
+      "name": "메시지 휘발성 Redis 보관 (SAR-MSG-EPHEMERAL-001)",
+      "status": "active",
+      "deliverables": [
+        "D06",
+        "D07",
+        "D10"
+      ],
+      "note": "dev 구현 중. 사본 1시간·전달 180초, Postgres 미저장"
     }
   ]
 }
