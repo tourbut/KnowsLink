@@ -2263,3 +2263,6 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 - [ ] SAR-DB-WAIT-001 → ops: ops: 운영 이행은 별도 승인 뒤 D12 절차로 수행 (완료 보고 자동 등재 2026-11-07) — 보류: 사용자 승인 대기
 - [ ] SAR-MSG-EPHEMERAL-001 → ops: ops의 Vultr 운영 이행(사용자 승인 뒤, migration 3·4와 이행 직후 새 백업) (완료 보고 자동 등재 2026-11-12)
 - [ ] SAR-MSG-EPHEMERAL-001 → tester: tester 독립 QA (완료 보고 자동 등재 2026-11-12)
+- [ ] SAR-MSG-EPHEMERAL-001 → coor: 리뷰 medium 2(Redis 한도 도달 시 축소 불가)는 coor가 PLANS.md에 등재. 운영 이행 (완료 보고 자동 등재 2026-11-12)
+- [ ] SAR-MSG-EPHEMERAL-001 → coor: main 병합은 coor (완료 보고 자동 등재 2026-11-12)
+- [ ] SAR-MSG-EPHEMERAL-001 → ops: ops. Docker는 쓰지 않았다 (완료 보고 자동 등재 2026-11-12)
