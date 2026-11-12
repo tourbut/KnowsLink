@@ -1,0 +1,695 @@
+{
+  "base": "17acfa5e0b9800522854163b9d5df67b9870a159",
+  "head": "9a5a07bd2239d10ff794149329270c411c4bdf23",
+  "rule_sha256": "ab2116fba36e3debc281c1c96acc502294b96a7db28fdd8cc2df3a3bceb92aa0",
+  "ocr_version": "open-code-review v1.13.7 (b1dcffb) windows/amd64\nbuilt at: 2026-11-10T05:42:20Z\nhttps://github.com/alibaba/open-code-review",
+  "prepared_at": "2026-11-12T13:19:23+00:00",
+  "reviewer": "claude / claude-opus-5-5 (session reviewer-claude-opus-5-5-SAR-MSG-EPHEMERAL-001-REVIEW)",
+  "conclusion": "조건부 수락. critical/high 없음. medium 2건(개인정보 문구의 승인 요청 metadata, Redis 한도 도달 시 축소 불가)은 report.md 검토 결론의 처분을 따른다.",
+  "files": [
+    {
+      "path": ".fullops-squad/PLANS.md",
+      "status": "modified",
+      "insertions": 24,
+      "deletions": 2,
+      "review_status": "reviewed",
+      "reason": "과제 절·후속 등재를 읽었다. SAR-VULTR-MIGRATE-001 절은 main 병합 유입분이며 이 과제 결정과 충돌하지 않는다."
+    },
+    {
+      "path": ".fullops-squad/board/board.json",
+      "status": "modified",
+      "insertions": 11,
+      "deletions": 1,
+      "review_status": "reviewed",
+      "reason": "과제 항목 추가를 읽었다. 완료 뒤에도 note가 'dev 구현 중'으로 남아 있다(nit)."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/architecture.md",
+      "status": "modified",
+      "insertions": 2,
+      "deletions": 2,
+      "review_status": "reviewed",
+      "reason": "diff를 읽고 구현(ephemeral.go·store.go·정책 HTML)과 문장이 맞는지, 링크·front matter를 확인했다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/data-model.md",
+      "status": "modified",
+      "insertions": 11,
+      "deletions": 4,
+      "review_status": "reviewed",
+      "reason": "diff를 읽고 구현(ephemeral.go·store.go·정책 HTML)과 문장이 맞는지, 링크·front matter를 확인했다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/database-design.md",
+      "status": "modified",
+      "insertions": 18,
+      "deletions": 2,
+      "review_status": "reviewed",
+      "reason": "diff를 읽고 구현(ephemeral.go·store.go·정책 HTML)과 문장이 맞는지, 링크·front matter를 확인했다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/interface-design.md",
+      "status": "modified",
+      "insertions": 6,
+      "deletions": 2,
+      "review_status": "reviewed",
+      "reason": "diff를 읽고 구현(ephemeral.go·store.go·정책 HTML)과 문장이 맞는지, 링크·front matter를 확인했다. Redis 장애 때 '모든 transaction' 문장이 빈 포인터 상태와 다르다(low)."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/module-design.md",
+      "status": "modified",
+      "insertions": 10,
+      "deletions": 2,
+      "review_status": "reviewed",
+      "reason": "diff를 읽고 구현(ephemeral.go·store.go·정책 HTML)과 문장이 맞는지, 링크·front matter를 확인했다."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/tech-stack.md",
+      "status": "modified",
+      "insertions": 8,
+      "deletions": 2,
+      "review_status": "reviewed",
+      "reason": "diff를 읽고 구현(ephemeral.go·store.go·정책 HTML)과 문장이 맞는지, 링크·front matter를 확인했다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-MSG-EPHEMERAL-001-packet-outcomes.json",
+      "status": "added",
+      "insertions": 223,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-MSG-EPHEMERAL-001-packet.json",
+      "status": "added",
+      "insertions": 2699,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-MSG-EPHEMERAL-001-route.json",
+      "status": "added",
+      "insertions": 91,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/SAR-MSG-EPHEMERAL-001-route.prior-1794486104231598700.json",
+      "status": "added",
+      "insertions": 79,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/history/SAR-MSG-EPHEMERAL-001-packet-6be16a6c14814d1f86e21c80e623407b.json",
+      "status": "added",
+      "insertions": 2703,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/jev/history/SAR-MSG-EPHEMERAL-001-route-956539481cc444a585f2b564046b282a.json",
+      "status": "added",
+      "insertions": 82,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MSG-EPHEMERAL-001-test/report.md",
+      "status": "added",
+      "insertions": 98,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "dev 검증 보고서 전문을 읽고 완료 기준별 근거·선택·남은 일을 코드와 대조했다. 원시 로그(D:/workspace/KnowsLink/.devtools/msg-ephemeral/)는 열지 않고 lint.json reason의 sha256 기록으로 존재만 확인했다."
+    },
+    {
+      "path": ".fullops-squad/docs/generated/db-schema.md",
+      "status": "modified",
+      "insertions": 17,
+      "deletions": 2,
+      "review_status": "reviewed",
+      "reason": "diff를 읽고 구현(ephemeral.go·store.go·정책 HTML)과 문장이 맞는지, 링크·front matter를 확인했다."
+    },
+    {
+      "path": ".fullops-squad/docs/operations/ops-guide.md",
+      "status": "modified",
+      "insertions": 42,
+      "deletions": 2,
+      "review_status": "reviewed",
+      "reason": "diff를 읽고 구현(ephemeral.go·store.go·정책 HTML)과 문장이 맞는지, 링크·front matter를 확인했다."
+    },
+    {
+      "path": ".fullops-squad/docs/operations/user-guide.md",
+      "status": "modified",
+      "insertions": 4,
+      "deletions": 4,
+      "review_status": "reviewed",
+      "reason": "diff를 읽고 구현(ephemeral.go·store.go·정책 HTML)과 문장이 맞는지, 링크·front matter를 확인했다."
+    },
+    {
+      "path": ".fullops-squad/handovers/logs/2026-11-12_to_dev.md",
+      "status": "added",
+      "insertions": 192,
+      "deletions": 0,
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 자동 생성 기록. 파일마다 열람하지 않고 같은 폴더의 manifest·result.json·report.md로 존재와 무결성을 확인한다."
+    },
+    {
+      "path": ".fullops-squad/handovers/pending/SAR-VULTR-MIGRATE-001-ops.md",
+      "status": "added",
+      "insertions": 76,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "main 병합(43ce01a7)으로 들어온 ops 인계 초안이다. front matter와 '완료, dispatch 지시서로 쓰지 않음' 표기를 확인했다. 이 과제 범위 밖이다."
+    },
+    {
+      "path": "README.md",
+      "status": "modified",
+      "insertions": 1,
+      "deletions": 1,
+      "review_status": "reviewed",
+      "reason": "diff를 읽고 구현(ephemeral.go·store.go·정책 HTML)과 문장이 맞는지, 링크·front matter를 확인했다."
+    },
+    {
+      "path": "cmd/relay/main.go",
+      "status": "modified",
+      "insertions": 29,
+      "deletions": 2,
+      "review_status": "reviewed",
+      "reason": "Go 변경 diff와 호출 경로(transaction·sweep·readEvents·refresh·remote Inbox·current)를 직접 읽고 Redis 원자성·장애·보관 기한을 대조했다."
+    },
+    {
+      "path": "cmd/relay/main_integration_test.go",
+      "status": "modified",
+      "insertions": 1,
+      "deletions": 1,
+      "review_status": "reviewed",
+      "reason": "시험 diff를 읽고 완료 기준(무본문·TTL·장애·migration 4·문구)을 덮는지 대조했다. lint.json·dev 보고서의 Linux 실행 결과를 재사용하고 재실행하지 않았다."
+    },
+    {
+      "path": "cmd/relay/redis_integration_test.go",
+      "status": "added",
+      "insertions": 19,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "시험 diff를 읽고 완료 기준(무본문·TTL·장애·migration 4·문구)을 덮는지 대조했다. lint.json·dev 보고서의 Linux 실행 결과를 재사용하고 재실행하지 않았다."
+    },
+    {
+      "path": "compose.yaml",
+      "status": "modified",
+      "insertions": 26,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "diff를 읽고 Redis 서비스 설정(RDB·AOF 끔, noeviction, internal network, 포트 미게시, read_only)과 확인 경로가 맞는지 대조했다."
+    },
+    {
+      "path": "db/migrations/00004_relay_state_no_messages.sql",
+      "status": "added",
+      "insertions": 16,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "SQL을 읽었다. Messages·Idempotency·Installs.*.Inbox만 지우고 나머지 키·human_model 열·lz4 열 설정을 보존한다. Down은 실패 고정이다. state_migration_integration_test가 1,001건 legacy 행으로 차이를 확인한다."
+    },
+    {
+      "path": "deploy/knowslink/beta.sh",
+      "status": "modified",
+      "insertions": 4,
+      "deletions": 1,
+      "review_status": "reviewed",
+      "reason": "diff를 읽고 Redis 서비스 설정(RDB·AOF 끔, noeviction, internal network, 포트 미게시, read_only)과 확인 경로가 맞는지 대조했다."
+    },
+    {
+      "path": "deploy/knowslink/compose.ops.yaml",
+      "status": "modified",
+      "insertions": 10,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "diff를 읽고 Redis 서비스 설정(RDB·AOF 끔, noeviction, internal network, 포트 미게시, read_only)과 확인 경로가 맞는지 대조했다."
+    },
+    {
+      "path": "docs/architecture.md",
+      "status": "modified",
+      "insertions": 16,
+      "deletions": 8,
+      "review_status": "reviewed",
+      "reason": "diff를 읽고 구현(ephemeral.go·store.go·정책 HTML)과 문장이 맞는지, 링크·front matter를 확인했다."
+    },
+    {
+      "path": "docs/operations.md",
+      "status": "modified",
+      "insertions": 14,
+      "deletions": 4,
+      "review_status": "reviewed",
+      "reason": "diff를 읽고 구현(ephemeral.go·store.go·정책 HTML)과 문장이 맞는지, 링크·front matter를 확인했다."
+    },
+    {
+      "path": "docs/system-design.md",
+      "status": "modified",
+      "insertions": 18,
+      "deletions": 9,
+      "review_status": "reviewed",
+      "reason": "diff를 읽고 구현(ephemeral.go·store.go·정책 HTML)과 문장이 맞는지, 링크·front matter를 확인했다."
+    },
+    {
+      "path": "internal/config/config.go",
+      "status": "modified",
+      "insertions": 13,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "Go 변경 diff와 호출 경로(transaction·sweep·readEvents·refresh·remote Inbox·current)를 직접 읽고 Redis 원자성·장애·보관 기한을 대조했다."
+    },
+    {
+      "path": "internal/config/config_test.go",
+      "status": "modified",
+      "insertions": 14,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "시험 diff를 읽고 완료 기준(무본문·TTL·장애·migration 4·문구)을 덮는지 대조했다. lint.json·dev 보고서의 Linux 실행 결과를 재사용하고 재실행하지 않았다."
+    },
+    {
+      "path": "internal/relay/cleanup_admission.go",
+      "status": "modified",
+      "insertions": 4,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "Go 변경 diff와 호출 경로(transaction·sweep·readEvents·refresh·remote Inbox·current)를 직접 읽고 Redis 원자성·장애·보관 기한을 대조했다."
+    },
+    {
+      "path": "internal/relay/cleanup_flood_integration_test.go",
+      "status": "modified",
+      "insertions": 2,
+      "deletions": 2,
+      "review_status": "reviewed",
+      "reason": "시험 diff를 읽고 완료 기준(무본문·TTL·장애·migration 4·문구)을 덮는지 대조했다. lint.json·dev 보고서의 Linux 실행 결과를 재사용하고 재실행하지 않았다."
+    },
+    {
+      "path": "internal/relay/cleanup_unit_integration_test.go",
+      "status": "modified",
+      "insertions": 2,
+      "deletions": 2,
+      "review_status": "reviewed",
+      "reason": "시험 diff를 읽고 완료 기준(무본문·TTL·장애·migration 4·문구)을 덮는지 대조했다. lint.json·dev 보고서의 Linux 실행 결과를 재사용하고 재실행하지 않았다."
+    },
+    {
+      "path": "internal/relay/connect_guide_integration_test.go",
+      "status": "modified",
+      "insertions": 1,
+      "deletions": 1,
+      "review_status": "reviewed",
+      "reason": "시험 diff를 읽고 완료 기준(무본문·TTL·장애·migration 4·문구)을 덮는지 대조했다. lint.json·dev 보고서의 Linux 실행 결과를 재사용하고 재실행하지 않았다."
+    },
+    {
+      "path": "internal/relay/connections_integration_test.go",
+      "status": "modified",
+      "insertions": 4,
+      "deletions": 4,
+      "review_status": "reviewed",
+      "reason": "시험 diff를 읽고 완료 기준(무본문·TTL·장애·migration 4·문구)을 덮는지 대조했다. lint.json·dev 보고서의 Linux 실행 결과를 재사용하고 재실행하지 않았다."
+    },
+    {
+      "path": "internal/relay/ephemeral.go",
+      "status": "added",
+      "insertions": 114,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "Go 변경 diff와 호출 경로(transaction·sweep·readEvents·refresh·remote Inbox·current)를 직접 읽고 Redis 원자성·장애·보관 기한을 대조했다. noeviction 한도에서 축소 쓰기도 막히는 문제를 finding으로 남겼다."
+    },
+    {
+      "path": "internal/relay/ephemeral_integration_test.go",
+      "status": "added",
+      "insertions": 131,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "시험 diff를 읽고 완료 기준(무본문·TTL·장애·migration 4·문구)을 덮는지 대조했다. lint.json·dev 보고서의 Linux 실행 결과를 재사용하고 재실행하지 않았다."
+    },
+    {
+      "path": "internal/relay/ephemeral_test.go",
+      "status": "added",
+      "insertions": 48,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "시험 diff를 읽고 완료 기준(무본문·TTL·장애·migration 4·문구)을 덮는지 대조했다. lint.json·dev 보고서의 Linux 실행 결과를 재사용하고 재실행하지 않았다."
+    },
+    {
+      "path": "internal/relay/gate_summary_integration_test.go",
+      "status": "modified",
+      "insertions": 3,
+      "deletions": 1,
+      "review_status": "reviewed",
+      "reason": "시험 diff를 읽고 완료 기준(무본문·TTL·장애·migration 4·문구)을 덮는지 대조했다. lint.json·dev 보고서의 Linux 실행 결과를 재사용하고 재실행하지 않았다."
+    },
+    {
+      "path": "internal/relay/human_http.go",
+      "status": "modified",
+      "insertions": 1,
+      "deletions": 1,
+      "review_status": "reviewed",
+      "reason": "Go 변경 diff와 호출 경로(transaction·sweep·readEvents·refresh·remote Inbox·current)를 직접 읽고 Redis 원자성·장애·보관 기한을 대조했다."
+    },
+    {
+      "path": "internal/relay/human_integration_test.go",
+      "status": "modified",
+      "insertions": 8,
+      "deletions": 2,
+      "review_status": "reviewed",
+      "reason": "시험 diff를 읽고 완료 기준(무본문·TTL·장애·migration 4·문구)을 덮는지 대조했다. lint.json·dev 보고서의 Linux 실행 결과를 재사용하고 재실행하지 않았다."
+    },
+    {
+      "path": "internal/relay/human_messages.go",
+      "status": "modified",
+      "insertions": 1,
+      "deletions": 1,
+      "review_status": "reviewed",
+      "reason": "Go 변경 diff와 호출 경로(transaction·sweep·readEvents·refresh·remote Inbox·current)를 직접 읽고 Redis 원자성·장애·보관 기한을 대조했다."
+    },
+    {
+      "path": "internal/relay/human_pages.go",
+      "status": "modified",
+      "insertions": 2,
+      "deletions": 2,
+      "review_status": "reviewed",
+      "reason": "Go 변경 diff와 호출 경로(transaction·sweep·readEvents·refresh·remote Inbox·current)를 직접 읽고 Redis 원자성·장애·보관 기한을 대조했다."
+    },
+    {
+      "path": "internal/relay/human_pages_test.go",
+      "status": "modified",
+      "insertions": 1,
+      "deletions": 1,
+      "review_status": "reviewed",
+      "reason": "시험 diff를 읽고 완료 기준(무본문·TTL·장애·migration 4·문구)을 덮는지 대조했다. lint.json·dev 보고서의 Linux 실행 결과를 재사용하고 재실행하지 않았다."
+    },
+    {
+      "path": "internal/relay/human_test.go",
+      "status": "modified",
+      "insertions": 3,
+      "deletions": 3,
+      "review_status": "reviewed",
+      "reason": "시험 diff를 읽고 완료 기준(무본문·TTL·장애·migration 4·문구)을 덮는지 대조했다. lint.json·dev 보고서의 Linux 실행 결과를 재사용하고 재실행하지 않았다."
+    },
+    {
+      "path": "internal/relay/i18n_en_human.go",
+      "status": "modified",
+      "insertions": 4,
+      "deletions": 4,
+      "review_status": "reviewed",
+      "reason": "Go 변경 diff와 호출 경로(transaction·sweep·readEvents·refresh·remote Inbox·current)를 직접 읽고 Redis 원자성·장애·보관 기한을 대조했다."
+    },
+    {
+      "path": "internal/relay/i18n_en_member.go",
+      "status": "modified",
+      "insertions": 3,
+      "deletions": 3,
+      "review_status": "reviewed",
+      "reason": "Go 변경 diff와 호출 경로(transaction·sweep·readEvents·refresh·remote Inbox·current)를 직접 읽고 Redis 원자성·장애·보관 기한을 대조했다."
+    },
+    {
+      "path": "internal/relay/identity_integration_test.go",
+      "status": "modified",
+      "insertions": 4,
+      "deletions": 4,
+      "review_status": "reviewed",
+      "reason": "시험 diff를 읽고 완료 기준(무본문·TTL·장애·migration 4·문구)을 덮는지 대조했다. lint.json·dev 보고서의 Linux 실행 결과를 재사용하고 재실행하지 않았다."
+    },
+    {
+      "path": "internal/relay/integration_test.go",
+      "status": "modified",
+      "insertions": 2,
+      "deletions": 2,
+      "review_status": "reviewed",
+      "reason": "시험 diff를 읽고 완료 기준(무본문·TTL·장애·migration 4·문구)을 덮는지 대조했다. lint.json·dev 보고서의 Linux 실행 결과를 재사용하고 재실행하지 않았다."
+    },
+    {
+      "path": "internal/relay/landing_fixture_test.go",
+      "status": "modified",
+      "insertions": 1,
+      "deletions": 1,
+      "review_status": "reviewed",
+      "reason": "시험 diff를 읽고 완료 기준(무본문·TTL·장애·migration 4·문구)을 덮는지 대조했다. lint.json·dev 보고서의 Linux 실행 결과를 재사용하고 재실행하지 않았다."
+    },
+    {
+      "path": "internal/relay/landing_pages.go",
+      "status": "modified",
+      "insertions": 1,
+      "deletions": 1,
+      "review_status": "reviewed",
+      "reason": "Go 변경 diff와 호출 경로(transaction·sweep·readEvents·refresh·remote Inbox·current)를 직접 읽고 Redis 원자성·장애·보관 기한을 대조했다."
+    },
+    {
+      "path": "internal/relay/landing_test.go",
+      "status": "modified",
+      "insertions": 1,
+      "deletions": 1,
+      "review_status": "reviewed",
+      "reason": "시험 diff를 읽고 완료 기준(무본문·TTL·장애·migration 4·문구)을 덮는지 대조했다. lint.json·dev 보고서의 Linux 실행 결과를 재사용하고 재실행하지 않았다."
+    },
+    {
+      "path": "internal/relay/legacy_test.go",
+      "status": "modified",
+      "insertions": 6,
+      "deletions": 1,
+      "review_status": "reviewed",
+      "reason": "시험 diff를 읽고 완료 기준(무본문·TTL·장애·migration 4·문구)을 덮는지 대조했다. lint.json·dev 보고서의 Linux 실행 결과를 재사용하고 재실행하지 않았다."
+    },
+    {
+      "path": "internal/relay/policy/privacy.en.html",
+      "status": "modified",
+      "insertions": 3,
+      "deletions": 3,
+      "review_status": "reviewed",
+      "reason": "diff를 읽고 구현(ephemeral.go·store.go·정책 HTML)과 문장이 맞는지, 링크·front matter를 확인했다. 'approval requests'를 Redis 전용으로 적은 문장이 Postgres의 Gate metadata와 맞지 않는다(finding)."
+    },
+    {
+      "path": "internal/relay/policy/privacy.ko.html",
+      "status": "modified",
+      "insertions": 3,
+      "deletions": 3,
+      "review_status": "reviewed",
+      "reason": "diff를 읽고 구현(ephemeral.go·store.go·정책 HTML)과 문장이 맞는지, 링크·front matter를 확인했다. '승인 요청'을 Redis 전용으로 적은 문장이 Postgres의 Gate metadata와 맞지 않는다(finding)."
+    },
+    {
+      "path": "internal/relay/policy/terms.en.html",
+      "status": "modified",
+      "insertions": 2,
+      "deletions": 2,
+      "review_status": "reviewed",
+      "reason": "diff를 읽고 구현(ephemeral.go·store.go·정책 HTML)과 문장이 맞는지, 링크·front matter를 확인했다."
+    },
+    {
+      "path": "internal/relay/policy/terms.ko.html",
+      "status": "modified",
+      "insertions": 2,
+      "deletions": 2,
+      "review_status": "reviewed",
+      "reason": "diff를 읽고 구현(ephemeral.go·store.go·정책 HTML)과 문장이 맞는지, 링크·front matter를 확인했다."
+    },
+    {
+      "path": "internal/relay/policy_pages_test.go",
+      "status": "modified",
+      "insertions": 13,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "시험 diff를 읽고 완료 기준(무본문·TTL·장애·migration 4·문구)을 덮는지 대조했다. lint.json·dev 보고서의 Linux 실행 결과를 재사용하고 재실행하지 않았다."
+    },
+    {
+      "path": "internal/relay/public_messages_integration_test.go",
+      "status": "modified",
+      "insertions": 5,
+      "deletions": 5,
+      "review_status": "reviewed",
+      "reason": "시험 diff를 읽고 완료 기준(무본문·TTL·장애·migration 4·문구)을 덮는지 대조했다. lint.json·dev 보고서의 Linux 실행 결과를 재사용하고 재실행하지 않았다."
+    },
+    {
+      "path": "internal/relay/public_text_test.go",
+      "status": "modified",
+      "insertions": 1,
+      "deletions": 3,
+      "review_status": "reviewed",
+      "reason": "시험 diff를 읽고 완료 기준(무본문·TTL·장애·migration 4·문구)을 덮는지 대조했다. lint.json·dev 보고서의 Linux 실행 결과를 재사용하고 재실행하지 않았다."
+    },
+    {
+      "path": "internal/relay/redis_integration_test.go",
+      "status": "added",
+      "insertions": 19,
+      "deletions": 0,
+      "review_status": "reviewed",
+      "reason": "시험 diff를 읽고 완료 기준(무본문·TTL·장애·migration 4·문구)을 덮는지 대조했다. lint.json·dev 보고서의 Linux 실행 결과를 재사용하고 재실행하지 않았다."
+    },
+    {
+      "path": "internal/relay/remote_auth.go",
+      "status": "modified",
+      "insertions": 1,
+      "deletions": 1,
+      "review_status": "reviewed",
+      "reason": "Go 변경 diff와 호출 경로(transaction·sweep·readEvents·refresh·remote Inbox·current)를 직접 읽고 Redis 원자성·장애·보관 기한을 대조했다."
+    },
+    {
+      "path": "internal/relay/remote_integration_test.go",
+      "status": "modified",
+      "insertions": 1,
+      "deletions": 1,
+      "review_status": "reviewed",
+      "reason": "시험 diff를 읽고 완료 기준(무본문·TTL·장애·migration 4·문구)을 덮는지 대조했다. lint.json·dev 보고서의 Linux 실행 결과를 재사용하고 재실행하지 않았다."
+    },
+    {
+      "path": "internal/relay/remote_mcp.go",
+      "status": "modified",
+      "insertions": 2,
+      "deletions": 2,
+      "review_status": "reviewed",
+      "reason": "Go 변경 diff와 호출 경로(transaction·sweep·readEvents·refresh·remote Inbox·current)를 직접 읽고 Redis 원자성·장애·보관 기한을 대조했다."
+    },
+    {
+      "path": "internal/relay/remote_test.go",
+      "status": "modified",
+      "insertions": 1,
+      "deletions": 5,
+      "review_status": "reviewed",
+      "reason": "시험 diff를 읽고 완료 기준(무본문·TTL·장애·migration 4·문구)을 덮는지 대조했다. lint.json·dev 보고서의 Linux 실행 결과를 재사용하고 재실행하지 않았다."
+    },
+    {
+      "path": "internal/relay/state_migration_integration_test.go",
+      "status": "modified",
+      "insertions": 64,
+      "deletions": 53,
+      "review_status": "reviewed",
+      "reason": "시험 diff를 읽고 완료 기준(무본문·TTL·장애·migration 4·문구)을 덮는지 대조했다. lint.json·dev 보고서의 Linux 실행 결과를 재사용하고 재실행하지 않았다."
+    },
+    {
+      "path": "internal/relay/store.go",
+      "status": "modified",
+      "insertions": 40,
+      "deletions": 11,
+      "review_status": "reviewed",
+      "reason": "Go 변경 diff와 호출 경로(transaction·sweep·readEvents·refresh·remote Inbox·current)를 직접 읽고 Redis 원자성·장애·보관 기한을 대조했다. 행 lock 안 GET, SET, SaveRelay, commit, 이전 키 제거 순서와 abandon 때 새 키 정리, opErr 재load가 같은 stored를 쓰는 점을 확인했다."
+    },
+    {
+      "path": "internal/relay/store_retention_integration_test.go",
+      "status": "modified",
+      "insertions": 1,
+      "deletions": 1,
+      "review_status": "reviewed",
+      "reason": "시험 diff를 읽고 완료 기준(무본문·TTL·장애·migration 4·문구)을 덮는지 대조했다. lint.json·dev 보고서의 Linux 실행 결과를 재사용하고 재실행하지 않았다."
+    },
+    {
+      "path": "internal/relay/store_retention_test.go",
+      "status": "modified",
+      "insertions": 1,
+      "deletions": 1,
+      "review_status": "reviewed",
+      "reason": "시험 diff를 읽고 완료 기준(무본문·TTL·장애·migration 4·문구)을 덮는지 대조했다. lint.json·dev 보고서의 Linux 실행 결과를 재사용하고 재실행하지 않았다."
+    },
+    {
+      "path": "internal/relay/test_messages_integration_test.go",
+      "status": "modified",
+      "insertions": 1,
+      "deletions": 1,
+      "review_status": "reviewed",
+      "reason": "시험 diff를 읽고 완료 기준(무본문·TTL·장애·migration 4·문구)을 덮는지 대조했다. lint.json·dev 보고서의 Linux 실행 결과를 재사용하고 재실행하지 않았다."
+    },
+    {
+      "path": "internal/relay/text_events.go",
+      "status": "modified",
+      "insertions": 24,
+      "deletions": 3,
+      "review_status": "reviewed",
+      "reason": "Go 변경 diff와 호출 경로(transaction·sweep·readEvents·refresh·remote Inbox·current)를 직접 읽고 Redis 원자성·장애·보관 기한을 대조했다."
+    },
+    {
+      "path": "internal/relay/text_events_integration_test.go",
+      "status": "modified",
+      "insertions": 2,
+      "deletions": 2,
+      "review_status": "reviewed",
+      "reason": "시험 diff를 읽고 완료 기준(무본문·TTL·장애·migration 4·문구)을 덮는지 대조했다. lint.json·dev 보고서의 Linux 실행 결과를 재사용하고 재실행하지 않았다."
+    },
+    {
+      "path": "scripts/check_compose.py",
+      "status": "modified",
+      "insertions": 9,
+      "deletions": 3,
+      "review_status": "reviewed",
+      "reason": "diff를 읽고 Redis 서비스 설정(RDB·AOF 끔, noeviction, internal network, 포트 미게시, read_only)과 확인 경로가 맞는지 대조했다."
+    },
+    {
+      "path": "scripts/verify_mvp.py",
+      "status": "modified",
+      "insertions": 6,
+      "deletions": 4,
+      "review_status": "reviewed",
+      "reason": "diff를 읽고 Redis 서비스 설정(RDB·AOF 끔, noeviction, internal network, 포트 미게시, read_only)과 확인 경로가 맞는지 대조했다."
+    },
+    {
+      "path": "scripts/verify_runtime.py",
+      "status": "modified",
+      "insertions": 20,
+      "deletions": 1,
+      "review_status": "reviewed",
+      "reason": "diff를 읽고 Redis 서비스 설정(RDB·AOF 끔, noeviction, internal network, 포트 미게시, read_only)과 확인 경로가 맞는지 대조했다."
+    },
+    {
+      "path": "go.mod",
+      "status": "modified",
+      "insertions": 4,
+      "deletions": 0,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "reviewed",
+      "reason": "diff를 읽고 구현(ephemeral.go·store.go·정책 HTML)과 문장이 맞는지, 링크·front matter를 확인했다."
+    },
+    {
+      "path": "go.sum",
+      "status": "modified",
+      "insertions": 16,
+      "deletions": 2,
+      "exclude_reason": "unsupported_ext",
+      "review_status": "reviewed",
+      "reason": "diff를 읽고 구현(ephemeral.go·store.go·정책 HTML)과 문장이 맞는지, 링크·front matter를 확인했다."
+    }
+  ],
+  "findings": [
+    {
+      "path": "internal/relay/policy/privacy.ko.html",
+      "start_line": 29,
+      "end_line": 29,
+      "severity": "medium",
+      "resolved": false,
+      "content": "[준수] 개인정보처리방침(ko·en 29줄)은 '승인 요청'을 영구 저장하지 않고 Redis에만 둔다고 적는다. 실제로 Gate(ID·Owner·Parent·Digest·From·To·Policy·State·Exp)는 Postgres relay_state에 남는다. 요청 사본이 사라질 때까지(최대 약 1시간) pg_dump 백업에도 들어가 14일 보관된다. Dots 구독의 Seen/Pending/EventID 메시지 ID도 Postgres에 있다. D07(database-design)은 'gate metadata는 Postgres'로 바르게 적어 정책 문서와 정본이 어긋난다. 수정: 표에서 승인 요청을 빼고 '본문 없는 승인 요청·전달 metadata(ID·digest·대상)는 DB에 최대 1시간, 백업에 최대 14일'처럼 별도 행으로 적거나 Gate를 Redis로 옮긴다. privacy.en.html 29줄도 같다."
+    },
+    {
+      "path": "internal/relay/ephemeral.go",
+      "start_line": 101,
+      "end_line": 101,
+      "severity": "medium",
+      "resolved": false,
+      "content": "[버그] 모든 메시지 기록이 키 하나에 있고, 바뀐 transaction은 이전 키를 둔 채 전체 사본을 새 키로 SET한다. used_memory가 maxmemory 128mb(noeviction)에 닿으면 새 송신뿐 아니라 ACK·철회·1초 retention sweep처럼 저장소를 줄이는 쓰기도 OOM으로 거부된다. 스스로 줄일 방법이 없어, 현재 키 TTL(마지막 성공 쓰기 + 1시간)이 끝날 때까지 메시지 경로가 unavailable이다. 그 뒤 모든 기록이 한꺼번에 사라진다. ambiguous commit·프로세스 중단의 고아 사본도 1시간 동안 같은 한도를 쓴다. 20,000건 상한과 rawEnvelopeLimit 32768 기준 최악 크기는 128mb의 절반을 넘을 수 있다. compose.ops.yaml의 'relay 256m가 먼저 사본 크기를 막는다' 주석은 측정 근거가 없다. 행 lock 안 전체 사본 marshal·GET·SET 시간도 측정하지 않았다. 처분: 운영 이행 전 크기·lock 시간 측정, 한도 도달 시 축소 쓰기 경로(relay가 사본 크기 상한을 먼저 거부, 또는 메시지별 키) 후속."
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/interface-design.md",
+      "start_line": 16,
+      "end_line": 16,
+      "severity": "low",
+      "resolved": false,
+      "content": "[준수] 'Redis에 닿지 못하면 모든 relay transaction이 unavailable'과 dev 보고서의 '로그인·친구도 unavailable'은 행에 Ephemeral 포인터가 있을 때만 맞다. 메시지 기록이 없어 포인터가 비면 readEphemeral이 Redis를 호출하지 않는다. 그래서 메시지를 쓰지 않는 transaction은 Redis 장애 중에도 commit된다. 동작은 안전하다(Postgres 대체 저장 없음). 문장을 '메시지 기록이 있거나 새로 쓰는 transaction'으로 고친다."
+    },
+    {
+      "path": ".fullops-squad/board/board.json",
+      "start_line": 357,
+      "end_line": 357,
+      "severity": "low",
+      "resolved": false,
+      "content": "[nit] 완료 뒤에도 과제 note가 'dev 구현 중'이다. 병합 때 상태를 갱신한다."
+    }
+  ],
+  "review_schema_version": 2,
+  "independence": {
+    "implementer_session": "db614234-2581-49da-a302-f5dcbd711da9",
+    "reviewer_session": "reviewer-claude-opus-5-5-SAR-MSG-EPHEMERAL-001-REVIEW",
+    "snapshot_path": "C:\\Users\\shin\\orca\\workspaces\\KnowsLink\\.fullops-review-f5a78d43818847f8b93d24a053d98c40",
+    "snapshot_head": "9a5a07bd2239d10ff794149329270c411c4bdf23",
+    "read_only": true
+  }
+}

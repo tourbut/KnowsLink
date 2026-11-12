@@ -21,6 +21,11 @@ summary: 기존 제품 계획 보존과 Google 연결 구현의 독립 검토 �
 - **배정:** `claude` `claude-opus-5-5` `high`, fresh 세션. 사용자 지정 tuple이다. 기준은 `17acfa5e`이고, 지시서는 [to_dev.md](handovers/to_dev.md)다.
 - **승인 필요:** 운영 이행(Redis 기동, migration, 기존 메시지 삭제), main 병합·push, 이전 백업 처리.
 - **배정 기록:** run `run_365476c60b4b`, task `task_1f18e7fe1a80`, dispatch `ctx_c40fd22b793d`, terminal `term_3177ccba-d8ce-426a-b9c5-46a5686911e8`. 이전 dev 세션은 종료돼 fresh로 띄웠다. 패킷은 dev HEAD 기준으로 다시 만들어 미커밋으로 두었다.
+- **dev 완료:** `9a5a07bd`(코드 `6fe42d32`). `review.py need`는 required/ask(코드 51개 파일, 796줄)였고, 사용자가 D053 "독립 리뷰 진행"을 골랐다.
+- **독립 리뷰 `SAR-MSG-EPHEMERAL-001-REVIEW`:** 배정했다. dispatch `ctx_592d868353c9`, task `task_baf8b8d55afd`, terminal `term_15404fa3-0be1-4caf-9a98-955782124d61`.
+  - 대상과 tuple: `claude` `claude-opus-5-5` `high`, snapshot `.fullops-review-f5a78d43818847f8b93d24a053d98c40`, 기준 `17acfa5e`에서 head `9a5a07bd`까지다.
+  - spec의 Task key: 병합 대기 훅 때문에 원래 키 `SAR-MSG-EPHEMERAL-001`을 적고, 리뷰 키는 따로 적었다.
+  - lint 사본: Windows lint가 실행 불가 사유를 비워 둬서, 리뷰 폴더의 사본에 coor가 Linux 로그 근거를 채웠다.
 
 ## 운영 서버 Vultr 이전 — SAR-VULTR-MIGRATE-001 (2026-11-12, 완료)
 

@@ -1,0 +1,114 @@
+{
+  "schema_version": 1,
+  "attempt": "2cbdc7d72d7e4151a8ca316799b2ae24",
+  "base": "17acfa5e0b9800522854163b9d5df67b9870a159",
+  "merge_base": "17acfa5e0b9800522854163b9d5df67b9870a159",
+  "head": "9a5a07bd2239d10ff794149329270c411c4bdf23",
+  "config_sha256": "9c49bb2dcd2b74d3b97b15b756d2ad1fdaa4e19d60d5e07cda5e215ef111c2d6",
+  "test_level": "lite",
+  "policy_sha256": "1656449c6753a4ec35a1e7488aa1c223ceed3e5ce1c23b26f6aac8aea3e7f534",
+  "commands": [
+    {
+      "name": "product-lint",
+      "kind": "lint",
+      "run": [
+        "make",
+        "lint"
+      ],
+      "cwd": ".",
+      "reason": "Windows 호스트 PATH에 make가 없어 lint.py가 실행하지 못했다(원 결과 status/exit 보존). 제품 소스 6fe42d32(9a5a07bd까지는 보고서·완료 기록 커밋만 추가)를 격리 Linux 컨테이너에서 make lint 실행해 exit=0: D:/workspace/KnowsLink/.devtools/msg-ephemeral/gate/6fe42d32bc962fc8ec132d766f3fa1269ea97e6f/lint.log (sha256 f27a317f48d0d0525062b755d60608b4f3758970df97d0a2c4484bee00e1baf2), 종료코드 목록 D:/workspace/KnowsLink/.devtools/msg-ephemeral/gate/6fe42d32bc962fc8ec132d766f3fa1269ea97e6f/summary.txt. reason은 coor가 병합 전 보완했다.",
+      "status": "unavailable",
+      "exit_code": null,
+      "seconds": 0.0,
+      "output_tail": "[WinError 2] 지정된 파일을 찾을 수 없습니다",
+      "log": "D:\\workspace\\KnowsLink\\.git\\worktrees\\dev\\fullops-gate\\logs\\product-lint.log"
+    },
+    {
+      "name": "product-test",
+      "kind": "test",
+      "run": [
+        "make",
+        "test"
+      ],
+      "cwd": ".",
+      "reason": "Windows 호스트 PATH에 make가 없어 lint.py가 실행하지 못했다(원 결과 status/exit 보존). 제품 소스 6fe42d32(9a5a07bd까지는 보고서·완료 기록 커밋만 추가)를 격리 Linux 컨테이너에서 make test 실행해 exit=0: D:/workspace/KnowsLink/.devtools/msg-ephemeral/gate/6fe42d32bc962fc8ec132d766f3fa1269ea97e6f/test.log (sha256 14534b18bebfa040caafe4fcab5526d9799898991b884f7deb1644d4d808f442), 종료코드 목록 D:/workspace/KnowsLink/.devtools/msg-ephemeral/gate/6fe42d32bc962fc8ec132d766f3fa1269ea97e6f/summary.txt. reason은 coor가 병합 전 보완했다.",
+      "status": "unavailable",
+      "exit_code": null,
+      "seconds": 0.0,
+      "output_tail": "[WinError 2] 지정된 파일을 찾을 수 없습니다",
+      "log": "D:\\workspace\\KnowsLink\\.git\\worktrees\\dev\\fullops-gate\\logs\\product-test.log"
+    }
+  ],
+  "violations": [
+    {
+      "code": "SIZE-001",
+      "severity": "WARNING",
+      "line": null,
+      "message": "2256줄(이전 2234, 상한 500). ① 삭제 → ② 압축 → ③ 분할 순으로 처리하고 docstring·헤더를 깎지 않는다",
+      "path": ".fullops-squad/PLANS.md"
+    },
+    {
+      "code": "SIZE-001",
+      "severity": "WARNING",
+      "line": null,
+      "message": "663줄(이전 623, 상한 500). ① 삭제 → ② 압축 → ③ 분할 순으로 처리하고 docstring·헤더를 깎지 않는다",
+      "path": ".fullops-squad/docs/operations/ops-guide.md"
+    },
+    {
+      "code": "DEP-001",
+      "severity": "WARNING",
+      "line": null,
+      "path": "go.mod",
+      "message": "의존성 선언 파일 변경. 완료 보고에 의존성 변경 여부와 필요성·표준 라이브러리 대안을 기록하세요"
+    },
+    {
+      "code": "SEC-001",
+      "severity": "WARNING",
+      "line": 32,
+      "message": "하드코딩 비밀값 의심. 환경변수·설정으로 옮긴다",
+      "path": "internal/relay/ephemeral_test.go"
+    },
+    {
+      "code": "SIZE-001",
+      "severity": "WARNING",
+      "line": null,
+      "message": "569줄(이전 544, 상한 300). ① 삭제 → ② 압축 → ③ 분할 순으로 처리하고 docstring·헤더를 깎지 않는다",
+      "path": "internal/relay/store.go"
+    },
+    {
+      "code": "SLOP-004",
+      "severity": "WARNING",
+      "line": 53,
+      "message": "디버그 출력 잔재 의심. 필요한 사용자 출력인지 확인하고 디버그 잔재는 제거한다",
+      "path": "scripts/check_compose.py"
+    },
+    {
+      "code": "SLOP-004",
+      "severity": "WARNING",
+      "line": 51,
+      "message": "디버그 출력 잔재 의심. 필요한 사용자 출력인지 확인하고 디버그 잔재는 제거한다",
+      "path": "scripts/verify_mvp.py"
+    },
+    {
+      "code": "SLOP-004",
+      "severity": "WARNING",
+      "line": 93,
+      "message": "디버그 출력 잔재 의심. 필요한 사용자 출력인지 확인하고 디버그 잔재는 제거한다",
+      "path": "scripts/verify_runtime.py"
+    },
+    {
+      "code": "SIZE-002",
+      "severity": "WARNING",
+      "line": null,
+      "path": "",
+      "message": "변경 추가 911줄 > 상한 400줄. 지시서의 예상 변경 규모와 차이·분할하지 않은 이유를 검토하세요"
+    }
+  ],
+  "summary": {
+    "files": 70,
+    "added_lines": 911,
+    "errors": 0,
+    "warnings": 9,
+    "unavailable": 2
+  }
+}
