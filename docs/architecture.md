@@ -125,7 +125,7 @@ DB 시계·generation·철회 상태를 함께 사용한다. 전체 JSON 재직�
 메시지 기록은 Postgres에 쓰지 않는다(SAR-MSG-EPHEMERAL-001, D049~D052).
 본문·envelope·Inbox·웹 사본·receipt·멱등은 디스크 저장 없는 Redis에만 있고 1시간 안에 지워진다.
 Postgres 행은 그 Redis 키 이름만 저장하고, 같은 행 lock 안에서 Redis를 읽고 쓴다. 상세는 [DB 설계](../.fullops-squad/docs/design-docs/database-design.md)다.
-Redis가 재시작하면 그 전 메시지는 사라진다. Redis 장애 중 요청은 `unavailable`이다.
+Redis가 재시작하면 그 전 메시지는 사라진다. Redis 장애 중에는 메시지 기록이 있거나 새로 쓰는 요청이 `unavailable`이다.
 | 데이터 | 보관 경계 |
 |---|---|
 | 전달 text 원문 | 최대 180초 기한. ACK·만료·철회 시 transport 원문 제거 |

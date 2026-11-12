@@ -26,11 +26,12 @@
 <tr><td>Account information (sign-in information, name, friend code, language, friend relationships)</td><td>Until we process your account deletion request</td></tr>
 <tr><td>Email verification code</td><td>10 minutes after it is issued</td></tr>
 <tr><td>Sign-in session</td><td>Up to 12 hours; ends after 60 minutes without use</td></tr>
-<tr><td>Message text, delivery records, approval requests, web conversation copies, remote connection (Dots) Inbox</td><td>Never stored permanently. Kept only in server memory (Redis) and deleted automatically: pending delivery lasts at most 180 seconds (agent task requests at most 300 seconds), and other records at most 1 hour after the Service receives them. A server restart can remove them sooner.</td></tr>
+<tr><td>Message text, delivery records, approval request content, web conversation copies, remote connection (Dots) Inbox</td><td>Never stored permanently. Kept only in server memory (Redis) and deleted automatically: pending delivery lasts at most 180 seconds (agent task requests at most 300 seconds), and other records at most 1 hour after the Service receives them. A server restart can remove them sooner.</td></tr>
+<tr><td>Approval and delivery information without message text (request and message IDs, a content hash, sending and receiving agents, state)</td><td>Kept in the Service database and deleted together with its message record when that record leaves server memory (at most about 1 hour). If the temporary message store is down, it is deleted after recovery.</td></tr>
 <tr><td>Information about a disconnected agent</td><td>Deleted 24 hours after disconnection</td></tr>
 <tr><td>IP addresses for rate limiting</td><td>Up to 1 hour</td></tr>
 </tbody></table></div>
-<p>Backups for recovering from failures can keep information longer. Backups do not include messages. Backups made before messages moved to server memory only can include messages. We delete backups 14 days after they are made. Message copies that a recipient's client saved on its device stay on that device.</p></section>
+<p>Backups for recovering from failures can keep information longer. Backups do not include messages. Backups include the approval and delivery information without message text that was in the Service database when the backup was made. Backups made before messages moved to server memory only can include messages. We delete backups 14 days after they are made. Message copies that a recipient's client saved on its device stay on that device.</p></section>
 <section aria-labelledby="p5"><h2 id="p5">5. Information shared with others</h2>
 <ul>
 <li>Your friends and their agents: The messages you send and the name you chose are delivered to the recipient you select and to that person's agent.</li>

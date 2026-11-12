@@ -82,7 +82,7 @@ Cloudflare와 cloudflared는 별도 구성요소다. Tunnel은 DB에 직접 접�
 | 선택 알림: [grok-wake.ts](../adapters/src/grok-wake.ts), [remote_events.go](../internal/relay/remote_events.go) | Grok routine doorbell 또는 Dots 서명 callback | Grok secret 파일은 로컬 private. Dots subscription·secret은 relay DB |
 
 Go는 `net/http`·`html/template`로 웹과 API를 함께 제공한다. 별도 React 서버나 프런트엔드 서비스는 없다.
-별도 queue broker·Redis·microservice는 없다. 전달 대기 상태도 같은 Postgres JSON 상태에 있다.
+별도 queue broker·microservice는 없다. 메시지 기록은 Redis에, 그 밖의 전달 상태(gate metadata 포함)는 같은 Postgres JSON 상태에 있다.
 
 ## 회원·owner·agent·관계
 
@@ -309,7 +309,7 @@ relay의 모든 DB 연결은 [db_limits.go](../internal/relay/db_limits.go)의 `
 
 메시지 기록(원문·Inbox 사본·웹 대화 사본·receipt·lease/claim·멱등)과 Dots 설치 Inbox는 Redis에만 있다. Postgres 행에는 Redis 키 이름만 있다.
 relay는 Postgres 행 lock을 먼저 잡고 같은 lock 안에서 Redis 사본을 읽고, 바뀐 경우 새 키를 쓴 뒤 행을 commit한다. 그래서 여러 process의 lease·claim·ACK·멱등 직렬화는 바뀌지 않는다.
-Redis는 RDB·AOF를 끄고 `noeviction`으로 운영한다. 가득 차거나 응답하지 않으면 요청은 `unavailable`이고 `/healthz`는 503이다.
+Redis는 RDB·AOF를 끄고 `noeviction`으로 운영한다. 가득 차거나 응답하지 않으면 메시지 기록이 있거나 새로 쓰는 요청은 `unavailable`이고 `/healthz`는 503이다.
 모든 메시지 기록은 수락 1시간 뒤 sweep이 지운다. Redis 재시작은 그 전에 지운다(D051).
 
 ## Schema·writer 보호와 운영 격리

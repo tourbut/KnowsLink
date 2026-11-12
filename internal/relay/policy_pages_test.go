@@ -42,8 +42,9 @@ func TestPolicyPages(t *testing.T) {
 			}
 			// D051: both pages state in both languages that messages are never stored permanently and leave within 1 hour.
 			retention := map[string][]string{"ko": {"영구 저장하지 않습니다", "최대 1시간", "재시작"}, "en": {"never stored permanently", "at most 1 hour", "restart"}}[lang]
+			// D054: the privacy policy also names the bodiless gate and delivery metadata kept in Postgres and its backups.
 			if page == "privacy" {
-				retention = append(retention, map[string][]string{"ko": {"서버 메모리(Redis)", "최대 180초", "백업에는 메시지를 넣지 않습니다"}, "en": {"server memory (Redis)", "at most 180 seconds", "Backups do not include messages"}}[lang]...)
+				retention = append(retention, map[string][]string{"ko": {"서버 메모리(Redis)", "최대 180초", "백업에는 메시지를 넣지 않습니다", "본문 없는 승인 요청·전달 정보", "최대 약 1시간", "백업에 들어갑니다"}, "en": {"server memory (Redis)", "at most 180 seconds", "Backups do not include messages", "approval and delivery information without message text", "at most about 1 hour", "backups include the approval"}}[lang]...)
 			}
 			for _, want := range retention {
 				if !strings.Contains(strings.ToLower(body), strings.ToLower(want)) {
