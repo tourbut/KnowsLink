@@ -1,26 +1,20 @@
 {
   "task_key": "SAR-MSG-EPHEMERAL-001",
   "role": "dev",
-  "head": "195cc084118918567f82fecb3e35b3949a0409e8",
-  "attempt": "233358aeaabb4ee9999c668776723109",
-  "instruction_sha256": "e5a62f938382c48fcc2c01fe74570550dcdd4a5cd2198fe4090944be806c184e",
+  "head": "b81218841a6b14bdc5ef8e2c0521667978cb561c",
+  "attempt": "5a794a6294d44300ab18e3cb686347c6",
+  "instruction_sha256": "c06d7bb14d0ec7f4f310ccb69d714c74434fe4556d4e9a1250cc85c6bd287bf2",
   "options": {
     "policy": "packet-v3",
     "seeds": [
-      "compose.yaml",
-      "deploy/knowslink/compose.ops.yaml",
-      "internal/relay/capacity.go",
-      "internal/relay/human_messages.go",
-      "internal/relay/policy_pages.go",
-      "internal/relay/public_text.go",
-      "internal/relay/remote_auth.go",
-      "internal/relay/remote_events.go",
-      "internal/relay/remote_mcp.go",
-      "internal/relay/store.go",
-      "internal/relay/text_events.go"
+      ".fullops-squad/docs/design-docs/interface-design.md",
+      "internal/relay/policy/privacy.en.html",
+      "internal/relay/policy/privacy.ko.html",
+      "internal/relay/policy_pages_test.go"
     ],
     "required": [
       ".fullops-squad/FULLOPS.md",
+      ".fullops-squad/docs/evaluations/qa-reports/SAR-MSG-EPHEMERAL-001-REVIEW-review/report.md",
       ".fullops-squad/handovers/to_dev.md",
       ".fullops-squad/project.md",
       ".fullops-squad/rules/common/README.md",
@@ -48,11 +42,11 @@
       ".fullops-squad/docs/deliverables/README.md": "679031917d22b49b8c50c45dfb7bb84a892ed44f67f6dc41949d50e0c732cffc",
       ".fullops-squad/docs/design-docs/SAR-SESSION-PEER-001.md": "fbde87ea84689efb010958d541ddb301a7a6c9c1e2deb64fb861585b6b54e459",
       ".fullops-squad/docs/design-docs/SAR-UX-ISSUES-002.md": "0cdc10f7e731e1cd597472b6d39f39246684e2bef86770e18248cec6bb501070",
-      ".fullops-squad/docs/design-docs/architecture.md": "734cd05b2bea95b98f1f514e3d969ae32e0c5decf2e4c75a7a0977e84272f6dc",
+      ".fullops-squad/docs/design-docs/architecture.md": "f444848b1dfcb328ec47f24f42c396d2794ecea9d527a0b2c280c0b3f258808a",
       ".fullops-squad/docs/design-docs/crud-design.md": "0cfa441606f96c3efff5fcebd27b42190637bf1732e8a0313659b7358a458fb0",
-      ".fullops-squad/docs/design-docs/data-model.md": "8c45b3b423885d70c4f11eca29522281672fff297901a96984de33366bd977f3",
-      ".fullops-squad/docs/design-docs/database-design.md": "8864ae004f05d4f4c4fb378ca3e99402ef6765befe6d71386472a700e8402ba7",
-      ".fullops-squad/docs/design-docs/interface-design.md": "caec53f75ba4ab2136ff60cf8fa5a4cb2c33aad74b2b9f53a3ea7db0d70e91d9",
+      ".fullops-squad/docs/design-docs/data-model.md": "3b8659bdaed153700e8c9179234048b1c03afe78135fb7670646c20da5918d87",
+      ".fullops-squad/docs/design-docs/database-design.md": "fb6b781aadb52e96cd7938061998db650cb9a2fb2d5fdbd993e07c1b3536c0fb",
+      ".fullops-squad/docs/design-docs/interface-design.md": "c7c54e731d2eab065895a2617c12b3fe1f912dda9e31ecdd947d977f3ce30d17",
       ".fullops-squad/docs/design-docs/mockups/SAR-MVP-001-UI.md": "995b66bc3f49b8d8d60000e87cb3c29187923c32f44162490b068d984268f2fa",
       ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI-FIX.md": "a73fbf953230e30abddf5fafe2ec98113a38c2fc42cb80abcd51fb3487c952b9",
       ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI.md": "40e884141a521151fa29b2983b21909a8a9e4504be4b864db061b5386034abc4",
@@ -60,7 +54,8 @@
       ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI.md": "df49f42a49250ebac2e9e6dd6ee5dc9c2009c3a677ff5e232c488d9051f5350f",
       ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-SERVICE-UX.md": "4f8ffa32d22e7fcb469a734699c2ac5ea00a4612de7ef6e6a6daf6ceece3f65c",
       ".fullops-squad/docs/design-docs/motion/SAR-MOTION-INTRO-001-brief.md": "b7557710e48de9caff96b368be97ada128e5da802cca80e4e6305a253a8179b8",
-      ".fullops-squad/docs/design-docs/tech-stack.md": "5ed061204861de62dbcd461339735ab2f5a6a7e3e2cc546596796a4858ea83c9",
+      ".fullops-squad/docs/design-docs/tech-stack.md": "080bfaa3d15ece2be6893b3978c3a93d7f242994940c941b5f4e5fbe2aa07e54",
+      ".fullops-squad/docs/evaluations/qa-reports/SAR-MSG-EPHEMERAL-001-REVIEW-review/report.md": "1e643901e80e4f86561589466f34f8eb927df4b105e0fa68b0af5ac814190e18",
       ".fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-0.9.10.md": "7c2832e059bbe8467f566f0a9c22bdd5775740efad82238c5b5fcd8d013a80eb",
       ".fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-0.9.11.md": "5d3afe68dfeb3d62a21906d97c15d21cd1c69e9cf92362b57394618ef377e90c",
       ".fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-0.9.12.md": "e533ce7e8f5ad7da877c7e366de6fcfcb046e277d193c7663a905e763dc1a26d",
@@ -175,9 +170,9 @@
       ".fullops-squad/docs/exec-plans/phases/SAR-UX-ISSUES-002-NAMES-TESTER.md": "2d64d35bf7acb5814687396711c16fa49869b8404d658662d430f38a8bd2a3a2",
       ".fullops-squad/docs/exec-plans/phases/SAR-UX-ISSUES-002-RECEIPT-DEV.md": "ea9f6892d6598b718a5af4e9a7ed01884416253bcffd07061b91d1c8c516600d",
       ".fullops-squad/docs/exec-plans/phases/SAR-WINDOWS-SHELL-GUARD-001-DEV.md": "771e1bd3f26dbbc4163aa2f17a106da31d1afcbecf4f2aec2a5cd0bd61e3e4cf",
-      ".fullops-squad/docs/generated/db-schema.md": "f6b365b9747cefe1f6735982a563781c1358dba9b4b065ac4b2ef4e1637cd895",
+      ".fullops-squad/docs/generated/db-schema.md": "00bcbbd38e299c373a5f1793c4c852abdf5435daf190ca01731e38dff5b10806",
       ".fullops-squad/docs/operations/transition.md": "5166cfc505ebecc55aa6aee6ed46afad61787d59212aa6ce357054d440f6ed3b",
-      ".fullops-squad/docs/operations/user-guide.md": "d12db41e2d8d2141f9a437d046a54815c096ce182b16e8b0574ecd1f42ec48e6",
+      ".fullops-squad/docs/operations/user-guide.md": "b49d7ccae3522bf60efe7e10f53fe87432756879ce652a426628bfa826ba314a",
       ".fullops-squad/docs/planning/SAR-AUTOSETUP-001-DEV-brief.md": "aa9730fdc319b4bf9b5b5a9e20b8fbb68eaf837b10f9abd6d8770ea68f9e5728",
       ".fullops-squad/docs/planning/SAR-COMPETE-001-request.md": "a3a9694290f31b7d97573595c8044178234205d1bde2016a5fe006c63e01191a",
       ".fullops-squad/docs/planning/SAR-MVP-backlog.md": "9266c6a3493bf2f329b8a578ecd75932a9f1237d9919a876152d7fd03a52b3bc",
@@ -205,7 +200,8 @@
       ".fullops-squad/handovers/_TEMPLATE.md": "70b02089b9663e286a427692d61e51aac94cb1751a4602d772a0117a491db7a0",
       ".fullops-squad/handovers/pending/SAR-AUTOSETUP-001-QA-superseded.md": "2d4a32a02b839c97942341c255c8057aaa42e6465eecaf07c4391e579fa638da",
       ".fullops-squad/handovers/pending/SAR-CONNECT-SIMPLE-001-tester.md": "6ab87527f6d130fd8a05ad6b49c01501d49e6b379d0f685851107d690f719103",
-      ".fullops-squad/handovers/to_dev.md": "e5a62f938382c48fcc2c01fe74570550dcdd4a5cd2198fe4090944be806c184e",
+      ".fullops-squad/handovers/pending/SAR-VULTR-MIGRATE-001-ops.md": "a6035ee5b8abc47553960876966354f56a7097830ab39aabe33dcba4a3e48866",
+      ".fullops-squad/handovers/to_dev.md": "c06d7bb14d0ec7f4f310ccb69d714c74434fe4556d4e9a1250cc85c6bd287bf2",
       ".fullops-squad/lint/README.md": "74423a4a607d485c7af87900cc06862871aa2b195d50a51a7f774d0ecaaf5745",
       ".fullops-squad/orca-agents.md": "e15c0956821cbe4f8e5cbfb5873020211ebb824a31357fa0e26afa8e29c04953",
       ".fullops-squad/project.md": "fc29df0d4540cea831c8d0a22eae75467e9e094de38e3954771354b4ad548ffe",
@@ -224,7 +220,7 @@
       "Dockerfile": "0d4910ef981013c4db94ae408f6eb814c21d0a4bffe3edcc2658ad97f374314e",
       "GEMINI.md": "198b9baad6276b7fe1232378edda29ab62dd2a255dfd7c7e06db9e0ff38753bd",
       "Makefile": "982e25eee778689bb916c010e11bd7646b58189855b67c72308bdac880357a09",
-      "README.md": "5a479a905ead156a3bfbc7cd3b0f17fefde8e52b8cc7e05d2e9eebe3a709d5af",
+      "README.md": "69dd5419dbdb019992c513fafc232d56399edbb512e2ce53d8d86ba41258588a",
       "adapters/.claude-plugin/plugin.json": "a0b3bef6a81483eaa0d2411e94a6c72b2c17349cf5ad33e84e695b946b32f60f",
       "adapters/.codex-plugin/plugin.json": "73535ee113ee4fd019433a0cb01ad735323b014d6531b5bda833d8cdbb2a2c12",
       "adapters/.cursor-plugin/plugin.json": "f6124654d704a63bff4e9c7c5293880a126ffc2817eabd13d889353902423b4e",
@@ -261,20 +257,22 @@
       "adapters/tsconfig.json": "864dbc33acdab5c8e2bbe029ad982459838aa461c5a4a1b98039a5302864b62b",
       "cmd/migrate/main.go": "50f5ab4f2104bd01606856548e2dc0845b9b9bb1afa0b7b0c12d899bde0a2de8",
       "cmd/migrate/main_test.go": "b0cacdde1f9a969176f55bbc294cf0ab22c3e0c2e9485b534046a3469d86de22",
-      "cmd/relay/main.go": "4ad91604c1f967caa6ddd288799148237d0acf7a187139a4ea56de50402d8a1c",
-      "cmd/relay/main_integration_test.go": "5d0c1aa1d77157f80eb687e854fe198f08b950313b59af144886db0d3488bbe9",
+      "cmd/relay/main.go": "c19aecac6d2cfbb664479a6567cd9512c159a2a1d23d67969364bc76d49fa2fe",
+      "cmd/relay/main_integration_test.go": "533442d8441d54b1abad90d72844e67d73252a7f736904783ba9f183ab261c81",
       "cmd/relay/main_test.go": "afb574adbea619590f23da10fd8384dfe179dfdc54dcd691c0873a0c69778e77",
+      "cmd/relay/redis_integration_test.go": "cdfae656aebf37a84becc22e3be412170948227940716f26b47c4e16d8b95bbd",
       "db/migrations/00001_relay.sql": "31aa978fb6e7d26eb4be7f65cd58c6abc286c0675bacd1856368221d095c7507",
       "db/migrations/00002_human_writer.sql": "83cfa1aab7ddb803a0705434187af01386bbd8ccb60ab37a4cf5e9220c661f36",
       "db/migrations/00003_relay_state_json.sql": "6e44e4b8e661f41be4ea0a51ae8095243b07b8e1ade49acd2f534148fbccc9e0",
+      "db/migrations/00004_relay_state_no_messages.sql": "47cf1f5c39cb1333c3041761b5e8ccd0aef74515b84bfb77cf9f9ff1b818001e",
       "db/queries/relay.sql": "52e98d81ba91823aa9c723ebc4f3f34c58fe90f88922e3fd576a0e5abe89c76b",
-      "deploy/knowslink/compose.ops.yaml": "63ba6860410b28bbf637e963b4973fe80e00cddede8c39c14cbd273db1321355",
+      "deploy/knowslink/compose.ops.yaml": "02a7619f5f1bd1ee101165fb571618ac31bdde67f7836a5ccbc927f57e2f78d8",
       "deploy/knowslink/prune-backups.sh": "a3c3f25cf83e5dc21723d7a8f92ddca41d928b9973999220f70feeb3a9438736",
       "deploy/knowslink/test_public_config.sh": "f8067a5dacab2b34657a95d167654b6e19102d9a161f8d849e26eb02381c9c03",
       "deploy/knowslink/tunnel/public-ingress.yml": "0da349c4245dba88a71570dcc1ad5b525b9f9c0fe977a198eba5261249fc5bce",
       "deploy/knowslink/verify.py": "6221d1ba13acd6ecad401eb672668b94098bef695c9b33b3c9f6590f32d544d5",
       "docs/README.md": "62324718c328f8e4e00e0375b238ea9d69e27ad75f21b4fc819a055279299b4b",
-      "docs/architecture.md": "37b45c2e59df6009f89dd2bf4a209ffca8a121c5583c95156e7ee4b2e4832f20",
+      "docs/architecture.md": "aee5a59d2e76b0d22a1c4fcc8300e76e9d2f96fa20db2e168207cedad71b349f",
       "docs/brand/README.md": "70ec4c56545248ab9dbebf5019fd56199c5bd628c7f8fe66da06c151cc4944c6",
       "docs/brand/knowslink-favicon.svg": "5ee8a5760f9d0be047c010e4c942a3ef92800568917216afe647f0f4c5821032",
       "docs/brand/knowslink-lockup-inverse.svg": "1b0d1b5b08fd9d3819969af6f196b1ac7da6f7565e1f88e50a28264078ba7b62",
@@ -283,11 +281,11 @@
       "docs/brand/knowslink-symbol-inverse.svg": "040f9dfca090850816a38236c29d8936696639591e8134aa0fbddfc4a43d045b",
       "docs/brand/knowslink-symbol.svg": "c61f2a24ec4acbd6e81b667479b26e61919aa0c4c477a61db519c58209171001",
       "docs/development.md": "761f0ca606807ee59e3f58de9e165749ddea3334a471f7f0103e8ffb4147091c",
-      "docs/operations.md": "78f0baf8ae0f3338aec126f62d805bc26bf5651e70056cb3e3d860963898f872",
-      "docs/system-design.md": "09f0d9919384a9c0ea7d8e7cb37098bc74473fe555fda4da6c4311f5bfcd28b1",
-      "go.mod": "43099800f2f949dab1c19c1a42940dc389fc5c8a90c10d40b50999ce65aceaac",
-      "go.sum": "2d9688060391df4ea15fd8c24cb274441c5a7d466e5c3f016d2dc9e1bd1c282e",
-      "internal/config/config.go": "a1c0731e306658f82f2c8febddc53d37d62b9b3ecc9e576cf4643baec7f8cfc4",
+      "docs/operations.md": "3cceebc1a390710fba4e7499196d22fa098b6c71f1767cd112ed8e6e903d0266",
+      "docs/system-design.md": "f0a6760a8cee8221fd0f8297ec8a2a0054e4579df34baf9c4ebcf35c6d2986ee",
+      "go.mod": "ed049f2f0b2762bacc797dbb137d2d27dbe7c3914a164e59373151b75a64c8fe",
+      "go.sum": "4dba2db632924c5982243f3b562fb66894b2630c3d677cc10944b8c8d2dd4cb4",
+      "internal/config/config.go": "d5e18c3e28ecb4d123580049f93268936cd318e7434f7e17b0722421e33fc1db",
       "internal/database/db.go": "b6213219679f628bd87a92365b7aa0c595adfecdd942318aa4af989c67d69e2b",
       "internal/database/models.go": "f309898abbd7e638519fcd1518953929319ff5822dc3a6dd2e30f61241555bdd",
       "internal/database/relay.sql.go": "0d9023bca279bd92068986d56c24275deb18123f315bded80ed98ca8cc34cf19",
@@ -296,8 +294,8 @@
       "internal/relay/autosetup_guide_test.go": "97da09d0f2266784b756ae158e3d02468cf2e0aef646ac312949d54751baeca0",
       "internal/relay/capacity.go": "baa2cdd1c7a5a88437c536e69a74b9997c2519681cd8168f3f59b715bcb45462",
       "internal/relay/cleanup.go": "29ed63da91c6d0f70dd8224a6d1bf433fdea06ecb2c228225155315faa47b76e",
-      "internal/relay/cleanup_flood_integration_test.go": "b7ac154bb82ec510bed917e4c4e04dcb4392a93501781baa649ce2c7621db3b7",
-      "internal/relay/cleanup_unit_integration_test.go": "4c702fa7c115281738790c37b92102792b9fe08b2ffece347ed3c88ab2b9ffa6",
+      "internal/relay/cleanup_flood_integration_test.go": "2e010d7cbb96c59635e81de8f56a7698e45f4e698a1c49b354ada8c39f2274d9",
+      "internal/relay/cleanup_unit_integration_test.go": "3b0114e536bddccd864115a4e84c715ef488d513344090e85f9fc1e2e4b36860",
       "internal/relay/connect_guide.go": "d0432529877525fa3b09e7fdbe435144e78659de829e00478934e1ad86edb411",
       "internal/relay/connect_guide_test.go": "62656e75a5ba175ab83385baf60b516ad7a8fe7f66b71d89949cf43e11b1e4d6",
       "internal/relay/connect_simple_test.go": "ad31f4a84fb17044461f517b2d71f5fec58f3e9603a737ebd0c7cdc5ebfb45d7",
@@ -306,55 +304,58 @@
       "internal/relay/db_limits_integration_test.go": "8b49f0d933c3b63e2d979c477d8b0b45714c290d19c0f3e9f740f832eec9d04f",
       "internal/relay/db_limits_test.go": "491ee96130ad04aa84e2ea7902b2cc0f74eba0964321e770f4077046ae6aecaa",
       "internal/relay/device.go": "3d0a83705ac354314dbb5f1afbbdb1af5046c753672a24237b351bc41c5f246e",
+      "internal/relay/ephemeral.go": "f7642b2abff131e37fecd5a0502530eac4d8bd410d44aee3b2db737e3b8291e2",
+      "internal/relay/ephemeral_integration_test.go": "279e97a35e7148ce20ccdbc884be7178c59b34c0b6829e6d091610ba08332a5f",
       "internal/relay/friend_rerequest_test.go": "c8225a6a1e0d794120d42486f26aa59da250c0400caa5392198131e41da39934",
       "internal/relay/gate_summary.go": "d57449f6a067796af953f779bea1a390316853c61ad431680119b8192ef8043d",
       "internal/relay/google_test.go": "1b4a4c12c7b2edeb3f5e1628aa04692fab44bd4d4bedccbcf7d020bb220fa13e",
       "internal/relay/human.go": "63a18a4bc52001b5ef1eb47826d0c6900651cf4f7654b22b105b87a8f1420664",
-      "internal/relay/human_http.go": "bc5e9a1125988e43c50e2913830fbb80cdcbc959f8d2d9453198ce474adde28d",
-      "internal/relay/human_messages.go": "e04c78e7be42fb5e90803c94e47d9f6255425101577b1d12a8dd20b159761f8d",
+      "internal/relay/human_http.go": "e68381a8ece557d82266a1b2a84a17e3cbb95e406ab19368c8e7974908ade95d",
+      "internal/relay/human_messages.go": "2619f280b2396929c6db93328477e9703b2d0890d875d19e158d600b778cd13b",
       "internal/relay/human_names_integration_test.go": "10bbcec5d59d986f9ca74ae07c39854cc274697ab07f32ce75e204ed78a2692c",
       "internal/relay/human_names_test.go": "99f361aed28a4f1e28962693e4493c0ff59007ab063aebe220463e66d6747568",
-      "internal/relay/human_pages.go": "518f9419c19c5176f83756eeea43b1ef8cf2c42fc57b745a5630d1d2df93484b",
-      "internal/relay/human_pages_test.go": "b307f991c97eea377d4042b00d3791f7ed9c685ad5ed637c8946f152aed217c8",
+      "internal/relay/human_pages.go": "dfc28db0d2dca989f89e835828d920469d8e5bdeefb0ae2b0dc6746524c1a79f",
+      "internal/relay/human_pages_test.go": "0f7ae9f647cf5a8506f32e46d767e17ba1b723e28ce52f182c84b69707b36a7e",
       "internal/relay/i18n.go": "b2484c4ec5217f91dc56501ac9d7bfa6425c87ed4b6982ebcf02197caa9c60d8",
-      "internal/relay/i18n_en_human.go": "b56c6dc063b18866c3e2e5b476cfab35e52138c85f01040c506d21308801af31",
+      "internal/relay/i18n_en_human.go": "867928322e63f350bd9022fc02381da7c964928a2fac358bb16ec92c83059639",
       "internal/relay/i18n_test.go": "f42cacfd34232e4d99533a29b9c749e8027802799c02ca79399c6509d2689b91",
       "internal/relay/install_files.go": "64997012f99214df2ca147c34b80ebe5cac35811afdb48f535271255b7e55c48",
       "internal/relay/install_files_test.go": "e3abdc540b64b65b30f47f2afe37f3e00fe1371945b6d77621b67bbeebb635f7",
-      "internal/relay/landing_fixture_test.go": "e0dad02d30ad091673bb5e235507bf232cbec503a6ec5a7b3f2ea24805223094",
+      "internal/relay/landing_fixture_test.go": "df42acdbbfb9f381f35406addc34bb71d0f9a7217eea384ab236f62e8985566a",
       "internal/relay/landing_integration_test.go": "703c3c40923f310c0fa1bcb3a40b27dcedea122978b385b50a7461f3e6ee2911",
-      "internal/relay/landing_pages.go": "48f829f5013ba094352b39f1cb2d40877ae9beee4dc3279f1983e6c0596be154",
-      "internal/relay/landing_test.go": "114a3109de19eac19de58d52478573e0e90e6073185d270a25c573b6d6c7e616",
+      "internal/relay/landing_pages.go": "bb87ecf2681818e62e25678ddc7388e9cc288a7fa111d10976b6b5bfd9b99bca",
+      "internal/relay/landing_test.go": "7d6b5996534da6daa442cf5b4cfe72a0e6fa8c49ed21edcf877830dcce1a331d",
       "internal/relay/lang_integration_test.go": "387f58601833fe51d57b17d9d1fb96d8bddb330a1c53c0b2928922ac375cadca",
       "internal/relay/mail.go": "db5171b9e74b68532e0a0cc7e821ba55a3c69151c8e4daed1f5a8a94b0561754",
       "internal/relay/member_agents.go": "6a6ea9e8f46781e8bbe5cfd8ab49f6b65ff95e94402695af05a752ae6da79a13",
       "internal/relay/member_pages.go": "f5b2d4cabe16e5e5134c47769c76ac67ae4bde9a54d17b280317771333209424",
       "internal/relay/member_receipt.go": "b6308d85cd2f10b26c36d86dd72686cc1d505a0bf756936d6184367abba1cef5",
       "internal/relay/member_ui_test.go": "261aa660636d860c5f1717706055c5bc71899f34508d454b7fb0ffe6e83f41e0",
-      "internal/relay/policy/privacy.en.html": "45d1fb0a2536d985b35ceb60acdb577a793818c539b8bbdbf8e30e316bd08b03",
-      "internal/relay/policy/privacy.ko.html": "06d8aae664f27dfcec6c8fd18e3426de675c0b163a5d1f3f0d299042f6065af0",
-      "internal/relay/policy/terms.en.html": "451c7282a6bd873cad50b4d7312080745184088af8422f0b2cde18b7000c4118",
-      "internal/relay/policy/terms.ko.html": "3c6a252ff3327ab25aa429fc5ce93fb9740e0cfa28da8c741b05171a0a551802",
-      "internal/relay/policy_pages_test.go": "ead3cbcf9377ff8843ee414f5ca67c48f84263126a301f51c350efa221bc1f59",
+      "internal/relay/policy/privacy.en.html": "30a035d85d41a1fee2a1a6dbab113acf2c40bc1d47039f6c71dab3b370b9cab4",
+      "internal/relay/policy/privacy.ko.html": "aa276c60b0e31e9407f8f2f1f7f90c80a012135b6888e67cdaecdc1bc5d9c270",
+      "internal/relay/policy/terms.en.html": "17cbb920a7404cf990b28396e275be926afe921c7862ebfff1f2f543511cd590",
+      "internal/relay/policy/terms.ko.html": "7827f6cfb31cff07bf145a63e0c49d0a54a256f678139dd3c9f82e789d692516",
+      "internal/relay/policy_pages_test.go": "69e7873627ddd6596bae1d6a506f466dbe650e8839ec5c9d8de98de6261ee278",
       "internal/relay/policy_test.go": "f3f1482425cbda5e383b613ebdb632a032180af6ddfbfad7ca48632873e7e0a7",
       "internal/relay/protocol.go": "88dfaf504ae7f81d02e54d8a72e91961819e1e52017aee84f0b0aff46eb25233",
       "internal/relay/protocol_test.go": "8433c1ac3a09c2c20fd7f82c6756841761998b616ef281a5d12dc91170939a5f",
-      "internal/relay/public_messages_integration_test.go": "5b8e7b52b9f90c2882d23f5ce5bf1ae75dcb31a94b639fbe9585ef6204ccd1f3",
+      "internal/relay/public_messages_integration_test.go": "805f54ab5ec6e454e3d69df06a300cb5567e19e5f9e464ef8a6158d3617b5ae9",
       "internal/relay/public_text.go": "48baaa488e700c334e59c3109cbd85f4a0ff9228ebdf0ac5af983fcdbf4ae3a0",
       "internal/relay/receipt_context.go": "ee3e46bd248d3262a93023d797852b30160edd1b54faba46a515dc9c4d98ece8",
       "internal/relay/receipt_context_test.go": "d0387ab18b0fa20d0cefae31f6517f554875007041bb6b5a09dbb88c39e299c3",
       "internal/relay/receipt_integration_test.go": "436ab90d93c774a029f76ae8f15e96a01c48e43c66c068e8c64560e5e6fa1d8a",
+      "internal/relay/redis_integration_test.go": "c693e66b5122473a130b51aaddfe94421fd218d8913380ebf7975b72d0932d95",
       "internal/relay/registry.go": "652a0193b46720a05a7797b309e1f3d372342b430bf3ed991dba3085daeb2cb0",
       "internal/relay/registry.json": "2b25c6b58fb6b6973de1c9bac19162834cfc9b678a0416ad39e2cffab3cde1e2",
-      "internal/relay/state_migration_integration_test.go": "8233e295231ebafad67cfef163666ff12707dbb526c017b8309ba12ceff75160",
-      "internal/relay/store_retention_integration_test.go": "37e3a388f3bdcc92b7c9ef7a4811ec39ea9cb7cc2af61edaefb57fb1b5f1e4f3",
-      "internal/relay/store_retention_test.go": "8fffcea135407c496799f77befa7f380a9d067e1f022659e7954ad0dd8ba752c",
+      "internal/relay/state_migration_integration_test.go": "9551f8a3bcf3ba056f9d89222c3aad88113372ed8c62e5895ad102682d536f6e",
+      "internal/relay/store_retention_integration_test.go": "9dfbe21867ce393e29f3d66e1128a5847a5a1859db8c3d6f3d2a0bb1da28051b",
+      "internal/relay/store_retention_test.go": "3e76e206d8bd328a5a316ff8027a46e44f3138b2b6c54c2a22e196d276d6f5d1",
       "internal/relay/test_messages.go": "3e12686163d2b31494e1508c09df9fe58f32f4824974db597dbfd3af55d2f20c",
-      "internal/relay/test_messages_integration_test.go": "7a013073933cd8119a11034b0d8d9d1c4e7b7f4de134e70fe8b3ae9a0ca34052",
+      "internal/relay/test_messages_integration_test.go": "40c3c83f8b30e7db6774daf0b61dac5836cae896d10366a059eb178ee1ae2dd5",
       "internal/relay/testdata/consent_browser.mjs": "704b045e65317ccd89cefbef180215d93680a4ab13f2ebb10ebd958d65628081",
       "internal/relay/testdata/legacy_claims.json": "325c731b01d1579b3ff51818236f91a46d1145087d63f63a6bbffcaf0c294d2f",
-      "internal/relay/text_events.go": "a8fb5631a50a0aceaf35a410a8261ec610446e8739f3b82b831038337f4512c3",
-      "internal/relay/text_events_integration_test.go": "fdea3564beff5da8a17976b6d1a52026b1fefef191595c38b85f150b5e5ed48a",
+      "internal/relay/text_events.go": "d28161056cc828c9ca75f032d133d14c576823fe6b230800b391e11ef0e7a875",
+      "internal/relay/text_events_integration_test.go": "ac9d1b16b28bddf3150ab6ee5cd96ac5c7b593128acd4226abf50eea884ded09",
       "internal/relay/text_events_test.go": "6663f90253f8b33cfbed45786e07fb3001bbd37f06a7c69eb5f77ddbfc257138",
       "scripts/autosetup/knowslink-setup.ps1": "2d9e23e3e0ee90290a8f2100cd66c022db0c72b4102c07c73522f9f2244bf9b9",
       "scripts/autosetup/test-get-registered.ps1": "a7bbfa6f4f8465119f73ad98ef08b15a4d76eedeb35870baac1d7f474d6e5469",
@@ -386,9 +387,9 @@
     "search_results": {},
     "decisions": []
   },
-  "input_sha256": "311053574aca615ba469ecf6bccd7cd85d715ff14a7fd16f682f5270d7bfed46",
+  "input_sha256": "86a1f3f1c06ed6d256fdccdc08c7ee81eb79825b1b6fe24c5ed7f27fdf2be909",
   "version": "jev-packet-v2",
-  "base": "195cc084118918567f82fecb3e35b3949a0409e8",
+  "base": "b81218841a6b14bdc5ef8e2c0521667978cb561c",
   "worktree_dirty": true,
   "items": [
     {
@@ -408,6 +409,56 @@
       "source_basis": "HEAD"
     },
     {
+      "path": ".fullops-squad/docs/evaluations/qa-reports/SAR-MSG-EPHEMERAL-001-REVIEW-review/report.md",
+      "categories": [
+        "document_read"
+      ],
+      "reasons": [
+        "required or existing context recommendation",
+        "symbol/keyword occurrence; reference semantics require verification"
+      ],
+      "evidence": [
+        {
+          "method": "string-search",
+          "symbol": "TestPolicyPages",
+          "line": 39,
+          "seeds": [
+            "internal/relay/policy_pages_test.go"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "relay_state",
+          "line": 45,
+          "seeds": [
+            "inbox"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "interface",
+          "line": 52,
+          "seeds": [
+            "inbox"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "TestPolicyPages",
+          "line": 82,
+          "seeds": [
+            "internal/relay/policy_pages_test.go"
+          ]
+        }
+      ],
+      "doc_ids": [],
+      "required": true,
+      "status": "inferred",
+      "priority": 0,
+      "source_sha256": "1e643901e80e4f86561589466f34f8eb927df4b105e0fa68b0af5ac814190e18",
+      "source_basis": "HEAD"
+    },
+    {
       "path": ".fullops-squad/handovers/to_dev.md",
       "categories": [
         "document_read"
@@ -419,8 +470,24 @@
       "evidence": [
         {
           "method": "string-search",
-          "symbol": "relay_state",
-          "line": 38,
+          "symbol": "interface",
+          "line": 2,
+          "seeds": [
+            "inbox"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "interface",
+          "line": 7,
+          "seeds": [
+            "inbox"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "interface",
+          "line": 14,
           "seeds": [
             "inbox"
           ]
@@ -428,7 +495,7 @@
         {
           "method": "string-search",
           "symbol": "pg_dump",
-          "line": 43,
+          "line": 34,
           "seeds": [
             "inbox"
           ]
@@ -436,23 +503,39 @@
         {
           "method": "string-search",
           "symbol": "relay_state",
-          "line": 71,
+          "line": 34,
           "seeds": [
             "inbox"
           ]
         },
         {
           "method": "string-search",
-          "symbol": "relay_state",
-          "line": 81,
+          "symbol": "interface",
+          "line": 35,
           "seeds": [
             "inbox"
           ]
         },
         {
           "method": "string-search",
-          "symbol": "human_model",
-          "line": 85,
+          "symbol": "interface",
+          "line": 48,
+          "seeds": [
+            "inbox"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "interface",
+          "line": 57,
+          "seeds": [
+            "inbox"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "interface",
+          "line": 76,
           "seeds": [
             "inbox"
           ]
@@ -462,7 +545,7 @@
       "required": true,
       "status": "inferred",
       "priority": 0,
-      "source_sha256": "e5a62f938382c48fcc2c01fe74570550dcdd4a5cd2198fe4090944be806c184e",
+      "source_sha256": "c06d7bb14d0ec7f4f310ccb69d714c74434fe4556d4e9a1250cc85c6bd287bf2",
       "source_basis": "HEAD"
     },
     {
@@ -587,6 +670,31 @@
       "source_basis": "HEAD"
     },
     {
+      "path": ".fullops-squad/docs/deliverables/README.md",
+      "categories": [
+        "document_read"
+      ],
+      "reasons": [
+        "symbol/keyword occurrence; reference semantics require verification"
+      ],
+      "evidence": [
+        {
+          "method": "string-search",
+          "symbol": "interface",
+          "line": 21,
+          "seeds": [
+            "inbox"
+          ]
+        }
+      ],
+      "doc_ids": [],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "679031917d22b49b8c50c45dfb7bb84a892ed44f67f6dc41949d50e0c732cffc",
+      "source_basis": "HEAD"
+    },
+    {
       "path": ".fullops-squad/docs/design-docs/architecture.md",
       "categories": [
         "document_read"
@@ -619,33 +727,7 @@
       "required": false,
       "status": "inferred",
       "priority": 1,
-      "source_sha256": "734cd05b2bea95b98f1f514e3d969ae32e0c5decf2e4c75a7a0977e84272f6dc",
-      "source_basis": "HEAD"
-    },
-    {
-      "path": ".fullops-squad/docs/design-docs/crud-design.md",
-      "categories": [
-        "document_read"
-      ],
-      "reasons": [
-        "source mapping/reference; keep unchanged unless verified"
-      ],
-      "evidence": [
-        {
-          "method": "deliverable-index",
-          "id": "D09",
-          "source": [
-            "docs/design-docs/crud-design.md"
-          ]
-        }
-      ],
-      "doc_ids": [
-        "D09"
-      ],
-      "required": false,
-      "status": "inferred",
-      "priority": 1,
-      "source_sha256": "0cfa441606f96c3efff5fcebd27b42190637bf1732e8a0313659b7358a458fb0",
+      "source_sha256": "f444848b1dfcb328ec47f24f42c396d2794ecea9d527a0b2c280c0b3f258808a",
       "source_basis": "HEAD"
     },
     {
@@ -662,7 +744,7 @@
         {
           "method": "string-search",
           "symbol": "relay_state",
-          "line": 54,
+          "line": 61,
           "seeds": [
             "inbox"
           ]
@@ -681,7 +763,7 @@
       "required": false,
       "status": "inferred",
       "priority": 1,
-      "source_sha256": "8c45b3b423885d70c4f11eca29522281672fff297901a96984de33366bd977f3",
+      "source_sha256": "3b8659bdaed153700e8c9179234048b1c03afe78135fb7670646c20da5918d87",
       "source_basis": "HEAD"
     },
     {
@@ -697,24 +779,8 @@
       "evidence": [
         {
           "method": "string-search",
-          "symbol": "human_model",
-          "line": 16,
-          "seeds": [
-            "inbox"
-          ]
-        },
-        {
-          "method": "string-search",
-          "symbol": "human_model",
-          "line": 17,
-          "seeds": [
-            "inbox"
-          ]
-        },
-        {
-          "method": "string-search",
-          "symbol": "human_model",
-          "line": 47,
+          "symbol": "relay_state",
+          "line": 18,
           "seeds": [
             "inbox"
           ]
@@ -722,7 +788,7 @@
         {
           "method": "string-search",
           "symbol": "relay_state",
-          "line": 47,
+          "line": 63,
           "seeds": [
             "inbox"
           ]
@@ -730,7 +796,7 @@
         {
           "method": "string-search",
           "symbol": "relay_state",
-          "line": 65,
+          "line": 81,
           "seeds": [
             "inbox"
           ]
@@ -738,7 +804,7 @@
         {
           "method": "string-search",
           "symbol": "relay_state",
-          "line": 82,
+          "line": 98,
           "seeds": [
             "inbox"
           ]
@@ -757,15 +823,17 @@
       "required": false,
       "status": "inferred",
       "priority": 1,
-      "source_sha256": "8864ae004f05d4f4c4fb378ca3e99402ef6765befe6d71386472a700e8402ba7",
+      "source_sha256": "fb6b781aadb52e96cd7938061998db650cb9a2fb2d5fdbd993e07c1b3536c0fb",
       "source_basis": "HEAD"
     },
     {
       "path": ".fullops-squad/docs/design-docs/interface-design.md",
       "categories": [
+        "document_update",
         "document_read"
       ],
       "reasons": [
+        "explicit edit seed/diff",
         "source mapping/reference; keep unchanged unless verified"
       ],
       "evidence": [
@@ -783,62 +851,8 @@
       "required": false,
       "status": "inferred",
       "priority": 1,
-      "source_sha256": "caec53f75ba4ab2136ff60cf8fa5a4cb2c33aad74b2b9f53a3ea7db0d70e91d9",
+      "source_sha256": "c7c54e731d2eab065895a2617c12b3fe1f912dda9e31ecdd947d977f3ce30d17",
       "source_basis": "HEAD"
-    },
-    {
-      "path": ".fullops-squad/docs/design-docs/mockups/SAR-MVP-001-UI.md",
-      "categories": [
-        "document_read"
-      ],
-      "reasons": [
-        "source mapping/reference; keep unchanged unless verified"
-      ],
-      "evidence": [
-        {
-          "method": "deliverable-index",
-          "id": "D04",
-          "source": [
-            "docs/design-docs/mockups/SAR-MVP-001-UI.md",
-            "docs/design-docs/mockups/service-member-ui.md"
-          ]
-        }
-      ],
-      "doc_ids": [
-        "D04"
-      ],
-      "required": false,
-      "status": "inferred",
-      "priority": 1,
-      "source_sha256": "995b66bc3f49b8d8d60000e87cb3c29187923c32f44162490b068d984268f2fa",
-      "source_basis": "HEAD"
-    },
-    {
-      "path": ".fullops-squad/docs/design-docs/mockups/service-member-ui.md",
-      "categories": [
-        "document_read"
-      ],
-      "reasons": [
-        "source mapping/reference; keep unchanged unless verified"
-      ],
-      "evidence": [
-        {
-          "method": "deliverable-index",
-          "id": "D04",
-          "source": [
-            "docs/design-docs/mockups/SAR-MVP-001-UI.md",
-            "docs/design-docs/mockups/service-member-ui.md"
-          ]
-        }
-      ],
-      "doc_ids": [
-        "D04"
-      ],
-      "required": false,
-      "status": "unknown",
-      "priority": 1,
-      "source_sha256": null,
-      "source_basis": null
     },
     {
       "path": ".fullops-squad/docs/design-docs/module-design.md",
@@ -865,33 +879,6 @@
       "priority": 1,
       "source_sha256": null,
       "source_basis": null
-    },
-    {
-      "path": ".fullops-squad/docs/design-docs/tech-stack.md",
-      "categories": [
-        "document_read"
-      ],
-      "reasons": [
-        "source mapping/reference; keep unchanged unless verified"
-      ],
-      "evidence": [
-        {
-          "method": "deliverable-index",
-          "id": "D03",
-          "source": [
-            "docs/design-docs/architecture.md",
-            "docs/design-docs/tech-stack.md"
-          ]
-        }
-      ],
-      "doc_ids": [
-        "D03"
-      ],
-      "required": false,
-      "status": "inferred",
-      "priority": 1,
-      "source_sha256": "5ed061204861de62dbcd461339735ab2f5a6a7e3e2cc546596796a4858ea83c9",
-      "source_basis": "HEAD"
     },
     {
       "path": ".fullops-squad/docs/exec-plans/phases/SAR-BETA-001-OPS.md",
@@ -960,7 +947,7 @@
       "source_basis": "HEAD"
     },
     {
-      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-DEV-FIX.md",
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX.md",
       "categories": [
         "document_read"
       ],
@@ -970,10 +957,10 @@
       "evidence": [
         {
           "method": "string-search",
-          "symbol": "rateLimited",
-          "line": 52,
+          "symbol": "interface",
+          "line": 83,
           "seeds": [
-            "internal/relay/capacity.go"
+            "inbox"
           ]
         }
       ],
@@ -981,7 +968,57 @@
       "required": false,
       "status": "inferred",
       "priority": 1,
-      "source_sha256": "ebe5eb2d7029d61beaa2941f8ba691f407b938004302ee5f9c04b0e7f4df2bef",
+      "source_sha256": "1eee985743cab4d1231ee724ffaac0bb2a8aa0e41fcf86a51f76d70d709297bd",
+      "source_basis": "HEAD"
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-DEV-FIX-2.md",
+      "categories": [
+        "document_read"
+      ],
+      "reasons": [
+        "symbol/keyword occurrence; reference semantics require verification"
+      ],
+      "evidence": [
+        {
+          "method": "string-search",
+          "symbol": "interface",
+          "line": 87,
+          "seeds": [
+            "inbox"
+          ]
+        }
+      ],
+      "doc_ids": [],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "2416763f961651bb89eb80f4bb3384c750e2da0105f5f743904b17812a32de20",
+      "source_basis": "HEAD"
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-DEV-FIX-3.md",
+      "categories": [
+        "document_read"
+      ],
+      "reasons": [
+        "symbol/keyword occurrence; reference semantics require verification"
+      ],
+      "evidence": [
+        {
+          "method": "string-search",
+          "symbol": "interface",
+          "line": 81,
+          "seeds": [
+            "inbox"
+          ]
+        }
+      ],
+      "doc_ids": [],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "19529ef3cad5538181b1416abf71f7389ac8bff0e54e45a7af07c117bfa10c42",
       "source_basis": "HEAD"
     },
     {
@@ -995,10 +1032,10 @@
       "evidence": [
         {
           "method": "string-search",
-          "symbol": "cleanupRequest",
-          "line": 29,
+          "symbol": "interface",
+          "line": 70,
           "seeds": [
-            "internal/relay/capacity.go"
+            "inbox"
           ]
         }
       ],
@@ -1073,6 +1110,31 @@
       "status": "inferred",
       "priority": 1,
       "source_sha256": "5ff83b94e223a005e6baf3727bd74b098b3e008d08495779bb514a65032f8a3e",
+      "source_basis": "HEAD"
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-DEV.md",
+      "categories": [
+        "document_read"
+      ],
+      "reasons": [
+        "symbol/keyword occurrence; reference semantics require verification"
+      ],
+      "evidence": [
+        {
+          "method": "string-search",
+          "symbol": "interface",
+          "line": 39,
+          "seeds": [
+            "inbox"
+          ]
+        }
+      ],
+      "doc_ids": [],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "ad12618f580e4c3d31c573f3e212e4c1ff0153af5274d3d0ea130292652f3e98",
       "source_basis": "HEAD"
     },
     {
@@ -1226,24 +1288,8 @@
         },
         {
           "method": "string-search",
-          "symbol": "human_model",
-          "line": 58,
-          "seeds": [
-            "inbox"
-          ]
-        },
-        {
-          "method": "string-search",
           "symbol": "relay_state",
           "line": 58,
-          "seeds": [
-            "inbox"
-          ]
-        },
-        {
-          "method": "string-search",
-          "symbol": "human_model",
-          "line": 59,
           "seeds": [
             "inbox"
           ]
@@ -1282,14 +1328,6 @@
         },
         {
           "method": "string-search",
-          "symbol": "human_model",
-          "line": 74,
-          "seeds": [
-            "inbox"
-          ]
-        },
-        {
-          "method": "string-search",
           "symbol": "relay_state",
           "line": 74,
           "seeds": [
@@ -1298,8 +1336,24 @@
         },
         {
           "method": "string-search",
-          "symbol": "human_model",
-          "line": 75,
+          "symbol": "relay_state",
+          "line": 83,
+          "seeds": [
+            "inbox"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "relay_state",
+          "line": 89,
+          "seeds": [
+            "inbox"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "relay_state",
+          "line": 90,
           "seeds": [
             "inbox"
           ]
@@ -1318,34 +1372,8 @@
       "required": false,
       "status": "inferred",
       "priority": 1,
-      "source_sha256": "f6b365b9747cefe1f6735982a563781c1358dba9b4b065ac4b2ef4e1637cd895",
+      "source_sha256": "00bcbbd38e299c373a5f1793c4c852abdf5435daf190ca01731e38dff5b10806",
       "source_basis": "HEAD"
-    },
-    {
-      "path": ".fullops-squad/docs/operations/ops-guide.md",
-      "categories": [
-        "document_read"
-      ],
-      "reasons": [
-        "source mapping/reference; keep unchanged unless verified"
-      ],
-      "evidence": [
-        {
-          "method": "deliverable-index",
-          "id": "D12",
-          "source": [
-            "docs/operations/ops-guide.md"
-          ]
-        }
-      ],
-      "doc_ids": [
-        "D12"
-      ],
-      "required": false,
-      "status": "unknown",
-      "priority": 1,
-      "source_sha256": null,
-      "source_basis": null
     },
     {
       "path": ".fullops-squad/docs/operations/transition.md",
@@ -1371,32 +1399,6 @@
       "status": "inferred",
       "priority": 1,
       "source_sha256": "5166cfc505ebecc55aa6aee6ed46afad61787d59212aa6ce357054d440f6ed3b",
-      "source_basis": "HEAD"
-    },
-    {
-      "path": ".fullops-squad/docs/operations/user-guide.md",
-      "categories": [
-        "document_read"
-      ],
-      "reasons": [
-        "source mapping/reference; keep unchanged unless verified"
-      ],
-      "evidence": [
-        {
-          "method": "deliverable-index",
-          "id": "D11",
-          "source": [
-            "docs/operations/user-guide.md"
-          ]
-        }
-      ],
-      "doc_ids": [
-        "D11"
-      ],
-      "required": false,
-      "status": "inferred",
-      "priority": 1,
-      "source_sha256": "d12db41e2d8d2141f9a437d046a54815c096ce182b16e8b0574ecd1f42ec48e6",
       "source_basis": "HEAD"
     },
     {
@@ -1451,6 +1453,56 @@
       "source_basis": "HEAD"
     },
     {
+      "path": ".fullops-squad/handovers/pending/SAR-VULTR-MIGRATE-001-ops.md",
+      "categories": [
+        "document_read"
+      ],
+      "reasons": [
+        "symbol/keyword occurrence; reference semantics require verification"
+      ],
+      "evidence": [
+        {
+          "method": "string-search",
+          "symbol": "pg_dump",
+          "line": 68,
+          "seeds": [
+            "inbox"
+          ]
+        }
+      ],
+      "doc_ids": [],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "a6035ee5b8abc47553960876966354f56a7097830ab39aabe33dcba4a3e48866",
+      "source_basis": "HEAD"
+    },
+    {
+      "path": "adapters/.codex-plugin/plugin.json",
+      "categories": [
+        "impact_check"
+      ],
+      "reasons": [
+        "symbol/keyword occurrence; reference semantics require verification"
+      ],
+      "evidence": [
+        {
+          "method": "string-search",
+          "symbol": "interface",
+          "line": 10,
+          "seeds": [
+            "inbox"
+          ]
+        }
+      ],
+      "doc_ids": [],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "73535ee113ee4fd019433a0cb01ad735323b014d6531b5bda833d8cdbb2a2c12",
+      "source_basis": "HEAD"
+    },
+    {
       "path": "cmd/relay/main_integration_test.go",
       "categories": [
         "impact_check"
@@ -1472,24 +1524,8 @@
       "required": false,
       "status": "inferred",
       "priority": 1,
-      "source_sha256": "5d0c1aa1d77157f80eb687e854fe198f08b950313b59af144886db0d3488bbe9",
+      "source_sha256": "533442d8441d54b1abad90d72844e67d73252a7f736904783ba9f183ab261c81",
       "source_basis": "HEAD"
-    },
-    {
-      "path": "compose.yaml",
-      "categories": [
-        "direct_edit"
-      ],
-      "reasons": [
-        "explicit edit seed/diff"
-      ],
-      "evidence": [],
-      "doc_ids": [],
-      "required": false,
-      "status": "unknown",
-      "priority": 1,
-      "source_sha256": null,
-      "source_basis": null
     },
     {
       "path": "db/migrations/00001_relay.sql",
@@ -1584,24 +1620,8 @@
         },
         {
           "method": "string-search",
-          "symbol": "human_model",
-          "line": 6,
-          "seeds": [
-            "inbox"
-          ]
-        },
-        {
-          "method": "string-search",
           "symbol": "relay_state",
           "line": 6,
-          "seeds": [
-            "inbox"
-          ]
-        },
-        {
-          "method": "string-search",
-          "symbol": "human_model",
-          "line": 7,
           "seeds": [
             "inbox"
           ]
@@ -1640,24 +1660,8 @@
         },
         {
           "method": "string-search",
-          "symbol": "human_model",
-          "line": 22,
-          "seeds": [
-            "inbox"
-          ]
-        },
-        {
-          "method": "string-search",
           "symbol": "relay_state",
           "line": 22,
-          "seeds": [
-            "inbox"
-          ]
-        },
-        {
-          "method": "string-search",
-          "symbol": "human_model",
-          "line": 23,
           "seeds": [
             "inbox"
           ]
@@ -1668,6 +1672,47 @@
       "status": "inferred",
       "priority": 1,
       "source_sha256": "6e44e4b8e661f41be4ea0a51ae8095243b07b8e1ade49acd2f534148fbccc9e0",
+      "source_basis": "HEAD"
+    },
+    {
+      "path": "db/migrations/00004_relay_state_no_messages.sql",
+      "categories": [
+        "impact_check"
+      ],
+      "reasons": [
+        "symbol/keyword occurrence; reference semantics require verification"
+      ],
+      "evidence": [
+        {
+          "method": "string-search",
+          "symbol": "relay_state",
+          "line": 4,
+          "seeds": [
+            "inbox"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "relay_state",
+          "line": 10,
+          "seeds": [
+            "inbox"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "relay_state",
+          "line": 11,
+          "seeds": [
+            "inbox"
+          ]
+        }
+      ],
+      "doc_ids": [],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "47cf1f5c39cb1333c3041761b5e8ccd0aef74515b84bfb77cf9f9ff1b818001e",
       "source_basis": "HEAD"
     },
     {
@@ -1683,14 +1728,6 @@
           "method": "string-search",
           "symbol": "relay_state",
           "line": 2,
-          "seeds": [
-            "inbox"
-          ]
-        },
-        {
-          "method": "string-search",
-          "symbol": "human_model",
-          "line": 5,
           "seeds": [
             "inbox"
           ]
@@ -1720,20 +1757,36 @@
       "source_basis": "HEAD"
     },
     {
-      "path": "deploy/knowslink/compose.ops.yaml",
+      "path": "docs/README.md",
       "categories": [
-        "direct_edit"
+        "document_read"
       ],
       "reasons": [
-        "explicit edit seed/diff"
+        "symbol/keyword occurrence; reference semantics require verification",
+        "local link to seed"
       ],
-      "evidence": [],
+      "evidence": [
+        {
+          "method": "string-search",
+          "symbol": "interface",
+          "line": 35,
+          "seeds": [
+            "inbox"
+          ]
+        },
+        {
+          "method": "markdown-link",
+          "line": 35,
+          "seed": ".fullops-squad/docs/design-docs/interface-design.md"
+        }
+      ],
       "doc_ids": [],
       "required": false,
       "status": "inferred",
       "priority": 1,
-      "source_sha256": "63ba6860410b28bbf637e963b4973fe80e00cddede8c39c14cbd273db1321355",
-      "source_basis": "HEAD"
+      "source_sha256": "62324718c328f8e4e00e0375b238ea9d69e27ad75f21b4fc819a055279299b4b",
+      "source_basis": "HEAD",
+      "sections": []
     },
     {
       "path": "docs/architecture.md",
@@ -1741,61 +1794,37 @@
         "document_read"
       ],
       "reasons": [
-        "symbol/keyword occurrence; reference semantics require verification"
-      ],
-      "evidence": [
-        {
-          "method": "string-search",
-          "symbol": "human_model",
-          "line": 119,
-          "seeds": [
-            "inbox"
-          ]
-        },
-        {
-          "method": "string-search",
-          "symbol": "relay_state",
-          "line": 119,
-          "seeds": [
-            "inbox"
-          ]
-        },
-        {
-          "method": "string-search",
-          "symbol": "human_model",
-          "line": 133,
-          "seeds": [
-            "inbox"
-          ]
-        }
-      ],
-      "doc_ids": [],
-      "required": false,
-      "status": "inferred",
-      "priority": 1,
-      "source_sha256": "37b45c2e59df6009f89dd2bf4a209ffca8a121c5583c95156e7ee4b2e4832f20",
-      "source_basis": "HEAD"
-    },
-    {
-      "path": "docs/development.md",
-      "categories": [
-        "document_read"
-      ],
-      "reasons": [
+        "symbol/keyword occurrence; reference semantics require verification",
         "local link to seed"
       ],
       "evidence": [
         {
+          "method": "string-search",
+          "symbol": "interface",
+          "line": 96,
+          "seeds": [
+            "inbox"
+          ]
+        },
+        {
           "method": "markdown-link",
-          "line": 9,
-          "seed": "compose.yaml"
+          "line": 96,
+          "seed": ".fullops-squad/docs/design-docs/interface-design.md"
+        },
+        {
+          "method": "string-search",
+          "symbol": "relay_state",
+          "line": 120,
+          "seeds": [
+            "inbox"
+          ]
         }
       ],
       "doc_ids": [],
       "required": false,
       "status": "inferred",
       "priority": 1,
-      "source_sha256": "761f0ca606807ee59e3f58de9e165749ddea3334a471f7f0103e8ffb4147091c",
+      "source_sha256": "aee5a59d2e76b0d22a1c4fcc8300e76e9d2f96fa20db2e168207cedad71b349f",
       "source_basis": "HEAD",
       "sections": []
     },
@@ -1811,23 +1840,7 @@
         {
           "method": "string-search",
           "symbol": "pg_dump",
-          "line": 40,
-          "seeds": [
-            "inbox"
-          ]
-        },
-        {
-          "method": "string-search",
-          "symbol": "human_model",
-          "line": 64,
-          "seeds": [
-            "inbox"
-          ]
-        },
-        {
-          "method": "string-search",
-          "symbol": "human_model",
-          "line": 66,
+          "line": 41,
           "seeds": [
             "inbox"
           ]
@@ -1837,7 +1850,7 @@
       "required": false,
       "status": "inferred",
       "priority": 1,
-      "source_sha256": "78f0baf8ae0f3338aec126f62d805bc26bf5651e70056cb3e3d860963898f872",
+      "source_sha256": "3cceebc1a390710fba4e7499196d22fa098b6c71f1767cd112ed8e6e903d0266",
       "source_basis": "HEAD"
     },
     {
@@ -1846,119 +1859,101 @@
         "document_read"
       ],
       "reasons": [
-        "local link to seed",
-        "symbol/keyword occurrence; reference semantics require verification"
+        "symbol/keyword occurrence; reference semantics require verification",
+        "local link to seed"
       ],
       "evidence": [
         {
-          "method": "markdown-link",
-          "line": 72,
-          "seed": "internal/relay/remote_mcp.go"
-        },
-        {
-          "method": "markdown-link",
-          "line": 72,
-          "seed": "internal/relay/remote_auth.go"
-        },
-        {
-          "method": "markdown-link",
-          "line": 74,
-          "seed": "compose.yaml"
-        },
-        {
-          "method": "markdown-link",
-          "line": 74,
-          "seed": "deploy/knowslink/compose.ops.yaml"
-        },
-        {
-          "method": "markdown-link",
-          "line": 76,
-          "seed": "internal/relay/store.go"
-        },
-        {
-          "method": "markdown-link",
-          "line": 80,
-          "seed": "internal/relay/remote_events.go"
-        },
-        {
-          "method": "markdown-link",
-          "line": 99,
-          "seed": "internal/relay/store.go"
-        },
-        {
-          "method": "markdown-link",
-          "line": 118,
-          "seed": "internal/relay/remote_auth.go"
-        },
-        {
-          "method": "markdown-link",
-          "line": 125,
-          "seed": "internal/relay/public_text.go"
-        },
-        {
-          "method": "markdown-link",
-          "line": 168,
-          "seed": "internal/relay/text_events.go"
-        },
-        {
-          "method": "markdown-link",
-          "line": 215,
-          "seed": "internal/relay/remote_mcp.go"
-        },
-        {
-          "method": "markdown-link",
-          "line": 223,
-          "seed": "internal/relay/remote_events.go"
-        },
-        {
-          "method": "markdown-link",
-          "line": 245,
-          "seed": "internal/relay/store.go"
-        },
-        {
           "method": "string-search",
-          "symbol": "human_model",
-          "line": 264,
+          "symbol": "interface",
+          "line": 262,
           "seeds": [
             "inbox"
           ]
+        },
+        {
+          "method": "markdown-link",
+          "line": 262,
+          "seed": ".fullops-squad/docs/design-docs/interface-design.md"
         },
         {
           "method": "string-search",
           "symbol": "relay_state",
-          "line": 264,
+          "line": 266,
+          "seeds": [
+            "inbox"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "interface",
+          "line": 339,
           "seeds": [
             "inbox"
           ]
         },
         {
           "method": "markdown-link",
-          "line": 267,
-          "seed": "internal/relay/store.go"
-        },
-        {
-          "method": "markdown-link",
-          "line": 281,
-          "seed": "internal/relay/store.go"
-        },
-        {
-          "method": "markdown-link",
-          "line": 315,
-          "seed": "compose.yaml"
-        },
-        {
-          "method": "markdown-link",
-          "line": 317,
-          "seed": "deploy/knowslink/compose.ops.yaml"
+          "line": 339,
+          "seed": ".fullops-squad/docs/design-docs/interface-design.md"
         }
       ],
       "doc_ids": [],
       "required": false,
       "status": "inferred",
       "priority": 1,
-      "source_sha256": "09f0d9919384a9c0ea7d8e7cb37098bc74473fe555fda4da6c4311f5bfcd28b1",
+      "source_sha256": "f0a6760a8cee8221fd0f8297ec8a2a0054e4579df34baf9c4ebcf35c6d2986ee",
       "source_basis": "HEAD",
       "sections": []
+    },
+    {
+      "path": "internal/database/db.go",
+      "categories": [
+        "impact_check"
+      ],
+      "reasons": [
+        "symbol/keyword occurrence; reference semantics require verification"
+      ],
+      "evidence": [
+        {
+          "method": "string-search",
+          "symbol": "interface",
+          "line": 14,
+          "seeds": [
+            "inbox"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "interface",
+          "line": 15,
+          "seeds": [
+            "inbox"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "interface",
+          "line": 16,
+          "seeds": [
+            "inbox"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "interface",
+          "line": 17,
+          "seeds": [
+            "inbox"
+          ]
+        }
+      ],
+      "doc_ids": [],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "b6213219679f628bd87a92365b7aa0c595adfecdd942318aa4af989c67d69e2b",
+      "source_basis": "HEAD"
     },
     {
       "path": "internal/database/relay.sql.go",
@@ -1987,14 +1982,6 @@
         },
         {
           "method": "string-search",
-          "symbol": "human_model",
-          "line": 55,
-          "seeds": [
-            "inbox"
-          ]
-        },
-        {
-          "method": "string-search",
           "symbol": "relay_state",
           "line": 55,
           "seeds": [
@@ -2007,54 +1994,6 @@
       "status": "inferred",
       "priority": 1,
       "source_sha256": "0d9023bca279bd92068986d56c24275deb18123f315bded80ed98ca8cc34cf19",
-      "source_basis": "HEAD"
-    },
-    {
-      "path": "internal/relay/capacity.go",
-      "categories": [
-        "direct_edit"
-      ],
-      "reasons": [
-        "explicit edit seed/diff",
-        "seed definition"
-      ],
-      "evidence": [
-        {
-          "method": "definition",
-          "symbol": "httpBody",
-          "line": 71,
-          "seed": "internal/relay/capacity.go"
-        },
-        {
-          "method": "definition",
-          "symbol": "commandBody",
-          "line": 77,
-          "seed": "internal/relay/capacity.go"
-        },
-        {
-          "method": "definition",
-          "symbol": "cleanupRequest",
-          "line": 107,
-          "seed": "internal/relay/capacity.go"
-        },
-        {
-          "method": "definition",
-          "symbol": "rateLimited",
-          "line": 297,
-          "seed": "internal/relay/capacity.go"
-        },
-        {
-          "method": "definition",
-          "symbol": "capacityResponse",
-          "line": 302,
-          "seed": "internal/relay/capacity.go"
-        }
-      ],
-      "doc_ids": [],
-      "required": false,
-      "status": "inferred",
-      "priority": 1,
-      "source_sha256": "baa2cdd1c7a5a88437c536e69a74b9997c2519681cd8168f3f59b715bcb45462",
       "source_basis": "HEAD"
     },
     {
@@ -2087,7 +2026,7 @@
       "required": false,
       "status": "inferred",
       "priority": 1,
-      "source_sha256": "b7ac154bb82ec510bed917e4c4e04dcb4392a93501781baa649ce2c7621db3b7",
+      "source_sha256": "2e010d7cbb96c59635e81de8f56a7698e45f4e698a1c49b354ada8c39f2274d9",
       "source_basis": "HEAD"
     },
     {
@@ -2112,7 +2051,7 @@
       "required": false,
       "status": "inferred",
       "priority": 1,
-      "source_sha256": "4c702fa7c115281738790c37b92102792b9fe08b2ffece347ed3c88ab2b9ffa6",
+      "source_sha256": "3b0114e536bddccd864115a4e84c715ef488d513344090e85f9fc1e2e4b36860",
       "source_basis": "HEAD"
     },
     {
@@ -2141,39 +2080,7 @@
       "source_basis": "HEAD"
     },
     {
-      "path": "internal/relay/human_messages.go",
-      "categories": [
-        "direct_edit"
-      ],
-      "reasons": [
-        "explicit edit seed/diff"
-      ],
-      "evidence": [],
-      "doc_ids": [],
-      "required": false,
-      "status": "inferred",
-      "priority": 1,
-      "source_sha256": "e04c78e7be42fb5e90803c94e47d9f6255425101577b1d12a8dd20b159761f8d",
-      "source_basis": "HEAD"
-    },
-    {
-      "path": "internal/relay/policy_pages.go",
-      "categories": [
-        "direct_edit"
-      ],
-      "reasons": [
-        "explicit edit seed/diff"
-      ],
-      "evidence": [],
-      "doc_ids": [],
-      "required": false,
-      "status": "unknown",
-      "priority": 1,
-      "source_sha256": null,
-      "source_basis": null
-    },
-    {
-      "path": "internal/relay/public_messages_integration_test.go",
+      "path": "internal/relay/ephemeral_integration_test.go",
       "categories": [
         "impact_check"
       ],
@@ -2183,10 +2090,42 @@
       "evidence": [
         {
           "method": "string-search",
-          "symbol": "cleanupRequest",
-          "line": 418,
+          "symbol": "relay_state",
+          "line": 67,
           "seeds": [
-            "internal/relay/capacity.go"
+            "inbox"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "relay_state",
+          "line": 90,
+          "seeds": [
+            "inbox"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "relay_state",
+          "line": 98,
+          "seeds": [
+            "inbox"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "relay_state",
+          "line": 104,
+          "seeds": [
+            "inbox"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "relay_state",
+          "line": 128,
+          "seeds": [
+            "inbox"
           ]
         }
       ],
@@ -2194,11 +2133,43 @@
       "required": false,
       "status": "inferred",
       "priority": 1,
-      "source_sha256": "5b8e7b52b9f90c2882d23f5ce5bf1ae75dcb31a94b639fbe9585ef6204ccd1f3",
+      "source_sha256": "279e97a35e7148ce20ccdbc884be7178c59b34c0b6829e6d091610ba08332a5f",
       "source_basis": "HEAD"
     },
     {
-      "path": "internal/relay/public_text.go",
+      "path": "internal/relay/policy/privacy.en.html",
+      "categories": [
+        "direct_edit"
+      ],
+      "reasons": [
+        "explicit edit seed/diff"
+      ],
+      "evidence": [],
+      "doc_ids": [],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "30a035d85d41a1fee2a1a6dbab113acf2c40bc1d47039f6c71dab3b370b9cab4",
+      "source_basis": "HEAD"
+    },
+    {
+      "path": "internal/relay/policy/privacy.ko.html",
+      "categories": [
+        "direct_edit"
+      ],
+      "reasons": [
+        "explicit edit seed/diff"
+      ],
+      "evidence": [],
+      "doc_ids": [],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "aa276c60b0e31e9407f8f2f1f7f90c80a012135b6888e67cdaecdc1bc5d9c270",
+      "source_basis": "HEAD"
+    },
+    {
+      "path": "internal/relay/policy_pages_test.go",
       "categories": [
         "direct_edit"
       ],
@@ -2209,65 +2180,35 @@
       "evidence": [
         {
           "method": "definition",
-          "symbol": "parsePublicText",
+          "symbol": "policyRender",
+          "line": 14,
+          "seed": "internal/relay/policy_pages_test.go"
+        },
+        {
+          "method": "definition",
+          "symbol": "TestPolicyPages",
           "line": 31,
-          "seed": "internal/relay/public_text.go"
+          "seed": "internal/relay/policy_pages_test.go"
+        },
+        {
+          "method": "definition",
+          "symbol": "TestPolicyLinks",
+          "line": 80,
+          "seed": "internal/relay/policy_pages_test.go"
+        },
+        {
+          "method": "definition",
+          "symbol": "TestPolicyPageUnsavedLanguageNotice",
+          "line": 113,
+          "seed": "internal/relay/policy_pages_test.go"
         }
       ],
       "doc_ids": [],
       "required": false,
       "status": "inferred",
       "priority": 1,
-      "source_sha256": "48baaa488e700c334e59c3109cbd85f4a0ff9228ebdf0ac5af983fcdbf4ae3a0",
+      "source_sha256": "69e7873627ddd6596bae1d6a506f466dbe650e8839ec5c9d8de98de6261ee278",
       "source_basis": "HEAD"
-    },
-    {
-      "path": "internal/relay/remote_auth.go",
-      "categories": [
-        "direct_edit"
-      ],
-      "reasons": [
-        "explicit edit seed/diff"
-      ],
-      "evidence": [],
-      "doc_ids": [],
-      "required": false,
-      "status": "unknown",
-      "priority": 1,
-      "source_sha256": null,
-      "source_basis": null
-    },
-    {
-      "path": "internal/relay/remote_events.go",
-      "categories": [
-        "direct_edit"
-      ],
-      "reasons": [
-        "explicit edit seed/diff"
-      ],
-      "evidence": [],
-      "doc_ids": [],
-      "required": false,
-      "status": "unknown",
-      "priority": 1,
-      "source_sha256": null,
-      "source_basis": null
-    },
-    {
-      "path": "internal/relay/remote_mcp.go",
-      "categories": [
-        "direct_edit"
-      ],
-      "reasons": [
-        "explicit edit seed/diff"
-      ],
-      "evidence": [],
-      "doc_ids": [],
-      "required": false,
-      "status": "unknown",
-      "priority": 1,
-      "source_sha256": null,
-      "source_basis": null
     },
     {
       "path": "internal/relay/state_migration_integration_test.go",
@@ -2281,7 +2222,7 @@
         {
           "method": "string-search",
           "symbol": "relay_state",
-          "line": 84,
+          "line": 98,
           "seeds": [
             "inbox"
           ]
@@ -2289,15 +2230,7 @@
         {
           "method": "string-search",
           "symbol": "relay_state",
-          "line": 111,
-          "seeds": [
-            "inbox"
-          ]
-        },
-        {
-          "method": "string-search",
-          "symbol": "human_model",
-          "line": 123,
+          "line": 110,
           "seeds": [
             "inbox"
           ]
@@ -2305,23 +2238,7 @@
         {
           "method": "string-search",
           "symbol": "relay_state",
-          "line": 123,
-          "seeds": [
-            "inbox"
-          ]
-        },
-        {
-          "method": "string-search",
-          "symbol": "human_model",
-          "line": 130,
-          "seeds": [
-            "inbox"
-          ]
-        },
-        {
-          "method": "string-search",
-          "symbol": "human_model",
-          "line": 155,
+          "line": 124,
           "seeds": [
             "inbox"
           ]
@@ -2329,15 +2246,7 @@
         {
           "method": "string-search",
           "symbol": "relay_state",
-          "line": 155,
-          "seeds": [
-            "inbox"
-          ]
-        },
-        {
-          "method": "string-search",
-          "symbol": "human_model",
-          "line": 160,
+          "line": 145,
           "seeds": [
             "inbox"
           ]
@@ -2345,7 +2254,7 @@
         {
           "method": "string-search",
           "symbol": "relay_state",
-          "line": 165,
+          "line": 146,
           "seeds": [
             "inbox"
           ]
@@ -2353,15 +2262,7 @@
         {
           "method": "string-search",
           "symbol": "relay_state",
-          "line": 166,
-          "seeds": [
-            "inbox"
-          ]
-        },
-        {
-          "method": "string-search",
-          "symbol": "human_model",
-          "line": 173,
+          "line": 184,
           "seeds": [
             "inbox"
           ]
@@ -2369,23 +2270,7 @@
         {
           "method": "string-search",
           "symbol": "relay_state",
-          "line": 173,
-          "seeds": [
-            "inbox"
-          ]
-        },
-        {
-          "method": "string-search",
-          "symbol": "relay_state",
-          "line": 176,
-          "seeds": [
-            "inbox"
-          ]
-        },
-        {
-          "method": "string-search",
-          "symbol": "relay_state",
-          "line": 189,
+          "line": 187,
           "seeds": [
             "inbox"
           ]
@@ -2397,30 +2282,22 @@
           "seeds": [
             "inbox"
           ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "relay_state",
+          "line": 211,
+          "seeds": [
+            "inbox"
+          ]
         }
       ],
       "doc_ids": [],
       "required": false,
       "status": "inferred",
       "priority": 1,
-      "source_sha256": "8233e295231ebafad67cfef163666ff12707dbb526c017b8309ba12ceff75160",
+      "source_sha256": "9551f8a3bcf3ba056f9d89222c3aad88113372ed8c62e5895ad102682d536f6e",
       "source_basis": "HEAD"
-    },
-    {
-      "path": "internal/relay/store.go",
-      "categories": [
-        "direct_edit"
-      ],
-      "reasons": [
-        "explicit edit seed/diff"
-      ],
-      "evidence": [],
-      "doc_ids": [],
-      "required": false,
-      "status": "unknown",
-      "priority": 1,
-      "source_sha256": null,
-      "source_basis": null
     },
     {
       "path": "internal/relay/store_retention_integration_test.go",
@@ -2444,23 +2321,32 @@
       "required": false,
       "status": "inferred",
       "priority": 1,
-      "source_sha256": "37e3a388f3bdcc92b7c9ef7a4811ec39ea9cb7cc2af61edaefb57fb1b5f1e4f3",
+      "source_sha256": "9dfbe21867ce393e29f3d66e1128a5847a5a1859db8c3d6f3d2a0bb1da28051b",
       "source_basis": "HEAD"
     },
     {
       "path": "internal/relay/text_events.go",
       "categories": [
-        "direct_edit"
+        "impact_check"
       ],
       "reasons": [
-        "explicit edit seed/diff"
+        "symbol/keyword occurrence; reference semantics require verification"
       ],
-      "evidence": [],
+      "evidence": [
+        {
+          "method": "string-search",
+          "symbol": "relay_state",
+          "line": 214,
+          "seeds": [
+            "inbox"
+          ]
+        }
+      ],
       "doc_ids": [],
       "required": false,
       "status": "inferred",
       "priority": 1,
-      "source_sha256": "a8fb5631a50a0aceaf35a410a8261ec610446e8739f3b82b831038337f4512c3",
+      "source_sha256": "d28161056cc828c9ca75f032d133d14c576823fe6b230800b391e11ef0e7a875",
       "source_basis": "HEAD"
     },
     {
@@ -2493,7 +2379,48 @@
       "required": false,
       "status": "inferred",
       "priority": 1,
-      "source_sha256": "fdea3564beff5da8a17976b6d1a52026b1fefef191595c38b85f150b5e5ed48a",
+      "source_sha256": "ac9d1b16b28bddf3150ab6ee5cd96ac5c7b593128acd4226abf50eea884ded09",
+      "source_basis": "HEAD"
+    },
+    {
+      "path": "scripts/package_plugin.py",
+      "categories": [
+        "impact_check"
+      ],
+      "reasons": [
+        "symbol/keyword occurrence; reference semantics require verification"
+      ],
+      "evidence": [
+        {
+          "method": "string-search",
+          "symbol": "interface",
+          "line": 167,
+          "seeds": [
+            "inbox"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "interface",
+          "line": 168,
+          "seeds": [
+            "inbox"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "interface",
+          "line": 194,
+          "seeds": [
+            "inbox"
+          ]
+        }
+      ],
+      "doc_ids": [],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "37171c5ba5077d6ca4f55b1a7f30b0fb8163cd5b877ae8605a8eb5809f868cd9",
       "source_basis": "HEAD"
     }
   ],
@@ -2501,35 +2428,33 @@
   "source_hash_policy": "verify before worker start; regenerate on change; completion allows implementation changes",
   "categories": {
     "direct_edit": [
-      "compose.yaml",
-      "deploy/knowslink/compose.ops.yaml",
-      "internal/relay/capacity.go",
-      "internal/relay/human_messages.go",
-      "internal/relay/policy_pages.go",
-      "internal/relay/public_text.go",
-      "internal/relay/remote_auth.go",
-      "internal/relay/remote_events.go",
-      "internal/relay/remote_mcp.go",
-      "internal/relay/store.go",
-      "internal/relay/text_events.go"
+      "internal/relay/policy/privacy.en.html",
+      "internal/relay/policy/privacy.ko.html",
+      "internal/relay/policy_pages_test.go"
     ],
     "impact_check": [
+      "adapters/.codex-plugin/plugin.json",
       "cmd/relay/main_integration_test.go",
       "db/migrations/00001_relay.sql",
       "db/migrations/00002_human_writer.sql",
       "db/migrations/00003_relay_state_json.sql",
+      "db/migrations/00004_relay_state_no_messages.sql",
       "db/queries/relay.sql",
+      "internal/database/db.go",
       "internal/database/relay.sql.go",
       "internal/relay/cleanup_flood_integration_test.go",
       "internal/relay/cleanup_unit_integration_test.go",
       "internal/relay/db_limits_integration_test.go",
-      "internal/relay/public_messages_integration_test.go",
+      "internal/relay/ephemeral_integration_test.go",
       "internal/relay/state_migration_integration_test.go",
       "internal/relay/store_retention_integration_test.go",
-      "internal/relay/text_events_integration_test.go"
+      "internal/relay/text_events.go",
+      "internal/relay/text_events_integration_test.go",
+      "scripts/package_plugin.py"
     ],
     "document_read": [
       ".fullops-squad/FULLOPS.md",
+      ".fullops-squad/docs/evaluations/qa-reports/SAR-MSG-EPHEMERAL-001-REVIEW-review/report.md",
       ".fullops-squad/handovers/to_dev.md",
       ".fullops-squad/project.md",
       ".fullops-squad/rules/common/README.md",
@@ -2537,42 +2462,42 @@
       ".fullops-squad/rules/common/security.md",
       ".fullops-squad/rules/common/testing.md",
       ".fullops-squad/contexts/ops.md",
+      ".fullops-squad/docs/deliverables/README.md",
       ".fullops-squad/docs/design-docs/architecture.md",
-      ".fullops-squad/docs/design-docs/crud-design.md",
       ".fullops-squad/docs/design-docs/data-model.md",
       ".fullops-squad/docs/design-docs/database-design.md",
       ".fullops-squad/docs/design-docs/interface-design.md",
-      ".fullops-squad/docs/design-docs/mockups/SAR-MVP-001-UI.md",
-      ".fullops-squad/docs/design-docs/mockups/service-member-ui.md",
-      ".fullops-squad/docs/design-docs/tech-stack.md",
       ".fullops-squad/docs/exec-plans/phases/SAR-BETA-001-OPS.md",
       ".fullops-squad/docs/exec-plans/phases/SAR-HUMAN-PEER-001-OPS.md",
-      ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-DEV-FIX.md",
+      ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX.md",
+      ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-DEV-FIX-2.md",
+      ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-DEV-FIX-3.md",
       ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-DEV-FIX.md",
       ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-SERVICE-OPEN-PREP.md",
       ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-SERVICE-OPS-READINESS.md",
+      ".fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-DEV.md",
       ".fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-OPS.md",
       ".fullops-squad/docs/exec-plans/phases/SAR-SSE-INSTALL-001-OAUTH-RETURN-OPS.md",
       ".fullops-squad/docs/exec-plans/phases/SAR-SSE-INSTALL-001-OPS.md",
       ".fullops-squad/docs/generated/db-schema.md",
-      ".fullops-squad/docs/operations/ops-guide.md",
       ".fullops-squad/docs/operations/transition.md",
-      ".fullops-squad/docs/operations/user-guide.md",
       ".fullops-squad/docs/planning/business-plan.md",
       ".fullops-squad/docs/planning/sources/silent-agent-relay/decisions.md",
+      ".fullops-squad/handovers/pending/SAR-VULTR-MIGRATE-001-ops.md",
+      "docs/README.md",
       "docs/architecture.md",
-      "docs/development.md",
       "docs/operations.md",
       "docs/system-design.md"
     ],
     "document_update": [
       ".fullops-squad/docs/design-docs/data-model.md",
       ".fullops-squad/docs/design-docs/database-design.md",
+      ".fullops-squad/docs/design-docs/interface-design.md",
       ".fullops-squad/docs/design-docs/module-design.md"
     ]
   },
   "input_partial": true,
-  "task_excerpt": "---\ntitle: \"SAR-MSG-EPHEMERAL-001 — 메시지·대화 사본·Dots Inbox를 Postgres 대신 휘발성 Redis에만 TTL로 두고, 영구 저장하지 않음을 명시한다\"\nstatus: draft\nupdated: 2026-11-12\nowner: dev\ntasks: [SAR-MSG-EPHEMERAL-001]\nsummary: \"메시지·대화 사본·Dots Inbox를 Postgres 대신 휘발성 Redis에만 TTL로 두고, 영구 저장하지 않음을 명시한다\"\nattempt: 233358aeaabb4ee9999c668776723109\nbase: 17acfa5e0b9800522854163b9d5df67b9870a159\nsubagent_level: standard\ntest_level: lite\n---\n\n# SAR-MSG-EPHEMERAL-001 — 메시지·대화 사본·Dots Inbox를 Postgres 대신 휘발성 Redis에만 TTL로 두고, 영구 저장하지 않음을 명시한다\n\n현재 과제는 이 역할 인박스에서 관리한다. 같은 과제의 후속은 본문에 반영하고 다른 과제는 PLANS.md에 대기시킨다. 완료하면 완료 보고 전문을 채우고 work.py finish로 지시서·결과를 로그에 보존한다.\n\n- 작성일: 2026-11-12\n- From / To: coor → dev\n- 상태: ready\n- 테스트 레벨 / 하위 에이전트 레벨: lite / standard (fullops.json 선택값)\n- 승인된 범위: 아래 `해야 할 일`의 코드·migration·문서·문구 변경, 로컬 Docker(Redis·Postgres) 시험, `fullops/dev` 브랜치 커밋.\n- 추가 승인이 필요한 행위: 운영 서버 접속·배포, main 병합·push, 기존 운영 백업 삭제, 아래 결정과 다른 보관 기한·범위.\n- 상위 의도: 없음(단일 과제)\n- 담당 repo id / 워크트리 / 브랜치: `0b08ec4c-9e3a-4613-8197-5a835e545335` / `C:/Users/shin/orca/workspaces/KnowsLink/dev` / `fullops/dev`\n- 병합 책임자 / 기본 브랜치: coor / `main`\n- 복귀 repo id / 워크트리 / 터미널 / run·task·dispatch id: `0b08ec4c-9e3a-4613-8197-5a835e545335` / `C:/Users/shin/orca/workspaces/KnowsLink/coor` / Orca preamble의 값 / preamble의 값\n\n## 현재 상황과 확인 근거\n\n- 사용자 요청: \"메시지를 postgre에 저장하지말고 redis에만 임시저장시키는 방식으로하자 db에 영구저장은 필요없을꺼같고 저장도 안한다고 명시하자\".\n- 사용자 결정(FullOps 결정 기록 `D049`~`D052`이며 산출물 ID `D01~D13`과 다르다):\n  - D049: 웹 대화 사본은 최대 1시간(현재 24시간), 전달 기한은 최대 180초를 유지한다.\n  - D050: Dots 원격 Inbox도 Redis 임시 보관으로 옮긴다. 서명키·구독 같은 연결 정보는 Postgres에 남긴다.\n  - D051: Redis는 휘발성이다(디스크 저장 없음). 재시작 때 미전달 메시지와 사본 유실을 받아들인다. 문구는 \"영구 저장하지 않음\"이다.\n  - D052: 운영 전환 때 Postgres에 남은 기존 메시지·사본·Inbox는 삭제한다.\n- 현\n[partial: read full inbox]\nostgres 컨테이너를 쓴다.\n- FullOps lint: 체크아웃 루트에서 `python3 <플러그인>/scripts/lint.py --repo C:/Users/shin/orca/workspaces/KnowsLink/dev --from 17acfa5e0b9800522854163b9d5df67b9870a159`, ERROR 0. Windows의 make 실행 불가는 Linux 결과로 대체한다.\n- 보고서: `.fullops-squad/docs/evaluations/qa-reports/SAR-MSG-EPHEMERAL-001-test/report.md`(front matter 필수). 원시 로그는 `D:/workspace/KnowsLink/.devtools/msg-ephemeral/`.\n- verifier: lite라 실행할 때만 지정한다. 독립 QA는 운영 이행 전 tester 후속으로 남긴다. 이 과제 완료는 제품 최종 수락이 아니다.\n- Docker: 시험 자원은 `kl-msgeph-` 접두어로 만들고 완료 보고 전에 지운다(`AGENTS.md` 작업 파일 위치). 남기면 이름과 이유를 적는다. 시험 중 메모리 부족 알림이 오면 재시작하지 말고 진행 범위를 적어 `ask`로 묻는다.\n- 멈추고 묻는 경우: 위 결정과 다른 보관 기한·범위가 필요할 때, 보안 보장을 유지할 수 없을 때, 설명되지 않는 검증 실패.\n\n### UI 작업의 디자인 기준과 검증\n\n해당 없음. 화면 구조는 바꾸지 않고 기존 페이지의 안내 문장만 바꾼다. 문장은 기존 페이지 형식을 따른다.\n\n## 갱신할 산출물\n\n- 갱신: D10, D07, D06 (route 추천). D07은 저장 구조, D06은 인터페이스·오류 의미, D10은 운영·보관 안내다.\n- 확인 후 필요하면 갱신: D03, D05, D08, D09, D11, D12, D13. D08(테이블 정의)은 migration이 바뀌므로 `make schema` 결과를 반영한다.\n\n## 기대 산출물\n\n- 코드·migration·시험, 갱신한 문서와 문구, 보고서 `qa-reports/SAR-MSG-EPHEMERAL-001-test/report.md`, 운영 이행 절차 초안(D12, 운영 미적용 표시).\n\n## 제약·협업·후속\n\n- 범위 밖: 운영 배포·Redis 운영 기동, main 병합·push, 기존 백업 삭제, DB 대기 개선 4~6, Rust.\n- 하위 작업은 `.fullops-squad/rules/delegation.md`의 standard 범위 안에서 정하고, 파일 소유권이 겹치지 않게 나눈다.\n- 후속(남은 일에 적을 것): ops의 운영 이행(Redis 기동, migration, 기존 메시지 삭제)은 사용자 승인 뒤, tester 독립 QA, 이전 백업 보존 정책 판단.\n\n## 완료 보고\n\n브랜치 / SHA / 변경 이유 / 검토 필요 / 검증한 것과 못 한 것 / 스스로 정한 선택과 되돌리는 방법 / 산출물·로그 링크 / 남은 일.\n항목당 1~2줄로 쓰고 상세는 `qa-reports/SAR-MSG-EPHEMERAL-001-test/report.md` 링크로 대신한다. worker_done 본문 첫 줄은 `[완료] SAR-MSG-EPHEMERAL-001 | 브랜치 fullops/dev | SHA <브랜치 HEAD>` 한 줄로 쓰고 SHA는 하나만 적는다.\nlint DEP-001이 있으면 파일별 의존성 변경 여부·필요성·표준 라이브러리 대안을 적는다.\n처리는 `fullops-work`, 회신은 `fullops-orca` 스킬을 따른다.\n",
+  "task_excerpt": "---\ntitle: SAR-MSG-EPHEMERAL-001 — 독립 리뷰 medium 1(개인정보 문구의 승인 요청 metadata)과 low 1(interface-design 장애 범위 문장)을 사실대로 고친다\nstatus: draft\nupdated: 2026-11-12\nowner: dev\ntasks: [SAR-MSG-EPHEMERAL-001]\nsummary: 독립 리뷰 medium 1(개인정보 문구의 승인 요청 metadata)과 low 1(interface-design 장애 범위 문장)을 사실대로 고친다\nattempt: 5a794a6294d44300ab18e3cb686347c6\nbase: 9a5a07bd2239d10ff794149329270c411c4bdf23\nsubagent_level: standard\ntest_level: lite\n---\n\n# SAR-MSG-EPHEMERAL-001 — 독립 리뷰 medium 1(개인정보 문구의 승인 요청 metadata)과 low 1(interface-design 장애 범위 문장)을 사실대로 고친다\n\n현재 과제는 이 역할 인박스에서 관리한다. 같은 과제의 후속은 본문에 반영하고 다른 과제는 PLANS.md에 대기시킨다. 완료하면 완료 보고 전문을 채우고 work.py finish로 지시서·결과를 로그에 보존한다.\n\n- 작성일: 2026-11-12\n- From / To: coor → dev\n- 상태: ready\n- 테스트 레벨 / 하위 에이전트 레벨: lite / standard\n- 승인된 범위: 아래 문구·문서·시험 기대값 수정과 `fullops/dev` 커밋.\n- 추가 승인이 필요한 행위: 운영 접속·배포, main 병합·push, 승인 요청(Gate)을 Redis로 옮기는 코드 변경(사용자가 D054에서 고르지 않음).\n- 상위 의도: 없음\n- 담당 repo id / 워크트리 / 브랜치: `0b08ec4c-9e3a-4613-8197-5a835e545335` / `C:/Users/shin/orca/workspaces/KnowsLink/dev` / `fullops/dev`\n- 병합 책임자 / 기본 브랜치: coor / `main`\n- 복귀 repo id / 워크트리 / 터미널 / run·task·dispatch id: `0b08ec4c-9e3a-4613-8197-5a835e545335` / `C:/Users/shin/orca/workspaces/KnowsLink/coor` / Orca preamble의 값\n\n## 현재 상황과 확인 근거\n\n- 첫 시도는 `9a5a07bd`(코드 `6fe42d32`)로 끝났다. 이전 지시서와 완료 보고는 `.fullops-squad/handovers/logs/2026-11-12_to_dev.md`에 있다.\n- 독립 리뷰 `SAR-MSG-EPHEMERAL-001-REVIEW`는 조건부 수락했다(critical/high 0). 보고서는 `.fullops-squad/docs/evaluations/qa-reports/SAR-MSG-EPHEMERAL-001-REVIEW-review/report.md`, 지적은 같은 폴더 `result.json`의 findings다.\n- 이번에 고칠 지적:\n  - medium 1(`internal/relay/policy/privacy.ko.html`·`privacy.en.html` 29줄): 개인정보처리방침이 '승인 요청'을 Redis에만 둔다고 적는다. 실제로는 본문 없는 Gate metadata(ID·Own\n[partial: read full inbox]\nRedis에만 둔다는 문장은 유지한다. 본문 없는 승인 요청·전달 metadata(ID·내용 해시·대상·상태)는 Postgres에 최대 약 1시간, 백업에 최대 14일 남는다는 문장을 따로 적는다. 실제 코드 동작과 숫자를 다시 확인해 적는다.\n- [ ] `policy_pages_test.go` 기대값을 맞추고, 같은 오류가 있는 다른 안내 문장을 함께 고친다.\n- [ ] interface-design과 dev 보고서의 Redis 장애 범위 문장을 '메시지 기록이 있거나 새로 쓰는 transaction'으로 고친다.\n- [ ] 기존 보고서에 수정 절(무엇을, 어떤 근거로, 검증 결과)을 덧붙인다.\n\n예상 규모: 문서·HTML 20~60줄, 시험 10줄 안팎.\n\n## 완료 기준과 검증\n\n- 개인정보처리방침 ko·en이 Gate·전달 metadata의 Postgres·백업 보관을 사실대로 적고, 메시지 본문에 대한 '영구 저장하지 않음'은 그대로 남는다.\n- `go test ./internal/relay/ -run 'Policy|Landing|Human|Member'`가 통과한다. 변경이 시험과 문서뿐이면 Linux 전체 gate는 다시 돌리지 않아도 된다. 다른 Go 코드를 바꾸면 Linux `make lint`·`make test`를 최종 SHA에서 실행한다.\n- FullOps lint: `python3 <플러그인>/scripts/lint.py --repo C:/Users/shin/orca/workspaces/KnowsLink/dev --from 9a5a07bd2239d10ff794149329270c411c4bdf23`, ERROR 0.\n- verifier: lite라 실행할 때만 지정한다. 이 과제 완료는 제품 최종 수락이 아니다.\n- Docker를 쓰면 `kl-msgeph-` 접두어로 만들고 완료 보고 전에 지운다.\n\n### UI 작업의 디자인 기준과 검증\n\n해당 없음. 정책 페이지의 문장만 바꾸고 화면 구조는 그대로다.\n\n## 갱신할 산출물\n\n- D07(저장 구조 문장 확인), D06(interface-design 장애 범위 문장), D10(운영 안내 문구 확인). 바꾸지 않은 ID는 \"확인만\"으로 적는다.\n\n## 기대 산출물\n\n- 수정한 정책 HTML ko·en, 시험, 문서, 보고서 추가 절.\n\n## 제약·협업·후속\n\n- 범위 밖: 리뷰 medium 2(Redis 한도 도달 시 축소 불가)는 coor가 PLANS.md 후속으로 등재한다. 이번 과제에서 고치지 않는다.\n- 범위 밖: 운영 배포, main 병합·push, Gate 저장 위치 변경.\n\n## 이전 완료 기록\n\n- .fullops-squad/handovers/logs/2026-11-12_to_dev.md\n\n## 완료 보고\n\n브랜치 / SHA / 변경 이유 / 검토 필요 / 검증한 것과 못 한 것 / 스스로 정한 선택과 되돌리는 방법 / 산출물·로그 링크 / 남은 일.\n항목당 1~2줄로 쓰고 상세는 `qa-reports/SAR-MSG-EPHEMERAL-001-test/report.md` 링크로 대신한다. worker_done 본문 첫 줄은 `[완료] SAR-MSG-EPHEMERAL-001 | 브랜치 fullops/dev | SHA <브랜치 HEAD>` 한 줄로 쓰고 SHA는 하나만 적는다.\nlint DEP-001이 있으면 파일별 의존성 변경 여부·필요성·표준 라이브러리 대안을 적는다. 의존성 변경이 없으면 그 근거를 적는다.\n처리는 `fullops-work`, 회신은 `fullops-orca` 스킬을 따른다.\n",
   "instruction": ".fullops-squad/handovers/to_dev.md",
   "partial": true,
   "unknown": [
@@ -2595,30 +2520,6 @@
     {
       "path": ".fullops-squad/docs/operations/ops-guide.md",
       "reason": "missing, oversized, sensitive or invalid; manual inspection"
-    },
-    {
-      "path": "compose.yaml",
-      "reason": "missing, oversized, sensitive or invalid; manual inspection"
-    },
-    {
-      "path": "internal/relay/policy_pages.go",
-      "reason": "missing, oversized, sensitive or invalid; manual inspection"
-    },
-    {
-      "path": "internal/relay/remote_auth.go",
-      "reason": "missing, oversized, sensitive or invalid; manual inspection"
-    },
-    {
-      "path": "internal/relay/remote_events.go",
-      "reason": "missing, oversized, sensitive or invalid; manual inspection"
-    },
-    {
-      "path": "internal/relay/remote_mcp.go",
-      "reason": "missing, oversized, sensitive or invalid; manual inspection"
-    },
-    {
-      "path": "internal/relay/store.go",
-      "reason": "missing, oversized, sensitive or invalid; manual inspection"
     }
   ],
   "producer_status": {},
@@ -2626,33 +2527,35 @@
   "worker_decisions_mode": "annotations; original recommendations preserved",
   "fallback": "bounded string/definition search; dynamic references and language server semantics unverified",
   "ubiquitous_terms": [
-    "Dots",
-    "Postgres"
+    "design",
+    "medium",
+    "metadata"
   ],
   "context_paths": [
-    "docs/system-design.md",
     ".fullops-squad/docs/generated/db-schema.md",
     ".fullops-squad/docs/design-docs/database-design.md",
-    "internal/relay/capacity.go",
+    "docs/system-design.md",
+    "internal/relay/policy_pages_test.go",
+    "docs/architecture.md",
     ".fullops-squad/docs/design-docs/architecture.md",
     ".fullops-squad/docs/design-docs/data-model.md",
-    ".fullops-squad/docs/design-docs/crud-design.md",
+    "docs/README.md",
     ".fullops-squad/docs/design-docs/interface-design.md",
-    ".fullops-squad/docs/design-docs/mockups/SAR-MVP-001-UI.md",
-    ".fullops-squad/docs/design-docs/mockups/service-member-ui.md",
     ".fullops-squad/docs/design-docs/module-design.md",
-    ".fullops-squad/docs/design-docs/tech-stack.md",
-    ".fullops-squad/docs/operations/ops-guide.md",
     ".fullops-squad/docs/operations/transition.md",
-    ".fullops-squad/docs/operations/user-guide.md",
     ".fullops-squad/docs/planning/business-plan.md",
-    "docs/development.md",
-    "internal/relay/public_text.go",
-    "compose.yaml",
-    "deploy/knowslink/compose.ops.yaml"
+    "internal/relay/policy/privacy.en.html",
+    "internal/relay/policy/privacy.ko.html",
+    "internal/relay/state_migration_integration_test.go",
+    "db/migrations/00003_relay_state_json.sql",
+    "internal/relay/ephemeral_integration_test.go",
+    "internal/database/db.go",
+    ".fullops-squad/contexts/ops.md",
+    ".fullops-squad/docs/exec-plans/phases/SAR-HUMAN-PEER-001-OPS.md"
   ],
   "required_paths": [
     ".fullops-squad/FULLOPS.md",
+    ".fullops-squad/docs/evaluations/qa-reports/SAR-MSG-EPHEMERAL-001-REVIEW-review/report.md",
     ".fullops-squad/handovers/to_dev.md",
     ".fullops-squad/project.md",
     ".fullops-squad/rules/common/README.md",
@@ -2662,38 +2565,34 @@
   ],
   "optional_context_paths": [],
   "remaining_context_paths": [
-    "internal/relay/human_messages.go",
-    "internal/relay/policy_pages.go",
-    "internal/relay/remote_auth.go",
-    "internal/relay/remote_events.go",
-    "internal/relay/remote_mcp.go",
-    "internal/relay/store.go",
-    "internal/relay/text_events.go",
-    "internal/relay/state_migration_integration_test.go",
-    "db/migrations/00003_relay_state_json.sql",
-    "db/queries/relay.sql",
-    "internal/database/relay.sql.go",
-    ".fullops-squad/contexts/ops.md",
-    ".fullops-squad/docs/exec-plans/phases/SAR-HUMAN-PEER-001-OPS.md",
     ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-SERVICE-OPS-READINESS.md",
     "db/migrations/00001_relay.sql",
-    "docs/architecture.md",
-    "docs/operations.md",
+    "db/migrations/00004_relay_state_no_messages.sql",
+    "db/queries/relay.sql",
+    "internal/database/relay.sql.go",
+    "scripts/package_plugin.py",
     ".fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-OPS.md",
     ".fullops-squad/docs/exec-plans/phases/SAR-SSE-INSTALL-001-OAUTH-RETURN-OPS.md",
     ".fullops-squad/docs/exec-plans/phases/SAR-SSE-INSTALL-001-OPS.md",
     "internal/relay/cleanup_flood_integration_test.go",
     "internal/relay/text_events_integration_test.go",
+    ".fullops-squad/docs/deliverables/README.md",
     ".fullops-squad/docs/exec-plans/phases/SAR-BETA-001-OPS.md",
-    ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-DEV-FIX.md",
+    ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX.md",
+    ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-DEV-FIX-2.md",
+    ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-DEV-FIX-3.md",
     ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-DEV-FIX.md",
     ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-SERVICE-OPEN-PREP.md",
+    ".fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-DEV.md",
     ".fullops-squad/docs/planning/sources/silent-agent-relay/decisions.md",
+    ".fullops-squad/handovers/pending/SAR-VULTR-MIGRATE-001-ops.md",
+    "adapters/.codex-plugin/plugin.json",
     "cmd/relay/main_integration_test.go",
     "db/migrations/00002_human_writer.sql",
+    "docs/operations.md",
     "internal/relay/cleanup_unit_integration_test.go",
     "internal/relay/db_limits_integration_test.go",
-    "internal/relay/public_messages_integration_test.go",
-    "internal/relay/store_retention_integration_test.go"
+    "internal/relay/store_retention_integration_test.go",
+    "internal/relay/text_events.go"
   ]
 }

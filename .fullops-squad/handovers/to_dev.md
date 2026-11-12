@@ -88,6 +88,42 @@ test_level: lite
 
 - .fullops-squad/handovers/logs/2026-11-12_to_dev.md
 
+<!-- fullops-packet:start -->
+### 탐색 근거와 읽을 구간
+
+정본: `.fullops-squad/docs/evaluations/jev/SAR-MSG-EPHEMERAL-001-packet.json` / SHA `b81218841a6b14bdc5ef8e2c0521667978cb561c` / partial=True
+- `.fullops-squad/FULLOPS.md` (document_read) · 줄 전체/미확인 · inferred · 필수
+- `.fullops-squad/docs/evaluations/qa-reports/SAR-MSG-EPHEMERAL-001-REVIEW-review/report.md` (document_read) · 줄 39, 45, 52, 82 · inferred · 필수
+- `.fullops-squad/handovers/to_dev.md` (document_read) · 줄 2, 7, 14, 34, 34, 35, 48, 57, 76 · inferred · 필수
+- `.fullops-squad/project.md` (document_read) · 줄 전체/미확인 · inferred · 필수
+- `.fullops-squad/rules/common/README.md` (document_read) · 줄 전체/미확인 · inferred · 필수
+- `.fullops-squad/rules/common/coding-style.md` (document_read) · 줄 전체/미확인 · inferred · 필수
+- `.fullops-squad/rules/common/security.md` (document_read) · 줄 전체/미확인 · inferred · 필수
+- `.fullops-squad/rules/common/testing.md` (document_read) · 줄 전체/미확인 · inferred · 필수
+- `.fullops-squad/contexts/ops.md` (document_read) · 줄 81, 87, 89 · inferred
+- `.fullops-squad/docs/design-docs/architecture.md` (document_read) · 줄 69 · inferred
+- `.fullops-squad/docs/design-docs/data-model.md` (document_read, document_update) · 줄 61 · inferred
+- `.fullops-squad/docs/design-docs/database-design.md` (document_read, document_update) · 줄 18, 63, 81, 98 · inferred
+- `.fullops-squad/docs/design-docs/interface-design.md` (document_update, document_read) · 줄 전체/미확인 · inferred
+- `.fullops-squad/docs/design-docs/module-design.md` (document_update) · 줄 전체/미확인 · unknown
+- `.fullops-squad/docs/exec-plans/phases/SAR-HUMAN-PEER-001-OPS.md` (document_read) · 줄 25, 33, 36 · inferred
+- `.fullops-squad/docs/generated/db-schema.md` (document_read) · 줄 22, 28, 47, 56, 57, 58, 59, 60, 65, 66, 74, 83, 89, 90 · inferred
+- `.fullops-squad/docs/operations/transition.md` (document_read) · 줄 전체/미확인 · inferred
+- `.fullops-squad/docs/planning/business-plan.md` (document_read) · 줄 전체/미확인 · inferred
+- `db/migrations/00003_relay_state_json.sql` (impact_check) · 줄 4, 5, 6, 7, 8, 13, 14, 22 · inferred
+- `docs/README.md` (document_read) · 줄 35, 35 · inferred
+- `docs/architecture.md` (document_read) · 줄 96, 96, 120 · inferred
+- `docs/system-design.md` (document_read) · 줄 262, 262, 266, 339, 339 · inferred
+- `internal/database/db.go` (impact_check) · 줄 14, 15, 16, 17 · inferred
+- `internal/relay/ephemeral_integration_test.go` (impact_check) · 줄 67, 90, 98, 104, 128 · inferred
+- `internal/relay/policy/privacy.en.html` (direct_edit) · 줄 전체/미확인 · inferred
+- `internal/relay/policy/privacy.ko.html` (direct_edit) · 줄 전체/미확인 · inferred
+- `internal/relay/policy_pages_test.go` (direct_edit) · 줄 14, 31, 80, 113 · inferred
+- `internal/relay/state_migration_integration_test.go` (impact_check) · 줄 98, 110, 124, 145, 146, 184, 187, 200, 211 · inferred
+나머지 참조 후보 29건은 정본 JSON의 remaining_context_paths에 있다. 완료 검사(packet-outcomes)는 위 목록만 요구한다.
+미확인 5건: route: task/role/SHA/attempt/instruction differs or absent; regenerate/bind route; .fullops-squad/PLANS.md: missing, oversized, sensitive or invalid; manual inspection; .fullops-squad/docs/design-docs/mockups/service-member-ui.md: missing, oversized, sensitive or invalid; manual inspection; .fullops-squad/docs/design-docs/module-design.md: missing, oversized, sensitive or invalid; manual inspection; .fullops-squad/docs/operations/ops-guide.md: missing, oversized, sensitive or invalid; manual inspection. 정본의 unknown/producer_status 확인. bounded string/definition search; dynamic references and language server semantics unverified
+<!-- fullops-packet:end -->
+
 ## 완료 보고
 
 브랜치 / SHA / 변경 이유 / 검토 필요 / 검증한 것과 못 한 것 / 스스로 정한 선택과 되돌리는 방법 / 산출물·로그 링크 / 남은 일.
