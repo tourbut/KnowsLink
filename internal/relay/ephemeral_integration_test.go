@@ -101,6 +101,9 @@ func TestMessagesLiveOnlyInRedis(t *testing.T) {
 	}
 
 	// A Redis restart loses the copy: the next transaction sees an empty store and new records work again.
+	if err = pool.QueryRow(ctx, "SELECT state->>'Ephemeral' FROM relay_state").Scan(&name); err != nil || name == "" {
+		t.Fatal("row lost its Redis pointer", err)
+	}
 	if err = testRedis().Del(ctx, ephemeralKey(name)).Err(); err != nil {
 		t.Fatal(err)
 	}

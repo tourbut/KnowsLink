@@ -18,7 +18,18 @@ services:
   # noeviction refuses writes at the memory cap, so the relay answers unavailable instead of silently dropping messages.
   redis:
     image: redis:8.10.2-alpine@sha256:9f8d2d789b9a1d1e3f283f979aa9cbf393373806472e1ccd460e2f9c869b833b
-    command: [redis-server, --save, "", --appendonly, "no", --protected-mode, "no", --maxmemory, 128mb, --maxmemory-policy, noeviction]
+    command:
+      - redis-server
+      - --save
+      - ""
+      - --appendonly
+      - "no"
+      - --protected-mode
+      - "no"
+      - --maxmemory
+      - 128mb
+      - --maxmemory-policy
+      - noeviction
     user: "999:1000"
     networks: [database]
     healthcheck:

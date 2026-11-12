@@ -116,9 +116,11 @@ func TestApprovalSummaryBoundaries(t *testing.T) {
 			{"expired", "만료", func(st *State) { st.Gates[gateID].Exp = time.Now().Add(-time.Second) }},
 		} {
 			var saved State
+			var envelope json.RawMessage // messages live in Redis, so the Postgres encoding below does not carry them
 			f.mutate(func(st *State) {
 				b, _ := json.Marshal(st)
 				_ = json.Unmarshal(b, &saved)
+				envelope = append(json.RawMessage(nil), st.Messages[firstID].Envelope...)
 				c.breakIt(st)
 			})
 			page := bob.do("GET", "/home/gates/"+gateID, nil).Body.String()
@@ -138,7 +140,7 @@ func TestApprovalSummaryBoundaries(t *testing.T) {
 			}
 			f.mutate(func(st *State) {
 				st.Gates[gateID].Digest, st.Gates[gateID].Exp, st.Gates[gateID].State = saved.Gates[gateID].Digest, saved.Gates[gateID].Exp, "pending"
-				st.Messages[firstID].Envelope = saved.Messages[firstID].Envelope
+				st.Messages[firstID].Envelope = envelope
 				st.Pairs[pairID("agent_a", "agent_b")].State = saved.Pairs[pairID("agent_a", "agent_b")].State
 			})
 		}

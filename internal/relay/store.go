@@ -206,31 +206,37 @@ func (s *Service) transaction(ctx context.Context, operation func(*State, time.T
 		s.reclaim(state)
 		state.Rates = rates
 	}
+	previous := state.Ephemeral
 	replaced, err := writeEphemeral(ctx, s.Redis, state, stored)
 	if err != nil {
 		return nil, err
 	}
-	raw, err := json.Marshal(state)
-	if err != nil {
+	// A copy written for a commit that surely did not happen would otherwise stay in Redis until its TTL.
+	// A Commit error is ambiguous, so that copy is kept and the TTL bounds it.
+	abandon := func() (any, error) {
+		if state.Ephemeral != previous {
+			retire(context.WithoutCancel(ctx), s.Redis, state.Ephemeral)
+		}
 		return nil, fault("unavailable")
 	}
-	if encodedNUL(raw) {
-		return nil, fault("unavailable")
+	raw, err := json.Marshal(state)
+	if err != nil || encodedNUL(raw) {
+		return abandon()
 	}
 	changed, err := q.SaveRelay(ctx, database.SaveRelayParams{State: raw, HumanModel: int32(state.HumanModel), Clock: row.Now, Epoch: row.Epoch})
 	if err != nil || changed != 1 {
-		return nil, fault("unavailable")
+		return abandon()
 	}
 	if beforeEvents != state.eventVersion(now) {
 		// Empty notifications cross processes and become visible only with this commit.
 		if _, err = tx.Exec(ctx, "SELECT pg_notify('knowslink_text', '')"); err != nil {
-			return nil, fault("unavailable")
+			return abandon()
 		}
 	}
 	if err = tx.Commit(ctx); err != nil {
 		return nil, fault("unavailable")
 	}
-	retire(ctx, s.Redis, replaced)
+	retire(context.WithoutCancel(ctx), s.Redis, replaced)
 	for _, token := range orphans {
 		s.orphans.Delete(token)
 	}
