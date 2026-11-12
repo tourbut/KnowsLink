@@ -135,7 +135,7 @@ func TestHumanPostgres(t *testing.T) {
 	}
 	s.mutateState(t, func(st *State) { st.Rates = map[string][]time.Time{} })
 	chat := a.do("GET", conversationURL(aa, ab), nil)
-	expect(t, chat, 200, "내가 작성", "상대가 작성", "전달됨", "24시간")
+	expect(t, chat, 200, "내가 작성", "상대가 작성", "전달됨", "최대 1시간")
 	if strings.Contains(chat.Body.String(), "읽음") {
 		t.Fatal("invented read receipt")
 	}
@@ -171,6 +171,12 @@ func TestHumanPostgres(t *testing.T) {
 	expect(t, a.do("POST", "/home/friends/decision", decision), 303)
 	publicCall(t, h, "/v1/text/persist", tokens["a"], map[string]string{"id": pending, "token": lease["lease_token"].(string)}, 409)
 	expect(t, a.do("GET", conversationURL(aa, ab), nil), 200, "지금은 메시지를 보낼 수 없습니다", "합성 왕복")
+	// Web sends, agent receipts and the signed agent text reached the web copy but no Postgres table (D051).
+	for _, text := range []string{"합성 왕복", "합성 멱등", "합성 agent 작성", "합성 자기 연결"} {
+		if postgresHolds(t, pool, text) {
+			t.Fatalf("Postgres holds message text %q", text)
+		}
+	}
 	form.Set("text", "after removal")
 	expect(t, a.do("POST", "/home/conversation/send", form), 403)
 	// The schema trigger rejects the old writer and preserves already committed deny state.
@@ -240,7 +246,7 @@ func TestHumanLegacyPostgres(t *testing.T) {
 	if _, err := pool.Exec(ctx, `INSERT INTO relay_state(singleton,state) VALUES(true,$1)`, raw); err != nil {
 		t.Fatal(err)
 	}
-	s := &Service{Pool: pool}
+	s := &Service{Redis: testRedis(), Pool: pool}
 	_, err = s.transaction(ctx, func(st *State, at time.Time) (any, error) {
 		if st.HumanModel != 1 || st.Members[ids["a"]].SelfConnect || st.Members[ids["a"]].FriendCode == "" || st.Agents["agent_a1"].Keys["key1"].Credential != legacy.Agents["agent_a1"].Keys["key1"].Credential {
 			t.Fatal("SQL migration changed key/identity or widened consent")

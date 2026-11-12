@@ -13,6 +13,8 @@ import (
 	_ "time/tzdata" // the runtime image has no zoneinfo; schedule.commit validates IANA zones with LoadLocation
 
 	"github.com/jackc/pgx/v5/pgxpool"
+	"github.com/redis/go-redis/v9"
+	"github.com/redis/go-redis/v9/maintnotifications"
 	"github.com/tourbut/KnowsLink/internal/config"
 	"github.com/tourbut/KnowsLink/internal/relay"
 )
@@ -28,6 +30,10 @@ func main() {
 
 func run(ctx context.Context) error {
 	databaseURL, err := config.DatabaseURL()
+	if err != nil {
+		return err
+	}
+	redisURL, err := config.RedisURL()
 	if err != nil {
 		return err
 	}
@@ -50,13 +56,34 @@ func run(ctx context.Context) error {
 	if err != nil {
 		return errors.New("database ping failed")
 	}
+	redisOptions, err := redis.ParseURL(redisURL)
+	if err != nil {
+		return errors.New("redis configuration failed")
+	}
+	redisOptions.DisableIdentity = true
+	// A single self-hosted Redis sends no maintenance notices; skip the handshake probe.
+	redisOptions.MaintNotificationsConfig = &maintnotifications.Config{Mode: maintnotifications.ModeDisabled}
+	rdb := redis.NewClient(redisOptions)
+	defer func() { _ = rdb.Close() }()
+	pingCtx, cancel = context.WithTimeout(ctx, 5*time.Second)
+	err = rdb.Ping(pingCtx).Err()
+	cancel()
+	if err != nil {
+		return errors.New("redis ping failed")
+	}
 	mux := http.NewServeMux()
-	mux.Handle("/healthz", healthHandler(pool.Ping))
+	// Ready means both stores answer: without Redis every relay transaction is unavailable.
+	mux.Handle("/healthz", healthHandler(func(ctx context.Context) error {
+		if err := pool.Ping(ctx); err != nil {
+			return err
+		}
+		return rdb.Ping(ctx).Err()
+	}))
 	testAgents, err := relay.TestAgentAllowlist(os.Getenv("KNOWSLINK_TEST_AGENTS"))
 	if err != nil {
 		return err
 	}
-	service := &relay.Service{Pool: pool, Stopping: ctx, TestAgents: testAgents, SyntheticSignup: os.Getenv("KNOWSLINK_SYNTHETIC_SIGNUP") == "1", InstallDir: os.Getenv("KNOWSLINK_INSTALL_DIR")}
+	service := &relay.Service{Pool: pool, Redis: rdb, Stopping: ctx, TestAgents: testAgents, SyntheticSignup: os.Getenv("KNOWSLINK_SYNTHETIC_SIGNUP") == "1", InstallDir: os.Getenv("KNOWSLINK_INSTALL_DIR")}
 	googleCtx, googleCancel := context.WithTimeout(ctx, 6*time.Second)
 	service.Google, err = relay.ConfigureGoogle(googleCtx, os.Getenv("KNOWSLINK_GOOGLE_CLIENT_ID"), os.Getenv("KNOWSLINK_GOOGLE_CLIENT_SECRET"), os.Getenv("KNOWSLINK_GOOGLE_REDIRECT_URL"))
 	googleCancel()

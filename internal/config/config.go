@@ -22,6 +22,19 @@ func DatabaseURL() (string, error) {
 	return value, nil
 }
 
+// RedisURL names the volatile message store; it is required because messages are never written to Postgres.
+func RedisURL() (string, error) {
+	value := os.Getenv("REDIS_URL")
+	if strings.TrimSpace(value) == "" {
+		return "", errors.New("REDIS_URL is required")
+	}
+	parsed, err := url.Parse(value)
+	if err != nil || (parsed.Scheme != "redis" && parsed.Scheme != "rediss") || parsed.Hostname() == "" {
+		return "", errors.New("REDIS_URL must be a Redis URL with host")
+	}
+	return value, nil
+}
+
 func ListenAddress() (string, error) {
 	value := os.Getenv("RELAY_ADDR")
 	if value == "" {

@@ -165,11 +165,7 @@ func TestRemoteGoogleBindingAndSignedInbox(t *testing.T) {
 	if len(i.Inbox) != 1 || st.Messages[firstID].Receipt.State != "delivered" || st.Messages[firstID].Envelope != nil {
 		t.Fatal("missing durable private Inbox before relay ACK")
 	}
-	raw, _ := json.Marshal(st)
-	restarted := newState()
-	if err := json.Unmarshal(raw, restarted); err != nil {
-		t.Fatal(err)
-	}
+	restarted := restart(t, st)
 	var restored *remoteInstall
 	for _, candidate := range restarted.Remote.Installs {
 		restored = candidate

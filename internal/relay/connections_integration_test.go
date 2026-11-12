@@ -100,7 +100,7 @@ func TestPublicAgentHTTP(t *testing.T) {
 		connected = publicCall(t, s.Handler(), "/v1/connect/complete", "", map[string]string{"token": token, "client": supportedClient, "proof": proof}, 200)
 		fresh := connected["credential"].(string)
 		// New service instance on the same database retains the key-specific denial.
-		restarted := (&Service{Pool: pool}).Handler()
+		restarted := (&Service{Redis: testRedis(), Pool: pool}).Handler()
 		for _, path := range []string{"pull", "persist", "ack", "claim", "authorize", "gate-consume"} {
 			publicCall(t, restarted, "/v1/"+path, old, map[string]string{}, 401)
 		}
@@ -255,7 +255,7 @@ func TestPublicAgentHTTP(t *testing.T) {
 			stale.cookies[sessionCookie] = "stale-session"
 		}
 		// A restarted relay reads the committed budget: invalid-session GETs were not rolled back.
-		stale.h = (&Service{Pool: pool}).Handler()
+		stale.h = (&Service{Redis: testRedis(), Pool: pool}).Handler()
 		for _, path := range []string{"/home/connections/unknown", "/home"} {
 			expect(t, stale.do("GET", path, nil), 429, "이후 다시 시도")
 		}
@@ -314,7 +314,7 @@ func TestPublicAgentHTTP(t *testing.T) {
 		if wins != 8 || len(live) != 8 || len(revoked) != 6 {
 			t.Fatal("revoked records refused", wins, len(live), len(revoked))
 		}
-		a.h = (&Service{Pool: pool}).Handler()
+		a.h = (&Service{Redis: testRedis(), Pool: pool}).Handler()
 		expect(t, a.do("POST", "/home/agents", url.Values{"name": {"합성 도우미"}}), 303)
 		// Revoking adds no record.
 		expect(t, a.do("POST", "/home/agent-revoke", url.Values{"agent": {live[0]}}), 303)
@@ -393,7 +393,7 @@ func TestPublicAgentHTTP(t *testing.T) {
 		if wins != 5 {
 			t.Fatal("rate race", wins)
 		}
-		a.h = (&Service{Pool: pool}).Handler()
+		a.h = (&Service{Redis: testRedis(), Pool: pool}).Handler()
 		expect(t, a.do("POST", "/home/agents", url.Values{"name": {"합성 도우미"}}), 429, "오늘 새 에이전트를 많이 만들었습니다", "기존 에이전트는 그대로 쓸 수 있습니다")
 		var first string
 		s.mutateState(t, func(st *State) {

@@ -2,9 +2,9 @@
 id: D11
 title: 사용자설명서
 status: review
-updated: 2026-10-26
+updated: 2026-11-12
 owner: dev
-tasks: [SAR-AUTOSETUP-001-DEV, SAR-BETA-001-OPS, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-AGENTS-001-FIX-TESTER, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SERVICE-UI-001-DEV, SAR-HUMAN-PEER-001, SAR-HUMAN-PEER-001-DEV, SAR-HUMAN-PEER-001-OPS, SAR-LANDING-GUIDE-001, SAR-LANDING-GUIDE-001-DEV, SAR-SESSION-PEER-001-DESIGN, SAR-UX-ISSUES-002-RECEIPT-DEV, SAR-SESSION-PEER-001-DEV, SAR-SESSION-PEER-001-DEV-FIX-2, SAR-UX-ISSUES-002-NAMES-DEV, SAR-UX-ISSUES-002-APPROVAL-DEV, SAR-UX-ISSUES-002-CONNECT-DEV, SAR-UX-ISSUES-002-LANG-DEV, SAR-SCHEDULE-001-DEV, SAR-PUBLISH-001-DEV, SAR-PUBLISH-002-DOCS, SAR-CODEX-RECV-001-DOCS, SAR-CONNECT-SIMPLE-001-DEV]
+tasks: [SAR-AUTOSETUP-001-DEV, SAR-BETA-001-OPS, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-AGENTS-001-FIX-TESTER, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SERVICE-UI-001-DEV, SAR-HUMAN-PEER-001, SAR-HUMAN-PEER-001-DEV, SAR-HUMAN-PEER-001-OPS, SAR-LANDING-GUIDE-001, SAR-LANDING-GUIDE-001-DEV, SAR-SESSION-PEER-001-DESIGN, SAR-UX-ISSUES-002-RECEIPT-DEV, SAR-SESSION-PEER-001-DEV, SAR-SESSION-PEER-001-DEV-FIX-2, SAR-UX-ISSUES-002-NAMES-DEV, SAR-UX-ISSUES-002-APPROVAL-DEV, SAR-UX-ISSUES-002-CONNECT-DEV, SAR-UX-ISSUES-002-LANG-DEV, SAR-SCHEDULE-001-DEV, SAR-PUBLISH-001-DEV, SAR-PUBLISH-002-DOCS, SAR-CODEX-RECV-001-DOCS, SAR-CONNECT-SIMPLE-001-DEV, SAR-MSG-EPHEMERAL-001]
 summary: 사람 친구·이름·대화의 새 제품 흐름과 과거 후보 사용 절차를 구분한다
 ---
 
@@ -164,7 +164,7 @@ Codex는 '도착이 보이는 작업 세션 수신'으로 지원하지 않는다
 4. Grok는 [신규 설치](../../../README.md#grok-신규-설치)의 Bot 컴퓨터·Command MCP 절차를 따른다. Dots는 [신규 연결](../../../README.md#dots-신규-연결)의 Remote HTTPS MCP·Google 로그인·서버 보관 동의를 따른다.
 5. 친구가 직접 공유한 코드로 요청하고 상대의 수락을 기다린다. 수락은 서로의 현재·향후 활성 에이전트 연결에 대한 동의다. 자기 에이전트끼리는 친구 요청이 필요 없다. 기존 회원은 전체 자기 연결에 한 번 동의한다.
 6. 새 대화에서 친구와 내 발신·상대 수신 에이전트를 고른다. 웹에서 직접 쓰거나 연결한 클라이언트에 발송을 요청한다. 매 발송의 대상·본문을 확인하고 승인한다.
-7. 대기와 전달됨을 확인한다. 전달됨은 읽음·업무 실행·답장 완료가 아니다. 웹 사본은 수락 후 최대24시간이며 클라이언트·백업 사본은 별도다.
+7. 대기와 전달됨을 확인한다. 전달됨은 읽음·업무 실행·답장 완료가 아니다. 웹 사본은 수락 후 최대 1시간 서버 메모리(Redis)에만 있으며 영구 저장하지 않는다. 클라이언트가 기기에 보관한 사본은 별도다.
 8. 로그인한 상태에서도 첫페이지 안내를 읽을 수 있다. '대화로 이동'은 회원 공간으로 들어간다. 설정의 '서비스 안내'에서 다시 첫페이지로 돌아온다.
 
 이미 연결했다면 [Grok 업데이트](../../../README.md#grok-기존-설치-업데이트) 또는 [Dots 업데이트](../../../README.md#dots-기존-연결-업데이트)를 따른다. 기존 키·agent·친구를 새로 만들거나 다른 호스트로 키를 복사하지 않는다.
@@ -183,7 +183,7 @@ Codex는 '도착이 보이는 작업 세션 수신'으로 지원하지 않는다
 4. 받은 요청을 수락한다. 서로의 현재·앞으로 추가할 활성 에이전트가 연결된다는 안내를 확인한다. 수락 전에는 상대 에이전트 목록을 볼 수 없다.
 5. '새 대화'에서 친구, 내 발신 에이전트, 상대 수신 에이전트를 고른다. 같은 회원의 자기 에이전트끼리는 친구 요청이 필요 없다. 기존 회원은 새 자기 연결 방식에 한 번 동의한다.
 6. 대상 이름을 확인하고 메시지를 작성한 뒤 '보내기'를 누른다. 대기는 서버 수락이며 전달됨은 상대 보관·ACK 완료다. 읽음·처리 완료·승인과 다르다. 새로고침으로 실제 수신 상태를 확인한다.
-7. 새 대화 원문은 수락 후 최대 24시간 뒤 화면과 서버 대화 저장소에서 사라진다. 전달 큐 기한은 최대 180초다. 기한 만료는 전달 성공이 아니다. 백업과 상대 클라이언트 사본까지 즉시 영구 삭제되지는 않는다.
+7. 새 대화 원문은 수락 후 최대 1시간 뒤 화면과 서버 메모리(Redis)에서 사라진다. 서버에 영구 저장하지 않으며 서버 재시작 때 더 일찍 사라질 수 있다. 전달 큐 기한은 최대 180초다. 기한 만료는 전달 성공이 아니다. 상대 클라이언트가 기기에 보관한 사본은 그 기기에 남는다.
 8. '친구 관리'에서 해제하거나 차단한다. 새 목록 조회와 전달은 즉시 막힌다. 본인이 이미 참여한 과거 대화 복사본만 남은 보존 기간 읽는다. 차단 해제만으로 친구가 복구되지 않는다.
 9. 기존 에이전트 관계는 '기존 연결'에서 원래 두 에이전트만 유지한다. 두 사람 전체 연결로 바꾸려면 새 친구 요청을 서로 수락한다. 이미 지운 메시지를 복원하지 않는다.
 

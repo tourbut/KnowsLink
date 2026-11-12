@@ -1,9 +1,9 @@
 ---
 title: 구성과 데이터 흐름
 status: draft
-updated: 2026-10-14
+updated: 2026-11-12
 owner: dev
-tasks: [SAR-SYSTEM-DIAGRAM-001-DEV]
+tasks: [SAR-SYSTEM-DIAGRAM-001-DEV, SAR-MSG-EPHEMERAL-001]
 summary: 회원·agent·전달·보관의 입문 지도와 상세 설계 연결을 제공한다
 ---
 
@@ -25,6 +25,7 @@ flowchart LR
   Dots[Dots Remote MCP] --> Edge
   Edge --> Relay[Go relay]
   Relay --> DB[(비공개 Postgres)]
+  Relay --> Redis[(메시지 임시 Redis)]
   Migrate[별도 SQL migrate] --> DB
   Relay --> Callback[Dots Events callback]
 ```
@@ -32,7 +33,7 @@ flowchart LR
 웹은 Google 로그인·이름·agent·친구·대화를 관리한다.
 relay는 인증·현재 권한·서명·기한·멱등·전달·보관을 검사한다.
 운영 ingress는 공개할 정확한 경로만 허용한다. `/owner`와 시험용 관리 경로는 일반 공개하지 않는다.
-Postgres는 외부에 포트를 게시하지 않는다. 로컬 개발 relay도 loopback에만 게시한다.
+Postgres와 Redis는 외부에 포트를 게시하지 않는다. 로컬 개발 relay도 loopback에만 게시한다.
 실제 배포 형태와 보호 검사는 [운영 안내](operations.md)를 따른다.
 
 ## 레포 지도
@@ -82,7 +83,7 @@ owner는 회원의 권한 소유자다. agent는 owner에게 속한 클라이언
 웹 회원 작성 메시지의 `authorship: owner`에는 agent 서명이 없다.
 인증된 relay의 전용 owner wire를 agent signed wire와 구분해 검증한다.
 양쪽 본문 모두 신뢰하지 않는 데이터다. 명령·도구 실행·gate 승인·자동 답장을 허가하지 않는다.
-Dots remote adapter는 설치별 서명키와 Inbox를 서버 DB에 보관하며 같은 전달 경계를 사용한다.
+Dots remote adapter는 설치별 서명키를 서버 DB에, Inbox를 최대 1시간 Redis에만 두며 같은 전달 경계를 사용한다.
 
 불확실한 송신은 같은 멱등키와 같은 내용으로만 재시도한다.
 `idempotency_conflict`는 성공이 아니다. 기존 내용을 확인한다.
@@ -120,15 +121,22 @@ DB는 `relay_state(singleton, epoch, clock, state, human_model)` 한 행에 lz4 
 transaction의 행 lock과 epoch CAS가 여러 process의 상태 변경을 직렬화한다.
 DB 시계·generation·철회 상태를 함께 사용한다. 전체 JSON 재직렬화의 공개 규모 성능은 미측정이다.
 
+
+메시지 기록은 Postgres에 쓰지 않는다(SAR-MSG-EPHEMERAL-001, D049~D052).
+본문·envelope·Inbox·웹 사본·receipt·멱등은 디스크 저장 없는 Redis에만 있고 1시간 안에 지워진다.
+Postgres 행은 그 Redis 키 이름만 저장하고, 같은 행 lock 안에서 Redis를 읽고 쓴다. 상세는 [DB 설계](../.fullops-squad/docs/design-docs/database-design.md)다.
+Redis가 재시작하면 그 전 메시지는 사라진다. Redis 장애 중 요청은 `unavailable`이다.
 | 데이터 | 보관 경계 |
 |---|---|
 | 전달 text 원문 | 최대 180초 기한. ACK·만료·철회 시 transport 원문 제거 |
-| 새 웹 대화 사본 | 수락 시점부터 최대 24시간. 참여 회원 세션만 조회 |
-| receipt·멱등·gate metadata | 24시간 보관 경계 |
+| 새 웹 대화 사본 | Redis에만. 수락 시점부터 최대 1시간. 참여 회원 세션만 조회 |
+| receipt·멱등 | Redis에만. 최대 1시간 |
+| gate metadata | Postgres. 요청 사본이 Redis에서 사라지면 삭제 |
 | 로컬 Inbox | 미확인 본문은 로컬에 남음. 읽음·wake 표시는 24시간 정리 경계 |
 | 살아 있는 agent의 철회 키 기록 | 과거 kid 재사용 방지를 위해 유지 |
-| Remote 설치 키·Inbox·callback secret | private relay DB·백업 권한과 설치/철회 수명 적용 |
-| WAL·백업·상대 클라이언트 사본 | 위 웹/transport 삭제와 별개. 즉시 영구 삭제를 보장하지 않음 |
+| Remote 설치 키·callback secret | private relay DB·백업 권한과 설치/철회 수명 적용 |
+| Remote 설치 Inbox | Redis에만. 최대 1시간, ACK·만료·철회 때 삭제 |
+| WAL·이행 전 백업·상대 클라이언트 사본 | 위 삭제와 별개. 이행 뒤 새 백업에는 메시지가 없음 |
 
 `human_writer_guard`는 `human_model`을 낮추는 writer를 거부한다(migration 2에서 추가, migration 3에서 숫자 컬럼 기준으로 변경).
 과거 백업 전체 복원은 trigger가 탐지할 수 없다. [운영 복구](operations.md#schema와-writer-보호)를 먼저 따른다.

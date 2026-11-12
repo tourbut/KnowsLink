@@ -131,6 +131,10 @@ func (s *Service) refresh(ctx context.Context, arrived time.Time) {
 	if err != nil || json.Unmarshal(row.State, st) != nil {
 		return
 	}
+	// A copy a later commit already replaced reads as missing; keep the older snapshot instead of an empty store.
+	if stored, err := readEphemeral(ctx, s.Redis, st.Ephemeral); err != nil || st.Ephemeral != "" && len(stored) == 0 || st.attachEphemeral(stored) != nil {
+		return
+	}
 	st.TestAgents = s.TestAgents
 	s.remember(st, row.Clock.Time.UTC(), row.Epoch)
 	s.readAt = started

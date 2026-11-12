@@ -113,7 +113,7 @@ test_level: lite
 <!-- fullops-packet:start -->
 ### 탐색 근거와 읽을 구간
 
-정본: `.fullops-squad/docs/evaluations/jev/SAR-MSG-EPHEMERAL-001-packet.json` / SHA `17acfa5e0b9800522854163b9d5df67b9870a159` / partial=True
+정본: `.fullops-squad/docs/evaluations/jev/SAR-MSG-EPHEMERAL-001-packet.json` / SHA `195cc084118918567f82fecb3e35b3949a0409e8` / partial=True
 - `.fullops-squad/FULLOPS.md` (document_read) · 줄 전체/미확인 · inferred · 필수
 - `.fullops-squad/handovers/to_dev.md` (document_read) · 줄 38, 43, 71, 81, 85 · inferred · 필수
 - `.fullops-squad/project.md` (document_read) · 줄 전체/미확인 · inferred · 필수
@@ -149,7 +149,7 @@ test_level: lite
 - `internal/relay/store.go` (direct_edit) · 줄 전체/미확인 · unknown
 - `internal/relay/text_events.go` (direct_edit) · 줄 전체/미확인 · inferred
 나머지 참조 후보 26건은 정본 JSON의 remaining_context_paths에 있다. 완료 검사(packet-outcomes)는 위 목록만 요구한다.
-미확인 10건: .fullops-squad/PLANS.md: missing, oversized, sensitive or invalid; manual inspection; .fullops-squad/docs/design-docs/mockups/service-member-ui.md: missing, oversized, sensitive or invalid; manual inspection; .fullops-squad/docs/design-docs/module-design.md: missing, oversized, sensitive or invalid; manual inspection; .fullops-squad/docs/operations/ops-guide.md: missing, oversized, sensitive or invalid; manual inspection; compose.yaml: missing, oversized, sensitive or invalid; manual inspection …. 정본의 unknown/producer_status 확인. bounded string/definition search; dynamic references and language server semantics unverified
+미확인 11건: route: task/role/SHA/attempt/instruction differs or absent; regenerate/bind route; .fullops-squad/PLANS.md: missing, oversized, sensitive or invalid; manual inspection; .fullops-squad/docs/design-docs/mockups/service-member-ui.md: missing, oversized, sensitive or invalid; manual inspection; .fullops-squad/docs/design-docs/module-design.md: missing, oversized, sensitive or invalid; manual inspection; .fullops-squad/docs/operations/ops-guide.md: missing, oversized, sensitive or invalid; manual inspection …. 정본의 unknown/producer_status 확인. bounded string/definition search; dynamic references and language server semantics unverified
 <!-- fullops-packet:end -->
 
 ## 완료 보고
@@ -158,3 +158,13 @@ test_level: lite
 항목당 1~2줄로 쓰고 상세는 `qa-reports/SAR-MSG-EPHEMERAL-001-test/report.md` 링크로 대신한다. worker_done 본문 첫 줄은 `[완료] SAR-MSG-EPHEMERAL-001 | 브랜치 fullops/dev | SHA <브랜치 HEAD>` 한 줄로 쓰고 SHA는 하나만 적는다.
 lint DEP-001이 있으면 파일별 의존성 변경 여부·필요성·표준 라이브러리 대안을 적는다.
 처리는 `fullops-work`, 회신은 `fullops-orca` 스킬을 따른다.
+
+## 기술 계획 (dev, 2026-11-12)
+
+- Redis 키 구조: 값 하나 `knowslink:messages:<random token>` = JSON `{Messages, Idempotency, Inboxes}`. Postgres `relay_state.state`에는 키 이름 `Ephemeral`만 쓴다. `Message`·`Idempotency`·`remoteInstall.Inbox`는 `json:"-"`라 Postgres JSON에 나가지 않는다. 메모리 모델(`State`)과 기존 참조는 그대로 둔다.
+- TTL: 키 TTL 1시간(`messageRetention`). sweep이 수락 1시간 뒤 모든 메시지 기록을 지운다(기존 24시간). text 전달 기한 180초·`/v1/send` 300초는 그대로. 20,000건·대기 100건·claim 4건 상한은 메모리 상태로 그대로 센다.
+- 원자 연산: 별도 Lua·WATCH 없이 기존 Postgres 행 lock을 직렬화 지점으로 쓴다. lock 안에서 GET, 작업, 바뀐 경우 새 키 SET, SaveRelay·commit, 이전 키 제거 순서다. commit이 실패하면 행이 이전 키를 가리키므로 lease·claim·ACK·멱등 보장이 지금과 같다. 바뀌지 않은 transaction은 Redis에 쓰지 않는다.
+- 장애: Redis 오류·미설정은 `unavailable`, Postgres 대체 저장 없음. 키 없음은 빈 저장소. `/healthz`는 Postgres와 Redis ping이 모두 성공해야 200.
+- LISTEN/NOTIFY: 유지. 빈 payload라 메시지를 담지 않는다.
+- Redis 운영: RDB·AOF 끔, `maxmemory 128mb`·`noeviction`, 포트 미게시, internal network, ops `mem_limit 192m`.
+- migration 4: `Messages`·`Idempotency`·설치 `Inbox` 정리, Down 실패 고정. 요청 사본이 사라진 gate는 sweep이 정리한다.

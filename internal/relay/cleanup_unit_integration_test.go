@@ -23,11 +23,11 @@ func TestCleanupProvenWhileSnapshotStaleAndNewFull(t *testing.T) {
 			pool := messagePool(t)
 			f := setup(t, pool)
 			s := f.s
-			other := &Service{Pool: pool, SyntheticSignup: true}
+			other := &Service{Redis: testRedis(), Pool: pool, SyntheticSignup: true}
 			f.s, f.handler = other, other.Handler()
 			f.addAgent("agent_d")
 			if mode == "restart" {
-				s = &Service{Pool: pool}
+				s = &Service{Redis: testRedis(), Pool: pool}
 			}
 			h := s.boundedHTTP(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) { w.WriteHeader(200) }))
 			for range 16 {

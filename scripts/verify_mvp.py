@@ -27,16 +27,18 @@ def free_port():
 def main():
     environment = dict(os.environ)
     test_password = secrets.token_urlsafe(24)
-    relay_port, database_port = free_port(), free_port()
+    relay_port, database_port, redis_port = free_port(), free_port(), free_port()
     environment.update(POSTGRES_PASSWORD=test_password, DATABASE_URL=f"postgres://knowslink:{test_password}@postgres:5432/knowslink?sslmode=disable", RELAY_PORT=str(relay_port), TUNNEL_TOKEN="", COMPOSE_PROFILES="", KNOWSLINK_TEST_AGENTS="trial_codex,trial_grok", KNOWSLINK_SYNTHETIC_SIGNUP="1")
     project = "knowslink-mvp-" + uuid.uuid4().hex[:10]
     with tempfile.TemporaryDirectory(prefix="knowslink-mvp-") as temporary:
         override = Path(temporary) / "test.yaml"
-        override.write_text(f'services:\n  postgres:\n    ports: ["127.0.0.1:{database_port}:5432"]\n    networks: [database, ingress]\n')
+        override.write_text(f'services:\n  postgres:\n    ports: ["127.0.0.1:{database_port}:5432"]\n    networks: [database, ingress]\n'
+                            f'  redis:\n    ports: ["127.0.0.1:{redis_port}:6379"]\n    networks: [database, ingress]\n')
         compose = ["docker", "compose", "--project-name", project, "--env-file", ".env.example", "-f", "compose.yaml", "-f", str(override)]
         try:
             run(compose + ["up", "--build", "--wait", "relay"], environment)
-            tests = dict(environment, TEST_SYNTHETIC_DATABASE="1", TEST_DATABASE_URL=f"postgres://knowslink:{test_password}@127.0.0.1:{database_port}/knowslink?sslmode=disable")
+            tests = dict(environment, TEST_SYNTHETIC_DATABASE="1", TEST_DATABASE_URL=f"postgres://knowslink:{test_password}@127.0.0.1:{database_port}/knowslink?sslmode=disable",
+                         TEST_REDIS_URL=f"redis://127.0.0.1:{redis_port}/0")
             # Go tests own the database: the relay's 1s cleanup sweep with its own allowlist would revoke their trial leases.
             run(compose + ["stop", "relay"], environment)
             run(["go", "test", "-tags=integration", "-race", "-count=1", "-v", "./internal/relay"], tests)
@@ -46,7 +48,7 @@ def main():
             run(["node", "adapters/dist/trial-check.js", f"http://127.0.0.1:{relay_port}"], environment)
         finally:
             run(compose + ["down", "--volumes"], environment)
-    print("PASS: isolated Compose migration, Postgres races, TS adapter and Go owner UI; Tunnel unused")
+    print("PASS: isolated Compose migration, Postgres races and Redis message store, TS adapter and Go owner UI; Tunnel unused")
 
 
 if __name__ == "__main__":

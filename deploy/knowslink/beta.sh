@@ -37,7 +37,10 @@ backup() { # pg_dump -Fc into 0600 file, then list it
   (umask 077; dc exec -T postgres pg_dump -U knowslink -Fc knowslink >"$out") || { rm -f "$out"; die "pg_dump failed"; }
   pg_list=$(docker run --rm -i "$POSTGRES_IMAGE" pg_restore --list <"$out" | wc -l) || { rm -f "$out"; die "dump unreadable"; }
   rows=$(dc exec -T postgres psql -U knowslink -Atc 'select count(*) from relay_state')
-  echo "backup $(basename "$out") bytes=$(stat -c %s "$out") toc_lines=$pg_list relay_state_rows=$rows"
+  # Messages live only in Redis (SAR-MSG-EPHEMERAL-001); 0 means this dump holds no message records. Redis is never dumped.
+  # to_jsonb(r) reads both the pre-migration-3 data column and the state column.
+  messages=$(dc exec -T postgres psql -U knowslink -Atc "select count(*) from relay_state r where coalesce(to_jsonb(r)->'state', to_jsonb(r)->'data') ?| array['Messages','Idempotency']")
+  echo "backup $(basename "$out") bytes=$(stat -c %s "$out") toc_lines=$pg_list relay_state_rows=$rows message_state_rows=$messages"
 }
 
 restore_verify() { # restore a dump into a throwaway container with no network; live DB untouched

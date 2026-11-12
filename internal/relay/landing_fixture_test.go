@@ -32,7 +32,7 @@ func TestLandingBrowserFixture(t *testing.T) {
 	var once sync.Once
 	manifest := map[string]string{}
 	for _, mode := range []string{"google", "both", "email", "none"} {
-		s := &Service{Pool: pool}
+		s := &Service{Redis: testRedis(), Pool: pool}
 		if mode == "both" || mode == "email" {
 			s.Mail = mail.send
 		}

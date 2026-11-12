@@ -138,7 +138,7 @@ func TestRemoteOAuthHTTP(t *testing.T) {
 		}
 		_ = json.Unmarshal(w.Body.Bytes(), &tokens)
 		expect(t, do(s, "POST", "/remote/oauth/token", form.Encode(), formType, "", false), 400, "invalid_grant")
-		other := &Service{Pool: pool, Google: g}
+		other := &Service{Redis: testRedis(), Pool: pool, Google: g}
 		w = do(other, "POST", "/mcp", `{"jsonrpc":"2.0","id":1,"method":"server/discover"}`, "application/json", tokens.Access, false)
 		expect(t, w, 200, "2026-07-28", "events")
 		w = do(other, "POST", "/mcp", `{"jsonrpc":"2.0","id":2,"method":"tools/call","params":{"name":"knowslink_status","arguments":{}}}`, "application/json", tokens.Access, false)

@@ -139,9 +139,7 @@ func TestPublicTextRoundtripAndCurrentAuth(t *testing.T) {
 		func(s *State) { s.Pairs[pairID("agent_a", "agent_b")].State = "pending" },
 		func(s *State) { s.Pairs[pairID("agent_a", "agent_b")].Generation++ },
 	} {
-		raw, _ := json.Marshal(st)
-		s := newState()
-		_ = json.Unmarshal(raw, s)
+		s := restart(t, st)
 		mutate(s)
 		if s.current(s.Messages[firstID]) || s.current(s.Messages[secondID]) {
 			t.Fatal("stale current auth")

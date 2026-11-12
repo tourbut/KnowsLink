@@ -28,8 +28,13 @@ func TestLegacyClaimsCannotReachParentBoundaries(t *testing.T) {
 	}
 	load := func() (*State, ed25519.PrivateKey, ed25519.PrivateKey) {
 		var fixture legacyState
-		if err := json.Unmarshal(raw, &fixture); err != nil || fixture.State == nil {
+		var stored struct{ State json.RawMessage }
+		if err := json.Unmarshal(raw, &fixture); err != nil || fixture.State == nil || json.Unmarshal(raw, &stored) != nil {
 			t.Fatal("invalid legacy fixture", err)
+		}
+		// The fixture predates Redis: its messages sit in the state, in the same shape as the Redis copy.
+		if err := fixture.State.attachEphemeral(stored.State); err != nil {
+			t.Fatal(err)
 		}
 		return fixture.State, fixture.PrivateA, fixture.PrivateB
 	}

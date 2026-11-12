@@ -1,6 +1,6 @@
 //go:build integration
 
-// Migration 00003 keeps an existing jsonb row readable as the same State and makes older writers fail.
+// Migration 00003 keeps an existing jsonb row readable and makes older writers fail; 00004 deletes its message copies.
 package relay
 
 import (
@@ -12,6 +12,7 @@ import (
 	"errors"
 	"fmt"
 	"os"
+	"reflect"
 	"testing"
 	"time"
 
@@ -76,42 +77,40 @@ func TestStateFormatMigration(t *testing.T) {
 	for _, m := range legacy.Messages { // the fixture's fixed dates would let the first sweep purge the history
 		m.Receipt.Accepted, m.Receipt.Exp = time.Now().Add(-time.Minute), time.Now().Add(time.Hour)
 	}
-	raw, err := json.Marshal(legacy)
+	// The legacy writer kept messages, idempotency and a Dots Inbox inside the row; State no longer serializes them.
+	base, err := json.Marshal(legacy)
+	if err != nil {
+		t.Fatal(err)
+	}
+	row := map[string]any{}
+	if err = json.Unmarshal(base, &row); err != nil {
+		t.Fatal(err)
+	}
+	row["Messages"], row["Idempotency"] = legacy.Messages, legacy.Idempotency
+	row["Remote"] = map[string]any{"Installs": map[string]any{"install_1": map[string]any{
+		"Owner": "member_000", "Agent": "agent_000_0", "Kid": "key1", "Exp": time.Now().Add(time.Hour),
+		"Inbox": map[string]json.RawMessage{id: envelope}}}}
+	raw, err := json.Marshal(row)
 	if err != nil {
 		t.Fatal(err)
 	}
 	if _, err = pool.Exec(ctx, "UPDATE relay_state SET data=$1", raw); err != nil {
 		t.Fatal(err)
 	}
-	normalized := func(data []byte) []byte {
+	decoded := func(data []byte) map[string]any {
 		t.Helper()
-		st := newState()
-		if err := json.Unmarshal(data, st); err != nil {
+		var value map[string]any
+		if err := json.Unmarshal(data, &value); err != nil {
 			t.Fatal(err)
 		}
-		for _, m := range st.Messages {
-			if len(m.Envelope) > 0 {
-				var value any
-				if err := json.Unmarshal(m.Envelope, &value); err != nil {
-					t.Fatal(err)
-				}
-				if m.Envelope, err = Canonical(value); err != nil {
-					t.Fatal(err)
-				}
-			}
-		}
-		out, err := json.Marshal(st)
-		if err != nil {
-			t.Fatal(err)
-		}
-		return out
+		return value
 	}
 	var before []byte
 	if err = pool.QueryRow(ctx, "SELECT data FROM relay_state").Scan(&before); err != nil {
 		t.Fatal(err)
 	}
 
-	if _, err = provider.Up(ctx); err != nil {
+	if _, err = provider.UpTo(ctx, 3); err != nil {
 		t.Fatal(err)
 	}
 	pool.Reset() // cached statements still describe the old column
@@ -119,44 +118,25 @@ func TestStateFormatMigration(t *testing.T) {
 	var after []byte
 	var humanModel int
 	var compression string
-	if err = pool.QueryRow(ctx, "SELECT state, human_model, pg_column_compression(state) FROM relay_state").Scan(&after, &humanModel, &compression); err != nil {
-		t.Fatal(err)
+	read := func() {
+		t.Helper()
+		if err = pool.QueryRow(ctx, "SELECT state, human_model, pg_column_compression(state) FROM relay_state").Scan(&after, &humanModel, &compression); err != nil {
+			t.Fatal(err)
+		}
 	}
-	if !bytes.Equal(normalized(before), normalized(after)) {
-		t.Fatal("migrated row reads as a different State")
+	read()
+	if !reflect.DeepEqual(decoded(before), decoded(after)) {
+		t.Fatal("migrated row reads as a different value")
 	}
 	if humanModel != 1 || compression != "lz4" {
 		t.Fatalf("human_model %d, compression %q", humanModel, compression)
 	}
-	verify := func(stage string, data []byte) {
-		t.Helper()
-		st := newState()
-		if err := json.Unmarshal(data, st); err != nil {
-			t.Fatal(stage, err)
-		}
-		e, err := Parse(st.Messages[id].Envelope)
-		if err != nil || e.Digest() != signed.Digest() || !e.Verify(public) {
-			t.Fatalf("%s: envelope lost its digest or signature: %v", stage, err)
-		}
-	}
-	verify("migrated", after)
-
-	// A write and a read through the product path keep the signed envelope and the compression.
-	s := &Service{Pool: pool}
-	if _, err = s.transaction(ctx, func(st *State, _ time.Time) (any, error) {
-		if len(st.Messages) != 1001 {
-			t.Fatalf("messages %d", len(st.Messages))
-		}
-		return nil, nil
-	}); err != nil {
+	var legacyView struct{ Messages map[string]*Message }
+	if err = json.Unmarshal(after, &legacyView); err != nil {
 		t.Fatal(err)
 	}
-	if err = pool.QueryRow(ctx, "SELECT state, human_model, pg_column_compression(state) FROM relay_state").Scan(&after, &humanModel, &compression); err != nil {
-		t.Fatal(err)
-	}
-	verify("rewritten", after)
-	if humanModel != 1 || compression != "lz4" {
-		t.Fatalf("after write: human_model %d, compression %q", humanModel, compression)
+	if e, err := Parse(legacyView.Messages[id].Envelope); err != nil || e.Digest() != signed.Digest() || !e.Verify(public) {
+		t.Fatalf("00003 envelope lost its digest or signature: %v", err)
 	}
 
 	// The queries of the previous writer fail with an SQL error instead of bypassing the guard.
@@ -168,6 +148,37 @@ func TestStateFormatMigration(t *testing.T) {
 		if _, err = pool.Exec(ctx, old); !errors.As(err, &pgErr) || pgErr.Code != "42703" {
 			t.Fatalf("old query %q: %v", old, err)
 		}
+	}
+
+	// 00004 deletes every message copy and keeps the rest of the row (D052).
+	if _, err = provider.Up(ctx); err != nil {
+		t.Fatal(err)
+	}
+	read()
+	want, got := decoded(before), decoded(after)
+	delete(want, "Messages")
+	delete(want, "Idempotency")
+	delete(want["Remote"].(map[string]any)["Installs"].(map[string]any)["install_1"].(map[string]any), "Inbox")
+	if !reflect.DeepEqual(want, got) || humanModel != 1 || compression != "lz4" {
+		t.Fatalf("00004 changed more than message copies: human_model %d, compression %q", humanModel, compression)
+	}
+	if bytes.Contains(after, []byte(id)) || bytes.Contains(after, []byte("synthetic retained conversation")) {
+		t.Fatal("00004 left a message id or conversation copy in Postgres")
+	}
+
+	// The product path reads the cleaned row, keeps members and agents, and writes no message copy back.
+	s := &Service{Redis: testRedis(), Pool: pool}
+	if _, err = s.transaction(ctx, func(st *State, _ time.Time) (any, error) {
+		if len(st.Messages) != 0 || len(st.Idempotency) != 0 || len(st.Members) != 100 || len(st.Agents) != 200 {
+			t.Fatalf("messages %d, members %d, agents %d", len(st.Messages), len(st.Members), len(st.Agents))
+		}
+		return nil, nil
+	}); err != nil {
+		t.Fatal(err)
+	}
+	read()
+	if humanModel != 1 || compression != "lz4" || bytes.Contains(after, []byte(`"Messages"`)) {
+		t.Fatalf("after write: human_model %d, compression %q", humanModel, compression)
 	}
 	if _, err = pool.Exec(ctx, "UPDATE relay_state SET human_model = 0"); err == nil {
 		t.Fatal("human model downgrade accepted")

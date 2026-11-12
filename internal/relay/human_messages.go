@@ -74,7 +74,7 @@ func (st *State) historical(owner, from, to string, now time.Time) []*Message {
 	var messages []*Message
 	for _, m := range st.Messages {
 		c := m.Conversation
-		if c != nil && (c.OwnerA == owner || c.OwnerB == owner) && pairID(m.Receipt.From, m.Receipt.To) == pairID(from, to) && now.Before(m.Receipt.Accepted.Add(24*time.Hour)) {
+		if c != nil && (c.OwnerA == owner || c.OwnerB == owner) && pairID(m.Receipt.From, m.Receipt.To) == pairID(from, to) && now.Before(m.Receipt.Accepted.Add(messageRetention)) {
 			messages = append(messages, m)
 		}
 	}

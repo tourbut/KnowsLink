@@ -40,6 +40,19 @@ func TestPolicyPages(t *testing.T) {
 					t.Fatalf("%s %s missing %q", page, lang, want)
 				}
 			}
+			// D051: both pages state in both languages that messages are never stored permanently and leave within 1 hour.
+			retention := map[string][]string{"ko": {"영구 저장하지 않습니다", "최대 1시간", "재시작"}, "en": {"never stored permanently", "at most 1 hour", "restart"}}[lang]
+			if page == "privacy" {
+				retention = append(retention, map[string][]string{"ko": {"서버 메모리(Redis)", "최대 180초", "백업에는 메시지를 넣지 않습니다"}, "en": {"server memory (Redis)", "at most 180 seconds", "Backups do not include messages"}}[lang]...)
+			}
+			for _, want := range retention {
+				if !strings.Contains(strings.ToLower(body), strings.ToLower(want)) {
+					t.Fatalf("%s %s retention statement missing %q", page, lang, want)
+				}
+			}
+			if strings.Contains(body, "받은 때부터 24시간") || strings.Contains(body, "24 hours after the Service receives") {
+				t.Fatalf("%s %s still promises 24-hour message storage", page, lang)
+			}
 			if strings.Count(body, `aria-current="page"`) != 1 || strings.Count(body, "<h1") != 1 || strings.Contains(body, `href="#how"`) {
 				t.Fatalf("%s %s: one current link, one h1 and no landing anchor menu", page, lang)
 			}

@@ -255,7 +255,7 @@ func TestHumanConversationLifetimeReplayAndRevocation(t *testing.T) {
 			t.Fatal("receipt/copy/wire contract")
 		}
 	}
-	if len(st.historical(st.Members[ids["a"]].Owner, "agent_a1", "agent_b1", now.Add(time.Hour))) != 6 {
+	if len(st.historical(st.Members[ids["a"]].Owner, "agent_a1", "agent_b1", now.Add(messageRetention-time.Second))) != 6 {
 		t.Fatal("history lost with TTL")
 	}
 	m, e := st.sendOwnerText(ids["a"], "agent_a1", "agent_b1", "4096", "owner-attempt-replay", now.Add(time.Hour))
@@ -310,9 +310,9 @@ func TestHumanConversationLifetimeReplayAndRevocation(t *testing.T) {
 	if st.current(m) {
 		t.Fatal("old epoch revived")
 	}
-	st.sweep(now.Add(24 * time.Hour))
+	st.sweep(now.Add(messageRetention + 30*time.Minute))
 	if st.Messages[first.Receipt.ID] != nil {
-		t.Fatal("24h body retained")
+		t.Fatal("1h body retained")
 	}
 	if st.Messages[m.Receipt.ID] == nil {
 		t.Fatal("independent retention shortened")

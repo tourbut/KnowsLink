@@ -57,6 +57,20 @@ def main():
                                      "WHERE attrelid='relay_state'::regclass AND attname='state'"])
             assert storage.strip() == "json|l", "relay_state.state must be json with lz4 compression"
             run(compose + ["exec", "-T", "relay", "wget", "-q", "-O", "-", "http://127.0.0.1:8080/healthz"], diagnostic="ok")
+            # Messages are volatile: Redis keeps no RDB/AOF and refuses writes at its cap instead of evicting.
+            for setting, value in (("save", ""), ("appendonly", "no"), ("maxmemory-policy", "noeviction")):
+                got = run(compose + ["exec", "-T", "redis", "redis-cli", "--raw", "CONFIG", "GET", setting]).splitlines()
+                assert got[1:2] == [value] or (value == "" and got[1:] in ([], [""])), f"Redis {setting} must be {value!r}"
+            run(compose + ["exec", "-T", "relay", "env", "REDIS_URL=", "/app/relay"], expected=1, diagnostic="REDIS_URL is required")
+            run(compose + ["exec", "-T", "relay", "env", "REDIS_URL=redis://localhost:1/0", "/app/relay"],
+                expected=1, diagnostic="redis ping failed")
+            run(compose + ["stop", "redis"])
+            run(compose + ["exec", "-T", "relay", "wget", "-q", "-O", "-", "http://127.0.0.1:8080/healthz"],
+                expected=1, diagnostic="503")
+            run(compose + ["start", "redis"])
+            run(compose + ["exec", "-T", "relay", "sh", "-c",
+                           "for i in $(seq 20); do wget -q -O - http://127.0.0.1:8080/healthz && exit 0; sleep 1; done; exit 1"],
+                diagnostic="ok")
             for binary in ("relay", "migrate"):
                 run(compose + ["exec", "-T", "relay", "env", "DATABASE_URL=", f"/app/{binary}"],
                     expected=1, diagnostic="DATABASE_URL is required")
@@ -71,7 +85,7 @@ def main():
          cloudflared, "tunnel", "--no-autoupdate", "run"],
         expected=1, diagnostic="requires the ID or name of the tunnel")
     run(["npm", "run", "start", "--prefix", "adapters"], diagnostic='"state":"unconfigured"')
-    print("PASS: local startup, SQL migration, readiness, missing settings, DB failure, disabled Tunnel, unconfigured adapter")
+    print("PASS: local startup, SQL migration, readiness, missing settings, volatile Redis, Redis and DB failure, disabled Tunnel, unconfigured adapter")
 
 
 if __name__ == "__main__":

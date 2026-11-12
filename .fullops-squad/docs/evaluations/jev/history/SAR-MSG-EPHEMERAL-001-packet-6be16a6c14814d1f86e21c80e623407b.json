@@ -1,0 +1,2703 @@
+{
+  "task_key": "SAR-MSG-EPHEMERAL-001",
+  "role": "dev",
+  "head": "17acfa5e0b9800522854163b9d5df67b9870a159",
+  "attempt": "233358aeaabb4ee9999c668776723109",
+  "instruction_sha256": "e5a62f938382c48fcc2c01fe74570550dcdd4a5cd2198fe4090944be806c184e",
+  "options": {
+    "policy": "packet-v3",
+    "seeds": [
+      "compose.yaml",
+      "deploy/knowslink/compose.ops.yaml",
+      "internal/relay/capacity.go",
+      "internal/relay/human_messages.go",
+      "internal/relay/policy_pages.go",
+      "internal/relay/public_text.go",
+      "internal/relay/remote_auth.go",
+      "internal/relay/remote_events.go",
+      "internal/relay/remote_mcp.go",
+      "internal/relay/store.go",
+      "internal/relay/text_events.go"
+    ],
+    "required": [
+      ".fullops-squad/FULLOPS.md",
+      ".fullops-squad/handovers/to_dev.md",
+      ".fullops-squad/project.md",
+      ".fullops-squad/rules/common/README.md",
+      ".fullops-squad/rules/common/coding-style.md",
+      ".fullops-squad/rules/common/security.md",
+      ".fullops-squad/rules/common/testing.md"
+    ],
+    "updates": [
+      "D06",
+      "D07",
+      "D10"
+    ],
+    "sources": {
+      ".dockerignore": "981dfc52b656e4e5d6d3d08668bf12d18af6e1c67bc90fb07e15bbade5841e16",
+      ".fullops-squad/FULLOPS.md": "ace0b3ac74bfd53a7614ec236bd22f8b4da624ae6dd8f4fd9b36dd10c7af8186",
+      ".fullops-squad/contexts/coor.md": "0e44cf37f0b307d3c8f04b26c2b2055a2cc3062eb921eab2f5a66190f3871aa2",
+      ".fullops-squad/contexts/designer.md": "315a2f4f4a3c037db1d64edb00da1828dbdf9e08c69cc0728a08c26369aacd84",
+      ".fullops-squad/contexts/dev.md": "b5b1c85e00c53c48a0bfb98af2d5f9b48de807fd4c9426eedca4cbb0e3cb0c82",
+      ".fullops-squad/contexts/ops.md": "975f45e82dcf52e5bd98b564b2d92f9b9fed1a273b53b0d5ce5aa12300b496a7",
+      ".fullops-squad/contexts/tester.md": "76f62aee9b0ed330d03fe04fa7b8505c362cdeab49ea6722802ce7ec408046bc",
+      ".fullops-squad/docs/agents/document-writing.md": "c6933cf2fc4e79c1f5691c60bff4d434327301827b82aef08dca0d4e881ba9e0",
+      ".fullops-squad/docs/agents/domain.md": "6a02fc13e1ffa9e0e719216a91d897aadb9120fe5f1061da3eca4efc6443cc64",
+      ".fullops-squad/docs/agents/issue-tracker.md": "d613d0e67332beca5265b5c967eea732e89cd5472f2295f4b2f9f8c1f2eb1d85",
+      ".fullops-squad/docs/agents/triage-labels.md": "dba7a161d428e08df77da98df71cb1fc26cc3406bb627beb540a855427605858",
+      ".fullops-squad/docs/deliverables/README.md": "679031917d22b49b8c50c45dfb7bb84a892ed44f67f6dc41949d50e0c732cffc",
+      ".fullops-squad/docs/design-docs/SAR-SESSION-PEER-001.md": "fbde87ea84689efb010958d541ddb301a7a6c9c1e2deb64fb861585b6b54e459",
+      ".fullops-squad/docs/design-docs/SAR-UX-ISSUES-002.md": "0cdc10f7e731e1cd597472b6d39f39246684e2bef86770e18248cec6bb501070",
+      ".fullops-squad/docs/design-docs/architecture.md": "734cd05b2bea95b98f1f514e3d969ae32e0c5decf2e4c75a7a0977e84272f6dc",
+      ".fullops-squad/docs/design-docs/crud-design.md": "0cfa441606f96c3efff5fcebd27b42190637bf1732e8a0313659b7358a458fb0",
+      ".fullops-squad/docs/design-docs/data-model.md": "8c45b3b423885d70c4f11eca29522281672fff297901a96984de33366bd977f3",
+      ".fullops-squad/docs/design-docs/database-design.md": "8864ae004f05d4f4c4fb378ca3e99402ef6765befe6d71386472a700e8402ba7",
+      ".fullops-squad/docs/design-docs/interface-design.md": "caec53f75ba4ab2136ff60cf8fa5a4cb2c33aad74b2b9f53a3ea7db0d70e91d9",
+      ".fullops-squad/docs/design-docs/mockups/SAR-MVP-001-UI.md": "995b66bc3f49b8d8d60000e87cb3c29187923c32f44162490b068d984268f2fa",
+      ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI-FIX.md": "a73fbf953230e30abddf5fafe2ec98113a38c2fc42cb80abcd51fb3487c952b9",
+      ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-AGENTS-001-UI.md": "40e884141a521151fa29b2983b21909a8a9e4504be4b864db061b5386034abc4",
+      ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI-FIX.md": "c34f993ed74894ac526e597fca79ee718ebc9600d1a7fc1ab27785d2cbb27580",
+      ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-MESSAGES-001-UI.md": "df49f42a49250ebac2e9e6dd6ee5dc9c2009c3a677ff5e232c488d9051f5350f",
+      ".fullops-squad/docs/design-docs/mockups/SAR-PUBLIC-SERVICE-UX.md": "4f8ffa32d22e7fcb469a734699c2ac5ea00a4612de7ef6e6a6daf6ceece3f65c",
+      ".fullops-squad/docs/design-docs/motion/SAR-MOTION-INTRO-001-brief.md": "b7557710e48de9caff96b368be97ada128e5da802cca80e4e6305a253a8179b8",
+      ".fullops-squad/docs/design-docs/tech-stack.md": "5ed061204861de62dbcd461339735ab2f5a6a7e3e2cc546596796a4858ea83c9",
+      ".fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-0.9.10.md": "7c2832e059bbe8467f566f0a9c22bdd5775740efad82238c5b5fcd8d013a80eb",
+      ".fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-0.9.11.md": "5d3afe68dfeb3d62a21906d97c15d21cd1c69e9cf92362b57394618ef377e90c",
+      ".fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-0.9.12.md": "e533ce7e8f5ad7da877c7e366de6fcfcb046e277d193c7663a905e763dc1a26d",
+      ".fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-0.9.13.md": "15b54c5f847c17c14952268656a23a4c2bfb5997f2a9fc15502fe67f2bf4e491",
+      ".fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-0.9.14.md": "d3651c164d408e2ad7cf8d5fcf96900e9d52e2ae1469b8630dc09dd15e035464",
+      ".fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-099.md": "903d1503266b936402775ef70d3a0211344e23b11005f0ebc539cf0d3e1849c5",
+      ".fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-1.10.0.md": "34fc53647773547bf64d98d2f6d256fff308b563da805b4d4a7f01092e642136",
+      ".fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-1.14.0.md": "052833f7b8c33f766b46cff1b2c85b5c2f2e4f073002549e2ea465f76e53eed1",
+      ".fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-1.2.0.md": "84a1100590d606f7c6a26a7320c8c1ef3905b07a09ab6997557ac8c23a3c4a17",
+      ".fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-1.3.0.md": "e1f8a996eda18181bd1bb39f4e4790ca63ec23c077bbb88aff1cfadb93aadfa3",
+      ".fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-1.4.0.md": "5b982d2714ef77a6d7e63a1fe1ce19be90462f34f84c6470392bc6390b52ee2d",
+      ".fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-1.4.2.md": "ae251ce17bc9cc77d632cb10ab1fb52437097acd1b1b92dac53f7201e2b39443",
+      ".fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-1.4.4.md": "9890dbe76f41d9554b532237a3b8d62e599b1062ce34b9b505b4e6063b0c2085",
+      ".fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-1.5.0.md": "5a2616aefe476dba6d74dfba751d46e981412cdfc40dff33bd9d639d05ad8d83",
+      ".fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-1.6.0.md": "bf8c14a140b9d9319df25dc83c688b3b00f6b38b476a53ea71d535bd272bbb98",
+      ".fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-1.7.0.md": "1fe10ed217eaac6b0685eade3fed8b985d75845367013612cf913932e48c3c9c",
+      ".fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-1.8.0.md": "fad1b87cbc1b68b873bcdacae8d256d36befd33729c5ae68d37ef62263fd76b0",
+      ".fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-1.8.2.md": "5f03ae42e9fb00829a61a5c506c75f802c1028611035692f6d8bb01425f54fa8",
+      ".fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-1.8.3.md": "33fedb237008c61f484c0963f3b5e999d044763f3b409b3a6d1172923808f467",
+      ".fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-1.8.5.md": "fa0eb81b0e4625283b19a85d107985f9bce42934eb43e03190c1efac379c3ba7",
+      ".fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-1.8.6.md": "63aab3b6c5e7fb5742a93b406419545958a8bd602a3c2c4646c41ebbb03607ca",
+      ".fullops-squad/docs/exec-plans/phases/FULLOPS-UPDATE-1.9.0.md": "2088f7c84de2377bee928d5aa2c25a263d8b9a3e345b38b1a1a56d67fea54a85",
+      ".fullops-squad/docs/exec-plans/phases/SAR-AUTO-RECEIVE-001-DEV.md": "8ac5a2b69e3a2ed3648572f34598c0a41a48c9c0575ad1dda5ac4c6d0e40401c",
+      ".fullops-squad/docs/exec-plans/phases/SAR-AUTOSETUP-001-DEV.md": "d518f8346f4917a082e9f4860ef6de5501a55b7cf8babf27e6366c9f27802c2a",
+      ".fullops-squad/docs/exec-plans/phases/SAR-BETA-001-OPS.md": "959dd264ff5fd28ea5815634c149bb0f1b22826edf0d9b376f3822018073b790",
+      ".fullops-squad/docs/exec-plans/phases/SAR-CODEX-HOOK-QUOTE-001-DEV.md": "c0c576b8cd3ab6f45fd71490a464ce71d2388499492596b0491b5c364642c907",
+      ".fullops-squad/docs/exec-plans/phases/SAR-CODEX-HOOK-QUOTE-001-TESTER.md": "dd9ecd802f4d962cfc233f3354f82e915655aa03f494c9912598ebc12d69a711",
+      ".fullops-squad/docs/exec-plans/phases/SAR-CODEX-RECV-001-DEV.md": "02a2315ad22dcc40142b9b3482ccf55cedfbee9b0bc1696bc4d2c0a4dcf24b2e",
+      ".fullops-squad/docs/exec-plans/phases/SAR-DEPLOY-001-OPS.md": "221ba3cc7e0b44e37aa4dcadddddb248a76a4e929409e533a1c035760ca76c96",
+      ".fullops-squad/docs/exec-plans/phases/SAR-FRONTEND-POLISH-001-DEV.md": "548ee0dd10160748cfe29916767c1a9c1a506693f0f9dedd6afa25abf3034964",
+      ".fullops-squad/docs/exec-plans/phases/SAR-FRONTEND-POLISH-001-VISUAL.md": "cdf5b35799d5c6bf664ce9998d1ede51fd6ac600f6c37cf92948d210259ae321",
+      ".fullops-squad/docs/exec-plans/phases/SAR-GOOGLE-CONNECT-001-DEV.md": "6ce2e2018cb8b9c72d4aa4649859cd7886d6fcb68c982998c4ba5367a286dc07",
+      ".fullops-squad/docs/exec-plans/phases/SAR-GOOGLE-CONNECT-002-DEV.md": "7c9447441795a60d080670f04d55ece55b264d3c5ff90d1aec46848e348c21dc",
+      ".fullops-squad/docs/exec-plans/phases/SAR-GOOGLE-LOGIN-001-DEV.md": "45ce620877489db4c9822a044b681e108ea80cfd42ae5448c29ba70a93c2a1ee",
+      ".fullops-squad/docs/exec-plans/phases/SAR-GROK-WEBHOOK-001-DEV.md": "38122c2a33edf5af477a09294a965a86fdd425611ab96dd0b5f40bb96e24f878",
+      ".fullops-squad/docs/exec-plans/phases/SAR-GROK-WEBHOOK-001-TESTER.md": "0433fc272810f430e07f39372cc83e747c2f6d97aeeed8853d89efd72e7e7483",
+      ".fullops-squad/docs/exec-plans/phases/SAR-HUMAN-PEER-001-DEV.md": "845218fbe35cace6e40e9793c10791cada55efe8bd33d031807028c7debf7226",
+      ".fullops-squad/docs/exec-plans/phases/SAR-HUMAN-PEER-001-OPS.md": "564029ab5aaa0c5def9e7374253633976d89c1a756bb5b916bb8aaa894ffc0ab",
+      ".fullops-squad/docs/exec-plans/phases/SAR-HUMAN-PEER-001-VISUAL.md": "4cd6a2ea6e24325b256e4803f4e579efa01aeab8cf928f1dca5a58444a751d67",
+      ".fullops-squad/docs/exec-plans/phases/SAR-HUMAN-PEER-001.md": "a221ae3f9fb6d60f84282844be2dd59db8ad4d13c1afa9e6dbb79891197d2f0d",
+      ".fullops-squad/docs/exec-plans/phases/SAR-LANDING-GUIDE-001-DEV.md": "0623323c09f2c89005665157214f87d6b7511629f6e51eb9623b02b93ed99f27",
+      ".fullops-squad/docs/exec-plans/phases/SAR-LANDING-GUIDE-001-TESTER.md": "542a27a68af7c4e72e2edc2eaa6c6adeb9d980968b3f60bcbff28bb466b68c38",
+      ".fullops-squad/docs/exec-plans/phases/SAR-LANDING-GUIDE-001-VISUAL.md": "7e9ebe28f7d8dc615c58feba8b923585dcbff37460c2c0e760b826855ac7e353",
+      ".fullops-squad/docs/exec-plans/phases/SAR-LANDING-GUIDE-001.md": "44c14e0b690bc423cfb567bbf303cd6ef94548b1ceaac1ec2284eb160e48fbc3",
+      ".fullops-squad/docs/exec-plans/phases/SAR-MVP-001-DEV.md": "915b085effbe035a070e096691dae91bd93d5b4eed7a120075c2103b031a62f0",
+      ".fullops-squad/docs/exec-plans/phases/SAR-MVP-001-UI.md": "97ec62bc0a77e859bffa0103040dbba33103f559a3fccca7e09242f059268a08",
+      ".fullops-squad/docs/exec-plans/phases/SAR-MVP-002-BOT-CATALOG-DEV-FIX.md": "caa4aac0b0900d38b53d474b900859e9e63d7e410112de7a66ed3424a4a1b80d",
+      ".fullops-squad/docs/exec-plans/phases/SAR-MVP-002-BOT-CATALOG-DEV.md": "49a16c4878ca51d683a261694eae73e5602d251affdeea183e971df6dddc487a",
+      ".fullops-squad/docs/exec-plans/phases/SAR-MVP-002-DEV-REVIEW.md": "abebefe1c8e5c5379e6472a159fa2448967ee78e67a97fc124b8a2c7a06cc657",
+      ".fullops-squad/docs/exec-plans/phases/SAR-MVP-002-DEV-TESTER.md": "17f38f961f9ed608e7338eb42760d488726cd5819ecb0f03509b0160a6e0c13a",
+      ".fullops-squad/docs/exec-plans/phases/SAR-MVP-002-INSTALL-FIX-DEV.md": "3c716c56ee0d4d7ab3f855531ce2cd826846729ae46c0a0475c46237c50ded19",
+      ".fullops-squad/docs/exec-plans/phases/SAR-MVP-003-ACTUAL-TRIAL.md": "3e05fc15eccff6a4b5b5257f2963cf2aa2321d3f4caf99deded135fbb9426e44",
+      ".fullops-squad/docs/exec-plans/phases/SAR-MVP-003-BIDIRECTIONAL-OPS-RENEW.md": "0b1ce81433e1dbae367249840ff17207b9fff9164299354cae613a2a36b9a6ae",
+      ".fullops-squad/docs/exec-plans/phases/SAR-MVP-003-BIDIRECTIONAL-OPS.md": "eac55f177fc78cd301d368cb7a765a326ecc3e70905535b37f871c73659b3301",
+      ".fullops-squad/docs/exec-plans/phases/SAR-MVP-003-BIDIRECTIONAL-TIMEOUT.md": "821220ecb64b28bd16aa8045aaa5069a661e32992768e1ec0eef122878d604e2",
+      ".fullops-squad/docs/exec-plans/phases/SAR-MVP-003-BIDIRECTIONAL.md": "c133782ba0bbe0f073839f3188419564c23fd1364e85f533b973143140dec66e",
+      ".fullops-squad/docs/exec-plans/phases/SAR-MVP-003-TRIAL-CLEANUP.md": "3cf91bb4de57068ea759ccaf355a4cdcf03315c1222e9a7c8c0e46110fa48eca",
+      ".fullops-squad/docs/exec-plans/phases/SAR-MVP-PUBLIC-POLICY-001.md": "e5dfcf996bcf87ba0df991de67e534630abca437cf867ceb96186f73a3580040",
+      ".fullops-squad/docs/exec-plans/phases/SAR-PREP-002.md": "bf6885773d7c3c13214eb02aea8916e8cc3dfc1abda8610c83dfcc39d96633b7",
+      ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-DEV-FIX.md": "ebe5eb2d7029d61beaa2941f8ba691f407b938004302ee5f9c04b0e7f4df2bef",
+      ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX.md": "e8225c7aa480033c96aa83d9e32b481deeabde127478e5e59d83f445dd75aa91",
+      ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-DEV.md": "68c34cb86d9c758ace357d74099c0e7dc8bdb533adf790a69e6cb705d965cd9a",
+      ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-POLICY.md": "2306d1427857dfa7ee18bd973ea9d0f72f88a7d7e24863d8b1f580bd4319dfa4",
+      ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-UI-FIX.md": "5def42d4f22ccd943efa4b1ddef1c2d54f3e8781148b7e7a7971f85beacbe69d",
+      ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-UI.md": "6f9864882dc7ca03be11fa2342ad634c616e14b5e1bde2d708e629d3194e005c",
+      ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX.md": "1eee985743cab4d1231ee724ffaac0bb2a8aa0e41fcf86a51f76d70d709297bd",
+      ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-IDENTITY-001-DEV-TRIAL-DIAG.md": "60b1ca68d6a842d7a15f4f421aa4d408dd07f117866dde8c57751d1b2363c760",
+      ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-IDENTITY-001-FIX-TESTER.md": "5a7e3881893bfef3dfabdcb94a07d2d7e0de85fdc15948342d8334203d249a1c",
+      ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-IDENTITY-001-RATE-REVIEW.md": "4317a70f01eb15a22fd1fbb3c0ace78932714bb42d5332e965bb33cf3eef00b0",
+      ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-IDENTITY-001-TESTER.md": "df7e52bfbc7a8d2c0c800d2637962afd6ae73378afe79632ac44efc1bf9a18eb",
+      ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-IDENTITY-001-TRIAL-REVIEW.md": "6aa10e57bbf0e089ee1b9189bec1c466d1aa6446e03f38d5c6c0c3631db3297f",
+      ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-IDENTITY-001-UI.md": "3ca622fe6b6d8d67e1e9c2e4c0b40186ba9a91e2d93f8bbd0896260710323615",
+      ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-DEV-FIX-2.md": "2416763f961651bb89eb80f4bb3384c750e2da0105f5f743904b17812a32de20",
+      ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-DEV-FIX-3.md": "19529ef3cad5538181b1416abf71f7389ac8bff0e54e45a7af07c117bfa10c42",
+      ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-DEV-FIX.md": "2585d95b9a162c8f1d2d53c91c14c7477c8166c81c8a8a869ad6d554f38ec456",
+      ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-UI-FIX-2.md": "282d8b4d2e87020cdb3edd67512e1e60df0919b6f81b545b173d03b45256a3b2",
+      ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-UI-FIX.md": "976ddaccde742d84cf02c6c94c97234c568966022d69030f7f34018c6aad4935",
+      ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-UI.md": "fb06f51a5969e2fa178c761363cd8c7a2573c668a6e2499d6c76bf27c8db43da",
+      ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-SERVICE-001.md": "f3b52cc7db3cf5a07f5e134334d92cbe384c47543633779587dab2449936e75d",
+      ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-SERVICE-OPEN-PREP.md": "c450f61805ab76d20370e00c703ea92cc845c9e1d1409cfc9b08487f8b0d3cde",
+      ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-SERVICE-OPS-READINESS.md": "5ff83b94e223a005e6baf3727bd74b098b3e008d08495779bb514a65032f8a3e",
+      ".fullops-squad/docs/exec-plans/phases/SAR-REFACTOR-001-DEV.md": "83d1f5c82680ca086647060d8a671255e2ccbc3f9b57028da71b492e6612bdb3",
+      ".fullops-squad/docs/exec-plans/phases/SAR-REFACTOR-001-OPS.md": "bee9517e22c473e13adc18e3831a71aebd91106b1267542666c734f1d74fbb01",
+      ".fullops-squad/docs/exec-plans/phases/SAR-REFACTOR-002-DEV.md": "1ad904ed82b22febc610ae468c7d2a19967af203ad0432feb540ec5c7822d961",
+      ".fullops-squad/docs/exec-plans/phases/SAR-REFACTOR-002-OPS.md": "3a3ecc27dcbfee248679458a0470d8452230e358855266ea65afd5a1d5d80779",
+      ".fullops-squad/docs/exec-plans/phases/SAR-REFACTOR-002-TESTER.md": "840247c22108c38577c50e8c13e15497f5fc9d29cfc9818f47c2332f824cfd98",
+      ".fullops-squad/docs/exec-plans/phases/SAR-REFACTOR-003.md": "67b8b7fa53590c3a612f8d8eeb47195c2862bae5f58e6b04b130c22848ac8cb9",
+      ".fullops-squad/docs/exec-plans/phases/SAR-REPO-DOCS-001-DEV.md": "19da99c2b5b8c6a94015add559388acefb2b6cf9283a06b8ad23936c23fdd980",
+      ".fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-DESIGN.md": "a98aa2fa4a20efd4cb257d0348cd2ac43591da50449d26408e5bc6dd49bd20de",
+      ".fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-DEV.md": "ad12618f580e4c3d31c573f3e212e4c1ff0153af5274d3d0ea130292652f3e98",
+      ".fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-FIX-DEV.md": "c421658df3c5a742c62d723ae48e5e73e8a8ee7b4b39dc76ac03462f35921496",
+      ".fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-FIX-TESTER.md": "3df4cba9ebbe78273483cde64a9098b145e98d83dd26cd17fc62a659a7171aee",
+      ".fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-FIX-VISUAL.md": "8b59d50c5abcaeffb4c5d75be7e933336c90e87a18728103f4b3a9d26731c9dc",
+      ".fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-OPS.md": "f640a7fbbd38ae58274b98b898cd573cc5385bfb10bb04b8ca3e2c624f7224e5",
+      ".fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-TESTER.md": "fec52c74a05128a2df8e9a3c98d004402975ab1b9ec7204aa9adad765c424084",
+      ".fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-VISUAL.md": "b57dad2560ecbbb137e998d988c53d5f19926a7943c00b0ac7b3cd2006a72ea8",
+      ".fullops-squad/docs/exec-plans/phases/SAR-SESSION-PEER-001-DESIGN.md": "41e798a47e06093dd05bb71e9d0e1d452c64f8e23444c28612be6dac706987e8",
+      ".fullops-squad/docs/exec-plans/phases/SAR-SESSION-PEER-001-DEV.md": "c62ca4dab96a5dcc25dcc0bc5d7f463247810f784c2b3370d46700e4703598e3",
+      ".fullops-squad/docs/exec-plans/phases/SAR-SETUP-001-TESTER.md": "08fc0866aaf6a437966ec6865ddc14c4691994f686e00e83be9a3987aad25857",
+      ".fullops-squad/docs/exec-plans/phases/SAR-SETUP-001.md": "3e022c5bdc6e6d8d62302d4551c256c6c67fb69b175581b4b5cf1d81bc08d8d0",
+      ".fullops-squad/docs/exec-plans/phases/SAR-SSE-INSTALL-001-DEV.md": "d02fb52a2773481fc7911dfff34f7defb414ac276478ce7dc2bf10861bccc2cf",
+      ".fullops-squad/docs/exec-plans/phases/SAR-SSE-INSTALL-001-INSTALL.md": "33825d9e5e6fcf802cb7987cb167d690351a8da428f5b7a94c214f56994dbf48",
+      ".fullops-squad/docs/exec-plans/phases/SAR-SSE-INSTALL-001-OAUTH-RETURN-DEV.md": "f188a72ae7485031e114cdae794c6d495efdb46badbd083dd2bf4ea087c396b1",
+      ".fullops-squad/docs/exec-plans/phases/SAR-SSE-INSTALL-001-OAUTH-RETURN-OPS.md": "4cf30abb159dc7f9feba9e18bf0b3981bd0ae88fc24680c8f2088a3cb6850b24",
+      ".fullops-squad/docs/exec-plans/phases/SAR-SSE-INSTALL-001-OAUTH-RETURN-TESTER.md": "410c4cf7b50c262d51ec6e650ef396683646a174afda0e0ab7e59260ff1857e0",
+      ".fullops-squad/docs/exec-plans/phases/SAR-SSE-INSTALL-001-OAUTH-RETURN-VISUAL.md": "27385fa288124f4bb570e95a68e7e77423341ab61ffb001fb30945b23c10e678",
+      ".fullops-squad/docs/exec-plans/phases/SAR-SSE-INSTALL-001-OPS.md": "bff52bb1aa8d408a8183eda6aac8a8487a710577f7dfb98158a9c1b8156610e2",
+      ".fullops-squad/docs/exec-plans/phases/SAR-SSE-INSTALL-001-REMOTE.md": "bf29cdfe4fbf22d196154f81ac4303a357671244f1d7d47e0178b88e3d106001",
+      ".fullops-squad/docs/exec-plans/phases/SAR-SYSTEM-DIAGRAM-001-DEV.md": "e12f7859078c667e6914ca992c12f09cc7866003ec6bb24de9578129d1592c2a",
+      ".fullops-squad/docs/exec-plans/phases/SAR-UX-ISSUES-002-DESIGN.md": "ce6dfb99b0bdd0f12702e1893db6e90ded9b8a9308c8c88fadde655a403c1ad4",
+      ".fullops-squad/docs/exec-plans/phases/SAR-UX-ISSUES-002-NAMES-DEV.md": "cbcbdc87758844ea0b7d4e356e862e90f177e2861243cc2851de8682374b92fa",
+      ".fullops-squad/docs/exec-plans/phases/SAR-UX-ISSUES-002-NAMES-TESTER.md": "2d64d35bf7acb5814687396711c16fa49869b8404d658662d430f38a8bd2a3a2",
+      ".fullops-squad/docs/exec-plans/phases/SAR-UX-ISSUES-002-RECEIPT-DEV.md": "ea9f6892d6598b718a5af4e9a7ed01884416253bcffd07061b91d1c8c516600d",
+      ".fullops-squad/docs/exec-plans/phases/SAR-WINDOWS-SHELL-GUARD-001-DEV.md": "771e1bd3f26dbbc4163aa2f17a106da31d1afcbecf4f2aec2a5cd0bd61e3e4cf",
+      ".fullops-squad/docs/generated/db-schema.md": "f6b365b9747cefe1f6735982a563781c1358dba9b4b065ac4b2ef4e1637cd895",
+      ".fullops-squad/docs/operations/transition.md": "5166cfc505ebecc55aa6aee6ed46afad61787d59212aa6ce357054d440f6ed3b",
+      ".fullops-squad/docs/operations/user-guide.md": "d12db41e2d8d2141f9a437d046a54815c096ce182b16e8b0574ecd1f42ec48e6",
+      ".fullops-squad/docs/planning/SAR-AUTOSETUP-001-DEV-brief.md": "aa9730fdc319b4bf9b5b5a9e20b8fbb68eaf837b10f9abd6d8770ea68f9e5728",
+      ".fullops-squad/docs/planning/SAR-COMPETE-001-request.md": "a3a9694290f31b7d97573595c8044178234205d1bde2016a5fe006c63e01191a",
+      ".fullops-squad/docs/planning/SAR-MVP-backlog.md": "9266c6a3493bf2f329b8a578ecd75932a9f1237d9919a876152d7fd03a52b3bc",
+      ".fullops-squad/docs/planning/SAR-PREP-002-request.md": "aac8e951f534dd7898a8a8d8d397b62c70acbab730f69d00d67428059d25045c",
+      ".fullops-squad/docs/planning/SAR-SETUP-001-question.md": "982e3d96376167d548fa86d9eff83ad3cf9fa789d77305535ae34fda0d3b695c",
+      ".fullops-squad/docs/planning/SAR-SETUP-001-request.md": "71ed2c382551dcd2bd1ce2fbaf78c20b984650f2db3439d7d87eee8f3e62a4ba",
+      ".fullops-squad/docs/planning/business-plan.md": "c6713affaabf38eac24beaee57e34db9a20f31d39493fae17f86df4ca8d43297",
+      ".fullops-squad/docs/planning/intents/SAR-AUTOSETUP-001.md": "e8a4dd9e8845e4f1c0c5133c51e66a4f40e56b519cb519fd17f8eb8db00aa983",
+      ".fullops-squad/docs/planning/intents/_TEMPLATE.md": "d96761acac91d610997157847ca1cc000efc86aa370e3c59af015404f8fb7d98",
+      ".fullops-squad/docs/planning/product-specs/SAR-AUTOSETUP-001.md": "1ab9b4ec5e5dedbb3961523f596961c2a1607ef67105e2e685689ae2a558b4d5",
+      ".fullops-squad/docs/planning/product-specs/SAR-COMPETE-001.md": "f41a11866b1b88522705347b63351d1525db665e30e3698566a970faae7d39f2",
+      ".fullops-squad/docs/planning/product-specs/SAR-CONNECT-SIMPLE-001.md": "b9f456ef1d0261e6475b658d993a7c5a8cedc4169b6b0b6ba584bfc3b81e8ded",
+      ".fullops-squad/docs/planning/product-specs/SAR-HUMAN-PEER.md": "4d2fc9fa96fede616f7ea6e2c9b31e0527e3eeaba8442e31a7aa2ab5253b0578",
+      ".fullops-squad/docs/planning/product-specs/SAR-MVP.md": "1d63b5517f2883cc15375ccc5cdac6689a5a171e46b962fe56ac6c437bfebf8e",
+      ".fullops-squad/docs/planning/product-specs/SAR-PUBLIC-SERVICE.md": "a34c277ad73b4b879fe76d5e9594c1f93606390b310b46fe155ccd6b25fc109d",
+      ".fullops-squad/docs/planning/product-specs/SAR-PUBLISH-001.md": "d6d98dd915e1e6f115bf81f138dc5d0db25d168bc96d2019de826531d9859403",
+      ".fullops-squad/docs/planning/product-specs/SAR-SCHEDULE-001.md": "4651854cc519ecaa695ca9acc644c6471f9d089ecc5ec9a5e1eec2825a4eda94",
+      ".fullops-squad/docs/planning/product-specs/SAR-SETUP-001.md": "d3c17571ade569fb0a4e421cedbd3426cd690809293f8abc9f73627605fcae1d",
+      ".fullops-squad/docs/planning/sources/silent-agent-relay/README.md": "b7aa9204c400ce76e7b77accbd7d1cc1317f6622677a53029fdd9a96d71b7f3d",
+      ".fullops-squad/docs/planning/sources/silent-agent-relay/business-model.md": "7453f9d50c8c66dc5e225713528d97b9b99bd1121d626686de5ec44e4bf4aac4",
+      ".fullops-squad/docs/planning/sources/silent-agent-relay/decisions.md": "8eca37c259c284908334d4c600eab4198b7f44b3df45712d0ed48e6870c32e8d",
+      ".fullops-squad/docs/planning/sources/silent-agent-relay/product.md": "6c5acf3b1a82d43ebaefca904b1678b172119fc5c275f784ae4ae6305abe7050",
+      ".fullops-squad/docs/planning/sources/silent-agent-relay/protocol.md": "b7f1e78de9dfc541f9d42270d595f05360253e95a72a6d1f95a41e2ea7db21d8",
+      ".fullops-squad/handovers/SAR-MVP-001-REVIEW.md": "87369dfbd30eb4b9d7da6b380720b2232bab9a59c77cac7d7a1ba482479af1cf",
+      ".fullops-squad/handovers/_TEMPLATE.md": "70b02089b9663e286a427692d61e51aac94cb1751a4602d772a0117a491db7a0",
+      ".fullops-squad/handovers/pending/SAR-AUTOSETUP-001-QA-superseded.md": "2d4a32a02b839c97942341c255c8057aaa42e6465eecaf07c4391e579fa638da",
+      ".fullops-squad/handovers/pending/SAR-CONNECT-SIMPLE-001-tester.md": "6ab87527f6d130fd8a05ad6b49c01501d49e6b379d0f685851107d690f719103",
+      ".fullops-squad/handovers/to_dev.md": "e5a62f938382c48fcc2c01fe74570550dcdd4a5cd2198fe4090944be806c184e",
+      ".fullops-squad/lint/README.md": "74423a4a607d485c7af87900cc06862871aa2b195d50a51a7f774d0ecaaf5745",
+      ".fullops-squad/orca-agents.md": "e15c0956821cbe4f8e5cbfb5873020211ebb824a31357fa0e26afa8e29c04953",
+      ".fullops-squad/project.md": "fc29df0d4540cea831c8d0a22eae75467e9e094de38e3954771354b4ad548ffe",
+      ".fullops-squad/review/_REPORT.md": "ea98b4ee3d26e68730deebccc900ce46da6424979bee25c37bceac3c8124ed8f",
+      ".fullops-squad/rules/common/README.md": "deccf1af12f00b265dc6a465dcabf369108b5f8b73bb7befc37b63a16ebe6a43",
+      ".fullops-squad/rules/common/coding-style.md": "a41631944d3beaa232a01d6cf8cdca7516ce98ccdfd588a01d73fd5437cae5fd",
+      ".fullops-squad/rules/common/security.md": "d50e6f431b037879e67f303da3a8bd0c1b6e2750c6d7721e2894d66643cd6674",
+      ".fullops-squad/rules/common/testing.md": "1f54ec402f46c465719b487b9d6caf390e243c1fa54e8eaf43e3b345ab730ecb",
+      ".fullops-squad/rules/delegation.md": "d9b0606c7e6750977cec70d5de0da2521e6fbe4401f572b49b6dbe7932792c35",
+      ".gitattributes": "0c51494119f4a7029fd6ceb638a2dcf45ea7cc3ab5553492ee7817e77fc798e3",
+      ".github/workflows/notify-link.yml": "cb758b192207163a2d378658dfe919fdca62ba031c2fe89085aec611d175bb9c",
+      ".gitignore": "f48b8404e7b958376b4de76d693e0211aed4850822b255e1d89aac7f143d4ad9",
+      ".nvmrc": "4c42fb8d6334c5cdcac68b93f96c581fb83b1f58cda898cff115e5e941ef717d",
+      "AGENTS.md": "5e0a82a213f75dfae07c2a3089292783055baff3153452bca122938f6a9ac545",
+      "CLAUDE.md": "890c7b372e915d12dd47df0af31551ad1e092d79df72893810874278a889daa7",
+      "Dockerfile": "0d4910ef981013c4db94ae408f6eb814c21d0a4bffe3edcc2658ad97f374314e",
+      "GEMINI.md": "198b9baad6276b7fe1232378edda29ab62dd2a255dfd7c7e06db9e0ff38753bd",
+      "Makefile": "982e25eee778689bb916c010e11bd7646b58189855b67c72308bdac880357a09",
+      "README.md": "5a479a905ead156a3bfbc7cd3b0f17fefde8e52b8cc7e05d2e9eebe3a709d5af",
+      "adapters/.claude-plugin/plugin.json": "a0b3bef6a81483eaa0d2411e94a6c72b2c17349cf5ad33e84e695b946b32f60f",
+      "adapters/.codex-plugin/plugin.json": "73535ee113ee4fd019433a0cb01ad735323b014d6531b5bda833d8cdbb2a2c12",
+      "adapters/.cursor-plugin/plugin.json": "f6124654d704a63bff4e9c7c5293880a126ffc2817eabd13d889353902423b4e",
+      "adapters/.grok-plugin/plugin.json": "7fb7e729a9affb85262d82f1cfe6c2f4ceaa2a0210c6f6797060e98a520e10fd",
+      "adapters/.mcp.json": "6e6f51c6c531740ef9b3f351e90ca78b6855372652527aaf17614c31ba52d51b",
+      "adapters/README.md": "7fa18d5e5bb6a59ff2c247cb4b009e18b57475b7573f89808123a55e6a7f8275",
+      "adapters/config/local.mcp.json": "3e22b80eead57acf4207fec33ded2a1e73a0c7a4eb0de3112ba6e03c1176354b",
+      "adapters/eslint.config.mjs": "f5147934551e8e0305207cbb8f1041e41da2636ed978f8a37f9408b1933f5c44",
+      "adapters/hooks/hooks.json": "c835c92d8e1159d20a40ca78ad654da7433942c3694ffeda0b376b0c4dfd52cf",
+      "adapters/hooks/register.test.ts": "50e653621a8daec0ee1c1e7344f3f6abb406ab520188760029330ed73a6b3a8d",
+      "adapters/hooks/register.ts": "d46481dc584a1c7d9b5add507d32df4edb92be7b1a3ba5c6764c738aea89e187",
+      "adapters/manifest.json": "7ec54c5d4a0be643fa6e0dc8bb1dd4beec9f3d8d44cbfadbf2158a9ee287f054",
+      "adapters/mcp.json": "e95d0223b47d355abba37fe8223069998350ae5653379dc196c5bc7e21db09b7",
+      "adapters/package.json": "6b85f3ffd565e1baeec2d7ddc2aa8523568b6bacee8fdb1e5c2de5e7ebed5183",
+      "adapters/skills/knowslink/SKILL.md": "b4100aca909b9bde843c10fffd96f32dd8523605c407132fbc52455043417e36",
+      "adapters/src/codex-session.ts": "ff14544a8e3b5187f8a26230e15366e6a7ed5a76a229b4f0094de4b777f431af",
+      "adapters/src/defaults.ts": "f347b80c95eee91c407ff66cba1400932059bae0877b268cbddcf71c644775c6",
+      "adapters/src/grok-wake.test.ts": "a0ccc0ad647fbb88e0203287f9a26444fc76274fa18850862e3c9d49e3ed4901",
+      "adapters/src/inbox-files.test.ts": "a94e148fb2f908e7946834cbdaf0fcacab31b27f2b6f1dc1cf09e1b2a39d6f17",
+      "adapters/src/inbox.ts": "0d5f4c37d55b8ec9a3ebf6c07b377eab6c23fd0f3e9048f96183b02866b89aa4",
+      "adapters/src/index.ts": "ca28630722ef67b43b4972850d1b8d008a0aa0a86b7d19734dc8b8c44e65e62d",
+      "adapters/src/login.test.ts": "ae0a5e30447b16d35f6fc329b70f7a70de4405db6b6b744a6d51df1915c71844",
+      "adapters/src/mcp.ts": "1e582b04068d45130a8210dfbe725e01cc79946807cd837b793b77359df07552",
+      "adapters/src/private-files.ts": "9855485b0257cdabc7b2553ad3607019239bd14b0fe20f4f36bc92350f5b49ad",
+      "adapters/src/public-check.ts": "789bfc15eb843ea866d0724dc428c7047404baad32e825cf09a42ce75d5a456b",
+      "adapters/src/reasons.ts": "b1cbd329a545b10bc2a09bc6bee2d885cec44f0a6b65ee7039957f2281eb23b9",
+      "adapters/src/session-lock.test.ts": "e973cb18ea2002ecef275c20a892b14c10108d3b10ed9722a3a6aaa8eaa32b50",
+      "adapters/src/session-lock.ts": "999f65a502cfbd3335d2d1ecf491f55cde77f8ef6e7e5425d339217af8f1837e",
+      "adapters/src/setup-connect.test.ts": "a93720e361c519b23c07587fc1af54f48f46da22a49ab4115efeb504bebcbf67",
+      "adapters/src/setup-connect.ts": "6c569c14f88ac11a360892ff966d47be3420b91e4535f88868b51a317299129d",
+      "adapters/src/trial-check.ts": "51c62c5457ecb6d1a404a442a88be4c58ac2f3bd938ff142815d65f67ea1389b",
+      "adapters/src/trial-cli.ts": "22838fa55f0ebfd3adad690f7d6cb3b18a73d6c0da8453c6d187c53624d78bd2",
+      "adapters/src/trial-setup.ts": "eff60312059e20d31e503a585a0efbc9a746aa0c138d99cb70deb32d92ae2f78",
+      "adapters/tsconfig.json": "864dbc33acdab5c8e2bbe029ad982459838aa461c5a4a1b98039a5302864b62b",
+      "cmd/migrate/main.go": "50f5ab4f2104bd01606856548e2dc0845b9b9bb1afa0b7b0c12d899bde0a2de8",
+      "cmd/migrate/main_test.go": "b0cacdde1f9a969176f55bbc294cf0ab22c3e0c2e9485b534046a3469d86de22",
+      "cmd/relay/main.go": "4ad91604c1f967caa6ddd288799148237d0acf7a187139a4ea56de50402d8a1c",
+      "cmd/relay/main_integration_test.go": "5d0c1aa1d77157f80eb687e854fe198f08b950313b59af144886db0d3488bbe9",
+      "cmd/relay/main_test.go": "afb574adbea619590f23da10fd8384dfe179dfdc54dcd691c0873a0c69778e77",
+      "db/migrations/00001_relay.sql": "31aa978fb6e7d26eb4be7f65cd58c6abc286c0675bacd1856368221d095c7507",
+      "db/migrations/00002_human_writer.sql": "83cfa1aab7ddb803a0705434187af01386bbd8ccb60ab37a4cf5e9220c661f36",
+      "db/migrations/00003_relay_state_json.sql": "6e44e4b8e661f41be4ea0a51ae8095243b07b8e1ade49acd2f534148fbccc9e0",
+      "db/queries/relay.sql": "52e98d81ba91823aa9c723ebc4f3f34c58fe90f88922e3fd576a0e5abe89c76b",
+      "deploy/knowslink/compose.ops.yaml": "63ba6860410b28bbf637e963b4973fe80e00cddede8c39c14cbd273db1321355",
+      "deploy/knowslink/prune-backups.sh": "a3c3f25cf83e5dc21723d7a8f92ddca41d928b9973999220f70feeb3a9438736",
+      "deploy/knowslink/test_public_config.sh": "f8067a5dacab2b34657a95d167654b6e19102d9a161f8d849e26eb02381c9c03",
+      "deploy/knowslink/tunnel/public-ingress.yml": "0da349c4245dba88a71570dcc1ad5b525b9f9c0fe977a198eba5261249fc5bce",
+      "deploy/knowslink/verify.py": "6221d1ba13acd6ecad401eb672668b94098bef695c9b33b3c9f6590f32d544d5",
+      "docs/README.md": "62324718c328f8e4e00e0375b238ea9d69e27ad75f21b4fc819a055279299b4b",
+      "docs/architecture.md": "37b45c2e59df6009f89dd2bf4a209ffca8a121c5583c95156e7ee4b2e4832f20",
+      "docs/brand/README.md": "70ec4c56545248ab9dbebf5019fd56199c5bd628c7f8fe66da06c151cc4944c6",
+      "docs/brand/knowslink-favicon.svg": "5ee8a5760f9d0be047c010e4c942a3ef92800568917216afe647f0f4c5821032",
+      "docs/brand/knowslink-lockup-inverse.svg": "1b0d1b5b08fd9d3819969af6f196b1ac7da6f7565e1f88e50a28264078ba7b62",
+      "docs/brand/knowslink-lockup-ko.svg": "6dab554a929bcbeb0666d9dcc4fae39c9de42d71a862b97b87fee06d1978a833",
+      "docs/brand/knowslink-lockup.svg": "fcbaa3cfe0a531b10900f1075fd929bf566b19b8cbe2a35aaa374853d24d6028",
+      "docs/brand/knowslink-symbol-inverse.svg": "040f9dfca090850816a38236c29d8936696639591e8134aa0fbddfc4a43d045b",
+      "docs/brand/knowslink-symbol.svg": "c61f2a24ec4acbd6e81b667479b26e61919aa0c4c477a61db519c58209171001",
+      "docs/development.md": "761f0ca606807ee59e3f58de9e165749ddea3334a471f7f0103e8ffb4147091c",
+      "docs/operations.md": "78f0baf8ae0f3338aec126f62d805bc26bf5651e70056cb3e3d860963898f872",
+      "docs/system-design.md": "09f0d9919384a9c0ea7d8e7cb37098bc74473fe555fda4da6c4311f5bfcd28b1",
+      "go.mod": "43099800f2f949dab1c19c1a42940dc389fc5c8a90c10d40b50999ce65aceaac",
+      "go.sum": "2d9688060391df4ea15fd8c24cb274441c5a7d466e5c3f016d2dc9e1bd1c282e",
+      "internal/config/config.go": "a1c0731e306658f82f2c8febddc53d37d62b9b3ecc9e576cf4643baec7f8cfc4",
+      "internal/database/db.go": "b6213219679f628bd87a92365b7aa0c595adfecdd942318aa4af989c67d69e2b",
+      "internal/database/models.go": "f309898abbd7e638519fcd1518953929319ff5822dc3a6dd2e30f61241555bdd",
+      "internal/database/relay.sql.go": "0d9023bca279bd92068986d56c24275deb18123f315bded80ed98ca8cc34cf19",
+      "internal/relay/admission_integration_test.go": "c815201bcc8d34d043bbc44bd949069192685beb0e3eec77c715e3914470f322",
+      "internal/relay/autosetup_fixture_test.go": "f1f7d13509f25be1aed36ea6ec757b9044c4f2816d8b1225337634f0efc69726",
+      "internal/relay/autosetup_guide_test.go": "97da09d0f2266784b756ae158e3d02468cf2e0aef646ac312949d54751baeca0",
+      "internal/relay/capacity.go": "baa2cdd1c7a5a88437c536e69a74b9997c2519681cd8168f3f59b715bcb45462",
+      "internal/relay/cleanup.go": "29ed63da91c6d0f70dd8224a6d1bf433fdea06ecb2c228225155315faa47b76e",
+      "internal/relay/cleanup_flood_integration_test.go": "b7ac154bb82ec510bed917e4c4e04dcb4392a93501781baa649ce2c7621db3b7",
+      "internal/relay/cleanup_unit_integration_test.go": "4c702fa7c115281738790c37b92102792b9fe08b2ffece347ed3c88ab2b9ffa6",
+      "internal/relay/connect_guide.go": "d0432529877525fa3b09e7fdbe435144e78659de829e00478934e1ad86edb411",
+      "internal/relay/connect_guide_test.go": "62656e75a5ba175ab83385baf60b516ad7a8fe7f66b71d89949cf43e11b1e4d6",
+      "internal/relay/connect_simple_test.go": "ad31f4a84fb17044461f517b2d71f5fec58f3e9603a737ebd0c7cdc5ebfb45d7",
+      "internal/relay/connections_test.go": "591e973119dc4bbae304dc5713c7c843d7dfbbf2665182503b031779befd2a92",
+      "internal/relay/db_limits.go": "c8907a108ead63bde36be1a6b8455e60d0b29295ba467633b31565ec8434e609",
+      "internal/relay/db_limits_integration_test.go": "8b49f0d933c3b63e2d979c477d8b0b45714c290d19c0f3e9f740f832eec9d04f",
+      "internal/relay/db_limits_test.go": "491ee96130ad04aa84e2ea7902b2cc0f74eba0964321e770f4077046ae6aecaa",
+      "internal/relay/device.go": "3d0a83705ac354314dbb5f1afbbdb1af5046c753672a24237b351bc41c5f246e",
+      "internal/relay/friend_rerequest_test.go": "c8225a6a1e0d794120d42486f26aa59da250c0400caa5392198131e41da39934",
+      "internal/relay/gate_summary.go": "d57449f6a067796af953f779bea1a390316853c61ad431680119b8192ef8043d",
+      "internal/relay/google_test.go": "1b4a4c12c7b2edeb3f5e1628aa04692fab44bd4d4bedccbcf7d020bb220fa13e",
+      "internal/relay/human.go": "63a18a4bc52001b5ef1eb47826d0c6900651cf4f7654b22b105b87a8f1420664",
+      "internal/relay/human_http.go": "bc5e9a1125988e43c50e2913830fbb80cdcbc959f8d2d9453198ce474adde28d",
+      "internal/relay/human_messages.go": "e04c78e7be42fb5e90803c94e47d9f6255425101577b1d12a8dd20b159761f8d",
+      "internal/relay/human_names_integration_test.go": "10bbcec5d59d986f9ca74ae07c39854cc274697ab07f32ce75e204ed78a2692c",
+      "internal/relay/human_names_test.go": "99f361aed28a4f1e28962693e4493c0ff59007ab063aebe220463e66d6747568",
+      "internal/relay/human_pages.go": "518f9419c19c5176f83756eeea43b1ef8cf2c42fc57b745a5630d1d2df93484b",
+      "internal/relay/human_pages_test.go": "b307f991c97eea377d4042b00d3791f7ed9c685ad5ed637c8946f152aed217c8",
+      "internal/relay/i18n.go": "b2484c4ec5217f91dc56501ac9d7bfa6425c87ed4b6982ebcf02197caa9c60d8",
+      "internal/relay/i18n_en_human.go": "b56c6dc063b18866c3e2e5b476cfab35e52138c85f01040c506d21308801af31",
+      "internal/relay/i18n_test.go": "f42cacfd34232e4d99533a29b9c749e8027802799c02ca79399c6509d2689b91",
+      "internal/relay/install_files.go": "64997012f99214df2ca147c34b80ebe5cac35811afdb48f535271255b7e55c48",
+      "internal/relay/install_files_test.go": "e3abdc540b64b65b30f47f2afe37f3e00fe1371945b6d77621b67bbeebb635f7",
+      "internal/relay/landing_fixture_test.go": "e0dad02d30ad091673bb5e235507bf232cbec503a6ec5a7b3f2ea24805223094",
+      "internal/relay/landing_integration_test.go": "703c3c40923f310c0fa1bcb3a40b27dcedea122978b385b50a7461f3e6ee2911",
+      "internal/relay/landing_pages.go": "48f829f5013ba094352b39f1cb2d40877ae9beee4dc3279f1983e6c0596be154",
+      "internal/relay/landing_test.go": "114a3109de19eac19de58d52478573e0e90e6073185d270a25c573b6d6c7e616",
+      "internal/relay/lang_integration_test.go": "387f58601833fe51d57b17d9d1fb96d8bddb330a1c53c0b2928922ac375cadca",
+      "internal/relay/mail.go": "db5171b9e74b68532e0a0cc7e821ba55a3c69151c8e4daed1f5a8a94b0561754",
+      "internal/relay/member_agents.go": "6a6ea9e8f46781e8bbe5cfd8ab49f6b65ff95e94402695af05a752ae6da79a13",
+      "internal/relay/member_pages.go": "f5b2d4cabe16e5e5134c47769c76ac67ae4bde9a54d17b280317771333209424",
+      "internal/relay/member_receipt.go": "b6308d85cd2f10b26c36d86dd72686cc1d505a0bf756936d6184367abba1cef5",
+      "internal/relay/member_ui_test.go": "261aa660636d860c5f1717706055c5bc71899f34508d454b7fb0ffe6e83f41e0",
+      "internal/relay/policy/privacy.en.html": "45d1fb0a2536d985b35ceb60acdb577a793818c539b8bbdbf8e30e316bd08b03",
+      "internal/relay/policy/privacy.ko.html": "06d8aae664f27dfcec6c8fd18e3426de675c0b163a5d1f3f0d299042f6065af0",
+      "internal/relay/policy/terms.en.html": "451c7282a6bd873cad50b4d7312080745184088af8422f0b2cde18b7000c4118",
+      "internal/relay/policy/terms.ko.html": "3c6a252ff3327ab25aa429fc5ce93fb9740e0cfa28da8c741b05171a0a551802",
+      "internal/relay/policy_pages_test.go": "ead3cbcf9377ff8843ee414f5ca67c48f84263126a301f51c350efa221bc1f59",
+      "internal/relay/policy_test.go": "f3f1482425cbda5e383b613ebdb632a032180af6ddfbfad7ca48632873e7e0a7",
+      "internal/relay/protocol.go": "88dfaf504ae7f81d02e54d8a72e91961819e1e52017aee84f0b0aff46eb25233",
+      "internal/relay/protocol_test.go": "8433c1ac3a09c2c20fd7f82c6756841761998b616ef281a5d12dc91170939a5f",
+      "internal/relay/public_messages_integration_test.go": "5b8e7b52b9f90c2882d23f5ce5bf1ae75dcb31a94b639fbe9585ef6204ccd1f3",
+      "internal/relay/public_text.go": "48baaa488e700c334e59c3109cbd85f4a0ff9228ebdf0ac5af983fcdbf4ae3a0",
+      "internal/relay/receipt_context.go": "ee3e46bd248d3262a93023d797852b30160edd1b54faba46a515dc9c4d98ece8",
+      "internal/relay/receipt_context_test.go": "d0387ab18b0fa20d0cefae31f6517f554875007041bb6b5a09dbb88c39e299c3",
+      "internal/relay/receipt_integration_test.go": "436ab90d93c774a029f76ae8f15e96a01c48e43c66c068e8c64560e5e6fa1d8a",
+      "internal/relay/registry.go": "652a0193b46720a05a7797b309e1f3d372342b430bf3ed991dba3085daeb2cb0",
+      "internal/relay/registry.json": "2b25c6b58fb6b6973de1c9bac19162834cfc9b678a0416ad39e2cffab3cde1e2",
+      "internal/relay/state_migration_integration_test.go": "8233e295231ebafad67cfef163666ff12707dbb526c017b8309ba12ceff75160",
+      "internal/relay/store_retention_integration_test.go": "37e3a388f3bdcc92b7c9ef7a4811ec39ea9cb7cc2af61edaefb57fb1b5f1e4f3",
+      "internal/relay/store_retention_test.go": "8fffcea135407c496799f77befa7f380a9d067e1f022659e7954ad0dd8ba752c",
+      "internal/relay/test_messages.go": "3e12686163d2b31494e1508c09df9fe58f32f4824974db597dbfd3af55d2f20c",
+      "internal/relay/test_messages_integration_test.go": "7a013073933cd8119a11034b0d8d9d1c4e7b7f4de134e70fe8b3ae9a0ca34052",
+      "internal/relay/testdata/consent_browser.mjs": "704b045e65317ccd89cefbef180215d93680a4ab13f2ebb10ebd958d65628081",
+      "internal/relay/testdata/legacy_claims.json": "325c731b01d1579b3ff51818236f91a46d1145087d63f63a6bbffcaf0c294d2f",
+      "internal/relay/text_events.go": "a8fb5631a50a0aceaf35a410a8261ec610446e8739f3b82b831038337f4512c3",
+      "internal/relay/text_events_integration_test.go": "fdea3564beff5da8a17976b6d1a52026b1fefef191595c38b85f150b5e5ed48a",
+      "internal/relay/text_events_test.go": "6663f90253f8b33cfbed45786e07fb3001bbd37f06a7c69eb5f77ddbfc257138",
+      "scripts/autosetup/knowslink-setup.ps1": "2d9e23e3e0ee90290a8f2100cd66c022db0c72b4102c07c73522f9f2244bf9b9",
+      "scripts/autosetup/test-get-registered.ps1": "a7bbfa6f4f8465119f73ad98ef08b15a4d76eedeb35870baac1d7f474d6e5469",
+      "scripts/autosetup/test_get_registered.py": "a713f2cc36810a44c0e9c03a68b6b99a6a75d7e1af6a129001e0e48970e04659",
+      "scripts/check_public_ingress.py": "8d0fdd4eec86e2d82982337694feb2058271d9e83f7f900838b2f39f4849e7c3",
+      "scripts/install_bot_mcp.sh": "13276be1bd2504bb1ee19aabd8dc2bfaf55f3174632b12fb2d82e4dc9c17c1bd",
+      "scripts/mail_sink.py": "849e22ce33ca1254991f8ba92e9ef989bb994192915fec21380296ead1c36542",
+      "scripts/package_plugin.py": "37171c5ba5077d6ca4f55b1a7f30b0fb8163cd5b877ae8605a8eb5809f868cd9",
+      "scripts/run_trial.py": "b5e4fcc9e20b079f37153598245ad51dbe905bff9b95daf87d02fdb334a0186e",
+      "scripts/schema.py": "4ff105fe8fe9bd232caef9931be55a52d580f65459705859789db28ac2a89d06",
+      "scripts/shell_guard.py": "ace83f1dac024d3d830941aaed354044f689eed363ebeb6a3bc2e088663a0c7f",
+      "scripts/test_shell_guard.py": "d0d217413df8d450ce93d29a8017251cc8b24a2f368df65c90d37e3447cd3a61",
+      "scripts/verify_grok_plugin.py": "39c2351b16cbc87416d7e1f320dd370b8dea4f59781e0a33a2f10014d6ad4295",
+      "scripts/verify_setup.py": "51c11d71b0916eaf295cb3b3a73b72bf1dc1e72ef930ce2e3fa093b2a73694fd",
+      "sqlc.yaml": "2347a2765fcefcc1fe2d5acbd6e4f8cddbf306d3bac773a3d881ccf0fd2584a6",
+      "videos/knowslink-motion/.gitignore": "47a3d1fb0dd29b8c312fdda10e075f66934d4d4382653450618e6db6923a4eeb",
+      "videos/knowslink-motion/README.md": "2844daf631352fa7d607c4295873cc90b8637b2f310d4a050511c9a72bf82eeb",
+      "videos/knowslink-motion/analyze.py": "84c002c0a40b668579eca0aa244f0bfd3713deae432bafd0463ca5e10e37ce96",
+      "videos/knowslink-motion/assets/SHA256SUMS": "4430036c74226929c382d27670f4658b2da8e67b3d081659c99479c7067c33cb",
+      "videos/knowslink-motion/assets/SOURCES.md": "f9379d15e41e7210b7190d68a3a51ddde94ecf0494169342623b4db4be8460c2",
+      "videos/knowslink-motion/assets/fonts/Geist-OFL.txt": "930853ee1daa68554d9e35c8a9175affb74f699fad9a5da6ee5ebe76379d9137",
+      "videos/knowslink-motion/assets/fonts/Pretendard-OFL.txt": "b04538c9abec39a3db75108cf0af0fd9c77032fe8aa2cf38345b4d250e98e38e",
+      "videos/knowslink-motion/beats.json": "857bd7d3f459cadcfd450e1928527608874943d225077abef370b9a3ae1deadf",
+      "videos/knowslink-motion/fetch-audio.sh": "72d51df88b332488bac4ab1d5e6c01653a13b2a304b907101fa6f3ee14c09f55",
+      "videos/knowslink-motion/index.html": "a7ba6224e174c6566f8a6ad14ec7cc1c2d3f95bdc04889f2b334acf538b37b74",
+      "videos/knowslink-motion/package.json": "b52a77927966db909a4adc88be014890082807a2ee5de91275c4094087a8e2f7",
+      "videos/knowslink-motion/render.mjs": "ffb055a7d8ff5ba40a035c42a8c8e11fa9ca9499eda12ff791adfd4733d9776b"
+    },
+    "search_results": {
+      "route": "37dc04034c6e037abdabe56f9c3aaafc875ee698f46e67ad7e1bb67e7d472ae6"
+    },
+    "decisions": []
+  },
+  "input_sha256": "2f0cd85b60cc2980468625134cf90d1a7cd3a5858ebb0d7790b10142693c4509",
+  "version": "jev-packet-v2",
+  "base": "17acfa5e0b9800522854163b9d5df67b9870a159",
+  "worktree_dirty": true,
+  "items": [
+    {
+      "path": ".fullops-squad/FULLOPS.md",
+      "categories": [
+        "document_read"
+      ],
+      "reasons": [
+        "required or existing context recommendation"
+      ],
+      "evidence": [],
+      "doc_ids": [],
+      "required": true,
+      "status": "inferred",
+      "priority": 0,
+      "source_sha256": "ace0b3ac74bfd53a7614ec236bd22f8b4da624ae6dd8f4fd9b36dd10c7af8186",
+      "source_basis": "HEAD"
+    },
+    {
+      "path": ".fullops-squad/handovers/to_dev.md",
+      "categories": [
+        "document_read"
+      ],
+      "reasons": [
+        "required or existing context recommendation",
+        "symbol/keyword occurrence; reference semantics require verification"
+      ],
+      "evidence": [
+        {
+          "method": "string-search",
+          "symbol": "relay_state",
+          "line": 38,
+          "seeds": [
+            "inbox"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "pg_dump",
+          "line": 43,
+          "seeds": [
+            "inbox"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "relay_state",
+          "line": 71,
+          "seeds": [
+            "inbox"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "relay_state",
+          "line": 81,
+          "seeds": [
+            "inbox"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "human_model",
+          "line": 85,
+          "seeds": [
+            "inbox"
+          ]
+        }
+      ],
+      "doc_ids": [],
+      "required": true,
+      "status": "inferred",
+      "priority": 0,
+      "source_sha256": "e5a62f938382c48fcc2c01fe74570550dcdd4a5cd2198fe4090944be806c184e",
+      "source_basis": "tracked_worktree_overlay"
+    },
+    {
+      "path": ".fullops-squad/project.md",
+      "categories": [
+        "document_read"
+      ],
+      "reasons": [
+        "required or existing context recommendation"
+      ],
+      "evidence": [],
+      "doc_ids": [],
+      "required": true,
+      "status": "inferred",
+      "priority": 0,
+      "source_sha256": "fc29df0d4540cea831c8d0a22eae75467e9e094de38e3954771354b4ad548ffe",
+      "source_basis": "HEAD"
+    },
+    {
+      "path": ".fullops-squad/rules/common/README.md",
+      "categories": [
+        "document_read"
+      ],
+      "reasons": [
+        "required or existing context recommendation"
+      ],
+      "evidence": [],
+      "doc_ids": [],
+      "required": true,
+      "status": "inferred",
+      "priority": 0,
+      "source_sha256": "deccf1af12f00b265dc6a465dcabf369108b5f8b73bb7befc37b63a16ebe6a43",
+      "source_basis": "HEAD"
+    },
+    {
+      "path": ".fullops-squad/rules/common/coding-style.md",
+      "categories": [
+        "document_read"
+      ],
+      "reasons": [
+        "required or existing context recommendation"
+      ],
+      "evidence": [],
+      "doc_ids": [],
+      "required": true,
+      "status": "inferred",
+      "priority": 0,
+      "source_sha256": "a41631944d3beaa232a01d6cf8cdca7516ce98ccdfd588a01d73fd5437cae5fd",
+      "source_basis": "HEAD"
+    },
+    {
+      "path": ".fullops-squad/rules/common/security.md",
+      "categories": [
+        "document_read"
+      ],
+      "reasons": [
+        "required or existing context recommendation"
+      ],
+      "evidence": [],
+      "doc_ids": [],
+      "required": true,
+      "status": "inferred",
+      "priority": 0,
+      "source_sha256": "d50e6f431b037879e67f303da3a8bd0c1b6e2750c6d7721e2894d66643cd6674",
+      "source_basis": "HEAD"
+    },
+    {
+      "path": ".fullops-squad/rules/common/testing.md",
+      "categories": [
+        "document_read"
+      ],
+      "reasons": [
+        "required or existing context recommendation"
+      ],
+      "evidence": [],
+      "doc_ids": [],
+      "required": true,
+      "status": "inferred",
+      "priority": 0,
+      "source_sha256": "1f54ec402f46c465719b487b9d6caf390e243c1fa54e8eaf43e3b345ab730ecb",
+      "source_basis": "HEAD"
+    },
+    {
+      "path": ".fullops-squad/contexts/ops.md",
+      "categories": [
+        "document_read"
+      ],
+      "reasons": [
+        "symbol/keyword occurrence; reference semantics require verification"
+      ],
+      "evidence": [
+        {
+          "method": "string-search",
+          "symbol": "pg_dump",
+          "line": 81,
+          "seeds": [
+            "inbox"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "pg_dump",
+          "line": 87,
+          "seeds": [
+            "inbox"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "relay_state",
+          "line": 89,
+          "seeds": [
+            "inbox"
+          ]
+        }
+      ],
+      "doc_ids": [],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "975f45e82dcf52e5bd98b564b2d92f9b9fed1a273b53b0d5ce5aa12300b496a7",
+      "source_basis": "HEAD"
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/architecture.md",
+      "categories": [
+        "document_read"
+      ],
+      "reasons": [
+        "symbol/keyword occurrence; reference semantics require verification",
+        "source mapping/reference; keep unchanged unless verified"
+      ],
+      "evidence": [
+        {
+          "method": "string-search",
+          "symbol": "relay_state",
+          "line": 69,
+          "seeds": [
+            "inbox"
+          ]
+        },
+        {
+          "method": "deliverable-index",
+          "id": "D03",
+          "source": [
+            "docs/design-docs/architecture.md",
+            "docs/design-docs/tech-stack.md"
+          ]
+        }
+      ],
+      "doc_ids": [
+        "D03"
+      ],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "734cd05b2bea95b98f1f514e3d969ae32e0c5decf2e4c75a7a0977e84272f6dc",
+      "source_basis": "HEAD"
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/crud-design.md",
+      "categories": [
+        "document_read"
+      ],
+      "reasons": [
+        "source mapping/reference; keep unchanged unless verified"
+      ],
+      "evidence": [
+        {
+          "method": "deliverable-index",
+          "id": "D09",
+          "source": [
+            "docs/design-docs/crud-design.md"
+          ]
+        }
+      ],
+      "doc_ids": [
+        "D09"
+      ],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "0cfa441606f96c3efff5fcebd27b42190637bf1732e8a0313659b7358a458fb0",
+      "source_basis": "HEAD"
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/data-model.md",
+      "categories": [
+        "document_read",
+        "document_update"
+      ],
+      "reasons": [
+        "symbol/keyword occurrence; reference semantics require verification",
+        "route/explicit update candidate"
+      ],
+      "evidence": [
+        {
+          "method": "string-search",
+          "symbol": "relay_state",
+          "line": 54,
+          "seeds": [
+            "inbox"
+          ]
+        },
+        {
+          "method": "deliverable-index",
+          "id": "D06",
+          "source": [
+            "docs/design-docs/data-model.md"
+          ]
+        }
+      ],
+      "doc_ids": [
+        "D06"
+      ],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "8c45b3b423885d70c4f11eca29522281672fff297901a96984de33366bd977f3",
+      "source_basis": "HEAD"
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/database-design.md",
+      "categories": [
+        "document_read",
+        "document_update"
+      ],
+      "reasons": [
+        "symbol/keyword occurrence; reference semantics require verification",
+        "route/explicit update candidate"
+      ],
+      "evidence": [
+        {
+          "method": "string-search",
+          "symbol": "human_model",
+          "line": 16,
+          "seeds": [
+            "inbox"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "human_model",
+          "line": 17,
+          "seeds": [
+            "inbox"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "human_model",
+          "line": 47,
+          "seeds": [
+            "inbox"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "relay_state",
+          "line": 47,
+          "seeds": [
+            "inbox"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "relay_state",
+          "line": 65,
+          "seeds": [
+            "inbox"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "relay_state",
+          "line": 82,
+          "seeds": [
+            "inbox"
+          ]
+        },
+        {
+          "method": "deliverable-index",
+          "id": "D07",
+          "source": [
+            "docs/design-docs/database-design.md"
+          ]
+        }
+      ],
+      "doc_ids": [
+        "D07"
+      ],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "8864ae004f05d4f4c4fb378ca3e99402ef6765befe6d71386472a700e8402ba7",
+      "source_basis": "HEAD"
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/interface-design.md",
+      "categories": [
+        "document_read"
+      ],
+      "reasons": [
+        "source mapping/reference; keep unchanged unless verified"
+      ],
+      "evidence": [
+        {
+          "method": "deliverable-index",
+          "id": "D05",
+          "source": [
+            "docs/design-docs/interface-design.md"
+          ]
+        }
+      ],
+      "doc_ids": [
+        "D05"
+      ],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "caec53f75ba4ab2136ff60cf8fa5a4cb2c33aad74b2b9f53a3ea7db0d70e91d9",
+      "source_basis": "HEAD"
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/SAR-MVP-001-UI.md",
+      "categories": [
+        "document_read"
+      ],
+      "reasons": [
+        "source mapping/reference; keep unchanged unless verified"
+      ],
+      "evidence": [
+        {
+          "method": "deliverable-index",
+          "id": "D04",
+          "source": [
+            "docs/design-docs/mockups/SAR-MVP-001-UI.md",
+            "docs/design-docs/mockups/service-member-ui.md"
+          ]
+        }
+      ],
+      "doc_ids": [
+        "D04"
+      ],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "995b66bc3f49b8d8d60000e87cb3c29187923c32f44162490b068d984268f2fa",
+      "source_basis": "HEAD"
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/service-member-ui.md",
+      "categories": [
+        "document_read"
+      ],
+      "reasons": [
+        "source mapping/reference; keep unchanged unless verified"
+      ],
+      "evidence": [
+        {
+          "method": "deliverable-index",
+          "id": "D04",
+          "source": [
+            "docs/design-docs/mockups/SAR-MVP-001-UI.md",
+            "docs/design-docs/mockups/service-member-ui.md"
+          ]
+        }
+      ],
+      "doc_ids": [
+        "D04"
+      ],
+      "required": false,
+      "status": "unknown",
+      "priority": 1,
+      "source_sha256": null,
+      "source_basis": null
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/module-design.md",
+      "categories": [
+        "document_update"
+      ],
+      "reasons": [
+        "route/explicit update candidate"
+      ],
+      "evidence": [
+        {
+          "method": "deliverable-index",
+          "id": "D10",
+          "source": [
+            "docs/design-docs/module-design.md"
+          ]
+        }
+      ],
+      "doc_ids": [
+        "D10"
+      ],
+      "required": false,
+      "status": "unknown",
+      "priority": 1,
+      "source_sha256": null,
+      "source_basis": null
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/tech-stack.md",
+      "categories": [
+        "document_read"
+      ],
+      "reasons": [
+        "source mapping/reference; keep unchanged unless verified"
+      ],
+      "evidence": [
+        {
+          "method": "deliverable-index",
+          "id": "D03",
+          "source": [
+            "docs/design-docs/architecture.md",
+            "docs/design-docs/tech-stack.md"
+          ]
+        }
+      ],
+      "doc_ids": [
+        "D03"
+      ],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "5ed061204861de62dbcd461339735ab2f5a6a7e3e2cc546596796a4858ea83c9",
+      "source_basis": "HEAD"
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-BETA-001-OPS.md",
+      "categories": [
+        "document_read"
+      ],
+      "reasons": [
+        "symbol/keyword occurrence; reference semantics require verification"
+      ],
+      "evidence": [
+        {
+          "method": "string-search",
+          "symbol": "relay_state",
+          "line": 79,
+          "seeds": [
+            "inbox"
+          ]
+        }
+      ],
+      "doc_ids": [],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "959dd264ff5fd28ea5815634c149bb0f1b22826edf0d9b376f3822018073b790",
+      "source_basis": "HEAD"
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-HUMAN-PEER-001-OPS.md",
+      "categories": [
+        "document_read"
+      ],
+      "reasons": [
+        "symbol/keyword occurrence; reference semantics require verification"
+      ],
+      "evidence": [
+        {
+          "method": "string-search",
+          "symbol": "pg_dump",
+          "line": 25,
+          "seeds": [
+            "inbox"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "relay_state",
+          "line": 33,
+          "seeds": [
+            "inbox"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "pg_dump",
+          "line": 36,
+          "seeds": [
+            "inbox"
+          ]
+        }
+      ],
+      "doc_ids": [],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "564029ab5aaa0c5def9e7374253633976d89c1a756bb5b916bb8aaa894ffc0ab",
+      "source_basis": "HEAD"
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-DEV-FIX.md",
+      "categories": [
+        "document_read"
+      ],
+      "reasons": [
+        "symbol/keyword occurrence; reference semantics require verification"
+      ],
+      "evidence": [
+        {
+          "method": "string-search",
+          "symbol": "rateLimited",
+          "line": 52,
+          "seeds": [
+            "internal/relay/capacity.go"
+          ]
+        }
+      ],
+      "doc_ids": [],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "ebe5eb2d7029d61beaa2941f8ba691f407b938004302ee5f9c04b0e7f4df2bef",
+      "source_basis": "HEAD"
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-DEV-FIX.md",
+      "categories": [
+        "document_read"
+      ],
+      "reasons": [
+        "symbol/keyword occurrence; reference semantics require verification"
+      ],
+      "evidence": [
+        {
+          "method": "string-search",
+          "symbol": "cleanupRequest",
+          "line": 29,
+          "seeds": [
+            "internal/relay/capacity.go"
+          ]
+        }
+      ],
+      "doc_ids": [],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "2585d95b9a162c8f1d2d53c91c14c7477c8166c81c8a8a869ad6d554f38ec456",
+      "source_basis": "HEAD"
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-SERVICE-OPEN-PREP.md",
+      "categories": [
+        "document_read"
+      ],
+      "reasons": [
+        "symbol/keyword occurrence; reference semantics require verification"
+      ],
+      "evidence": [
+        {
+          "method": "string-search",
+          "symbol": "pg_dump",
+          "line": 19,
+          "seeds": [
+            "inbox"
+          ]
+        }
+      ],
+      "doc_ids": [],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "c450f61805ab76d20370e00c703ea92cc845c9e1d1409cfc9b08487f8b0d3cde",
+      "source_basis": "HEAD"
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-SERVICE-OPS-READINESS.md",
+      "categories": [
+        "document_read"
+      ],
+      "reasons": [
+        "symbol/keyword occurrence; reference semantics require verification"
+      ],
+      "evidence": [
+        {
+          "method": "string-search",
+          "symbol": "relay_state",
+          "line": 83,
+          "seeds": [
+            "inbox"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "relay_state",
+          "line": 87,
+          "seeds": [
+            "inbox"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "relay_state",
+          "line": 157,
+          "seeds": [
+            "inbox"
+          ]
+        }
+      ],
+      "doc_ids": [],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "5ff83b94e223a005e6baf3727bd74b098b3e008d08495779bb514a65032f8a3e",
+      "source_basis": "HEAD"
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-OPS.md",
+      "categories": [
+        "document_read"
+      ],
+      "reasons": [
+        "symbol/keyword occurrence; reference semantics require verification"
+      ],
+      "evidence": [
+        {
+          "method": "string-search",
+          "symbol": "pg_dump",
+          "line": 24,
+          "seeds": [
+            "inbox"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "relay_state",
+          "line": 28,
+          "seeds": [
+            "inbox"
+          ]
+        }
+      ],
+      "doc_ids": [],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "f640a7fbbd38ae58274b98b898cd573cc5385bfb10bb04b8ca3e2c624f7224e5",
+      "source_basis": "HEAD"
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-SSE-INSTALL-001-OAUTH-RETURN-OPS.md",
+      "categories": [
+        "document_read"
+      ],
+      "reasons": [
+        "symbol/keyword occurrence; reference semantics require verification"
+      ],
+      "evidence": [
+        {
+          "method": "string-search",
+          "symbol": "relay_state",
+          "line": 25,
+          "seeds": [
+            "inbox"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "pg_dump",
+          "line": 27,
+          "seeds": [
+            "inbox"
+          ]
+        }
+      ],
+      "doc_ids": [],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "4cf30abb159dc7f9feba9e18bf0b3981bd0ae88fc24680c8f2088a3cb6850b24",
+      "source_basis": "HEAD"
+    },
+    {
+      "path": ".fullops-squad/docs/exec-plans/phases/SAR-SSE-INSTALL-001-OPS.md",
+      "categories": [
+        "document_read"
+      ],
+      "reasons": [
+        "symbol/keyword occurrence; reference semantics require verification"
+      ],
+      "evidence": [
+        {
+          "method": "string-search",
+          "symbol": "relay_state",
+          "line": 28,
+          "seeds": [
+            "inbox"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "pg_dump",
+          "line": 30,
+          "seeds": [
+            "inbox"
+          ]
+        }
+      ],
+      "doc_ids": [],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "bff52bb1aa8d408a8183eda6aac8a8487a710577f7dfb98158a9c1b8156610e2",
+      "source_basis": "HEAD"
+    },
+    {
+      "path": ".fullops-squad/docs/generated/db-schema.md",
+      "categories": [
+        "document_read"
+      ],
+      "reasons": [
+        "symbol/keyword occurrence; reference semantics require verification",
+        "source mapping/reference; keep unchanged unless verified"
+      ],
+      "evidence": [
+        {
+          "method": "string-search",
+          "symbol": "relay_state",
+          "line": 22,
+          "seeds": [
+            "inbox"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "relay_state",
+          "line": 28,
+          "seeds": [
+            "inbox"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "relay_state",
+          "line": 47,
+          "seeds": [
+            "inbox"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "relay_state",
+          "line": 56,
+          "seeds": [
+            "inbox"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "relay_state",
+          "line": 57,
+          "seeds": [
+            "inbox"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "human_model",
+          "line": 58,
+          "seeds": [
+            "inbox"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "relay_state",
+          "line": 58,
+          "seeds": [
+            "inbox"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "human_model",
+          "line": 59,
+          "seeds": [
+            "inbox"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "relay_state",
+          "line": 59,
+          "seeds": [
+            "inbox"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "relay_state",
+          "line": 60,
+          "seeds": [
+            "inbox"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "relay_state",
+          "line": 65,
+          "seeds": [
+            "inbox"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "relay_state",
+          "line": 66,
+          "seeds": [
+            "inbox"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "human_model",
+          "line": 74,
+          "seeds": [
+            "inbox"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "relay_state",
+          "line": 74,
+          "seeds": [
+            "inbox"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "human_model",
+          "line": 75,
+          "seeds": [
+            "inbox"
+          ]
+        },
+        {
+          "method": "deliverable-index",
+          "id": "D08",
+          "source": [
+            "docs/generated/db-schema.md"
+          ]
+        }
+      ],
+      "doc_ids": [
+        "D08"
+      ],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "f6b365b9747cefe1f6735982a563781c1358dba9b4b065ac4b2ef4e1637cd895",
+      "source_basis": "HEAD"
+    },
+    {
+      "path": ".fullops-squad/docs/operations/ops-guide.md",
+      "categories": [
+        "document_read"
+      ],
+      "reasons": [
+        "source mapping/reference; keep unchanged unless verified"
+      ],
+      "evidence": [
+        {
+          "method": "deliverable-index",
+          "id": "D12",
+          "source": [
+            "docs/operations/ops-guide.md"
+          ]
+        }
+      ],
+      "doc_ids": [
+        "D12"
+      ],
+      "required": false,
+      "status": "unknown",
+      "priority": 1,
+      "source_sha256": null,
+      "source_basis": null
+    },
+    {
+      "path": ".fullops-squad/docs/operations/transition.md",
+      "categories": [
+        "document_read"
+      ],
+      "reasons": [
+        "source mapping/reference; keep unchanged unless verified"
+      ],
+      "evidence": [
+        {
+          "method": "deliverable-index",
+          "id": "D13",
+          "source": [
+            "docs/operations/transition.md"
+          ]
+        }
+      ],
+      "doc_ids": [
+        "D13"
+      ],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "5166cfc505ebecc55aa6aee6ed46afad61787d59212aa6ce357054d440f6ed3b",
+      "source_basis": "HEAD"
+    },
+    {
+      "path": ".fullops-squad/docs/operations/user-guide.md",
+      "categories": [
+        "document_read"
+      ],
+      "reasons": [
+        "source mapping/reference; keep unchanged unless verified"
+      ],
+      "evidence": [
+        {
+          "method": "deliverable-index",
+          "id": "D11",
+          "source": [
+            "docs/operations/user-guide.md"
+          ]
+        }
+      ],
+      "doc_ids": [
+        "D11"
+      ],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "d12db41e2d8d2141f9a437d046a54815c096ce182b16e8b0574ecd1f42ec48e6",
+      "source_basis": "HEAD"
+    },
+    {
+      "path": ".fullops-squad/docs/planning/business-plan.md",
+      "categories": [
+        "document_read"
+      ],
+      "reasons": [
+        "source mapping/reference; keep unchanged unless verified"
+      ],
+      "evidence": [
+        {
+          "method": "deliverable-index",
+          "id": "D01",
+          "source": [
+            "docs/planning/business-plan.md"
+          ]
+        }
+      ],
+      "doc_ids": [
+        "D01"
+      ],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "c6713affaabf38eac24beaee57e34db9a20f31d39493fae17f86df4ca8d43297",
+      "source_basis": "HEAD"
+    },
+    {
+      "path": ".fullops-squad/docs/planning/sources/silent-agent-relay/decisions.md",
+      "categories": [
+        "document_read"
+      ],
+      "reasons": [
+        "symbol/keyword occurrence; reference semantics require verification"
+      ],
+      "evidence": [
+        {
+          "method": "string-search",
+          "symbol": "relay_state",
+          "line": 226,
+          "seeds": [
+            "inbox"
+          ]
+        }
+      ],
+      "doc_ids": [],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "8eca37c259c284908334d4c600eab4198b7f44b3df45712d0ed48e6870c32e8d",
+      "source_basis": "HEAD"
+    },
+    {
+      "path": "cmd/relay/main_integration_test.go",
+      "categories": [
+        "impact_check"
+      ],
+      "reasons": [
+        "symbol/keyword occurrence; reference semantics require verification"
+      ],
+      "evidence": [
+        {
+          "method": "string-search",
+          "symbol": "relay_state",
+          "line": 70,
+          "seeds": [
+            "inbox"
+          ]
+        }
+      ],
+      "doc_ids": [],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "5d0c1aa1d77157f80eb687e854fe198f08b950313b59af144886db0d3488bbe9",
+      "source_basis": "HEAD"
+    },
+    {
+      "path": "compose.yaml",
+      "categories": [
+        "direct_edit"
+      ],
+      "reasons": [
+        "explicit edit seed/diff"
+      ],
+      "evidence": [],
+      "doc_ids": [],
+      "required": false,
+      "status": "unknown",
+      "priority": 1,
+      "source_sha256": null,
+      "source_basis": null
+    },
+    {
+      "path": "db/migrations/00001_relay.sql",
+      "categories": [
+        "impact_check"
+      ],
+      "reasons": [
+        "symbol/keyword occurrence; reference semantics require verification"
+      ],
+      "evidence": [
+        {
+          "method": "string-search",
+          "symbol": "relay_state",
+          "line": 3,
+          "seeds": [
+            "inbox"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "relay_state",
+          "line": 9,
+          "seeds": [
+            "inbox"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "relay_state",
+          "line": 11,
+          "seeds": [
+            "inbox"
+          ]
+        }
+      ],
+      "doc_ids": [],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "31aa978fb6e7d26eb4be7f65cd58c6abc286c0675bacd1856368221d095c7507",
+      "source_basis": "HEAD"
+    },
+    {
+      "path": "db/migrations/00002_human_writer.sql",
+      "categories": [
+        "impact_check"
+      ],
+      "reasons": [
+        "symbol/keyword occurrence; reference semantics require verification"
+      ],
+      "evidence": [
+        {
+          "method": "string-search",
+          "symbol": "relay_state",
+          "line": 14,
+          "seeds": [
+            "inbox"
+          ]
+        }
+      ],
+      "doc_ids": [],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "83cfa1aab7ddb803a0705434187af01386bbd8ccb60ab37a4cf5e9220c661f36",
+      "source_basis": "HEAD"
+    },
+    {
+      "path": "db/migrations/00003_relay_state_json.sql",
+      "categories": [
+        "impact_check"
+      ],
+      "reasons": [
+        "symbol/keyword occurrence; reference semantics require verification"
+      ],
+      "evidence": [
+        {
+          "method": "string-search",
+          "symbol": "relay_state",
+          "line": 4,
+          "seeds": [
+            "inbox"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "relay_state",
+          "line": 5,
+          "seeds": [
+            "inbox"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "human_model",
+          "line": 6,
+          "seeds": [
+            "inbox"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "relay_state",
+          "line": 6,
+          "seeds": [
+            "inbox"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "human_model",
+          "line": 7,
+          "seeds": [
+            "inbox"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "relay_state",
+          "line": 7,
+          "seeds": [
+            "inbox"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "relay_state",
+          "line": 8,
+          "seeds": [
+            "inbox"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "relay_state",
+          "line": 13,
+          "seeds": [
+            "inbox"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "relay_state",
+          "line": 14,
+          "seeds": [
+            "inbox"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "human_model",
+          "line": 22,
+          "seeds": [
+            "inbox"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "relay_state",
+          "line": 22,
+          "seeds": [
+            "inbox"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "human_model",
+          "line": 23,
+          "seeds": [
+            "inbox"
+          ]
+        }
+      ],
+      "doc_ids": [],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "6e44e4b8e661f41be4ea0a51ae8095243b07b8e1ade49acd2f534148fbccc9e0",
+      "source_basis": "HEAD"
+    },
+    {
+      "path": "db/queries/relay.sql",
+      "categories": [
+        "impact_check"
+      ],
+      "reasons": [
+        "symbol/keyword occurrence; reference semantics require verification"
+      ],
+      "evidence": [
+        {
+          "method": "string-search",
+          "symbol": "relay_state",
+          "line": 2,
+          "seeds": [
+            "inbox"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "human_model",
+          "line": 5,
+          "seeds": [
+            "inbox"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "relay_state",
+          "line": 5,
+          "seeds": [
+            "inbox"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "relay_state",
+          "line": 9,
+          "seeds": [
+            "inbox"
+          ]
+        }
+      ],
+      "doc_ids": [],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "52e98d81ba91823aa9c723ebc4f3f34c58fe90f88922e3fd576a0e5abe89c76b",
+      "source_basis": "HEAD"
+    },
+    {
+      "path": "deploy/knowslink/compose.ops.yaml",
+      "categories": [
+        "direct_edit"
+      ],
+      "reasons": [
+        "explicit edit seed/diff"
+      ],
+      "evidence": [],
+      "doc_ids": [],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "63ba6860410b28bbf637e963b4973fe80e00cddede8c39c14cbd273db1321355",
+      "source_basis": "HEAD"
+    },
+    {
+      "path": "docs/architecture.md",
+      "categories": [
+        "document_read"
+      ],
+      "reasons": [
+        "symbol/keyword occurrence; reference semantics require verification"
+      ],
+      "evidence": [
+        {
+          "method": "string-search",
+          "symbol": "human_model",
+          "line": 119,
+          "seeds": [
+            "inbox"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "relay_state",
+          "line": 119,
+          "seeds": [
+            "inbox"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "human_model",
+          "line": 133,
+          "seeds": [
+            "inbox"
+          ]
+        }
+      ],
+      "doc_ids": [],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "37b45c2e59df6009f89dd2bf4a209ffca8a121c5583c95156e7ee4b2e4832f20",
+      "source_basis": "HEAD"
+    },
+    {
+      "path": "docs/development.md",
+      "categories": [
+        "document_read"
+      ],
+      "reasons": [
+        "local link to seed"
+      ],
+      "evidence": [
+        {
+          "method": "markdown-link",
+          "line": 9,
+          "seed": "compose.yaml"
+        }
+      ],
+      "doc_ids": [],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "761f0ca606807ee59e3f58de9e165749ddea3334a471f7f0103e8ffb4147091c",
+      "source_basis": "HEAD",
+      "sections": []
+    },
+    {
+      "path": "docs/operations.md",
+      "categories": [
+        "document_read"
+      ],
+      "reasons": [
+        "symbol/keyword occurrence; reference semantics require verification"
+      ],
+      "evidence": [
+        {
+          "method": "string-search",
+          "symbol": "pg_dump",
+          "line": 40,
+          "seeds": [
+            "inbox"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "human_model",
+          "line": 64,
+          "seeds": [
+            "inbox"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "human_model",
+          "line": 66,
+          "seeds": [
+            "inbox"
+          ]
+        }
+      ],
+      "doc_ids": [],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "78f0baf8ae0f3338aec126f62d805bc26bf5651e70056cb3e3d860963898f872",
+      "source_basis": "HEAD"
+    },
+    {
+      "path": "docs/system-design.md",
+      "categories": [
+        "document_read"
+      ],
+      "reasons": [
+        "local link to seed",
+        "symbol/keyword occurrence; reference semantics require verification"
+      ],
+      "evidence": [
+        {
+          "method": "markdown-link",
+          "line": 72,
+          "seed": "internal/relay/remote_mcp.go"
+        },
+        {
+          "method": "markdown-link",
+          "line": 72,
+          "seed": "internal/relay/remote_auth.go"
+        },
+        {
+          "method": "markdown-link",
+          "line": 74,
+          "seed": "compose.yaml"
+        },
+        {
+          "method": "markdown-link",
+          "line": 74,
+          "seed": "deploy/knowslink/compose.ops.yaml"
+        },
+        {
+          "method": "markdown-link",
+          "line": 76,
+          "seed": "internal/relay/store.go"
+        },
+        {
+          "method": "markdown-link",
+          "line": 80,
+          "seed": "internal/relay/remote_events.go"
+        },
+        {
+          "method": "markdown-link",
+          "line": 99,
+          "seed": "internal/relay/store.go"
+        },
+        {
+          "method": "markdown-link",
+          "line": 118,
+          "seed": "internal/relay/remote_auth.go"
+        },
+        {
+          "method": "markdown-link",
+          "line": 125,
+          "seed": "internal/relay/public_text.go"
+        },
+        {
+          "method": "markdown-link",
+          "line": 168,
+          "seed": "internal/relay/text_events.go"
+        },
+        {
+          "method": "markdown-link",
+          "line": 215,
+          "seed": "internal/relay/remote_mcp.go"
+        },
+        {
+          "method": "markdown-link",
+          "line": 223,
+          "seed": "internal/relay/remote_events.go"
+        },
+        {
+          "method": "markdown-link",
+          "line": 245,
+          "seed": "internal/relay/store.go"
+        },
+        {
+          "method": "string-search",
+          "symbol": "human_model",
+          "line": 264,
+          "seeds": [
+            "inbox"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "relay_state",
+          "line": 264,
+          "seeds": [
+            "inbox"
+          ]
+        },
+        {
+          "method": "markdown-link",
+          "line": 267,
+          "seed": "internal/relay/store.go"
+        },
+        {
+          "method": "markdown-link",
+          "line": 281,
+          "seed": "internal/relay/store.go"
+        },
+        {
+          "method": "markdown-link",
+          "line": 315,
+          "seed": "compose.yaml"
+        },
+        {
+          "method": "markdown-link",
+          "line": 317,
+          "seed": "deploy/knowslink/compose.ops.yaml"
+        }
+      ],
+      "doc_ids": [],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "09f0d9919384a9c0ea7d8e7cb37098bc74473fe555fda4da6c4311f5bfcd28b1",
+      "source_basis": "HEAD",
+      "sections": []
+    },
+    {
+      "path": "internal/database/relay.sql.go",
+      "categories": [
+        "impact_check"
+      ],
+      "reasons": [
+        "symbol/keyword occurrence; reference semantics require verification"
+      ],
+      "evidence": [
+        {
+          "method": "string-search",
+          "symbol": "relay_state",
+          "line": 15,
+          "seeds": [
+            "inbox"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "relay_state",
+          "line": 38,
+          "seeds": [
+            "inbox"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "human_model",
+          "line": 55,
+          "seeds": [
+            "inbox"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "relay_state",
+          "line": 55,
+          "seeds": [
+            "inbox"
+          ]
+        }
+      ],
+      "doc_ids": [],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "0d9023bca279bd92068986d56c24275deb18123f315bded80ed98ca8cc34cf19",
+      "source_basis": "HEAD"
+    },
+    {
+      "path": "internal/relay/capacity.go",
+      "categories": [
+        "direct_edit"
+      ],
+      "reasons": [
+        "explicit edit seed/diff",
+        "seed definition"
+      ],
+      "evidence": [
+        {
+          "method": "definition",
+          "symbol": "httpBody",
+          "line": 71,
+          "seed": "internal/relay/capacity.go"
+        },
+        {
+          "method": "definition",
+          "symbol": "commandBody",
+          "line": 77,
+          "seed": "internal/relay/capacity.go"
+        },
+        {
+          "method": "definition",
+          "symbol": "cleanupRequest",
+          "line": 107,
+          "seed": "internal/relay/capacity.go"
+        },
+        {
+          "method": "definition",
+          "symbol": "rateLimited",
+          "line": 297,
+          "seed": "internal/relay/capacity.go"
+        },
+        {
+          "method": "definition",
+          "symbol": "capacityResponse",
+          "line": 302,
+          "seed": "internal/relay/capacity.go"
+        }
+      ],
+      "doc_ids": [],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "baa2cdd1c7a5a88437c536e69a74b9997c2519681cd8168f3f59b715bcb45462",
+      "source_basis": "HEAD"
+    },
+    {
+      "path": "internal/relay/cleanup_flood_integration_test.go",
+      "categories": [
+        "impact_check"
+      ],
+      "reasons": [
+        "symbol/keyword occurrence; reference semantics require verification"
+      ],
+      "evidence": [
+        {
+          "method": "string-search",
+          "symbol": "relay_state",
+          "line": 56,
+          "seeds": [
+            "inbox"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "relay_state",
+          "line": 189,
+          "seeds": [
+            "inbox"
+          ]
+        }
+      ],
+      "doc_ids": [],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "b7ac154bb82ec510bed917e4c4e04dcb4392a93501781baa649ce2c7621db3b7",
+      "source_basis": "HEAD"
+    },
+    {
+      "path": "internal/relay/cleanup_unit_integration_test.go",
+      "categories": [
+        "impact_check"
+      ],
+      "reasons": [
+        "symbol/keyword occurrence; reference semantics require verification"
+      ],
+      "evidence": [
+        {
+          "method": "string-search",
+          "symbol": "relay_state",
+          "line": 99,
+          "seeds": [
+            "inbox"
+          ]
+        }
+      ],
+      "doc_ids": [],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "4c702fa7c115281738790c37b92102792b9fe08b2ffece347ed3c88ab2b9ffa6",
+      "source_basis": "HEAD"
+    },
+    {
+      "path": "internal/relay/db_limits_integration_test.go",
+      "categories": [
+        "impact_check"
+      ],
+      "reasons": [
+        "symbol/keyword occurrence; reference semantics require verification"
+      ],
+      "evidence": [
+        {
+          "method": "string-search",
+          "symbol": "relay_state",
+          "line": 42,
+          "seeds": [
+            "inbox"
+          ]
+        }
+      ],
+      "doc_ids": [],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "8b49f0d933c3b63e2d979c477d8b0b45714c290d19c0f3e9f740f832eec9d04f",
+      "source_basis": "HEAD"
+    },
+    {
+      "path": "internal/relay/human_messages.go",
+      "categories": [
+        "direct_edit"
+      ],
+      "reasons": [
+        "explicit edit seed/diff"
+      ],
+      "evidence": [],
+      "doc_ids": [],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "e04c78e7be42fb5e90803c94e47d9f6255425101577b1d12a8dd20b159761f8d",
+      "source_basis": "HEAD"
+    },
+    {
+      "path": "internal/relay/policy_pages.go",
+      "categories": [
+        "direct_edit"
+      ],
+      "reasons": [
+        "explicit edit seed/diff"
+      ],
+      "evidence": [],
+      "doc_ids": [],
+      "required": false,
+      "status": "unknown",
+      "priority": 1,
+      "source_sha256": null,
+      "source_basis": null
+    },
+    {
+      "path": "internal/relay/public_messages_integration_test.go",
+      "categories": [
+        "impact_check"
+      ],
+      "reasons": [
+        "symbol/keyword occurrence; reference semantics require verification"
+      ],
+      "evidence": [
+        {
+          "method": "string-search",
+          "symbol": "cleanupRequest",
+          "line": 418,
+          "seeds": [
+            "internal/relay/capacity.go"
+          ]
+        }
+      ],
+      "doc_ids": [],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "5b8e7b52b9f90c2882d23f5ce5bf1ae75dcb31a94b639fbe9585ef6204ccd1f3",
+      "source_basis": "HEAD"
+    },
+    {
+      "path": "internal/relay/public_text.go",
+      "categories": [
+        "direct_edit"
+      ],
+      "reasons": [
+        "explicit edit seed/diff",
+        "seed definition"
+      ],
+      "evidence": [
+        {
+          "method": "definition",
+          "symbol": "parsePublicText",
+          "line": 31,
+          "seed": "internal/relay/public_text.go"
+        }
+      ],
+      "doc_ids": [],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "48baaa488e700c334e59c3109cbd85f4a0ff9228ebdf0ac5af983fcdbf4ae3a0",
+      "source_basis": "HEAD"
+    },
+    {
+      "path": "internal/relay/remote_auth.go",
+      "categories": [
+        "direct_edit"
+      ],
+      "reasons": [
+        "explicit edit seed/diff"
+      ],
+      "evidence": [],
+      "doc_ids": [],
+      "required": false,
+      "status": "unknown",
+      "priority": 1,
+      "source_sha256": null,
+      "source_basis": null
+    },
+    {
+      "path": "internal/relay/remote_events.go",
+      "categories": [
+        "direct_edit"
+      ],
+      "reasons": [
+        "explicit edit seed/diff"
+      ],
+      "evidence": [],
+      "doc_ids": [],
+      "required": false,
+      "status": "unknown",
+      "priority": 1,
+      "source_sha256": null,
+      "source_basis": null
+    },
+    {
+      "path": "internal/relay/remote_mcp.go",
+      "categories": [
+        "direct_edit"
+      ],
+      "reasons": [
+        "explicit edit seed/diff"
+      ],
+      "evidence": [],
+      "doc_ids": [],
+      "required": false,
+      "status": "unknown",
+      "priority": 1,
+      "source_sha256": null,
+      "source_basis": null
+    },
+    {
+      "path": "internal/relay/state_migration_integration_test.go",
+      "categories": [
+        "impact_check"
+      ],
+      "reasons": [
+        "symbol/keyword occurrence; reference semantics require verification"
+      ],
+      "evidence": [
+        {
+          "method": "string-search",
+          "symbol": "relay_state",
+          "line": 84,
+          "seeds": [
+            "inbox"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "relay_state",
+          "line": 111,
+          "seeds": [
+            "inbox"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "human_model",
+          "line": 123,
+          "seeds": [
+            "inbox"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "relay_state",
+          "line": 123,
+          "seeds": [
+            "inbox"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "human_model",
+          "line": 130,
+          "seeds": [
+            "inbox"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "human_model",
+          "line": 155,
+          "seeds": [
+            "inbox"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "relay_state",
+          "line": 155,
+          "seeds": [
+            "inbox"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "human_model",
+          "line": 160,
+          "seeds": [
+            "inbox"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "relay_state",
+          "line": 165,
+          "seeds": [
+            "inbox"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "relay_state",
+          "line": 166,
+          "seeds": [
+            "inbox"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "human_model",
+          "line": 173,
+          "seeds": [
+            "inbox"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "relay_state",
+          "line": 173,
+          "seeds": [
+            "inbox"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "relay_state",
+          "line": 176,
+          "seeds": [
+            "inbox"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "relay_state",
+          "line": 189,
+          "seeds": [
+            "inbox"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "relay_state",
+          "line": 200,
+          "seeds": [
+            "inbox"
+          ]
+        }
+      ],
+      "doc_ids": [],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "8233e295231ebafad67cfef163666ff12707dbb526c017b8309ba12ceff75160",
+      "source_basis": "HEAD"
+    },
+    {
+      "path": "internal/relay/store.go",
+      "categories": [
+        "direct_edit"
+      ],
+      "reasons": [
+        "explicit edit seed/diff"
+      ],
+      "evidence": [],
+      "doc_ids": [],
+      "required": false,
+      "status": "unknown",
+      "priority": 1,
+      "source_sha256": null,
+      "source_basis": null
+    },
+    {
+      "path": "internal/relay/store_retention_integration_test.go",
+      "categories": [
+        "impact_check"
+      ],
+      "reasons": [
+        "symbol/keyword occurrence; reference semantics require verification"
+      ],
+      "evidence": [
+        {
+          "method": "string-search",
+          "symbol": "relay_state",
+          "line": 37,
+          "seeds": [
+            "inbox"
+          ]
+        }
+      ],
+      "doc_ids": [],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "37e3a388f3bdcc92b7c9ef7a4811ec39ea9cb7cc2af61edaefb57fb1b5f1e4f3",
+      "source_basis": "HEAD"
+    },
+    {
+      "path": "internal/relay/text_events.go",
+      "categories": [
+        "direct_edit"
+      ],
+      "reasons": [
+        "explicit edit seed/diff"
+      ],
+      "evidence": [],
+      "doc_ids": [],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "a8fb5631a50a0aceaf35a410a8261ec610446e8739f3b82b831038337f4512c3",
+      "source_basis": "HEAD"
+    },
+    {
+      "path": "internal/relay/text_events_integration_test.go",
+      "categories": [
+        "impact_check"
+      ],
+      "reasons": [
+        "symbol/keyword occurrence; reference semantics require verification"
+      ],
+      "evidence": [
+        {
+          "method": "string-search",
+          "symbol": "relay_state",
+          "line": 81,
+          "seeds": [
+            "inbox"
+          ]
+        },
+        {
+          "method": "string-search",
+          "symbol": "relay_state",
+          "line": 85,
+          "seeds": [
+            "inbox"
+          ]
+        }
+      ],
+      "doc_ids": [],
+      "required": false,
+      "status": "inferred",
+      "priority": 1,
+      "source_sha256": "fdea3564beff5da8a17976b6d1a52026b1fefef191595c38b85f150b5e5ed48a",
+      "source_basis": "HEAD"
+    }
+  ],
+  "snapshot": "HEAD search with tracked worktree and explicit/required local overlays",
+  "source_hash_policy": "verify before worker start; regenerate on change; completion allows implementation changes",
+  "categories": {
+    "direct_edit": [
+      "compose.yaml",
+      "deploy/knowslink/compose.ops.yaml",
+      "internal/relay/capacity.go",
+      "internal/relay/human_messages.go",
+      "internal/relay/policy_pages.go",
+      "internal/relay/public_text.go",
+      "internal/relay/remote_auth.go",
+      "internal/relay/remote_events.go",
+      "internal/relay/remote_mcp.go",
+      "internal/relay/store.go",
+      "internal/relay/text_events.go"
+    ],
+    "impact_check": [
+      "cmd/relay/main_integration_test.go",
+      "db/migrations/00001_relay.sql",
+      "db/migrations/00002_human_writer.sql",
+      "db/migrations/00003_relay_state_json.sql",
+      "db/queries/relay.sql",
+      "internal/database/relay.sql.go",
+      "internal/relay/cleanup_flood_integration_test.go",
+      "internal/relay/cleanup_unit_integration_test.go",
+      "internal/relay/db_limits_integration_test.go",
+      "internal/relay/public_messages_integration_test.go",
+      "internal/relay/state_migration_integration_test.go",
+      "internal/relay/store_retention_integration_test.go",
+      "internal/relay/text_events_integration_test.go"
+    ],
+    "document_read": [
+      ".fullops-squad/FULLOPS.md",
+      ".fullops-squad/handovers/to_dev.md",
+      ".fullops-squad/project.md",
+      ".fullops-squad/rules/common/README.md",
+      ".fullops-squad/rules/common/coding-style.md",
+      ".fullops-squad/rules/common/security.md",
+      ".fullops-squad/rules/common/testing.md",
+      ".fullops-squad/contexts/ops.md",
+      ".fullops-squad/docs/design-docs/architecture.md",
+      ".fullops-squad/docs/design-docs/crud-design.md",
+      ".fullops-squad/docs/design-docs/data-model.md",
+      ".fullops-squad/docs/design-docs/database-design.md",
+      ".fullops-squad/docs/design-docs/interface-design.md",
+      ".fullops-squad/docs/design-docs/mockups/SAR-MVP-001-UI.md",
+      ".fullops-squad/docs/design-docs/mockups/service-member-ui.md",
+      ".fullops-squad/docs/design-docs/tech-stack.md",
+      ".fullops-squad/docs/exec-plans/phases/SAR-BETA-001-OPS.md",
+      ".fullops-squad/docs/exec-plans/phases/SAR-HUMAN-PEER-001-OPS.md",
+      ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-DEV-FIX.md",
+      ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-DEV-FIX.md",
+      ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-SERVICE-OPEN-PREP.md",
+      ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-SERVICE-OPS-READINESS.md",
+      ".fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-OPS.md",
+      ".fullops-squad/docs/exec-plans/phases/SAR-SSE-INSTALL-001-OAUTH-RETURN-OPS.md",
+      ".fullops-squad/docs/exec-plans/phases/SAR-SSE-INSTALL-001-OPS.md",
+      ".fullops-squad/docs/generated/db-schema.md",
+      ".fullops-squad/docs/operations/ops-guide.md",
+      ".fullops-squad/docs/operations/transition.md",
+      ".fullops-squad/docs/operations/user-guide.md",
+      ".fullops-squad/docs/planning/business-plan.md",
+      ".fullops-squad/docs/planning/sources/silent-agent-relay/decisions.md",
+      "docs/architecture.md",
+      "docs/development.md",
+      "docs/operations.md",
+      "docs/system-design.md"
+    ],
+    "document_update": [
+      ".fullops-squad/docs/design-docs/data-model.md",
+      ".fullops-squad/docs/design-docs/database-design.md",
+      ".fullops-squad/docs/design-docs/module-design.md"
+    ]
+  },
+  "input_partial": true,
+  "task_excerpt": "---\ntitle: \"SAR-MSG-EPHEMERAL-001 — 메시지·대화 사본·Dots Inbox를 Postgres 대신 휘발성 Redis에만 TTL로 두고, 영구 저장하지 않음을 명시한다\"\nstatus: draft\nupdated: 2026-11-12\nowner: dev\ntasks: [SAR-MSG-EPHEMERAL-001]\nsummary: \"메시지·대화 사본·Dots Inbox를 Postgres 대신 휘발성 Redis에만 TTL로 두고, 영구 저장하지 않음을 명시한다\"\nattempt: 233358aeaabb4ee9999c668776723109\nbase: 17acfa5e0b9800522854163b9d5df67b9870a159\nsubagent_level: standard\ntest_level: lite\n---\n\n# SAR-MSG-EPHEMERAL-001 — 메시지·대화 사본·Dots Inbox를 Postgres 대신 휘발성 Redis에만 TTL로 두고, 영구 저장하지 않음을 명시한다\n\n현재 과제는 이 역할 인박스에서 관리한다. 같은 과제의 후속은 본문에 반영하고 다른 과제는 PLANS.md에 대기시킨다. 완료하면 완료 보고 전문을 채우고 work.py finish로 지시서·결과를 로그에 보존한다.\n\n- 작성일: 2026-11-12\n- From / To: coor → dev\n- 상태: ready\n- 테스트 레벨 / 하위 에이전트 레벨: lite / standard (fullops.json 선택값)\n- 승인된 범위: 아래 `해야 할 일`의 코드·migration·문서·문구 변경, 로컬 Docker(Redis·Postgres) 시험, `fullops/dev` 브랜치 커밋.\n- 추가 승인이 필요한 행위: 운영 서버 접속·배포, main 병합·push, 기존 운영 백업 삭제, 아래 결정과 다른 보관 기한·범위.\n- 상위 의도: 없음(단일 과제)\n- 담당 repo id / 워크트리 / 브랜치: `0b08ec4c-9e3a-4613-8197-5a835e545335` / `C:/Users/shin/orca/workspaces/KnowsLink/dev` / `fullops/dev`\n- 병합 책임자 / 기본 브랜치: coor / `main`\n- 복귀 repo id / 워크트리 / 터미널 / run·task·dispatch id: `0b08ec4c-9e3a-4613-8197-5a835e545335` / `C:/Users/shin/orca/workspaces/KnowsLink/coor` / Orca preamble의 값 / preamble의 값\n\n## 현재 상황과 확인 근거\n\n- 사용자 요청: \"메시지를 postgre에 저장하지말고 redis에만 임시저장시키는 방식으로하자 db에 영구저장은 필요없을꺼같고 저장도 안한다고 명시하자\".\n- 사용자 결정(FullOps 결정 기록 `D049`~`D052`이며 산출물 ID `D01~D13`과 다르다):\n  - D049: 웹 대화 사본은 최대 1시간(현재 24시간), 전달 기한은 최대 180초를 유지한다.\n  - D050: Dots 원격 Inbox도 Redis 임시 보관으로 옮긴다. 서명키·구독 같은 연결 정보는 Postgres에 남긴다.\n  - D051: Redis는 휘발성이다(디스크 저장 없음). 재시작 때 미전달 메시지와 사본 유실을 받아들인다. 문구는 \"영구 저장하지 않음\"이다.\n  - D052: 운영 전환 때 Postgres에 남은 기존 메시지·사본·Inbox는 삭제한다.\n- 현\n[partial: read full inbox]\nostgres 컨테이너를 쓴다.\n- FullOps lint: 체크아웃 루트에서 `python3 <플러그인>/scripts/lint.py --repo C:/Users/shin/orca/workspaces/KnowsLink/dev --from 17acfa5e0b9800522854163b9d5df67b9870a159`, ERROR 0. Windows의 make 실행 불가는 Linux 결과로 대체한다.\n- 보고서: `.fullops-squad/docs/evaluations/qa-reports/SAR-MSG-EPHEMERAL-001-test/report.md`(front matter 필수). 원시 로그는 `D:/workspace/KnowsLink/.devtools/msg-ephemeral/`.\n- verifier: lite라 실행할 때만 지정한다. 독립 QA는 운영 이행 전 tester 후속으로 남긴다. 이 과제 완료는 제품 최종 수락이 아니다.\n- Docker: 시험 자원은 `kl-msgeph-` 접두어로 만들고 완료 보고 전에 지운다(`AGENTS.md` 작업 파일 위치). 남기면 이름과 이유를 적는다. 시험 중 메모리 부족 알림이 오면 재시작하지 말고 진행 범위를 적어 `ask`로 묻는다.\n- 멈추고 묻는 경우: 위 결정과 다른 보관 기한·범위가 필요할 때, 보안 보장을 유지할 수 없을 때, 설명되지 않는 검증 실패.\n\n### UI 작업의 디자인 기준과 검증\n\n해당 없음. 화면 구조는 바꾸지 않고 기존 페이지의 안내 문장만 바꾼다. 문장은 기존 페이지 형식을 따른다.\n\n## 갱신할 산출물\n\n- 갱신: D10, D07, D06 (route 추천). D07은 저장 구조, D06은 인터페이스·오류 의미, D10은 운영·보관 안내다.\n- 확인 후 필요하면 갱신: D03, D05, D08, D09, D11, D12, D13. D08(테이블 정의)은 migration이 바뀌므로 `make schema` 결과를 반영한다.\n\n## 기대 산출물\n\n- 코드·migration·시험, 갱신한 문서와 문구, 보고서 `qa-reports/SAR-MSG-EPHEMERAL-001-test/report.md`, 운영 이행 절차 초안(D12, 운영 미적용 표시).\n\n## 제약·협업·후속\n\n- 범위 밖: 운영 배포·Redis 운영 기동, main 병합·push, 기존 백업 삭제, DB 대기 개선 4~6, Rust.\n- 하위 작업은 `.fullops-squad/rules/delegation.md`의 standard 범위 안에서 정하고, 파일 소유권이 겹치지 않게 나눈다.\n- 후속(남은 일에 적을 것): ops의 운영 이행(Redis 기동, migration, 기존 메시지 삭제)은 사용자 승인 뒤, tester 독립 QA, 이전 백업 보존 정책 판단.\n\n## 완료 보고\n\n브랜치 / SHA / 변경 이유 / 검토 필요 / 검증한 것과 못 한 것 / 스스로 정한 선택과 되돌리는 방법 / 산출물·로그 링크 / 남은 일.\n항목당 1~2줄로 쓰고 상세는 `qa-reports/SAR-MSG-EPHEMERAL-001-test/report.md` 링크로 대신한다. worker_done 본문 첫 줄은 `[완료] SAR-MSG-EPHEMERAL-001 | 브랜치 fullops/dev | SHA <브랜치 HEAD>` 한 줄로 쓰고 SHA는 하나만 적는다.\nlint DEP-001이 있으면 파일별 의존성 변경 여부·필요성·표준 라이브러리 대안을 적는다.\n처리는 `fullops-work`, 회신은 `fullops-orca` 스킬을 따른다.\n",
+  "instruction": ".fullops-squad/handovers/to_dev.md",
+  "partial": true,
+  "unknown": [
+    {
+      "path": ".fullops-squad/PLANS.md",
+      "reason": "missing, oversized, sensitive or invalid; manual inspection"
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/mockups/service-member-ui.md",
+      "reason": "missing, oversized, sensitive or invalid; manual inspection"
+    },
+    {
+      "path": ".fullops-squad/docs/design-docs/module-design.md",
+      "reason": "missing, oversized, sensitive or invalid; manual inspection"
+    },
+    {
+      "path": ".fullops-squad/docs/operations/ops-guide.md",
+      "reason": "missing, oversized, sensitive or invalid; manual inspection"
+    },
+    {
+      "path": "compose.yaml",
+      "reason": "missing, oversized, sensitive or invalid; manual inspection"
+    },
+    {
+      "path": "internal/relay/policy_pages.go",
+      "reason": "missing, oversized, sensitive or invalid; manual inspection"
+    },
+    {
+      "path": "internal/relay/remote_auth.go",
+      "reason": "missing, oversized, sensitive or invalid; manual inspection"
+    },
+    {
+      "path": "internal/relay/remote_events.go",
+      "reason": "missing, oversized, sensitive or invalid; manual inspection"
+    },
+    {
+      "path": "internal/relay/remote_mcp.go",
+      "reason": "missing, oversized, sensitive or invalid; manual inspection"
+    },
+    {
+      "path": "internal/relay/store.go",
+      "reason": "missing, oversized, sensitive or invalid; manual inspection"
+    }
+  ],
+  "producer_status": {
+    "route": {
+      "error": null,
+      "docs_status": "complete",
+      "unresolved_deliverables": []
+    }
+  },
+  "worker_decisions": [],
+  "worker_decisions_mode": "annotations; original recommendations preserved",
+  "fallback": "bounded string/definition search; dynamic references and language server semantics unverified",
+  "ubiquitous_terms": [
+    "Dots",
+    "Postgres"
+  ],
+  "context_paths": [
+    "docs/system-design.md",
+    ".fullops-squad/docs/generated/db-schema.md",
+    ".fullops-squad/docs/design-docs/database-design.md",
+    "internal/relay/capacity.go",
+    ".fullops-squad/docs/design-docs/architecture.md",
+    ".fullops-squad/docs/design-docs/data-model.md",
+    ".fullops-squad/docs/design-docs/crud-design.md",
+    ".fullops-squad/docs/design-docs/interface-design.md",
+    ".fullops-squad/docs/design-docs/mockups/SAR-MVP-001-UI.md",
+    ".fullops-squad/docs/design-docs/mockups/service-member-ui.md",
+    ".fullops-squad/docs/design-docs/module-design.md",
+    ".fullops-squad/docs/design-docs/tech-stack.md",
+    ".fullops-squad/docs/operations/ops-guide.md",
+    ".fullops-squad/docs/operations/transition.md",
+    ".fullops-squad/docs/operations/user-guide.md",
+    ".fullops-squad/docs/planning/business-plan.md",
+    "docs/development.md",
+    "internal/relay/public_text.go",
+    "compose.yaml",
+    "deploy/knowslink/compose.ops.yaml"
+  ],
+  "required_paths": [
+    ".fullops-squad/FULLOPS.md",
+    ".fullops-squad/handovers/to_dev.md",
+    ".fullops-squad/project.md",
+    ".fullops-squad/rules/common/README.md",
+    ".fullops-squad/rules/common/coding-style.md",
+    ".fullops-squad/rules/common/security.md",
+    ".fullops-squad/rules/common/testing.md"
+  ],
+  "optional_context_paths": [],
+  "remaining_context_paths": [
+    "internal/relay/human_messages.go",
+    "internal/relay/policy_pages.go",
+    "internal/relay/remote_auth.go",
+    "internal/relay/remote_events.go",
+    "internal/relay/remote_mcp.go",
+    "internal/relay/store.go",
+    "internal/relay/text_events.go",
+    "internal/relay/state_migration_integration_test.go",
+    "db/migrations/00003_relay_state_json.sql",
+    "db/queries/relay.sql",
+    "internal/database/relay.sql.go",
+    ".fullops-squad/contexts/ops.md",
+    ".fullops-squad/docs/exec-plans/phases/SAR-HUMAN-PEER-001-OPS.md",
+    ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-SERVICE-OPS-READINESS.md",
+    "db/migrations/00001_relay.sql",
+    "docs/architecture.md",
+    "docs/operations.md",
+    ".fullops-squad/docs/exec-plans/phases/SAR-SERVICE-UI-001-OPS.md",
+    ".fullops-squad/docs/exec-plans/phases/SAR-SSE-INSTALL-001-OAUTH-RETURN-OPS.md",
+    ".fullops-squad/docs/exec-plans/phases/SAR-SSE-INSTALL-001-OPS.md",
+    "internal/relay/cleanup_flood_integration_test.go",
+    "internal/relay/text_events_integration_test.go",
+    ".fullops-squad/docs/exec-plans/phases/SAR-BETA-001-OPS.md",
+    ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-AGENTS-001-DEV-FIX.md",
+    ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-MESSAGES-001-DEV-FIX.md",
+    ".fullops-squad/docs/exec-plans/phases/SAR-PUBLIC-SERVICE-OPEN-PREP.md",
+    ".fullops-squad/docs/planning/sources/silent-agent-relay/decisions.md",
+    "cmd/relay/main_integration_test.go",
+    "db/migrations/00002_human_writer.sql",
+    "internal/relay/cleanup_unit_integration_test.go",
+    "internal/relay/db_limits_integration_test.go",
+    "internal/relay/public_messages_integration_test.go",
+    "internal/relay/store_retention_integration_test.go"
+  ]
+}

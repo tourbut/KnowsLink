@@ -77,7 +77,7 @@ func TestTrialForeignAllowlistRevokesLease(t *testing.T) {
 	}
 	lease := f.call("POST", "/v1/test/pull", f.tokens["agent_b"], map[string]any{}, 200)
 	// Same no-op transaction as Service.Cleanup in a relay started with the verify-mvp allowlist.
-	foreign := &Service{Pool: pool, TestAgents: map[string]bool{"trial_codex": true, "trial_grok": true}}
+	foreign := &Service{Redis: testRedis(), Pool: pool, TestAgents: map[string]bool{"trial_codex": true, "trial_grok": true}}
 	if _, err := foreign.transaction(context.Background(), func(*State, time.Time) (any, error) { return nil, nil }); err != nil {
 		t.Fatal(err)
 	}

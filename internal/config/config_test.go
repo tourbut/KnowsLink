@@ -20,6 +20,20 @@ func TestDatabaseURL(t *testing.T) {
 	}
 }
 
+func TestRedisURL(t *testing.T) {
+	for _, value := range []string{"", " ", "postgres://redis:6379/0", "redis://", "redis://example-secret@%invalid/0"} {
+		t.Setenv("REDIS_URL", value)
+		_, err := RedisURL()
+		if err == nil || strings.Contains(err.Error(), "example-secret") {
+			t.Fatalf("invalid setting must fail without exposing secret: %v", err)
+		}
+	}
+	t.Setenv("REDIS_URL", "redis://redis:6379/0")
+	if _, err := RedisURL(); err != nil {
+		t.Fatal(err)
+	}
+}
+
 func TestListenAddress(t *testing.T) {
 	t.Setenv("RELAY_ADDR", "")
 	if value, err := ListenAddress(); value != "127.0.0.1:8080" || err != nil {

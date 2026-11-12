@@ -9,6 +9,16 @@ services:
     cpus: 1.0
     pids_limit: 200
     logging: *log
+  # 128mb maxmemory holds two copies of the message records during a commit; the relay (256m) bounds the copy size first.
+  redis:
+    restart: unless-stopped
+    mem_limit: 192m
+    cpus: 0.25
+    pids_limit: 64
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    read_only: true
+    logging: *log
   migrate:
     restart: "no"
     mem_limit: 128m
