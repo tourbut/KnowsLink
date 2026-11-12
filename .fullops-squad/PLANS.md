@@ -26,6 +26,10 @@ summary: 기존 제품 계획 보존과 Google 연결 구현의 독립 검토 �
   - 대상과 tuple: `claude` `claude-opus-5-5` `high`, snapshot `.fullops-review-f5a78d43818847f8b93d24a053d98c40`, 기준 `17acfa5e`에서 head `9a5a07bd`까지다.
   - spec의 Task key: 병합 대기 훅 때문에 원래 키 `SAR-MSG-EPHEMERAL-001`을 적고, 리뷰 키는 따로 적었다.
   - lint 사본: Windows lint가 실행 불가 사유를 비워 둬서, 리뷰 폴더의 사본에 coor가 Linux 로그 근거를 채웠다.
+- **리뷰 결과:** 조건부 수락(critical/high 0). 지적과 처분은 다음과 같다.
+  - medium 1(개인정보 문구의 승인 요청 metadata): D054 "문구를 사실대로 수정". 같은 키를 reopen해 dev가 병합 전에 고친다.
+  - medium 2(Redis가 128mb noeviction에 닿으면 ACK·sweep 같은 축소 쓰기도 거부되어 최대 1시간 unavailable): 후속이다. 운영 이행 전에 크기와 lock 시간을 측정하고, 축소 경로(relay 쪽 사본 크기 상한 또는 메시지별 키)를 dev 후속 과제로 설계한다. 재개 조건은 운영 이행 계획 수립이다.
+  - low 1(interface-design 장애 범위 문장): reopen 범위에 넣었다. low 2(board note): coor가 병합 때 고친다.
 
 ## 운영 서버 Vultr 이전 — SAR-VULTR-MIGRATE-001 (2026-11-12, 완료)
 
