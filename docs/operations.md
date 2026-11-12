@@ -54,7 +54,7 @@ build 전에 현재 실행 이미지에 과제 고유 rollback 태그를 붙이�
 live Tunnel config는 원본을 백업하고 `cloudflared tunnel --config <후보> ingress validate`로 확인한 뒤 적용한다. cloudflared 재시작은 약1~2초 끊김을 만든다.
 공개 주소를 짧은 간격으로 반복 호출하지 않는다. 약2~2.5회/초 관찰 루프가 두 번의 Tunnel 재시작에서 모두 1~2분 동안 429를 만들었다. 재시작 관찰은 공개 주소가 아니라 서버 측 cloudflared 등록 로그로 하고, 공개 확인은 1초 이상 간격으로 한다.
 
-백업에는 키·credential·callback secret이 포함될 수 있다. SAR-MSG-EPHEMERAL-001 이행 뒤 새 백업에는 메시지·Remote 설치 Inbox가 없다(Redis에만 있음). 이행 전 백업에는 남아 있다.
+백업에는 키·credential·callback secret이 포함될 수 있다. SAR-MSG-EPHEMERAL-001 이행 뒤 새 백업에는 메시지·Remote 설치 Inbox가 없다(Redis에만 있음). 백업 시점의 본문 없는 gate metadata(ID·digest·대상·상태)와 Dots 구독의 메시지 ID는 들어간다. 이행 전 백업에는 남아 있다.
 출력·공유·Git 저장을 금지한다. 접근권한과 보존기한을 별도로 관리한다.
 복원 리허설 통과는 실제 rollback 실행이나 WAL의 완전 삭제 증거가 아니다.
 
@@ -90,7 +90,7 @@ transport 삭제와 1시간 웹 사본 만료(Redis)는 이행 전 백업/WAL의
 메시지·대화 사본·Dots Inbox는 Postgres가 아니라 디스크 저장 없는 Redis에만 있다(D049~D052). 운영 적용 전이다. 이행 순서는 [운영자설명서](../.fullops-squad/docs/operations/ops-guide.md#sar-msg-ephemeral-001-메시지-휘발-저장-이행-운영-미적용)를 따른다.
 
 - Compose 서비스 `redis`: RDB·AOF 끔, `maxmemory 128mb`·`noeviction`, 포트 미게시, internal network. relay는 `REDIS_URL=redis://redis:6379/0`을 쓴다.
-- Redis 재시작은 미전달 메시지·대화 사본·receipt·멱등 기록을 지운다. 이것은 받아들인 동작이다(D051). 재시작 중 요청은 `unavailable`, `/healthz`는 503이다. 복구 뒤 새 송신은 정상이다.
+- Redis 재시작은 미전달 메시지·대화 사본·receipt·멱등 기록을 지운다. 이것은 받아들인 동작이다(D051). 재시작 중 메시지 기록이 있거나 새로 쓰는 요청은 `unavailable`, `/healthz`는 503이다. 복구 뒤 새 송신은 정상이다.
 - Redis를 백업하지 않는다. `beta.sh backup`은 상태 행에 메시지 key가 남았는지 `message_state_rows`로 보인다(이행 뒤 0).
 - 로그·오류 응답에는 본문을 쓰지 않는다. relay 로그는 기동 설정과 고정 오류 문장만 쓴다.
 

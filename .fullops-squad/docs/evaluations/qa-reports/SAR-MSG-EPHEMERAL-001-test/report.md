@@ -71,7 +71,7 @@ summary: 메시지·대화 사본·Dots Inbox를 Redis에만 두는 구현의 �
 ## 스스로 정한 선택과 되돌리는 방법
 
 - Redis 키 하나에 전체 메시지 기록을 둔다(Lua·WATCH 없음). 행 lock을 그대로 쓰므로 보장이 같다. 되돌리기: `ephemeral.go`와 `transaction`의 Redis 호출을 키 단위 저장으로 바꾼다.
-- Redis 장애 때 메시지 외 작업(로그인·친구)도 `unavailable`이다. 모든 transaction이 sweep에서 메시지를 보기 때문이다. `/healthz`도 503이다. 되돌리기: `main.go` health 함수에서 Redis ping을 뺀다(작업 실패는 그대로).
+- Redis 장애 때 행에 메시지 기록이 있으면 메시지 외 작업(로그인·친구)도 `unavailable`이다. 그 transaction이 Redis 사본을 읽어 sweep하기 때문이다. 메시지 기록이 없고 쓰지도 않는 transaction은 commit된다(리뷰 low 1로 고침). `/healthz`도 503이다. 되돌리기: `main.go` health 함수에서 Redis ping을 뺀다(작업 실패는 그대로).
 - Redis 비밀번호 없이 internal network만 쓴다. `database` 망에는 postgres·migrate·relay·redis만 있다. 되돌리기: `--requirepass`와 `REDIS_URL` 자격을 추가한다.
 - `maxmemory 128mb`, 운영 `mem_limit 192m`·`cpus 0.25`. commit 중 사본 2개와 relay 256 MB 한도를 근거로 정했다. 실제 크기는 운영 수락 때 측정한다.
 - 정책 문서의 시행일은 바꾸지 않았다. 개인정보처리방침 변경 고지 여부는 제품·법률 판단이다.
@@ -96,3 +96,15 @@ summary: 메시지·대화 사본·Dots Inbox를 Redis에만 두는 구현의 �
 - ops: 사용자 승인 뒤 Vultr 운영 이행(Redis 기동, migration 3·4, 기존 메시지 삭제, 이행 직후 새 백업).
 - tester: 운영 이행 전 독립 QA(웹 대화·Dots 수신·재시작 체감).
 - 사용자: 이전 백업 보존 정책 판단, 개인정보처리방침 개정 시행일·고지 여부.
+
+## 리뷰 지적 수정 (attempt 5a794a62, D054)
+
+독립 리뷰 [SAR-MSG-EPHEMERAL-001-REVIEW](../SAR-MSG-EPHEMERAL-001-REVIEW-review/report.md)의 medium 1(finding 1)과 low 1(finding 3)을 D054대로 코드 변경 없이 문구·시험 기대값으로 고쳤다. 보관 동작은 그대로다.
+
+- 근거(코드 재확인): `State.Gates`는 `json:"-"`가 아니라 Postgres `relay_state`에 남는다(`store.go` `Gate`: ID·Owner·Parent·Digest·From·To·Policy·State·Exp). sweep은 요청 사본이 Redis에서 사라지면 gate를 지운다(수락 1시간 `messageRetention`, Redis 재시작 뒤 다음 sweep). Dots 구독의 `Seen`·`Pending`은 대기 중 text 메시지 ID이고 대기 메시지가 없으면 비운다. 백업은 `pg_dump`이고 `prune-backups.sh`가 14일 지난 dump를 지운다. `transaction`은 행에 `Ephemeral` 키 이름이 있거나 새 메시지 기록을 쓸 때만 Redis를 부른다.
+- 개인정보처리방침 ko·en(`privacy.*.html`): Redis 전용 행의 "승인 요청"을 "승인 요청 원문"으로 좁혔다. "영구 저장하지 않습니다/never stored permanently" 문장은 그대로다. 본문 없는 승인 요청·전달 정보(요청·메시지 ID, 내용 해시, 보낸·받는 에이전트, 처리 상태)가 서비스 DB에 최대 약 1시간 남고 장애 중에는 복구 뒤 지운다는 행을 더했다. 백업 문단에 그 정보가 백업에 들어간다는 문장을 더했다(14일 삭제 문장은 기존).
+- `TestPolicyPages`: privacy ko·en에 새 문장 세 개씩을 기대값으로 더했다.
+- 장애 범위(low 1): D06 `interface-design.md`, `docs/architecture.md`, `docs/system-design.md`, `docs/operations.md`, 이 보고서 "스스로 정한 선택"의 문장을 '메시지 기록이 있거나 새로 쓰는 transaction'으로 고쳤다. `system-design.md`의 오래된 "별도 Redis 없음" 문장도 고쳤다. `docs/operations.md` 백업 문장에 gate metadata를 더했다.
+- 고치지 않음: `cmd/relay/main.go:75` 주석("without Redis every relay transaction is unavailable")은 Go 파일이라 D054(코드 불변)대로 두었다. `/healthz` 503 동작 설명으로는 맞다.
+- 산출물: D06 수정, D07 `database-design.md` 확인만(28줄이 이미 gate·Dots 구독 metadata를 바르게 적음), D10 `docs/operations.md` 수정.
+- 검증: `go test ./internal/relay/ -run 'Policy|Landing|Human|Member'` 종료코드 0(Windows 로컬, `TestPolicyPages` PASS). Go 코드는 시험 기대값만 바뀌어 Linux 전체 gate는 다시 돌리지 않았다. Docker는 쓰지 않았다.

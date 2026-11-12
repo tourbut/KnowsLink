@@ -13,7 +13,7 @@ summary: owner와 agent HTTP 계약 및 gate와 adapter 흐름을 정의한다
 
 ## SAR-MSG-EPHEMERAL-001 저장 장애의 오류 의미
 
-공개 HTTP·MCP·wire 형식은 바뀌지 않는다. Redis(메시지 임시 저장소)에 닿지 못하면 모든 relay transaction이 기존 `unavailable`(503)로 끝난다. Postgres로 대신 저장하지 않는다. `/healthz`는 Postgres와 Redis가 모두 응답할 때만 200이다. Redis 재시작 뒤에는 이전 메시지·receipt·멱등 기록이 없다. 같은 멱등키 재시도는 새 메시지로 수락될 수 있다. 웹 대화 사본과 Dots Inbox는 수락 뒤 최대 1시간이다. `knowslink_receive` 도구 설명은 "temporary server Inbox (kept at most 1 hour, never stored permanently)"이다.
+공개 HTTP·MCP·wire 형식은 바뀌지 않는다. Redis(메시지 임시 저장소)에 닿지 못하면 메시지 기록이 있거나(행에 Redis 키 이름이 있음) 메시지 기록을 새로 쓰는 relay transaction이 기존 `unavailable`(503)로 끝난다. 메시지 기록이 없고 쓰지도 않는 transaction은 그대로 commit된다. Postgres로 대신 저장하지 않는다. `/healthz`는 Postgres와 Redis가 모두 응답할 때만 200이다. Redis 재시작 뒤에는 이전 메시지·receipt·멱등 기록이 없다. 같은 멱등키 재시도는 새 메시지로 수락될 수 있다. 웹 대화 사본과 Dots Inbox는 수락 뒤 최대 1시간이다. `knowslink_receive` 도구 설명은 "temporary server Inbox (kept at most 1 hour, never stored permanently)"이다.
 
 ## SAR-CONNECT-SIMPLE-001-DEV 연결 단순화 계약
 
