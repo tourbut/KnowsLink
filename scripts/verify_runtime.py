@@ -64,10 +64,15 @@ def main():
             run(compose + ["exec", "-T", "relay", "env", "REDIS_URL=", "/app/relay"], expected=1, diagnostic="REDIS_URL is required")
             run(compose + ["exec", "-T", "relay", "env", "REDIS_URL=redis://localhost:1/0", "/app/relay"],
                 expected=1, diagnostic="redis ping failed")
+            # A restart keeps nothing: no RDB/AOF means the probe key is gone afterwards.
+            run(compose + ["exec", "-T", "redis", "redis-cli", "SET", "knowslink:restart-probe", "1"], diagnostic="OK")
             run(compose + ["stop", "redis"])
             run(compose + ["exec", "-T", "relay", "wget", "-q", "-O", "-", "http://127.0.0.1:8080/healthz"],
                 expected=1, diagnostic="503")
             run(compose + ["start", "redis"])
+            run(compose + ["exec", "-T", "redis", "sh", "-c",
+                           "for i in $(seq 20); do redis-cli ping >/dev/null 2>&1 && break; sleep 1; done; redis-cli EXISTS knowslink:restart-probe"],
+                diagnostic="0")
             run(compose + ["exec", "-T", "relay", "sh", "-c",
                            "for i in $(seq 20); do wget -q -O - http://127.0.0.1:8080/healthz && exit 0; sleep 1; done; exit 1"],
                 diagnostic="ok")
