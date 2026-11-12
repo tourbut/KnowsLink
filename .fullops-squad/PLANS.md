@@ -20,6 +20,7 @@ summary: 기존 제품 계획 보존과 Google 연결 구현의 독립 검토 �
 - **분류:** route는 product→designer였다. 제품 규칙을 사용자가 직접 확정했으므로 근거를 남기고 dev로 재지정했다.
 - **배정:** `claude` `claude-opus-5-5` `high`, fresh 세션. 사용자 지정 tuple이다. 기준은 `17acfa5e`이고, 지시서는 [to_dev.md](handovers/to_dev.md)다.
 - **승인 필요:** 운영 이행(Redis 기동, migration, 기존 메시지 삭제), main 병합·push, 이전 백업 처리.
+- **배정 기록:** run `run_365476c60b4b`, task `task_1f18e7fe1a80`, dispatch `ctx_c40fd22b793d`, terminal `term_3177ccba-d8ce-426a-b9c5-46a5686911e8`. 이전 dev 세션은 종료돼 fresh로 띄웠다. 패킷은 dev HEAD 기준으로 다시 만들어 미커밋으로 두었다.
 
 ## relay DB 대기 축소 — SAR-DB-WAIT-001 (2026-11-07~)
 
