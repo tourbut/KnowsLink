@@ -4,7 +4,7 @@ status: approved
 updated: 2026-11-12
 owner: ops
 tasks: [SAR-VULTR-MIGRATE-001]
-summary: 사용자 지시에 따라 운영 relay를 Vultr 서울 새 서버로 옮기고, 홈서버 스택을 내리고, 도메인을 옮기는 인계 초안과 사전 조사 결과
+summary: "사용자 지시에 따라 운영 relay를 Vultr 서울 새 서버로 옮기고, 홈서버 스택을 내리고, 도메인을 옮기는 인계 초안과 사전 조사 결과"
 ---
 
 # SAR-VULTR-MIGRATE-001 — 운영 relay Vultr 이전
