@@ -159,6 +159,17 @@ test_level: lite
 lint DEP-001이 있으면 파일별 의존성 변경 여부·필요성·표준 라이브러리 대안을 적는다.
 처리는 `fullops-work`, 회신은 `fullops-orca` 스킬을 따른다.
 
+- 브랜치 / SHA: `fullops/dev` / 최종 코드 `6fe42d32bc96`(main `43ce01a7` 병합 포함). 보고 커밋은 그 뒤 문서만.
+- 변경 이유: D049~D052. 메시지·멱등·웹 대화 사본·Dots Inbox를 Postgres에서 빼고 디스크 저장 없는 Redis에만 1시간 둔다. 정책·회원·랜딩·README·기술 문서에 "영구 저장하지 않음"을 적었다.
+- 검토 필요: `internal/relay/ephemeral.go`, `store.go` `transaction`(행 lock 안 Redis 읽기·쓰기, commit 전 실패 키 정리), `text_events.go` `readEvents`, `cleanup_admission.go` `refresh`, migration 4, 정책 HTML 문장.
+- 검증한 것: Linux 컨테이너의 `make install/lint/test/build`, plugin verify, migrate, 실제 Postgres·Redis integration(`-race`) 모두 0, DATA RACE 0. `make verify-runtime` 0(Redis 설정·재시작 소실·stop 중 503). FullOps lint ERROR 0(Windows `make` 실행 불가 2는 Linux 결과로 대체).
+- 못 한 것: 운영 이행·Redis 운영 기동·실제 크기·처리량 측정, 독립 QA·독립 코드 리뷰.
+- 스스로 정한 선택: Redis 키 하나에 전체 기록, Redis 장애 시 모든 transaction과 `/healthz` 503, Redis 비밀번호 없이 internal network, `maxmemory 128mb`·운영 `mem_limit 192m`, 정책 시행일 미변경. 되돌리는 방법은 보고서 "스스로 정한 선택" 절.
+- 의존성(DEP-001): `go.mod`·`go.sum`에 `github.com/redis/go-redis/v9 v9.23.0`과 간접 의존성 추가. Go 표준 라이브러리에 Redis 클라이언트가 없다. 근거는 D03 기술 스택 절.
+- 산출물·로그: [보고서](../docs/evaluations/qa-reports/SAR-MSG-EPHEMERAL-001-test/report.md), 원시 로그 `D:/workspace/KnowsLink/.devtools/msg-ephemeral/`. 갱신: D03·D05·D06·D07·D08·D10·D11·D12, `docs/architecture.md`·`system-design.md`·`operations.md`, README.
+- Docker: `kl-msgeph-*` 컨테이너·볼륨·네트워크·이미지와 `knowslink-check-*` 이미지 모두 제거. 남긴 자원 없음.
+- 남은 일: ops의 Vultr 운영 이행(사용자 승인 뒤, migration 3·4와 이행 직후 새 백업), tester 독립 QA, 사용자의 이전 백업 보존·정책 개정 고지 판단.
+
 ## 기술 계획 (dev, 2026-11-12)
 
 - Redis 키 구조: 값 하나 `knowslink:messages:<random token>` = JSON `{Messages, Idempotency, Inboxes}`. Postgres `relay_state.state`에는 키 이름 `Ephemeral`만 쓴다. `Message`·`Idempotency`·`remoteInstall.Inbox`는 `json:"-"`라 Postgres JSON에 나가지 않는다. 메모리 모델(`State`)과 기존 참조는 그대로 둔다.
