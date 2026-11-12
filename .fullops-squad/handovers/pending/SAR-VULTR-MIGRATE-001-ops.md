@@ -1,6 +1,6 @@
 ---
 title: SAR-VULTR-MIGRATE-001 — 운영 relay를 홈서버에서 Vultr로 이전(대기 초안)
-status: draft
+status: done
 updated: 2026-11-12
 owner: ops
 tasks: [SAR-VULTR-MIGRATE-001]
@@ -9,7 +9,7 @@ summary: 사용자 지시에 따라 운영 relay를 Vultr 서울 새 서버로 �
 
 # SAR-VULTR-MIGRATE-001 — 운영 relay Vultr 이전
 
-이 파일은 Mac ops 세션이 Windows coor에게 넘기는 인계 초안이다. coor가 범위를 확인한 뒤 `work.py new`로 ops 인박스를 만들고 이 본문을 옮긴다. 이 파일 자체를 dispatch 지시서로 쓰지 않는다.
+**완료(2026-11-12):** Windows에서는 Vultr에 접속할 수 없다. 그래서 사용자 지시대로 Mac ops 세션이 직접 실행했다. 결과는 [D12 이전 기록](../../docs/operations/ops-guide.md#sar-vultr-migrate-001-운영-서버-vultr-이전-2026-11-12)에 있다. 아래는 실행 전 인계 초안이다. 이 파일을 dispatch 지시서로 쓰지 않는다.
 
 ## 사용자 지시 (2026-11-12)
 

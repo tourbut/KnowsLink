@@ -2,14 +2,40 @@
 id: D12
 title: 운영자설명서
 status: draft
-updated: 2026-11-07
+updated: 2026-11-12
 owner: dev
-tasks: [SAR-PUBLISH-001-OPS, SAR-DEPLOY-001-OPS, SAR-BETA-001-OPS, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX, SAR-MVP-003-BIDIRECTIONAL, SAR-MVP-003-BIDIRECTIONAL-OPS, SAR-MVP-003-BIDIRECTIONAL-OPS-RENEW, SAR-PUBLIC-SERVICE-OPS-READINESS, SAR-PUBLIC-SERVICE-OPEN-PREP, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV, SAR-AUTO-RECEIVE-001-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SSE-INSTALL-001-TESTER, SAR-SSE-INSTALL-001-OPS, SAR-SSE-INSTALL-001-OAUTH-RETURN-DEV, SAR-SSE-INSTALL-001-OAUTH-RETURN-OPS, SAR-GROK-WEBHOOK-001-DEV, SAR-SERVICE-UI-001-OPS, SAR-HUMAN-PEER-001-DEV, SAR-HUMAN-PEER-001-OPS, SAR-REFACTOR-001-OPS, SAR-REFACTOR-002-OPS, SAR-RELEASE-001-OPS, SAR-RELEASE-002-OPS, SAR-RELEASE-003-OPS, SAR-PUBLISH-001-DEV, SAR-PUBLISH-001-RETENTION, SAR-PUBLISH-001-P03-DEPLOY, SAR-CONNECT-SIMPLE-001-DEV, SAR-CONNECT-SIMPLE-001-FIX-DEV, SAR-CONNECT-SIMPLE-001-OPS, SAR-CONNECT-SIMPLE-001-FOLLOWUP-DEV, SAR-AUTOSETUP-001-O04-DEV, SAR-AUTOSETUP-001-OPS, SAR-DB-WAIT-001]
+tasks: [SAR-PUBLISH-001-OPS, SAR-DEPLOY-001-OPS, SAR-BETA-001-OPS, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX, SAR-MVP-003-BIDIRECTIONAL, SAR-MVP-003-BIDIRECTIONAL-OPS, SAR-MVP-003-BIDIRECTIONAL-OPS-RENEW, SAR-PUBLIC-SERVICE-OPS-READINESS, SAR-PUBLIC-SERVICE-OPEN-PREP, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV, SAR-AUTO-RECEIVE-001-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SSE-INSTALL-001-TESTER, SAR-SSE-INSTALL-001-OPS, SAR-SSE-INSTALL-001-OAUTH-RETURN-DEV, SAR-SSE-INSTALL-001-OAUTH-RETURN-OPS, SAR-GROK-WEBHOOK-001-DEV, SAR-SERVICE-UI-001-OPS, SAR-HUMAN-PEER-001-DEV, SAR-HUMAN-PEER-001-OPS, SAR-REFACTOR-001-OPS, SAR-REFACTOR-002-OPS, SAR-RELEASE-001-OPS, SAR-RELEASE-002-OPS, SAR-RELEASE-003-OPS, SAR-PUBLISH-001-DEV, SAR-PUBLISH-001-RETENTION, SAR-PUBLISH-001-P03-DEPLOY, SAR-CONNECT-SIMPLE-001-DEV, SAR-CONNECT-SIMPLE-001-FIX-DEV, SAR-CONNECT-SIMPLE-001-OPS, SAR-CONNECT-SIMPLE-001-FOLLOWUP-DEV, SAR-AUTOSETUP-001-O04-DEV, SAR-AUTOSETUP-001-OPS, SAR-DB-WAIT-001, SAR-VULTR-MIGRATE-001]
 upstream: [D02, D03]
 summary: 서버 관찰 이력과 본인 전용 합성 베타 배포 구성·검증·복귀 절차 및 held 항목을 기록한다
 ---
 
 # KnowsLink 운영자설명서 (D12) — 현재 서버 배포 계획
+
+## SAR-VULTR-MIGRATE-001 운영 서버 Vultr 이전 (2026-11-12)
+
+사용자 지시(2026-11-12)로 운영 relay를 홈서버에서 Vultr로 옮겼다. 제품은 그대로 `c6dfc39a`다. migration 3은 적용하지 않았다(goose 2 유지).
+
+- **서버:** Vultr `knowslink-relay-01`(instance `cee8b9fa-3360-44af-ad17-9777f31a6089`), `vc2-1c-2gb`, `icn`, Ubuntu 24.04, IP `64.176.237.173`. Docker 29.9.3, Compose v5.7.1. 운영 사용자는 `shin`(uid 1001, docker 그룹)이다. root는 키 로그인만 허용하고 비밀번호 로그인은 끈다.
+- **방화벽:** Vultr firewall group `41dfe0c5-514d-4afd-9c3b-f99777c80b07`은 관리 IP 한 곳의 TCP 22만 허용한다. 공개 포트는 없다. 공개 경로는 outbound Cloudflare Tunnel뿐이다. 관리 IP가 바뀌면 이 규칙을 먼저 고친다.
+- **경로:** 홈서버와 같은 `/home/shin/deploy/knowslink`(GitHub에서 clone, detached `c6dfc39a`)와 `/home/shin/deploy/knowslink-state`(0700)다. state에는 `.env`·`tunnel.uuid`·`tunnel/`(config·자격 0600)·`install/`(0.1.0, 0.1.1)·`backups/`만 옮겼다. 해시가 홈서버와 같다.
+- **도메인:** 같은 named tunnel 자격을 옮겼으므로 DNS는 바꾸지 않았다. 홈서버 cloudflared를 먼저 멈춘 뒤 Vultr cloudflared를 기동했다. Tunnel 연결 4개가 `icn05`·`icn06`에 등록됐다.
+- **중단:** 12:45:16Z~12:45:50Z(21:45:16~21:45:50 KST), 약35초다.
+- **백업:** `backups/c6dfc39a-pre-vultr-20261112T124516Z.dump`, 0600, 11311 bytes, TOC 25줄, SHA256 `c20a2b291f1e1eeb22a4677cd2b670f204d5b9246b523e31797d9e9fccba3a3b`. 홈서버와 Vultr 양쪽에 있다. writer 정지 뒤에 만들었다.
+- **복원 대조:** 빈 Vultr DB에 `pg_restore --exit-on-error`로 복원했다. `relay_state` 1행, goose 2, `md5(data::text)` `1d3484d6…aab7`, public 테이블 2개가 홈서버 정지 시점 값과 같다. 별도 network-none 리허설은 하지 않았다. 대상 DB가 internal network이고 트래픽 전이었기 때문이다.
+- **검증:** `verify.py local` 통과(health 200, unknown 404, owner/api 401, loopback-only relay, private Postgres, limits, 0600/0700). 공개 `/`·`/privacy`·`/terms`·OAuth metadata 200, `/install/0.1.1/knowslink-setup.ps1` 200, 무인증 MCP initialize 401, `/healthz`·`/owner` 404다. 실계정 로그인·메시지 발송은 하지 않았다.
+- **홈서버:** `knowslink` project의 relay·cloudflared·postgres를 `docker stop`으로 멈췄다. 볼륨 `knowslink_postgres-data`, 이미지, rollback 태그, state는 삭제하지 않았다. restart 정책은 `unless-stopped`라 재부팅해도 다시 뜨지 않는다. 다른 project는 건드리지 않았다.
+- **백업 정리 cron:** Vultr `shin` crontab에 `17 3 * * *` `knowslink-prune-backups.sh`를 등록했다. 홈서버 cron은 그대로 남아 있다.
+- **rollback:** Vultr에서 `cloudflared`를 먼저 멈춘다. 그 뒤 홈서버에서 `docker start knowslink-postgres-1 knowslink-relay-1 knowslink-cloudflared-1`을 실행한다. 컷오버 뒤 Vultr에 쓴 내용은 홈서버로 옮겨지지 않는다. 그 내용이 필요하면 Vultr에서 새 dump를 만들어 홈서버에 복원한다. 두 cloudflared를 동시에 실행하지 않는다.
+
+Vultr에서 compose를 호출하는 방법:
+
+```sh
+cd /home/shin/deploy/knowslink
+export KNOWSLINK_STATE_DIR=$HOME/deploy/knowslink-state KNOWSLINK_UID=$(id -u) KNOWSLINK_GID=$(id -g)
+docker compose -p knowslink -f compose.yaml -f deploy/knowslink/compose.ops.yaml --env-file $KNOWSLINK_STATE_DIR/.env --profile tunnel ps
+```
+
+`verify.py regression`·`baseline`은 홈서버 공유 서비스를 전제로 한다. 따라서 Vultr에서는 쓰지 않는다. `local`과 `public`만 쓴다.
 
 ## SAR-DB-WAIT-001 저장 형식 이행 (운영 미적용)
 

@@ -1,9 +1,9 @@
 ---
 title: 운영·업데이트·복구
 status: draft
-updated: 2026-11-04
+updated: 2026-11-12
 owner: ops
-tasks: [SAR-REFACTOR-002-OPS, SAR-RELEASE-001-OPS, SAR-RELEASE-002-OPS, SAR-RELEASE-003-OPS, SAR-PUBLISH-001-DEV, SAR-PUBLISH-001-OPS, SAR-CONNECT-SIMPLE-001-OPS, SAR-AUTOSETUP-001-OPS]
+tasks: [SAR-REFACTOR-002-OPS, SAR-RELEASE-001-OPS, SAR-RELEASE-002-OPS, SAR-RELEASE-003-OPS, SAR-PUBLISH-001-DEV, SAR-PUBLISH-001-OPS, SAR-CONNECT-SIMPLE-001-OPS, SAR-AUTOSETUP-001-OPS, SAR-VULTR-MIGRATE-001]
 summary: 현재 배포·백업·writer 보호와 클라이언트 갱신 및 복구 경계를 설명한다.
 ---
 
@@ -11,6 +11,7 @@ summary: 현재 배포·백업·writer 보호와 클라이언트 갱신 및 복�
 
 2026-10-28 운영 제품은 `c6dfc39a`다(정본: [D12 현재 운영 제품](../.fullops-squad/docs/operations/ops-guide.md#sar-autosetup-001-ops-운영-적용-결과-2026-10-28)).
 공개 주소는 `https://link.knowslog.com`이며 Dots MCP endpoint는 `/mcp`다.
+2026-11-12부터 운영 서버는 Vultr 서울 인스턴스다. 홈서버 스택은 정지 상태로 보존한다([이전 기록](../.fullops-squad/docs/operations/ops-guide.md#sar-vultr-migrate-001-운영-서버-vultr-이전-2026-11-12)).
 이 문서는 현재 절차의 설명이다. 명령 실행·계정 발송·배포 승인을 대신하지 않는다.
 실제 경로·비밀 설정·공유 자원 목록은 접근이 제한된 운영 자료에서 확인한다.
 
