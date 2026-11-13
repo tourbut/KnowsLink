@@ -1,10 +1,10 @@
 ---
-title: main 40aafe6f Vultr 운영 적용(migration 3·4, Redis 기동) 결과
+title: "main 40aafe6f Vultr 운영 적용(migration 3·4, Redis 기동) 결과"
 status: draft
 updated: 2026-11-14
 owner: ops
 tasks: [SAR-RELEASE-004-OPS]
-summary: Vultr knowslink-relay-01을 c6dfc39a(goose 2)에서 40aafe6f(goose 4, Redis)로 D12 수동 절차로 옮긴 순서·시각·백업·격리 리허설·검증·실측 크기를 기록한다.
+summary: "Vultr knowslink-relay-01을 c6dfc39a(goose 2)에서 40aafe6f(goose 4, Redis)로 D12 수동 절차로 옮긴 순서·시각·백업·격리 리허설·검증·실측 크기를 기록한다."
 ---
 
 # SAR-RELEASE-004-OPS 결과
