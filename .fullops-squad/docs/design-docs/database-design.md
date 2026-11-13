@@ -22,7 +22,7 @@ summary: singleton Postgres 상태와 epoch CAS 및 처리량 한계를 정의�
 - 보관: text 전달 기한 최대 180초(서명 agent 업무 envelope `/v1/send`는 기존 최대 300초). 모든 메시지 기록은 수락 1시간 뒤 sweep이 지운다(`messageRetention`). Redis TTL 1시간은 상한 보조다. 요청 사본이 Redis에서 사라진 gate는 sweep이 지운다.
 - 상한: 전체 20,000건·대기 100건·pending gate 100건·claim 4건을 그대로 메모리 상태에서 센다.
 - Redis 설정: `--save ""`, `--appendonly no`, `--maxmemory 128mb`, `--maxmemory-policy noeviction`, 포트 미게시, `database` internal network. 가득 차면 쓰기를 거부하므로 relay는 `unavailable`로 끝낸다.
-- 운영 자원: Redis `mem_limit 192m`·`cpus 0.25`·read-only·cap_drop ALL. 근거: commit 중 Redis에는 사본이 최대 2개 있다. 사본 크기는 relay 256 MB 한도가 먼저 제한한다. 메시지가 빠져 상태 행이 작아지므로 행 lock 시간도 줄어든다. 실제 크기·처리량은 운영 수락 때 측정한다.
+- 운영 자원: Redis `mem_limit 192m`·`cpus 0.25`·read-only·cap_drop ALL. 근거: commit 중 Redis에는 사본이 최대 2개 있다. 사본 크기는 relay 256 MB 한도가 먼저 제한한다. 메시지가 빠져 상태 행이 작아지므로 행 lock 시간도 줄어든다. 2026-11-14 운영 이행에서 상태 행은 8894 bytes(`pg_column_size`)이고 메시지 부분은 0 bytes, Redis `used_memory`는 1.43 MiB였다(D12 SAR-RELEASE-004-OPS). 처리량은 측정하지 않았다.
 - LISTEN/NOTIFY는 유지한다. payload가 비어 있고 commit과 함께 보이므로 메시지를 담지 않는다.
 - migration 4(`00004_relay_state_no_messages.sql`)는 기존 행의 `Messages`·`Idempotency`·`Remote.Installs.*.Inbox`를 지운다(D052). 회원·친구·agent·키·권한·Dots 연결·`human_model`은 유지한다. Down은 실패 고정이다. 지운 행의 이전 tuple·WAL은 VACUUM·checkpoint 전까지 디스크에 남을 수 있다.
 - Postgres에 남는 메시지 관련 값은 본문 없는 metadata뿐이다: gate(ID·digest·from/to·상태, 요청 사본과 함께 삭제), Dots 구독의 마지막 event ID.
@@ -33,7 +33,7 @@ migration `00003_relay_state_json.sql`은 `data`(jsonb)를 `state`(json, lz4)로
 guard는 JSON을 파싱하지 않고 `human_model`만 비교한다. `SaveRelay`가 State와 같은 값을 같은 문장에 쓴다. 컬럼 이름 변경으로 구 쿼리는 SQL 오류로 실패한다. Down은 실패 고정이다. 구조는 [D08](../generated/db-schema.md)이 정본이다.
 CHECK는 `json_typeof(state) = 'object'`다. `json`은 `\u0000`을 저장하므로 저장 직전 `encodedNUL`이 기존 `unavailable` 동작을 유지한다.
 `jsonb`를 쓰지 않아 Postgres 안의 파싱이 사라진다. 대신 행 크기가 약 7% 늘고(메시지 1,000건 42,286에서 45,204 byte) Go의 복사·파싱은 그대로다. 숫자·조건은 [측정 보고](../evaluations/qa-reports/SAR-DB-WAIT-001-DEV-test/report.md)를 따른다.
-대기 상한 값은 [시스템 설계](../../../docs/system-design.md#db-동시성저장보관)를 따른다. 이행과 복귀 경계는 [D12](../operations/ops-guide.md#sar-db-wait-001-저장-형식-이행-운영-미적용)를 따른다.
+대기 상한 값은 [시스템 설계](../../../docs/system-design.md#db-동시성저장보관)를 따른다. 이행과 복귀 경계는 [D12](../operations/ops-guide.md#sar-db-wait-001-저장-형식-이행-2026-11-14-운영-적용)를 따른다.
 
 ## SAR-REFACTOR-002 처리 비용 확인
 

@@ -1,15 +1,15 @@
 ---
 title: 운영·업데이트·복구
 status: draft
-updated: 2026-11-12
+updated: 2026-11-14
 owner: ops
-tasks: [SAR-REFACTOR-002-OPS, SAR-RELEASE-001-OPS, SAR-RELEASE-002-OPS, SAR-RELEASE-003-OPS, SAR-PUBLISH-001-DEV, SAR-PUBLISH-001-OPS, SAR-CONNECT-SIMPLE-001-OPS, SAR-AUTOSETUP-001-OPS, SAR-MSG-EPHEMERAL-001, SAR-VULTR-MIGRATE-001]
+tasks: [SAR-REFACTOR-002-OPS, SAR-RELEASE-001-OPS, SAR-RELEASE-002-OPS, SAR-RELEASE-003-OPS, SAR-PUBLISH-001-DEV, SAR-PUBLISH-001-OPS, SAR-CONNECT-SIMPLE-001-OPS, SAR-AUTOSETUP-001-OPS, SAR-MSG-EPHEMERAL-001, SAR-VULTR-MIGRATE-001, SAR-RELEASE-004-OPS]
 summary: 현재 배포·백업·writer 보호와 클라이언트 갱신 및 복구 경계를 설명한다.
 ---
 
 # 운영·업데이트·복구
 
-2026-10-28 운영 제품은 `c6dfc39a`다(정본: [D12 현재 운영 제품](../.fullops-squad/docs/operations/ops-guide.md#sar-autosetup-001-ops-운영-적용-결과-2026-10-28)).
+2026-11-14 운영 제품은 `40aafe6f`다(goose 4, 메시지는 Redis. 정본: [D12 현재 운영 제품](../.fullops-squad/docs/operations/ops-guide.md#sar-release-004-ops-운영-적용-결과-2026-11-14)).
 공개 주소는 `https://link.knowslog.com`이며 Dots MCP endpoint는 `/mcp`다.
 2026-11-12부터 운영 서버는 Vultr 서울 인스턴스다. 홈서버 스택은 정지 상태로 보존한다([이전 기록](../.fullops-squad/docs/operations/ops-guide.md#sar-vultr-migrate-001-운영-서버-vultr-이전-2026-11-12)).
 이 문서는 현재 절차의 설명이다. 명령 실행·계정 발송·배포 승인을 대신하지 않는다.
@@ -17,7 +17,7 @@ summary: 현재 배포·백업·writer 보호와 클라이언트 갱신 및 복�
 
 ## 현재 확인 범위
 
-[운영 적용 기록](../.fullops-squad/docs/evaluations/qa-reports/SAR-AUTOSETUP-001-OPS-test/report.md)은 배포·백업·복원 리허설·보존·HTTPS smoke와 자동 설정 0.1.1 게시를 기록한다. 공개 ingress 변경은 없었다.
+[최근 운영 적용 기록](../.fullops-squad/docs/evaluations/qa-reports/SAR-RELEASE-004-OPS-test/report.md)은 migration 3·4 이행·Redis 기동·이행 전후 백업·격리 리허설·HTTPS smoke를 기록한다. 공개 ingress 변경은 없었다. 자동 설정 0.1.1 게시는 [이전 기록](../.fullops-squad/docs/evaluations/qa-reports/SAR-AUTOSETUP-001-OPS-test/report.md)에 있다.
 relay health, schema·HumanModel·writer guard, 기존 회원·agent·친구·Remote 설치·구독 보존을 확인했다.
 실제 친구 대화와 질문 없는 화면 알림은 별도 두 계정 시험의 근거다.
 그 시험 제품은 과거 `26094e9`다. `bf67dfcb` 운영에서 새 Grok/Claude agent 연결과 시험 메시지 1건 수신을 확인했다([CS-AC-18](../.fullops-squad/docs/evaluations/qa-reports/SAR-CONNECT-SIMPLE-001-LIVE-test/report.md)).
@@ -43,7 +43,7 @@ relay의 이 키 설정과 기동 때 캘린더 정리 코드도 이후 제거�
 7. 필요한 migration Up을 적용한다. 새 reader/writer만 기동한다. DB와 친구·철회·generation·Remote/Inbox를 보존한다.
 8. health·인증 거부·공개 allowlist·공유 서비스 보존을 검사한다. 승인된 범위의 수락 뒤 트래픽을 재개한다.
 
-최근 배포(`bf67dfcb`→`c6dfc39a`)는 새 migration이 없었다. 백업과 network-none 복원에서도 goose 2·guard 1·HumanModel 1을 확인했다.
+최근 배포(`c6dfc39a`→`40aafe6f`, 2026-11-14)는 migration 3·4를 위 순서로 수동 적용했다. network-none 리허설과 운영에서 goose 4·guard 1·`human_model` 1·메시지 키 0을 확인했다.
 일반 `beta.sh deploy <sha>`는 migration 변경을 거부하며 모든 이행을 자동으로 처리하지 않는다.
 `beta.sh deploy`, `backup`, `restore-verify`는 내부 삭제·교체·임시 컨테이너 정리를 포함한다.
 삭제 금지 상황에서 실행하지 않는다. 최신 운영은 별도 bundle과 수동 보존 절차를 사용했다.
@@ -64,7 +64,7 @@ live Tunnel config는 원본을 백업하고 `cloudflared tunnel --config <후�
 Down은 의도적으로 실패하며 guard를 제거하지 않는다.
 `db/migrations/00003_relay_state_json.sql`은 `data`(jsonb)를 `state`(json, lz4)로 바꾸고 guard를 `human_model` 숫자 컬럼으로 옮긴다. Down도 실패한다.
 이 이행 뒤에는 구 코드가 `data` 컬럼을 찾지 못해 SQL 오류로 멈춘다. 복귀 경로는 이행 전 백업 복원뿐이며 백업 이후 변경을 잃는다. 기본은 전진 수정이다.
-절차는 [운영자설명서](../.fullops-squad/docs/operations/ops-guide.md#sar-db-wait-001-저장-형식-이행-운영-미적용)를 따른다. 운영 SQL은 `state`와 `human_model`을 쓴다.
+절차는 [운영자설명서](../.fullops-squad/docs/operations/ops-guide.md#sar-db-wait-001-저장-형식-이행-2026-11-14-운영-적용)를 따른다. 운영 SQL은 `state`와 `human_model`을 쓴다.
 구 writer와 새 writer의 rolling 쓰기를 병행하지 않는다. 코드만 오래된 버전으로 되돌리지 않는다.
 
 신규 schema 이행은 **쓰기 중단·최신 private 백업·격리 복원 리허설·Up·새 writer 검사·재개** 순서다.
@@ -87,7 +87,7 @@ transport 삭제와 1시간 웹 사본 만료(Redis)는 이행 전 백업/WAL의
 
 ## 메시지 임시 저장소 Redis (SAR-MSG-EPHEMERAL-001)
 
-메시지·대화 사본·Dots Inbox는 Postgres가 아니라 디스크 저장 없는 Redis에만 있다(D049~D052). 운영 적용 전이다. 이행 순서는 [운영자설명서](../.fullops-squad/docs/operations/ops-guide.md#sar-msg-ephemeral-001-메시지-휘발-저장-이행-운영-미적용)를 따른다.
+메시지·대화 사본·Dots Inbox는 Postgres가 아니라 디스크 저장 없는 Redis에만 있다(D049~D052). 2026-11-14 운영에 적용했다. 이행 순서는 [운영자설명서](../.fullops-squad/docs/operations/ops-guide.md#sar-msg-ephemeral-001-메시지-휘발-저장-이행-2026-11-14-운영-적용)를 따른다.
 
 - Compose 서비스 `redis`: RDB·AOF 끔, `maxmemory 128mb`·`noeviction`, 포트 미게시, internal network. relay는 `REDIS_URL=redis://redis:6379/0`을 쓴다.
 - Redis 재시작은 미전달 메시지·대화 사본·receipt·멱등 기록을 지운다. 이것은 받아들인 동작이다(D051). 재시작 중 메시지 기록이 있거나 새로 쓰는 요청은 `unavailable`, `/healthz`는 503이다. 복구 뒤 새 송신은 정상이다.

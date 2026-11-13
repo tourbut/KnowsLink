@@ -2,18 +2,36 @@
 id: D12
 title: 운영자설명서
 status: draft
-updated: 2026-11-12
+updated: 2026-11-14
 owner: dev
-tasks: [SAR-PUBLISH-001-OPS, SAR-DEPLOY-001-OPS, SAR-BETA-001-OPS, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX, SAR-MVP-003-BIDIRECTIONAL, SAR-MVP-003-BIDIRECTIONAL-OPS, SAR-MVP-003-BIDIRECTIONAL-OPS-RENEW, SAR-PUBLIC-SERVICE-OPS-READINESS, SAR-PUBLIC-SERVICE-OPEN-PREP, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV, SAR-AUTO-RECEIVE-001-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SSE-INSTALL-001-TESTER, SAR-SSE-INSTALL-001-OPS, SAR-SSE-INSTALL-001-OAUTH-RETURN-DEV, SAR-SSE-INSTALL-001-OAUTH-RETURN-OPS, SAR-GROK-WEBHOOK-001-DEV, SAR-SERVICE-UI-001-OPS, SAR-HUMAN-PEER-001-DEV, SAR-HUMAN-PEER-001-OPS, SAR-REFACTOR-001-OPS, SAR-REFACTOR-002-OPS, SAR-RELEASE-001-OPS, SAR-RELEASE-002-OPS, SAR-RELEASE-003-OPS, SAR-PUBLISH-001-DEV, SAR-PUBLISH-001-RETENTION, SAR-PUBLISH-001-P03-DEPLOY, SAR-CONNECT-SIMPLE-001-DEV, SAR-CONNECT-SIMPLE-001-FIX-DEV, SAR-CONNECT-SIMPLE-001-OPS, SAR-CONNECT-SIMPLE-001-FOLLOWUP-DEV, SAR-AUTOSETUP-001-O04-DEV, SAR-AUTOSETUP-001-OPS, SAR-DB-WAIT-001, SAR-MSG-EPHEMERAL-001, SAR-VULTR-MIGRATE-001]
+tasks: [SAR-PUBLISH-001-OPS, SAR-DEPLOY-001-OPS, SAR-BETA-001-OPS, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX, SAR-MVP-003-BIDIRECTIONAL, SAR-MVP-003-BIDIRECTIONAL-OPS, SAR-MVP-003-BIDIRECTIONAL-OPS-RENEW, SAR-PUBLIC-SERVICE-OPS-READINESS, SAR-PUBLIC-SERVICE-OPEN-PREP, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV, SAR-AUTO-RECEIVE-001-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SSE-INSTALL-001-TESTER, SAR-SSE-INSTALL-001-OPS, SAR-SSE-INSTALL-001-OAUTH-RETURN-DEV, SAR-SSE-INSTALL-001-OAUTH-RETURN-OPS, SAR-GROK-WEBHOOK-001-DEV, SAR-SERVICE-UI-001-OPS, SAR-HUMAN-PEER-001-DEV, SAR-HUMAN-PEER-001-OPS, SAR-REFACTOR-001-OPS, SAR-REFACTOR-002-OPS, SAR-RELEASE-001-OPS, SAR-RELEASE-002-OPS, SAR-RELEASE-003-OPS, SAR-PUBLISH-001-DEV, SAR-PUBLISH-001-RETENTION, SAR-PUBLISH-001-P03-DEPLOY, SAR-CONNECT-SIMPLE-001-DEV, SAR-CONNECT-SIMPLE-001-FIX-DEV, SAR-CONNECT-SIMPLE-001-OPS, SAR-CONNECT-SIMPLE-001-FOLLOWUP-DEV, SAR-AUTOSETUP-001-O04-DEV, SAR-AUTOSETUP-001-OPS, SAR-DB-WAIT-001, SAR-MSG-EPHEMERAL-001, SAR-VULTR-MIGRATE-001, SAR-RELEASE-004-OPS]
 upstream: [D02, D03]
 summary: 서버 관찰 이력과 본인 전용 합성 베타 배포 구성·검증·복귀 절차 및 held 항목을 기록한다
 ---
 
 # KnowsLink 운영자설명서 (D12) — 현재 서버 배포 계획
 
-## SAR-MSG-EPHEMERAL-001 메시지 휘발 저장 이행 (운영 미적용)
+## SAR-RELEASE-004-OPS 운영 적용 결과 (2026-11-14)
 
-이 절은 계획이다. 운영 적용·기존 메시지 삭제는 사용자 승인 뒤 ops가 실행한다. 대상 서버는 Vultr `knowslink-relay-01`이고 경로·compose 호출은 아래 SAR-VULTR-MIGRATE-001 절을 따른다(운영은 아직 goose 2). 2 GB 서버에서 한도 합은 relay 256 MB·Postgres 512 MB·Redis 192 MB·cloudflared 128 MB다. 선행으로 SAR-DB-WAIT-001(migration 3)이 같은 이행에 포함되거나 먼저 적용되어야 한다.
+현재 운영 제품은 `40aafe6ff396db2681a9423c3b344732934756e0`다(SAR-REFACTOR-003, SAR-DB-WAIT-001 migration 3, SAR-MSG-EPHEMERAL-001 migration 4·Redis·개인정보 문구). 서버는 Vultr `knowslink-relay-01`이고 운영 스키마는 goose 4다. 사용자 지시 D056에 따라 직전 `c6dfc39a`(goose 2)에서 아래 두 이행 절의 순서로 적용했다. 근거는 [운영 보고](../evaluations/qa-reports/SAR-RELEASE-004-OPS-test/report.md)다.
+
+- **중단:** 15:39:19.5Z~15:39:47.3Z(2026-11-14 00:39:19~00:39:47 KST), 약 28초다. 그 전 1차 시도는 복사한 `beta.sh`의 `SRC` 계산 실패로 백업 전에 멈췄다. 원래 relay·cloudflared를 바로 다시 띄웠다(15:38:44Z~15:38:54Z, 약 10초, DB 변경 없음).
+- **이행 전 백업:** `backups/c6dfc39a-20261113T153921Z.dump`, 0600·11411 bytes·TOC 25줄, SHA256 `eef7815f179c0d19d281580fa7b7362e75ec1c4673e1cf31ffc375bd92a32e03`, `message_state_rows=1`. `Messages`·`Idempotency`·설치 Inbox는 빈 값이었다.
+- **격리 리허설:** 같은 dump를 network-none Postgres에 복원하고 대상 이미지의 migrate를 같은 network namespace에서 실행했다. goose 4, `state` json·lz4, `human_model=1`, guard 1, 메시지 키·Inbox 0, 보존 키 14개와 Inbox를 뺀 `Remote`가 `jsonb`로 같고 downgrade UPDATE가 거부됐다.
+- **적용:** detached `40aafe6f` 뒤 `beta.sh up`. 빌드는 미리 만든 캐시로 9초다. Redis healthy 뒤 migrate가 Up을 적용했고 relay가 healthy다. Postgres는 재생성하지 않았다.
+- **확인:** goose 4, guard 1, 압축 `l`/`lz4`, 메시지 키 행 0. Redis `save` 빈 값·`appendonly no`·`noeviction`·`maxmemory` 128 MiB, 포트 미게시, `used_memory` 1.43 MiB, 키 0개. `verify.py local`·`public` 통과. 공개 `/`·`/privacy`(새 Redis 문구)·`/terms`·OAuth metadata·`/install/0.1.1/knowslink-setup.ps1` 200, 무인증 MCP 401, `/healthz`·`/owner` 404. Tunnel 연결 4개. relay error 0줄.
+- **이행 직후 백업:** `backups/40aafe6f-20261113T154024Z.dump`, 0600·11454 bytes·TOC 25줄, SHA256 `2f0f8a5b8f801cfdcfd6827d5becc385c951b948a88d08fe65ce93d2bd3974a3`, `message_state_rows=0`, restore-verify `state_type=json human_model=1`. 이제 이행 전 dump는 14일 정리 대상이다.
+- **실측 크기:** `relay_state` 행 10773→8894 bytes(`pg_column_size`), 텍스트 21851→19971 bytes, 표 전체 901120→155648 bytes. `VACUUM FULL`은 하지 않았다.
+- **Redis 한도 여유(리뷰 medium 2):** 이행 직전 메시지 부분은 0 bytes(이전 24시간 보관 창에서 남은 메시지 없음)다. 128 MiB에서 기본 1.43 MiB를 빼면 약 126.6 MiB이고, commit 중 사본 2개를 쥐므로 메시지 기록은 약 63 MiB까지 담는다. 현재 여유는 사실상 100%다. 축소 쓰기가 막히는 결함 자체는 dev 후속으로 남는다. 감시는 `docker exec knowslink-redis-1 redis-cli INFO memory | grep '^used_memory:'`로 한다.
+- **rollback 태그:** `knowslink-rollback:c6dfc39a-relay-release004-20261113`(`sha256:ac0be3e45268…f468a`), `knowslink-rollback:c6dfc39a-migrate-release004-20261113`. migration 3 뒤에는 코드 전용 복귀가 불가능해 기록용이다. 복귀 제약은 아래 두 이행 절을 따른다. 실제 rollback은 실행하지 않았다.
+- **보존:** 기존 백업·볼륨·이미지, `.env`, Tunnel 설정, DNS·방화벽, 홈서버, 다른 project는 바꾸지 않았다. 서버 작업 폴더는 `knowslink-state/release004-20261113/`(0700)다.
+- **SSH:** 이 PC의 첫 접속에서 host key ED25519 `SHA256:3InoMmjs4Pcs7TEkhvW98vWAiQLh/FfQNzpGE+O5xSs`를 `accept-new`로 등록했다. Mac 쪽 값과 대조는 후속이다.
+- **스크립트 주의:** `ssh host 'bash -s' <<EOF`로 여러 명령을 보내면 `docker compose exec`가 남은 heredoc을 stdin으로 읽어 스크립트가 조용히 끝난다. 서버에 파일로 올려 실행하거나 `exec`에 `</dev/null`을 붙인다. 복사한 `beta.sh`는 git 밖에서 `KNOWSLINK_SRC`가 필요하다.
+- 미실행: 실계정 로그인·메시지 왕복(tester 후속), host key 대조.
+
+## SAR-MSG-EPHEMERAL-001 메시지 휘발 저장 이행 (2026-11-14 운영 적용)
+
+이 순서로 2026-11-14에 운영에 적용했다(위 SAR-RELEASE-004-OPS 절, 운영 goose 4). 대상 서버는 Vultr `knowslink-relay-01`이고 경로·compose 호출은 아래 SAR-VULTR-MIGRATE-001 절을 따른다. 2 GB 서버에서 한도 합은 relay 256 MB·Postgres 512 MB·Redis 192 MB·cloudflared 128 MB다. 선행으로 SAR-DB-WAIT-001(migration 3)이 같은 이행에 포함되거나 먼저 적용되어야 한다.
 
 - `beta.sh deploy`는 migration 변경을 거부하므로 쓰지 않는다. KnowsLink `cloudflared`·`relay`만 멈춘다. 다른 project는 건드리지 않는다.
 - `beta.sh backup`으로 이행 전 dump를 만든다. 이 dump에는 메시지가 들어 있다. 출력의 `message_state_rows`(이행 전 1)를 기록한다.
@@ -51,9 +69,9 @@ docker compose -p knowslink -f compose.yaml -f deploy/knowslink/compose.ops.yaml
 
 `verify.py regression`·`baseline`은 홈서버 공유 서비스를 전제로 한다. 따라서 Vultr에서는 쓰지 않는다. `local`과 `public`만 쓴다.
 
-## SAR-DB-WAIT-001 저장 형식 이행 (운영 미적용)
+## SAR-DB-WAIT-001 저장 형식 이행 (2026-11-14 운영 적용)
 
-migration 3은 `relay_state.data`(jsonb)를 `state`(json, lz4)로 바꾼다. 이 절은 계획이며 운영에 적용하지 않았다. 운영 적용은 별도 승인이 필요하다.
+migration 3은 `relay_state.data`(jsonb)를 `state`(json, lz4)로 바꾼다. 이 순서로 2026-11-14에 migration 4와 함께 운영에 적용했다(위 SAR-RELEASE-004-OPS 절).
 
 - `beta.sh deploy`는 migration 변경을 거부하므로 쓰지 않는다. 아래 순서를 수동으로 실행한다. 다른 project는 건드리지 않는다.
 - 쓰기를 중단한다. KnowsLink `cloudflared`와 `relay`만 중지하고 Postgres는 유지한다. 구 writer와 새 writer를 함께 돌리지 않는다.
@@ -68,7 +86,7 @@ migration 3은 `relay_state.data`(jsonb)를 `state`(json, lz4)로 바꾼다. 이
 
 ## SAR-AUTOSETUP-001-OPS 운영 적용 결과 (2026-10-28)
 
-현재 운영 제품은 `c6dfc39ac4f6dabddc5864ad611437b84ded383e`다(자동 설정 0.1.1 공개: 설치기 O-04 수정, 화면 명령 0.1.1, `compose.ops.yaml`의 relay install env·마운트. 사용자 결정 D044). 직전 `bf67dfcbb4f7164149901d847edc0aa0e5783dc7`에서 같은 무삭제 bundle·rollback 태그·build·writer stop·새 private 백업·격리 복원·relay up 순서로 적용했다. 근거는 [운영 보고](../evaluations/qa-reports/SAR-AUTOSETUP-001-OPS-test/report.md)다. 아래 날짜별 절은 당시 기록이다.
+당시 운영 제품은 `c6dfc39ac4f6dabddc5864ad611437b84ded383e`였다(자동 설정 0.1.1 공개: 설치기 O-04 수정, 화면 명령 0.1.1, `compose.ops.yaml`의 relay install env·마운트. 사용자 결정 D044). 직전 `bf67dfcbb4f7164149901d847edc0aa0e5783dc7`에서 같은 무삭제 bundle·rollback 태그·build·writer stop·새 private 백업·격리 복원·relay up 순서로 적용했다. 근거는 [운영 보고](../evaluations/qa-reports/SAR-AUTOSETUP-001-OPS-test/report.md)다. 아래 날짜별 절은 당시 기록이다.
 
 - 중단은 13:19:00Z~13:19:18Z(22:19:00~22:19:18 KST, 2026-10-28), 약18초다. relay healthy·restart0·migrate0이다. schema·`db/`·`compose.yaml`·Dockerfile·Go 의존성 변경은 없다. 전환 5분 뒤 error/panic 0이다.
 - 백업은 `backups/bf67dfcb-pre-autosetup011-20261028T131905Z.dump`, 0600·12571bytes·TOC25줄, SHA256 `000989324dcad1d8937ba91084bab9b443212e4f3cd1564f89df02ee209aa233`다. 격리 복원 digest가 frozen DB와 같다. rollback 태그는 `knowslink-rollback:bf67dfcb-autosetup011-20261028`(이전 relay 이미지 `sha256:ff7b47e0a997…e954d630`)다. 실제 rollback은 실행하지 않았다. 이 백업은 2026-11-11 이후 14일 자동 정리 대상이 된다.

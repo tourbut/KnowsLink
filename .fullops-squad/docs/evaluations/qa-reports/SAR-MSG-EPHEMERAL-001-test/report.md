@@ -13,7 +13,7 @@ summary: 메시지·대화 사본·Dots Inbox를 Redis에만 두는 구현의 �
 
 - 메시지 기록(본문·envelope·Inbox 사본·웹 대화 사본·receipt·lease/claim·멱등)과 Dots 설치 Inbox를 Postgres에서 빼고 디스크 저장 없는 Redis에만 둔다. 최종 코드 SHA는 `6fe42d32bc96`(브랜치 `fullops/dev`)이다.
 - 등록 검사와 실제 Postgres·Redis integration이 모두 종료코드 0이다. DATA RACE 0이다.
-- 운영 적용·Redis 운영 기동·기존 메시지 삭제는 하지 않았다. 절차 초안은 [D12](../../../operations/ops-guide.md#sar-msg-ephemeral-001-메시지-휘발-저장-이행-운영-미적용)에 있다.
+- 운영 적용·Redis 운영 기동·기존 메시지 삭제는 하지 않았다. 절차 초안은 [D12](../../../operations/ops-guide.md#sar-msg-ephemeral-001-메시지-휘발-저장-이행-2026-11-14-운영-적용)에 있다.
 
 ## 구조 요약
 
