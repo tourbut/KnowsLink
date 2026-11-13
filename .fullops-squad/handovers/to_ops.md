@@ -1,0 +1,108 @@
+---
+title: "SAR-RELEASE-004-OPS — main 40aafe6f를 Vultr 운영에 적용한다(migration 3·4, Redis 기동, 기존 메시지 삭제, 이행 직후 새 백업)"
+status: draft
+updated: 2026-11-14
+owner: ops
+tasks: [SAR-RELEASE-004-OPS]
+summary: "main 40aafe6f를 Vultr 운영에 적용한다(migration 3·4, Redis 기동, 기존 메시지 삭제, 이행 직후 새 백업)"
+attempt: e7da82e18a854ba3b7218571449ac6d3
+base: 40aafe6ff396db2681a9423c3b344732934756e0
+subagent_level: standard
+test_level: lite
+---
+
+# SAR-RELEASE-004-OPS — main 40aafe6f를 Vultr 운영에 적용한다(migration 3·4, Redis 기동, 기존 메시지 삭제, 이행 직후 새 백업)
+
+현재 과제는 이 역할 인박스에서 관리한다. 같은 과제의 후속은 본문에 반영하고 다른 과제는 PLANS.md에 대기시킨다. 완료하면 완료 보고 전문을 채우고 work.py finish로 지시서·결과를 로그에 보존한다.
+
+- 작성일: 2026-11-14
+- From / To: coor → ops
+- 상태: ready
+- 테스트 레벨 / 하위 에이전트 레벨: lite / standard
+- 승인된 범위: Vultr `knowslink-relay-01`의 KnowsLink project에 한해 접속·쓰기 중단·백업·격리 복원 리허설·대상 SHA 배포·migration 3·4 적용·Redis 기동·검증·이행 직후 새 백업·D12 기록. 수 분 안의 쓰기 중단은 승인 범위다.
+- 추가 승인이 필요한 행위: 홈서버 변경, 기존 백업·볼륨·이미지 삭제, 다른 project 변경, Cloudflare·DNS·Vultr 방화벽 변경, 이행 실패 뒤 이전 dump로 되돌리는 복원(쓰기 유실이 따른다), 실계정 로그인·메시지 발송.
+- 상위 의도: 없음
+- 담당 repo id / 워크트리 / 브랜치: `0b08ec4c-9e3a-4613-8197-5a835e545335` / `C:/Users/shin/orca/workspaces/KnowsLink/ops` / `fullops/ops`
+- 병합 책임자 / 기본 브랜치: coor / `main`
+- 복귀 repo id / 워크트리 / 터미널 / run·task·dispatch id: `0b08ec4c-9e3a-4613-8197-5a835e545335` / `C:/Users/shin/orca/workspaces/KnowsLink/coor` / Orca preamble의 값
+
+## 현재 상황과 확인 근거
+
+- 사용자 지시(2026-11-14): "운영서버에 적용해". FullOps 결정 기록 D056(기록 키는 `SAR-RELEASE-003-OPS`로 잘못 적혔고 이 과제를 뜻한다)이다.
+- 운영 제품은 `c6dfc39a`(goose 2)이고, 2026-11-12 Vultr로 이전했다. 적용 대상은 main `40aafe6ff396db2681a9423c3b344732934756e0`이다. 이 SHA에는 아래가 들어 있다.
+  - SAR-REFACTOR-003(relay 정비, migration 없음)
+  - SAR-DB-WAIT-001(대기 상한, 연결 4개, migration 3: `data` jsonb → `state` json+lz4, `human_model` guard)
+  - SAR-MSG-EPHEMERAL-001(메시지를 휘발성 Redis에만 보관, migration 4: 상태 행의 메시지·멱등·Dots Inbox 삭제, Redis 서비스 추가, 개인정보 문구 변경)
+- 절차 정본: `.fullops-squad/docs/operations/ops-guide.md`(D12)의 세 절이다.
+  - "SAR-VULTR-MIGRATE-001 운영 서버 Vultr 이전": 경로·compose 호출·rollback·verify 범위
+  - "SAR-DB-WAIT-001 저장 형식 이행"
+  - "SAR-MSG-EPHEMERAL-001 메시지 휘발 저장 이행"
+- 접속: `ssh shin@64.176.237.173`. 이 PC의 `~/.ssh/id_ed25519`가 `shin`에 등록됐다(지문 `SHA256:0O0NgfVBqrJf7lmINPrXWBnObyrs653LH35mHyo7gA4`). 방화벽은 이 PC의 공인 IP `203.171.191.126`만 허용한다.
+- 독립 리뷰 `SAR-MSG-EPHEMERAL-001-REVIEW`의 medium 2는 미해결이다. Redis가 maxmemory 128mb(noeviction)에 닿으면 축소 쓰기도 거부돼 최대 1시간 unavailable이 된다. 이번 이행에서 실제 크기를 측정해 위험을 수치로 남긴다.
+
+## 적용 기준과 예외
+
+- 공통 기준: `.fullops-squad/rules/common/README.md`와 연결된 규칙, `AGENTS.md`, `.fullops-squad/project.md`, 기준 `40aafe6f`.
+- 산출물 ID `D01~D13`은 `.fullops-squad/docs/deliverables/README.md`를 따른다.
+- 비밀값(`.env`, tunnel 자격, DB 비밀번호)은 출력·기록하지 않는다. 키 이름과 hash만 적는다.
+- `beta.sh deploy`는 migration 변경을 거부하므로 쓰지 않는다(D12). D12의 수동 순서를 따른다.
+
+## 먼저 읽을 문서
+
+- `.fullops-squad/docs/operations/ops-guide.md`의 위 세 절, "백업 보존 14일과 자동 정리" 절
+- `docs/operations.md`, `deploy/knowslink/beta.sh`, `deploy/knowslink/compose.ops.yaml`, `compose.yaml`, `deploy/knowslink/verify.py`, `deploy/knowslink/prune-backups.sh`
+- `db/migrations/00003_relay_state_json.sql`, `db/migrations/` 안의 migration 4
+- `.fullops-squad/docs/evaluations/qa-reports/SAR-MSG-EPHEMERAL-001-REVIEW-review/report.md`(medium 2)
+
+## 해야 할 일과 파일 소유권
+
+파일 소유권: `.fullops-squad/docs/operations/ops-guide.md`, `docs/operations.md`(적용 결과), `qa-reports/SAR-RELEASE-004-OPS-test/`. 제품 코드는 바꾸지 않는다. 절차상 코드 결함을 찾으면 멈추고 묻는다.
+
+- [ ] 사전 확인(읽기 전용): 서버의 현재 SHA·goose version·컨테이너 상태·디스크·메모리, `relay_state` 행 크기(`pg_column_size`), 메시지 수와 메시지 부분 크기, 디스크 여유. 메시지 부분 크기로 Redis 128mb 대비 여유를 계산한다(리뷰 medium 2).
+- [ ] 쓰기 중단: KnowsLink `cloudflared`·`relay`만 멈춘다. 시각을 UTC·KST로 기록한다.
+- [ ] 이행 전 백업: `beta.sh backup`으로 고유 dump를 만든다(0600). 크기·SHA256·`message_state_rows`를 기록하고, `beta.sh restore-verify`로 확인한다.
+- [ ] 격리 리허설: 같은 dump를 network-none 격리 DB에 복원하고 대상 SHA의 migrate로 migration 3·4를 적용한다. `state` json·lz4, `human_model`, 메시지·멱등·Inbox 없음, 회원·agent·친구·키·Dots 연결 정보가 이행 전과 같음(`state::jsonb` 비교)을 확인한다. 실패하면 운영 DB를 건드리지 않고 relay·cloudflared를 원래 SHA로 다시 띄운 뒤 묻는다.
+- [ ] 적용: 대상 SHA를 detached checkout하고 D12 순서로 이미지를 빌드·기동한다. Redis healthy 뒤 migrate가 Up을 적용하고 relay가 뜬다.
+- [ ] 확인:
+  - goose 4, guard 1, `state` json·lz4, 메시지 키 count 0
+  - Redis `CONFIG GET save|appendonly|maxmemory-policy`가 빈 값·`no`·`noeviction`, Redis 포트 미게시, `used_memory`
+  - `verify.py local`·`public` 통과
+  - 공개 `/`, `/privacy`(새 문구), `/terms`, OAuth metadata 200, 무인증 MCP 401, `/healthz`·`/owner` 비공개
+- [ ] 트래픽 재개: cloudflared를 기동하고 공개 smoke를 1초 이상 간격으로 확인한다. 중단 시간을 기록한다.
+- [ ] 이행 직후 새 `beta.sh backup`을 만든다(`message_state_rows=0`). 이렇게 해야 이행 전 dump가 14일 정리 대상이 된다.
+- [ ] D12에 "SAR-RELEASE-004-OPS 운영 적용 결과" 절을 쓰고, 두 이행 절의 "(운영 미적용)" 표시와 현재 운영 제품을 갱신한다. 실측한 크기와 medium 2 여유도 적는다.
+- [ ] 서버의 이전 이미지·볼륨·백업은 지우지 않는다. 이 PC의 시험용 Docker 자원을 만들었다면 완료 보고 전에 지운다.
+
+## 완료 기준과 검증
+
+- 운영 SHA `40aafe6f`, goose 4, Redis 휘발성 설정, 메시지 키 0, 공개 smoke·`verify.py local/public` 통과.
+- 이행 전·후 dump가 각각 있고 hash·크기·`message_state_rows`(전 1, 후 0)가 기록됐다.
+- 중단 시간, 실측 크기, medium 2 여유가 D12와 보고서에 있다.
+- 보고서: `.fullops-squad/docs/evaluations/qa-reports/SAR-RELEASE-004-OPS-test/report.md`(front matter 필수, 비밀값 없음). 원시 로그는 `D:/workspace/KnowsLink/.devtools/release-004/`.
+- FullOps lint: `python3 <플러그인>/scripts/lint.py --repo C:/Users/shin/orca/workspaces/KnowsLink/ops --from 40aafe6ff396db2681a9423c3b344732934756e0`, ERROR 0(문서만 바뀌면 make 실행 불가는 사유를 적는다).
+- 멈추고 묻는 경우: 격리 리허설 실패, migrate 실패, 이행 뒤 health·smoke 실패, 예상과 다른 서버 상태, 승인 범위 밖 행위가 필요할 때. 실패 시 우선 cloudflared를 멈춘 상태로 두고 상황을 보고한다.
+- verifier: lite라 실행할 때만 지정한다. 실계정 기능 확인은 tester 후속이다.
+
+### UI 작업의 디자인 기준과 검증
+
+해당 없음. 배포 작업이다.
+
+## 갱신할 산출물
+
+- D12(운영 적용 결과), D13(이행·배포 기록). D08은 운영 스키마가 goose 4가 됐음을 확인만 한다.
+
+## 기대 산출물
+
+- D12 갱신, `docs/operations.md` 현재 운영 제품 갱신, 보고서와 원시 로그.
+
+## 제약·협업·후속
+
+- 홈서버(정지·보존 상태)는 건드리지 않는다.
+- 후속(남은 일에 적을 것): tester 실계정 QA, 리뷰 medium 2 축소 경로 설계(dev), 이전 백업 보존 판단(사용자), 개인정보처리방침 시행일·고지(사용자).
+
+## 완료 보고
+
+브랜치 / SHA / 변경 이유 / 검토 필요 / 검증한 것과 못 한 것 / 스스로 정한 선택과 되돌리는 방법 / 산출물·로그 링크 / 남은 일.
+항목당 1~2줄로 쓰고 상세는 `qa-reports/SAR-RELEASE-004-OPS-test/report.md` 링크로 대신한다. worker_done 본문 첫 줄은 `[완료] SAR-RELEASE-004-OPS | 브랜치 fullops/ops | SHA <브랜치 HEAD>` 한 줄로 쓰고 SHA는 하나만 적는다.
+lint DEP-001이 있으면 파일별 의존성 변경 여부·필요성·표준 라이브러리 대안을 적는다. 의존성 변경이 없으면 그 근거를 적는다.
+처리는 `fullops-work`, 회신은 `fullops-orca` 스킬을 따른다.

@@ -9,6 +9,12 @@ summary: 기존 제품 계획 보존과 Google 연결 구현의 독립 검토 �
 
 # KnowsLink 현재 계획
 
+## Vultr 운영 적용 — SAR-RELEASE-004-OPS (2026-11-14~)
+
+- **요청:** 사용자가 "운영서버에 적용해"라고 지시했다. 결정 D056(기록 키는 `SAR-RELEASE-003-OPS`로 잘못 적혔고, 이 과제를 뜻한다)이다.
+- **범위:** main `40aafe6f`를 Vultr `knowslink-relay-01`에 D12 수동 절차로 적용한다. SAR-REFACTOR-003, SAR-DB-WAIT-001 migration 3, SAR-MSG-EPHEMERAL-001 migration 4와 Redis가 함께 들어간다. 이행 직후 새 백업을 만들고, Redis 크기를 실측한다(리뷰 medium 2).
+- **배정:** ops, `claude` `claude-opus-5-5` `high`, fresh 세션. 지시서는 [to_ops.md](handovers/to_ops.md)다.
+
 ## 메시지 휘발성 Redis 보관 — SAR-MSG-EPHEMERAL-001 (2026-11-12~)
 
 - **요청:** 사용자가 "메시지를 postgre에 저장하지말고 redis에만 임시저장시키는 방식으로하자 db에 영구저장은 필요없을꺼같고 저장도 안한다고 명시하자"라고 지시했다.
