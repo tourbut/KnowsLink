@@ -58,20 +58,20 @@ test_level: lite
 
 파일 소유권: `.fullops-squad/docs/operations/ops-guide.md`, `docs/operations.md`(적용 결과), `qa-reports/SAR-RELEASE-004-OPS-test/`. 제품 코드는 바꾸지 않는다. 절차상 코드 결함을 찾으면 멈추고 묻는다.
 
-- [ ] 사전 확인(읽기 전용): 서버의 현재 SHA·goose version·컨테이너 상태·디스크·메모리, `relay_state` 행 크기(`pg_column_size`), 메시지 수와 메시지 부분 크기, 디스크 여유. 메시지 부분 크기로 Redis 128mb 대비 여유를 계산한다(리뷰 medium 2).
-- [ ] 쓰기 중단: KnowsLink `cloudflared`·`relay`만 멈춘다. 시각을 UTC·KST로 기록한다.
-- [ ] 이행 전 백업: `beta.sh backup`으로 고유 dump를 만든다(0600). 크기·SHA256·`message_state_rows`를 기록하고, `beta.sh restore-verify`로 확인한다.
-- [ ] 격리 리허설: 같은 dump를 network-none 격리 DB에 복원하고 대상 SHA의 migrate로 migration 3·4를 적용한다. `state` json·lz4, `human_model`, 메시지·멱등·Inbox 없음, 회원·agent·친구·키·Dots 연결 정보가 이행 전과 같음(`state::jsonb` 비교)을 확인한다. 실패하면 운영 DB를 건드리지 않고 relay·cloudflared를 원래 SHA로 다시 띄운 뒤 묻는다.
-- [ ] 적용: 대상 SHA를 detached checkout하고 D12 순서로 이미지를 빌드·기동한다. Redis healthy 뒤 migrate가 Up을 적용하고 relay가 뜬다.
-- [ ] 확인:
+- [x] 사전 확인(읽기 전용): 서버의 현재 SHA·goose version·컨테이너 상태·디스크·메모리, `relay_state` 행 크기(`pg_column_size`), 메시지 수와 메시지 부분 크기, 디스크 여유. 메시지 부분 크기로 Redis 128mb 대비 여유를 계산한다(리뷰 medium 2).
+- [x] 쓰기 중단: KnowsLink `cloudflared`·`relay`만 멈춘다. 시각을 UTC·KST로 기록한다.
+- [x] 이행 전 백업: `beta.sh backup`으로 고유 dump를 만든다(0600). 크기·SHA256·`message_state_rows`를 기록하고, `beta.sh restore-verify`로 확인한다.
+- [x] 격리 리허설: 같은 dump를 network-none 격리 DB에 복원하고 대상 SHA의 migrate로 migration 3·4를 적용한다. `state` json·lz4, `human_model`, 메시지·멱등·Inbox 없음, 회원·agent·친구·키·Dots 연결 정보가 이행 전과 같음(`state::jsonb` 비교)을 확인한다. 실패하면 운영 DB를 건드리지 않고 relay·cloudflared를 원래 SHA로 다시 띄운 뒤 묻는다.
+- [x] 적용: 대상 SHA를 detached checkout하고 D12 순서로 이미지를 빌드·기동한다. Redis healthy 뒤 migrate가 Up을 적용하고 relay가 뜬다.
+- [x] 확인:
   - goose 4, guard 1, `state` json·lz4, 메시지 키 count 0
   - Redis `CONFIG GET save|appendonly|maxmemory-policy`가 빈 값·`no`·`noeviction`, Redis 포트 미게시, `used_memory`
   - `verify.py local`·`public` 통과
   - 공개 `/`, `/privacy`(새 문구), `/terms`, OAuth metadata 200, 무인증 MCP 401, `/healthz`·`/owner` 비공개
-- [ ] 트래픽 재개: cloudflared를 기동하고 공개 smoke를 1초 이상 간격으로 확인한다. 중단 시간을 기록한다.
-- [ ] 이행 직후 새 `beta.sh backup`을 만든다(`message_state_rows=0`). 이렇게 해야 이행 전 dump가 14일 정리 대상이 된다.
-- [ ] D12에 "SAR-RELEASE-004-OPS 운영 적용 결과" 절을 쓰고, 두 이행 절의 "(운영 미적용)" 표시와 현재 운영 제품을 갱신한다. 실측한 크기와 medium 2 여유도 적는다.
-- [ ] 서버의 이전 이미지·볼륨·백업은 지우지 않는다. 이 PC의 시험용 Docker 자원을 만들었다면 완료 보고 전에 지운다.
+- [x] 트래픽 재개: cloudflared를 기동하고 공개 smoke를 1초 이상 간격으로 확인한다. 중단 시간을 기록한다.
+- [x] 이행 직후 새 `beta.sh backup`을 만든다(`message_state_rows=0`). 이렇게 해야 이행 전 dump가 14일 정리 대상이 된다.
+- [x] D12에 "SAR-RELEASE-004-OPS 운영 적용 결과" 절을 쓰고, 두 이행 절의 "(운영 미적용)" 표시와 현재 운영 제품을 갱신한다. 실측한 크기와 medium 2 여유도 적는다.
+- [x] 서버의 이전 이미지·볼륨·백업은 지우지 않는다. 이 PC의 시험용 Docker 자원을 만들었다면 완료 보고 전에 지운다.
 
 ## 완료 기준과 검증
 
@@ -106,3 +106,17 @@ test_level: lite
 항목당 1~2줄로 쓰고 상세는 `qa-reports/SAR-RELEASE-004-OPS-test/report.md` 링크로 대신한다. worker_done 본문 첫 줄은 `[완료] SAR-RELEASE-004-OPS | 브랜치 fullops/ops | SHA <브랜치 HEAD>` 한 줄로 쓰고 SHA는 하나만 적는다.
 lint DEP-001이 있으면 파일별 의존성 변경 여부·필요성·표준 라이브러리 대안을 적는다. 의존성 변경이 없으면 그 근거를 적는다.
 처리는 `fullops-work`, 회신은 `fullops-orca` 스킬을 따른다.
+
+### 결과 (2026-11-14, ops)
+
+- 브랜치 / SHA: `fullops/ops` / 이 기록 커밋. 문서 변경만 있고 제품 코드는 바꾸지 않았다.
+- 변경 이유: 사용자 지시 D056. 운영 Vultr `knowslink-relay-01`을 `c6dfc39a`(goose 2)에서 `40aafe6f`(goose 4, Redis)로 옮겼다.
+- 결과: 쓰기 중단 15:39:19.5Z~15:39:47.3Z(약 28초). goose 4, guard 1, `state` json·lz4, 메시지 키 0, Redis `save` 빈 값·`appendonly no`·`noeviction`·포트 미게시, `verify.py local`·`public`과 공개 smoke 통과.
+- 백업: 이행 전 `c6dfc39a-20261113T153921Z.dump`(11411 bytes, SHA256 `eef7815f…2e03`, `message_state_rows=1`), 이행 직후 `40aafe6f-20261113T154024Z.dump`(11454 bytes, SHA256 `2f0f8a5b…74a3`, `message_state_rows=0`). 둘 다 0600, restore-verify 통과.
+- 실측·medium 2: 이행 직전 메시지 부분 0 bytes, Redis `used_memory` 1.43 MiB. 128 MiB 대비 메시지 기록 약 63 MiB까지 담는다(사본 2개). 현재 여유는 사실상 100%다.
+- 검토 필요: 1차 시도가 도구 결함(`beta.sh` 사본의 `SRC`)으로 백업 전에 멈췄다. 원래 relay를 다시 띄웠다(약 10초, DB 변경 없음). SSH host key를 `accept-new`로 처음 등록했다(ED25519 `SHA256:3InoMmjs4Pcs7TEkhvW98vWAiQLh/FfQNzpGE+O5xSs`). Mac 쪽 값과 대조가 필요하다.
+- 검증 못 한 것: 실계정 로그인·메시지 왕복, 행 lock 안 사본 처리 시간(메시지 없음), `make lint`·`make test`(Windows에 make 없음, 문서만 변경).
+- 스스로 정한 선택: 리허설 이미지를 미리 빌드해 중단을 줄였다. `VACUUM FULL`은 하지 않았다(표 155648 bytes). D07 한 줄과 옛 보고서 두 곳의 D12 anchor를 새 절 제목에 맞췄다. 되돌리려면 이 커밋을 revert한다.
+- 산출물·로그: [보고서](../docs/evaluations/qa-reports/SAR-RELEASE-004-OPS-test/report.md), D12·D13·`docs/operations.md` 갱신, 원시 로그 `D:/workspace/KnowsLink/.devtools/release-004/`, 서버 작업 폴더 `knowslink-state/release004-20261113/`.
+- 의존성: lint DEP-001 없음. 의존성 파일을 바꾸지 않았다.
+- 남은 일: tester 실계정 QA, dev 리뷰 medium 2 축소 경로 설계, 사용자 이전 백업 보존 판단·개인정보처리방침 시행일·고지, ops host key 대조.
