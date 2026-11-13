@@ -13,7 +13,15 @@ summary: 기존 제품 계획 보존과 Google 연결 구현의 독립 검토 �
 
 - **요청:** 사용자가 "운영서버에 적용해"라고 지시했다. 결정 D056(기록 키는 `SAR-RELEASE-003-OPS`로 잘못 적혔고, 이 과제를 뜻한다)이다.
 - **범위:** main `40aafe6f`를 Vultr `knowslink-relay-01`에 D12 수동 절차로 적용한다. SAR-REFACTOR-003, SAR-DB-WAIT-001 migration 3, SAR-MSG-EPHEMERAL-001 migration 4와 Redis가 함께 들어간다. 이행 직후 새 백업을 만들고, Redis 크기를 실측한다(리뷰 medium 2).
-- **배정:** ops, `claude` `claude-opus-5-5` `high`, fresh 세션. 지시서는 [to_ops.md](handovers/to_ops.md)다.
+- **배정:** ops, `claude` `claude-opus-5-5` `high`, fresh 세션. dispatch는 `ctx_faeb043e4f1e`이고, 완료 뒤 release했다.
+- **결과(2026-11-14):** 운영은 `40aafe6f`, goose 4, Redis 휘발성 설정이다. 쓰기 중단은 15:39:19Z~15:39:47Z(약 28초)다. 이행 전·후 dump가 있다(`message_state_rows` 1→0). 공개 smoke와 `verify.py local/public`이 통과했다. Redis `used_memory`는 1.43 MiB이고, 이행 직전 메시지 기록은 0건이었다. 상세는 [보고](docs/evaluations/qa-reports/SAR-RELEASE-004-OPS-test/report.md)와 D12에 있다.
+- **도구 문제:** 1차 시도는 git 밖으로 복사한 `beta.sh`의 `SRC` 계산 실패로 백업 전에 멈췄고, 원래 relay를 다시 띄웠다(DB 변경 없음). `ssh 'bash -s'` heredoc을 `docker compose exec`가 stdin으로 먹는 문제도 있었다. 둘 다 운영 절차 보완 후보다.
+- **통합:** 문서만 바뀌었다(`review.py need` false). main을 fast-forward해 `270d9426`을 push했고, 역할 워크트리를 동기화했다.
+- **남은 일:**
+  - tester 실계정 QA
+  - dev 리뷰 medium 2 축소 경로 설계(현재 규모에서는 낮은 위험)
+  - host key 지문 `SHA256:3InoMmjs4Pcs7TEkhvW98vWAiQLh/FfQNzpGE+O5xSs`를 Mac·Vultr 콘솔과 대조
+  - 사용자 판단: 이전 백업 보존, 개인정보처리방침 시행일·고지
 
 ## 메시지 휘발성 Redis 보관 — SAR-MSG-EPHEMERAL-001 (2026-11-12~)
 
@@ -2274,5 +2282,5 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 - [ ] SAR-MSG-EPHEMERAL-001 → tester: tester 독립 QA (완료 보고 자동 등재 2026-11-12) — 보류: 운영 이행 계획과 함께 배정
 - [x] SAR-MSG-EPHEMERAL-001 → coor: 리뷰 medium 2(Redis 한도 도달 시 축소 불가) 후속 과제 등재 (완료 보고 2026-11-12, SAR-MSG-EPHEMERAL-001 절 "리뷰 결과"에 등재)
 - [x] SAR-MSG-EPHEMERAL-001 → coor: 리뷰 수정 `12cbf840` 포함 main 병합 (완료 보고 2026-11-12, D055, main 84214efd)
-- [ ] SAR-RELEASE-004-OPS → tester: tester 실계정 QA (완료 보고 자동 등재 2026-11-14)
-- [ ] SAR-RELEASE-004-OPS → dev: dev 리뷰 medium 2 축소 경로 설계 (완료 보고 자동 등재 2026-11-14)
+- [ ] SAR-RELEASE-004-OPS → tester: tester 실계정 QA (완료 보고 자동 등재 2026-11-14) — 보류: 사용자 지시 대기
+- [ ] SAR-RELEASE-004-OPS → dev: dev 리뷰 medium 2 축소 경로 설계 (완료 보고 자동 등재 2026-11-14) — 보류: 사용자 지시 대기, Redis used_memory 64 MiB 접근 시 앞당김

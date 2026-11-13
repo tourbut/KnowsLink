@@ -1,6 +1,6 @@
 {
   "title": "KnowsLink",
-  "summary": "메시지 휘발성 Redis 보관 SAR-MSG-EPHEMERAL-001 main 반영. 운영(Vultr) 이행은 SAR-DB-WAIT-001과 함께 사용자 승인 대기.",
+  "summary": "운영(Vultr)은 40aafe6f(goose 4, 메시지 Redis 전용). 남은 일: 실계정 QA, Redis 한도 후속.",
   "phases": [
     {
       "name": "FullOps 운영 기반",
@@ -334,27 +334,27 @@
         "D12",
         "D13"
       ],
-      "note": "148건 반영·리뷰 crit/high/med 0, main df3fec7e. 운영 배포는 승인 대기"
+      "note": "148건 반영·리뷰 crit/high/med 0. 운영 적용(2026-11-14)"
     },
     {
       "name": "relay DB 대기 축소 (SAR-DB-WAIT-001)",
-      "status": "active",
+      "status": "done",
       "deliverables": [
         "D07",
         "D08",
         "D10"
       ],
-      "note": "개선 1·2·3 main 반영(9e84b4a5). 운영 이행은 승인 대기"
+      "note": "개선 1·2·3 운영 적용(SAR-RELEASE-004-OPS, 2026-11-14)"
     },
     {
       "name": "메시지 휘발성 Redis 보관 (SAR-MSG-EPHEMERAL-001)",
-      "status": "active",
+      "status": "done",
       "deliverables": [
         "D06",
         "D07",
         "D10"
       ],
-      "note": "main 반영(84214efd). Redis 한도 후속·운영 이행은 승인 대기"
+      "note": "운영 적용(2026-11-14). Redis 한도 축소 경로는 후속"
     },
     {
       "name": "운영 서버 Vultr 이전 (SAR-VULTR-MIGRATE-001)",
@@ -366,12 +366,12 @@
     },
     {
       "name": "Vultr 운영 적용 (SAR-RELEASE-004-OPS)",
-      "status": "active",
+      "status": "done",
       "deliverables": [
         "D12",
         "D13"
       ],
-      "note": "ops가 40aafe6f 적용 중(migration 3·4, Redis). 사용자 지시 D056"
+      "note": "40aafe6f 운영 적용, 중단 약28초. smoke 통과, 실계정 QA는 후속"
     }
   ]
 }
