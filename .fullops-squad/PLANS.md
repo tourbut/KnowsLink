@@ -2274,3 +2274,5 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 - [ ] SAR-MSG-EPHEMERAL-001 → tester: tester 독립 QA (완료 보고 자동 등재 2026-11-12) — 보류: 운영 이행 계획과 함께 배정
 - [x] SAR-MSG-EPHEMERAL-001 → coor: 리뷰 medium 2(Redis 한도 도달 시 축소 불가) 후속 과제 등재 (완료 보고 2026-11-12, SAR-MSG-EPHEMERAL-001 절 "리뷰 결과"에 등재)
 - [x] SAR-MSG-EPHEMERAL-001 → coor: 리뷰 수정 `12cbf840` 포함 main 병합 (완료 보고 2026-11-12, D055, main 84214efd)
+- [ ] SAR-RELEASE-004-OPS → tester: tester 실계정 QA (완료 보고 자동 등재 2026-11-14)
+- [ ] SAR-RELEASE-004-OPS → dev: dev 리뷰 medium 2 축소 경로 설계 (완료 보고 자동 등재 2026-11-14)
