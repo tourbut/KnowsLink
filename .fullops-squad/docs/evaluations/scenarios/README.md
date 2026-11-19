@@ -1,15 +1,15 @@
 ---
 title: 테스트 시나리오
 status: draft
-updated: 2026-10-12
+updated: 2026-11-19
 owner: coor
-tasks: [FULLOPS-UPDATE-0.9.10]
+tasks: [FULLOPS-UPDATE-0.9.10, FULLOPS-UPDATE-1.24.0]
 summary: 조작 테스트의 통과 조건과 시나리오 밖 검증 인계를 정의한다
 ---
 
 # 테스트 시나리오
 
-다시 실행할 수 있는 조작 테스트 시나리오의 정본이다. 과제가 끝나도 남아 회귀 테스트 묶음이 된다. 실행 결과는 `../qa-reports/<과제 키>-test/`에 남고, 결과의 `result.json`에 실행한 시나리오 경로가 기록된다.
+다시 실행할 수 있는 조작 테스트 시나리오의 정본이다. 과제가 끝나도 남아 회귀 테스트 묶음이 된다. 통합 후보마다 다시 돌리는 세트는 `project.md`의 `주요 흐름` 표가 정한다. 실행 결과는 `../qa-reports/<과제 키>-test/`에 남고, 결과의 `result.json`에 실행한 시나리오 경로가 기록된다.
 
 - `web/<기능>.json`: `jev_test_web.py` 시나리오.
 - `unity/<기능>.json`: `jev_test_unity.py` 시나리오. 게임별 브리지 설정은 `../../../test/unity-play.json`이다.

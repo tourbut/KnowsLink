@@ -1,9 +1,9 @@
 ---
 title: KnowsLink 프로젝트 기준
 status: review
-updated: 2026-10-17
+updated: 2026-11-19
 owner: coor
-tasks: [SAR-SETUP-001-DEV, FULLOPS-UPDATE-0.9.10, SAR-MVP-001-DEV, SAR-MVP-002-INSTALL-FIX-DEV, SAR-MVP-002-BOT-CATALOG-DEV, SAR-PUBLIC-IDENTITY-001-DEV, FULLOPS-UPDATE-0.9.14, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV, SAR-HUMAN-PEER-001-DEV, FULLOPS-UPDATE-1.4.4, SAR-SESSION-PEER-001-DEV]
+tasks: [SAR-SETUP-001-DEV, FULLOPS-UPDATE-0.9.10, SAR-MVP-001-DEV, SAR-MVP-002-INSTALL-FIX-DEV, SAR-MVP-002-BOT-CATALOG-DEV, SAR-PUBLIC-IDENTITY-001-DEV, FULLOPS-UPDATE-0.9.14, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV, SAR-HUMAN-PEER-001-DEV, FULLOPS-UPDATE-1.4.4, SAR-SESSION-PEER-001-DEV, FULLOPS-UPDATE-1.24.0]
 summary: 프로젝트 정본과 실제 lint·테스트 및 UI 검사 한계
 ---
 
@@ -17,7 +17,7 @@ summary: 프로젝트 정본과 실제 lint·테스트 및 UI 검사 한계
 | 기술 스택 | Go 1.27.1, pgx/v5 5.10.0, goose/v3 3.28.0, TypeScript 5.9.3, Node 22.22.2, Postgres 17, Compose |
 | 기술 설계 정본 | `docs/design-docs/architecture.md`, `docs/design-docs/tech-stack.md` — D03, dev 담당 |
 | 기획 정본 | `.fullops-squad/docs/planning/`, 사용자 경험은 `docs/design-docs/mockups/` — designer 담당 |
-| 공통 개발 기준 | [rules/common/README.md](rules/common/README.md), `fullops-common-0.3.6`; Ponytail full |
+| 공통 개발 기준 | [rules/common/README.md](rules/common/README.md), `fullops-common-0.3.7`; Ponytail full |
 | 보안·코딩 규칙 | [코딩](rules/common/coding-style.md), [테스트](rules/common/testing.md), [보안](rules/common/security.md) |
 | 문서 언어 | 한국어 |
 | 이슈 트래커 | 로컬 `PLANS.md`·역할 인박스. GitHub Issues/Projects 연동은 미설정 |
@@ -55,6 +55,26 @@ summary: 프로젝트 정본과 실제 lint·테스트 및 UI 검사 한계
 - Grok plugin 패키지·실제 CLI 설치 검사: `make verify-grok-plugin` (임시 HOME의 `grok plugin install`·`grok mcp doctor`, 사용자 `~/.grok` 미변경). CLI 검사이며 앱 카탈로그 증거가 아니다.
 - Grok Bot 앱 Command server 준비: Bot 컴퓨터에서 `sh scripts/install_bot_mcp.sh` (`KNOWSLINK_PREFIX` 기본 `/workspace/.knowslink`). 앱 등록은 owner가 [README](../adapters/README.md#grok-bot-앱-등록)대로 실행한다.
 - 운영 배포·실제 Tunnel 연결: 후보 수락 뒤 OPS 담당.
+
+## 작업 검증
+
+변경이 동작하는지 보일 때 먼저 쓰는 명령이다. 지시서의 `증명 방법`이 따로 정하지 않으면 이 명령을 쓴다. 현재 `test_level`에서 실제로 도는 명령을 고른다. lint에서 skipped되는 전체 회귀는 고르지 않는다.
+
+| 항목 | 값 |
+|---|---|
+| 명령과 실행 위치 | 레포 루트에서 `go test ./cmd/... ./internal/...` (`make test`의 Go 부분. Windows 호스트는 make·race 없이 실행) |
+| 기대 출력 | 패키지마다 `ok  	github.com/tourbut/KnowsLink/...` 또는 `[no test files]`이고 `FAIL` 줄이 없다. 2026-11-19 `d79a2486`: `ok  	github.com/tourbut/KnowsLink/internal/relay	2.837s` |
+
+## 주요 흐름
+
+통합 후보마다 다시 돌리는 고정 세트다. 사용자가 처음부터 끝까지 거치는 핵심 흐름과 결함에서 온 재현 흐름을 적고, 실제로 돌려 본 흐름만 올린다. `실행 수단`은 명령, 시나리오 경로, 재실행 절차 문서 경로 중 하나다. 10개를 넘으면 담당이 빼거나 합칠 흐름을 개선 목록에 적는다.
+
+| 흐름 | 실행 수단 |
+|---|---|
+
+## 자주 틀리는 것
+
+같은 실수가 두 번째 나오면 `실수 → 올바른 방법 (근거 링크)` 한 줄을 여기에 추가한다. 첫 발생은 `contexts/<역할>.md`의 교훈으로 남기고, 두 번째인지는 거기서 판단한다. 정규식으로 잡을 수 있는 실수는 `lint/lint.json`의 `rules`로 옮기도록 제안한다.
 
 ## 공통 기준의 적용과 예외
 

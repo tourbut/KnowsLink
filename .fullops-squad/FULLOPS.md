@@ -1,9 +1,9 @@
 ---
 title: FullOps Squad 하네스 지도
 status: draft
-updated: 2026-10-15
+updated: 2026-11-19
 owner: coor
-tasks: [FULLOPS-UPDATE-098, FULLOPS-UPDATE-099, FULLOPS-UPDATE-0.9.10, FULLOPS-UPDATE-0.9.14, FULLOPS-UPDATE-1.2.0, FULLOPS-UPDATE-1.3.0, FULLOPS-UPDATE-1.4.2, FULLOPS-UPDATE-1.4.4]
+tasks: [FULLOPS-UPDATE-098, FULLOPS-UPDATE-099, FULLOPS-UPDATE-0.9.10, FULLOPS-UPDATE-0.9.14, FULLOPS-UPDATE-1.2.0, FULLOPS-UPDATE-1.3.0, FULLOPS-UPDATE-1.4.2, FULLOPS-UPDATE-1.4.4, FULLOPS-UPDATE-1.24.0]
 summary: FullOps 규약 지도와 coor/lite 및 1.2.0 운영 계약
 ---
 
@@ -28,8 +28,9 @@ dev 주 담당자는 제품 범위 판단을 사용자/기획 담당과 확인�
 | 작업 | 먼저 읽을 문서 (`.fullops-squad/` 기준) |
 |---|---|
 | 공통 코딩·테스트·보안 기준과 우선순위 | [rules/common/README.md](rules/common/README.md) 및 연결된 세 규칙 |
-| 기술 기준·검증 명령·문서 정본 | `project.md` |
+| 기술 기준·검증 명령·주요 흐름·자주 틀리는 것·문서 정본 | `project.md` |
 | 역할·워크트리·에이전트 배정 | `orca-agents.md` |
+| 선택형 하위 에이전트 활용·결과 취합 | [rules/delegation.md](rules/delegation.md) |
 | 현재 할 일·우선순위 | `PLANS.md` |
 | 프로젝트 단계·진행 현황판 | `board/board.json` (coordinator가 관리) · `board/index.html` |
 | 역할별 작업 명세와 완료 처리 | `handovers/_TEMPLATE.md` · `fullops-work` 스킬 |
