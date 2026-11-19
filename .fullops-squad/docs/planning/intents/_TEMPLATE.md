@@ -1,6 +1,6 @@
 # <묶음 키> — <한 줄 목표>
 
-과제 2개 이상이나 역할 2개 이상에 걸치는 묶음 작업의 의도다. 과제 하나로 끝나는 수정에는 쓰지 않는다. 파일은 `docs/planning/intents/<묶음 키>.md`로 복사하고 front matter는 `deliverables.py --stamp --path docs/planning/intents/<묶음 키>.md`로 쓴다. 사용자가 승인하면 `status`를 `approved`로 바꾸고 `## 승인`에 근거를 적는다. 같은 묶음의 지시서는 `상위 의도`에 이 파일과 맡는 성공 기준 ID를 적는다.
+과제 2개 이상이나 역할 2개 이상에 걸치는 묶음 작업의 의도다. 과제 하나로 끝나는 수정에는 쓰지 않는다. 파일은 `docs/planning/intents/<묶음 키>.md`로 복사하고 front matter는 `fullops doc stamp --path docs/planning/intents/<묶음 키>.md`로 쓴다. 사용자가 승인하면 `status`를 `approved`로 바꾸고 `## 승인`에 근거를 적는다. 같은 묶음의 지시서는 `상위 의도`에 이 파일과 맡는 성공 기준 ID를 적는다.
 
 ## 배경
 
@@ -36,7 +36,7 @@
 
 ## 관련 단계
 
-(선택) 현황판 `board.json` 단계나 D01 사업계획서의 관련 절을 적는다.
+(선택) D01 사업계획서의 관련 절을 적는다.
 
 ## 승인
 

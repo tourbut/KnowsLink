@@ -50,27 +50,14 @@ coor와 dev의 Google 연결 WIP 및 역할 인박스는 보존한다. 기능 �
 사용자 승인으로 Grok 신뢰 폴더에 `D:/workspace/KnowsLink`를 등록했다. tester 워크트리에서 신뢰 검사 exit 0을 확인했다.
 과거 Linux 경로·Run·터미널 핸들은 재사용하지 않는다. 다음 배정 전에 현재 경로와 새 런타임 주소를 확인한다.
 
-## 모델 후보
+## 옮기지 못한 모델 후보 글
 
 사용자가 제공한 후보의 약한 것부터 강한 순서를 유지한다. dev CLI는 선택한 후보에 따른다.
 coordinator가 배정할 때마다 지시서의 범위·위험을 보고 이 목록에서 하나를 고르고, `jev_route.py`에 `--agent <CLI> --model <모델> --effort <effort>`로 넘겨 기록한다. 사용자·과제가 tuple을 고정했으면 그 tuple을 그대로 쓴다. 범위와 완료 기준이 확정된 작은 작업은 앞쪽을, 설계 판단·여러 모듈·위험한 변경은 뒤쪽을 고른다.
 `reviewer`는 역할이 아니라 병합 전 고정 SHA 독립 리뷰 세션의 후보 키다. coordinator가 need 판정 사유를 보고 이 후보에서 골라 `jev_route.py --model-only --role reviewer --agent <CLI> --model <모델> --effort <effort>`로 기록하고 그 tuple로 띄운다. 후보가 없으면 가장 강한 `dev` 후보를 쓴다.
 `worker-start --agent <CLI> --model <모델> --effort <effort> --run <run id>` 결과의 `launch.effective`로 실제 적용을 확인한다.
 
-- `coor` `claude` `claude-opus-5-5` `xhigh`: 과제 라우팅·Run 운영. Codex 구독 종료로 2026-10-17 Claude 전환
-- `designer` `claude` `claude-sonnet-5-5` `high`: 단일 기능 기획, 단순 요구사항 명확화
-- `designer` `claude` `claude-opus-5-5` `high`: 여러 사용자 흐름 기획, 요구사항 수락 검토
-- `dev` `claude` `claude-sonnet-5-5` `medium`: 한 줄 문구·수치·설정 변경
-- `dev` `claude` `claude-sonnet-5-5` `high`: 기존 패턴을 따르는 단일 파일 소규모 구현·버그 수정
-- `dev` `claude` `claude-opus-5-5` `medium`: 기존 패턴을 따르는 일반 기능 구현·검사 추가
-- `dev` `claude` `claude-opus-5-5` `high`: 원인 추적이 필요한 버그, 여러 모듈 구현
-- `dev` `claude` `claude-fable-5-1` `high`: 공유 계약을 따르는 큰 기능 구현·리팩터링
-- `ops` `claude` `claude-sonnet-5-5` `high`: 기록 검사·형식 검증·여러 SHA의 충돌 없는 main 통합 조정
-- `reviewer` `claude` `claude-opus-5-5` `high`: 병합 전 고정 SHA 독립 리뷰. 1.8.1 적용 2026-10-22, 기존 관행 유지
 
-- `tester` `claude` `claude-sonnet-5-5` `medium`: 명확한 재현·좁은 핵심 경로 검증. 사용자 2026-10-09 추가
-- `tester` `claude` `claude-sonnet-5-5` `high`: 실패 경계·연동 회귀 검증. 사용자 2026-10-09 추가
-- `tester` `grok` `grok-4.7` `high`: 독립 QA·시나리오·회귀 검증. 사용자 2026-10-03 지정
 - 이미지 생성이 필요한 작업은 `grok`을 사용한다. 사용자 2026-10-17 지정
 
 

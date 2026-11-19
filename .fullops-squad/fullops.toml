@@ -1,0 +1,63 @@
+schema = 2
+applied_version = "2.2.4"
+mode = "coor"
+routing = "split"
+tech_plan_role = "dev"
+test_level = "lite"
+parallel = "on"
+
+[git]
+base = "main"
+remote = "origin"
+
+[roles.coor]
+branch = "fullops/coor"
+kind = "coordinator"
+about = "요청 접수, 과제 분해·배정, Run·진행·복귀 주소 관리. 제품 판단은 designer, 기술 판단은 dev에게 전달한다."
+
+[roles.designer]
+branch = "fullops/designer"
+kind = "design"
+about = "제품 기획, 요구사항, 사용자 경험, 제품 범위·수락 기준을 맡는다. 기술 설계 요청은 dev에 넘길 수 있도록 제품 요구사항을 명확히 한다."
+
+[roles.dev]
+branch = "fullops/dev"
+kind = "worker"
+about = "개발에 대한 설계와 구현을 함께 맡는다. 기술 스택·아키텍처·API·데이터 모델·모듈 설계·제품 코드·직접 검증이 담당 범위다."
+
+[roles.ops]
+branch = "fullops/ops"
+kind = "worker"
+about = "배포·운영·수락된 SHA의 기계적 통합·동기화. 제품 의미 충돌은 designer, 기술 충돌은 dev로 돌린다."
+
+[roles.tester]
+branch = "fullops/tester"
+kind = "tester"
+about = "재현 조건·테스트 설계·테스트 코드·회귀 근거. 제품 코드 수정이 필요하면 coor를 통해 dev에 요청한다."
+
+[models]
+coor = [
+  { agent = "claude", model = "claude-opus-5-5", effort = "xhigh", about = "과제 라우팅·Run 운영. Codex 구독 종료로 2026-10-17 Claude 전환" },
+]
+designer = [
+  { agent = "claude", model = "claude-sonnet-5-5", effort = "high", about = "단일 기능 기획, 단순 요구사항 명확화" },
+  { agent = "claude", model = "claude-opus-5-5", effort = "high", about = "여러 사용자 흐름 기획, 요구사항 수락 검토" },
+]
+dev = [
+  { agent = "claude", model = "claude-sonnet-5-5", effort = "medium", about = "한 줄 문구·수치·설정 변경" },
+  { agent = "claude", model = "claude-sonnet-5-5", effort = "high", about = "기존 패턴을 따르는 단일 파일 소규모 구현·버그 수정" },
+  { agent = "claude", model = "claude-opus-5-5", effort = "medium", about = "기존 패턴을 따르는 일반 기능 구현·검사 추가" },
+  { agent = "claude", model = "claude-opus-5-5", effort = "high", about = "원인 추적이 필요한 버그, 여러 모듈 구현" },
+  { agent = "claude", model = "claude-fable-5-1", effort = "high", about = "공유 계약을 따르는 큰 기능 구현·리팩터링" },
+]
+ops = [
+  { agent = "claude", model = "claude-sonnet-5-5", effort = "high", about = "기록 검사·형식 검증·여러 SHA의 충돌 없는 main 통합 조정" },
+]
+reviewer = [
+  { agent = "claude", model = "claude-opus-5-5", effort = "high", about = "병합 전 고정 SHA 독립 리뷰. 1.8.1 적용 2026-10-22, 기존 관행 유지" },
+]
+tester = [
+  { agent = "claude", model = "claude-sonnet-5-5", effort = "medium", about = "명확한 재현·좁은 핵심 경로 검증. 사용자 2026-10-09 추가" },
+  { agent = "claude", model = "claude-sonnet-5-5", effort = "high", about = "실패 경계·연동 회귀 검증. 사용자 2026-10-09 추가" },
+  { agent = "grok", model = "grok-4.7", effort = "high", about = "독립 QA·시나리오·회귀 검증. 사용자 2026-10-03 지정" },
+]

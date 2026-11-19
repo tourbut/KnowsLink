@@ -18,10 +18,10 @@ FullOps가 작성하는 Markdown 문서에 적용한다. 기획·설계·실행 
 `status`는 문서 승인 상태(`draft`, `review`, `approved`)다. 작업 진행 상태는 본문에 쓴다. `approved`에는 승인 근거가 필요하다.
 `updated`는 마지막 수정 날짜다. `owner`는 담당 역할이다. `summary`는 목적과 핵심 내용을 설명하는 한 줄이다. 검색은 `title`과 `summary`를 사용하므로 파일명 반복으로 채우지 않는다.
 
-`python3 <deliverables.py> --repo <레포 루트> --stamp --path <.fullops-squad 기준 경로> --owner <역할> --summary <한 줄 요약> --task <과제 키>`로 쓴다.
+`fullops doc stamp --path <.fullops 기준 경로> --owner <역할> --summary "<한 줄 요약>" --task <과제 키>`로 쓴다.
 D01–D13 원천 문서는 같은 명령에 `--id DNN`을 추가한다. 이때 `id`와 인덱스 상태도 관리한다. 기존 front matter와 본문은 보존된다.
-`work.py new`는 핸드오버의 front matter를 생성한다. 본문 첫 줄은 `# <과제 키> — <목표>`로 유지한다.
-코드 위치는 `jev_find.py find --scope code`로 찾는다. 문서는 `--scope documents`로 별도 탐색한다. 두 지도를 분리해 문서 후보가 코드 후보를 밀어내는 것을 방지한다. 커밋된 HEAD만 검색한다. 메타데이터가 없는 기존 문서는 본문 제목을 사용한다.
+`fullops task new`는 핸드오버의 front matter를 생성한다. 본문 첫 줄은 `# <과제 키> — <목표>`로 유지한다.
+코드 위치는 `fullops find <KEY> --role <역할>`로 찾는다. 문서는 `--scope documents`로 별도 탐색한다. 두 지도를 분리해 문서 후보가 코드 후보를 밀어내는 것을 방지한다. 커밋된 HEAD만 검색한다. 메타데이터가 없는 기존 문서는 본문 제목을 사용한다.
 
 ## 한국어 STE 작성 원칙
 
