@@ -9,11 +9,11 @@ summary: lint 명령과 변경 규모·의존성·디자인·테스트 증거 �
 
 # Lint 게이트
 
-코드 산출물의 품질을 일정하게 유지하려고 모든 코드 변경에 lint를 실행한다. 실행 도구는 플러그인의 `scripts/lint.py`이고, 설정 정본은 이 디렉터리의 `lint.json`이다.
+코드 산출물의 품질을 일정하게 유지하려고 모든 코드 변경에 lint를 실행한다. 실행 도구는 `fullops lint`이고, 설정 정본은 `.fullops/config/lint.json`이다.
 
 ## 실행
 
-`python3 <lint.py> --repo <worker 체크아웃 루트> --from <기준 ref> [--out <경로>]`
+`fullops lint --from <기준 ref> [--level <레벨>] [--repo <worker 체크아웃 루트>]`
 
 - 커밋이 끝난 깨끗한 작업 트리에서만 실행한다. 결과는 HEAD SHA에 고정된다.
 - 실행 결과는 작업 트리별 `<git dir>/fullops-gate/lint-result.json`에도 보존한다. 리뷰 prepare의 `--lint <결과 JSON>`으로 원본을 가져온다. 같은 base·HEAD·설정·명령 증거는 재실행하지 않으며 환경·의존성 동일성은 검토자가 확인한다. 결과 없음·불일치·새 실패는 필요한 검증을 수행한다.
@@ -36,9 +36,9 @@ summary: lint 명령과 변경 규모·의존성·디자인·테스트 증거 �
 | ANTI-004 | ERROR | 테스트 파일에 skip·only 표식 추가(`.skip(`, `.only(`, `xit(`, `@pytest.mark.skip`, `t.Skip(`, `#[ignore]`, `@Disabled` 등) |
 | ANTI-005 | WARNING | 테스트 케이스 수 감소 또는 테스트 파일 삭제. 대체 테스트나 삭제 이유를 검토자가 확인한다 |
 | SEC-001 | ERROR (테스트·`.md`는 WARNING) | 하드코딩 비밀값 의심. `test`·`example`·`dummy` 등 더미 값과 환경변수 참조는 예외다. |
-| DOC-001 | WARNING | 새 코드 파일에 무엇을 하는지 적은 헤더 설명(docstring·주석 1~3줄)이 없음. 이 설명이 `jev_find.py`의 코드 지도가 된다 |
-| DOC-002 | ERROR | 바뀐 산출물 원천 문서의 front matter가 없거나, 필수 필드·id·상태·날짜가 틀리거나, 인덱스 상태와 다르거나, `deliverables.py --stamp` 출력 형식과 다름. `--stamp`로 다시 쓴다 |
-| DOC-003 | ERROR | 바뀐 FullOps 일반 Markdown의 front matter가 없거나 필수 필드·상태·날짜·형식이 틀림. `deliverables.py --stamp --path <경로>`로 쓴다. 빈 인박스·템플릿·외부 공통 규칙은 제외한다. 문서 검사는 코드 lint의 exclude와 별도로 적용한다 |
+| DOC-001 | WARNING | 새 코드 파일에 무엇을 하는지 적은 헤더 설명(docstring·주석 1~3줄)이 없음. 이 설명이 `fullops find`의 코드 지도가 된다 |
+| DOC-002 | ERROR | 바뀐 산출물 원천 문서의 front matter가 없거나, 필수 필드·id·상태·날짜가 틀리거나, 인덱스 상태와 다르거나, `fullops doc stamp` 출력 형식과 다름. `fullops doc stamp`로 다시 쓴다 |
+| DOC-003 | ERROR | 바뀐 FullOps 일반 Markdown의 front matter가 없거나 필수 필드·상태·날짜·형식이 틀림. `fullops doc stamp --path <경로>`로 쓴다. 빈 인박스·템플릿·외부 공통 규칙은 제외한다. 문서 검사는 코드 lint의 exclude와 별도로 적용한다 |
 | LINT-000 | WARNING | 프로젝트 lint 명령이 등록되지 않음 |
 | LINT-001 | WARNING | 검사 대상 브랜치가 `lint.json`을 바꿈. 변경은 병합 후 적용된다 |
 | LINT-002 | WARNING | 매번 도는 명령이 120초를 넘게 걸림. `required: true` 시험 명령과 `paths`·`level`이 없는 명령이 대상이다. 개발 중 매번 돌 필요가 없으면 `level`이나 `paths`로 범위를 좁힌다 |
@@ -52,16 +52,16 @@ summary: lint 명령과 변경 규모·의존성·디자인·테스트 증거 �
 - 프로젝트 테스트 명령도 `{"name":"test","kind":"test","run":["npm","test"]}`처럼 등록한다. 실제 프로젝트 명령과 cwd를 사용한다. lint는 각 명령의 kind·종료코드·결과를 같은 HEAD에 기록한다. 테스트 명령이 없으면 미정과 영향을 보고하고, 테스트를 실행했다고 표시하지 않는다. lint 제외를 뺀 코드 파일 변경이 없으면 `required: true`가 아닌 `kind: test` 명령은 skipped와 고정 사유로 기록하고 실행하지 않는다. 문서 변경도 검사해야 하는 테스트는 `required: true`로 등록한다.
 - `paths`(glob 배열, 예: `["server/**"]`)를 둔 명령은 바뀐 파일이 하나라도 맞을 때만 실행하고, 아니면 skipped와 고정 사유를 남긴다. `required`보다 우선한다. 모노레포에서 `server/`만 바꿨는데 web 시험이 도는 것처럼 무관한 명령을 거르는 데 쓴다.
 - 결과의 명령별 `seconds`는 실행 시간이다. 모든 명령의 출력은 stdout·stderr를 이어 붙인 뒤 마지막 40줄만 결과(`output_tail`)에 남기고 전체 출력은 `<git dir>/fullops-gate/logs/<명령>.log`(`log` 필드)에 둔다.
-- `lint.py --level full`은 기준 `test_level`보다 높은 레벨로 한 번 돌릴 때 쓴다(안정된 통합 후보의 전체 회귀). `--from`에는 직전 통합 후보 SHA를 준다. 기준 이후 `lint.py`의 코드 확장자에 해당하는 변경이 없으면(문서·설정·SQL처럼 그 밖의 파일만 바뀌면) `required`가 아닌 시험은 skipped되고 종료코드 0으로 끝나므로, 결과의 skipped를 PASS로 적지 않는다. 기준 이후 바꾼 `lint.json`은 적용되지 않으므로 새로 등록한 시험은 직접 실행하고 보고서에 적는다. 개발 과제 지시서의 lint 줄에는 넣지 않는다. 넣으면 flow-gate가 지시서를 쓴 세션에 알린다. 기준보다 낮은 값은 무시한다. 결과의 `test_level`에 그 레벨이 남고 리뷰 check도 그 레벨로 확인한다.
+- `fullops lint --level full`은 기준 `test_level`보다 높은 레벨로 한 번 돌릴 때 쓴다(안정된 통합 후보의 전체 회귀). `--from`에는 직전 통합 후보 SHA를 준다. 기준 이후 `fullops lint`의 코드 확장자에 해당하는 변경이 없으면(문서·설정·SQL처럼 그 밖의 파일만 바뀌면) `required`가 아닌 시험은 skipped되고 종료코드 0으로 끝나므로, 결과의 skipped를 PASS로 적지 않는다. 기준 이후 바꾼 `lint.json`은 적용되지 않으므로 새로 등록한 시험은 직접 실행하고 보고서에 적는다. 개발 과제 지시서의 lint 줄에는 넣지 않는다. 넣으면 flow-gate가 지시서를 쓴 세션에 알린다. 기준보다 낮은 값은 무시한다. 결과의 `test_level`에 그 레벨이 남고 리뷰 check도 그 레벨로 확인한다.
 - 기존 린터가 있으면 미사용 규칙(ruff F401/F841, eslint no-unused-vars, oxlint)을 기존 설정에서 활성화해 연결한다. 기본 SLOP 규칙은 미사용 코드 분석을 대신하지 않는다.
 - `size`, `exclude`(glob), `timeout_seconds`는 프로젝트 기준에 맞게 조정한다. 기준을 낮추는 변경은 이유를 지시서에 남긴다.
 - `rules`는 반복되는 실수를 규칙으로 쌓는 곳이다. `project.md`의 `자주 틀리는 것` 중 정규식으로 잡을 수 있는 항목을 옮긴다. 형식은 `{"code": "CUSTOM-001", "description": "…", "pattern": "<Python 정규식>", "file_extensions": [".py"], "severity": "ERROR|WARNING", "suggestion": "…", "exclude_patterns": [], "exclude_paths": [], "enabled": true}`다. `exclude_patterns`는 줄 내용(여러 줄 규칙은 일치 구간)의 정규식이고, `exclude_paths`는 레포 상대경로 glob이다. 규칙별 경로 예외는 다른 보안·테스트 검사를 끄지 않는다. 규칙을 끌 때는 삭제하지 않고 `enabled: false`로 둔다. 추가·변경한 이유는 이 문서 아래에 한 줄씩 남긴다.
-- 규칙·명령 조정 후보는 `python3 <lint_tune.py> --repo <루트> [--min-warnings 50]`로 본다. 리뷰 폴더에 남은 `lint.json` 사본과 `result.json` 지적을 모은다. 경고가 많은데 지적 본문에 그 코드가 한 번도 나오지 않은 `rules` 항목, 평균 120초를 넘는 범위 없는 명령을 후보로 낸다. 제안만 하며 설정은 바꾸지 않는다. 지적 연결은 본문의 코드 문자열로 센 추정이다. 사용자 승인 뒤 기본 브랜치에서 `exclude_paths`·severity·`enabled`·`paths`·`level`을 고치고 아래 규칙 변경 기록에 이유를 남긴다. dev 직접 작업처럼 리뷰 폴더가 없는 lint는 집계하지 않는다.
+- 규칙·명령 조정 후보는 2.x에 전용 명령이 없어 리뷰 폴더의 `lint.json` 사본과 `result.json` 지적을 직접 모아 본다. 리뷰 폴더에 남은 `lint.json` 사본과 `result.json` 지적을 모은다. 경고가 많은데 지적 본문에 그 코드가 한 번도 나오지 않은 `rules` 항목, 평균 120초를 넘는 범위 없는 명령을 후보로 낸다. 제안만 하며 설정은 바꾸지 않는다. 지적 연결은 본문의 코드 문자열로 센 추정이다. 사용자 승인 뒤 기본 브랜치에서 `exclude_paths`·severity·`enabled`·`paths`·`level`을 고치고 아래 규칙 변경 기록에 이유를 남긴다. dev 직접 작업처럼 리뷰 폴더가 없는 lint는 집계하지 않는다.
 - `size.max_diff_added: 0`은 추가 줄 예산 검사를 끈다. 여러 줄을 검사하는 정규식은 `multiline: true`로 등록한다. 일치한 구간에 추가 줄이 있을 때만 경고한다. 기존 레포의 사용자 rules는 자동 교체하지 않는다.
 
 ## 레포별 lint 구성
 
-`setup.py`는 새 설정을 만들 때 루트 package.json의 기존 `lint`(없으면 `lint:design`)·`typecheck`·`test` 스크립트를 연결한다. packageManager와 lockfile로 npm·pnpm·yarn·bun을 고른다. 기존 lint.json은 그대로 유지한다. 스크립트를 실행하거나 프로젝트 린터를 설치하는 작업은 setup 스킬이 아래 순서로 수행한다.
+`fullops init`은 새 설정을 만들 때 루트 package.json의 기존 `lint`(없으면 `lint:design`)·`typecheck`·`test` 스크립트를 연결한다. packageManager와 lockfile로 npm·pnpm·yarn·bun을 고른다. 기존 lint.json은 그대로 유지한다. 스크립트를 실행하거나 프로젝트 린터를 설치하는 작업은 setup 스킬이 아래 순서로 수행한다.
 
 1. 언어·프레임워크·패키지 매니저, 기존 lint 설정·CI·스크립트와 검사 범위를 확인한다. 모노레포는 루트 집계 명령을 우선하고 없는 경우 패키지별 실제 cwd를 등록한다. 생성물·외부 코드만 제외한다.
 2. 기존 린터·포매터·타입 검사의 기준을 유지하고 누락된 연결을 보완한다. 도구가 없으면 프로젝트 정본·호환 버전에 맞는 최소 개발 의존성과 설정을 만든다. Python은 기존 ruff 설정, JS/TS는 기존 ESLint/Oxlint 설정처럼 스택의 실제 도구를 확인한다. 포매터는 검사 모드로 연결한다. 미사용 규칙도 프로젝트 관례에 맞게 설정한다.
@@ -93,9 +93,9 @@ DESIGN-001은 줄 처음의 CSS custom property 선언을 토큰 정의로 허�
 
 ## 게이트
 
-- 세션 안: 플러그인의 Stop hook(`done_gate.py`)이 이 세션에서 코드를 바꿨는데 현재 HEAD의 `lint.py` 통과 기록(`<git dir>/fullops-gate/pass.json`)이 없으면 종료를 한 번 막는다. 아무것도 바꾸지 않고 다시 끝내면 경고만 하고 통과한다. 이 체크아웃에서 직접 만든 커밋과 미커밋 변경만 보므로 fast-forward로 받은 커밋은 해당하지 않는다. hook 오류는 종료를 막지 않는다.
+- 세션 안: 플러그인의 Stop hook(`fullops hook`)이 이 세션에서 코드를 바꿨는데 현재 HEAD의 `fullops lint` 통과 기록이 없으면 종료를 한 번 막는다. 아무것도 바꾸지 않고 다시 끝내면 경고만 하고 통과한다. 이 체크아웃에서 직접 만든 커밋과 미커밋 변경만 보므로 fast-forward로 받은 커밋은 해당하지 않는다. hook 오류는 종료를 막지 않는다.
 - worker는 완료 보고 전에 실행한다. ERROR를 모두 고치고, 결과 요약(HEAD·ERROR·WARNING·실행 불가와 사유)을 완료 보고의 검증 항목에 적는다.
-- 검토자는 리뷰 디렉터리에 `lint.json`을 남긴다. `review.py check`는 lint 결과가 없거나 SHA·설정이 다르거나, ERROR가 남아 있거나, 실행 불가 명령에 `reason`이 비어 있으면 실패한다.
+- 검토자는 리뷰 디렉터리에 `lint.json`을 남긴다. `fullops review check`는 lint 결과가 없거나 SHA·설정이 다르거나, ERROR가 남아 있거나, 실행 불가 명령에 `reason`이 비어 있으면 실패한다.
 - 등록된 모든 검사 명령의 실행 증거가 없거나 중복·추가되거나 통과 종료코드가 0이 아니면 review check가 실패한다. 테스트 실패·시간 초과는 기존 ERROR 경로로 차단한다. 실행 불가는 아래 예외 기록을 따른다.
 - SIZE-002가 있으면 지시서의 예상 변경 규모와 실제 차이를 확인한다. DEP-001이 있으면 완료 보고의 의존성 변경 이유를 확인한다. 누락이면 리뷰 수정 요청으로 남기고 수락하지 않는다.
 - UI 작업은 핸드오버의 테마·토큰·공용 컴포넌트 경로, 디자인 lint 결과·예외, 테마 전환 검증을 확인한다. 해당 없으면 근거가 필요하다. DESIGN WARNING과 누락 항목은 검토자가 판단하고 report.md에 기록한다.
@@ -105,11 +105,11 @@ DESIGN-001은 줄 처음의 CSS custom property 선언을 토큰 정의로 허�
 
 ### FullOps 1.4.3·1.4.4 hook 실행 확인
 
-같은 host 세션의 JSON 이벤트(`cwd`, `session_id`; camelCase도 지원)를 stdin으로 주고 `python3 <done_gate.py> status`를 실행하면 done/flow의 실제 호출 기록을 읽는다. 기록은 작업 트리별 `<git dir>/fullops-gate/hooks/`에 있다. status 조회 자체는 실행 근거를 만들지 않는다. `executed`는 호출 완료이며 검증 통과를 뜻하지 않는다. `error`는 hook 오류, `unknown`은 기록 없음·읽기 불가다. mode별 events와 시각을 함께 확인한다.
+`fullops why`로 hook 추적과 이벤트별 실행 표식을 읽는다. status 조회 자체는 실행 근거를 만들지 않는다. `executed`는 호출 완료이며 검증 통과를 뜻하지 않는다. `error`는 hook 오류, `unknown`은 기록 없음·읽기 불가다. mode별 events와 시각을 함께 확인한다.
 
 일반 hook 예외는 작업을 막지 않고 같은 오류 종류를 세션당 한 번 알린다. 정책상 확정 위반의 기존 차단은 유지한다. hook 자체가 실행되지 않거나 기록 저장이 실패하면 알림도 없을 수 있다. unknown을 정상으로 해석하지 않고 lint·review 근거를 확인한다.
 
-1.4.4 hook은 버전 캐시 대신 `~/.fullops-squad/runtime/fullops-squad/scripts/hook_runtime.py`를 호출한다. 명시적 설치의 deps가 완전한 실행 사본을 준비·전환하며 이전 사본은 보존한다. 기존 세션의 이미 로드된 명령은 소급 교체되지 않는다. 고정 실행기 설치와 새 세션의 실제 실행 확인을 구분한다. 이전 캐시를 가리켜 실패하는 세션은 작업을 보존하고 새 세션에서 확인한다.
+2.x hook은 같은 실행본의 `fullops hook <호스트>`를 호출한다. `fullops install`이 실행본을 고정 위치(`~/.fullops/bin/`)에 복사한다. 기존 세션의 이미 로드된 명령은 소급 교체되지 않는다. 고정 실행기 설치와 새 세션의 실제 실행 확인을 구분한다. 이전 캐시를 가리켜 실패하는 세션은 작업을 보존하고 새 세션에서 확인한다.
 
 - SAR-SETUP-001-DEV: `product-lint`를 `make lint`에 연결했다. Go 포맷·vet·module 무결성, TypeScript 포맷·ESLint·타입, YAML 포맷·Compose 구조와 검증 스크립트 문법을 검사한다. 검사 모드는 파일을 자동 수정하지 않는다.
 - 제품 대상은 `cmd/`, `internal/`, `adapters/src/`와 실제 설정이다. 원천 스냅샷은 제품 검사 대상이 아니다. 의존성·빌드 생성물은 검사하지 않는다. 기존 FullOps exclude와 규칙은 변경하지 않았다.

@@ -876,8 +876,8 @@ Codex 실제 설치는 업데이트 전후 0.9.12다. 시작 시 coor 레포 적
 | SAR-MVP-001-TESTER | c59537b / msg_d2d32881ffc3 | coor 통합 후보 포함, main 미병합. 미수락 제품 조상을 포함해 hold. coor가 DEV 수락과 필수 held 판정 뒤 병합·push한다. |
 | SAR-MVP-PUBLIC-POLICY-001 | 69dbec4 / msg_8bd2e3ced6fc | coor 통합 후보 포함, main 미병합. 별도 기획 검토 결론 미완료로 hold. coor가 문서 검토 뒤 제품 전체 수락과 분리해 통합한다. |
 | SAR-MVP-001-REVIEW | ctx_005e493d18f5 failed/exited | 작업명 지시서 보존. 보고서는 미완성 템플릿이다. coor가 새 세션에서 같은 과제 리뷰를 재개한 뒤 보존·정규 inbox 전환한다. |
-| SAR-MVP-001-UI / designer | ctx_b7d073da41ef failed, liveness unverifiable | 미추적 UI 증거 보존. coor가 실제 상태·완료 검수 확인 후 수락한다. 워크트리 동기화 보류다. |
-| SAR-DEPLOY-001-OPS / ops | 8a03b34, ctx_78873a1ba765 failed/exited | 미커밋 문서·아카이브 보존. coor가 기존 기록 마무리·검토 후 통합한다. 실제 배포는 시작하지 않는다. |
+| SAR-MVP-001-UI | ctx_b7d073da41ef failed, liveness unverifiable | designer 과제. 미추적 UI 증거 보존. coor가 실제 상태·완료 검수 확인 후 수락한다. 워크트리 동기화 보류다. |
+| SAR-DEPLOY-001-OPS | 8a03b34, ctx_78873a1ba765 failed/exited | ops 과제. 미커밋 문서·아카이브 보존. coor가 기존 기록 마무리·검토 후 통합한다. 실제 배포는 시작하지 않는다. |
 | dev | 830131a, clean | 해당 워크트리의 실제 유휴 확인 후 운영 업데이트 main 동기화한다. |
 | tester | c59537b, clean, liveness unverifiable | 깨끗함만으로 유휴 판정하지 않는다. 실제 상태 확인 뒤 동기화한다. |
 | coor | 5b94be5, 미추적 리뷰 증거 | 누적 미수락 제품 조상을 main에 일괄 병합하지 않는다. 운영 준비 main을 merge하고 미추적 증거는 보존한다. |

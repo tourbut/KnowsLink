@@ -23,10 +23,10 @@ Orca 계층은 `coor` 아래 `designer`, `dev`, `ops`, `tester`다. 기본 브�
 | 역할 | 책임·담당 경로 | 브랜치 | CLI | 모델 | 기동 방식 |
 |---|---|---|---|---|---|
 | coor | 과제 분해·배정·Run·진행 관리; `PLANS.md`, `handovers/`, `board/` | `fullops/coor` | `claude` | 모델 후보 | 상설 워크트리; 첫 요청 때 coordinator 세션 시작 |
-| designer | 제품 기획·요구사항·사용자 경험; `docs/planning/`, `docs/design-docs/mockups/` | `fullops/designer` | `claude` | 모델 후보 | 기획 과제 발생 시 `worker-start --run` |
-| dev | 기술 설계·구현·직접 검증; `docs/design-docs/` 기술 문서, `cmd/`, `internal/`, `adapters/`, `db/`, `scripts/`, 루트 Go·sqlc·Make·Docker·Compose 설정 | `fullops/dev` | `claude` | 모델 후보 | 기술 설계·구현 과제 발생 시 `worker-start --run` |
-| ops | 배포·통합·운영; `docs/operations/`, 향후 배포 설정 경로 | `fullops/ops` | `claude` | 모델 후보 | 운영 과제 발생 시 `worker-start --run` |
-| tester | 재현·테스트·회귀 검증; `docs/evaluations/scenarios/`, `docs/evaluations/qa-reports/`, 향후 테스트 경로 | `fullops/tester` | `claude` 또는 `grok` | 모델 후보 | 구현 SHA 준비 후 `worker-start --run` |
+| designer | 제품 기획·요구사항·사용자 경험; `docs/planning/`, `docs/design-docs/mockups/` | `fullops/designer` | `claude` | 모델 후보 | 기획 과제 발생 시 `fullops dispatch` |
+| dev | 기술 설계·구현·직접 검증; `docs/design-docs/` 기술 문서, `cmd/`, `internal/`, `adapters/`, `db/`, `scripts/`, 루트 Go·sqlc·Make·Docker·Compose 설정 | `fullops/dev` | `claude` | 모델 후보 | 기술 설계·구현 과제 발생 시 `fullops dispatch` |
+| ops | 배포·통합·운영; `docs/operations/`, 향후 배포 설정 경로 | `fullops/ops` | `claude` | 모델 후보 | 운영 과제 발생 시 `fullops dispatch` |
+| tester | 재현·테스트·회귀 검증; `docs/evaluations/scenarios/`, `docs/evaluations/qa-reports/`, 향후 테스트 경로 | `fullops/tester` | `claude` 또는 `grok` | 모델 후보 | 구현 SHA 준비 후 `fullops dispatch` |
 
 문서 경로는 `.fullops/` 기준이다. 제품 경로는 레포 루트 기준이다. SAR-SETUP-001-DEV의 초기 구성·직접 검증 파일은 dev 소유다. 독립 QA의 시나리오·보고서는 tester 소유다. 운영 배포의 파일 소유권은 후속 ops 지시서에서 정한다.
 원격은 `origin`, 기준 브랜치는 `main`이다. 상설 워크트리만 구성하고 이번 setup에서는 에이전트 세션을 시작하지 않는다.
@@ -46,19 +46,18 @@ Orca 계층은 `coor` 아래 `designer`, `dev`, `ops`, `tester`다. 기본 브�
 각 체크아웃은 기존 `fullops/<역할>` 브랜치를 사용한다. 기존 역할·모델 후보·coor 모드·테스트 lite를 유지한다.
 coor와 dev의 Google 연결 WIP 및 역할 인박스는 보존한다. 기능 개발·검증·배포는 사용자 재개 지시까지 중지한다.
 새 에이전트 세션은 시작하지 않았다. 기본 PowerShell 터미널의 실제 작업 경로를 확인했다.
-원본에는 비공개 `.fullops/.env*`가 없다. `env_link.py --all`은 변경 없이 종료했다. 운영 자격과 DB는 별도 이전 대상이다.
+원본에는 비공개 `.fullops/.env*`가 없다. Python판 `env_link.py --all`은 변경 없이 종료했다(2.x는 `fullops env link`). 운영 자격과 DB는 별도 이전 대상이다.
 사용자 승인으로 Grok 신뢰 폴더에 `D:/workspace/KnowsLink`를 등록했다. tester 워크트리에서 신뢰 검사 exit 0을 확인했다.
 과거 Linux 경로·Run·터미널 핸들은 재사용하지 않는다. 다음 배정 전에 현재 경로와 새 런타임 주소를 확인한다.
 
-## 옮기지 못한 모델 후보 글
+## 모델 후보 운영 규칙
 
 사용자가 제공한 후보의 약한 것부터 강한 순서를 유지한다. dev CLI는 선택한 후보에 따른다.
-coordinator가 배정할 때마다 지시서의 범위·위험을 보고 이 목록에서 하나를 고르고, `jev_route.py`에 `--agent <CLI> --model <모델> --effort <effort>`로 넘겨 기록한다. 사용자·과제가 tuple을 고정했으면 그 tuple을 그대로 쓴다. 범위와 완료 기준이 확정된 작은 작업은 앞쪽을, 설계 판단·여러 모듈·위험한 변경은 뒤쪽을 고른다.
-`reviewer`는 역할이 아니라 병합 전 고정 SHA 독립 리뷰 세션의 후보 키다. coordinator가 need 판정 사유를 보고 이 후보에서 골라 `jev_route.py --model-only --role reviewer --agent <CLI> --model <모델> --effort <effort>`로 기록하고 그 tuple로 띄운다. 후보가 없으면 가장 강한 `dev` 후보를 쓴다.
-`worker-start --agent <CLI> --model <모델> --effort <effort> --run <run id>` 결과의 `launch.effective`로 실제 적용을 확인한다.
+coordinator가 배정할 때마다 지시서의 범위·위험을 보고 `fullops.toml`의 `[models]` 후보에서 하나를 고르고, `fullops route`에 `--agent <CLI> --model <모델> --effort <effort>`로 넘겨 기록한다. 사용자·과제가 tuple을 고정했으면 그 tuple을 그대로 쓴다. 범위와 완료 기준이 확정된 작은 작업은 앞쪽을, 설계 판단·여러 모듈·위험한 변경은 뒤쪽을 고른다.
+`reviewer`는 역할이 아니라 병합 전 고정 SHA 독립 리뷰 세션의 후보 키다. coordinator가 need 판정 사유를 보고 이 후보에서 골라 `fullops route <KEY> --tuple-only --role reviewer --agent <CLI> --model <모델> --effort <effort>`로 기록하고 그 tuple로 띄운다. 후보가 없으면 가장 강한 `dev` 후보를 쓴다.
+`fullops dispatch <KEY> --agent <CLI> --model <모델> --effort <effort>` 결과로 실제 적용을 확인한다.
 
-
-- 이미지 생성이 필요한 작업은 `grok`을 사용한다. 사용자 2026-10-17 지정
+- 이미지 생성이 필요한 작업은 역할과 무관하게 `grok`을 사용한다. 모델이 지정되지 않아 `[models]`에 tuple로 옮기지 않았다. 사용자 2026-10-17 지정
 
 
 ## 라우팅 기준
@@ -100,7 +99,7 @@ coor는 검사별 담당·대상 SHA·실행 시점·통과 조건과 후속 인
 
 ## tester Grok 전환 — 2026-10-03
 
-사용자가 tester를 Grok 4.7 high로 지정했다. `grok --model grok-4.7 --reasoning-effort high`로 실행한다. Orca가 grok의 model 인자를 직접 받지 않으므로 기존 tester 체크아웃에서 해당 명령으로 터미널을 만들고 준비를 확인한 뒤 worker-start --terminal로 감독한다. Claude 사용량 한도 대기 과제는 같은 Task의 retry로 이어받는다.
+사용자가 tester를 Grok 4.7 high로 지정했다. `grok --model grok-4.7 --reasoning-effort high`로 실행한다. Orca가 grok의 model 인자를 직접 받지 않으므로 기존 tester 체크아웃에서 해당 명령으로 터미널을 만들고 준비를 확인한 뒤 `fullops dispatch --terminal <핸들>`로 감독한다. Claude 사용량 한도 대기 과제는 같은 Task의 retry로 이어받는다.
 
 ## 완료 작업의 즉시 통합과 원격 공유 — 2026-10-03 사용자 지시
 
@@ -112,13 +111,13 @@ coor는 검사별 담당·대상 SHA·실행 시점·통과 조건과 후속 인
 
 ## 완료 결과의 통합과 역할 인박스 — FullOps 0.9.12
 
-실행 지시서는 역할별 `handovers/to_<role>.md` 하나로 고정한다. 다른 과제로 사용 중인 인박스를 덮어쓰지 않는다. 다음 과제는 PLANS.md에 대기시킨다. 과제명 파일·pending·logs는 참조 자료이며 배정 지시서로 사용하지 않는다. 역할 작업 완료 시 `work.py finish`로 지시서와 완료 보고 전문을 logs에 보존하고 인박스를 비운다.
+실행 지시서는 역할별 `.fullops/inbox/to_<역할>.md` 하나로 고정하고 `fullops task new`로만 만든다. 다른 과제로 사용 중인 인박스를 덮어쓰지 않는다. 다음 과제는 `fullops plan add`로 PLANS.md에 대기시킨다. 과제명 파일·pending·logs는 참조 자료이며 배정 지시서로 사용하지 않는다. 역할 작업 완료 시 `fullops done`이 지시서와 완료 보고를 보존하고 인박스를 없앤다.
 
 coor는 worker_done을 받으면 고정 SHA의 필수 검토·검증을 확인하고 실제 기본 브랜치 main에 병합한다. 원격 origin/main에 일반 push한 뒤 완료 SHA의 로컬·원격 조상 관계를 확인한다. 역할 브랜치 push만으로 통합을 완료하지 않는다. 전체 제품 수락과 개별 문서 결과의 통합은 구분한다. 미해결 critical/high와 필수 검증 실패는 계속 차단한다.
 
 병합 뒤 coor를 포함한 모든 등록 역할의 실제 worker 상태와 작업 트리를 확인한다. 쉬고 있으며 깨끗한 역할만 최신 main으로 동기화한다. 진행 중·미커밋 변경·상태 확인 불가인 역할은 PLANS.md에 최신 기본 SHA와 예약을 남긴다. 다음 dispatch 전에 최신 로컬·원격 main 포함을 확인한다. 진행 중 체크아웃과 사용자 자료를 덮어쓰지 않는다.
 
-완료 메시지는 Git 공용 디렉터리의 fullops-integration에 보존된다. `integration.py --repo <레포> status`로 미통합 결과를 확인한다. 검수 대기·실패·충돌·원격 오류·사용자 제한은 PLANS.md에 메시지 ID·SHA·사유·담당·재개 조건을 기록한다. 같은 내용을 `integration.py hold`로 남긴다. 조건 충족 시 resume하고 병합·push를 이어간다. 성공 결과를 통합한 뒤 release·ack하고 다음 독립 과제를 배정한다. 사용자의 현재 과제 완료 뒤 중지 지시는 유지한다.
+완료 보고는 `fullops wait`로 받고, 기계 상태는 Git 공용 디렉터리의 `fullops/state.json`에 있다. `fullops status`로 미통합 결과를 확인한다. 검수 대기·실패·충돌·원격 오류·사용자 제한은 PLANS.md에 메시지 ID·SHA·사유·담당·재개 조건을 기록한다. 같은 내용을 `fullops hold`로 남긴다. 조건 충족 시 `fullops resume`하고 `fullops merge`로 병합·push를 이어간다. `fullops merge`가 완료 보고의 처리 표시까지 한 뒤 다음 독립 과제를 배정한다. 사용자의 현재 과제 완료 뒤 중지 지시는 유지한다.
 
 기존 활성 과제명 지시서는 작업 중 이동하지 않는다. 해당 과제 완료 뒤 logs에 보존하고 다음 과제부터 정규 역할 인박스를 사용한다.
 
@@ -126,13 +125,13 @@ coor는 worker_done을 받으면 고정 SHA의 필수 검토·검증을 확인�
 
 새 과제는 fresh 세션을 기본으로 한다. 같은 역할·관련 과제·작은 기존 컨텍스트·동일 모델/effort이고 직전 완료 후 몇 분 이내인 짧은 후속만 retain한다. 오래 기다린 후속, 큰 컨텍스트, 붙이기 실패는 새 세션을 사용한다. 새 세션 착수 확인 후 이전 완료 세션을 release한다. 독립 리뷰는 항상 작성자와 다른 세션을 사용한다.
 
-1. 새 지시서는 `work.py new --base <40자리 고정 SHA>`로 만든다. 같은 과제 재작업은 `work.py reopen --base <고정 SHA>`로 attempt를 갱신하고 최초 보고·SHA를 보존한다.
-2. spec에는 `Task key`와 `Purpose`를 명시한다. 지시서 작성 후 `jev_route.py --repo <루트> --key <과제 키> --bind-inbox --role <역할>`로 현재 인박스·attempt에 연결한다.
+1. 새 지시서는 `fullops task new --role <역할> --key <KEY> --goal "<목표>" --base <40자리 고정 SHA>`로 만든다. 같은 과제 재작업은 `fullops task reopen --role <역할> --key <KEY>`로 attempt를 갱신하고 최초 보고·SHA를 보존한다.
+2. spec에는 `Task key`와 `Purpose`를 명시한다. 지시서 작성 전에 `fullops route <과제 키>`로 분류해 두어야 `fullops task new`가 인박스를 만든다.
 3. 탐색 패킷의 direct_edit/impact_check/document_read/document_update 경로·근거·partial/unknown과 남은 확인 목록을 worker에게 전달한다. 같은 입력의 탐색은 재사용한다. worker SHA·원천·지시가 바뀌면 find/context/packet을 force 갱신하고 이전 결과를 보존한다.
 4. worker는 완료 전에 path/category별 completed/no_change와 사유를 packet-outcomes.json에 기록한다. unknown·누락은 완료로 처리하지 않는다. 동적 호출과 지원하지 않는 Markdown anchor는 직접 확인한다.
 5. lint는 같은 checkout에서 직렬 실행한다. 중단 후 lock이 남으면 실제 lint 종료를 확인하고 해당 checkout의 Git 디렉터리 안 fullops-lint.lock만 제거한 뒤 재검사한다. 현재 HEAD와 지시서 기준 SHA의 통과 근거를 확인한다.
 6. 완료 전송은 현재 task/dispatch로 `orchestration send --json`을 사용한다. 실제 성공 전달 receipt를 확인한다. failed 완료와 전송 실패를 구분한다. ask는 완료가 아니다. 전송 실패는 같은 dispatch에서 재시도한다.
-7. 신규 리뷰는 `review.py snapshot`으로 명시 과제·40자리 SHA·별도 세션·clean detached 공간을 만든다. 결과·보고서·lint는 snapshot 밖에 쓴다. 검토·증거 보존·reviewer release 후 `review.py cleanup`으로 관리된 snapshot만 정리한다. historical check는 신규 수락 근거가 아니다.
+7. 신규 리뷰는 `fullops review snapshot`으로 명시 과제·40자리 SHA·별도 세션·clean detached 공간을 만든다. 결과·보고서·lint는 snapshot 밖에 쓴다. 검토·증거 보존·reviewer release 후 `fullops review cleanup`으로 관리된 snapshot만 정리한다. historical check는 신규 수락 근거가 아니다.
 8. 리뷰 보고서는 이전 대화를 참조하지 않고 정본 인덱스에서 현재 요구·결정 이유·구조·구현/미완료·실행/검증·운영/복구·다음 작업을 찾은 경로와 점검 결과를 기록한다. 누락·오래된 정보·깨진 링크·미지원 anchor를 구분한다.
 
 제품 기획과 기술 계획의 기존 책임 분리 및 역할 인박스·main 통합 규약을 유지한다. 선택형 이슈 모드는 사용자 요청 때만 활성화한다. 자동 이슈 과제 `GH-<저장소 ID>-<번호>-A<attempt>`는 draft PR과 integration hold까지 처리하며 main 병합은 사용자 판단을 기다린다.

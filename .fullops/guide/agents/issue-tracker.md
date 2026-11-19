@@ -1,3 +1,12 @@
+---
+title: Issue tracker
+status: draft
+updated: 2026-11-19
+owner: coor
+tasks: [FULLOPS-MIGRATE-2.2.4]
+summary: 로컬 Markdown 이슈 트래커 위치
+---
+
 # Issue tracker
 
 기본 트래커: 로컬 Markdown.

@@ -41,10 +41,10 @@ D01/D02의 review는 검토 상태다. 제품 MVP 구현·수락이나 운영 �
 D03과 D05–D10의 실제 기능 기술 정본은 후속 dev가 갱신한다. D04·D05–D13의 미작성 상태를 이번 기획으로 완료 처리하지 않는다.
 
 원천 문서 맨 위에는 front matter를 둔다. 원천이 여러 파일이거나 폴더면 각 문서에 같은 `id`를 적는다.
-**front matter는 손으로 쓰지 않고 `deliverables.py --stamp`로만 쓴다.** 필드 순서와 목록 표기가 고정되고, `updated`는 오늘 날짜, 과제 키는 `tasks`에 추가되며, 이 표의 상태도 같은 값으로 맞춰진다.
+**front matter는 손으로 쓰지 않고 `fullops doc stamp`로만 쓴다.** 필드 순서와 목록 표기가 고정되고, `updated`는 오늘 날짜, 과제 키는 `tasks`에 추가되며, 이 표의 상태도 같은 값으로 맞춰진다.
 
 ```text
-python3 <플러그인>/scripts/deliverables.py --repo . --id D03 --stamp --task <과제 키> [--status draft|review|approved]
+fullops doc stamp --path <원천 문서 경로> --task <과제 키> [--status draft|review|approved]
   처음 쓸 때: --owner <역할> --summary "<한 줄 요약>" [--title ...] [--upstream D02] [--downstream D05,D10]
   원천이 폴더이거나 여러 파일일 때: --path <.fullops 기준 문서 경로>
 ```

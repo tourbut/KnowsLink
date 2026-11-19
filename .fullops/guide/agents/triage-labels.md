@@ -1,3 +1,12 @@
+---
+title: Triage labels
+status: draft
+updated: 2026-11-19
+owner: coor
+tasks: [FULLOPS-MIGRATE-2.2.4]
+summary: 로컬 역할 분류와 외부 라벨 연결 규칙
+---
+
 # Triage labels
 
 로컬 역할 분류: architect, backend_dev, frontend_dev, devops, qa_tester, docs.

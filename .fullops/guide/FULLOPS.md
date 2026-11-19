@@ -59,7 +59,7 @@ ponytail full을 적용하되 검증·산출물·핸드오버 기록은 생략�
 designer는 제품 목표·규칙·수치·방향·우선순위·사용자 완료 조건을 결정한다.
 dev는 기존 제품 요구 안의 기술 계획·구조/API·버그 분석·구현·테스트·기술 문서 갱신을 같은 과제에서 수행한다.
 coor는 요청 분류·인계·질문 전달·진행 관리·병합을 조정한다. 제품 판단이나 기술 판단을 대신하지 않는다.
-신규 개발 요청은 `jev_route.py`의 product/implementation/unresolved 책임 분류를 적용한다. setup 갱신·동기화·현황판 정리는 직접 처리한다.
+신규 개발 요청은 `fullops route`의 direct/design/product/unresolved 분류를 적용한다. setup 갱신·동기화·현황판 정리는 직접 처리한다.
 독립 코드 리뷰는 구현자와 다른 검토자의 별도 세션과 고정 SHA의 깨끗한 detached snapshot을 사용한다.
 snapshot은 읽기 전용으로 유지한다. 리뷰 결과는 별도 기록 체크아웃에 작성한다.
 tester의 독립 동작 QA와 필요한 직접 시각 검수를 유지한다. 미해결 critical/high는 수락·병합을 차단한다.
@@ -67,13 +67,13 @@ tester의 독립 동작 QA와 필요한 직접 시각 검수를 유지한다. �
 
 ## 완료 결과의 통합과 역할 인박스 — FullOps 0.9.12
 
-실행 지시서는 역할별 `handovers/to_<role>.md` 하나로 고정한다. 다른 과제로 사용 중인 인박스를 덮어쓰지 않는다. 다음 과제는 PLANS.md에 대기시킨다. 과제명 파일·pending·logs는 참조 자료이며 배정 지시서로 사용하지 않는다. 역할 작업 완료 시 `work.py finish`로 지시서와 완료 보고 전문을 logs에 보존하고 인박스를 비운다.
+실행 지시서는 역할별 `.fullops/inbox/to_<역할>.md` 하나로 고정하고 `fullops task new`로만 만든다. 다른 과제로 사용 중인 인박스를 덮어쓰지 않는다. 다음 과제는 `fullops plan add`로 PLANS.md에 대기시킨다. 과제명 파일·pending·logs는 참조 자료이며 배정 지시서로 사용하지 않는다. 역할 작업 완료 시 `fullops done`이 지시서와 완료 보고를 보존하고 인박스를 없앤다.
 
 coor는 worker_done을 받으면 고정 SHA의 필수 검토·검증을 확인하고 실제 기본 브랜치 main에 병합한다. 원격 origin/main에 일반 push한 뒤 완료 SHA의 로컬·원격 조상 관계를 확인한다. 역할 브랜치 push만으로 통합을 완료하지 않는다. 전체 제품 수락과 개별 문서 결과의 통합은 구분한다. 미해결 critical/high와 필수 검증 실패는 계속 차단한다.
 
 병합 뒤 coor를 포함한 모든 등록 역할의 실제 worker 상태와 작업 트리를 확인한다. 쉬고 있으며 깨끗한 역할만 최신 main으로 동기화한다. 진행 중·미커밋 변경·상태 확인 불가인 역할은 PLANS.md에 최신 기본 SHA와 예약을 남긴다. 다음 dispatch 전에 최신 로컬·원격 main 포함을 확인한다. 진행 중 체크아웃과 사용자 자료를 덮어쓰지 않는다.
 
-완료 메시지는 Git 공용 디렉터리의 fullops-integration에 보존된다. `integration.py --repo <레포> status`로 미통합 결과를 확인한다. 검수 대기·실패·충돌·원격 오류·사용자 제한은 PLANS.md에 메시지 ID·SHA·사유·담당·재개 조건을 기록한다. 같은 내용을 `integration.py hold`로 남긴다. 조건 충족 시 resume하고 병합·push를 이어간다. 성공 결과를 통합한 뒤 release·ack하고 다음 독립 과제를 배정한다. 사용자의 현재 과제 완료 뒤 중지 지시는 유지한다.
+완료 보고는 `fullops wait`로 받고, 기계 상태는 Git 공용 디렉터리의 `fullops/state.json`에 있다. `fullops status`로 미통합 결과를 확인한다. 검수 대기·실패·충돌·원격 오류·사용자 제한은 PLANS.md에 메시지 ID·SHA·사유·담당·재개 조건을 기록한다. 같은 내용을 `fullops hold`로 남긴다. 조건 충족 시 `fullops resume`하고 `fullops merge`로 병합·push를 이어간다. `fullops merge`가 완료 보고의 처리 표시까지 한 뒤 다음 독립 과제를 배정한다. 사용자의 현재 과제 완료 뒤 중지 지시는 유지한다.
 
 기존 활성 과제명 지시서는 작업 중 이동하지 않는다. 해당 과제 완료 뒤 logs에 보존하고 다음 과제부터 정규 역할 인박스를 사용한다.
 
@@ -95,13 +95,13 @@ UI 작업은 fullops-frontend와 docs/agents/frontend.json의 기존 디자인 �
 
 검사 실행 결과는 작업 트리별 Git 디렉터리에 보존하고 리뷰 prepare의 `--lint`는 같은 base·HEAD·설정의 원본 증거를 가져온다. 검토자는 관련 환경·의존성 동일성·검사 약화·지시 범위와 실제 diff를 확인한다. review check는 모든 등록 검사 명령의 누락·중복·추가·종료코드를 확인한다. 기존 테스트 수준과 필수 명령·실패·예외·critical/high 차단을 유지한다. 실제 전체 검사와 변경 경로 검사의 담당·시점은 project.md와 공통 테스트 기준을 따른다.
 
-1.4.4 hook은 버전별 캐시 대신 `~/.fullops-squad/runtime/fullops-squad/scripts/hook_runtime.py`를 호출한다. 명시적 deps 설치가 완전한 실행 사본을 원자적으로 전환하고 기존 사본은 보존한다. 업데이트만으로 이미 열린 세션의 hook 명령은 바뀌지 않는다. 실제 새 세션의 done/flow 기록을 조회하고 executed·error·unknown을 구분한다. 파일 존재나 status 조회 자체로 실행 성공을 주장하지 않는다.
+2.x hook은 같은 실행본의 `fullops hook <호스트>`를 호출한다. `fullops install`이 실행본을 고정 위치(`~/.fullops/bin/`)에 복사하고 호스트 플러그인을 등록한다. 업데이트만으로 이미 열린 세션의 hook 명령은 바뀌지 않는다. 실제 새 세션의 hook 실행 표식은 `fullops why`로 조회한다. 파일 존재나 status 조회 자체로 실행 성공을 주장하지 않는다.
 
 이 업데이트 세션에서는 운영 적용과 이미 완료된 결과의 검토만 수행한다. 사용자 중지 상태의 UI 수정·검수·제품 통합·배포는 재개하지 않는다. 이후 제품 개발은 최신 hook을 로드한 새 coordinator 세션에서 사용자 재개 지시를 받아 진행한다.
 
 ## FullOps 1.4.2 적용 이력
 
-1.4.1 이후 명시적 업데이트마다 외부 의존성을 최신판으로 갱신하고 현재 호스트의 `deps.py --check --host`를 확인한다. 과거 검사 통과를 이번 갱신으로 대체하지 않는다. 기존 스킬 수정은 설치기의 백업에 보존한다.
+명시적 업데이트마다 `fullops install`로 의존 플러그인·스킬을 갱신하고 `fullops install --check`와 `fullops doctor`로 현재 호스트를 확인한다. 과거 검사 통과를 이번 갱신으로 대체하지 않는다.
 선택형 프런트 도구는 frontend.json의 tools에 등록한 것만 로컬 설치한다. 현재 tools는 비어 있다. 기존 디자인 정본을(모델은 2026-10-17 Claude로 전환) 유지하며 설정 준비·인증·브라우저 QA를 구분한다.
 1.4.2의 lint 경로 정규화와 Jev 입력·Enter·허용 동작 보완은 새 패키지 실행기로 적용한다. 위험·confidence·입력 예산을 낮추지 않는다. Windows의 실제 검사 cwd는 `.`이며 macOS 별칭 설정은 없다.
 업데이트 세션에서는 운영 갱신과 완료된 결과의 검토·통합만 수행한다. 새 제품 worker는 새 coordinator 세션에서 시작한다. [업데이트 기록](docs/exec-plans/phases/FULLOPS-UPDATE-1.4.2.md)에 적용·검증·동기화 예약을 남긴다.
