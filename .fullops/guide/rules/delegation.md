@@ -1,7 +1,7 @@
 ---
 title: 하위 에이전트 활용 기준
 status: draft
-updated: 2026-11-19
+updated: 2026-11-22
 owner: coor
 tasks: [FULLOPS-UPDATE-1.3.0, FULLOPS-UPDATE-1.24.0]
 summary: 선택형 위임의 범위와 부모의 완료 책임을 정한다.
@@ -17,7 +17,7 @@ summary: 선택형 위임의 범위와 부모의 완료 책임을 정한다.
 |---|---|---|---|
 | `off` | 하위 에이전트와 하위 worker를 쓰지 않고 직접 처리한다 | hook이 거부한다 | `fullops dispatch`가 거절한다 |
 | `read` | 읽기 전용 조사·리뷰에만 쓴다 | 지시에 `Purpose: research` 또는 `Purpose: review`와 `read only`가 있어야 통과한다 | 조사와 리뷰만 되고 읽기 전용으로 간다 |
-| `on`(기본) | 나눌 수 있는 구현과 조사를 하위 에이전트로 동시에 진행하도록 권한다 | 통과한다 | 통과한다 |
+| `on`(기본) | 나눌 수 있는 구현과 조사를 하위 에이전트로 동시에 진행하도록 권한다. 쓰기 하위 에이전트가 끝날 때까지 턴을 끝내지 않는다 | 통과한다 | 통과한다 |
 | `ultra` | `on`에 더해 Claude Code에서 울트라코드(Workflow)를 쓰게 한다 | 통과한다 | 통과한다 |
 
 - 방침을 바꾸는 것은 사람이다. `fullops.toml`의 `parallel`을 고쳐 커밋한다. 에이전트가 스스로 올리지 않는다.
