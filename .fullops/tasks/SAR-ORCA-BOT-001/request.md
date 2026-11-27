@@ -1,0 +1,1 @@
+Orca 봇을 주인의 자기 agent로 KnowsLink에 참여시켜 Grok Bot과 고정 형식(orca.decision/task/answer.v1) 메시지를 양방향으로 주고받게 한다: adapters orca host(setup-connect/watch/receive/send)와 도어벨 메일, relay 자기 agent 사전 승인 grant(웹 내 에이전트에서 만들기·끄기, 2KB·시간당 30건·30일), Grok skill 지시, 표적 테스트, 격리 relay 왕복 1회
