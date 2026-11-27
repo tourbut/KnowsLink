@@ -2312,3 +2312,5 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 ## 배정 기록
 
 - 2026-11-27 17:11 SAR-WIN-LINT-001-OPS → ops | claude/claude-sonnet-5-5/high | fresh | run run_106052d1f96a | 재배정 0 | -
+- 2026-11-27 16:25 SAR-ORCA-BOT-001-DEV → dev | claude/claude-opus-5-5/high | fresh | run run_ed65223f7026 | 재배정 0 | -
+- 2026-11-27 17:01 SAR-ORCA-BOT-001-DEV → dev | claude/claude-opus-5-5/high | fresh | run run_106052d1f96a | 재배정 1 | -

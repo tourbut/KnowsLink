@@ -1,0 +1,160 @@
+{
+  "v": 1,
+  "base": "c556f2cbbdb5095d6f2069fa5f03d062a6ca291b",
+  "merge_base": "c556f2cbbdb5095d6f2069fa5f03d062a6ca291b",
+  "head": "441d1a410efdb65e878102fa5e5c91fea6764ff4",
+  "config_sha256": "481e59c6184f3672ff1d880cc91617e9066c49440b8b3915a2d8eb9065d5b30a",
+  "test_level": "lite",
+  "started_at": 1795766201,
+  "seconds": 0.4,
+  "commands": [
+    {
+      "name": "product-lint",
+      "kind": "lint",
+      "run": [
+        "make",
+        "lint"
+      ],
+      "cwd": ".",
+      "status": "unrunnable",
+      "exit_code": null,
+      "seconds": 0.0,
+      "reason": "실행 파일이나 cwd를 찾지 못함",
+      "output_tail": "",
+      "log": ""
+    },
+    {
+      "name": "product-test",
+      "kind": "test",
+      "run": [
+        "make",
+        "test"
+      ],
+      "cwd": ".",
+      "status": "unrunnable",
+      "exit_code": null,
+      "seconds": 0.0,
+      "reason": "실행 파일이나 cwd를 찾지 못함",
+      "output_tail": "",
+      "log": ""
+    }
+  ],
+  "findings": [
+    {
+      "code": "DEP-001",
+      "severity": "WARNING",
+      "path": "adapters/package.json",
+      "line": null,
+      "message": "의존성 선언 파일 변경.",
+      "suggestion": "완료 보고에 의존성 변경 여부와 필요성·표준 라이브러리 대안을 기록한다"
+    },
+    {
+      "code": "SIZE-001",
+      "severity": "WARNING",
+      "path": "adapters/src/core.ts",
+      "line": null,
+      "message": "343줄(이전 342, 상한 300).",
+      "suggestion": "① 삭제 → ② 압축 → ③ 분할 순으로 처리하고 docstring·헤더를 깎지 않는다"
+    },
+    {
+      "code": "SLOP-002",
+      "severity": "WARNING",
+      "path": "adapters/src/login.ts",
+      "line": 71,
+      "message": "조건부 객체 스프레드",
+      "suggestion": "명시적 분기보다 읽기 쉬운지 검토한다"
+    },
+    {
+      "code": "SIZE-001",
+      "severity": "WARNING",
+      "path": "adapters/src/mcp.ts",
+      "line": null,
+      "message": "649줄(이전 646, 상한 300).",
+      "suggestion": "① 삭제 → ② 압축 → ③ 분할 순으로 처리하고 docstring·헤더를 깎지 않는다"
+    },
+    {
+      "code": "SEC-001",
+      "severity": "WARNING",
+      "path": "adapters/src/orca.test.ts",
+      "line": 85,
+      "message": "하드코딩 비밀값 의심.",
+      "suggestion": "환경변수·설정으로 옮긴다"
+    },
+    {
+      "code": "SLOP-002",
+      "severity": "WARNING",
+      "path": "adapters/src/orca.test.ts",
+      "line": 94,
+      "message": "조건부 객체 스프레드",
+      "suggestion": "명시적 분기보다 읽기 쉬운지 검토한다"
+    },
+    {
+      "code": "SLOP-002",
+      "severity": "WARNING",
+      "path": "adapters/src/orca.ts",
+      "line": 137,
+      "message": "조건부 객체 스프레드",
+      "suggestion": "명시적 분기보다 읽기 쉬운지 검토한다"
+    },
+    {
+      "code": "SLOP-002",
+      "severity": "WARNING",
+      "path": "adapters/src/orca.ts",
+      "line": 138,
+      "message": "조건부 객체 스프레드",
+      "suggestion": "명시적 분기보다 읽기 쉬운지 검토한다"
+    },
+    {
+      "code": "SIZE-001",
+      "severity": "WARNING",
+      "path": "adapters/src/text.ts",
+      "line": null,
+      "message": "450줄(이전 410, 상한 300).",
+      "suggestion": "① 삭제 → ② 압축 → ③ 분할 순으로 처리하고 docstring·헤더를 깎지 않는다"
+    },
+    {
+      "code": "SLOP-002",
+      "severity": "WARNING",
+      "path": "adapters/src/text.ts",
+      "line": 62,
+      "message": "조건부 객체 스프레드",
+      "suggestion": "명시적 분기보다 읽기 쉬운지 검토한다"
+    },
+    {
+      "code": "SLOP-002",
+      "severity": "WARNING",
+      "path": "adapters/src/text.ts",
+      "line": 242,
+      "message": "조건부 객체 스프레드",
+      "suggestion": "명시적 분기보다 읽기 쉬운지 검토한다"
+    },
+    {
+      "code": "SIZE-001",
+      "severity": "WARNING",
+      "path": "internal/relay/human_http.go",
+      "line": null,
+      "message": "540줄(이전 523, 상한 300).",
+      "suggestion": "① 삭제 → ② 압축 → ③ 분할 순으로 처리하고 docstring·헤더를 깎지 않는다"
+    },
+    {
+      "code": "SIZE-001",
+      "severity": "WARNING",
+      "path": "internal/relay/store.go",
+      "line": null,
+      "message": "571줄(이전 569, 상한 300).",
+      "suggestion": "① 삭제 → ② 압축 → ③ 분할 순으로 처리하고 docstring·헤더를 깎지 않는다"
+    },
+    {
+      "code": "SIZE-002",
+      "severity": "WARNING",
+      "path": "",
+      "line": null,
+      "message": "변경 추가 1185줄 > 상한 400줄.",
+      "suggestion": "지시서의 예상 변경 규모와 차이·분할하지 않은 이유를 검토한다"
+    }
+  ],
+  "errors": 0,
+  "warnings": 14,
+  "unrunnable": 2,
+  "passed": false
+}
