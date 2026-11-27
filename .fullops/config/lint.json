@@ -4,7 +4,8 @@
     {
       "name": "product-lint",
       "run": [
-        "make",
+        "python3",
+        "scripts/make.py",
         "lint"
       ],
       "cwd": ".",
@@ -14,7 +15,8 @@
       "name": "product-test",
       "kind": "test",
       "run": [
-        "make",
+        "python3",
+        "scripts/make.py",
         "test"
       ],
       "cwd": "."
