@@ -72,3 +72,5 @@ summary: dev의 유효 설계 원칙 요약과 최근 결정. 2026-10-10까지�
 - 2026-10-22 SAR-CODEX-RECV-001-DEV: Codex 세션 수신은 세션별 MCP 프로세스 결속 + MCP elicitation 승인으로 구현했다(`codex queue`·`turn/steer`·`inject_items`는 본문을 소유자 입력·대화 기록으로 넣어 제외). Codex YOLO는 elicitation을 보이지 않고 자동 수락하므로 단순 accept를 승인으로 쓰지 않고 대화상자의 일회 코드 입력을 요구한다. 호스트 승인 UI는 실제 기본 설정(YOLO 포함)으로도 실측한다. [DEV 보고](../docs/evaluations/qa-reports/SAR-CODEX-RECV-001-DEV-test/report.md).
 
 - 2026-11-07 SAR-DB-WAIT-001: 시스템이 백그라운드 명령을 중단했다고 알려도 하위 프로세스는 살아 있을 수 있다. 부분 결과를 보고하기 전에 프로세스와 로그 끝을 다시 확인한다. [보고](../docs/evaluations/qa-reports/SAR-DB-WAIT-001-DEV-test/report.md).
+
+- 2026-11-27 SAR-ORCA-BOT-001-DEV: 두 agent의 키를 함께 기록할 때 kid는 agent마다 따로라 이름이 겹칠 수 있다(`key1`). 보내는 쪽·받는 쪽 목록을 나눠 둔다. 단위 테스트의 같은 kid fixture가 이 결함을 잡았다. Orca 도어벨 왕복은 argv만 남기는 가짜 orca.exe로 격리 검증한다. [QA](../../tasks/SAR-ORCA-BOT-001-DEV/qa/report.md).
