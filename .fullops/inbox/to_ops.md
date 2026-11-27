@@ -76,3 +76,12 @@ parallel: on
 브랜치 / SHA / 변경 이유 / 검토 필요 / 검증한 것과 못 한 것 / 스스로 정한 선택과 되돌리는 방법 / 산출물·로그 링크 / 남은 일.
 항목당 1~2줄로 쓰고 상세는 `tasks/SAR-WIN-LINT-001-OPS/qa/report.md` 링크로 대신한다. worker_done 본문은 `fullops done`이 출력한 한 줄을 그대로 쓴다. 원격 push가 승인 전이면 `fullops done` 대신 로컬 커밋 뒤 worker_done만 보낸다.
 처리는 `fullops-work`, 회신은 `fullops-orca` 스킬을 따른다.
+
+### 결과 (2026-11-27)
+
+- 브랜치 / SHA: `fullops/ops`, 코드 `0f1be95a`·`1eedce84`. 원격 push 안 함(`fullops done` 대신 worker_done만).
+- 변경 이유: `scripts/make.py` 래퍼, 0600 검사의 Linux 컨테이너 실행, CRLF 작업 파일 LF 정리. 검사 항목 변경 없음.
+- 검토 필요: 이 과제 병합 때만 coor 세션 PATH 접두가 필요하다.
+- 검증: ops 워크트리 `fullops lint` 통과(실행 불가 0). main 체크아웃의 전체 `fullops lint`는 병합 전이라 미실행.
+- 선택·되돌리기, 로그, 남은 일: [보고서](../tasks/SAR-WIN-LINT-001-OPS/qa/report.md).
+
