@@ -881,6 +881,7 @@ Codex 실제 설치는 업데이트 전후 0.9.12다. 시작 시 coor 레포 적
 | dev | 830131a, clean | 해당 워크트리의 실제 유휴 확인 후 운영 업데이트 main 동기화한다. |
 | tester | c59537b, clean, liveness unverifiable | 깨끗함만으로 유휴 판정하지 않는다. 실제 상태 확인 뒤 동기화한다. |
 | coor | 5b94be5, 미추적 리뷰 증거 | 누적 미수락 제품 조상을 main에 일괄 병합하지 않는다. 운영 준비 main을 merge하고 미추적 증거는 보존한다. |
+| MEMO-TIDY-20261127 | 대기 | dev |
 
 과거 완료 메시지 세 건을 기존 PLANS의 실제 메시지 ID와 SHA로 공용 integration 기록에 회수했다. 사유·담당·재개 조건을 갖춘 hold를 적용했다. pending이 비어도 hold의 제품 작업이 통합 완료됐다는 의미는 아니다. 다른 오래된 역할 SHA의 main 미포함 이력도 보존한다. 상설·임시 워크트리와 기존 Run run_8ca8bc058ab7을 유지한다. 새 제품 worker는 시작하지 않는다. 전체 제품 수락·실제 배포·새 기능은 이번 업데이트 범위 밖이다.
 
@@ -2307,3 +2308,7 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 - [x] SAR-MSG-EPHEMERAL-001 → coor: 리뷰 수정 `12cbf840` 포함 main 병합 (완료 보고 2026-11-12, D055, main 84214efd)
 - [ ] SAR-RELEASE-004-OPS → tester: tester 실계정 QA (완료 보고 자동 등재 2026-11-14) — 보류: 사용자 지시 대기
 - [ ] SAR-RELEASE-004-OPS → dev: dev 리뷰 medium 2 축소 경로 설계 (완료 보고 자동 등재 2026-11-14) — 보류: 사용자 지시 대기, Redis used_memory 64 MiB 접근 시 앞당김
+
+## 배정 기록
+
+- 2026-11-27 17:11 SAR-WIN-LINT-001-OPS → ops | claude/claude-sonnet-5-5/high | fresh | run run_106052d1f96a | 재배정 0 | -
