@@ -91,11 +91,11 @@ parallel: on
 항목당 1~2줄로 쓰고 상세는 `tasks/SAR-ORCA-BOT-001-DEV/qa/report.md` 링크로 대신한다. worker_done 본문은 `fullops done`이 출력한 한 줄을 그대로 쓴다.
 처리는 `fullops-work`, 회신은 `fullops-orca` 스킬을 따른다.
 
-- 브랜치 / SHA: `fullops/dev` / 3b243345(구현) 뒤 완료 기록 커밋.
+- 브랜치 / SHA: `fullops/dev` / 3b243345(구현)·441d1a41(vet 태그) 뒤 완료 기록 커밋. push 안 함(coordinator 지시 B).
 - 변경 이유: 같은 owner 자기 agent 사이 `orca.task|decision|answer.v1`만 relay가 grant로 통과시키고, Orca 봇은 본문 없는 도어벨로 깨운다(D057).
 - 검토 필요: `internal/relay/grants.go`·`public_text.go`의 grant 검사와 `kind` 서명 범위, 웹 `/home/grant-create`(5분 재확인·동의)·`/home/grant-revoke`(정리 예산).
-- 검증한 것: `go test ./cmd/... ./internal/...` 통과, adapter 표적 7개·`npm run check` 통과, 격리 relay 왕복 S1–S6 통과([QA](../tasks/SAR-ORCA-BOT-001-DEV/qa/report.md)). `fullops lint` ERROR 0, make 2개는 Windows 실행 불가(기존과 같음).
-- 못 한 것: Linux clean clone `make lint/test`, 실제 Orca 봇(쿠어) 메일, 운영 relay·계정 왕복.
+- 검증한 것: `go test ./cmd/... ./internal/...` 통과, adapter 표적 7개·`npm run check` 통과, 격리 relay 왕복 S1–S6 통과([QA](../tasks/SAR-ORCA-BOT-001-DEV/qa/report.md)). `fullops lint` ERROR 0, make 2개는 Windows 실행 불가. 같은 SHA Linux clean clone에서 `make test` 통과, `make lint` 통과(`check_compose.py`만 host docker).
+- 못 한 것: 실제 Orca 봇(쿠어) 메일, 운영 relay·계정 왕복, `fullops done`(push 포함이라 실행 안 함).
 - 스스로 정한 선택: 새 wire 대신 `knowslink.text.v1` 선택 필드 `kind`(없으면 바이트 동일). 상태 JSON `Grants` 맵이라 DB 마이그레이션 없음. grant 메시지는 웹 대화 사본을 만들지 않음. 기본 agent 이름 `Orca Bot`. 되돌리기는 3b243345 revert.
 - 산출물: D03 architecture·D05 interface-design·D10 module-design 새 절, adapters README·Grok skill.
 - 남은 일: 운영 배포·쿠어 agent 연결·grant 생성과 운영 왕복 1회(주인 승인 필요), 원격 push.

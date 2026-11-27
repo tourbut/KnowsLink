@@ -40,12 +40,25 @@ relay 단위 테스트가 처음 실행에서 실제 결함 하나를 찾았다.
 | 끄기 | 웹에서 grant 3개 끄기 → 다시 task 발송 | 303 뒤 403 `approval_required` |
 | S5 | watcher stdout, relay 상태 행, Redis 값의 본문 검색 | stdout·Postgres `relay_state`·Redis 모두 본문 문자열 없음 |
 
+## Linux clean clone 제품 검사
+
+Windows `fullops lint`는 ERROR 0, WARNING 14, 실행 불가 2(`make lint`·`make test`, Windows에 make 없음)로 "미통과"다. 같은 HEAD 441d1a41을 `.devtools/SAR-ORCA-BOT-001-DEV/clone`에 clone해 Docker `node:22`(Node 22.23.5, npm 10.9.9, Debian python3·bash·make)에 Go 1.27.1 linux-amd64를 받아 실행했다.
+
+| 명령 | 결과 |
+|---|---|
+| `make install` | 0 |
+| `make test` | 0. `go test -race`: `ok cmd/migrate`, `ok cmd/relay`, `ok internal/config`, `ok internal/relay`. `npm test`: 모든 PASS 줄, 마지막 `PASS: orca schema, signing bytes without kind unchanged, doorbell metadata only, ring once, retry after failure, --item answer, untrusted receive`. shell_guard·autosetup 테스트 포함 |
+| `make lint` | lint-go(gofmt·vet·fixture 태그 vet·`go mod verify`)와 lint-adapters(`npm run check`) 통과. lint-config의 `check_compose.py`에서 멈춤: 컨테이너에 `docker` 실행 파일이 없음(`FileNotFoundError: 'docker'`) |
+| lint-config 나머지 | 같은 컨테이너에서 prettier(compose·sqlc), `check_public_ingress.py`, `test_public_config.sh`, `sh -n install_bot_mcp.sh`, `compileall` 통과(`set -e`). `test_public_config.sh`의 ERROR 출력 줄은 그 스크립트의 음성 검사다 |
+| `python scripts/check_compose.py` | clone에서 Windows host docker로 실행해 0: `Compose: five services, one-shot migrate, private Postgres, volatile private Redis, loopback relay, optional Tunnel, synthetic signup closed, OPS override merges`. docker compose config가 필요해 host에서 돌렸다 |
+
+`make lint`의 fixture vet 태그에 `orcafixture`를 넣었다(441d1a41).
+
 ## 못 한 것
 
 - 실제 Orca 봇(쿠어) 메일 수신과 운영 relay·운영 계정 왕복: 승인 필요 범위라 하지 않았다.
-- Linux clean clone의 `make lint`·`make test`: 이번에는 실행하지 않았다. Windows 표적 테스트만 돌렸다.
 - macOS·Linux의 `orca` 실행 파일 탐색은 PATH 이름만 본다(코드의 `shortcut:` 주석).
 
 ## 정리
 
-컨테이너 2개와 이번에 받은 redis 이미지를 지웠다. postgres 이미지는 원래 있던 것이라 남겼다. 작업 파일은 `.devtools/SAR-ORCA-BOT-001-DEV/`(gitignore)에 있다.
+컨테이너 2개(검사용 `kl-orca-bot-gate`는 `--rm`)와 이번에 받은 redis 이미지를 지웠다. postgres 이미지는 원래 있던 것이라 남겼다. 작업 파일은 `.devtools/SAR-ORCA-BOT-001-DEV/`(gitignore)에 있다.
