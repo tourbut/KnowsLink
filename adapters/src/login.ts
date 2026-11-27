@@ -68,7 +68,7 @@ export async function beginLogin(base: string, folder: string) {
     public: p.public,
     proof: deviceProof(p, key),
     // Only a known host prefills the default agent name (A-04); older relays reject unknown fields.
-    ...(["claude", "codex", "grok"].includes(host) ? { host } : {}),
+    ...(["claude", "codex", "grok", "orca"].includes(host) ? { host } : {}),
   });
   if (
     response.state !== "requested" ||

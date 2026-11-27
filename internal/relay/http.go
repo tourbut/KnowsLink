@@ -44,7 +44,7 @@ func statusFor(err error) int {
 	switch err.Error() {
 	case "invalid_auth":
 		return 401
-	case "sender_not_allowed", "human_invite_required", "disclosure_denied", "invalid_csrf":
+	case "sender_not_allowed", "human_invite_required", "disclosure_denied", "invalid_csrf", "approval_required":
 		return 403
 	case "idempotency_conflict", "id_collision", "duplicate_gate", "duplicate_result", "already_claimed", "invalid_lease", "invalid_gate", "key_exists", "capacity", "service_capacity":
 		return 409

@@ -2,14 +2,34 @@
 id: D05
 title: 인터페이스설계서
 status: review
-updated: 2026-11-12
+updated: 2026-11-27
 owner: dev
-tasks: [SAR-AUTOSETUP-001-DEV, SAR-CODEX-RECV-001-DEV, SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-003-BIDIRECTIONAL, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-GOOGLE-CONNECT-001-DEV, SAR-AUTO-RECEIVE-001-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SSE-INSTALL-001-OAUTH-RETURN-DEV, SAR-SERVICE-UI-001-DEV, SAR-HUMAN-PEER-001-DEV, SAR-REFACTOR-002-DEV, SAR-LANDING-GUIDE-001-DEV, SAR-UX-ISSUES-002-RECEIPT-DEV, SAR-UX-ISSUES-002-NAMES-DEV, SAR-UX-ISSUES-002-APPROVAL-DEV, SAR-UX-ISSUES-002-CONNECT-DEV, SAR-UX-ISSUES-002-LANG-DEV, SAR-SCHEDULE-001-DEV, SAR-PUBLISH-001-DEV, SAR-CONNECT-SIMPLE-001-DEV, SAR-MSG-EPHEMERAL-001]
+tasks: [SAR-AUTOSETUP-001-DEV, SAR-CODEX-RECV-001-DEV, SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-003-BIDIRECTIONAL, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-GOOGLE-CONNECT-001-DEV, SAR-AUTO-RECEIVE-001-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SSE-INSTALL-001-OAUTH-RETURN-DEV, SAR-SERVICE-UI-001-DEV, SAR-HUMAN-PEER-001-DEV, SAR-REFACTOR-002-DEV, SAR-LANDING-GUIDE-001-DEV, SAR-UX-ISSUES-002-RECEIPT-DEV, SAR-UX-ISSUES-002-NAMES-DEV, SAR-UX-ISSUES-002-APPROVAL-DEV, SAR-UX-ISSUES-002-CONNECT-DEV, SAR-UX-ISSUES-002-LANG-DEV, SAR-SCHEDULE-001-DEV, SAR-PUBLISH-001-DEV, SAR-CONNECT-SIMPLE-001-DEV, SAR-MSG-EPHEMERAL-001, SAR-ORCA-BOT-001-DEV]
 upstream: [D02]
 summary: owner와 agent HTTP 계약 및 gate와 adapter 흐름을 정의한다
 ---
 
 # KnowsLink HTTP·adapter 계약
+
+## Orca 봇 사전 승인 — SAR-ORCA-BOT-001-DEV
+
+`knowslink.text.v1`에 선택 필드 `kind`를 더한다. 없으면 기존 wire와 바이트까지 같다. 있으면 서명 bytes의 JCS 대상과 digest 대상에 `kind`가 들어간다(`v,id,from,to,text,exp,idempotency_key,reply_to,kind` / `v,from,to,text,reply_to,kind`). `kind`는 1–64자 문자열이고 `reply_to`와 함께 쓸 수 없다(422 `invalid_schema`).
+
+| 형식 | 방향 | `text`(정규 JSON, 2048 bytes 이하) |
+|---|---|---|
+| `orca.task.v1` | Grok → Orca 봇 | `{text, project?}`, project ≤200자 |
+| `orca.decision.v1` | Orca 봇 → Grok | `{bot ≤80자, item?, question, options? 1–9개·각 ≤200자}` |
+| `orca.answer.v1` | Grok → Orca 봇 | `{item?, answer, by ≤80자}` |
+
+`item`은 1–2147483647 정수, 문자열은 공백만이면 안 되고 정의 밖 키는 거부한다. `text`는 JCS 정규형과 바이트가 같아야 한다.
+
+| 경로 | 입력과 결과 | 경계 |
+|---|---|---|
+| POST `/v1/text/send` (`kind` 있음) | 기존 서명·회원·관계 검사 뒤 grant 검사 → receipt | grant 없음·형식 밖·스키마·2 KB·시간당 30건·기한·다른 owner·철회 뒤는 403 `approval_required`. 같은 key·내용 재시도는 기존 receipt |
+| POST `/home/grant-create` | 회원 세션, `from`·`to`·`kind`·`consent=yes` → 303 `/home/agents#grants` | 5분 재확인 없으면 재확인 안내. 같은 owner의 `self:` 두 agent만. owner당 30개 |
+| POST `/home/grant-revoke` | 회원 세션, `grant` → 303 `/home/agents#grants` | 정리 예산으로 늘 받는다. 다른 owner의 grant는 거부 |
+
+agent 자격(Bearer)으로 grant를 만들거나 끄는 경로는 없다. 모델의 `confirmed:true`도 grant를 만들지 않는다.
 
 ## SAR-MSG-EPHEMERAL-001 저장 장애의 오류 의미
 

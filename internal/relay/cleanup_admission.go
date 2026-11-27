@@ -60,6 +60,9 @@ func (st *State) cleanupTarget(r *http.Request, principal string, now time.Time)
 		return own(c.Agent) && st.Agents[c.Agent].Keys[c.Kid] != nil
 	case "/home/agent-revoke":
 		return own(c.Agent)
+	case "/home/grant-revoke":
+		g := st.Grants[r.PostForm.Get("grant")]
+		return g != nil && g.Owner == owner
 	case "/v1/unpair", "/home/unpair":
 		return p != nil && (own(p.A) || own(p.B))
 	case "/home/invite-deny", "/home/invite-decision", "/v1/invite-decision":

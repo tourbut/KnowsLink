@@ -100,13 +100,14 @@ type State struct {
 	Rates           map[string][]time.Time
 	HTTP            map[string]admission
 	Connections     map[string]*Connection
-	TestAgents      map[string]bool `json:"-"`
-	SyntheticSignup bool            `json:"-"`
+	Grants          map[string]*Grant `json:",omitempty"`
+	TestAgents      map[string]bool   `json:"-"`
+	SyntheticSignup bool              `json:"-"`
 }
 
 func newState() *State {
 	return &State{Friends: map[string]*Friend{}, GoogleAttempts: map[string]*googleAttempt{}, Owners: map[string]*Owner{}, Agents: map[string]*Agent{}, Pairs: map[string]*Pair{}, Messages: map[string]*Message{}, Idempotency: map[string]string{}, Gates: map[string]*Gate{},
-		Members: map[string]*Member{}, Identities: map[string]string{}, Sessions: map[string]*Session{}, Challenges: map[string]*Challenge{}, Rates: map[string][]time.Time{}, Connections: map[string]*Connection{}, HTTP: map[string]admission{}}
+		Members: map[string]*Member{}, Identities: map[string]string{}, Sessions: map[string]*Session{}, Challenges: map[string]*Challenge{}, Rates: map[string][]time.Time{}, Connections: map[string]*Connection{}, HTTP: map[string]admission{}, Grants: map[string]*Grant{}}
 }
 
 type Service struct {
@@ -320,6 +321,7 @@ func (st *State) sweep(now time.Time) {
 	}
 	st.sweepIdentity(now)
 	st.sweepConnections(now)
+	st.sweepGrants(now)
 	for id, m := range st.Messages {
 		if now.Sub(m.Receipt.Accepted) >= messageRetention {
 			delete(st.Idempotency, m.Receipt.From+"/"+m.Key)

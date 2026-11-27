@@ -26,6 +26,7 @@ export type TextEnvelope = {
   exp: string;
   idempotency_key: string;
   reply_to?: string;
+  kind?: string; // Owner-granted fixed form (orca.*.v1); text is then its canonical JSON body.
   sig: { alg: "Ed25519"; kid: string; value: string };
 };
 export type ReceivedText = {
@@ -35,6 +36,7 @@ export type ReceivedText = {
   text: string;
   exp: string;
   reply_to?: string;
+  kind?: string;
   untrusted: true;
   authorship?: "owner" | "agent";
 };
@@ -57,7 +59,7 @@ export type OwnerTextEnvelope = {
 };
 export function textSigningBytes(e: TextEnvelope): Buffer {
   return Buffer.from(
-    `KNOWSLINK-TEXT\0knowslink.text.v1\0Ed25519\0${e.sig.kid}\0${canonical({ v: e.v, id: e.id, from: e.from, to: e.to, text: e.text, exp: e.exp, idempotency_key: e.idempotency_key, reply_to: e.reply_to ?? "" })}`,
+    `KNOWSLINK-TEXT\0knowslink.text.v1\0Ed25519\0${e.sig.kid}\0${canonical({ v: e.v, id: e.id, from: e.from, to: e.to, text: e.text, exp: e.exp, idempotency_key: e.idempotency_key, reply_to: e.reply_to ?? "", ...(e.kind ? { kind: e.kind } : {}) })}`,
   );
 }
 export class TextTransport extends Adapter {
@@ -136,6 +138,39 @@ export class TextTransport extends Adapter {
         throw new Error("invalid reply parent");
       expiry = Math.min(expiry, Date.parse(parent.receipt.exp));
     }
+    return this.post(
+      peer,
+      text,
+      key,
+      expiry,
+      replyTo ? { reply_to: replyTo } : {},
+    );
+  }
+  // Grant path (SAR-ORCA-BOT-001): no confirmed flag; the relay accepts it only inside the owner's web grant, else approval_required.
+  sendKind(
+    peer: string,
+    kind: string,
+    text: string,
+    key: string,
+  ): Promise<{ id: string; transport: string }> {
+    if (
+      !/^orca\.(task|decision|answer)\.v1$/.test(kind) ||
+      !validText(text) ||
+      Buffer.byteLength(text) > 2048 ||
+      !/^[ -~]{16,128}$/.test(key) ||
+      !AGENT.test(peer) ||
+      peer === this.agent
+    )
+      throw new Error("invalid orca send request");
+    return this.post(peer, text, key, Date.now() + 170000, { kind });
+  }
+  private post(
+    peer: string,
+    text: string,
+    key: string,
+    expiry: number,
+    extra: { reply_to?: string; kind?: string },
+  ): Promise<{ id: string; transport: string }> {
     const e: TextEnvelope = {
       v: "knowslink.text.v1",
       id: uuid7(),
@@ -144,9 +179,9 @@ export class TextTransport extends Adapter {
       text,
       exp: new Date(expiry).toISOString().replace(/\.\d{3}Z$/, "Z"),
       idempotency_key: key,
+      ...extra,
       sig: { alg: "Ed25519", kid: this.kid, value: "" },
     };
-    if (replyTo) e.reply_to = replyTo;
     e.sig.value = sign(null, textSigningBytes(e), this.privateKey).toString(
       "base64url",
     );
@@ -204,7 +239,7 @@ export class TextTransport extends Adapter {
       "exp",
       "idempotency_key",
       "reply_to",
-      ...(ownerWritten ? ["authorship"] : ["sig"]),
+      ...(ownerWritten ? ["authorship"] : ["sig", "kind"]),
     ];
     if (
       Object.keys(e).some((k) => !allowed.includes(k)) ||
@@ -214,6 +249,11 @@ export class TextTransport extends Adapter {
       e.to !== this.agent ||
       typeof e.text !== "string" ||
       !validText(e.text) ||
+      (!ownerWritten &&
+        e.kind !== undefined &&
+        (typeof e.kind !== "string" ||
+          !/^[a-z0-9.]{1,64}$/.test(e.kind) ||
+          e.reply_to !== undefined)) ||
       (ownerWritten ? e.authorship !== "owner" : e.sig?.alg !== "Ed25519") ||
       !Number.isFinite(Date.parse(e.exp)) ||
       Date.parse(e.exp) <= Date.now()
@@ -235,6 +275,7 @@ export class TextTransport extends Adapter {
       authorship: ownerWritten ? "owner" : "agent",
     };
     if (e.v === "knowslink.text.v1" && e.reply_to) result.reply_to = e.reply_to;
+    if (e.v === "knowslink.text.v1" && e.kind) result.kind = e.kind;
     if (store) await store(result);
     const delivery = { id: e.id, token: lease.lease_token };
     await this.request("/v1/text/persist", delivery);

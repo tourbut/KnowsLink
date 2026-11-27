@@ -22,6 +22,7 @@ import { CodexSession } from "./codex-session.js";
 import { exists } from "./private-files.js";
 import { setupConnect, type SetupEvent } from "./setup-connect.js";
 import { failureOf, lang, type Reason } from "./reasons.js";
+import { orcaMain } from "./orca.js";
 import type { ReceivedText } from "./text.js";
 
 const server = new McpServer(
@@ -626,7 +627,7 @@ else if (process.argv[2] === "contact" && process.argv[3] && process.argv[4])
     console.error("KnowsLink contact lookup failed");
     process.exitCode = 1;
   });
-// `plugin.js setup-connect <relay> <private folder> [--fresh] [--host claude|codex] [--lang ko|en]` is the installer's
+// `plugin.js setup-connect <relay> <private folder> [--fresh] [--host claude|codex|grok|orca] [--lang ko|en]` is the installer's
 // Google connection step (JSON lines); host names the default agent (A-04) and lang picks the reason text (E).
 else if (
   process.argv[2] === "setup-connect" &&
@@ -654,7 +655,10 @@ else if (
       console.error("KnowsLink setup-connect failed");
       process.exitCode = 1;
     });
-} else if (process.argv[2] === "watch" && process.argv[3])
+} else if (process.argv[2] === "orca")
+  // `plugin.js orca setup-connect|watch|receive|send ...`: the Orca bot host (orca.ts); it reports its own errors.
+  void orcaMain(process.argv.slice(3));
+else if (process.argv[2] === "watch" && process.argv[3])
   watchFromArgv(process.argv.slice(3)).catch(() => {
     console.error("KnowsLink watch startup failed");
     process.exitCode = 1;

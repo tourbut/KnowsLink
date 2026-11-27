@@ -9,7 +9,7 @@ import {
   writeFile,
 } from "node:fs/promises";
 import { join } from "node:path";
-import { GrokWake, type WakeResult } from "./grok-wake.js";
+import type { WakeResult } from "./grok-wake.js";
 import { MESSAGE_ID } from "./core.js";
 import { exists, privateDirectory, privatePath } from "./private-files.js";
 import type { ReceivedText, TextTransport } from "./text.js";
@@ -64,6 +64,13 @@ export class Inbox {
       mode: 0o600,
     });
   }
+  // One stored unread message without claiming it (null once taken), so a doorbell can route by kind.
+  peek(id: string): Promise<ReceivedText | null> {
+    return readFile(join(this.dir, `${id}.json`), "utf8").then(
+      (t) => JSON.parse(t) as ReceivedText,
+      () => null,
+    );
+  }
   async pending(): Promise<string[]> {
     return (await readdir(this.dir))
       .filter((name) => /^[0-9a-f-]{36}\.json$/.test(name))
@@ -114,6 +121,14 @@ export function safeError(e: unknown): string {
     : "failed";
 }
 
+// A doorbell: GrokWake or OrcaWake. retry lists IDs certainly not rung when only some of a ring failed.
+export type Wake = {
+  ring(
+    ids: string[],
+    pending: number,
+  ): Promise<{ state: WakeResult; error?: string; retry?: string[] }>;
+};
+
 export type AutoStatus = {
   state: "running" | "backoff";
   receiveMode: "poll" | "sse";
@@ -151,7 +166,7 @@ export class AutoReceiver {
       m: ReceivedText,
       pending: number,
     ) => Promise<void>,
-    private readonly wake: GrokWake | "invalid" | null = null,
+    private readonly wake: Wake | "invalid" | null = null,
     private readonly idleMs = 10000,
     private readonly receiveMode: "poll" | "sse" = process.env
       .KNOWSLINK_RECEIVE_MODE === "sse"
@@ -261,7 +276,7 @@ export class AutoReceiver {
       }
     }
     // Ring independently of relay health, so messages kept across a restart or a gateway outage still ring once.
-    if (this.wake instanceof GrokWake)
+    if (this.wake && this.wake !== "invalid")
       await this.ring(this.wake).catch(() => {
         this.status.hostWake = { state: "retry", lastError: "failed" };
       });
@@ -269,7 +284,7 @@ export class AutoReceiver {
     this.schedule(this.signaled && this.status.state !== "backoff" ? 0 : delay);
   }
   // One doorbell per batch of unread IDs that have not rung yet.
-  private async ring(wake: GrokWake): Promise<void> {
+  private async ring(wake: Wake): Promise<void> {
     const pending = (await this.inbox.pending()).map((n) => n.slice(0, 36));
     const ids: string[] = [];
     for (const id of pending) if (await this.inbox.claimWake(id)) ids.push(id);
@@ -281,7 +296,7 @@ export class AutoReceiver {
       lastError: r.error,
     };
     for (const id of ids)
-      await (r.state === "retry"
+      await (r.state === "retry" || r.retry?.includes(id)
         ? this.inbox.releaseWake(id)
         : this.inbox.markWake(id, result));
     this.status.hostWake = result;

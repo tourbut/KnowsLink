@@ -2,14 +2,24 @@
 id: D03
 title: 아키텍처설계서
 status: review
-updated: 2026-11-12
+updated: 2026-11-27
 owner: dev
-tasks: [SAR-AUTOSETUP-001-DEV, SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-003-BIDIRECTIONAL, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV, SAR-AUTO-RECEIVE-001-DEV, SAR-SSE-INSTALL-001-DEV, SAR-GROK-WEBHOOK-001-DEV, SAR-HUMAN-PEER-001-DEV, SAR-REFACTOR-002-DEV, SAR-SESSION-PEER-001-DEV, SAR-SCHEDULE-001-DEV, SAR-PUBLISH-001-DEV, SAR-MSG-EPHEMERAL-001]
+tasks: [SAR-AUTOSETUP-001-DEV, SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-003-BIDIRECTIONAL, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV, SAR-AUTO-RECEIVE-001-DEV, SAR-SSE-INSTALL-001-DEV, SAR-GROK-WEBHOOK-001-DEV, SAR-HUMAN-PEER-001-DEV, SAR-REFACTOR-002-DEV, SAR-SESSION-PEER-001-DEV, SAR-SCHEDULE-001-DEV, SAR-PUBLISH-001-DEV, SAR-MSG-EPHEMERAL-001, SAR-ORCA-BOT-001-DEV]
 upstream: [D02]
 summary: 로컬 합성 relay와 shared 상태 및 owner gate의 인가 경계를 정의한다
 ---
 
 # KnowsLink 로컬 합성 MVP 아키텍처
+
+## Orca 봇 사전 승인 — SAR-ORCA-BOT-001-DEV
+
+상위 의도는 [SAR-ORCA-BOT-001](../planning/intents/SAR-ORCA-BOT-001.md), 한도는 결정 D057이다. 일반 text의 발송별 승인은 그대로 client 쪽(호스트 대화상자·`--confirmed`)에서 받는다. 예외는 relay가 직접 집행하는 사전 승인(grant) 하나다.
+
+- grant는 (보내는 agent, 받는 agent, 형식) 한 쌍이다. 두 agent는 같은 owner의 활성 agent이고 관계 출처가 `self:`여야 한다. 친구·legacy 관계에는 만들 수 없다. 형식은 `orca.task.v1`·`orca.decision.v1`·`orca.answer.v1` 셋뿐이다.
+- 만들기·끄기는 웹 "내 에이전트"의 회원 세션(`POST /home/grant-create`, 5분 재확인·동의 체크 필요)과 `POST /home/grant-revoke`(정리 예산)뿐이다. agent API에는 grant 경로가 없다.
+- 저장은 기존 singleton 상태 JSON의 `Grants` 맵이다. DB 마이그레이션이 없다. grant는 만들 때 두 agent의 활성 키 목록을 보내는 쪽·받는 쪽으로 따로 기록한다. 그중 하나라도 철회되거나, agent 철회·owner 비활성·`self:` 출처가 끝나거나, 30일이 지나면 sweep이 grant를 지운다. 새 키·다시 켠 self 연결은 지운 grant를 되살리지 않는다(주인이 새로 만든다). 같은 쌍을 다시 만들면 새 30일이 시작되고 시간당 건수는 이어진다.
+- `kind`가 붙은 text는 서명·멱등 검사 뒤 grant 검사(형식 스키마·정규 JSON·2 KB·시간당 30건·보낸 키가 grant 키 목록 안)를 거친다. 하나라도 어긋나면 `approval_required`(403)이며 어느 검사인지 말하지 않는다. 통과한 발송은 grant의 최근 1시간 기록에만 시각을 남기고 대화 사본을 만들지 않는다. receipt는 기존과 같이 ID·digest·상태만 남긴다.
+- 받는 쪽에서 본문은 여전히 untrusted다. 사전 승인은 발송 승인일 뿐 명령 실행·gate 승인 권한이 아니다.
 
 ## SAR-AUTOSETUP-001-DEV 자동 설정 배포 구조
 
