@@ -2,6 +2,10 @@
 # Check render-only public configuration, private file mode and failure propagation without live deployment or Cloudflare calls.
 set -euo pipefail
 root=$(cd "$(dirname "$0")/../.." && pwd)
+case "$(uname -s)" in
+  # NTFS cannot hold mode 0600, so Windows runs this same script in Linux with the checkout read-only.
+  MINGW* | MSYS*) MSYS_NO_PATHCONV=1 exec docker run --rm --network none -v "$(cygpath -m "$root"):/src:ro"     python:3.12-slim bash /src/deploy/knowslink/test_public_config.sh ;;
+esac
 test_dir=$(mktemp -d)
 trap 'rm -rf "$test_dir"' EXIT
 mkdir -p "$test_dir/state/tunnel" "$test_dir/bin"

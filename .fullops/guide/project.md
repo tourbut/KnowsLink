@@ -64,6 +64,7 @@ summary: 프로젝트 정본과 실제 lint·테스트 및 UI 검사 한계
 |---|---|
 | 명령과 실행 위치 | 레포 루트에서 `go test ./cmd/... ./internal/...` (`make test`의 Go 부분. Windows 호스트는 make·race 없이 실행) |
 | 기대 출력 | 패키지마다 `ok  	github.com/tourbut/KnowsLink/...` 또는 `[no test files]`이고 `FAIL` 줄이 없다. 2026-11-19 `d79a2486`: `ok  	github.com/tourbut/KnowsLink/internal/relay	2.837s` |
+| 전체 lint·test(`fullops lint`) | 레포 루트에서 `python3 scripts/make.py lint`, `... test`. Windows는 기본 체크아웃 `.devtools/`의 `w64devkit`·`node-v22.22.2-win-x64`, Git for Windows, Docker 실행이 필요하다(`test_public_config.sh`는 `python:3.12-slim`에서 돈다). 새 워크트리는 Node 22로 `npm ci --prefix adapters` 먼저. |
 
 ## 주요 흐름
 

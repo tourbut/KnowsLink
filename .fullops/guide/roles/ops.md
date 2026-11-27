@@ -129,3 +129,8 @@ Git Bash가 `/home/...` 인자를 Windows 경로로 바꿔 sftp put이 ENOENT로
 `beta.sh deploy`는 origin fetch 실패를 경고만 하고 진행한다. 먼저 `git -C /home/shin/deploy/knowslink fetch <bundle> <ref>`로 커밋을 받고 `beta.sh deploy <sha>`를 실행한다. 없는 SHA는 여전히 `unknown commit`으로 멈춘다.
 `verify.py regression`은 baseline과 현재 양쪽에서 knowslink project를 빼고 비교한다(위 baseline 결함 해소). `verify.py public`은 D12 기준 모든 미인증 probe의 404를 요구한다(위 Access 302 전제 해소). 모든 검사는 assert 대신 `-O`에서도 실패하는 명시 gate다.
 `access_apply.py`·`access_trial_plan.py`·`tunnel/config.yml.tmpl`과 `beta.sh` `render-config`·`expose`·`seed`·`owner-login`은 제거했다(git 기록에 남음). 위 기록의 해당 명령은 역사다.
+
+## 2026-11-27 — SAR-WIN-LINT-001-OPS
+
+Windows `make`는 `scripts/make.py`가 프로세스 PATH에만 도구를 붙여 실행한다(w64devkit은 뒤에 둔다. busybox sh는 `PATH=dir:$PATH` stub을 못 찾는다). 0600 검사는 NTFS에서 성립하지 않아 Linux 컨테이너로 돌린다. [근거](../../tasks/SAR-WIN-LINT-001-OPS/qa/report.md)
+`.gitattributes` 이전에 체크아웃된 CRLF 파일은 `checkout-index --force`가 안 고친다. blob 해시가 같은 LF 변환 뒤 `git add -u`로 stat을 갱신했다.
