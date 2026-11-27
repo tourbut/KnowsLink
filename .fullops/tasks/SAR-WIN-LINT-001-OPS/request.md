@@ -1,0 +1,1 @@
+Windows lead 체크아웃에서 fullops lint의 product-lint(make lint)·product-test(make test)가 실행·통과하게 환경 정비: LF 재체크아웃, make·Node 22·Go 경로, cloudflared 등. 검사 기준은 완화하지 않음
