@@ -83,6 +83,18 @@ var enHuman = map[string]string{
 	"지금은 메시지를 보낼 수 없습니다": "Messages cannot be sent right now",
 	"대화 목록": "Conversation list",
 
+	// human-agents: Orca bot pre-approval (grants.go)
+	"/ 기한 {{.Exp}} / 최근 1시간 {{.Sent}}건": "/ ends {{.Exp}} / {{.Sent}} in the last hour",
+	"Orca 봇 사전 승인":                      "Orca bot pre-approval",
+	"고른 내 에이전트 두 개 사이에서 고정 형식 하나만 발송마다 승인하지 않고 보냅니다. 본문 2 KB, 시간당 30건까지이며 30일 뒤 끝납니다. 키나 에이전트를 철회해도 끝납니다. 받은 본문은 여전히 신뢰하지 않는 데이터입니다.": "Between two of your agents you choose, one fixed form is sent without approving each send. Up to 2 KB of body and 30 per hour; it ends after 30 days. Revoking a key or an agent also ends it. Received bodies are still untrusted data.",
+	"받는 에이전트":  "Receiving agent",
+	"보내는 에이전트": "Sending agent",
+	"사전 승인 끄기": "Turn off pre-approval",
+	"사전 승인 끄기: {{name .From}} → {{name .To}} / {{.Kind}}": "Turn off pre-approval: {{name .From}} → {{name .To}} / {{.Kind}}",
+	"사전 승인 만들기":   "Create pre-approval",
+	"사전 승인이 없습니다": "No pre-approvals",
+	"이 형식만 30일 동안 발송별 승인 없이 보내는 데 동의합니다.": "I agree to send only this form without per-send approval for 30 days.",
+	"형식": "Form",
 	// human-agents
 	"내 에이전트와 연결 상태": "My agents and connection status",
 	"서버가 확인한 상태만 보입니다. 앱 설치·도구 검색·세션 연결·온라인 여부는 이 화면에서 확인하지 않습니다.": "Only what the server has confirmed is shown. App installation, tool discovery, session connection and online presence are not checked on this screen.",

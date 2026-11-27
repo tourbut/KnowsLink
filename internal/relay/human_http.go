@@ -87,7 +87,7 @@ func (s *Service) humanRoutes(mux *http.ServeMux) {
 	}
 	mux.HandleFunc("GET /home/friends/{id}", s.humanPage("friend"))
 	mux.HandleFunc("GET /home/legacy", s.legacyHomePage)
-	for _, path := range []string{"profile", "agent-name", "friends/request", "friends/decision", "friend-code", "self-connect", "conversation/send", "language"} {
+	for _, path := range []string{"profile", "agent-name", "friends/request", "friends/decision", "friend-code", "self-connect", "conversation/send", "language", "grant-create", "grant-revoke"} {
 		mux.HandleFunc("POST /home/"+path, s.humanAction(path))
 	}
 }
@@ -244,6 +244,7 @@ func (st *State) humanView(id string, session *Session, path string, r *http.Req
 			}
 		}
 		v["Attempts"], v["Unnamed"], v["NewName"] = st.ownAttempts(m.Owner), unnamed, st.defaultName(m.Owner, "", pageLang(r, m))
+		v["Grants"], v["GrantKinds"] = st.ownGrants(m.Owner, now, lang), grantKinds
 	case "friends":
 		v["Title"], v["Section"] = "친구", "friends"
 	case "friend", "new":
@@ -453,6 +454,23 @@ func (s *Service) humanAction(path string) http.HandlerFunc {
 				}
 				view["FormTemplate"], view["FormStatus"], view["Problem"] = "human-account", 422, "지원하지 않는 언어입니다. 저장된 설정은 그대로입니다. 한국어 또는 English를 선택하세요."
 				return view, nil
+			case "grant-create":
+				// Only this owner session makes a grant: no agent route exists, and a model's confirmed:true never reaches here (S2).
+				if now.Sub(session.Verified) >= reauthWindow {
+					return refusal{status: 403, problem: safeProblem(fault("reauth_required")), reauth: true}, nil
+				}
+				if r.FormValue("consent") != "yes" {
+					return fail(fault("invalid_schema"))
+				}
+				if e := st.createGrant(m.Owner, r.FormValue("from"), r.FormValue("to"), r.FormValue("kind"), now); e != nil {
+					return fail(e)
+				}
+				return "/home/agents#grants", nil
+			case "grant-revoke":
+				if e := st.revokeGrant(m.Owner, r.FormValue("grant")); e != nil {
+					return fail(e)
+				}
+				return "/home/agents#grants", nil
 			case "self-connect":
 				if r.FormValue("consent") != "yes" {
 					return fail(fault("invalid_schema"))

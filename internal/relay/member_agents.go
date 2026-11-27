@@ -139,7 +139,7 @@ func connectLimit(st *State, owner, agent, mode string, now time.Time) (problem 
 }
 
 // hostNames are default agent names (A-04): the hosts a client may name when it starts, plus remote Dots.
-var hostNames = map[string]string{"claude": "Claude Code", "codex": "Codex", "grok": "Grok Bot", "dots": "Dots"}
+var hostNames = map[string]string{"claude": "Claude Code", "codex": "Codex", "grok": "Grok Bot", "orca": "Orca Bot", "dots": "Dots"}
 
 // defaultName is the host name, numbered from 2 while owner's live agents or approved attempts hold it; an unknown
 // host counts "내 에이전트 N" from 1. It never uses device, account or email details, since friends see the name.

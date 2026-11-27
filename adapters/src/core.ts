@@ -169,6 +169,7 @@ export class Adapter {
           "agent_rate",
           "service_capacity",
           "invalid_schema",
+          "approval_required",
           "invalid_json",
           "unavailable",
         ]);

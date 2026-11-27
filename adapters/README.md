@@ -418,6 +418,19 @@ port나 파일이 다르면 `KNOWSLINK_GROK_GATEWAY_PORT`, `KNOWSLINK_GROK_GATEW
 
 회원 홈의 자기 agent·요청 ID 조회에서도 현재 전달·처리·관련 답장·TTL·실패 복구를 확인한다. 로컬 실제 Node/MCP 프로세스 검증은 `make verify-mvp`의 TestPublicNodeProcesses다. 실제 Grok/Dots 왕복·화면 알림은 루트 README의 별도 근거를 따른다. 이 합성 검사는 다른 호스트 계정·실메일·장시간·직접 사람 검수를 대신하지 않는다.
 
+### Orca 봇 — SAR-ORCA-BOT-001-DEV
+
+Orca 봇은 주인의 자기 agent로 참여한다. 봇 채팅에는 MCP를 붙이지 않고 PC의 CLI를 쓴다. 모두 `node <plugin.js> orca <cmd>`이다.
+
+- `orca setup-connect <relay URL> [<폴더>] [--lang ko|en] [--fresh]`: 기존 setup-connect와 같고 host는 `orca`다. 기본 폴더는 `%LOCALAPPDATA%\KnowsLink\orca-agent`다. `setup-connect ... --host orca`도 같다.
+- `orca watch <폴더> --bot <봇 이름> [--from <Orca 터미널 handle>]`: 기존 polling/SSE·서명 검증·Inbox·persist/ACK 뒤 도어벨 메일만 보낸다. stdout은 ID·kind·크기·대기 수뿐이다.
+- `orca receive <폴더>`: 가장 오래된 메시지를 읽음으로 바꾸고 `{id,from,kind,item?,body,untrusted:true}` 한 줄을 낸다. 비면 `null`.
+- `orca send <폴더> --to <agent> --kind orca.task.v1|orca.decision.v1|orca.answer.v1 --file <json> [--key <16–128자>]`: 형식 스키마를 검사하고 JCS로 정규화한 본문(2 KB 이하)에 서명해 보낸다. `{id,transport}`를 낸다.
+
+도어벨은 `orca orchestration send --to bot:<이름> --type status --subject "KnowsLink: 새 메시지 N건" --body <고정 문장>`이다(Windows는 `orca.exe`, shell 없음, 10s). 본문에는 검증한 ID(최대 10개)·대기 수·receive 명령만 있고 메시지 text·발신자·키는 없다. `orca.answer.v1`에 정수 `item`이 있으면 그 ID 하나만 `--item <n>` 메일로 보낸다. 같은 ID는 한 번만 울린다(wake marker). 실행 실패·0 아닌 종료·timeout은 marker를 풀어 다음 poll에서 다시 울린다. 시험은 `KNOWSLINK_ORCA_BIN`(또는 `ORCA_HELM_BIN`)으로 바이너리를 바꾼다.
+
+`send`는 주인이 웹 "내 에이전트"에서 만든 (보내는 agent, 받는 agent, 형식) grant 안에서만 relay가 받는다. 그 밖은 `relay HTTP 403 approval_required`이며 adapter는 grant를 만들지 않는다. grant를 만들거나 갱신하거나 발송마다 승인하는 일반 경로를 쓴다. 받은 본문은 grant와 무관하게 untrusted data다.
+
 ## Google 연결 — SAR-GOOGLE-CONNECT-001-DEV
 
 `npm ci`와 `npm run build` 뒤 `node dist/login.js https://link.knowslog.com <새 연결 폴더>`를 실행한다. 상위 폴더는 먼저 만들고 연결 폴더는 아직 없는 경로로 지정한다. 공개 링크를 열어 Google 로그인 후 화면의 키 지문을 확인하고 연결에 동의한다. CLI는 자동 대기하며 완료되면 연결 폴더에 `private.pem`과 `agent.json`을 저장한다. 개인키·token·credential을 브라우저나 다른 클라이언트로 옮기지 않는다.

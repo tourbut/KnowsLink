@@ -25,6 +25,7 @@ type PublicText struct {
 	Exp     string    `json:"exp"`
 	Key     string    `json:"idempotency_key"`
 	ReplyTo string    `json:"reply_to,omitempty"`
+	Kind    string    `json:"kind,omitempty"` // a pre-approved fixed form (grants.go); its text is that form's canonical JSON
 	Sig     Signature `json:"sig"`
 }
 
@@ -38,7 +39,7 @@ func parsePublicText(raw []byte) (*PublicText, error) {
 	}
 	var fields map[string]any
 	_ = json.Unmarshal(raw, &fields)
-	if !object(fields, []string{"v", "id", "from", "to", "text", "exp", "idempotency_key", "sig"}, "reply_to") || !object(fields["sig"], []string{"alg", "kid", "value"}) {
+	if !object(fields, []string{"v", "id", "from", "to", "text", "exp", "idempotency_key", "sig"}, "reply_to", "kind") || !object(fields["sig"], []string{"alg", "kid", "value"}) {
 		return nil, fault("invalid_schema")
 	}
 	if e.V != "knowslink.text.v1" || !uuidPattern.MatchString(e.ID) || !agentPattern.MatchString(e.From) || !agentPattern.MatchString(e.To) || e.From == e.To || !kidPattern.MatchString(e.Sig.Kid) || len(e.Sig.Kid) > 128 || e.Sig.Alg != "Ed25519" || strings.TrimSpace(e.Text) == "" || len(e.Text) > 4096 || len(e.Key) < 16 || len(e.Key) > 128 {
@@ -52,6 +53,11 @@ func parsePublicText(raw []byte) (*PublicText, error) {
 			return nil, fault("invalid_schema")
 		}
 	}
+	if v, exists := fields["kind"]; exists {
+		if s, ok := text(v); !ok || s == "" || len(s) > 64 || e.ReplyTo != "" {
+			return nil, fault("invalid_schema")
+		}
+	}
 	if v, exists := fields["reply_to"]; exists {
 		if s, ok := text(v); !ok || !uuidPattern.MatchString(s) {
 			return nil, fault("invalid_schema")
@@ -59,12 +65,22 @@ func parsePublicText(raw []byte) (*PublicText, error) {
 	}
 	return e, nil
 }
+
+// kind enters the signed and digested fields only when present, so texts signed before it keep their bytes.
 func (e *PublicText) signingBytes() []byte {
-	raw, _ := Canonical(map[string]any{"v": e.V, "id": e.ID, "from": e.From, "to": e.To, "text": e.Text, "exp": e.Exp, "idempotency_key": e.Key, "reply_to": e.ReplyTo})
+	fields := map[string]any{"v": e.V, "id": e.ID, "from": e.From, "to": e.To, "text": e.Text, "exp": e.Exp, "idempotency_key": e.Key, "reply_to": e.ReplyTo}
+	if e.Kind != "" {
+		fields["kind"] = e.Kind
+	}
+	raw, _ := Canonical(fields)
 	return append([]byte("KNOWSLINK-TEXT\x00knowslink.text.v1\x00Ed25519\x00"+e.Sig.Kid+"\x00"), raw...)
 }
 func (e *PublicText) digest() string {
-	raw, _ := Canonical(map[string]any{"v": e.V, "from": e.From, "to": e.To, "text": e.Text, "reply_to": e.ReplyTo})
+	fields := map[string]any{"v": e.V, "from": e.From, "to": e.To, "text": e.Text, "reply_to": e.ReplyTo}
+	if e.Kind != "" {
+		fields["kind"] = e.Kind
+	}
+	raw, _ := Canonical(fields)
 	sum := sha256.Sum256(raw)
 	return base64.RawURLEncoding.EncodeToString(sum[:])
 }
@@ -122,12 +138,22 @@ func (st *State) ingestPublicText(agent string, e *PublicText, now time.Time) (a
 			return nil, fault("expired")
 		}
 	}
+	var grant *Grant
+	if e.Kind != "" {
+		if grant = st.grantFor(e, scope, now); grant == nil {
+			return nil, fault("approval_required")
+		}
+	}
 	if !st.messageCapacity(false) {
 		return nil, fault("capacity")
 	}
 	m.Receipt.Exp = exp
 	m.Envelope, _ = json.Marshal(e)
-	st.copyConversation(m, e.Text, "agent")
+	if grant != nil {
+		grant.Sent = append(grant.Sent, now) // a pre-approved form keeps no conversation copy: only kind, ID and size stay
+	} else {
+		st.copyConversation(m, e.Text, "agent")
+	}
 	st.Messages[e.ID] = m
 	st.Idempotency[e.From+"/"+e.Key] = e.ID
 	if parent != nil {

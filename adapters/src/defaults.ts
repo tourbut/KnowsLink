@@ -18,12 +18,14 @@ try {
 } catch {
   // No defaults.json: dev builds and host plugins stay held unless configured.
 }
-const root =
+export const root =
   env.KNOWSLINK_AGENT_ROOT ??
   (process.platform === "win32" && env.LOCALAPPDATA
     ? join(env.LOCALAPPDATA, "KnowsLink")
     : undefined);
-const host = ["claude", "codex", "grok"].includes(env.KNOWSLINK_HOST ?? "")
+const host = ["claude", "codex", "grok", "orca"].includes(
+  env.KNOWSLINK_HOST ?? "",
+)
   ? env.KNOWSLINK_HOST
   : "local";
 // One fixed folder per host: after an MCP restart status and receive find the same agent, and a retry reuses or sets it aside (R-01).
