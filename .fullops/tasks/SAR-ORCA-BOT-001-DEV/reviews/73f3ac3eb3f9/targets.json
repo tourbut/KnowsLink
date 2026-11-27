@@ -1,0 +1,241 @@
+{
+  "v": 1,
+  "key": "SAR-ORCA-BOT-001-DEV",
+  "base": "c556f2cbbdb5095d6f2069fa5f03d062a6ca291b",
+  "merge_base": "c556f2cbbdb5095d6f2069fa5f03d062a6ca291b",
+  "head": "73f3ac3eb3f9092da6d1686a8526e5b7d6be5cc4",
+  "policy_sha256": "cdce7f68e775893271409647f184d2fdc2e6f2e7bdcbe51998428cfa188c65ad",
+  "files": [
+    {
+      "path": ".fullops/docs/design-docs/architecture.md",
+      "status": "M",
+      "rule": "Check changed instructions and documents against actual behavior, requirements and linked sources. Identify contradictions, missing required artifacts and broken references. Preserve the project's document templates and tone; report only concrete defects.",
+      "preset": null,
+      "reason": ""
+    },
+    {
+      "path": ".fullops/docs/design-docs/interface-design.md",
+      "status": "M",
+      "rule": "Check changed instructions and documents against actual behavior, requirements and linked sources. Identify contradictions, missing required artifacts and broken references. Preserve the project's document templates and tone; report only concrete defects.",
+      "preset": null,
+      "reason": ""
+    },
+    {
+      "path": ".fullops/docs/design-docs/module-design.md",
+      "status": "M",
+      "rule": "Check changed instructions and documents against actual behavior, requirements and linked sources. Identify contradictions, missing required artifacts and broken references. Preserve the project's document templates and tone; report only concrete defects.",
+      "preset": null,
+      "reason": ""
+    },
+    {
+      "path": ".fullops/guide/roles/dev.md",
+      "status": "M",
+      "rule": "Check changed instructions and documents against actual behavior, requirements and linked sources. Identify contradictions, missing required artifacts and broken references. Preserve the project's document templates and tone; report only concrete defects.",
+      "preset": null,
+      "reason": ""
+    },
+    {
+      "path": ".fullops/inbox/to_dev.md",
+      "status": "M",
+      "rule": "Check changed instructions and documents against actual behavior, requirements and linked sources. Identify contradictions, missing required artifacts and broken references. Preserve the project's document templates and tone; report only concrete defects.",
+      "preset": "skipped",
+      "reason": "검증 증거·하네스 기록이다. 파일마다 열람하지 않는다."
+    },
+    {
+      "path": ".fullops/tasks/SAR-ORCA-BOT-001-DEV/qa/fake-orca.go.txt",
+      "status": "A",
+      "rule": null,
+      "preset": "skipped",
+      "reason": "검증 증거·하네스 기록이다. 파일마다 열람하지 않는다."
+    },
+    {
+      "path": ".fullops/tasks/SAR-ORCA-BOT-001-DEV/qa/report.md",
+      "status": "A",
+      "rule": "Check changed instructions and documents against actual behavior, requirements and linked sources. Identify contradictions, missing required artifacts and broken references. Preserve the project's document templates and tone; report only concrete defects.",
+      "preset": "skipped",
+      "reason": "검증 증거·하네스 기록이다. 파일마다 열람하지 않는다."
+    },
+    {
+      "path": ".fullops/tasks/SAR-ORCA-BOT-001-DEV/qa/s6-result.json",
+      "status": "A",
+      "rule": "Check valid configuration and consistency with this repository: roles coor/designer/dev/ops/tester, fullops/<role> branches, origin/main, actual project phase status, and no secrets. Product planning belongs to designer; technical design and implementation belong to dev.",
+      "preset": "skipped",
+      "reason": "검증 증거·하네스 기록이다. 파일마다 열람하지 않는다."
+    },
+    {
+      "path": ".fullops/tasks/SAR-ORCA-BOT-001-DEV/qa/s6.py",
+      "status": "A",
+      "rule": null,
+      "preset": "skipped",
+      "reason": "검증 증거·하네스 기록이다. 파일마다 열람하지 않는다."
+    },
+    {
+      "path": "Makefile",
+      "status": "M",
+      "rule": null,
+      "preset": null,
+      "reason": ""
+    },
+    {
+      "path": "adapters/README.md",
+      "status": "M",
+      "rule": "Check changed instructions and documents against actual behavior, requirements and linked sources. Identify contradictions, missing required artifacts and broken references. Preserve the project's document templates and tone; report only concrete defects.",
+      "preset": null,
+      "reason": ""
+    },
+    {
+      "path": "adapters/package.json",
+      "status": "M",
+      "rule": "Check valid configuration and consistency with this repository: roles coor/designer/dev/ops/tester, fullops/<role> branches, origin/main, actual project phase status, and no secrets. Product planning belongs to designer; technical design and implementation belong to dev.",
+      "preset": null,
+      "reason": ""
+    },
+    {
+      "path": "adapters/skills/knowslink/SKILL.md",
+      "status": "M",
+      "rule": "Check changed instructions and documents against actual behavior, requirements and linked sources. Identify contradictions, missing required artifacts and broken references. Preserve the project's document templates and tone; report only concrete defects.",
+      "preset": null,
+      "reason": ""
+    },
+    {
+      "path": "adapters/src/core.ts",
+      "status": "M",
+      "rule": null,
+      "preset": null,
+      "reason": ""
+    },
+    {
+      "path": "adapters/src/defaults.ts",
+      "status": "M",
+      "rule": null,
+      "preset": null,
+      "reason": ""
+    },
+    {
+      "path": "adapters/src/inbox.ts",
+      "status": "M",
+      "rule": null,
+      "preset": null,
+      "reason": ""
+    },
+    {
+      "path": "adapters/src/login.ts",
+      "status": "M",
+      "rule": null,
+      "preset": null,
+      "reason": ""
+    },
+    {
+      "path": "adapters/src/mcp.ts",
+      "status": "M",
+      "rule": null,
+      "preset": null,
+      "reason": ""
+    },
+    {
+      "path": "adapters/src/orca.test.ts",
+      "status": "A",
+      "rule": null,
+      "preset": null,
+      "reason": ""
+    },
+    {
+      "path": "adapters/src/orca.ts",
+      "status": "A",
+      "rule": null,
+      "preset": null,
+      "reason": ""
+    },
+    {
+      "path": "adapters/src/text.ts",
+      "status": "M",
+      "rule": null,
+      "preset": null,
+      "reason": ""
+    },
+    {
+      "path": "internal/relay/capacity.go",
+      "status": "M",
+      "rule": null,
+      "preset": null,
+      "reason": ""
+    },
+    {
+      "path": "internal/relay/cleanup_admission.go",
+      "status": "M",
+      "rule": null,
+      "preset": null,
+      "reason": ""
+    },
+    {
+      "path": "internal/relay/grants.go",
+      "status": "A",
+      "rule": null,
+      "preset": null,
+      "reason": ""
+    },
+    {
+      "path": "internal/relay/grants_test.go",
+      "status": "A",
+      "rule": null,
+      "preset": null,
+      "reason": ""
+    },
+    {
+      "path": "internal/relay/http.go",
+      "status": "M",
+      "rule": null,
+      "preset": null,
+      "reason": ""
+    },
+    {
+      "path": "internal/relay/human_http.go",
+      "status": "M",
+      "rule": null,
+      "preset": null,
+      "reason": ""
+    },
+    {
+      "path": "internal/relay/human_pages.go",
+      "status": "M",
+      "rule": null,
+      "preset": null,
+      "reason": ""
+    },
+    {
+      "path": "internal/relay/i18n_en_human.go",
+      "status": "M",
+      "rule": null,
+      "preset": null,
+      "reason": ""
+    },
+    {
+      "path": "internal/relay/member_agents.go",
+      "status": "M",
+      "rule": null,
+      "preset": null,
+      "reason": ""
+    },
+    {
+      "path": "internal/relay/orca_roundtrip_fixture_test.go",
+      "status": "A",
+      "rule": null,
+      "preset": null,
+      "reason": ""
+    },
+    {
+      "path": "internal/relay/public_text.go",
+      "status": "M",
+      "rule": null,
+      "preset": null,
+      "reason": ""
+    },
+    {
+      "path": "internal/relay/store.go",
+      "status": "M",
+      "rule": null,
+      "preset": null,
+      "reason": ""
+    }
+  ]
+}
