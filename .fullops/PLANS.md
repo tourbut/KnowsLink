@@ -2328,3 +2328,4 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 - 2026-11-28 14:22 SAR-ORCA-HOST-001-DEV → dev | claude/claude-opus-5-5/high | fresh | run run_37db830cb58e | 재배정 0 | -
 - 2026-11-28 14:54 SAR-ORCA-HOST-001-DEV → dev | claude/claude-opus-5-5/high | fresh | run run_06249106ad70 | 재배정 1 | -
 - 2026-11-28 15:03 SAR-ORCA-HOST-002-DEV → dev | claude/claude-opus-5-5/medium | fresh | run run_06249106ad70 | 재배정 0 | -
+- 2026-11-28 15:35 SAR-ORCA-HOST-001-OPS → ops | claude/claude-sonnet-5-5/high | fresh | run run_6c6b6e07c005 | 재배정 0 | -
