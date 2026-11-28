@@ -454,21 +454,18 @@ node <빌드한 adapters\dist\plugin.js> orca install <연결 폴더> --bot <봇
 
 - `%LOCALAPPDATA%\KnowsLink\orca\`(`--dir`로 바꿈)에 `dist\plugin.js`, 실행 중인 `node.exe`, `defaults.json`을 둔다. 다시 실행하면 덮어써 갱신한다. 같은 크기의 `node.exe`는 다시 복사하지 않는다(봇 MCP가 실행 중이면 잠겨 있다).
 - `defaults.json`에는 `KNOWSLINK_MODE=public-node`, `RELAY_URL`(연결 폴더의 `agent.json` 값), `KNOWSLINK_HOST=orca`, `KNOWSLINK_AGENT_FOLDER`, `KNOWSLINK_ORCA_BOT`, `KNOWSLINK_AUTO_RECEIVE=off`만 있다. 키·credential은 연결 폴더에만 있다. 설정한 환경 변수가 이긴다.
-- 자동 시작은 관리자 권한이 필요 없는 `HKCU\Software\Microsoft\Windows\CurrentVersion\Run`의 `KnowsLinkOrcaWatch` 값이다. 값은 `<설치>
-ode.exe <설치>\dist\plugin.js orca start`다. 로그온 때 콘솔 창이 잠깐 보였다가 닫히고 watch는 창 없이 돈다. 출력은 `<설치>\watch.log`(ID·kind·크기·대기 수)다.
-- 설치는 이 폴더의 기존 watch를 멈추고 파일을 바꾼 뒤 watch를 다시 시작한다. 출력 한 줄의 `agent`로 기존 agent ID를 확인한다. `toolsAdd`가 봇 채팅에서 실행할 한 줄이다.
+- 자동 시작은 관리자 권한이 필요 없는 `HKCU\Software\Microsoft\Windows\CurrentVersion\Run`의 `KnowsLinkOrcaWatch` 값이다. 값은 `<설치>\node.exe <설치>\dist\plugin.js orca start`다. 로그온 때 콘솔 창이 잠깐 보였다가 닫히고 watch는 창 없이 돈다. 출력은 `<설치>\watch.log`(ID·kind·크기·대기 수)다.
+- 설치는 이 폴더의 기존 watch를 멈추고 파일을 바꾼 뒤 watch를 다시 시작한다. 출력 한 줄의 `agent`로 기존 agent ID를 확인한다. `toolsAdd`가 봇 채팅에서 실행할 한 줄이다. 설치 경로에 공백이 있으면 경로마다 큰따옴표가 붙고 명령 전체는 작은따옴표로 감싼다(PowerShell·sh에서 그대로 실행된다).
 
   ```text
-  orca bot tools add "<설치>
-ode.exe <설치>\dist\plugin.js" --name knowslink
+  orca bot tools add "<설치>\node.exe <설치>\dist\plugin.js" --name knowslink
   ```
 
-- 중복 실행 방지: watch는 시작할 때 `<연결 폴더>\orca-watch.lock`(pid·시작 시각)을 잡는다. 살아 있는 watch가 잡고 있으면 `orca watch already running`으로 끝난다. 이번 부팅 전에 쓴 잠금과 죽은 pid의 잠금은 버린다.
+- 중복 실행 방지: watch는 시작할 때 `<연결 폴더>\orca-watch.lock`(pid·시작 시각)을 잡는다. 살아 있는 watch가 잡고 있으면 `orca watch already running`으로 끝난다. 이번 부팅 전에 쓴 잠금, 죽은 pid의 잠금, 그 pid가 `node`로 `orca watch`를 돌리지 않는 잠금(같은 부팅 안 pid 재사용)은 낡은 잠금으로 지우고 진행한다. 낡은 잠금의 pid는 kill하지 않는다. Windows는 `Get-CimInstance Win32_Process`, 그 밖은 `ps`로 이미지와 명령줄을 읽는다. watch가 정상 종료하거나 Ctrl+C로 끝나면 자기 잠금을 지운다.
 - 수신자는 watch 하나다. 봇 MCP는 `KNOWSLINK_AUTO_RECEIVE=off`라 자기 수신 loop를 돌리지 않는다. `knowslink_text_receive`는 같은 Inbox에서 읽고, 비었을 때만 relay에서 1건을 받는다(`orca receive`와 같다). `KNOWSLINK_HOST=orca`인 MCP에는 원격 `/mcp`와 같은 이름의 도구 둘이 더 있다. `knowslink_send`(`to`, `kind`, `body` 객체, `idempotency_key`)는 `orca send`와 같은 스키마 검사 뒤 grant 경로로 보낸다. 형식이 틀리면 `invalid_schema`, grant 밖이면 `relay HTTP 403 approval_required`다. `knowslink_receive`는 `orca receive`와 같은 `{id,from,kind,item?,body,untrusted:true}`를 `message`로 낸다. 일반 text는 `knowslink_text_send`이고 발송마다 승인한다. `knowslink_status`의 `state`는 relay에 연결하지 않고 설정만 읽으므로 늘 `public_node_configured_unverified`다.
-- 끄기: `<설치>
-ode.exe <설치>\dist\plugin.js orca autostart off`는 Run 값을 지우고 watch를 멈춘다. `orca stop`은 watch만 멈추고 `orca start`·`orca autostart on`으로 다시 켠다. 세 명령은 `defaults.json`의 폴더와 봇 이름을 쓴다.
+- 끄기: `<설치>\node.exe <설치>\dist\plugin.js orca autostart off`는 Run 값을 지우고 watch를 멈춘다. `orca stop`은 watch만 멈추고 `orca start`·`orca autostart on`으로 다시 켠다. 세 명령은 `defaults.json`의 폴더와 봇 이름을 쓴다.
 - 도어벨의 receive 명령은 설치된 `node.exe`의 전체 경로를 쓴다. 봇 셸의 PATH에 node가 없어도 된다.
-- 한계: macOS·Linux 자동 시작은 없다. 같은 부팅 안에서 pid가 재사용되면 잠금을 살아 있다고 볼 수 있다. `watch.log`는 순환하지 않는다.
+- 한계: macOS·Linux 자동 시작은 없다. 생존 판정은 명령줄의 폴더 인자까지는 맞추지 않는다(한 PC에서 폴더 여러 개의 watch를 돌릴 때만 문제다). `watch.log`는 순환하지 않는다.
 
 ## Google 연결 — SAR-GOOGLE-CONNECT-001-DEV
 

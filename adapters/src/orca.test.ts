@@ -9,19 +9,19 @@ import { AutoReceiver, Inbox } from "./inbox.js";
 import { privateDirectory } from "./private-files.js";
 import { registerOrcaTools } from "./orca-mcp.js";
 import { DEFAULT_KEYS } from "./defaults.js";
+import { OrcaWake, orcaBody, orcaView, type Exec } from "./orca.js";
 import {
-  OrcaWake,
   RUN_VALUE,
   autostartArgs,
   claimWatch,
   installedCommand,
+  isWatch,
   liveWatch,
-  orcaBody,
   orcaDefaults,
-  orcaView,
+  releaseWatch,
+  toolsAdd,
   watchLock,
-  type Exec,
-} from "./orca.js";
+} from "./orca-host.js";
 import {
   textSigningBytes,
   type ReceivedText,
@@ -260,6 +260,14 @@ try {
     installedCommand("C:\\Program Files\\K"),
     `"${join("C:\\Program Files\\K", "node.exe")}" "${join("C:\\Program Files\\K", "dist", "plugin.js")}"`,
   );
+  assert.equal(
+    toolsAdd(installedCommand("C:\\K\\orca")),
+    `orca bot tools add "${join("C:\\K\\orca", "node.exe")} ${join("C:\\K\\orca", "dist", "plugin.js")}" --name knowslink`,
+  );
+  assert.equal(
+    toolsAdd(installedCommand("C:\\Program Files\\K")),
+    `orca bot tools add '"${join("C:\\Program Files\\K", "node.exe")}" "${join("C:\\Program Files\\K", "dist", "plugin.js")}"' --name knowslink`,
+  );
   const runKey = "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Run";
   assert.deepEqual(autostartArgs("x y"), [
     "add",
@@ -284,6 +292,52 @@ try {
   );
   assert.equal(await liveWatch(wf), null);
   assert.equal(await claimWatch(wf), null);
+  // SAR-ORCA-HOST-002: a live pid of this boot counts only if it runs node `orca watch`; otherwise the lock is stale.
+  const node = { exe: "C:\\K\\orca\\node.exe", cmd: "" };
+  assert.ok(
+    isWatch({
+      ...node,
+      cmd: '"C:\\K\\orca\\node.exe" C:\\K\\orca\\dist\\plugin.js orca watch C:\\K\\a --bot b',
+    }),
+  );
+  assert.ok(
+    isWatch({
+      exe: "/usr/bin/node",
+      cmd: "/usr/bin/node /k/plugin.js orca watch /k/a --bot b",
+    }),
+  );
+  assert.ok(
+    !isWatch({ ...node, cmd: '"C:\\K\\orca\\node.exe" plugin.js orca start' }),
+  );
+  assert.ok(
+    !isWatch({
+      exe: "C:\\Windows\\notepad.exe",
+      cmd: "notepad.exe orca watch",
+    }),
+  );
+  assert.ok(!isWatch(null));
+  const other = process.ppid; // alive, this boot, not this process
+  const since = new Date().toISOString();
+  await writeFile(watchLock(wf), JSON.stringify({ pid: other, since }));
+  assert.equal(
+    await liveWatch(wf, async () => ({ exe: "C:\\x\\cmd.exe", cmd: "cmd" })),
+    null,
+  );
+  assert.equal(await liveWatch(wf, async () => null), null);
+  const watching = async () => ({
+    exe: "C:\\K\\node.exe",
+    cmd: "node plugin.js orca watch x",
+  });
+  assert.equal((await liveWatch(wf, watching))?.pid, other);
+  assert.equal((await claimWatch(wf, watching))?.pid, other);
+  // A reused pid: the stale lock is replaced, and release removes only our own lock.
+  assert.equal(await claimWatch(wf, async () => null), null);
+  assert.equal((await liveWatch(wf))?.pid, process.pid);
+  releaseWatch(wf);
+  assert.equal(await liveWatch(wf), null);
+  await writeFile(watchLock(wf), JSON.stringify({ pid: other, since }));
+  releaseWatch(wf);
+  assert.equal((await liveWatch(wf, watching))?.pid, other);
   process.stdout.write(
     "PASS: orca schema, signing bytes without kind unchanged, doorbell metadata only, ring once, retry after failure, --item answer, untrusted receive, fixed install defaults, autostart argv, one watch per folder\n",
   );
