@@ -4,7 +4,7 @@ title: 데이터베이스설계서
 status: review
 updated: 2026-11-28
 owner: dev
-tasks: [SAR-MVP-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-SSE-INSTALL-001-DEV, SAR-HUMAN-PEER-001-DEV, SAR-REFACTOR-002-DEV, SAR-DB-WAIT-001, SAR-MSG-EPHEMERAL-001, SAR-REDIS-CAP-001-DEV]
+tasks: [SAR-MVP-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-SSE-INSTALL-001-DEV, SAR-HUMAN-PEER-001-DEV, SAR-REFACTOR-002-DEV, SAR-DB-WAIT-001, SAR-MSG-EPHEMERAL-001, SAR-REDIS-CAP-001-DEV, SAR-EVENTS-SECRET-001-DEV]
 upstream: [D02]
 summary: singleton Postgres 상태와 epoch CAS 및 처리량 한계를 정의한다
 ---
@@ -80,6 +80,10 @@ SAR-PUBLIC-IDENTITY-001은 새 migration 없이 같은 JSON에 Member·Identity�
 ### Remote OAuth·Cloud 설치
 
 Remote와 Streams는 기존 relay_state JSON의 additive optional field다. 신규 SQL migration·새 DB/계정·운영 schema 변경은 없다. 과거 JSON은 nil map을 허용하고 최초 실제 remote consent가 설치만 추가한다. 기존 owner/agent/pair/message·generation은 유지한다. 새 서버 보관 개인키·callback secret은 DB 접근권한과 백업 비공개를 전제로 하며 Google token을 저장하지 않는다. 구독 상한128·설치당4, 설치 상한500을 둔다. 세부 만료/철회와 재시도는 REMOTE 기록을 따른다.
+
+**저장 secret 봉인(SAR-EVENTS-SECRET-001-DEV).** Events 구독의 `Secret`·`OldSecret`은 `sealed:v1:` + base64(nonce‖AES-256-GCM 암호문)다. 키는 env `KNOWSLINK_SEAL_KEY`(base64 32바이트)뿐이고 process 메모리에만 있다. AAD는 구독 ID라서 다른 구독으로 옮긴 값은 열리지 않는다. 공용 helper는 `internal/relay/seal.go`의 `Sealer.Seal/Open(plain, aad)`이며 다음 과제(routine webhook key)는 agent ID를 AAD로 같은 키를 쓴다. 키가 없으면 새 구독을 거절해 평문을 쓰지 않는다. 잘못된 키는 기동 실패다. 새 필드 `Beta`·`Message`(Beta 배달 `webhook-id`)는 additive optional이다. SQL migration은 없다.
+- **이행:** 배포 전 평문(`whsec_` 접두) 값은 읽기 fallback으로 계속 서명·비교한다. 같은 구독의 다음 subscribe/refresh가 성공하면 항상 봉인 값으로 다시 쓴다. 갱신되지 않은 평문 구독은 TTL(최대 1시간) 뒤 정리된다. 그래서 배포 뒤 약 1시간이 지나면 평문이 상태에 남지 않는다(백업·WAL의 이전 tuple은 보존 기간까지 남는다).
+- **키 분실·교체:** 봉인 값이 열리지 않으면 배달 때 구독을 410처럼 지운다. 호스트의 다음 refresh가 새 구독으로 검증하고 새 키로 봉인한다. 키 교체도 같은 경로로 수렴한다(최대 1시간 Events 공백).
 
 ## SAR-PUBLIC-AGENTS-001 저장 변경
 

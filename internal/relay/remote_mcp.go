@@ -96,13 +96,15 @@ func (s *Service) remoteMCP(w http.ResponseWriter, r *http.Request) {
 			}
 			return map[string]any{"protocolVersion": version, "capabilities": map[string]any{"tools": map[string]any{}}, "serverInfo": remoteServerInfo}, nil
 		case "server/discover":
-			return map[string]any{"resultType": "complete", "supportedVersions": []string{remoteModern}, "capabilities": map[string]any{"tools": map[string]any{}, "events": map[string]any{}}, "serverInfo": remoteServerInfo, "instructions": remoteInstructions}, nil
+			return map[string]any{"resultType": "complete", "supportedVersions": []string{remoteModern}, "capabilities": map[string]any{"tools": map[string]any{}, "events": map[string]any{}, "extensions": map[string]any{remoteEventsExtension: map[string]any{}}}, "serverInfo": remoteServerInfo, "instructions": remoteInstructions}, nil
 		case "ping":
 			return map[string]any{}, nil
 		case "tools/list":
 			return map[string]any{"tools": remoteTools()}, nil
 		case "events/list":
-			return map[string]any{"events": []any{remoteEventDefinition()}}, nil
+			return map[string]any{"events": []any{remoteEventDefinition(modern && remoteDeclaresEvents(in.Params), s.Sealer != nil)}}, nil
+		case "events/poll":
+			return st.remotePoll(id, i, in.Params, now)
 		case "tools/call":
 			var p struct {
 				Name      string          `json:"name"`

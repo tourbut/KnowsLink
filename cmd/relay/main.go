@@ -84,6 +84,10 @@ func run(ctx context.Context) error {
 		return err
 	}
 	service := &relay.Service{Pool: pool, Redis: rdb, Stopping: ctx, TestAgents: testAgents, SyntheticSignup: os.Getenv("KNOWSLINK_SYNTHETIC_SIGNUP") == "1", InstallDir: os.Getenv("KNOWSLINK_INSTALL_DIR")}
+	// A malformed key stops startup; an absent key only turns webhook Events subscriptions off.
+	if service.Sealer, err = relay.NewSealer(os.Getenv("KNOWSLINK_SEAL_KEY")); err != nil {
+		return err
+	}
 	googleCtx, googleCancel := context.WithTimeout(ctx, 6*time.Second)
 	service.Google, err = relay.ConfigureGoogle(googleCtx, os.Getenv("KNOWSLINK_GOOGLE_CLIENT_ID"), os.Getenv("KNOWSLINK_GOOGLE_CLIENT_SECRET"), os.Getenv("KNOWSLINK_GOOGLE_REDIRECT_URL"))
 	googleCancel()
@@ -114,7 +118,7 @@ func run(ctx context.Context) error {
 	}
 	result := make(chan error, 1)
 	go func() { result <- server.ListenAndServe() }()
-	log.Printf("relay starting; vendor effects and disclosure disabled; email login configured=%t; google login configured=%t; synthetic signup=%t", service.Mail != nil, service.Google != nil, service.SyntheticSignup)
+	log.Printf("relay starting; vendor effects and disclosure disabled; email login configured=%t; google login configured=%t; synthetic signup=%t; events webhook configured=%t", service.Mail != nil, service.Google != nil, service.SyntheticSignup, service.Sealer != nil)
 	select {
 	case err := <-result:
 		if !errors.Is(err, http.ErrServerClosed) {
