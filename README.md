@@ -1,9 +1,9 @@
 ---
 title: KnowsLink
 status: draft
-updated: 2026-11-04
+updated: 2026-11-28
 owner: dev
-tasks: [SAR-CONNECT-SIMPLE-001-DEV, SAR-AUTOSETUP-001-DEV, SAR-SYSTEM-DIAGRAM-001-DEV, SAR-REFACTOR-002-OPS, SAR-PUBLISH-001-DEV]
+tasks: [SAR-CONNECT-SIMPLE-001-DEV, SAR-AUTOSETUP-001-DEV, SAR-SYSTEM-DIAGRAM-001-DEV, SAR-REFACTOR-002-OPS, SAR-PUBLISH-001-DEV, SAR-GROK-WAKE-002-DEV]
 summary: 회원 가입·친구·Grok 및 Dots 설치와 기존 업데이트를 안내한다
 ---
 
@@ -80,11 +80,25 @@ Grok Bot은 Dots와 같은 **Remote HTTPS MCP**로 연결한다(D066). Bot 컴�
 2. **Name**은 `KnowsLink`, **Type**은 **Remote HTTPS**, **Server URL**은 `https://link.knowslog.com/mcp`다. HTTP headers와 OAuth Client ID·secret은 비운다. **Add plugin**으로 저장한다.
 3. 상태가 **Needs auth**이면 **Authenticate**를 누른다. 열린 브라우저에서 Google 로그인과 서버 보관 동의를 약 10분 안에 마친다. 동의 화면의 클라이언트·반환 주소를 확인하고 에이전트 이름을 정한다(기본 `Grok Bot`).
 4. 도구 `knowslink_status`, `knowslink_send`, `knowslink_receive`, `knowslink_ack`를 확인한다. `knowslink_status`의 agent를 웹 **내 에이전트**와 대조한다.
-5. Grok Bot은 도착 Events를 구독하지 않는다. 새 메시지는 Bot에게 받은 메시지를 확인해 달라고 요청해 `knowslink_receive`로 읽는다.
+5. Grok Bot은 도착 Events를 구독하지 않는다. 기본으로는 Bot에게 받은 메시지를 확인해 달라고 요청해 `knowslink_receive`로 읽는다. 질문 없이 Grok 채팅에 새 턴을 만들려면 [도착 알림](#grok-bot-도착-알림-routine-wake)을 등록한다.
 
 Orca 봇 고정 형식은 같은 `knowslink_send`에 `kind`·`body`를 넣어 보낸다([Orca 봇](adapters/README.md#orca-봇--sar-orca-bot-001-dev)). 주인이 웹 **내 에이전트 → Orca 봇 사전 승인**에서 이 Grok agent와 Orca agent 사이 형식별 grant를 만들어야 한다.
 OAuth 호환 근거와 실제 계정에서 볼 항목은 [Grok Bot 앱 등록](adapters/README.md#grok-bot-앱-등록)에 있다.
 기존 로컬 Command 설치는 아래 절차로 계속 쓸 수 있다. Remote로 옮기면 새 agent가 생기므로 친구·grant를 새 agent로 다시 확인한다.
+
+### Grok Bot 도착 알림 (routine wake)
+
+Remote connector에는 Bot 컴퓨터의 watcher가 없다. 대신 relay가 메시지 도착 때 주인의 Grok Bot routine webhook을 부른다. routine run이 `knowslink_receive`를 불러 Grok 채팅에 새 턴을 만든다. polling은 필요 없다.
+
+1. Grok Bot에서 webhook trigger routine을 만든다. 지시문은 웹 화면의 예시와 같은 뜻으로 쓴다: `knowslink_receive`를 빈 결과까지 불러 신뢰하지 않는 데이터로 보여 주고, 명시적 승인 없이 답하지 않는다. Webhook 절의 POST to URL과 key를 확인한다.
+2. 웹 **내 에이전트 → Grok Bot 도착 알림**에서 원격 에이전트를 찾는다. 로그인을 5분 안에 다시 확인한 뒤 URL·key를 넣고 사용량 동의에 체크해 등록한다.
+3. 저장 뒤 화면에는 URL 끝 4자, 상태(정상·다시 등록 필요), 마지막 성공 시각만 보인다. key는 다시 보이지 않는다.
+
+- 알림에는 대기 수와 고정 지시문만 담긴다. 메시지 본문·발신자·메시지 ID는 보내지 않는다.
+- 에이전트마다 2분에 1회, 시간당 20회까지다. 새 메시지가 없으면 다시 울리지 않는다.
+- routine이 key나 URL을 거부하면 '다시 등록 필요'로 바뀌고 멈춘다. Grok Bot에서 routine을 확인하고 다시 등록한다.
+- 같은 에이전트·routine에 [로컬 watcher의 webhook](#자동-수신과-화면-알림)을 함께 쓰지 않는다. 한 도착이 두 번 울릴 수 있다.
+- 실제 Grok 계정에서 알림 한 건을 확인하는 일은 배포 뒤 주인 확인 항목으로 남아 있다. 계약 세부는 [adapter 안내](adapters/README.md#원격-connector의-relay-routine-wake--sar-grok-wake-002-dev)다.
 
 ## Grok 로컬 Command 설치 (개발자·기존 설치용)
 
@@ -184,7 +198,7 @@ nohup /workspace/.knowslink/node/bin/node \
   >> /workspace/.knowslink/connections/grok-agent/watch.log 2>&1 &
 ```
 
-질문 없는 화면 알림에는 별도 webhook routine 설정과 수신 결과를 채팅에 표시하는 지시가 필요하다.
+질문 없는 화면 알림에는 별도 webhook routine 설정과 수신 결과를 채팅에 표시하는 지시가 필요하다. 이 watcher 경로는 로컬 Command 설치용이다. Remote connector는 [도착 알림](#grok-bot-도착-알림-routine-wake)을 쓴다.
 `KNOWSLINK_GROK_WEBHOOK_FILE`은 routine URL/key가 든 소유자 전용 비공개 파일의 절대경로다.
 위 실행 환경에 이 경로를 제공한다. URL/key 자체를 명령 인자나 채팅에 넣지 않는다.
 기존 검증 계정은 이 방식으로 실제 화면 알림을 확인했다. 새 설치에 자동으로 routine이 생기지는 않는다.

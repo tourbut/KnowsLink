@@ -369,6 +369,7 @@ type remoteDelivery struct {
 }
 type remoteWork struct {
 	Delivery *remoteDelivery
+	Routine  *routineJob
 	Next     time.Time
 }
 
@@ -525,7 +526,18 @@ func (s *Service) remoteListen(ctx context.Context) {
 	}
 	for ctx.Err() == nil {
 		read, done := context.WithTimeout(ctx, 3*time.Second)
-		v, err := s.transaction(read, func(st *State, now time.Time) (any, error) { return st.claimRemote(now), nil })
+		v, err := s.transaction(read, func(st *State, now time.Time) (any, error) {
+			work := st.claimRemote(now)
+			// Without a seal key no routine key can be opened, so routine wake stays off.
+			if work.Delivery == nil && s.Sealer != nil {
+				var next time.Time
+				work.Routine, next = st.claimRoutine(now)
+				if !next.IsZero() && (work.Next.IsZero() || next.Before(work.Next)) {
+					work.Next = next
+				}
+			}
+			return work, nil
+		})
 		done()
 		if err != nil {
 			return
@@ -533,6 +545,10 @@ func (s *Service) remoteListen(ctx context.Context) {
 		work := v.(remoteWork)
 		if work.Delivery != nil {
 			s.deliverRemote(ctx, *work.Delivery)
+			continue
+		}
+		if work.Routine != nil {
+			s.deliverRoutine(ctx, *work.Routine)
 			continue
 		}
 		wait := ctx

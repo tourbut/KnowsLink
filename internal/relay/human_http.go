@@ -87,7 +87,7 @@ func (s *Service) humanRoutes(mux *http.ServeMux) {
 	}
 	mux.HandleFunc("GET /home/friends/{id}", s.humanPage("friend"))
 	mux.HandleFunc("GET /home/legacy", s.legacyHomePage)
-	for _, path := range []string{"profile", "agent-name", "friends/request", "friends/decision", "friend-code", "self-connect", "conversation/send", "language", "grant-create", "grant-revoke"} {
+	for _, path := range []string{"profile", "agent-name", "friends/request", "friends/decision", "friend-code", "self-connect", "conversation/send", "language", "grant-create", "grant-revoke", "routine-set", "routine-remove"} {
 		mux.HandleFunc("POST /home/"+path, s.humanAction(path))
 	}
 }
@@ -101,6 +101,8 @@ func (st *State) humanView(id string, session *Session, path string, r *http.Req
 		v["Notice"] = "요청을 보냈습니다. 가능한 요청은 상대가 확인할 수 있습니다."
 	case "language":
 		v["Notice"] = "언어를 저장했습니다. 다음 화면부터 이 언어로 표시합니다."
+	case "routine":
+		v["Notice"] = "도착 알림 설정을 바꿨습니다."
 	}
 	own := st.humanAgents(m.Owner)
 	v["Own"] = own
@@ -245,6 +247,7 @@ func (st *State) humanView(id string, session *Session, path string, r *http.Req
 		}
 		v["Attempts"], v["Unnamed"], v["NewName"] = st.ownAttempts(m.Owner), unnamed, st.defaultName(m.Owner, "", pageLang(r, m))
 		v["Grants"], v["GrantKinds"] = st.ownGrants(m.Owner, now, lang), grantKinds
+		v["Routines"] = st.routineViews(own, now, lang)
 	case "friends":
 		v["Title"], v["Section"] = "친구", "friends"
 	case "friend", "new":
@@ -374,7 +377,11 @@ func (s *Service) humanPage(path string) http.HandlerFunc {
 			if st.Members[id].Name == "" && path != "name" {
 				return "/home/name", nil
 			}
-			return st.humanView(id, session, path, r, now)
+			v, e := st.humanView(id, session, path, r, now)
+			if e == nil && path == "agents" {
+				v["RoutineOff"] = s.Sealer == nil
+			}
+			return v, e
 		})
 		if err != nil {
 			if err.Error() == "invalid_auth" {
@@ -471,6 +478,34 @@ func (s *Service) humanAction(path string) http.HandlerFunc {
 					return fail(e)
 				}
 				return "/home/agents#grants", nil
+			case "routine-set", "routine-remove":
+				// Only this owner session changes a routine, within the 5-minute re-check. A refusal re-renders this
+				// screen with the reason at the top, so a missed re-check never looks like a silent success.
+				agent := r.FormValue("agent")
+				var e error
+				switch {
+				case now.Sub(session.Verified) >= reauthWindow:
+					e = fault("reauth_required")
+				case path == "routine-remove":
+					e = st.removeRoutine(m.Owner, agent)
+				case r.FormValue("consent") != "yes":
+					e = fault("routine_consent")
+				default:
+					e = st.setRoutine(s.Sealer, m.Owner, agent, r.FormValue("url"), r.FormValue("key"), now)
+				}
+				if e == nil {
+					return "/home/agents?n=routine#routines", nil
+				}
+				view, ve := st.humanView(id, session, "agents", r, now)
+				if ve != nil {
+					return fail(e)
+				}
+				status := statusFor(e)
+				if e.Error() == "reauth_required" || e.Error() == "sender_not_allowed" {
+					status = 403
+				}
+				view["FormTemplate"], view["FormStatus"], view["Problem"], view["RoutineOff"] = "human-agents", status, safeProblem(e), s.Sealer == nil
+				return view, nil
 			case "self-connect":
 				if r.FormValue("consent") != "yes" {
 					return fail(fault("invalid_schema"))

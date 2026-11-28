@@ -50,11 +50,13 @@ type remoteState struct {
 	Tokens        map[string]*remoteToken
 	Installs      map[string]*remoteInstall
 	Subscriptions map[string]*remoteSubscription
+	// Routines maps an agent ID to its Grok Bot routine wake (routine_wake.go); absent in state written before it.
+	Routines map[string]*routineWake `json:",omitempty"`
 }
 
 func (st *State) remote() *remoteState {
 	if st.Remote == nil {
-		st.Remote = &remoteState{map[string]*remoteClient{}, map[string]*remoteAttempt{}, map[string]*remoteCode{}, map[string]*remoteToken{}, map[string]*remoteInstall{}, map[string]*remoteSubscription{}}
+		st.Remote = &remoteState{map[string]*remoteClient{}, map[string]*remoteAttempt{}, map[string]*remoteCode{}, map[string]*remoteToken{}, map[string]*remoteInstall{}, map[string]*remoteSubscription{}, map[string]*routineWake{}}
 	}
 	return st.Remote
 }
@@ -139,6 +141,11 @@ func (st *State) sweepRemote(now time.Time) {
 				revokeKeys(a, now)
 			}
 			delete(r.Installs, id)
+		}
+	}
+	for agent := range r.Routines {
+		if !st.remoteAgent(agent, now) {
+			delete(r.Routines, agent)
 		}
 	}
 }
