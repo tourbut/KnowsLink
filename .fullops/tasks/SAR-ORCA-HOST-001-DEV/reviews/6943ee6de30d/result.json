@@ -1,0 +1,148 @@
+{
+  "v": 1,
+  "key": "SAR-ORCA-HOST-001-DEV",
+  "base": "b8b2bb7f0b9963b0fc1491e30d0b07708c283cb2",
+  "head": "6943ee6de30d12762af2d6e8f192a8ff7a32b574",
+  "reviewer_session": "36e7e428-dc63-417c-98bd-da7215fc7d21",
+  "implementer_session": "4127630c-879d-4628-9904-0048d5e330b5",
+  "snapshot_path": "C:/Users/shin/orca/workspaces/KnowsLink/.fullops-review-68284280",
+  "snapshot_head": "6943ee6de30d12762af2d6e8f192a8ff7a32b574",
+  "read_only": true,
+  "conclusion": "accept",
+  "files": [
+    {
+      "path": ".fullops/docs/design-docs/architecture.md",
+      "status": "M",
+      "review_status": "reviewed",
+      "reason": ""
+    },
+    {
+      "path": ".fullops/docs/design-docs/module-design.md",
+      "status": "M",
+      "review_status": "reviewed",
+      "reason": ""
+    },
+    {
+      "path": ".fullops/docs/operations/user-guide.md",
+      "status": "M",
+      "review_status": "reviewed",
+      "reason": ""
+    },
+    {
+      "path": ".fullops/docs/planning/intents/SAR-ORCA-BOT-001.md",
+      "status": "M",
+      "review_status": "reviewed",
+      "reason": ""
+    },
+    {
+      "path": ".fullops/tasks/SAR-ORCA-HOST-001-DEV/dev.r0.md",
+      "status": "R",
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 기록이다. 파일마다 열람하지 않는다."
+    },
+    {
+      "path": ".fullops/tasks/SAR-ORCA-HOST-001-DEV/qa/report.md",
+      "status": "A",
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 기록이다. 파일마다 열람하지 않는다."
+    },
+    {
+      "path": "README.md",
+      "status": "M",
+      "review_status": "reviewed",
+      "reason": ""
+    },
+    {
+      "path": "adapters/README.md",
+      "status": "M",
+      "review_status": "reviewed",
+      "reason": ""
+    },
+    {
+      "path": "adapters/src/defaults.ts",
+      "status": "M",
+      "review_status": "reviewed",
+      "reason": ""
+    },
+    {
+      "path": "adapters/src/mcp.ts",
+      "status": "M",
+      "review_status": "reviewed",
+      "reason": ""
+    },
+    {
+      "path": "adapters/src/orca-mcp.ts",
+      "status": "A",
+      "review_status": "reviewed",
+      "reason": ""
+    },
+    {
+      "path": "adapters/src/orca.test.ts",
+      "status": "M",
+      "review_status": "reviewed",
+      "reason": ""
+    },
+    {
+      "path": "adapters/src/orca.ts",
+      "status": "M",
+      "review_status": "reviewed",
+      "reason": ""
+    },
+    {
+      "path": "internal/relay/autosetup_guide_test.go",
+      "status": "M",
+      "review_status": "reviewed",
+      "reason": ""
+    },
+    {
+      "path": "internal/relay/connect_guide.go",
+      "status": "M",
+      "review_status": "reviewed",
+      "reason": ""
+    },
+    {
+      "path": "internal/relay/connect_guide_integration_test.go",
+      "status": "M",
+      "review_status": "reviewed",
+      "reason": ""
+    },
+    {
+      "path": "internal/relay/human_pages.go",
+      "status": "M",
+      "review_status": "reviewed",
+      "reason": ""
+    },
+    {
+      "path": "internal/relay/i18n_en_human.go",
+      "status": "M",
+      "review_status": "reviewed",
+      "reason": ""
+    }
+  ],
+  "findings": [
+    {
+      "path": "adapters/src/orca.ts",
+      "start_line": 227,
+      "end_line": 236,
+      "severity": "medium",
+      "resolved": false,
+      "content": "[보안·안전] watch 잠금의 생존 판정이 pid와 `os.uptime()` 부팅 시각뿐이고, watch는 종료 때 `orca-watch.lock`을 지우지 않는다. 같은 부팅 안에서 로그오프 뒤 다시 로그온하면(또는 Fast Startup으로 uptime이 이어지면) 이전 잠금이 남는다. 그 pid가 다른 프로세스에 재사용되면 ① Run의 `orca start`가 `running`으로 끝나 수신자가 없고 ② `orca stop`·`orca autostart off`·`orca install`이 그 무관한 같은 사용자 프로세스를 `process.kill`로 끝낸다(:395). 다른 사용자 프로세스면 `alive`가 EPERM을 살아 있음으로 보고 kill이 EPERM으로 실패해 install이 watch를 멈춘 채 중단된다. README 한계에 pid 재사용은 적혀 있지만 kill 대상 오인은 없다. 폴더 해시 이름의 named pipe listen을 잠금으로 쓰거나, kill 전에 대상 명령줄에 `orca watch`가 있는지 확인한다."
+    },
+    {
+      "path": "adapters/README.md",
+      "start_line": 457,
+      "end_line": 469,
+      "severity": "low",
+      "resolved": false,
+      "content": "[정합] 작성 때 `<설치>\\node.exe`의 `\\n`이 실제 줄바꿈으로 바뀌었다. 457–458·462–463·468–469행의 Run 값 설명, `orca bot tools add` 예시, `orca autostart off` 끄기 명령이 `<설치>` 뒤에서 끊기고 다음 줄이 `ode.exe`로 시작한다. 복사하면 실행되지 않는다. 세 곳을 `<설치>\\node.exe`로 고친다."
+    },
+    {
+      "path": "adapters/src/orca.ts",
+      "start_line": 350,
+      "end_line": 449,
+      "severity": "low",
+      "resolved": false,
+      "content": "[기능] 설치 경로에 공백이 있으면 `installedCommand`가 각 경로를 따옴표로 감싸고 `toolsAdd`가 전체를 다시 `\"${mcp}\"`로 감싸 `\"\"C:\\Users\\A B\\...\\node.exe\" \"...plugin.js\"\"` 같은 중첩 따옴표가 된다. Windows 프로필 경로에 공백은 흔하므로 봇 채팅에 붙일 한 줄이 깨질 수 있다. shortcut 주석은 있으나 출력 줄은 확인되지 않았다. Orca `tools add`의 인자 해석을 확인해 바깥 따옴표를 맞춘다. HKCU Run 값은 CreateProcess가 해석하므로 문제없다."
+    }
+  ]
+}
