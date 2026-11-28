@@ -86,3 +86,20 @@ parallel: on
 브랜치 / SHA / 변경 이유 / 검토 필요 / 검증한 것과 못 한 것 / 스스로 정한 선택과 되돌리는 방법 / 산출물·로그 링크 / 남은 일.
 원격 push는 승인 전이다. 그래서 `fullops done`이 push를 하면 실행하지 않는다. 로컬 커밋 뒤 첫 줄 `[완료] SAR-ORCA-HOST-002-DEV | 브랜치 fullops/dev | SHA <HEAD>`로 worker_done만 보낸다.
 처리는 `fullops-work`, 회신은 `fullops-orca` 스킬을 따른다.
+
+### 결과 (dev, 2026-11-28)
+
+- 브랜치 / SHA: `fullops/dev` / 코드 `f673644f`, qa front matter `b55e6126`
+- 변경 이유: 리뷰 medium 1·low 2 후속.
+  - medium: `liveWatch`가 pid·부팅 시각·생존에 더해 holder의 이미지가 node이고 명령줄이 `orca watch`인지 확인한다(Windows `Get-CimInstance Win32_Process`, 그 밖 `ps`). 아니면 낡은 잠금으로 지우고 진행하며 kill하지 않는다. watch는 정상 종료·SIGINT·SIGTERM에서 자기 잠금만 지운다(`releaseWatch`).
+  - low 1: README `<설치>\node.exe` 깨짐 3곳 복구, 잠금 설명·한계 갱신.
+  - low 2: `toolsAdd()`가 따옴표를 가진 명령을 작은따옴표로 감싼다.
+  - lint 경고: 잠금·설치·autostart를 `adapters/src/orca-host.ts`로 분리. `orca.ts` 521→343줄.
+- 검토 필요: probe 실패(PowerShell 없음 등)는 "watch 아님"으로 본다. kill 안전 쪽이지만 그때 watch가 둘 뜰 수 있다.
+- 검증: `node dist/orca.test.js` PASS, `npm run lint` 통과, `fullops lint --from 5e52f8d6` 통과(ERROR 0). 설치본 갱신: agent `agent_5513ec51367fed3748903d` 그대로, watch 1개(pid 105428), `orca start`가 running 보고, kill은 검증된 기존 watch 96412만.
+- 못 한 것: 실제 로그오프·재로그온 pid 재사용 재현, macOS·Linux `ps` 경로 실행.
+- 스스로 정한 선택: 생존 판정에서 폴더 인자는 맞추지 않는다(상대·대소문자 경로 문제). 되돌리기: `isWatch`에 폴더 비교 추가.
+- 산출물: `.fullops/tasks/SAR-ORCA-HOST-002-DEV/qa/report.md`
+- 남은 일:
+  - `orca.ts` 343줄, `orca.test.ts` 329줄로 300줄 경고 남음(watch·send를 더 나누거나 테스트 분할).
+  - 개발 node 버전이 설치본과 다르면 봇 MCP가 `node.exe`를 잡고 있어 install이 복사에서 실패한다(기존 동작). 설치본 node로 install을 돌려 피했다. 오류 문구가 `failed.`뿐이라 원인이 안 보인다.
