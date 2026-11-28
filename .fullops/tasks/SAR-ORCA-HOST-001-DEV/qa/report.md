@@ -33,7 +33,20 @@ summary: Orca 봇 고정 설치·자동 시작 watch·stdio MCP 한 줄·웹 항
 
 ## 이 PC 적용
 
-lead 승인 대기. 결과는 아래 절에 덧붙인다.
+lead 승인 `msg_adfdbb26e504`(2026-11-28). 순서: 기존 watch 중지 → install → 확인 → 쿠어용 한 줄 ask(`msg_ce655a143a82`).
+
+| 항목 | 결과 |
+|---|---|
+| 기존 watch 중지 | ops 빌드 `node.exe .../ops/adapters/dist/plugin.js orca watch .../orca-agent-20261128 --bot 쿠어` PID 74944 하나만 있었고 `Stop-Process`로 끝냄 |
+| install | Node 22.22.2로 `bb252e31` 빌드 실행, 종료 0. 출력 `installed` `C:\Users\shin\AppData\Local\KnowsLink\orca`, `agent` `agent_5513ec51367fed3748903d`, `watch` `{"state":"started","pid":69852}` |
+| 설치 파일 | `dist\plugin.js` 1692629 B, `node.exe` 87074816 B, `defaults.json` 274 B(모드·relay URL·폴더·봇 이름·`AUTO_RECEIVE=off`만), `watch.log` |
+| 자동 시작 등록 | `reg query`: `KnowsLinkOrcaWatch REG_SZ C:\Users\shin\AppData\Local\KnowsLink\orca\node.exe C:\Users\shin\AppData\Local\KnowsLink\orca\dist\plugin.js orca start` |
+| 새 watch | PID 69852 argv `...\KnowsLink\orca\node.exe ...\orca\dist\plugin.js orca watch ...\orca-agent-20261128 --bot 쿠어`, 잠금 `{"pid":69852,...}`. 15초 동안 30회 표본 중 11회 `104.21.54.184:443`(`link.knowslog.com`) 연결. `watch.log`는 수신 때만 쓰므로 비어 있다 |
+| 중복 방지 | 설치된 `orca start` 재실행 → `{"state":"running","pid":69852}`, 새 프로세스 없음 |
+| MCP | 설치된 node+bundle을 `KNOWSLINK_*` 환경 없이 stdio로 띄워 `knowslink_status`: `me.agent` `agent_5513ec51367fed3748903d`(이름 쿠어), `autoReceive.state` `off` |
+| agent·grant | 새 agent 없음(install·MCP 둘 다 같은 ID). install은 grant 경로를 부르지 않는다. 서버의 grant 3개는 이 worker가 다시 읽지 않았고 쿠어 확인을 요청했다 |
+
+미확인: 쿠어 봇의 `tools add` 결과, 재부팅 뒤 자동 시작(사람 단계).
 
 ## 스스로 정한 선택과 되돌리는 방법
 
