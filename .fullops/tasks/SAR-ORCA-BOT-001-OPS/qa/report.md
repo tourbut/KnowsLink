@@ -4,12 +4,12 @@ status: draft
 updated: 2026-11-28
 owner: ops
 tasks: [SAR-ORCA-BOT-001-OPS]
-summary: "미완료. 2차에서 b4c76b64를 운영에 배포했고, Orca agent를 연결했다. Grok adapter 갱신 확인이 없어 grant·왕복은 하지 않았다"
+summary: "미완료. 2차에서 b4c76b64를 운영에 배포했고, Orca agent를 연결했다. 0899e5bd까지 배포했고 Grok Bot 연결 전이라 grant·왕복은 하지 않았다"
 ---
 
 # SAR-ORCA-BOT-001-OPS 검증 보고
 
-현재 상태는 [2차](#2차-2026-11-28-운영-배포) 절이다. 그 앞은 1차 기록이다.
+현재 상태는 [3차](#3차-2026-11-28-0899e5bd-배포와-수신기) 절이다. 그 앞은 이전 기록이다.
 
 ## 1차 (SSH 거부)
 
@@ -98,8 +98,27 @@ push, 서버 DB·`.env`·Tunnel·DNS·방화벽 변경은 하지 않았다.
 - background `setup-connect`는 둘 다 이미 끝났다(Orca는 `connected`, Grok CLI는 만료·종료 2). 남은 `setup-connect`·`orca watch` node 프로세스는 없다. 폴더는 지우지 않았다.
 - dev의 `SAR-GROK-INSTALL-001-DEV`(Remote MCP의 orca 형식 송수신·grant)가 운영에 배포된 뒤 grant·왕복을 잇는다.
 
+## 3차 (2026-11-28, `0899e5bd` 배포와 수신기)
+
+승인: `msg_6a4182c97040`, 결정 D067(독립 리뷰 1회 뒤 push+운영 배포). 리뷰 `ba339edd34dd`는 accept·high 0, low 2(안내 문구), nit 1이다.
+
+| 항목 | 결과 |
+|---|---|
+| 배포 SHA | `0899e5bd29cc11ba4ee8e70419185c97ffa536d1` (직전 `b4c76b64`), [deploy-0899e5bd.sh](deploy-0899e5bd.sh) |
+| 마이그레이션 | `b4c76b64..0899e5bd`의 `db/`·`compose.yaml`·`Dockerfile`·`deploy/` diff 0 |
+| 백업 | `backups/b4c76b64-20261128T024511Z.dump`, 0600, 11826 bytes, TOC 25줄, `message_state_rows=0`, SHA256 `9cf79c755427380c57c0c2957d7e119a0996555bf4d0277a891fac0ef3ca7dc5` |
+| rollback 태그 | `knowslink-rollback:b4c76b64-relay-grokinstall001` (`sha256:a2c2d26ce456…`), `…-migrate-grokinstall001` (`sha256:ca941727b109…`) |
+| 검증 | `verify.py local` 통과, `public` 종료 0, relay healthy·error 0줄 |
+| 공개 확인 | `/`·`/privacy`·`/terms`·OAuth metadata 2종 200, 무인증 POST `/mcp` 401 |
+
+복귀는 하지 않았다(`beta.sh deploy b4c76b646f315178852ce56650685ca64a4a343e`).
+
+- 수신기: Orca 터미널 `term_2d169c23-9260-43e4-af27-b0283d969a64`(`--keep-open`, 제목 `KnowsLink orca watch 쿠어`)에서 `node <ops worktree>/adapters/dist/plugin.js orca watch %LOCALAPPDATA%\KnowsLink\orca-agent --bot 쿠어`. process argv에 `--bot 쿠어` 확인. `orca receive`는 `null`·종료 0.
+- adapter: `plugin.js` SHA256 `22cab9ed…`. `b4c76b64..0899e5bd`의 `adapters/` 변경은 문서 2개뿐이라 다시 빌드하지 않았다.
+- **선택:** 수신기는 이 ops worktree의 build를 쓴다. worktree를 지우면 수신기와 도어벨의 `receive` 명령 경로가 깨진다. 멈추려면 그 터미널을 닫는다.
+
 ### 남은 단계
 
-1. `SAR-GROK-INSTALL-001-DEV` 결과를 운영에 배포한다.
-2. 주인이 Grok Bot custom connector를 연결하고 grant 3개를 만든다(Grok에서 `agent_b865fba924692fafbb27b8`로 `orca.task.v1`·`orca.answer.v1`, 반대 방향 `orca.decision.v1`).
-3. `orca watch <폴더> --bot 쿠어`, 왕복 1회, 도어벨 argv·`receive`·`--item` 기록.
+1. 주인이 Grok Bot에 custom connector를 추가·Authenticate하고 agent 이름·ID를 알린다.
+2. 주인이 grant 3개를 만든다.
+3. 왕복 1회, 도어벨 메일·`receive`·`--item` 기록.
