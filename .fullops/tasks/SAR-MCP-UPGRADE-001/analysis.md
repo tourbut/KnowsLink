@@ -35,14 +35,17 @@ summary: Skills·Tasks·Elicitation·File Uploads·2026-07-28 stateless를 원�
 
 1. **원격 `/mcp` 2026-07-28 dual-era 적합성.** 이미 `server/discover`로 2026-07-28을 광고해 modern 클라이언트가 이 경로로 온다. 빠진 MUST(헤더 불일치 거부, 미지원 버전 오류, `resultType`, `ttlMs`·`cacheScope`)를 채운다. legacy 응답은 바꾸지 않는다. 보안 이득(헤더 혼동 거부)이 있고 기존 클라이언트를 깨지 않는다. → 이번에 구현.
 2. **Skills extension.** Claude Code beta가 있고 untrusted·발송 규칙을 한 곳에서 배포할 수 있다. `resources` capability와 `skills/list`·`skills/get`·`resources/read`가 필요하다. modern 경로가 먼저 맞아야 한다.
-3. **로컬 stdio SDK 1.32 → 2.x(2026-07-28).** Claude Code v2가 stdio에서도 modern을 먼저 묻는다. 지금은 fallback으로 동작한다. 의존성 대폭 변경이라 단독 과제로 둔다. 로컬 `structuredContent`도 여기서 함께 한다.
-4. **Tasks extension.** 도구가 짧아 이득이 작다. 승인 대기를 task로 열 경우 승인 규칙 판단이 먼저다.
-5. **Elicitation(원격 MRTR).** 사람 승인을 대신할 수 없고 웹 승인이 정본이라 이득이 작다.
-6. **File Uploads.** 스펙·SEP가 없고(실험 초안) 텍스트 제품이라 보류.
+3. **로컬 stdio SDK 1.32 → 2.x(2026-07-28).** Claude Code v2가 stdio에서도 modern을 먼저 묻는다. 지금은 fallback으로 동작한다. 의존성 대폭 변경이라 단독 과제로 둔다. 로컬 `structuredContent`도 여기서 함께 한다. Codex 세션의 form elicitation(서버 주도 요청)은 2026-07-28에서 MRTR(`tools/call`의 `InputRequiredResult`)로 바꿔야 한다(MUST). `requestState`를 쓰면 무결성 보호도 MUST다.
+4. **CIMD 지원(새로 추가, SAR-MCP-SPEC-CHECK-001-DEV).** 2026-07-28에서 DCR은 deprecated(MAY, 최소 12개월 유지)이고 CIMD가 AS·클라이언트 SHOULD다. CIMD만 하는 클라이언트는 지금 붙지 못한다. Claude Code는 DCR도 지원한다. OAuth 흐름 변경이라 주인 승인이 필요하다.
+5. **Tasks extension.** 도구가 짧아 이득이 작다. 승인 대기를 task로 열 경우 승인 규칙 판단이 먼저다.
+6. **Elicitation(원격 MRTR).** 사람 승인을 대신할 수 없고 웹 승인이 정본이라 이득이 작다. 원격에 없는 것은 MUST 누락이 아니다. 원격은 서버 주도 요청을 보내지 않는다. 넣을 때는 MRTR만 허용되고, 클라이언트가 선언한 capability에만 보낸다.
+7. **File Uploads.** 스펙·SEP가 없고(실험 초안) 텍스트 제품이라 보류.
+
+순위 변경(2026-11-28, [SAR-MCP-SPEC-CHECK-001-DEV 보고](../SAR-MCP-SPEC-CHECK-001-DEV/qa/report.md)): CIMD를 4순위로 추가해 Tasks·Elicitation·File Uploads가 한 칸씩 내려갔다. 3순위에 로컬 elicitation의 MRTR 전환을 붙였다. 6순위(이전 5순위) Elicitation 판단을 MUST 기준으로 고쳤다.
 
 ## 1순위 구현 요약
 
 - 위치: `internal/relay/remote_era.go`(`remoteEra`, `remoteError`, `remoteHeader`, `remoteModernResult`)와 `remote_mcp.go`의 호출, 테스트 `remote_era_test.go`·`remote_integration_test.go`, 인터페이스 정본 [D05](../../docs/design-docs/interface-design.md)의 dual-era 절.
-- 선택: modern 요청에 `Mcp-Method`·`Mcp-Name`이 없어도 받는다(헤더로 라우팅하는 계층이 없음). 값이 있고 다르면 era와 관계없이 거부한다. 되돌리기: `remote_era.go` `remoteEra`의 `method != ""`·`name != ""` 조건을 modern일 때 필수로 바꾼다(코드의 `shortcut:` 주석).
+- 선택(SAR-MCP-SPEC-CHECK-001-DEV에서 바뀜): modern 요청은 `Mcp-Method`를 반드시 보내야 하고, `tools/call`은 `Mcp-Name`도 보내야 한다. 없으면 `-32020`이다(스펙 REQUIRED). `_meta.clientCapabilities`가 없으면 `-32602`다. 값이 있고 다르면 era와 관계없이 거부한다.
 - 선택: 캐시는 `ttlMs:300000`, `cacheScope:"public"`(도구 목록·discover는 설치와 무관하게 같다). 배포로 바뀔 수 있어 5분으로 짧게 둔다.
 - 하지 않은 것: `events/subscribe` 결과의 `resultType`(클라이언트는 없으면 `complete`로 본다), `subscriptions/listen`, MRTR, Base64 sentinel의 `Mcp-Param-*`(`x-mcp-header`를 쓰는 도구가 없다).

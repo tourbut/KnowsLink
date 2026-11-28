@@ -226,6 +226,8 @@ func (s *Service) remoteRegister(w http.ResponseWriter, r *http.Request) {
 		Contacts        []string `json:"contacts,omitempty"`
 		SoftwareID      string   `json:"software_id,omitempty"`
 		SoftwareVersion string   `json:"software_version,omitempty"`
+		// MCP 2026-07-28 clients MUST send it during DCR; RFC 7591 has the server ignore metadata it does not act on.
+		ApplicationType string `json:"application_type,omitempty"`
 	}
 	if decodeCommand(w, r, &in) != nil || len(in.Name) > 128 || len(in.Redirects) == 0 || len(in.Redirects) > 5 || (in.Method != "" && in.Method != "none") || (in.Scope != "" && in.Scope != remoteScope) {
 		writeJSON(w, 400, map[string]string{"error": "invalid_client_metadata"})
