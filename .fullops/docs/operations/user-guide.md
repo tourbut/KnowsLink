@@ -2,9 +2,9 @@
 id: D11
 title: 사용자설명서
 status: review
-updated: 2026-11-12
+updated: 2026-11-28
 owner: dev
-tasks: [SAR-AUTOSETUP-001-DEV, SAR-BETA-001-OPS, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-AGENTS-001-FIX-TESTER, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SERVICE-UI-001-DEV, SAR-HUMAN-PEER-001, SAR-HUMAN-PEER-001-DEV, SAR-HUMAN-PEER-001-OPS, SAR-LANDING-GUIDE-001, SAR-LANDING-GUIDE-001-DEV, SAR-SESSION-PEER-001-DESIGN, SAR-UX-ISSUES-002-RECEIPT-DEV, SAR-SESSION-PEER-001-DEV, SAR-SESSION-PEER-001-DEV-FIX-2, SAR-UX-ISSUES-002-NAMES-DEV, SAR-UX-ISSUES-002-APPROVAL-DEV, SAR-UX-ISSUES-002-CONNECT-DEV, SAR-UX-ISSUES-002-LANG-DEV, SAR-SCHEDULE-001-DEV, SAR-PUBLISH-001-DEV, SAR-PUBLISH-002-DOCS, SAR-CODEX-RECV-001-DOCS, SAR-CONNECT-SIMPLE-001-DEV, SAR-MSG-EPHEMERAL-001]
+tasks: [SAR-AUTOSETUP-001-DEV, SAR-BETA-001-OPS, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-AGENTS-001-FIX-TESTER, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SERVICE-UI-001-DEV, SAR-HUMAN-PEER-001, SAR-HUMAN-PEER-001-DEV, SAR-HUMAN-PEER-001-OPS, SAR-LANDING-GUIDE-001, SAR-LANDING-GUIDE-001-DEV, SAR-SESSION-PEER-001-DESIGN, SAR-UX-ISSUES-002-RECEIPT-DEV, SAR-SESSION-PEER-001-DEV, SAR-SESSION-PEER-001-DEV-FIX-2, SAR-UX-ISSUES-002-NAMES-DEV, SAR-UX-ISSUES-002-APPROVAL-DEV, SAR-UX-ISSUES-002-CONNECT-DEV, SAR-UX-ISSUES-002-LANG-DEV, SAR-SCHEDULE-001-DEV, SAR-PUBLISH-001-DEV, SAR-PUBLISH-002-DOCS, SAR-CODEX-RECV-001-DOCS, SAR-CONNECT-SIMPLE-001-DEV, SAR-MSG-EPHEMERAL-001, SAR-ORCA-HOST-001-DEV]
 summary: 사람 친구·이름·대화의 새 제품 흐름과 과거 후보 사용 절차를 구분한다
 ---
 
@@ -59,6 +59,17 @@ Claude Code `2.1.302`에서 확인한 절차다. 실제 운영 서버 왕복과 
 6. 그만 받으려면 `/knowslink-session off`를 입력한다. 이후 그 세션의 송수신 요청은 거부된다. 플러그인이 다시 로드되면 `on`을 다시 입력한다.
 7. 연결한 세션 안에서 Claude가 띄운 하위 에이전트(Agent 도구)는 KnowsLink 메시지를 보내거나 받을 수 없다. 거부 문구: `하위 에이전트에서는 KnowsLink 메시지를 쓸 수 없습니다`. 메시지 확인과 발송은 메인 대화에서 요청한다.
 8. 친구를 해제하거나 차단해도 세션 연결은 꺼지지 않는다. 그 동안 그 친구와는 주고받을 수 없다. 다시 친구가 되면 `on`을 다시 입력하지 않아도 주고받을 수 있다. 친구 권한은 보낼 때마다 다시 확인한다.
+
+### Orca 봇에서 사용하기 — SAR-ORCA-HOST-001-DEV
+
+Windows만 지원하는 수동 설치다. 웹 **어디에서 사용할까요? → Orca 봇 (내 컴퓨터)**가 같은 순서를 보인다.
+
+1. `orca setup-connect`로 Google 로그인·지문 비교·연결 동의를 마친다.
+2. `orca install <연결 폴더> --bot <봇 이름>`이 `%LOCALAPPDATA%\KnowsLink\orca\`에 설치하고 로그온 때 도어벨 watch가 뜨게 한다.
+3. 봇 채팅에서 설치 출력의 `orca bot tools add "..." --name knowslink`를 실행한다.
+4. 봇이 `knowslink_status`로 agent ID를 확인한다.
+
+도어벨 메일에는 새 메시지 ID만 있다. 본문은 봇이 받기로 확인하며 신뢰하지 않는 데이터다. 끄려면 `orca autostart off`를 실행한다. 상세는 [adapter 문서](../../../adapters/README.md#고정-위치-설치와-자동-시작--sar-orca-host-001-dev)다.
 
 ### Codex 세션에서 사용하기 — SAR-CODEX-RECV-001-DOCS
 

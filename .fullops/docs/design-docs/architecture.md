@@ -2,9 +2,9 @@
 id: D03
 title: 아키텍처설계서
 status: review
-updated: 2026-11-27
+updated: 2026-11-28
 owner: dev
-tasks: [SAR-AUTOSETUP-001-DEV, SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-003-BIDIRECTIONAL, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV, SAR-AUTO-RECEIVE-001-DEV, SAR-SSE-INSTALL-001-DEV, SAR-GROK-WEBHOOK-001-DEV, SAR-HUMAN-PEER-001-DEV, SAR-REFACTOR-002-DEV, SAR-SESSION-PEER-001-DEV, SAR-SCHEDULE-001-DEV, SAR-PUBLISH-001-DEV, SAR-MSG-EPHEMERAL-001, SAR-ORCA-BOT-001-DEV]
+tasks: [SAR-AUTOSETUP-001-DEV, SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-003-BIDIRECTIONAL, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV, SAR-AUTO-RECEIVE-001-DEV, SAR-SSE-INSTALL-001-DEV, SAR-GROK-WEBHOOK-001-DEV, SAR-HUMAN-PEER-001-DEV, SAR-REFACTOR-002-DEV, SAR-SESSION-PEER-001-DEV, SAR-SCHEDULE-001-DEV, SAR-PUBLISH-001-DEV, SAR-MSG-EPHEMERAL-001, SAR-ORCA-BOT-001-DEV, SAR-ORCA-HOST-001-DEV]
 upstream: [D02]
 summary: 로컬 합성 relay와 shared 상태 및 owner gate의 인가 경계를 정의한다
 ---
@@ -20,6 +20,7 @@ summary: 로컬 합성 relay와 shared 상태 및 owner gate의 인가 경계를
 - 저장은 기존 singleton 상태 JSON의 `Grants` 맵이다. DB 마이그레이션이 없다. grant는 만들 때 두 agent의 활성 키 목록을 보내는 쪽·받는 쪽으로 따로 기록한다. 그중 하나라도 철회되거나, agent 철회·owner 비활성·`self:` 출처가 끝나거나, 30일이 지나면 sweep이 grant를 지운다. 새 키·다시 켠 self 연결은 지운 grant를 되살리지 않는다(주인이 새로 만든다). 같은 쌍을 다시 만들면 새 30일이 시작되고 시간당 건수는 이어진다.
 - `kind`가 붙은 text는 서명·멱등 검사 뒤 grant 검사(형식 스키마·정규 JSON·2 KB·시간당 30건·보낸 키가 grant 키 목록 안)를 거친다. 하나라도 어긋나면 `approval_required`(403)이며 어느 검사인지 말하지 않는다. 통과한 발송은 grant의 최근 1시간 기록에만 시각을 남기고 대화 사본을 만들지 않는다. receipt는 기존과 같이 ID·digest·상태만 남긴다.
 - 받는 쪽에서 본문은 여전히 untrusted다. 사전 승인은 발송 승인일 뿐 명령 실행·gate 승인 권한이 아니다.
+- Orca 호스트(SAR-ORCA-HOST-001-DEV): `orca install`이 bundle·node·`defaults.json`을 `%LOCALAPPDATA%\KnowsLink\orca\`에 두고 HKCU Run 값으로 로그온 때 watch를 띄운다. 폴더당 수신자는 watch 하나다(`orca-watch.lock`). 봇의 stdio MCP는 `KNOWSLINK_AUTO_RECEIVE=off`로 같은 Inbox를 읽기만 하고, 비었을 때만 요청받은 1건을 당긴다. 키는 agent 폴더에만 있다.
 
 ## SAR-AUTOSETUP-001-DEV 자동 설정 배포 구조
 

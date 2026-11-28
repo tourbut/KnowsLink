@@ -116,3 +116,16 @@ parallel: on
 브랜치 / SHA / 변경 이유 / 검토 필요 / 검증한 것과 못 한 것 / 스스로 정한 선택과 되돌리는 방법 / 산출물·로그 링크 / 남은 일.
 항목당 1~2줄로 쓰고 상세는 `tasks/SAR-ORCA-HOST-001-DEV/qa/report.md` 링크로 대신한다. 원격 push는 승인 전이다. 그래서 `fullops done` 대신 로컬 커밋 뒤 worker_done만 보낸다. 첫 줄은 `[완료] SAR-ORCA-HOST-001-DEV | 브랜치 fullops/dev | SHA <HEAD>`다. 남은 일에는 배포가 필요한 SHA와 push 승인을 적는다.
 처리는 `fullops-work`, 회신은 `fullops-orca` 스킬을 따른다.
+
+### 결과
+
+[완료] SAR-ORCA-HOST-001-DEV | 브랜치 fullops/dev | SHA 206f3d1f
+
+- 변경 이유: Orca 봇을 워크트리와 무관한 고정 설치·로그온 자동 시작 watch·stdio MCP 한 줄로 지원 호스트로 만든다(주인 요청 msg_e7c4b453e028).
+- 변경: `adapters/src/orca.ts`(`orca install|start|stop|autostart on|off`, watch 잠금, 도어벨 node 전체 경로), `defaults.ts`(`DEFAULT_KEYS`에 폴더·봇·자동 수신), 웹 `Orca 봇 (내 컴퓨터)` ko·en, README·adapters README·D03·D10·D11·의도 문서. 구현 커밋 bb252e31. 후속(msg_14350a9779e2): `orca-mcp.ts`로 orca host MCP에 `knowslink_send`(kind·body)·`knowslink_receive`, `orcaSend`·`orcaReceive`를 CLI와 공유(e3407964).
+- 검토 필요: 자동 시작 방식(HKCU Run, 로그온 때 콘솔 창 잠깐 보임), 수신자 하나 안(watch만 자동 수신, MCP `KNOWSLINK_AUTO_RECEIVE=off`), `.cmd` 래퍼 대신 node 직접 실행.
+- 검증: `orca.test.js`·`connect-simple`·`mcp` PASS, Go 안내·i18n 테스트 PASS, `make.py lint`·`fullops lint --from 0899e5bd` 통과(WARNING `orca.ts` 464줄 등). 이 PC: `%LOCALAPPDATA%\KnowsLink\orca` 설치, Run 값 확인, 새 watch PID 69852 relay polling, agent `agent_5513ec51367fed3748903d` 그대로, 쿠어 `knowslink` 도구가 설치본 명령. 쿠어 확인(msg_2371aed70d79): 같은 agent, autoReceive off, grant 3개 그대로. 재설치 뒤 watch PID 96412, 설치 명령 tools/list에 `knowslink_send`·`knowslink_receive`. `public_node_configured_unverified`는 status가 relay에 연결하지 않아 늘 나오는 정상 값.
+- 못 한 것: 쿠어가 새 도구를 쓰는 확인(쿠어 MCP PID 94184가 갱신 전 코드, 재확인 ask msg_79d66c7a193d 무응답), 서버 grant 3개 재조회(설치는 grant 경로를 부르지 않음), 재부팅 확인(사람 단계), macOS·Linux 자동 시작.
+- 스스로 정한 선택: coordinator 무응답(msg_5876c6c26f0e)이라 `tools add --bot 쿠어`를 직접 실행했고 이미 같은 명령으로 붙어 있었다(되돌리기 `orca bot tools rm knowslink --bot 쿠어`). 인박스의 "fullops done 대신 worker_done만"과 달리 preamble·hook 지시대로 `fullops done`을 실행했다(로컬 기록만, push 없음). 자동 시작 해제는 `orca autostart off`. coordinator 무응답(msg_43164e33cf77)이라 쿠어 MCP 프로세스는 강제 종료하지 않았다(실행 중인 run 보호).
+- 산출물: [QA 보고](../tasks/SAR-ORCA-HOST-001-DEV/qa/report.md).
+- 남은 일: 쿠어 knowslink 도구 재시작 뒤 tools/list·receive·decision 1건 send 확인. push 승인과 운영 배포(웹 항목, SHA 206f3d1f). 재부팅 뒤 watch 자동 시작 확인(사람). 공백 경로에서 `tools add` 인용 확인. `orca.ts` 크기 분할 검토.

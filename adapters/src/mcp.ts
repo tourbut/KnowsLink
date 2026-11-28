@@ -23,6 +23,7 @@ import { exists } from "./private-files.js";
 import { setupConnect, type SetupEvent } from "./setup-connect.js";
 import { failureOf, lang, type Reason } from "./reasons.js";
 import { orcaMain } from "./orca.js";
+import { registerOrcaTools } from "./orca-mcp.js";
 import type { ReceivedText } from "./text.js";
 
 const server = new McpServer(
@@ -554,6 +555,13 @@ server.registerTool(
     }
   },
 );
+// The Orca host also gets the remote /mcp fixed-form send and the doorbell inbox receive (SAR-ORCA-HOST-001).
+if (
+  process.env.KNOWSLINK_HOST === "orca" &&
+  process.env.KNOWSLINK_MODE === "public-node" &&
+  process.env.KNOWSLINK_AGENT_FOLDER
+)
+  registerOrcaTools(server, process.env.KNOWSLINK_AGENT_FOLDER, publicFailure);
 if (codexHost)
   server.registerTool(
     "knowslink_session",

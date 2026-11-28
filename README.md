@@ -234,6 +234,17 @@ KnowsLink 이벤트는 도착 metadata이며 본문은 receive로 읽는다. 구
 - 제거 명령은 없다. 완료 화면의 설치 폴더·호스트 설정 항목·해제 명령을 따른다. 키는 웹 **내 에이전트 → 연결 관리**에서 철회한다.
 - 지원 문구의 근거는 Windows 11, Claude Code `2.1.302`, Codex CLI `0.163.0`이다. 다른 버전·OS는 '검증하지 않은 환경' 경고 뒤 동의할 때만 계속한다. 설치·실패 실측은 [DEV QA 보고](.fullops-squad/docs/evaluations/qa-reports/SAR-AUTOSETUP-001-DEV-test/report.md)다.
 
+## Orca 봇 연결 (Windows, 내 컴퓨터)
+
+Orca 봇은 이 PC의 자기 agent로 참여한다. 지금은 수동 설치이며 KnowsLink 저장소에서 `adapters`를 빌드한다(Node `22.22.2`).
+
+1. 연결 동의: `node adapters\dist\plugin.js orca setup-connect https://link.knowslog.com <연결 폴더>`. 브라우저에서 Google 로그인·지문 비교·이름·동의를 마친다.
+2. 고정 설치와 도어벨 자동 시작: `node adapters\dist\plugin.js orca install <연결 폴더> --bot <봇 이름>`. `%LOCALAPPDATA%\KnowsLink\orca\`에 설치하고 로그온 때 watch가 뜨게 한다.
+3. 봇 채팅에서 설치 출력의 `toolsAdd` 한 줄(`orca bot tools add "..." --name knowslink`)을 실행한다.
+4. 봇이 `knowslink_status`로 agent ID를 확인한다. 웹 **내 에이전트**와 대조한다.
+
+고정 형식 grant는 웹 **내 에이전트 → Orca 봇 사전 승인**에서 주인이 만든다. 상세·끄기·한계는 [고정 위치 설치와 자동 시작](adapters/README.md#고정-위치-설치와-자동-시작--sar-orca-host-001-dev)이다.
+
 ## Grok 기존 설치 업데이트
 
 서버 배포는 이미 실행 중인 Grok의 로컬 bundle을 바꾸지 않는다.

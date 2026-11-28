@@ -1,13 +1,27 @@
 // Orca host: fixed-form schema, signing bytes without kind unchanged, doorbell without text or sender, ring once,
 // failure releases the marker for the next poll, answer item goes to --item, receive marks untrusted.
 import assert from "node:assert/strict";
-import { mkdtemp, rm } from "node:fs/promises";
+import { mkdtemp, rm, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { uuid7 } from "./core.js";
 import { AutoReceiver, Inbox } from "./inbox.js";
 import { privateDirectory } from "./private-files.js";
-import { OrcaWake, orcaBody, orcaView, type Exec } from "./orca.js";
+import { registerOrcaTools } from "./orca-mcp.js";
+import { DEFAULT_KEYS } from "./defaults.js";
+import {
+  OrcaWake,
+  RUN_VALUE,
+  autostartArgs,
+  claimWatch,
+  installedCommand,
+  liveWatch,
+  orcaBody,
+  orcaDefaults,
+  orcaView,
+  watchLock,
+  type Exec,
+} from "./orca.js";
 import {
   textSigningBytes,
   type ReceivedText,
@@ -176,8 +190,102 @@ try {
   assert.equal(plain.body, "plain text");
   assert.equal(plain.kind, null);
   assert.equal(plain.untrusted, true);
+
+  // 4b. Orca MCP tools: receive reads the watch's inbox as untrusted parsed JSON; a bad body is invalid_schema before any send.
+  const tools: Record<
+    string,
+    (a: unknown) => Promise<{ content: { text: string }[]; isError: boolean }>
+  > = {};
+  registerOrcaTools(
+    {
+      registerTool: ((name: string, _d: unknown, h: never) =>
+        void (tools[name] = h)) as never,
+    },
+    folder,
+    () => ({
+      content: [{ type: "text" as const, text: "failure" }],
+      isError: true,
+    }),
+  );
+  const decision = msg(
+    orcaBody("orca.decision.v1", {
+      bot: "쿠어",
+      item: 7,
+      question: secret,
+      options: ["a"],
+    }),
+    "orca.decision.v1",
+  );
+  await inbox.store(decision);
+  const got = await tools.knowslink_receive!({});
+  assert.deepEqual(JSON.parse(got.content[0]!.text), {
+    state: "received",
+    message: { ...orcaView(decision), item: 7 },
+  });
+  assert.equal(JSON.parse(got.content[0]!.text).message.untrusted, true);
+  const bad = await tools.knowslink_send!({
+    to: "agent_x",
+    kind: "orca.task.v1",
+    body: { text: "x", extra: 1 },
+    idempotency_key: "k".repeat(16),
+  });
+  assert.equal(bad.isError, true);
+  assert.deepEqual(JSON.parse(bad.content[0]!.text), {
+    state: "invalid_schema",
+    error: "invalid orca body",
+  });
+
+  // 5. Fixed install (SAR-ORCA-HOST-001): defaults hold no secret and only keys defaults.ts reads; MCP does not
+  // auto-receive; Run value add/delete argv; one live watch per folder, and a lock from before boot is stale.
+  const d = orcaDefaults(
+    "C:\\K\\orca-agent",
+    "쿠어",
+    "https://link.knowslog.com",
+  );
+  assert.ok(
+    Object.keys(d).every((k) =>
+      (DEFAULT_KEYS as readonly string[]).includes(k),
+    ),
+  );
+  assert.equal(d.KNOWSLINK_AUTO_RECEIVE, "off");
+  assert.doesNotMatch(
+    JSON.stringify(d),
+    /credential|private|pem|key|token|secret/i,
+  );
+  assert.equal(
+    installedCommand("C:\\K\\orca", "orca", "start"),
+    `${join("C:\\K\\orca", "node.exe")} ${join("C:\\K\\orca", "dist", "plugin.js")} orca start`,
+  );
+  assert.equal(
+    installedCommand("C:\\Program Files\\K"),
+    `"${join("C:\\Program Files\\K", "node.exe")}" "${join("C:\\Program Files\\K", "dist", "plugin.js")}"`,
+  );
+  const runKey = "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Run";
+  assert.deepEqual(autostartArgs("x y"), [
+    "add",
+    runKey,
+    "/v",
+    RUN_VALUE,
+    "/t",
+    "REG_SZ",
+    "/d",
+    "x y",
+    "/f",
+  ]);
+  assert.deepEqual(autostartArgs(), ["delete", runKey, "/v", RUN_VALUE, "/f"]);
+  const wf = join(root, "watch-folder");
+  await privateDirectory(wf);
+  assert.equal(await claimWatch(wf), null);
+  assert.equal((await claimWatch(wf))?.pid, process.pid);
+  assert.equal((await liveWatch(wf))?.pid, process.pid);
+  await writeFile(
+    watchLock(wf),
+    JSON.stringify({ pid: process.pid, since: "2000-01-01T00:00:00Z" }),
+  );
+  assert.equal(await liveWatch(wf), null);
+  assert.equal(await claimWatch(wf), null);
   process.stdout.write(
-    "PASS: orca schema, signing bytes without kind unchanged, doorbell metadata only, ring once, retry after failure, --item answer, untrusted receive\n",
+    "PASS: orca schema, signing bytes without kind unchanged, doorbell metadata only, ring once, retry after failure, --item answer, untrusted receive, fixed install defaults, autostart argv, one watch per folder\n",
   );
 } finally {
   await rm(root, { recursive: true, force: true });
