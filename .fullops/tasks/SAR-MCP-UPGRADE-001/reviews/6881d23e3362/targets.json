@@ -1,0 +1,66 @@
+{
+  "v": 1,
+  "key": "SAR-MCP-UPGRADE-001",
+  "base": "4d3998e52dcb7e31045b83c3e524cac2a6c21dab",
+  "merge_base": "4d3998e52dcb7e31045b83c3e524cac2a6c21dab",
+  "head": "6881d23e336251a9d30a1d65875dc727d4fd633b",
+  "policy_sha256": "cdce7f68e775893271409647f184d2fdc2e6f2e7bdcbe51998428cfa188c65ad",
+  "files": [
+    {
+      "path": ".fullops/docs/design-docs/interface-design.md",
+      "status": "M",
+      "rule": "Check changed instructions and documents against actual behavior, requirements and linked sources. Identify contradictions, missing required artifacts and broken references. Preserve the project's document templates and tone; report only concrete defects.",
+      "preset": null,
+      "reason": ""
+    },
+    {
+      "path": ".fullops/tasks/SAR-MCP-UPGRADE-001/analysis.md",
+      "status": "A",
+      "rule": "Check changed instructions and documents against actual behavior, requirements and linked sources. Identify contradictions, missing required artifacts and broken references. Preserve the project's document templates and tone; report only concrete defects.",
+      "preset": "skipped",
+      "reason": "검증 증거·하네스 기록이다. 파일마다 열람하지 않는다."
+    },
+    {
+      "path": ".fullops/tasks/SAR-MCP-UPGRADE-001/qa/report.md",
+      "status": "A",
+      "rule": "Check changed instructions and documents against actual behavior, requirements and linked sources. Identify contradictions, missing required artifacts and broken references. Preserve the project's document templates and tone; report only concrete defects.",
+      "preset": "skipped",
+      "reason": "검증 증거·하네스 기록이다. 파일마다 열람하지 않는다."
+    },
+    {
+      "path": "docs/system-design.md",
+      "status": "M",
+      "rule": "Check changed instructions and documents against actual behavior, requirements and linked sources. Identify contradictions, missing required artifacts and broken references. Preserve the project's document templates and tone; report only concrete defects.",
+      "preset": null,
+      "reason": ""
+    },
+    {
+      "path": "internal/relay/remote_era.go",
+      "status": "A",
+      "rule": null,
+      "preset": null,
+      "reason": ""
+    },
+    {
+      "path": "internal/relay/remote_era_test.go",
+      "status": "A",
+      "rule": null,
+      "preset": null,
+      "reason": ""
+    },
+    {
+      "path": "internal/relay/remote_integration_test.go",
+      "status": "M",
+      "rule": null,
+      "preset": null,
+      "reason": ""
+    },
+    {
+      "path": "internal/relay/remote_mcp.go",
+      "status": "M",
+      "rule": null,
+      "preset": null,
+      "reason": ""
+    }
+  ]
+}

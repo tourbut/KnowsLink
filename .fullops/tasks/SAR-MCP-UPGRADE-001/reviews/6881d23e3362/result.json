@@ -1,0 +1,88 @@
+{
+  "v": 1,
+  "key": "SAR-MCP-UPGRADE-001",
+  "base": "4d3998e52dcb7e31045b83c3e524cac2a6c21dab",
+  "head": "6881d23e336251a9d30a1d65875dc727d4fd633b",
+  "reviewer_session": "c34c7886-40ef-4c17-acac-0b5e8af2e8a7",
+  "implementer_session": "e7e3512b-cbcf-446d-aec0-701a22c48d08",
+  "snapshot_path": "C:/Users/shin/orca/workspaces/KnowsLink/.fullops-review-fa723ea9",
+  "snapshot_head": "6881d23e336251a9d30a1d65875dc727d4fd633b",
+  "read_only": true,
+  "conclusion": "accept",
+  "files": [
+    {
+      "path": ".fullops/docs/design-docs/interface-design.md",
+      "status": "M",
+      "review_status": "reviewed",
+      "reason": ""
+    },
+    {
+      "path": ".fullops/tasks/SAR-MCP-UPGRADE-001/analysis.md",
+      "status": "A",
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 기록이다. 파일마다 열람하지 않는다."
+    },
+    {
+      "path": ".fullops/tasks/SAR-MCP-UPGRADE-001/qa/report.md",
+      "status": "A",
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 기록이다. 파일마다 열람하지 않는다."
+    },
+    {
+      "path": "docs/system-design.md",
+      "status": "M",
+      "review_status": "reviewed",
+      "reason": ""
+    },
+    {
+      "path": "internal/relay/remote_era.go",
+      "status": "A",
+      "review_status": "reviewed",
+      "reason": ""
+    },
+    {
+      "path": "internal/relay/remote_era_test.go",
+      "status": "A",
+      "review_status": "reviewed",
+      "reason": ""
+    },
+    {
+      "path": "internal/relay/remote_integration_test.go",
+      "status": "M",
+      "review_status": "reviewed",
+      "reason": ""
+    },
+    {
+      "path": "internal/relay/remote_mcp.go",
+      "status": "M",
+      "review_status": "reviewed",
+      "reason": ""
+    }
+  ],
+  "findings": [
+    {
+      "path": "internal/relay/remote_mcp.go",
+      "start_line": 80,
+      "end_line": 80,
+      "severity": "low",
+      "resolved": false,
+      "content": "[정합] modern(`_meta` 2026-07-28) `events/subscribe`·`events/unsubscribe`는 `remoteSubscription`으로 바로 빠져 `remoteModernResult`를 거치지 않는다. 그래서 결과에 `resultType:\"complete\"`와 `_meta[\"io.modelcontextprotocol/serverInfo\"]`가 없다. D05 interface-design.md:41은 'modern 결과: 모두 resultType…'이라고 적어 문서와 동작이 다르다. 보안 경계 영향은 없다(인증·grant 검사는 remoteSubscription 안에서 그대로). 구독 결과에도 같은 필드를 붙이거나 문서 범위를 tools·discover·list로 좁힌다."
+    },
+    {
+      "path": "internal/relay/remote_era.go",
+      "start_line": 50,
+      "end_line": 51,
+      "severity": "low",
+      "resolved": false,
+      "content": "[정합] `Mcp-Name` 비교 대상이 항상 `params.name`이다. 명세상 `resources/read`는 `Mcp-Name`에 uri를 싣는데, 이 요청은 `params.name`이 없어 404 `-32601`(미제공 메서드) 대신 400 `-32020`을 받는다. 서버가 resources를 제공하지 않아 실해는 오류 코드 차이뿐이고 우회 경로는 아니다. 메서드별 비교 대상이 필요해지면(resources/prompts 추가 시) 함께 고친다."
+    },
+    {
+      "path": "internal/relay/remote_mcp.go",
+      "start_line": 1,
+      "end_line": 1,
+      "severity": "low",
+      "resolved": false,
+      "content": "[크기] lint SIZE-001 경고: remote_mcp.go가 300줄 상한을 넘었다(lint 기준 309줄, 이전 297). 이번 변경이 상한을 넘겼다. 다음 수정 때 삭제·압축 우선으로 300줄 아래로 되돌린다."
+    }
+  ]
+}
