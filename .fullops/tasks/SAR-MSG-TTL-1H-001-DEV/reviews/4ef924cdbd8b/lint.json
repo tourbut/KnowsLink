@@ -1,0 +1,90 @@
+{
+  "v": 1,
+  "base": "112e8810ac7a3c025b6a7815e2fd850871b4d889",
+  "merge_base": "112e8810ac7a3c025b6a7815e2fd850871b4d889",
+  "head": "4ef924cdbd8bb258d95502c6e65620742153e454",
+  "config_sha256": "a8f65c0b3f2c6487f49280a8952735c01e034a3a07ce8e93afec50e949a988f6",
+  "test_level": "lite",
+  "started_at": 1795852204,
+  "seconds": 237.6,
+  "commands": [
+    {
+      "name": "product-lint",
+      "kind": "lint",
+      "run": [
+        "python3",
+        "scripts/make.py",
+        "lint"
+      ],
+      "cwd": ".",
+      "status": "passed",
+      "exit_code": 0,
+      "seconds": 21.2,
+      "reason": "",
+      "output_tail": "go vet ./cmd/... ./internal/...\ngo vet -tags=integration,approvalfixture,autosetupfixture,browser,connectfixture,landingfixture,langfixture,namesfixture,orcafixture,receiptfixture ./cmd/... ./internal/...\ngo mod verify\nall modules verified\nnpm run check --prefix adapters\n\n> @knowslink/adapters@0.0.0 check\n> npm run format:check && npm run lint && npm run typecheck\n\n\n> @knowslink/adapters@0.0.0 format:check\n> prettier --check src package.json tsconfig.json eslint.config.mjs mcp.json .cursor-plugin/plugin.json .mcp.json .grok-plugin/plugin.json .claude-plugin/plugin.json .codex-plugin/plugin.json config/local.mcp.json manifest.json hooks/hooks.json hooks/register.ts hooks/register.test.ts\n\nChecking formatting...\nAll matched files use Prettier code style!\n\n> @knowslink/adapters@0.0.0 lint\n> eslint src eslint.config.mjs\n\n\n> @knowslink/adapters@0.0.0 typecheck\n> tsc --noEmit\n\nnpm exec --prefix adapters -- prettier --check compose.yaml sqlc.yaml\nChecking formatting...\nAll matched files use Prettier code style!\npython3 scripts/check_compose.py\nCompose: five services, one-shot migrate, private Postgres, volatile private Redis, loopback relay, optional Tunnel, synthetic signup closed, OPS override merges\npython3 scripts/check_public_ingress.py\nPublic ingress: Google/member and policy paths only; owner, administrative APIs and trial remain outside this rule\nbash deploy/knowslink/test_public_config.sh\nrendered public candidate; D12 review and edge app removal required before activation\nPublic config: render-only, private, default deny, no overwrite, validation failures propagated\nsh -n scripts/install_bot_mcp.sh\npython3 -m compileall -q -f scripts deploy\n--- stderr ---\n/src/deploy/knowslink/beta.sh: line 79: /tmp/tmp.QL9gspy3bs/state/tunnel/config.public.yml: cannot overwrite existing file\nERROR: candidate exists or cannot be written; live config unchanged\nERROR: invalid tunnel UUID",
+      "log": "D:/workspace/KnowsLink/.git/worktrees/dev/fullops/lint/logs/product-lint.log"
+    },
+    {
+      "name": "product-test",
+      "kind": "test",
+      "run": [
+        "python3",
+        "scripts/make.py",
+        "test"
+      ],
+      "cwd": ".",
+      "status": "passed",
+      "exit_code": 0,
+      "seconds": 215.9,
+      "reason": "",
+      "output_tail": "PASS: setup-connect new/resume/cancel/F-07 confirm-first/fresh restart/stored key without relay call/unreadable attempt file\nPASS: E reasons KO/EN with code/text/next, approved completion after expiry, host on start, release defaults with 0 requests before consent, env wins, leftovers aside and kept, empty folder used, default folder across restart, display names in connect/status/send/receive\nPASS: orca schema, signing bytes without kind unchanged, doorbell metadata only, ring once, retry after failure, --item answer, untrusted receive, fixed install defaults, autostart argv, one watch per folder\npython3 scripts/test_shell_guard.py\npython3 scripts/autosetup/test_get_registered.py\n== powershell.exe\nPASS claude 0 plugins\nPASS claude 1 plugin (knowslink)\nPASS claude 1 plugin (other)\nPASS claude 2 plugins (knowslink first)\nPASS claude 2 plugins (knowslink last)\nPASS claude 3 plugins incl. null readFromFolder\nPASS claude 2 plugins without knowslink\nPASS codex 0 entries\nPASS codex 1 installed\nPASS codex many entries\nOK (Desktop 5.1.26100.9818)\n== pwsh\nPASS claude 0 plugins\nPASS claude 1 plugin (knowslink)\nPASS claude 1 plugin (other)\nPASS claude 2 plugins (knowslink first)\nPASS claude 2 plugins (knowslink last)\nPASS claude 3 plugins incl. null readFromFolder\nPASS claude 2 plugins without knowslink\nPASS codex 0 entries\nPASS codex 1 installed\nPASS codex many entries\nOK (Core 7.7.0)\n--- stderr ---\n\n  dist\\plugin.js  1.6mb\n\nDone in 110ms\nshell guard evidence workspace (kept): C:\\Users\\shin\\AppData\\Local\\Temp\\shell-guard-ws-oxqz1_cd\n....\n----------------------------------------------------------------------\nRan 4 tests in 19.226s\n\nOK",
+      "log": "D:/workspace/KnowsLink/.git/worktrees/dev/fullops/lint/logs/product-test.log"
+    }
+  ],
+  "findings": [
+    {
+      "code": "SIZE-001",
+      "severity": "WARNING",
+      "path": ".fullops/PLANS.md",
+      "line": null,
+      "message": "2336줄(이전 2334, 상한 500).",
+      "suggestion": "① 삭제 → ② 압축 → ③ 분할 순으로 처리하고 docstring·헤더를 깎지 않는다"
+    },
+    {
+      "code": "SIZE-001",
+      "severity": "WARNING",
+      "path": "adapters/src/mcp.test.ts",
+      "line": null,
+      "message": "305줄(이전 300, 상한 300).",
+      "suggestion": "① 삭제 → ② 압축 → ③ 분할 순으로 처리하고 docstring·헤더를 깎지 않는다"
+    },
+    {
+      "code": "SIZE-001",
+      "severity": "WARNING",
+      "path": "adapters/src/text.ts",
+      "line": null,
+      "message": "451줄(이전 450, 상한 300).",
+      "suggestion": "① 삭제 → ② 압축 → ③ 분할 순으로 처리하고 docstring·헤더를 깎지 않는다"
+    },
+    {
+      "code": "SIZE-001",
+      "severity": "WARNING",
+      "path": "internal/relay/store.go",
+      "line": null,
+      "message": "577줄(이전 571, 상한 300).",
+      "suggestion": "① 삭제 → ② 압축 → ③ 분할 순으로 처리하고 docstring·헤더를 깎지 않는다"
+    },
+    {
+      "code": "LINT-002",
+      "severity": "WARNING",
+      "path": ".fullops/config/lint.json",
+      "line": null,
+      "message": "명령 product-test이 216초 걸렸다. 범위 없이 코드 변경마다 돈다.",
+      "suggestion": "개발 중 필요 없으면 `level`이나 `paths`로 범위를 좁힌다"
+    }
+  ],
+  "errors": 0,
+  "warnings": 5,
+  "unrunnable": 0,
+  "passed": true
+}

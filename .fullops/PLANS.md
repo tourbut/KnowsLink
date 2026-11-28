@@ -889,7 +889,7 @@ Codex 실제 설치는 업데이트 전후 0.9.12다. 시작 시 coor 레포 적
 | SAR-ORCA-GRANT-UX-001-DEV | 대기 선행: SAR-ORCA-BOT-001-OPS | dev |
 | SAR-ORCA-HOST-001-DEV | 완료(6943ee6) | dev |
 | SAR-ORCA-HOST-002-DEV | 완료(877ecf8) | dev |
-| SAR-MSG-TTL-1H-001-DEV | 대기 선행: SAR-MCP-UPGRADE-001 | dev |
+| SAR-MSG-TTL-1H-001-DEV | 완료(4ef924c) | dev |
 | SAR-MCP-SKILLS-001-DEV | 대기 선행: SAR-MSG-TTL-1H-001-DEV | dev |
 | SAR-MCP-STDIO-SDK2-001-DEV | 대기 선행: SAR-MCP-SKILLS-001-DEV | dev |
 | SAR-MSG-TTL-1H-002-DEV | 대기(2026-12-28 이후) 선행: SAR-MSG-TTL-1H-001-DEV | dev |
@@ -2335,3 +2335,6 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 - 2026-11-28 15:35 SAR-ORCA-HOST-001-OPS → ops | claude/claude-sonnet-5-5/high | fresh | run run_6c6b6e07c005 | 재배정 0 | -
 - 2026-11-28 16:01 SAR-ORCA-DIAG-001-OPS → ops | claude/claude-sonnet-5-5/high | fresh | run run_9931355ef011 | 재배정 0 | -
 - 2026-11-28 15:48 SAR-MCP-UPGRADE-001 → dev | claude/claude-opus-5-5/high | fresh | run run_9931355ef011 | 재배정 0 | -
+- 2026-11-28 16:24 SAR-MSG-TTL-1H-001-DEV → dev | claude/claude-opus-5-5/high | fresh | run run_5a0e830aaea7 | 재배정 0 | -
+- 2026-11-28 16:44 SAR-MSG-TTL-1H-001-DEV → dev | claude/claude-opus-5-5/high | fresh | run run_77dd32b933ea | 재배정 1 | -
+- 2026-11-28 16:55 SAR-MSG-TTL-1H-001-DEV → dev | claude/claude-opus-5-5/high | fresh | run run_b2458affdea1 | 재배정 2 | -
