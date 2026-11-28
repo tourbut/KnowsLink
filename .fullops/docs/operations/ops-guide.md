@@ -13,15 +13,16 @@ summary: 서버 관찰 이력과 본인 전용 합성 베타 배포 구성·검�
 
 ## SAR-ORCA-BOT-001-OPS 운영 적용 결과 (2026-11-28)
 
-현재 운영 제품은 `0899e5bd29cc11ba4ee8e70419185c97ffa536d1`다(아래 2차 배포). 1차는 `b4c76b646f315178852ce56650685ca64a4a343e`(에이전트 grant, Orca adapter)였다. 직전 `40aafe6f`에서 마이그레이션 없이 `beta.sh deploy`로 적용했다. 스키마는 goose 4 그대로다. 근거와 남은 단계는 [검증 보고](../../tasks/SAR-ORCA-BOT-001-OPS/qa/report.md)다.
+현재 운영 제품은 `0899e5bd29cc11ba4ee8e70419185c97ffa536d1`다. 직전 `40aafe6f`에서 `b4c76b64`(에이전트 grant, Orca adapter), `0899e5bd`(Remote MCP의 orca 형식 송수신, D067) 순서로 `beta.sh deploy`했다. 마이그레이션은 없고 스키마는 goose 4 그대로다. Tunnel·DNS·`.env`·방화벽은 바꾸지 않았다. 운영 왕복 1회를 확인했다. 근거는 [검증 보고](../../tasks/SAR-ORCA-BOT-001-OPS/qa/report.md)다.
 
-- **백업:** `backups/40aafe6f-20261128T014719Z.dump`, 0600·11300 bytes, SHA256 `0d3d88b125440d43a5fb09224fcbbe365ad9bbb1cb030db4870734dda7100f8b`.
-- **rollback:** 태그 `knowslink-rollback:40aafe6f-{relay,migrate}-orcabot001`. 코드 복귀는 `beta.sh deploy 40aafe6f…`다(미실행). grant를 만든 뒤 복귀하면 grant가 사라질 수 있다.
-- **확인:** `verify.py local`·`public` 통과, relay error 0줄. Tunnel·DNS·`.env`·방화벽은 바꾸지 않았다.
-- **Orca agent:** `agent_b865fba924692fafbb27b8`(이름 `Orca Bot`), 연결 폴더 `%LOCALAPPDATA%\KnowsLink\orca-agent`.
-- **2차 배포(D067):** `b4c76b64` → `0899e5bd`(Remote MCP의 orca 형식 송수신, OAuth loopback redirect), 마이그레이션 없음. 백업 `backups/b4c76b64-20261128T024511Z.dump`, SHA256 `9cf79c755427380c57c0c2957d7e119a0996555bf4d0277a891fac0ef3ca7dc5`. 태그 `knowslink-rollback:b4c76b64-{relay,migrate}-grokinstall001`. `verify.py local`·`public` 통과, relay error 0줄.
-- **수신기:** 이 PC의 Orca 터미널에서 `plugin.js orca watch %LOCALAPPDATA%\KnowsLink\orca-agent --bot 쿠어`를 실행한다. PC를 다시 켜면 다시 띄운다.
-- **미완료:** grant, Grok 왕복. Grok Bot은 Remote HTTPS(`/mcp`)로 연결하며(D066) `SAR-GROK-INSTALL-001-DEV` 배포 뒤 잇는다. 받는 쪽 adapter를 모두 갱신하기 전에는 grant를 만들지 않는다(이전 adapter는 `kind`가 있는 envelope를 버린다).
+- **백업:** `backups/40aafe6f-20261128T014719Z.dump`(11300 bytes, SHA256 `0d3d88b125440d43a5fb09224fcbbe365ad9bbb1cb030db4870734dda7100f8b`), `backups/b4c76b64-20261128T024511Z.dump`(11826 bytes, SHA256 `9cf79c755427380c57c0c2957d7e119a0996555bf4d0277a891fac0ef3ca7dc5`).
+- **rollback(미실행):** 직전 코드는 `beta.sh deploy b4c76b646f315178852ce56650685ca64a4a343e`다. 태그는 `knowslink-rollback:{40aafe6f-{relay,migrate}-orcabot001,b4c76b64-{relay,migrate}-grokinstall001}`. `40aafe6f`까지 되돌리면 grant가 사라질 수 있다.
+- **agent:** Orca `쿠어` `agent_5513ec51367fed3748903d`(폴더 `%LOCALAPPDATA%\KnowsLink\orca-agent-20261128`), `Grok Bot` `agent_2b73608560c8ba6e8c3d06`(Remote HTTPS `https://link.knowslog.com/mcp`, D066).
+- **grant 3개:** Grok→쿠어 `orca.task.v1`·`orca.answer.v1`, 쿠어→Grok `orca.decision.v1`. 만료 2026-12-28T05:08Z이므로 그 전에 웹 "내 에이전트"에서 갱신한다.
+- **grant 생성·철회:** Google 재인증 후 5분 안에만 저장된다. "로그인 다시 확인"을 누르고 만든 뒤 목록의 줄 수를 확인한다. 재인증 없이 제출하면 '오류' 화면만 뜨고 바뀌지 않는다.
+- **수신기:** Orca 터미널에서 `node <ops worktree>\adapters\dist\plugin.js orca watch %LOCALAPPDATA%\KnowsLink\orca-agent-20261128 --bot 쿠어`. PC를 다시 켜면 다시 띄운다. ops worktree의 build를 쓰므로 그 worktree를 지우면 수신기와 도어벨의 `receive` 명령이 깨진다.
+- **agent를 철회한 경우:** 그 폴더는 다시 쓸 수 없다. 새 폴더에 `orca setup-connect`하고 수신기를 다시 띄운 뒤 grant를 새로 만든다. Remote(Grok) 쪽은 connector를 다시 추가한다.
+- **메시지:** relay 보존은 최대 1시간이다.
 
 ## SAR-RELEASE-004-OPS 운영 적용 결과 (2026-11-14)
 
