@@ -4,7 +4,7 @@ status: draft
 updated: 2026-11-28
 owner: dev
 tasks: [SAR-MCP-SPEC-CHECK-001-DEV, SAR-MCP-UPGRADE-001]
-summary: 배포 대기 묶음(ce4109b4)을 2026-07-28 공식 스펙과 대조했다. 서버 MUST 누락 2건(필수 헤더 부재 거부, clientCapabilities 부재 거부)과 DCR application_type 거부(RFC 7591 MUST 위반)를 작은 수정으로 고쳤다. 판정은 배포 전 수정 필요이며, 수정은 이 커밋에 들어 있다.
+summary: "배포 대기 묶음(ce4109b4)을 2026-07-28 공식 스펙과 대조했다. 서버 MUST 누락 2건(필수 헤더 부재 거부, clientCapabilities 부재 거부)과 DCR application_type 거부(RFC 7591 MUST 위반)를 작은 수정으로 고쳤다. 판정은 배포 전 수정 필요이며, 수정은 이 커밋에 들어 있다."
 ---
 
 # SAR-MCP-SPEC-CHECK-001-DEV 점검 보고
