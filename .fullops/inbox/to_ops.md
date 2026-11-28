@@ -96,5 +96,11 @@ parallel: on
 
 ## 완료 보고
 
+- 결과: `d3670f2f` 운영 배포 완료, `verify.py local`·`public` 통과, relay error 0줄, rollback 안 함. 백업 SHA256 `57d7b7dc…f064c43`.
+- 관측: Redis 128 MiB·`noeviction`·사용 1.5 MiB. R3 이론 최악(32 KiB, member 1명 약 150 MiB)은 한도를 넘는다. 설정은 바꾸지 않았다.
+- 확인: `policyEffective` 2026-11-28=배포일, metadata 200, agent 2·grant 3 유지.
+- 미확인: 운영 `/mcp` 인증 legacy `initialize`(token 필요). 같은 코드의 격리 테스트로 `2025-06-18` 응답만 확인.
+- 근거: `tasks/SAR-MCP-DEPLOY-001-OPS/qa/report.md`, D12.
+
 `fullops done`을 실행하고 그 출력 한 줄을 worker_done 본문으로 쓴다.
 처리는 `fullops-work`, 회신은 `fullops-orca` 스킬을 따른다.

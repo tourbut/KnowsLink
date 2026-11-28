@@ -144,3 +144,7 @@ Windows `make`는 `scripts/make.py`가 프로세스 PATH에만 도구를 붙여 
 
 adapter 빌드는 `.devtools`의 Node 22.22.2를 PATH 앞에 둔다. 시스템 Node 24는 `npm ci`가 EBADENGINE으로 멈추고, 남은 옛 `dist/`가 테스트를 통과해 보인다.
 로그인 뒤 웹 문구는 실행 중 container의 relay binary 문자열(`docker cp … -`)과 template 렌더로 확인한다.
+
+## 2026-11-28 — SAR-MCP-DEPLOY-001-OPS
+
+`/mcp`의 `initialize`는 OAuth token이 있어야 응답한다. 배포 후 확인 항목에 버전 협상이 있으면 운영에서는 401·-32022까지만 보이므로 격리 `TestRemote`(먼저 `cmd/migrate`)로 확인한다.
