@@ -81,7 +81,9 @@ push, 서버 DB·`.env`·Tunnel·DNS·방화벽 변경은 하지 않았다.
 - **선택:** 사람 단계를 자동화하지 않는다. Grok 갱신 확인 전이라 grant를 만들지 않았다. 연결을 되돌리려면 주인이 웹 "내 에이전트"에서 이 agent를 해제한다.
 - 두 번째 ask `msg_84a6c1b61bcb`(agent 확인, Grok 갱신)도 코디네이터 중지로 답이 없다(`msg_cb3c95224786`). **선택:** agent 이름은 그대로 두고, grant·`watch`·왕복은 보류한 채 미완료로 보고한다. 인박스를 닫지 않으려고 `fullops done`은 실행하지 않았다.
 
-### Grok CLI 설치 준비 (계획 변경 `msg_d2da8acc2304`)
+### Grok CLI 설치 준비 — 미사용 (계획 변경 `msg_d2da8acc2304`, 취소 `msg_4d8e0eb7e520`)
+
+**미사용.** Grok 쪽은 이 PC의 grok CLI가 아니라 Grok Bot(자기 `/workspace`, `install_bot_mcp.sh`)이다. 아래 설치 폴더와 `grok-agent` 연결 시도(`login.json`·`private.pem`, 02:05:03Z 만료, `agent.json` 없음)는 지시대로 지우지 않았다. `grok plugin install`은 실행되지 않았고(`grok plugin list`에 knowslink 없음) agent는 만들어지지 않았다. 아래의 '리뷰 low 1의 실제 값' 중 Grok 쪽 경로 두 개는 쓰지 않는다.
 
 - Grok은 맥북이 아니라 이 PC의 grok CLI 1.0.92다. 위 `msg_84a6c1b61bcb`의 보류 선택은 이 답으로 바뀌었다.
 - 주인이 웹에서 `agent_b865fba924692fafbb27b8`의 이름을 바꿨다(`msg_b40681b4a7c0`). 새 이름은 전달받지 못했다. 기록은 ID를 쓴다.
@@ -92,7 +94,6 @@ push, 서버 DB·`.env`·Tunnel·DNS·방화벽 변경은 하지 않았다.
 
 ### 남은 단계
 
-1. 주인이 `grok plugin install ... --trust`를 실행하고 Grok 연결에 동의한다. 만료되면 `setup-connect ... grok-agent --host grok`을 다시 실행한다.
-2. `grok mcp doctor knowslink`로 MCP 서버를 확인한다.
-3. 주인이 grant 3개를 만든다.
-4. `orca watch <폴더> --bot 쿠어`, 왕복 1회, 도어벨 argv·`receive`·`--item` 기록.
+1. 주인이 Grok Bot 채팅으로 adapter를 `b4c76b64`로 갱신·연결한다. 코디네이터가 Grok agent 이름·ID를 전달할 때까지 대기한다.
+2. 주인이 grant 3개를 만든다(Grok에서 `agent_b865fba924692fafbb27b8`로 `orca.task.v1`·`orca.answer.v1`, 반대 방향 `orca.decision.v1`).
+3. `orca watch <폴더> --bot 쿠어`, 왕복 1회, 도어벨 argv·`receive`·`--item` 기록. Grok Bot 쪽 `<plugin.js>`·agent 폴더 실제 값도 기록한다.
