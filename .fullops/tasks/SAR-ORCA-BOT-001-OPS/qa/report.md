@@ -4,7 +4,7 @@ status: draft
 updated: 2026-11-28
 owner: ops
 tasks: [SAR-ORCA-BOT-001-OPS]
-summary: 미완료. 운영 서버 SSH가 권한 분류기에서 거부되어 배포하지 못했고, 직접 실행할 배포 스크립트와 남은 단계를 기록한다
+summary: "미완료. 운영 서버 SSH가 권한 분류기에서 거부되어 배포하지 못했고, 직접 실행할 배포 스크립트와 남은 단계를 기록한다"
 ---
 
 # SAR-ORCA-BOT-001-OPS 검증 보고
