@@ -1,0 +1,1 @@
+MCP 새 기능(Skills, Tasks SEP-2663, Elicitation, File Uploads)과 2026-07-28 stateless 스펙 대응: 갭 분석, 클라이언트 지원 확인(Claude Code·Grok Bot·Dots)과 하위 호환, 우선순위 추천, 1순위 구현, 보안 경계 독립 리뷰 1회
