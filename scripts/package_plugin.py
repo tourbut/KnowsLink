@@ -16,7 +16,7 @@ VERSION = json.loads((ROOT / "adapters/.claude-plugin/plugin.json").read_text(en
 PRODUCTION_RELAY = "https://link.knowslog.com"
 COMMON = ["README.md", "skills/knowslink/SKILL.md", "dist/plugin.js"]
 HOST_FILES = {
-    "grok": {name: name for name in [".cursor-plugin/plugin.json", "mcp.json", ".grok-plugin/plugin.json", ".mcp.json", *COMMON]},
+    "grok": {name: name for name in [".cursor-plugin/plugin.json", "mcp.json", ".grok-plugin/plugin.json", ".mcp.json", "bin/knowslink-grok.sh", *COMMON]},
     "claude": {name: name for name in [*COMMON, ".claude-plugin/plugin.json", "config/local.mcp.json", "hooks/hooks.json", "hooks/register.ts", "hooks/register.test.ts"]},
     "codex": {**{name: name for name in COMMON}, ".codex-plugin/plugin.json": ".codex-plugin/plugin.json", ".mcp.json": "config/local.mcp.json"},
     "claude-desktop": {name: name for name in [*COMMON, "manifest.json"]},
@@ -160,6 +160,26 @@ def release(directory, relay):
     return target
 
 
+def grok_release(directory):
+    # A team marketplace imports this tree from a Git repository (SAR-GROK-INSTALL-001); the launcher pins Node on the Bot computer.
+    target = directory.resolve()
+    if os.path.lexists(target):
+        raise ValueError("--grok-release needs a new folder; copy its contents into the distribution repository afterwards")
+    output = package("grok", True)
+    target.mkdir(parents=True)
+    with ZipFile(output) as archive:
+        archive.extractall(target)
+    for name, variable in ((".mcp.json", "GROK_PLUGIN_ROOT"), ("mcp.json", "CURSOR_PLUGIN_ROOT")):
+        # No env: the launcher sets the release defaults, and a value set in the app still wins.
+        server = {"command": "sh", "args": [f"${{{variable}}}/bin/knowslink-grok.sh"]}
+        (target / "knowslink" / name).write_text(json.dumps({"mcpServers": {"knowslink": server}}, indent=2) + "\n", encoding="utf-8", newline="\n")
+    files = sorted(path for path in target.rglob("*") if path.is_file())
+    sums = "".join(f"{sha256(path.read_bytes()).hexdigest()}  {path.relative_to(target).as_posix()}\n" for path in files)
+    (target / "SHA256SUMS").write_text(sums, encoding="utf-8", newline="\n")
+    print(f"Grok Bot plugin {VERSION}: {target}; commit it to the distribution repository, tag v{VERSION}, then Refresh the team marketplace")
+    return target
+
+
 def cloud_package(app_id, verify):
     # Cloud plugins reference an already registered app; bundling MCP makes this Desktop-only.
     if not re.fullmatch(r"(?:asdk_app_|connector_|templated_apps_)[A-Za-z0-9_-]{1,128}", app_id or ""):
@@ -204,6 +224,7 @@ def main():
     parser.add_argument("--install-dir", type=Path, help="Prepare one host in a new absolute directory; never changes host settings")
     parser.add_argument("--connect", action="store_true", help="Prepare public-node settings with a fresh private sibling folder; does not start login")
     parser.add_argument("--release", type=Path, help="Write the pinned Windows auto-setup installer and Claude/Codex ZIPs under <dir>/<version>")
+    parser.add_argument("--grok-release", type=Path, help="Write the Grok Bot plugin marketplace tree (pinned-Node launcher, SHA256SUMS) into a new folder")
     parser.add_argument("--relay-url", default=PRODUCTION_RELAY, help="Service URL baked into a --release installer; non-production URLs are isolated fixtures")
     options = parser.parse_args()
     if options.release:
@@ -211,6 +232,9 @@ def main():
         if not re.fullmatch(r"https://[a-z0-9.-]+(:\d+)?|http://(127\.0\.0\.1|localhost)(:\d+)?", relay):
             parser.error("--relay-url must be https or a loopback http URL without a path")
         release(options.release, relay)
+        return
+    if options.grok_release:
+        grok_release(options.grok_release)
         return
     if options.host == "openai-cloud":
         if options.install_dir or options.connect:

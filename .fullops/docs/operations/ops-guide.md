@@ -2,14 +2,37 @@
 id: D12
 title: 운영자설명서
 status: draft
-updated: 2026-11-14
+updated: 2026-11-28
 owner: dev
-tasks: [SAR-PUBLISH-001-OPS, SAR-DEPLOY-001-OPS, SAR-BETA-001-OPS, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX, SAR-MVP-003-BIDIRECTIONAL, SAR-MVP-003-BIDIRECTIONAL-OPS, SAR-MVP-003-BIDIRECTIONAL-OPS-RENEW, SAR-PUBLIC-SERVICE-OPS-READINESS, SAR-PUBLIC-SERVICE-OPEN-PREP, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV, SAR-AUTO-RECEIVE-001-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SSE-INSTALL-001-TESTER, SAR-SSE-INSTALL-001-OPS, SAR-SSE-INSTALL-001-OAUTH-RETURN-DEV, SAR-SSE-INSTALL-001-OAUTH-RETURN-OPS, SAR-GROK-WEBHOOK-001-DEV, SAR-SERVICE-UI-001-OPS, SAR-HUMAN-PEER-001-DEV, SAR-HUMAN-PEER-001-OPS, SAR-REFACTOR-001-OPS, SAR-REFACTOR-002-OPS, SAR-RELEASE-001-OPS, SAR-RELEASE-002-OPS, SAR-RELEASE-003-OPS, SAR-PUBLISH-001-DEV, SAR-PUBLISH-001-RETENTION, SAR-PUBLISH-001-P03-DEPLOY, SAR-CONNECT-SIMPLE-001-DEV, SAR-CONNECT-SIMPLE-001-FIX-DEV, SAR-CONNECT-SIMPLE-001-OPS, SAR-CONNECT-SIMPLE-001-FOLLOWUP-DEV, SAR-AUTOSETUP-001-O04-DEV, SAR-AUTOSETUP-001-OPS, SAR-DB-WAIT-001, SAR-MSG-EPHEMERAL-001, SAR-VULTR-MIGRATE-001, SAR-RELEASE-004-OPS]
+tasks: [SAR-PUBLISH-001-OPS, SAR-DEPLOY-001-OPS, SAR-BETA-001-OPS, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX, SAR-MVP-003-BIDIRECTIONAL, SAR-MVP-003-BIDIRECTIONAL-OPS, SAR-MVP-003-BIDIRECTIONAL-OPS-RENEW, SAR-PUBLIC-SERVICE-OPS-READINESS, SAR-PUBLIC-SERVICE-OPEN-PREP, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV, SAR-AUTO-RECEIVE-001-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SSE-INSTALL-001-TESTER, SAR-SSE-INSTALL-001-OPS, SAR-SSE-INSTALL-001-OAUTH-RETURN-DEV, SAR-SSE-INSTALL-001-OAUTH-RETURN-OPS, SAR-GROK-WEBHOOK-001-DEV, SAR-SERVICE-UI-001-OPS, SAR-HUMAN-PEER-001-DEV, SAR-HUMAN-PEER-001-OPS, SAR-REFACTOR-001-OPS, SAR-REFACTOR-002-OPS, SAR-RELEASE-001-OPS, SAR-RELEASE-002-OPS, SAR-RELEASE-003-OPS, SAR-PUBLISH-001-DEV, SAR-PUBLISH-001-RETENTION, SAR-PUBLISH-001-P03-DEPLOY, SAR-CONNECT-SIMPLE-001-DEV, SAR-CONNECT-SIMPLE-001-FIX-DEV, SAR-CONNECT-SIMPLE-001-OPS, SAR-CONNECT-SIMPLE-001-FOLLOWUP-DEV, SAR-AUTOSETUP-001-O04-DEV, SAR-AUTOSETUP-001-OPS, SAR-DB-WAIT-001, SAR-MSG-EPHEMERAL-001, SAR-VULTR-MIGRATE-001, SAR-RELEASE-004-OPS, SAR-GROK-INSTALL-001-DEV]
 upstream: [D02, D03]
 summary: 서버 관찰 이력과 본인 전용 합성 베타 배포 구성·검증·복귀 절차 및 held 항목을 기록한다
 ---
 
 # KnowsLink 운영자설명서 (D12) — 현재 서버 배포 계획
+
+## Grok Bot 플러그인 배포 — SAR-GROK-INSTALL-001-DEV
+
+**아직 실행하지 않았다.** 배포 저장소 생성과 push는 소유자 승인 대상이다.
+Grok Bot은 팀 marketplace Git 저장소 `https://github.com/tourbut/knowslink-grok-plugin`(생성·push 승인 대기)에서 KnowsLink 플러그인을 받는다.
+relay 서버·DB·Tunnel·운영 state `install/`은 바꾸지 않는다.
+팀 marketplace는 Teams/Enterprise 요금제가 필요하다. Refresh·Auto Refresh 근거는 [Cursor plugins](https://cursor.com/docs/plugins)다.
+Grok Bot이 Cursor plugin 형식을 읽는다는 것은 실제 계정 확인 전 추정이다. 사용자 절차는 [루트 README](../../../README.md#grok-신규-설치)를 따른다.
+
+1. 개발 PC에서 `make build`(adapters 빌드 포함) 뒤 새 빈 폴더로 배포 트리를 만든다. 버전은 `adapters/.grok-plugin/plugin.json`에서 온다.
+
+   ```sh
+   python3 scripts/package_plugin.py --grok-release <새 빈 폴더>
+   ```
+
+   결과: 루트 `.cursor-plugin/marketplace.json`, `.grok-plugin/marketplace.json`, `SHA256SUMS`, `knowslink/`. 명령은 풀어 놓은 bundle에 MCP 경계 검사를 실행한다. 실패하면 게시하지 않는다.
+2. 배포 저장소 clone에 이 트리를 복사한다. `SHA256SUMS`와 diff를 확인하고 commit한다.
+3. `v<버전>` tag를 만든다.
+4. commit과 tag를 push한다. **사용자 승인이 필요하다.**
+5. 팀 관리자가 dashboard **Plugins & MCPs**의 팀 marketplace에서 **Refresh**한다(Auto Refresh를 켰으면 자동).
+6. Bot owner는 MCP를 재시작한다(새 대화 또는 reload). `knowslink_status`의 agent ID가 이전과 같은지 확인한다.
+
+rollback은 배포 저장소를 직전 tag 내용으로 되돌리는 commit을 push하고(승인 필요) 관리자가 다시 Refresh하는 것이다. 연결 폴더 `<prefix>/connections/grok-agent`는 그대로이므로 agent·키·친구는 바뀌지 않는다.
 
 ## SAR-RELEASE-004-OPS 운영 적용 결과 (2026-11-14)
 
