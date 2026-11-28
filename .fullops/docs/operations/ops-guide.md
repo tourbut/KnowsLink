@@ -19,7 +19,7 @@ summary: 서버 관찰 이력과 본인 전용 합성 베타 배포 구성·검�
 - **rollback:** 태그 `knowslink-rollback:40aafe6f-{relay,migrate}-orcabot001`. 코드 복귀는 `beta.sh deploy 40aafe6f…`다(미실행). grant를 만든 뒤 복귀하면 grant가 사라질 수 있다.
 - **확인:** `verify.py local`·`public` 통과, relay error 0줄. Tunnel·DNS·`.env`·방화벽은 바꾸지 않았다.
 - **Orca agent:** `agent_b865fba924692fafbb27b8`(이름 `Orca Bot`), 연결 폴더 `%LOCALAPPDATA%\KnowsLink\orca-agent`.
-- **미완료:** grant, Grok 왕복. 받는 쪽 adapter를 모두 갱신하기 전에는 grant를 만들지 않는다(이전 adapter는 `kind`가 있는 envelope를 버린다).
+- **미완료:** grant, Grok 왕복. Grok Bot은 Remote HTTPS(`/mcp`)로 연결하며(D066) `SAR-GROK-INSTALL-001-DEV` 배포 뒤 잇는다. 받는 쪽 adapter를 모두 갱신하기 전에는 grant를 만들지 않는다(이전 adapter는 `kind`가 있는 envelope를 버린다).
 
 ## SAR-RELEASE-004-OPS 운영 적용 결과 (2026-11-14)
 

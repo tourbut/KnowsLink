@@ -92,8 +92,14 @@ push, 서버 DB·`.env`·Tunnel·DNS·방화벽 변경은 하지 않았다.
 - 리뷰 low 1의 실제 값: `<plugin.js>` = `%LOCALAPPDATA%\KnowsLink\grok-plugin-b4c76b64\knowslink\dist\plugin.js`, `<this agent folder>` = `%LOCALAPPDATA%\KnowsLink\grok-agent`, `<Orca agent>` = `agent_b865fba924692fafbb27b8`.
 - 사람 단계 ask `msg_ba0c13a412f6`: `grok plugin install <설치 폴더>\knowslink --trust`, Google 동의(링크 만료 02:05:03Z).
 
+### Grok 경로 확정: Remote HTTPS (D066, `msg_88e00f83b5dd`)
+
+- Grok Bot은 custom connector로 `https://link.knowslog.com/mcp`(서버 보관 키)를 추가한다. 위의 Grok CLI 경로와 `install_bot_mcp.sh` 경로는 쓰지 않는다. **미사용.**
+- background `setup-connect`는 둘 다 이미 끝났다(Orca는 `connected`, Grok CLI는 만료·종료 2). 남은 `setup-connect`·`orca watch` node 프로세스는 없다. 폴더는 지우지 않았다.
+- dev의 `SAR-GROK-INSTALL-001-DEV`(Remote MCP의 orca 형식 송수신·grant)가 운영에 배포된 뒤 grant·왕복을 잇는다.
+
 ### 남은 단계
 
-1. 주인이 Grok Bot 채팅으로 adapter를 `b4c76b64`로 갱신·연결한다. 코디네이터가 Grok agent 이름·ID를 전달할 때까지 대기한다.
-2. 주인이 grant 3개를 만든다(Grok에서 `agent_b865fba924692fafbb27b8`로 `orca.task.v1`·`orca.answer.v1`, 반대 방향 `orca.decision.v1`).
-3. `orca watch <폴더> --bot 쿠어`, 왕복 1회, 도어벨 argv·`receive`·`--item` 기록. Grok Bot 쪽 `<plugin.js>`·agent 폴더 실제 값도 기록한다.
+1. `SAR-GROK-INSTALL-001-DEV` 결과를 운영에 배포한다.
+2. 주인이 Grok Bot custom connector를 연결하고 grant 3개를 만든다(Grok에서 `agent_b865fba924692fafbb27b8`로 `orca.task.v1`·`orca.answer.v1`, 반대 방향 `orca.decision.v1`).
+3. `orca watch <폴더> --bot 쿠어`, 왕복 1회, 도어벨 argv·`receive`·`--item` 기록.
