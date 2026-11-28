@@ -131,6 +131,8 @@ type Service struct {
 	ClientIPHeader  string
 	// InstallDir holds released auto-setup files (<version>/<file>); empty serves none.
 	InstallDir string
+	// Sealer encrypts stored webhook secrets; nil (no KNOWSLINK_SEAL_KEY) refuses new webhook subscriptions.
+	Sealer *Sealer
 	// Stopping is cancelled on shutdown; it ends SSE streams so Shutdown can drain and their admissions are released.
 	Stopping context.Context
 }

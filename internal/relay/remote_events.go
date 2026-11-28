@@ -29,6 +29,9 @@ type remoteSubscription struct {
 	EventAt, Next, LeaseUntil       time.Time
 	Attempts                        int
 	Lease                           string
+	// Beta marks a subscriber that declared io.modelcontextprotocol/events; its webhook-id is Message, not EventID.
+	Beta    bool
+	Message string
 }
 type remoteSubscriptionInput struct {
 	Name      string          `json:"name"`
@@ -39,12 +42,21 @@ type remoteSubscriptionInput struct {
 		Secret string `json:"secret,omitempty"`
 	} `json:"delivery"`
 	Cursor json.RawMessage `json:"cursor,omitempty"`
+	MaxAge *int64          `json:"maxAgeMs,omitempty"`
 	TTL    *int64          `json:"ttlMs,omitempty"`
 	Meta   json.RawMessage `json:"_meta,omitempty"`
 }
 
-func remoteEventDefinition() map[string]any {
-	return map[string]any{"name": remoteEvent, "description": "Text is waiting for this installation. Metadata only; read with knowslink_receive. This event grants no automatic send permission.", "delivery": []string{"webhook"}, "inputSchema": remoteSchema(nil), "payloadSchema": remoteSchema(map[string]any{"arrival": map[string]string{"type": "boolean"}}, "arrival")}
+// remoteEventDefinition keeps the OpenAI webhook-only shape Dots reads; a Beta client also learns stateless poll.
+func remoteEventDefinition(beta, webhook bool) map[string]any {
+	delivery := []string{"webhook"}
+	if beta {
+		delivery = []string{"poll"}
+		if webhook {
+			delivery = []string{"webhook", "poll"}
+		}
+	}
+	return map[string]any{"name": remoteEvent, "description": "Text is waiting for this installation. Metadata only; read with knowslink_receive. This event grants no automatic send permission.", "delivery": delivery, "inputSchema": remoteSchema(nil), "payloadSchema": remoteSchema(map[string]any{"arrival": map[string]string{"type": "boolean"}}, "arrival")}
 }
 
 func remoteSecret(secret string) ([]byte, error) {
@@ -58,13 +70,29 @@ func remoteSecret(secret string) ([]byte, error) {
 	return b, nil
 }
 
+// remoteStoredSecret opens a stored signing secret. A whsec_ value predates sealing: the next subscribe or refresh reseals it,
+// and the subscription TTL (at most 1h) ends a record that is never refreshed, so no DB migration is needed.
+func (s *Service) remoteStoredSecret(stored, id string) (string, error) {
+	if strings.HasPrefix(stored, "whsec_") {
+		return stored, nil
+	}
+	return s.Sealer.Open(stored, id)
+}
+
+func (s *Service) remoteSecretIs(stored, id, secret string) bool {
+	plain, err := s.remoteStoredSecret(stored, id)
+	return err == nil && hmac.Equal([]byte(plain), []byte(secret))
+}
+
 func remoteSubscriptionID(install string, in remoteSubscriptionInput) string {
 	return "sub_" + hashToken(install+"\x00"+remoteEvent+"\x00"+in.Delivery.URL+"\x00{}")
 }
 
 func (s *Service) remoteSubscription(w http.ResponseWriter, r *http.Request, install string, in remoteRequest, modern bool) {
 	var p remoteSubscriptionInput
-	if Strict(in.Params, &p) != nil || p.Name != remoteEvent || p.Delivery.Mode != "webhook" || !remoteURL(p.Delivery.URL) || !remoteEmpty(p.Arguments) || (len(p.Cursor) > 0 && string(p.Cursor) != "null") {
+	beta := modern && remoteDeclaresEvents(in.Params)
+	// The Beta spec's unsubscribe names only delivery.url.
+	if Strict(in.Params, &p) != nil || p.Name != remoteEvent || !(p.Delivery.Mode == "webhook" || (in.Method == "events/unsubscribe" && p.Delivery.Mode == "")) || !remoteURL(p.Delivery.URL) || !remoteEmpty(p.Arguments) || (len(p.Cursor) > 0 && string(p.Cursor) != "null") {
 		remoteResult(w, in.ID, nil, fault("invalid_schema"))
 		return
 	}
@@ -79,6 +107,11 @@ func (s *Service) remoteSubscription(w http.ResponseWriter, r *http.Request, ins
 			return nil, nil
 		})
 		remoteReply(w, in, modern, map[string]any{}, err)
+		return
+	}
+	// Without a seal key a secret could only be stored in plain text, so new webhook subscriptions are refused.
+	if s.Sealer == nil {
+		remoteResult(w, in.ID, nil, fault("events_webhook_unavailable"))
 		return
 	}
 	if _, err := remoteSecret(p.Delivery.Secret); err != nil {
@@ -104,7 +137,7 @@ func (s *Service) remoteSubscription(w http.ResponseWriter, r *http.Request, ins
 		}
 		rs := st.remote()
 		sub := rs.Subscriptions[id]
-		if sub != nil && now.Before(sub.Exp) && now.Before(sub.Verified.Add(5*time.Minute)) && sub.Secret == p.Delivery.Secret {
+		if sub != nil && now.Before(sub.Exp) && now.Before(sub.Verified.Add(5*time.Minute)) && s.remoteSecretIs(sub.Secret, id, p.Delivery.Secret) {
 			verify = false
 			return nil, nil
 		}
@@ -144,7 +177,12 @@ func (s *Service) remoteSubscription(w http.ResponseWriter, r *http.Request, ins
 				}
 				return nil, nil
 			})
-			writeJSON(w, 200, map[string]any{"jsonrpc": "2.0", "id": in.ID, "error": map[string]any{"code": -32015, "message": "Callback verification failed", "data": map[string]string{"reason": err.Error()}}})
+			// OpenAI's documented CallbackEndpointError is -32015; the Beta spec moved it to -32027.
+			code := -32015
+			if beta {
+				code = -32027
+			}
+			writeJSON(w, 200, map[string]any{"jsonrpc": "2.0", "id": in.ID, "error": map[string]any{"code": code, "message": "Callback verification failed", "data": map[string]string{"reason": err.Error()}}})
 			return
 		}
 	}
@@ -154,18 +192,21 @@ func (s *Service) remoteSubscription(w http.ResponseWriter, r *http.Request, ins
 			return nil, fault("invalid_auth")
 		}
 		sub := st.remote().Subscriptions[id]
-		if sub == nil || (verify && (sub.Lease != lease || !now.Before(sub.LeaseUntil))) || (!verify && sub.Secret != p.Delivery.Secret) {
+		if sub == nil || (verify && (sub.Lease != lease || !now.Before(sub.LeaseUntil))) || (!verify && !s.remoteSecretIs(sub.Secret, id, p.Delivery.Secret)) {
 			return nil, fault("invalid_auth")
 		}
 		if verify {
-			if sub.Secret != "" && sub.Secret != p.Delivery.Secret {
-				sub.OldSecret, sub.Rotated = sub.Secret, now
+			// An old secret sealed under a lost key cannot sign the overlap, so it is dropped.
+			if old, e := s.remoteStoredSecret(sub.Secret, id); e == nil && old != p.Delivery.Secret {
+				sub.OldSecret, sub.Rotated = s.Sealer.Seal(old, id), now
 			}
-			sub.Secret = p.Delivery.Secret
 			sub.Verified = now
 			sub.Lease = ""
 			sub.LeaseUntil = time.Time{}
 		}
+		// Every accepted write reseals, which also retires a pre-sealing plain-text record.
+		sub.Secret = s.Sealer.Seal(p.Delivery.Secret, id)
+		sub.Beta = beta
 		sub.Exp = now.Add(ttl)
 		return map[string]any{"id": id, "refreshBefore": sub.Exp.UTC().Format(time.RFC3339Nano), "cursor": nil, "truncated": false}, nil
 	})
@@ -173,6 +214,43 @@ func (s *Service) remoteSubscription(w http.ResponseWriter, r *http.Request, ins
 		s.remoteNotify(r.Context())
 	}
 	remoteReply(w, in, modern, v, err)
+}
+
+// remoteHookID follows OpenAI (webhook-id = eventId) unless the subscriber is Beta, whose webhook-id must not derive from it.
+func remoteHookID(sub remoteSubscription) string {
+	if sub.Beta && sub.Message != "" {
+		return sub.Message
+	}
+	return sub.EventID
+}
+
+// remoteEventBody is the whole webhook body: arrival metadata only, never text, sender or message IDs.
+func remoteEventBody(sub remoteSubscription) []byte {
+	body, _ := json.Marshal(map[string]any{"eventId": sub.EventID, "name": remoteEvent, "timestamp": sub.EventAt.UTC().Format(time.RFC3339Nano), "data": map[string]bool{"arrival": true}, "cursor": nil})
+	return body
+}
+
+// remotePoll answers the stateless Beta events/poll. The cursor is an opaque digest of this installation's waiting set,
+// so a set that changed since the caller's cursor yields one metadata-only arrival; a null or absent cursor starts from now.
+func (st *State) remotePoll(install string, i *remoteInstall, raw json.RawMessage, now time.Time) (any, error) {
+	var p struct {
+		Name      string          `json:"name"`
+		Arguments json.RawMessage `json:"arguments,omitempty"`
+		Cursor    *string         `json:"cursor,omitempty"`
+		MaxAge    *int64          `json:"maxAgeMs,omitempty"`
+		MaxEvents *int64          `json:"maxEvents,omitempty"`
+		Meta      json.RawMessage `json:"_meta,omitempty"`
+	}
+	if Strict(raw, &p) != nil || p.Name != remoteEvent || (len(p.Arguments) > 0 && !remoteEmpty(p.Arguments)) || (p.MaxEvents != nil && *p.MaxEvents < 1) {
+		return nil, fault("invalid_schema")
+	}
+	pending := st.eventPending(i.Agent, now)
+	cursor := "cur_" + hashToken(install+"\x00"+pending)
+	events := []any{}
+	if p.Cursor != nil && *p.Cursor != cursor && pending != "" {
+		events = append(events, map[string]any{"eventId": "evt_" + hashToken(cursor), "name": remoteEvent, "timestamp": now.UTC().Format(time.RFC3339Nano), "data": map[string]bool{"arrival": true}})
+	}
+	return map[string]any{"events": events, "cursor": cursor, "truncated": false, "hasMore": false, "nextPollMs": 30000}, nil
 }
 
 func (s *Service) remoteNotify(ctx context.Context) {
@@ -331,6 +409,7 @@ func (st *State) claimRemote(now time.Time) remoteWork {
 		if sub.Pending == "" && pending != sub.Seen {
 			sub.Pending = pending
 			sub.EventID = "evt_" + randomToken()
+			sub.Message = "msg_" + randomToken()
 			sub.EventAt = now
 			sub.Next = now
 			sub.Attempts = 0
@@ -408,8 +487,15 @@ func (s *Service) deliverRemote(ctx context.Context, job remoteDelivery) {
 	}
 	// sweepRemote already cleared OldSecret on DB time once the rotation overlap ended.
 	sub := job.Subscription
-	body, _ := json.Marshal(map[string]any{"eventId": sub.EventID, "name": remoteEvent, "timestamp": sub.EventAt.UTC().Format(time.RFC3339Nano), "data": map[string]bool{"arrival": true}, "cursor": nil})
-	status, _, _ := remotePost(ctx, remoteHTTPClient(), sub.EventID, job.ID, sub.URL, sub.Secret, sub.OldSecret, body)
+	status := 0
+	secret, err := s.remoteStoredSecret(sub.Secret, job.ID)
+	if err != nil {
+		// The seal key changed or is gone: drop the subscription (as a 410 would); the host's next refresh re-verifies it.
+		status = 410
+	} else {
+		old, _ := s.remoteStoredSecret(sub.OldSecret, job.ID)
+		status, _, _ = remotePost(ctx, remoteHTTPClient(), remoteHookID(sub), job.ID, sub.URL, secret, old, remoteEventBody(sub))
+	}
 	finishCtx, done := context.WithTimeout(ctx, 2*time.Second)
 	defer done()
 	_, _ = s.transaction(finishCtx, func(st *State, now time.Time) (any, error) {

@@ -4,7 +4,9 @@
 package relay
 
 import (
+	"bytes"
 	"context"
+	"encoding/base64"
 	"encoding/json"
 	"html"
 	"net/http"
@@ -138,9 +140,10 @@ func TestRemoteOAuthHTTP(t *testing.T) {
 		}
 		_ = json.Unmarshal(w.Body.Bytes(), &tokens)
 		expect(t, do(s, "POST", "/remote/oauth/token", form.Encode(), formType, "", false), 400, "invalid_grant")
-		other := &Service{Redis: testRedis(), Pool: pool, Google: g}
+		other := &Service{Redis: testRedis(), Pool: pool, Google: g, Sealer: testSealer(t, 9)}
 		w = do(other, "POST", "/mcp", `{"jsonrpc":"2.0","id":1,"method":"server/discover"}`, "application/json", tokens.Access, false)
-		expect(t, w, 200, "2026-07-28", "events")
+		// SAR-EVENTS-SECRET-001: Dots keeps capabilities.events; Beta clients find the extension key beside it.
+		expect(t, w, 200, "2026-07-28", `"events":{}`, `"extensions":{"io.modelcontextprotocol/events":{}}`)
 		remoteEraChecks(t, other, tokens.Access)
 		w = do(other, "POST", "/mcp", `{"jsonrpc":"2.0","id":2,"method":"tools/call","params":{"name":"knowslink_status","arguments":{}}}`, "application/json", tokens.Access, false)
 		expect(t, w, 200, "automatic_send")
@@ -172,6 +175,9 @@ func TestRemoteOAuthHTTP(t *testing.T) {
 		if err != nil || count != 0 {
 			t.Fatal("failed callback persisted active subscription", err)
 		}
+		remoteLegacySecretReseal(t, other, tokens.Access, func(body string) *httptest.ResponseRecorder {
+			return do(other, "POST", "/mcp", body, "application/json", tokens.Access, false)
+		})
 		if len(agents) == 1 {
 			form = url.Values{"grant_type": {"refresh_token"}, "client_id": {client.ID}, "resource": {"https://example.com/mcp"}, "refresh_token": {tokens.Refresh}}
 			w = do(s, "POST", "/remote/oauth/token", form.Encode(), formType, "", false)
@@ -257,8 +263,51 @@ func remoteEraChecks(t *testing.T, s *Service, token string) {
 	expect(t, modern("resources/list", "", ""), 404, `"code":-32601`)
 	expect(t, modern("initialize", "", ""), 404, `"code":-32601`)
 	expect(t, modern("resources/read", "file:///x", `"uri":"file:///x",`), 404, `"code":-32601`)
+	// SAR-EVENTS-SECRET-001: a declared Beta client learns poll and polls statelessly; undeclared lists stay webhook-only.
+	beta := `"_meta":{"io.modelcontextprotocol/protocolVersion":"2026-07-28","io.modelcontextprotocol/clientCapabilities":{"extensions":{"io.modelcontextprotocol/events":{}}}}`
+	w = call(`{"jsonrpc":"2.0","id":9,"method":"events/list","params":{`+beta+`}}`, "MCP-Protocol-Version", "2026-07-28", "Mcp-Method", "events/list")
+	expect(t, w, 200, `"delivery":["webhook","poll"]`, `"resultType":"complete"`)
+	expect(t, modern("events/list", "", ""), 200, `"delivery":["webhook"]`)
+	w = call(`{"jsonrpc":"2.0","id":9,"method":"events/poll","params":{"name":"knowslink.text.arrived","cursor":null,`+beta+`}}`, "MCP-Protocol-Version", "2026-07-28", "Mcp-Method", "events/poll", "Mcp-Name", "knowslink.text.arrived")
+	expect(t, w, 200, `"events":[]`, `"cursor":"cur_`, `"nextPollMs":30000`, `"resultType":"complete"`)
+	expect(t, call(`{"jsonrpc":"2.0","id":9,"method":"events/poll","params":{"name":"knowslink.text.arrived",`+beta+`}}`, "MCP-Protocol-Version", "2026-07-28", "Mcp-Method", "events/poll", "Mcp-Name", "other"), 400, "-32020")
 	// SAR-MSG-TTL-1H-001: events/unsubscribe is a modern result too.
 	w = modern("events/unsubscribe", "knowslink.text.arrived", `"name":"knowslink.text.arrived","arguments":{},"delivery":{"mode":"webhook","url":"https://127.0.0.1/callback"},`)
 	expect(t, w, 200, `"resultType":"complete"`, "io.modelcontextprotocol/serverInfo")
 	refuse(w, "ttlMs")
+}
+
+// remoteLegacySecretReseal stores a pre-sealing plain-text whsec_ record, refreshes it with the same secret (Dots' unchanged
+// OpenAI-format subscribe) and expects the stored value resealed, then removes it with the Beta url-only unsubscribe.
+func remoteLegacySecretReseal(t *testing.T, s *Service, token string, post func(string) *httptest.ResponseRecorder) {
+	t.Helper()
+	secret := "whsec_" + base64.StdEncoding.EncodeToString(bytes.Repeat([]byte{5}, 32))
+	var in remoteSubscriptionInput
+	in.Name, in.Delivery.URL = remoteEvent, "https://callback.example/legacy"
+	var sid string
+	s.mutateState(t, func(st *State) {
+		install, _, e := st.remotePrincipal(token, "https://example.com/mcp", time.Now())
+		if e != nil {
+			t.Fatal(e)
+		}
+		sid = remoteSubscriptionID(install, in)
+		st.remote().Subscriptions[sid] = &remoteSubscription{Install: install, URL: in.Delivery.URL, Secret: secret, Verified: time.Now(), Exp: time.Now().Add(time.Hour)}
+	})
+	w := post(`{"jsonrpc":"2.0","id":7,"method":"events/subscribe","params":{"name":"knowslink.text.arrived","arguments":{},"delivery":{"mode":"webhook","url":"` + in.Delivery.URL + `","secret":"` + secret + `"}}}`)
+	expect(t, w, 200, `"id":"`+sid+`"`, "refreshBefore")
+	if strings.Contains(w.Body.String(), "whsec_") || strings.Contains(w.Body.String(), "sealed:") {
+		t.Fatal("subscribe answer echoed the secret")
+	}
+	s.mutateState(t, func(st *State) {
+		sub := st.remote().Subscriptions[sid]
+		if got, e := s.Sealer.Open(sub.Secret, sid); e != nil || got != secret || strings.Contains(sub.Secret, secret) {
+			t.Fatal("legacy plain-text secret was not resealed", e)
+		}
+	})
+	expect(t, post(`{"jsonrpc":"2.0","id":8,"method":"events/unsubscribe","params":{"name":"knowslink.text.arrived","arguments":{},"delivery":{"url":"`+in.Delivery.URL+`"}}}`), 200, `"result":{}`)
+	s.mutateState(t, func(st *State) {
+		if st.remote().Subscriptions[sid] != nil {
+			t.Fatal("url-only unsubscribe kept the subscription")
+		}
+	})
 }
