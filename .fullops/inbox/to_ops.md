@@ -95,5 +95,12 @@ parallel: on
 ## 완료 보고
 
 브랜치 / SHA / 원인 / 근거 / 추천 / 못 한 것.
+
+- 브랜치: `fullops/ops`. SHA: 완료 커밋(`fullops done` 출력).
+- 원인(**추정**): 로컬 발송 기한 170초(`adapters/src/text.ts:130`) 만료 뒤 Grok이 receive했다. relay 상한은 180초다.
+- 근거: id의 발송 시각 06:55:13.9Z, 빈 결과 보고 07:00:19Z, 메모리 재현(169초 1건, 170초 0건). item 13은 만료 전 수신으로 설명된다.
+- 추천: 지금은 "보낸 뒤 3분 안에 받기" 안내. 기한 연장은 제품 규칙 결정. `remote_mcp.go:145` "1시간" 문구를 코드와 맞춤(`SAR-MCP-UPGRADE-001`과 겹침).
+- 못 한 것: 운영 서버 기록 전부(SSH를 분류기가 거부, `msg_1c4925aed66b`로 추정 보고 승인), Grok receive 시각. `qa/trace.sh`는 미실행.
+- 보고서: `.fullops/tasks/SAR-ORCA-DIAG-001-OPS/qa/report.md`
 `fullops done`을 실행하고 그 출력 한 줄을 worker_done 본문으로 쓴다.
 처리는 `fullops-work`, 회신은 `fullops-orca` 스킬을 따른다.
