@@ -1,3 +1,11 @@
+---
+title: SAR-MSG-TTL-1H-001-DEV QA 보고
+status: draft
+updated: 2026-11-28
+owner: dev
+summary: "메시지 배달 기한 1시간 전환의 180초 구분, 정책 문구 비교, 용량 어림, MCP low 3건, 테스트 결과"
+---
+
 # SAR-MSG-TTL-1H-001-DEV QA 보고
 
 - base: 112e8810ac7a3c025b6a7815e2fd850871b4d889
