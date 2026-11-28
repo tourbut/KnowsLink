@@ -1,0 +1,41 @@
+package relay
+
+import (
+	"encoding/json"
+	"testing"
+	"time"
+)
+
+// SAR-ORCA-DIAG-001-OPS: when does a Remote receive see a 170s local orca.decision?
+func TestDiagDecisionExpiry(t *testing.T) {
+	for _, c := range []struct {
+		name  string
+		calls []time.Duration
+	}{
+		{"first receive at 169s", []time.Duration{169 * time.Second}},
+		{"first receive at 170s", []time.Duration{170 * time.Second}},
+		{"receive at 60s, again at 169s and 171s, no ack", []time.Duration{60 * time.Second, 169 * time.Second, 171 * time.Second}},
+	} {
+		st, keys, now := grantFixture(t)
+		_, i, _, _ := remoteFixture(t, st, "owner_1", now)
+		if err := st.createGrant("owner_1", "orca", i.Agent, "orca.decision.v1", now); err != nil {
+			t.Fatal(err)
+		}
+		e := kindText(t, 1, "orca", i.Agent, "orca.decision.v1", `{"bot":"orca","item":18,"question":"q"}`, now, keys["orca"])
+		if _, err := st.ingestPublicText("orca", e, now); err != nil {
+			t.Fatal(err)
+		}
+		for _, at := range c.calls {
+			st.sweep(now.Add(at)) // transaction() sweeps before every operation
+			v, err := st.remoteTool(i, "knowslink_receive", nil, now.Add(at))
+			if err != nil {
+				t.Fatal(err)
+			}
+			t.Logf("%s | at=%v messages=%d transport=%s", c.name, at, len(mustJSONList(v)), st.Messages[e.ID].Receipt.State)
+		}
+		_, err := st.remoteTool(i, "knowslink_receive", []byte(`{"kinds":["orca.decision.v1"]}`), now)
+		t.Logf("%s | receive with kinds argument: %v", c.name, err)
+	}
+}
+
+func mustJSONList(v any) []json.RawMessage { return v.(map[string]any)["messages"].([]json.RawMessage) }
