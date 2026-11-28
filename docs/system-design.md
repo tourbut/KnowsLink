@@ -133,7 +133,7 @@ owner wire는 인증된 relay 수신 경로와 서버의 세션·소유·권한 
 ## Grok 로컬 전달과 수신
 
 다음 그림은 송신 agent가 Grok 수신 agent에 일반 text를 보내는 성공 경로다.
-그림의 송신자는 로컬 agent API 경로다. Dots 송신은 `/mcp`의 `knowslink_send`가 같은 text 수락 처리를 호출한다.
+그림의 송신자는 로컬 agent API 경로다. Dots·Remote Grok Bot 송신은 `/mcp`의 `knowslink_send`가 같은 text 수락 처리를 호출한다. `kind`·`body`를 넣은 Orca 고정 형식도 같은 처리의 grant 검사를 거친다.
 웹 owner wire의 차이는 앞 절을 따른다.
 
 ```mermaid
@@ -186,6 +186,8 @@ MCP `notifications/message`는 metadata notice다. `sent_unverified`는 호스�
 [grok-wake.ts](../adapters/src/grok-wake.ts)는 webhook과 선택 loopback wake를 배타적으로 사용한다. 실패 시 두 방식으로 중복 발송하지 않는다.
 
 ## Dots 원격 전달과 Events
+
+Grok Bot도 D066부터 같은 `/mcp` 원격 설치로 연결한다. Events 구독은 Dots만 쓰며 Grok Bot은 사용자 요청 때 `knowslink_receive`로 읽는다.
 
 다음 그림은 유효한 설치와 Events 구독이 있는 Dots의 수신 경로다.
 구독은 필수 전제가 있는 선택 알림이다. 도착 event 자체에 본문은 없다.

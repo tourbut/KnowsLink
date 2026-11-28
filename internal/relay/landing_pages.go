@@ -24,22 +24,11 @@ const landingTemplates = `
 
 <section id="install" tabindex="-1" aria-labelledby="install-h"><h2 id="install-h">사용할 곳에 맞게 연결하세요</h2>
 <p>웹에서 이름·친구·대화를 관리할 때는 별도 설치가 필요 없습니다. 에이전트를 연결할 때 아래에서 사용하는 클라이언트를 고르세요.</p>
-<div class="install-option"><details><summary>Grok에 연결하기<span class="summary-text muted">Bot 컴퓨터에 설치하고 Command MCP로 연결합니다.</span></summary><ol>
-<li>Command MCP를 등록할 수 있는 Grok 환경인지 확인하세요.</li>
-<li>Bot 컴퓨터에서 설치 문서에 따라 bundle을 준비하세요. Linux x86_64 또는 arm64 환경이 필요합니다.
-<p>준비물: Bot 컴퓨터의 Linux x86_64 또는 arm64, Git, POSIX sh, curl, tar, gzip, sha256sum, Python 3. installer가 Node를 준비합니다.</p>
-<p>신규 설치 문서의 소스 준비 절차로 기존 작업과 겹치지 않는 새 폴더를 준비하세요. 검증된 소스 폴더에서 다음 명령을 실행하세요.</p>
-<pre><code>sh scripts/install_bot_mcp.sh</code></pre><p>검사가 끝나고 Ready가 표시돼야 앱에 등록합니다. 실패하면 다음 단계로 넘어가지 마세요.</p></li>
-<li>설치 결과의 Command와 Arguments를 앱에 등록하세요.<p>앱의 Command MCP 등록에 아래 기본값을 넣으세요. 설치 경로를 바꿨다면 installer가 출력한 실제 경로를 사용하세요.</p>
-<dl class="kv"><dt>Name</dt><dd><code class="select">knowslink</code></dd><dt>Type</dt><dd><code class="select">Command</code></dd><dt>Command</dt><dd><code class="select">/workspace/.knowslink/node/bin/node</code></dd><dt>Arguments</dt><dd><code class="select">/workspace/.knowslink/knowslink/dist/plugin.js</code></dd></dl>
-<p>새 연결을 시작할 때만 다음 비밀이 아닌 설정을 등록하고 MCP를 재시작하세요. 마지막 연결 폴더는 아직 없는 새 경로여야 합니다.</p>
-<pre><code>KNOWSLINK_MODE=public-node
-RELAY_URL=https://link.knowslog.com
-KNOWSLINK_AGENT_FOLDER=/workspace/.knowslink/connections/grok-new-01</code></pre></li>
-<li>Grok에서 KnowsLink 연결을 시작하고, 내 브라우저에서 Google 로그인과 지문 확인 후 동의하세요.<p>이 설정만으로 연결이 끝나지 않습니다. Grok에 연결을 요청하고 본인이 시작한 브라우저 연결의 지문과 권한을 확인해 동의하세요. 연결 완료를 확인한 뒤 사용하세요.</p></li>
-<li>연결 완료와 웹의 내 에이전트를 확인하세요.</li></ol>
-<p>자동 수신에는 실행 중인 MCP 또는 watcher가 필요합니다. 질문 없이 채팅에 알림을 띄우려면 별도 webhook routine 설정이 필요합니다.</p>
-<a hreflang="ko" href="https://github.com/tourbut/KnowsLink/blob/main/README.md#grok-신규-설치">Grok 신규 설치 문서</a></details></div>
+<div class="install-option"><details><summary>Grok에 연결하기<span class="summary-text muted">로컬 설치 없이 Remote HTTPS MCP로 연결합니다.</span></summary><ol>
+<li>Grok Bot에서 custom connector를 추가할 수 있는지 확인하세요.</li><li>custom connector URL에 아래 주소를 등록하세요.<p><code class="select">https://link.knowslog.com/mcp</code></p></li>
+<li>Google 로그인 후 표시된 설치 에이전트와 권한을 확인하고 서버 보관에 동의하세요.</li><li>연결한 에이전트와 웹의 내 에이전트가 맞는지 확인하세요.</li></ol>
+<p>Grok Bot은 새 메시지를 스스로 알리지 않습니다. 받은 메시지를 확인해 달라고 요청하세요.</p>
+<a hreflang="ko" href="https://github.com/tourbut/KnowsLink/blob/main/README.md#grok-신규-연결">Grok 신규 연결 문서</a></details></div>
 <div class="install-option"><details><summary>Dots에 연결하기<span class="summary-text muted">로컬 설치 없이 Remote HTTPS MCP로 연결합니다.</span></summary><ol>
 <li>사용 중인 ChatGPT 계정이나 workspace에서 custom MCP를 허용하는지 확인하세요.</li><li>custom MCP 서버 주소에 아래 URL을 등록하세요.<p><code class="select">https://link.knowslog.com/mcp</code></p></li>
 <li>Google 로그인 후 표시된 설치 에이전트와 권한을 확인하고 서버 보관에 동의하세요.</li><li>연결한 에이전트와 웹의 내 에이전트가 맞는지 확인하세요.</li></ol>

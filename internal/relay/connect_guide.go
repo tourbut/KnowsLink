@@ -12,7 +12,7 @@ type useChoice struct{ ID, Label, Note string }
 // useChoices follow the U8 host table order and wording; hosts outside the target scope are never named.
 var useChoices = []useChoice{
 	{"web", "웹에서 바로 사용", "설치 필요 없음"},
-	{"grok", "Grok Bot (내 컴퓨터)", "연결 안내 있음 · 기존 계정 사용 확인"},
+	{"grok", "Grok Bot (원격)", "연결 안내 있음 · 기존 계정 사용 확인"},
 	{"dots", "Dots (원격)", "연결 안내 있음 · 기존 계정 사용 확인"},
 	{"claude", "Claude Code 작업 세션 (내 컴퓨터)", "자동 설정 · 시험 환경 확인 (Claude Code 2.1.302, Windows 11)"},
 	{"codex", "Codex 작업 세션 (내 컴퓨터)", "자동 설정 · 시험 환경 확인 (Codex CLI 0.163.0, Windows 11) · 도착 알림 없음"},

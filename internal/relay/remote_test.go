@@ -8,6 +8,7 @@ import (
 	"crypto/sha256"
 	"encoding/base64"
 	"encoding/json"
+	"fmt"
 	"io"
 	"net/http"
 	"net/http/httptest"
@@ -430,5 +431,80 @@ func TestRemoteInstallCapIsCapacityRefusal(t *testing.T) {
 	a := &remoteAttempt{Client: "client", Redirect: "https://chatgpt.com/callback", Resource: "https://relay.example/mcp", Owner: "agent_a", Exp: now.Add(codeTTL)}
 	if _, e := st.approveRemote(a, "Dots", now); e != (agentRefused{Code: "service_capacity"}) {
 		t.Fatal("install cap refusal", e)
+	}
+}
+
+// D066: a Remote MCP installation is the owner's self agent, so the SAR-ORCA-BOT-001 grant admits its Orca forms both ways.
+func TestRemoteOrcaFormsUseOwnerGrant(t *testing.T) {
+	st, keys, now := grantFixture(t)
+	_, i, _, _ := remoteFixture(t, st, "owner_1", now)
+	send := func(n int, args string) error {
+		_, err := st.remoteTool(i, "knowslink_send", json.RawMessage(fmt.Sprintf(`{"to":"orca","idempotency_key":"remote-orca-key-%04d",%s}`, n, args)), now)
+		return err
+	}
+	task := `"kind":"orca.task.v1","body":{"text":"run tests","project":"KnowsLink"}`
+	if err := send(1, task); err == nil || err.Error() != "approval_required" {
+		t.Fatal("form without grant", err)
+	}
+	for _, kind := range []string{"orca.task.v1", "orca.answer.v1"} {
+		if err := st.createGrant("owner_1", i.Agent, "orca", kind, now); err != nil {
+			t.Fatal(kind, err)
+		}
+	}
+	if err := send(2, task); err != nil {
+		t.Fatal("granted task", err)
+	}
+	if err := send(3, `"kind":"orca.answer.v1","body":{"item":3,"by":"owner","answer":"1"}`); err != nil {
+		t.Fatal("granted answer", err)
+	}
+	for n, bad := range []string{
+		`"kind":"orca.task.v1","body":{"text":"x","extra":1}`,                 // fixed shape only
+		`"kind":"orca.task.v1","body":{"text":"x"},"text":"x"`,                // body and text never mix
+		`"kind":"orca.task.v1"`,                                               // kind needs a body
+		`"body":{"text":"x"}`,                                                 // body needs a kind
+		`"kind":"note.v1","body":{"text":"x"}`,                                // only grant kinds
+		`"kind":"orca.answer.v1","body":{"answer":"1","by":"owner","item":0}`, // item is a positive integer
+	} {
+		if err := send(10+n, bad); err == nil || err.Error() != "invalid_schema" {
+			t.Fatal(bad, err)
+		}
+	}
+	if grants := st.grantsOf(i.Agent, "orca.task.v1"); len(grants) != 1 || len(grants[0].Sent) != 1 {
+		t.Fatal("grant count", grants)
+	}
+	// Orca asks the Remote installation a decision; receive shows its kind and keeps it untrusted.
+	if err := st.createGrant("owner_1", "orca", i.Agent, "orca.decision.v1", now); err != nil {
+		t.Fatal(err)
+	}
+	e := kindText(t, 1, "orca", i.Agent, "orca.decision.v1", `{"bot":"orca","item":3,"options":["ship","wait"],"question":"Merge?"}`, now, keys["orca"])
+	if _, err := st.ingestPublicText("orca", e, now); err != nil {
+		t.Fatal(err)
+	}
+	v, err := st.remoteTool(i, "knowslink_receive", nil, now)
+	out, _ := v.(map[string]any)
+	if err != nil || out["kinds"].(map[string]string)[e.ID] != "orca.decision.v1" || out["untrusted"] != true {
+		t.Fatal("receive kind", err, v)
+	}
+}
+
+func TestRemoteRedirectAdmitsHTTPSAndLoopbackOnly(t *testing.T) {
+	for raw, want := range map[string]bool{
+		"https://www.cursor.com/agents/mcp/oauth/callback": true,
+		"http://localhost:8787/callback":                   true,
+		"http://127.0.0.1:8787/callback":                   true,
+		"http://[::1]:8787/callback":                       true,
+		"http://chatgpt.com/callback":                      false,
+		"http://localhost.evil.test/callback":              false,
+		"http://user@localhost/callback":                   false,
+		"http://localhost/callback#frag":                   false,
+		"https://chatgpt.com:8443/callback":                false,
+	} {
+		if redirectURL(raw) != want {
+			t.Error(raw, !want)
+		}
+	}
+	// Webhook callbacks keep the stricter HTTPS-only rule.
+	if remoteURL("http://localhost:8787/callback") {
+		t.Fatal("loopback webhook")
 	}
 }

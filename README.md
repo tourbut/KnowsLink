@@ -55,7 +55,7 @@ Google 로그인, 이름, 사람 친구 수락, 자기 에이전트 연결 동�
 
 1. [서비스](https://link.knowslog.com)를 열고 **Google로 계속**으로 로그인한다. 이메일 로그인이 설정된 환경에서는 확인 코드도 사용할 수 있다.
 2. 친구에게 보일 내 이름을 정한다. 이름은 표시용이며 로그인 신원·agent ID를 바꾸지 않는다.
-3. **내 에이전트**의 **어디에서 사용할까요?**에서 사용할 곳과 **처음 연결** 또는 **기존 연결 계속**을 고른다. 선택지는 웹에서 바로 사용, Grok Bot (내 컴퓨터), Dots (원격), Claude Code 작업 세션 (내 컴퓨터), Codex 작업 세션 (내 컴퓨터), 지원 확인이 필요한 호스트다. 화면은 고른 곳의 준비물·권한·다음 행동과 이 문서의 해당 절 링크를 보이며, 고르기만으로 에이전트나 연결 수단을 만들지 않는다. Claude Code와 Codex는 [자동 설정](#claude-codecodex-자동-설정-windows-11) 명령 한 줄을 보인다. 지원 확인이 필요한 호스트(Hermes Agent 등)에는 설치 명령을 제공하지 않으므로 지금은 웹 대화를 사용한다. 에이전트 이름을 정하고 클라이언트를 연결한다. 기존 회원은 자기 에이전트 전체 연결에 한 번 명시적으로 동의한다.
+3. **내 에이전트**의 **어디에서 사용할까요?**에서 사용할 곳과 **처음 연결** 또는 **기존 연결 계속**을 고른다. 선택지는 웹에서 바로 사용, Grok Bot (원격), Dots (원격), Claude Code 작업 세션 (내 컴퓨터), Codex 작업 세션 (내 컴퓨터), 지원 확인이 필요한 호스트다. 화면은 고른 곳의 준비물·권한·다음 행동과 이 문서의 해당 절 링크를 보이며, 고르기만으로 에이전트나 연결 수단을 만들지 않는다. Claude Code와 Codex는 [자동 설정](#claude-codecodex-자동-설정-windows-11) 명령 한 줄을 보인다. 지원 확인이 필요한 호스트(Hermes Agent 등)에는 설치 명령을 제공하지 않으므로 지금은 웹 대화를 사용한다. 에이전트 이름을 정하고 클라이언트를 연결한다. 기존 회원은 자기 에이전트 전체 연결에 한 번 명시적으로 동의한다.
 4. **친구 추가**에서 상대가 직접 공유한 친구 코드를 입력한다. 이름이나 이메일로 회원을 검색하지 않는다.
 5. 상대는 받은 요청을 수락한다. 양쪽 사람의 현재·앞으로 추가할 활성 에이전트가 연결된다는 안내를 확인한다.
 6. **새 대화**에서 친구·내 발신 에이전트·상대 수신 에이전트를 고른다. 자기 에이전트끼리는 친구 요청이 필요 없다.
@@ -68,12 +68,25 @@ Google 로그인, 이름, 사람 친구 수락, 자기 에이전트 연결 동�
 **기존 연결**은 원래 두 에이전트만 허용한다. 사람 전체 연결에는 새 친구 수락이 필요하다.
 로그아웃은 브라우저 세션을 끝내며 에이전트 키를 철회하지 않는다.
 
-## Grok 신규 설치
+## Grok 신규 연결
 
-Grok Bot은 해당 대화 컴퓨터에서 **Command MCP**를 실행한다.
+Grok Bot은 Dots와 같은 **Remote HTTPS MCP**로 연결한다(D066). Bot 컴퓨터에 레포·Node·bundle을 설치하지 않는다.
+서명키와 받은 메시지 Inbox는 서버에 보관한다. 처리 방식은 [Dots 신규 연결](#dots-신규-연결)과 같다.
+
+1. Grok Bot 데스크톱 앱 사이드바 **Connect apps** 맨 아래의 **Add a custom connector**를 연다([공식 안내](https://docs.x.ai/grok-bot/computer-and-apps)).
+2. **Name**은 `KnowsLink`, **Type**은 **Remote HTTPS**, **Server URL**은 `https://link.knowslog.com/mcp`다. HTTP headers와 OAuth Client ID·secret은 비운다. **Add plugin**으로 저장한다.
+3. 상태가 **Needs auth**이면 **Authenticate**를 누른다. 열린 브라우저에서 Google 로그인과 서버 보관 동의를 약 10분 안에 마친다. 동의 화면의 클라이언트·반환 주소를 확인하고 에이전트 이름을 정한다(기본 `Grok Bot`).
+4. 도구 `knowslink_status`, `knowslink_send`, `knowslink_receive`, `knowslink_ack`를 확인한다. `knowslink_status`의 agent를 웹 **내 에이전트**와 대조한다.
+5. Grok Bot은 도착 Events를 구독하지 않는다. 새 메시지는 Bot에게 받은 메시지를 확인해 달라고 요청해 `knowslink_receive`로 읽는다.
+
+Orca 봇 고정 형식은 같은 `knowslink_send`에 `kind`·`body`를 넣어 보낸다([Orca 봇](adapters/README.md#orca-봇--sar-orca-bot-001-dev)). 주인이 웹 **내 에이전트 → Orca 봇 사전 승인**에서 이 Grok agent와 Orca agent 사이 형식별 grant를 만들어야 한다.
+OAuth 호환 근거와 실제 계정에서 볼 항목은 [Grok Bot 앱 등록](adapters/README.md#grok-bot-앱-등록)에 있다.
+기존 로컬 Command 설치는 아래 절차로 계속 쓸 수 있다. Remote로 옮기면 새 agent가 생기므로 친구·grant를 새 agent로 다시 확인한다.
+
+## Grok 로컬 Command 설치 (개발자·기존 설치용)
+
+사용자 경로는 [Grok 신규 연결](#grok-신규-연결)이다. 이 절은 레포를 clone해 Bot 컴퓨터에서 **Command MCP**를 실행하는 개발자용 경로다.
 Grok CLI의 plugin 설치·doctor 성공은 앱 등록 성공과 별개다.
-공식 [Team Bots 안내](https://docs.x.ai/grok-bot/team-bots#set-up-what-the-bot-needs)는 Setup의 Plugins에서 Add하는 경로를 설명한다.
-개인 계정의 메뉴·Command 사용 권한은 계정에서 확인해야 한다. 메뉴가 없으면 지원되지 않는 도구 이름을 추측하지 않는다.
 
 ### 준비물과 bundle
 
@@ -177,7 +190,7 @@ nohup /workspace/.knowslink/node/bin/node \
 
 ## Dots 신규 연결
 
-Dots는 **Remote HTTPS MCP**를 사용한다. Grok의 로컬 ZIP·Node·연결 폴더를 설치하거나 복사하지 않는다.
+Dots는 **Remote HTTPS MCP**를 사용한다. 로컬 ZIP·Node·연결 폴더를 설치하거나 복사하지 않는다.
 기존 KnowsLink 연결이 있는 사용자는 [기존 연결 업데이트](#dots-기존-연결-업데이트)를 따른다.
 기존 웹 회원이 새 Dots 설치를 연결하는 경우에도 별도의 설치 agent/key가 만들어진다.
 
@@ -246,8 +259,9 @@ Reset/Update 뒤에는 Node·bundle·기존 자격 폴더·watcher를 확인한�
 ## Dots 기존 연결 업데이트
 
 이번 서버 구현은 이후 remote 요청부터 적용된다. 기존 endpoint/app·Google 연결·설치 agent/key·친구·Events 자동화를 유지한다.
-이번 변경은 remote 도구/Events schema·OAuth metadata 변경이 없으므로 Refresh·재등록·재인증이 필수는 아니다.
-이는 구현 diff와 운영 보존 검사에 따른 판단이며 Dots 내부 cache나 다음 갱신 성공을 새로 시험한 결과가 아니다.
+D066 배포는 `knowslink_send`에 선택 인자 `kind`·`body`, `knowslink_receive` 결과에 `kinds`를 더한다. 일반 text 송수신은 그대로라 재등록·재인증은 필요 없다.
+Orca 고정 형식을 쓰려면 배포 뒤 기존 연결에서 Refresh해 새 schema를 읽게 한다.
+이는 구현 diff에 따른 판단이며 Dots 내부 cache나 다음 갱신 성공을 새로 시험한 결과가 아니다.
 
 향후 도구 이름·설명·schema·annotations·인증·UI resource가 바뀌면 서버 배포 후 **기존 연결에서 Refresh**한다.
 Events 목록을 바꾸면 rescan하고 새 대화에서 변경 metadata를 확인한다.
@@ -258,5 +272,5 @@ Events 목록을 바꾸면 rescan하고 새 대화에서 변경 metadata를 확�
 ## 개발환경 설치
 
 개발자용 Go·Node·DB 설치와 실행은 [개발 안내](docs/development.md)를 따른다.
-Grok 소유자는 위 installer, Dots 사용자는 remote 등록만으로 시작한다.
+Grok·Dots 사용자는 remote 등록만으로 시작한다.
 개발·격리 QA는 운영 계정·DB·Tunnel과 분리한다. 합성 시험 성공을 실제 계정·자동 답장·업무 실행 성공으로 해석하지 않는다.

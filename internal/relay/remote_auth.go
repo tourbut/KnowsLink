@@ -172,6 +172,14 @@ func remoteURL(raw string) bool {
 	return err == nil && len(raw) <= 2048 && u.Scheme == "https" && u.Hostname() != "" && u.User == nil && u.Fragment == "" && (u.Port() == "" || u.Port() == "443") && !strings.ContainsAny(u.Host, "\\\r\n")
 }
 
+// redirectURL admits an HTTPS callback or, per the MCP authorization rules, a loopback one: Cursor-backed hosts such as
+// Grok Bot register their desktop http://localhost callback beside the web one, and PKCE still binds the code.
+func redirectURL(raw string) bool {
+	u, err := url.Parse(raw)
+	loopback := err == nil && len(raw) <= 2048 && u.Scheme == "http" && u.User == nil && u.Fragment == "" && (u.Hostname() == "localhost" || u.Hostname() == "127.0.0.1" || u.Hostname() == "::1")
+	return remoteURL(raw) || loopback
+}
+
 func (s *Service) remoteRoutes(mux *http.ServeMux) {
 	mux.HandleFunc("GET /.well-known/oauth-protected-resource", s.remoteMetadata(false))
 	mux.HandleFunc("GET /.well-known/oauth-protected-resource/mcp", s.remoteMetadata(false))
@@ -223,7 +231,7 @@ func (s *Service) remoteRegister(w http.ResponseWriter, r *http.Request) {
 		writeJSON(w, 400, map[string]string{"error": "invalid_client_metadata"})
 		return
 	}
-	if slices.ContainsFunc(in.Redirects, func(u string) bool { return !remoteURL(u) }) {
+	if slices.ContainsFunc(in.Redirects, func(u string) bool { return !redirectURL(u) }) {
 		writeJSON(w, 400, map[string]string{"error": "invalid_redirect_uri"})
 		return
 	}
@@ -251,7 +259,7 @@ func (s *Service) remoteAuthorize(w http.ResponseWriter, r *http.Request) {
 	o := s.remoteOrigin()
 	q := r.URL.Query()
 	challenge, e := base64.RawURLEncoding.DecodeString(q.Get("code_challenge"))
-	if o == "" || q.Get("response_type") != "code" || q.Get("code_challenge_method") != "S256" || e != nil || len(challenge) != 32 || q.Get("resource") != o+"/mcp" || q.Get("scope") != remoteScope || len(q.Get("state")) > 2048 {
+	if o == "" || q.Get("response_type") != "code" || q.Get("code_challenge_method") != "S256" || e != nil || len(challenge) != 32 || q.Get("resource") != o+"/mcp" || (q.Get("scope") != "" && q.Get("scope") != remoteScope) || len(q.Get("state")) > 2048 {
 		writeJSON(w, 400, map[string]string{"error": "invalid_request"})
 		return
 	}
@@ -307,7 +315,11 @@ func (s *Service) remoteConsent(w http.ResponseWriter, r *http.Request) {
 		if r.Method == "GET" {
 			view["Login"] = login
 			if !login {
-				view["AgentName"] = st.defaultName(a.Owner, "dots", "") // A-04: Dots, numbered when taken
+				host := "dots" // A-04: Dots, numbered when taken; a self-declared Grok client only changes the editable suggestion
+				if strings.Contains(strings.ToLower(c.Name), "grok") {
+					host = "grok"
+				}
+				view["AgentName"] = st.defaultName(a.Owner, host, "")
 			}
 			return view, nil
 		}
