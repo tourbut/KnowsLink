@@ -97,3 +97,13 @@ parallel: on
 브랜치 / SHA / 변경 이유 / 검토 필요 / 검증한 것과 못 한 것 / 스스로 정한 선택과 되돌리는 방법 / 산출물·로그 링크 / 남은 일.
 항목당 1~2줄로 쓰고 상세는 `tasks/SAR-ORCA-BOT-001-OPS/qa/report.md` 링크로 대신한다. push가 승인됐으므로 `fullops done`을 실행하고, 그 출력 한 줄을 worker_done 본문으로 쓴다.
 처리는 `fullops-work`, 회신은 `fullops-orca` 스킬을 따른다.
+
+- 브랜치: `fullops/ops`
+- SHA: `e3af46a0`
+- 변경 이유: D063·D067의 운영 배포(`0899e5bd`), 쿠어·Grok Bot 연결, 운영 왕복 1회. 코드 변경 없이 D12, 검증 보고, 배포 스크립트, 역할 지침 1줄만 바꿨다.
+- 검토 필요: 수신기와 도어벨의 `receive` 명령이 ops worktree의 build를 쓴다(worktree 삭제 금지). answer가 선택지 글자가 아니라 번호 `1`로 왔다.
+- 검증한 것: `verify.py local`·`public`, agent 2개·grant 3개·사용 수(운영 읽기), 도어벨 메일에 본문 없음, `receive`의 `kind`·`untrusted: true`, `--item 13`(수신기 로그).
+- 못 한 것: 프로세스 argv 캡처, Grok 화면 원문, 부하·재시작·만료 시험, rollback. `receive`는 쿠어가 실행해 전달한 출력이다.
+- 선택과 되돌리는 방법: 수신기를 `--keep-open` 터미널 `term_fa736957-2a41-4fe4-89b6-550d9ff0ca6a`에 남겼다(닫으면 멈춤, agent 해제는 웹 "내 에이전트"). Grok 안내 low 2를 고치기 전에 연결을 진행했다.
+- 산출물·로그: [검증 보고](../tasks/SAR-ORCA-BOT-001-OPS/qa/report.md), [D12](../docs/operations/ops-guide.md).
+- 남은 일: answer 번호 안내(`SAR-ORCA-BOT-002-DEV`), grant 재인증 오류 안내(`SAR-ORCA-GRANT-UX-001-DEV`), grant 만료 2026-12-28T05:08Z.
