@@ -75,8 +75,7 @@ grant 줄의 agent ID는 이름으로 바꿔 적었다.
 | `node dist/orca.test.js` | PASS(새 빌드) |
 | watch 프로세스 | 1개, pid 105428(`orca-watch.lock`의 pid와 같음), 폴더 `orca-agent-20261128`, `--bot 쿠어`. `watch.log`는 0 bytes |
 | 다른 설치본 프로세스 | pid 94184, 인자 없는 `plugin.js`(봇 MCP로 본다). watch가 아니다 |
-| HKCU Run `KnowsLinkOrcaWatch` | `…\orca
-ode.exe …\orca\dist\plugin.js orca start` |
+| HKCU Run `KnowsLinkOrcaWatch` | `…\orca\node.exe …\orca\dist\plugin.js orca start` |
 
 **선택:** bundle이 같아서 `orca install`을 실행하지 않았다(실행 중인 watch를 끊지 않는다). 갱신이 필요해지면 같은 명령을 실행한다.
 
