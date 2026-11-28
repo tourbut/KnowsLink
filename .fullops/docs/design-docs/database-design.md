@@ -2,9 +2,9 @@
 id: D07
 title: 데이터베이스설계서
 status: review
-updated: 2026-11-12
+updated: 2026-11-28
 owner: dev
-tasks: [SAR-MVP-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-SSE-INSTALL-001-DEV, SAR-HUMAN-PEER-001-DEV, SAR-REFACTOR-002-DEV, SAR-DB-WAIT-001, SAR-MSG-EPHEMERAL-001]
+tasks: [SAR-MVP-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-SSE-INSTALL-001-DEV, SAR-HUMAN-PEER-001-DEV, SAR-REFACTOR-002-DEV, SAR-DB-WAIT-001, SAR-MSG-EPHEMERAL-001, SAR-REDIS-CAP-001-DEV]
 upstream: [D02]
 summary: singleton Postgres 상태와 epoch CAS 및 처리량 한계를 정의한다
 ---
@@ -21,6 +21,7 @@ summary: singleton Postgres 상태와 epoch CAS 및 처리량 한계를 정의�
 - 장애: Redis 읽기·쓰기 실패와 미설정은 `unavailable`이다. Postgres로 대신 저장하지 않는다. 키가 없으면(Redis 재시작·TTL) 빈 저장소로 읽고 다음 commit이 이름을 지운다. 복구 뒤 새 송신은 정상이다.
 - 보관: 전달 기한은 같은 owner의 활성 자기 agent 사이 최대 1시간이다. 그 밖은 text 최대 180초, 서명 agent 업무 envelope `/v1/send` 최대 300초다. `relay.approval.request`는 항상 최대 300초다(주인 결정 2026-11-28, D076). 2026-12-28 전환은 별도 과제이며 날짜 분기 코드는 없다. 모든 메시지 기록은 수락 1시간 뒤 sweep이 지운다(`messageRetention`). Redis TTL 1시간은 상한 보조다. 요청 사본이 Redis에서 사라진 gate는 sweep이 지운다.
 - 상한: 전체 20,000건·대기 100건·pending gate 100건·claim 4건을 그대로 메모리 상태에서 센다.
+- 용량(SAR-REDIS-CAP-001-DEV): Redis 사본 한 개의 바이트 예산은 32 MiB(`messageBytesLimit`)이고 보내는 owner 하나는 6 MiB(`ownerMessageBytesLimit`)까지다. commit 중 사본 2개를 쥐므로 정점은 64 MiB, `maxmemory` 128 MiB의 50%다. 새 메시지(text·웹 owner text·`/v1/send`)를 받을 때 `retainedBytes`가 기록마다 `messageBytes`를 더한다: 고정 메타·멱등·Inbox 키 1536 B + envelope·`Inbox` 사본·웹 대화 사본(본문·이름 4개)의 JSON 크기 상한(`storedLen`: `<`·`>`·`&`·제어 문자 6배, U+2028/2029 2배, 따옴표·역슬래시 2배). 아직 persist하지 않은 envelope는 이후 생길 `Inbox`·원격 Inbox 사본 1부를 미리 센다. 원격 설치 `Inbox`는 원 메시지 발신 owner에 센다. 새 기록을 더해 owner 몫이 넘으면 그 owner만, 전체가 넘으면 모두 `capacity`(429)다. 정상 text(본문 약 200 B)는 기록당 약 1.9 KiB로, 전체 시간당 12,000건(22 MiB)·member 시간당 2,400건(4.5 MiB)이 상한 안에 든다. 전달 기한과 무관한 값이라 2026-12-28 전체 1시간 전환 뒤에도 그대로다. 계산은 [QA 보고](../../tasks/SAR-REDIS-CAP-001-DEV/qa/report.md)다.
 - Redis 설정: `--save ""`, `--appendonly no`, `--maxmemory 128mb`, `--maxmemory-policy noeviction`, 포트 미게시, `database` internal network. 가득 차면 쓰기를 거부하므로 relay는 `unavailable`로 끝낸다.
 - 운영 자원: Redis `mem_limit 192m`·`cpus 0.25`·read-only·cap_drop ALL. 근거: commit 중 Redis에는 사본이 최대 2개 있다. 사본 크기는 relay 256 MB 한도가 먼저 제한한다. 메시지가 빠져 상태 행이 작아지므로 행 lock 시간도 줄어든다. 2026-11-14 운영 이행에서 상태 행은 8894 bytes(`pg_column_size`)이고 메시지 부분은 0 bytes, Redis `used_memory`는 1.43 MiB였다(D12 SAR-RELEASE-004-OPS). 처리량은 측정하지 않았다.
 - LISTEN/NOTIFY는 유지한다. payload가 비어 있고 commit과 함께 보이므로 메시지를 담지 않는다.

@@ -162,15 +162,16 @@ func (st *State) ingestPublicText(agent string, e *PublicText, now time.Time) (a
 			return nil, fault("approval_required")
 		}
 	}
-	if !st.messageCapacity(false, e.From) {
-		return nil, fault("capacity")
-	}
 	m.Receipt.Exp = exp
 	m.Envelope, _ = json.Marshal(e)
-	if grant != nil {
-		grant.Sent = append(grant.Sent, now) // a pre-approved form keeps no conversation copy: only kind, ID and size stay
-	} else {
+	if grant == nil { // a pre-approved form keeps no conversation copy: only kind, ID and size stay
 		st.copyConversation(m, e.Text, "agent")
+	}
+	if !st.messageCapacity(false, e.From, messageBytes(m)) {
+		return nil, fault("capacity")
+	}
+	if grant != nil {
+		grant.Sent = append(grant.Sent, now)
 	}
 	st.Messages[e.ID] = m
 	st.Idempotency[e.From+"/"+e.Key] = e.ID

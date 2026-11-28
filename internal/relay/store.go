@@ -564,7 +564,12 @@ func (st *State) ingest(agent string, e *Envelope, claim string, now time.Time) 
 	if parent != nil && exp.After(parent.Receipt.Exp) {
 		return nil, fault("expired")
 	}
-	if !st.messageCapacity(e.Intent == "relay.approval.request", e.From) {
+	raw, err := Canonical(e.Raw)
+	if err != nil {
+		return nil, fault("invalid_schema")
+	}
+	m := &Message{Receipt: Receipt{e.ID, e.From, e.To, e.Intent, digest, exp, now, "queued"}, Key: e.Key, Kid: e.Sig.Kid, Envelope: raw, Generation: generation, Parent: e.ReplyTo, Deliver: e.Deliver}
+	if !st.messageCapacity(e.Intent == "relay.approval.request", e.From, messageBytes(m)) {
 		return nil, fault("capacity")
 	}
 	if e.Intent == "relay.approval.request" {
@@ -578,11 +583,6 @@ func (st *State) ingest(agent string, e *Envelope, claim string, now time.Time) 
 		}
 		st.Gates[e.ID] = &Gate{ID: e.ID, Owner: b.Owner, Parent: e.ReplyTo, Digest: parent.Receipt.Digest, From: parent.Receipt.From, To: parent.Receipt.To, Policy: policy(parent.Receipt.Intent), State: "pending", Generation: generation, Exp: exp}
 	}
-	raw, err := Canonical(e.Raw)
-	if err != nil {
-		return nil, fault("invalid_schema")
-	}
-	m := &Message{Receipt: Receipt{e.ID, e.From, e.To, e.Intent, digest, exp, now, "queued"}, Key: e.Key, Kid: e.Sig.Kid, Envelope: raw, Generation: generation, Parent: e.ReplyTo, Deliver: e.Deliver}
 	m.Scope, _, _ = st.authority(e.From, e.To)
 	if parent != nil {
 		m.Scope = parent.Scope
