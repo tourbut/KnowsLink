@@ -883,6 +883,7 @@ Codex 실제 설치는 업데이트 전후 0.9.12다. 시작 시 coor 레포 적
 | coor | 5b94be5, 미추적 리뷰 증거 | 누적 미수락 제품 조상을 main에 일괄 병합하지 않는다. 운영 준비 main을 merge하고 미추적 증거는 보존한다. |
 | MEMO-TIDY-20261127 | 대기 | dev |
 | SAR-ORCA-BOT-002-DEV | 대기 선행: SAR-ORCA-BOT-001-DEV | dev |
+| SAR-ORCA-BOT-001-OPS | 보류(운영 SSH 허용 규칙 추가 대기 D064, Grok 위치 확인 D065; 스크립트 fullops/ops d25a5d08) | ops |
 
 과거 완료 메시지 세 건을 기존 PLANS의 실제 메시지 ID와 SHA로 공용 integration 기록에 회수했다. 사유·담당·재개 조건을 갖춘 hold를 적용했다. pending이 비어도 hold의 제품 작업이 통합 완료됐다는 의미는 아니다. 다른 오래된 역할 SHA의 main 미포함 이력도 보존한다. 상설·임시 워크트리와 기존 Run run_8ca8bc058ab7을 유지한다. 새 제품 worker는 시작하지 않는다. 전체 제품 수락·실제 배포·새 기능은 이번 업데이트 범위 밖이다.
 
