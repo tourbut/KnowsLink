@@ -96,7 +96,7 @@ KNOWSLINK_AGENT_FOLDER=/workspace/.knowslink/connections/grok-new-01
 
 '이 설정만으로 연결이 끝나지 않습니다. Grok에 연결을 요청하고 본인이 시작한 브라우저 연결의 지문과 권한을 확인해 동의하세요. 연결 완료를 확인한 뒤 사용하세요.'를 덧붙인다. 키·credential·연결 token을 웹 페이지나 채팅에 붙이는 입력란은 없다. 기존 사용자는 이 신규 폴더·연결 단계를 반복하지 않고 아래 업데이트 링크를 따른다.
 
-Grok의 상세 링크는 'Grok 신규 설치 문서', Dots의 링크는 'Dots 신규 연결 문서'다. 각각 [README Grok](../../../../README.md#grok-신규-설치), [README Dots](../../../../README.md#dots-신규-연결)가 실행 내용 정본이다. 제품 링크는 공개 저장소 `https://github.com/tourbut/KnowsLink/blob/main/README.md`의 같은 앵커를 사용한다. 내부 `.fullops-squad` 문서·worker 로컬 경로를 노출하지 않는다. 위 Bot 설치 경로는 사용자가 실제 입력하는 값이므로 예외다. 긴 소스 준비·고정 버전 선택·검사·실패 복구 절차는 README로 연결한다. DEV는 표시 값과 현재 README/installer의 일치를 확인한다.
+Grok의 상세 링크는 'Grok 신규 연결 문서', Dots의 링크는 'Dots 신규 연결 문서'다. 각각 [README Grok](../../../../README.md#grok-신규-연결), [README Dots](../../../../README.md#dots-신규-연결)가 실행 내용 정본이다. 제품 링크는 공개 저장소 `https://github.com/tourbut/KnowsLink/blob/main/README.md`의 같은 앵커를 사용한다. 내부 `.fullops-squad` 문서·worker 로컬 경로를 노출하지 않는다. 위 Bot 설치 경로는 사용자가 실제 입력하는 값이므로 예외다. 긴 소스 준비·고정 버전 선택·검사·실패 복구 절차는 README로 연결한다. DEV는 표시 값과 현재 README/installer의 일치를 확인한다.
 
 두 접기 영역 바로 아래 '이미 연결했다면 새로 등록하지 마세요'를 보인다. 본문은 '기존 에이전트와 키를 유지한 채 업데이트 안내를 따르세요.'다. [Grok 업데이트](../../../../README.md#grok-기존-설치-업데이트)와 [Dots 업데이트](../../../../README.md#dots-기존-연결-업데이트)도 위 공개 README의 해당 앵커로 연결한다. 새 설치와 업데이트를 혼동해 새 계정·키·친구를 만들도록 안내하지 않는다.
 

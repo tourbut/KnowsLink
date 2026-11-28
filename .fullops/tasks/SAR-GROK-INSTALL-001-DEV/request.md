@@ -1,0 +1,1 @@
+Grok Bot 한 줄 설치·갱신(git clone 없이), 기존 install/<버전>/ 배포 패턴 재사용

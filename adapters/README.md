@@ -166,6 +166,17 @@ knowslink/
 
 ## Grok Bot 앱 등록
 
+사용자 경로는 Remote HTTPS connector다(D066, [README](../README.md#grok-신규-연결)). 아래 Command 관측은 개발자용 로컬 경로의 기록이다.
+
+### Remote HTTPS OAuth 호환 (2026-11-28 문서 대조)
+
+- 공식 근거: Grok Bot 데스크톱 앱 **Connect apps → Add a custom connector**에 Name, Type **Remote HTTPS**, Server URL, 선택 HTTP headers, 선택 OAuth Client ID·secret이 있다. **Needs auth** 상태는 **Authenticate**로 약 10분 안에 로그인한다([computer-and-apps](https://docs.x.ai/grok-bot/computer-and-apps)). Bot은 원격 MCP에 Cursor 서버에서 접속한다([security](https://docs.x.ai/grok-bot/security)). Team Bot이 아니면 Team/Enterprise 플랜이 필요 없다([teams-and-enterprises](https://docs.x.ai/grok-bot/teams-and-enterprises)).
+- Grok Bot 문서에는 discovery·DCR·PKCE·`resource`·`scope`·refresh 설명이 없다. 같은 문서가 OAuth 토큰을 Cursor connector backend에 둔다고 적으므로 [Cursor MCP](https://cursor.com/docs/mcp)를 간접 근거로 쓴다: RFC 9728 metadata, RFC 8707 resource, PKCE, DCR public client, refresh, scope 미지정 시 `scopes_supported` 사용. DCR은 web callback `https://www.cursor.com/agents/mcp/oauth/callback`과 desktop `http://localhost:8787/callback`을 함께 등록한다.
+- relay 조정: 등록은 HTTPS(443)와 loopback `http://localhost|127.0.0.1|[::1]` redirect를 받는다(MCP 인가 규칙). authorize의 `scope` 생략은 유일한 `knowslink.text`로 본다. `resource`는 계속 필수다. webhook callback은 HTTPS만 받는다.
+- 판정: 문서상 막는 점은 없지만 미확정이다. 실제 계정에서 볼 것은 401 `resource_metadata` 추적, DCR `redirect_uris`, authorize·token의 `resource`·`scope`, POST 전용 Streamable HTTP(GET 405) 수용, 도구 4개 노출이다. 실패하면 relay 로그의 `/remote/oauth/*` 응답 코드로 원인을 가른다.
+
+### 로컬 Command 관측 (개발자용)
+
 관측 사실: 이슈1 재시험에서 Bot 컴퓨터의 CLI 설치와 `grok mcp doctor knowslink`는 healthy, 도구 2개였다. 같은 Bot의 앱 MCP 14개에는 knowslink가 없었다. 이슈1 첫 보고에서 같은 Bot은 `AddMcpServer`·`InstallPlugin` 등을 호출할 수 없었다. 도구 검색 결과도 0건이었다.
 
 미확정 가설: 앱 도구 카탈로그는 앱 계정에 등록한 connector를 읽는다. `grok plugin install`이 만든 `~/.grok` 설치는 읽지 않는다. 공식 문서는 Marketplace에서 설치한 connector가 계정 전체에 적용된다고만 쓴다. CLI plugin을 읽지 않는다는 문장은 없다. 실제 계정 재시험 전까지 이 원인은 확정하지 않는다.
@@ -428,6 +439,8 @@ Orca 봇은 주인의 자기 agent로 참여한다. 봇 채팅에는 MCP를 붙�
 - `orca send <폴더> --to <agent> --kind orca.task.v1|orca.decision.v1|orca.answer.v1 --file <json> [--key <16–128자>]`: 형식 스키마를 검사하고 JCS로 정규화한 본문(2 KB 이하)에 서명해 보낸다. `{id,transport}`를 낸다.
 
 도어벨은 `orca orchestration send --to bot:<이름> --type status --subject "KnowsLink: 새 메시지 N건" --body <고정 문장>`이다(Windows는 `orca.exe`, shell 없음, 10s). 본문에는 검증한 ID(최대 10개)·대기 수·receive 명령만 있고 메시지 text·발신자·키는 없다. `orca.answer.v1`에 정수 `item`이 있으면 그 ID 하나만 `--item <n>` 메일로 보낸다. 같은 ID는 한 번만 울린다(wake marker). 실행 실패·0 아닌 종료·timeout은 marker를 풀어 다음 poll에서 다시 울린다. 시험은 `KNOWSLINK_ORCA_BIN`(또는 `ORCA_HELM_BIN`)으로 바이너리를 바꾼다.
+
+Remote MCP 설치(Grok Bot·Dots)는 CLI 대신 `/mcp` 도구를 쓴다. `knowslink_send`에 `text` 대신 `kind`(`orca.task.v1|orca.decision.v1|orca.answer.v1`)와 `body` 객체를 넣으면 서버가 같은 스키마로 검사하고 JCS 정규화 본문에 설치 키로 서명한다. 형식이 틀리면 `invalid_schema`다. `knowslink_receive`는 `kinds`(ID→형식)와 `untrusted:true`를 함께 낸다. Remote 설치 agent도 같은 주인의 `self:` agent이므로 아래 grant 규칙이 그대로 적용된다.
 
 `send`는 주인이 웹 "내 에이전트"에서 만든 (보내는 agent, 받는 agent, 형식) grant 안에서만 relay가 받는다. 그 밖은 `relay HTTP 403 approval_required`이며 adapter는 grant를 만들지 않는다. grant를 만들거나 갱신하거나 발송마다 승인하는 일반 경로를 쓴다. 받은 본문은 grant와 무관하게 untrusted data다.
 
