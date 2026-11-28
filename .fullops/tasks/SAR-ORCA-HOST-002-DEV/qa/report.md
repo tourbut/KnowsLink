@@ -1,3 +1,11 @@
+---
+title: SAR-ORCA-HOST-002-DEV QA 보고
+status: draft
+updated: 2026-11-28
+owner: dev
+summary: SAR-ORCA-HOST-002-DEV 표적 테스트와 이 PC 설치본 갱신 결과
+---
+
 # SAR-ORCA-HOST-002-DEV QA 보고
 
 - 테스트 레벨: lite (표적 단위 테스트 + 이 PC 설치본 갱신)
