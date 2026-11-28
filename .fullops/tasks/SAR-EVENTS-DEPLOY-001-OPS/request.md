@@ -1,0 +1,1 @@
+65a752fe 운영 배포(Redis 상한, Events secret 봉인) + KNOWSLINK_SEAL_KEY .env 주입
