@@ -12,12 +12,24 @@ case "$PREFIX" in
 	exit 1
 	;;
 esac
-# Node pin, its checksum and the node/ ownership rule live in the plugin launcher; this script adds the bundle.
-# Replace only what an earlier run made; anything else at this path is the user's, so stop before changing it.
-if [ -L "$PREFIX/knowslink" ] || { [ -e "$PREFIX/knowslink" ] && [ ! -f "$PREFIX/knowslink/dist/plugin.js" ]; }; then
-	echo "refusing to replace $PREFIX/knowslink: not made by this installer (knowslink/dist/plugin.js missing); move it away first" >&2
+VERSION=v22.22.2
+case "$(uname -s)-$(uname -m)" in
+Linux-x86_64) arch=x64 sum=978978a635eef872fa68beae09f0aad0bbbae6757e444da80b570964a97e62a3 ;;
+Linux-aarch64 | Linux-arm64) arch=arm64 sum=b2f3a96f31486bfc365192ad65ced14833ad2a3c2e1bcefec4846902f264fa28 ;;
+*)
+	echo "unsupported platform: $(uname -s) $(uname -m)" >&2
 	exit 1
-fi
+	;;
+esac
+
+# Replace only what an earlier run made; anything else at these paths is the user's, so stop before changing it.
+for owned in node/bin/node knowslink/dist/plugin.js; do
+	dir="$PREFIX/${owned%%/*}"
+	if [ -L "$dir" ] || { [ -e "$dir" ] && [ ! -f "$PREFIX/$owned" ]; }; then
+		echo "refusing to replace $dir: not made by this installer ($owned missing); move it away first" >&2
+		exit 1
+	fi
+done
 
 mkdir -p "$PREFIX"
 # A fresh area per run: leftovers of an interrupted run never mix into the new bundle.
@@ -31,7 +43,17 @@ swap() {
 	mv "$stage/$1" "$PREFIX/$1"
 }
 
-node="$(KNOWSLINK_PREFIX="$PREFIX" sh adapters/bin/knowslink-grok.sh --prepare-node)"
+node="$PREFIX/node/bin/node"
+if [ "$("$node" --version 2>/dev/null || true)" != "$VERSION" ]; then
+	# .tar.gz needs only gzip; the Bot image may lack xz.
+	archive="$stage/node-$VERSION-linux-$arch.tar.gz"
+	curl -fsSL "https://nodejs.org/dist/$VERSION/node-$VERSION-linux-$arch.tar.gz" -o "$archive"
+	echo "$sum  $archive" | sha256sum -c -
+	mkdir "$stage/node"
+	tar -xzf "$archive" -C "$stage/node" --strip-components=1
+	swap node
+fi
+
 PATH="$PREFIX/node/bin:$PATH"
 export PATH
 npm ci --prefix adapters

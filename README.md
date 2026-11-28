@@ -55,7 +55,7 @@ Google 로그인, 이름, 사람 친구 수락, 자기 에이전트 연결 동�
 
 1. [서비스](https://link.knowslog.com)를 열고 **Google로 계속**으로 로그인한다. 이메일 로그인이 설정된 환경에서는 확인 코드도 사용할 수 있다.
 2. 친구에게 보일 내 이름을 정한다. 이름은 표시용이며 로그인 신원·agent ID를 바꾸지 않는다.
-3. **내 에이전트**의 **어디에서 사용할까요?**에서 사용할 곳과 **처음 연결** 또는 **기존 연결 계속**을 고른다. 선택지는 웹에서 바로 사용, Grok Bot (내 컴퓨터), Dots (원격), Claude Code 작업 세션 (내 컴퓨터), Codex 작업 세션 (내 컴퓨터), 지원 확인이 필요한 호스트다. 화면은 고른 곳의 준비물·권한·다음 행동과 이 문서의 해당 절 링크를 보이며, 고르기만으로 에이전트나 연결 수단을 만들지 않는다. Claude Code와 Codex는 [자동 설정](#claude-codecodex-자동-설정-windows-11) 명령 한 줄을 보인다. Grok Bot은 Setup의 Plugins에서 KnowsLink 플러그인을 추가한다([신규 설치](#grok-신규-설치)). 레포 clone이나 설치 명령은 필요 없다. 지원 확인이 필요한 호스트(Hermes Agent 등)에는 설치 명령을 제공하지 않으므로 지금은 웹 대화를 사용한다. 에이전트 이름을 정하고 클라이언트를 연결한다. 기존 회원은 자기 에이전트 전체 연결에 한 번 명시적으로 동의한다.
+3. **내 에이전트**의 **어디에서 사용할까요?**에서 사용할 곳과 **처음 연결** 또는 **기존 연결 계속**을 고른다. 선택지는 웹에서 바로 사용, Grok Bot (내 컴퓨터), Dots (원격), Claude Code 작업 세션 (내 컴퓨터), Codex 작업 세션 (내 컴퓨터), 지원 확인이 필요한 호스트다. 화면은 고른 곳의 준비물·권한·다음 행동과 이 문서의 해당 절 링크를 보이며, 고르기만으로 에이전트나 연결 수단을 만들지 않는다. Claude Code와 Codex는 [자동 설정](#claude-codecodex-자동-설정-windows-11) 명령 한 줄을 보인다. 지원 확인이 필요한 호스트(Hermes Agent 등)에는 설치 명령을 제공하지 않으므로 지금은 웹 대화를 사용한다. 에이전트 이름을 정하고 클라이언트를 연결한다. 기존 회원은 자기 에이전트 전체 연결에 한 번 명시적으로 동의한다.
 4. **친구 추가**에서 상대가 직접 공유한 친구 코드를 입력한다. 이름이나 이메일로 회원을 검색하지 않는다.
 5. 상대는 받은 요청을 수락한다. 양쪽 사람의 현재·앞으로 추가할 활성 에이전트가 연결된다는 안내를 확인한다.
 6. **새 대화**에서 친구·내 발신 에이전트·상대 수신 에이전트를 고른다. 자기 에이전트끼리는 친구 요청이 필요 없다.
@@ -70,45 +70,57 @@ Google 로그인, 이름, 사람 친구 수락, 자기 에이전트 연결 동�
 
 ## Grok 신규 설치
 
-Grok Bot은 KnowsLink **플러그인**으로 설치한다. Bot 컴퓨터에서 git clone이나 installer를 실행하지 않는다.
-플러그인은 팀 marketplace Git 저장소 `https://github.com/tourbut/knowslink-grok-plugin`으로 배포한다(소유자의 저장소 생성·push 승인 대기).
+Grok Bot은 해당 대화 컴퓨터에서 **Command MCP**를 실행한다.
 Grok CLI의 plugin 설치·doctor 성공은 앱 등록 성공과 별개다.
-아래 절차는 신규 설치용이다. 기존 설치에는 [업데이트 절차](#grok-기존-설치-업데이트)를 적용한다.
-
-공식 근거는 다음과 같다.
-
-- 개인의 [Add a custom connector](https://docs.x.ai/grok-bot/computer-and-apps#connect-an-app)는 Remote HTTPS와 Command만 지원한다.
-- [Team Bot 만들기](https://docs.x.ai/grok-bot/create-a-team-bot)는 Setup에서 plugin을 묻는다.
-- [Teams·Enterprise 안내](https://docs.x.ai/grok-bot/teams-and-enterprises)의 Team Marketplace는 dashboard **Plugins & MCPs**에 있다.
-- [Cursor plugins](https://cursor.com/docs/plugins): 팀 marketplace는 Teams/Enterprise 요금제에서 쓴다. **Import from Repo**는 GitHub URL을 받는다. 공개 marketplace는 수동 심사가 필요하다.
-- Grok 문서는 같은 Cursor dashboard를 가리킨다. Grok Bot이 [Cursor plugin 형식](https://cursor.com/docs/reference/plugins)을 읽는다는 것은 실제 계정 확인 전 추정이다.
+공식 [Team Bots 안내](https://docs.x.ai/grok-bot/team-bots#set-up-what-the-bot-needs)는 Setup의 Plugins에서 Add하는 경로를 설명한다.
+개인 계정의 메뉴·Command 사용 권한은 계정에서 확인해야 한다. 메뉴가 없으면 지원되지 않는 도구 이름을 추측하지 않는다.
 
 ### 준비물과 bundle
 
-팀 marketplace를 쓰려면 Teams 또는 Enterprise 요금제가 필요하다. 없으면 [개발자·대체 경로](#개발자대체-경로-command-등록)를 쓴다.
-Bot 컴퓨터는 Linux x86_64 또는 aarch64/arm64다. POSIX sh, curl, tar, gzip, `sha256sum` 또는 `shasum`이 필요하다.
-Git·Python·Go·Make는 필요 없다.
+Bot 컴퓨터의 Linux x86_64 또는 aarch64/arm64, Git, POSIX sh, curl, tar, gzip, sha256sum, Python 3가 필요하다.
+installer가 Node `22.22.2`와 bundle을 준비하므로 Bot 컴퓨터에 Go·Make·xz는 필요 없다.
+아래 명령은 신규 설치용이다. 기존 설치에는 [업데이트 절차](#grok-기존-설치-업데이트)를 적용한다.
+installer는 자신이 관리하는 설치물을 교체하고 임시 stage를 정리한다. 실행 권한을 가진 소유자가 설치 범위를 확인한 뒤 실행한다.
 
-플러그인의 `bin/knowslink-grok.sh`가 MCP를 시작한다.
+1. 기존 작업·키 폴더와 겹치지 않는 **새 소스 폴더**를 고른다. 다음 폴더가 이미 있으면 다른 이름을 쓴다.
 
-- 설치 prefix는 `KNOWSLINK_PREFIX`(기본 `/workspace/.knowslink`, 절대경로만)다.
-- `<prefix>/node/bin/node --version`이 `v22.22.2`가 아니면 x86_64/aarch64용 공식 Node `.tar.gz`를 받는다.
-- 고정 SHA-256을 확인한 뒤에만 `<prefix>/node`를 바꾼다. 실패하면 기존 Node를 그대로 두고 0이 아닌 값으로 끝난다. 이때 MCP는 시작하지 않는다.
-- 자신이 만들지 않은 `<prefix>/node`는 바꾸지 않는다.
-- 비어 있는 값만 기본값으로 채운다: `KNOWSLINK_MODE=public-node`, `RELAY_URL=https://link.knowslog.com`, `KNOWSLINK_HOST=grok`, `KNOWSLINK_AGENT_ROOT=<prefix>/connections`.
-- 연결 폴더는 `<prefix>/connections/grok-agent`다. 이전 installer와 같으므로 기존 agent를 다시 쓴다.
-- 로그는 stderr에만 쓴다. `~/.grok`과 앱 자격 증명은 바꾸지 않는다.
+   ```sh
+   git clone https://github.com/tourbut/KnowsLink.git /workspace/knowslink-source-new
+   cd /workspace/knowslink-source-new
+   git checkout --detach c6dfc39ac4f6dabddc5864ad611437b84ded383e
+   git status --short
+   ```
 
-### 팀 marketplace 등록 (팀 관리자)
+2. `git status --short`가 비어 있는지 확인한 뒤 installer를 실행한다.
 
-1. dashboard [Plugins & MCPs](https://cursor.com/dashboard/plugins)에서 팀 marketplace를 연다.
-2. **Import from Repo**에 `https://github.com/tourbut/knowslink-grok-plugin`을 넣는다.
-3. **Add to Marketplace**를 고른다.
+   ```sh
+   sh scripts/install_bot_mcp.sh
+   ```
+
+   검증 성공과 `Ready` 출력을 확인한다. 기본 설치 prefix는 `/workspace/.knowslink`다.
+   다른 절대경로가 필요하면 실행 시 `KNOWSLINK_PREFIX`를 지정한다. 이후 등록에도 실제 출력 경로를 쓴다.
+3. 다음 파일과 Node 버전을 확인한다.
+
+   ```sh
+   env -i /workspace/.knowslink/node/bin/node --version
+   ls /workspace/.knowslink/knowslink/dist/plugin.js
+   ```
+
+   Node 결과는 `v22.22.2`여야 한다. 다운로드·checksum·빌드·검사가 실패하면 다음 단계로 진행하지 않는다.
+   installer는 Node와 bundle을 순서대로 준비한다. 실패 시 전체 설치물이 원자적으로 복구된다고 가정하지 않는다.
 
 ### 앱 등록과 Google 동의
 
-1. Bot owner가 Bot info pane의 **Setup → Plugins → Add**에서 **KnowsLink**를 고른다.
-2. 환경 변수는 넣지 않는다. 첫 MCP 시작은 Node를 준비하므로 잠시 걸릴 수 있다.
+1. 실제 앱에서 custom MCP server의 **Command** 등록 화면을 연다. 기본값 또는 installer의 실제 출력을 입력한다.
+
+   | 항목 | 기본값 |
+   |---|---|
+   | Name | `knowslink` |
+   | Type | `Command` |
+   | Command | `/workspace/.knowslink/node/bin/node` |
+   | Arguments | `/workspace/.knowslink/knowslink/dist/plugin.js` |
+
+2. 환경 변수는 넣지 않는다. installer가 `/workspace/.knowslink/knowslink/defaults.json`에 기본값을 둔다: `KNOWSLINK_MODE=public-node`, `RELAY_URL=https://link.knowslog.com`, 연결 폴더 `/workspace/.knowslink/connections/grok-agent`. 앱에 환경 변수를 넣으면 그 값이 우선한다(기존 설치 유지).
 3. `knowslink_status`로 도구 실행을 확인한다. 이 상태는 연결 완료가 아니다. `knowslink_connect` 동의 전에는 서버에 요청하지 않는다.
 4. 사용자에게 이 클라이언트 연결의 명시적 동의를 받은 뒤 `knowslink_connect`를 `{"confirmed":true}`로 호출한다.
 5. 사용자가 반환 URL을 자기 브라우저에서 연다. Google 로그인 뒤 실행한 클라이언트와 화면의 지문을 비교한다.
@@ -147,13 +159,11 @@ SSE·MCP log notice·Inbox 저장·ACK만으로 Grok 채팅에 새 턴이 생기
 
 상시 watcher가 필요하면 같은 연결 폴더와 기존 환경으로 다음 실행 형태를 사용한다.
 이미 watcher가 있다면 새로 중복 실행하지 않는다.
-플러그인 설치는 `<플러그인>/dist/plugin.js`를 쓴다. 플러그인 경로는 앱이 정하므로 `ps -eo pid,args`의 실행 중 MCP 인자에서 확인한다.
-[개발자·대체 경로](#개발자대체-경로-command-등록) 설치는 `/workspace/.knowslink/knowslink/dist/plugin.js`다.
 
 ```sh
 KNOWSLINK_MODE=public-node RELAY_URL=https://link.knowslog.com \
 nohup /workspace/.knowslink/node/bin/node \
-  <플러그인>/dist/plugin.js watch \
+  /workspace/.knowslink/knowslink/dist/plugin.js watch \
   /workspace/.knowslink/connections/grok-agent \
   >> /workspace/.knowslink/connections/grok-agent/watch.log 2>&1 &
 ```
@@ -164,50 +174,6 @@ nohup /workspace/.knowslink/node/bin/node \
 기존 검증 계정은 이 방식으로 실제 화면 알림을 확인했다. 새 설치에 자동으로 routine이 생기지는 않는다.
 [설정 계약](adapters/README.md#선택형-grok-bot-webhook-routine-wake)과 [문제 판별](docs/operations.md#수신-알림-문제-판별)을 따른다.
 미문서화 loopback gateway wake는 별도 선택 기능이며 기본 off다. 기존 webhook을 그 방식으로 바꾸지 않는다.
-
-### 개발자·대체 경로 (Command 등록)
-
-Teams/Enterprise 요금제가 없거나 개발 중 후보를 시험할 때만 쓴다. 이 경로는 레포 clone과 Command 등록이 필요하다.
-Bot 컴퓨터에 Git, POSIX sh, curl, tar, gzip, sha256sum, Python 3가 필요하다. Go·Make·xz는 필요 없다.
-installer는 자신이 관리하는 설치물을 교체하고 임시 stage를 정리한다. 실행 권한을 가진 소유자가 설치 범위를 확인한 뒤 실행한다.
-
-1. 기존 작업·키 폴더와 겹치지 않는 **새 소스 폴더**를 고른다. 다음 폴더가 이미 있으면 다른 이름을 쓴다.
-
-   ```sh
-   git clone https://github.com/tourbut/KnowsLink.git /workspace/knowslink-source-new
-   cd /workspace/knowslink-source-new
-   git checkout --detach c6dfc39ac4f6dabddc5864ad611437b84ded383e
-   git status --short
-   ```
-
-2. `git status --short`가 비어 있는지 확인한 뒤 installer를 실행한다.
-
-   ```sh
-   sh scripts/install_bot_mcp.sh
-   ```
-
-   검증 성공과 `Ready` 출력을 확인한다. 기본 설치 prefix는 `/workspace/.knowslink`다.
-   다른 절대경로가 필요하면 실행 시 `KNOWSLINK_PREFIX`를 지정한다. 이후 등록에도 실제 출력 경로를 쓴다.
-3. 다음 파일과 Node 버전을 확인한다.
-
-   ```sh
-   env -i /workspace/.knowslink/node/bin/node --version
-   ls /workspace/.knowslink/knowslink/dist/plugin.js
-   ```
-
-   Node 결과는 `v22.22.2`여야 한다. 다운로드·checksum·빌드·검사가 실패하면 다음 단계로 진행하지 않는다.
-   installer는 Node와 bundle을 순서대로 준비한다. 실패 시 전체 설치물이 원자적으로 복구된다고 가정하지 않는다.
-4. 실제 앱에서 custom MCP server의 **Command** 등록 화면을 연다. 기본값 또는 installer의 실제 출력을 입력한다.
-
-   | 항목 | 기본값 |
-   |---|---|
-   | Name | `knowslink` |
-   | Type | `Command` |
-   | Command | `/workspace/.knowslink/node/bin/node` |
-   | Arguments | `/workspace/.knowslink/knowslink/dist/plugin.js` |
-
-   환경 변수는 넣지 않는다. installer가 `/workspace/.knowslink/knowslink/defaults.json`에 기본값을 둔다: `KNOWSLINK_MODE=public-node`, `RELAY_URL=https://link.knowslog.com`, 연결 폴더 `/workspace/.knowslink/connections/grok-agent`. 앱에 환경 변수를 넣으면 그 값이 우선한다(기존 설치 유지).
-   그 뒤 위 [앱 등록과 Google 동의](#앱-등록과-google-동의)의 3단계부터 따른다.
 
 ## Dots 신규 연결
 
@@ -258,42 +224,21 @@ KnowsLink 이벤트는 도착 metadata이며 본문은 receive로 읽는다. 구
 ## Grok 기존 설치 업데이트
 
 서버 배포는 이미 실행 중인 Grok의 로컬 bundle을 바꾸지 않는다.
-프로토콜·키·agent ID·친구 모델은 바뀌지 않는다. 앱에 넣은 환경 변수가 계속 우선한다.
-재로그인·새 agent/key·친구 재등록은 필요 없다. 연결 폴더 `<prefix>/connections/grok-agent`를 그대로 쓴다.
-
-### 플러그인 설치 업데이트
-
-1. 팀 관리자가 dashboard [Plugins & MCPs](https://cursor.com/dashboard/plugins)의 팀 marketplace에서 **Refresh**한다. **Enable Auto Refresh**를 켰으면 자동이다([근거](https://cursor.com/docs/plugins)).
-2. Bot의 MCP를 재시작한다(새 대화 또는 reload). 파일 교체만으로 기존 프로세스에 새 코드가 반영되지는 않는다.
-3. watcher를 쓰면 `ps -eo pid,args`에서 **정확한 연결 폴더의 watcher PID**를 확인한다. 그 PID만 종료한다.
-   넓은 `pkill -f`를 사용하지 않는다. 같은 기존 환경·폴더·webhook 설정으로 새 `dist/plugin.js`의 watcher 하나를 시작한다.
-4. `knowslink_status`의 autoReceive 상태를 확인한다. 웹/기존 기록과 agent ID가 같은지 대조한다.
-   webhook 모드의 `plugin.js wake-check`는 설정 파일 검사이며 실제 발송은 하지 않는다.
-
-### Command 등록 설치를 플러그인으로 옮기기
+수락 SHA `c6dfc39ac4f6dabddc5864ad611437b84ded383e`는 이전 bundle에 `defaults.json` 기본값, 실패 사유 코드, 재시도 폴더를 더한다.
+프로토콜·키·agent ID·친구 모델은 바뀌지 않는다. 앱에 넣은 환경 변수가 계속 우선하므로 환경 변수 기반 설치도 그 값을 유지한다.
+Inbox 정리 오류로 미표시 본문이 사라지는 문제의 수정은 아래 로컬 bundle 갱신 뒤 적용된다.
+재로그인·새 agent/key·친구 재등록은 필요 없다. 신규 installer 출력의 **new folder/connect 안내를 적용하지 않는다**.
 
 1. 비공개 위치에서 기존 prefix, Command/Arguments, `public-node`, `RELAY_URL`, 연결 폴더, receive mode를 확인한다.
    기존 agent ID·키·Inbox·webhook 파일·routine prompt와 해당 폴더 watcher PID를 보존한다.
-2. 플러그인은 기본 prefix `/workspace/.knowslink`와 연결 폴더 `/workspace/.knowslink/connections/grok-agent`를 쓴다.
-   기존 설치가 다른 prefix나 연결 폴더를 쓰면 옮기지 않고 아래 [개발자·대체 경로 업데이트](#개발자대체-경로-업데이트)를 따른다.
-3. [신규 설치](#앱-등록과-google-동의)처럼 플러그인을 추가한다. `knowslink_status`로 웹/기존 기록과 agent ID가 같은지 대조한다. 같으면 `knowslink_connect`를 다시 하지 않는다.
-4. 확인 뒤 기존 `knowslink` **Command** connector를 제거한다. 두 MCP가 같은 폴더를 polling하지 않게 한다.
-5. watcher는 Command 경로가 바뀌는 것을 따로 본다. `/workspace/.knowslink/node/bin/node`와 플러그인의 `dist/plugin.js`로 계속 실행할 수 있다.
-   확실하지 않으면 기존 watcher를 그대로 둔다.
-
-### 개발자·대체 경로 업데이트
-
-[개발자·대체 경로](#개발자대체-경로-command-등록)로 설치한 경우만 해당한다.
-수락 SHA `c6dfc39ac4f6dabddc5864ad611437b84ded383e`는 이전 bundle에 `defaults.json` 기본값, 실패 사유 코드, 재시도 폴더를 더한다.
-Inbox 정리 오류로 미표시 본문이 사라지는 문제의 수정은 아래 로컬 bundle 갱신 뒤 적용된다.
-신규 installer 출력의 **new folder/connect 안내를 적용하지 않는다**.
-
-1. 위 옮기기 1단계처럼 기존 설정을 비공개 위치에 기록하고 보존한다.
-2. [개발자·대체 경로](#개발자대체-경로-command-등록)처럼 별도 깨끗한 clone에서 수락 SHA를 선택한다.
+2. [신규 설치의 소스 준비](#준비물과-bundle)처럼 별도 깨끗한 clone에서 수락 SHA를 선택한다.
    기존 prefix로 `sh scripts/install_bot_mcp.sh`를 실행한다. 기본과 다른 prefix는 같은 `KNOWSLINK_PREFIX`를 지정한다.
    자격 폴더가 installer 교체 경로 밖에 있는지 먼저 확인한다.
-3. 같은 앱 Command 등록의 MCP 프로세스를 재시작한다.
-4. 위 플러그인 업데이트 3–4단계로 watcher와 agent ID를 확인한다.
+3. 같은 앱 Command 등록의 MCP 프로세스를 재시작한다. 파일 교체만으로 기존 프로세스에 새 코드가 반영되지는 않는다.
+4. `ps -eo pid,args`에서 **정확한 연결 폴더의 watcher PID**를 확인한다. 그 PID만 종료한다.
+   넓은 `pkill -f`를 사용하지 않는다. 같은 기존 환경·폴더·webhook 설정으로 새 bundle의 watcher 하나를 시작한다.
+5. `knowslink_status`의 autoReceive 상태를 확인한다. 웹/기존 기록과 agent ID가 같은지 대조한다.
+   webhook 모드의 `plugin.js wake-check`는 설정 파일 검사이며 실제 발송은 하지 않는다.
 
 설치·재시작 후 새 메시지 시험은 별도 사용자 승인을 받아 수행한다.
 Reset/Update 뒤에는 Node·bundle·기존 자격 폴더·watcher를 확인한다. 파일이 없어졌다고 새 agent를 자동 등록하지 않는다.
@@ -313,5 +258,5 @@ Events 목록을 바꾸면 rescan하고 새 대화에서 변경 metadata를 확�
 ## 개발환경 설치
 
 개발자용 Go·Node·DB 설치와 실행은 [개발 안내](docs/development.md)를 따른다.
-Grok 소유자는 위 플러그인 추가, Dots 사용자는 remote 등록만으로 시작한다.
+Grok 소유자는 위 installer, Dots 사용자는 remote 등록만으로 시작한다.
 개발·격리 QA는 운영 계정·DB·Tunnel과 분리한다. 합성 시험 성공을 실제 계정·자동 답장·업무 실행 성공으로 해석하지 않는다.

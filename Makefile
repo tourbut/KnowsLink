@@ -23,7 +23,6 @@ lint-config:
 	python3 scripts/check_public_ingress.py
 	bash deploy/knowslink/test_public_config.sh
 	sh -n scripts/install_bot_mcp.sh
-	sh -n adapters/bin/knowslink-grok.sh
 	python3 -m compileall -q -f scripts deploy
 
 test:
