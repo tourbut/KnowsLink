@@ -4,7 +4,7 @@ status: draft
 updated: 2026-11-28
 owner: ops
 tasks: [SAR-ORCA-BOT-001-OPS]
-summary: "미완료. 2차에서 b4c76b64를 운영에 배포했고, 사람 단계(Google 동의·Grok adapter 갱신) 답이 없어 agent 연결·grant·왕복은 하지 않았다"
+summary: "미완료. 2차에서 b4c76b64를 운영에 배포했고, Orca agent를 연결했다. Grok adapter 갱신 확인이 없어 grant·왕복은 하지 않았다"
 ---
 
 # SAR-ORCA-BOT-001-OPS 검증 보고
@@ -56,7 +56,7 @@ push, 서버 DB·`.env`·Tunnel·DNS·방화벽 변경은 하지 않았다.
 
 ## 2차 (2026-11-28, 운영 배포)
 
-**결과: 미완료.** 운영 배포는 끝났다. agent 연결, grant 생성, Grok 왕복은 하지 않았다.
+**결과: 미완료.** 운영 배포와 Orca agent 연결은 끝났다. grant 생성과 Grok 왕복은 하지 않았다.
 
 ### 배포
 
@@ -76,14 +76,13 @@ push, 서버 DB·`.env`·Tunnel·DNS·방화벽 변경은 하지 않았다.
 ### 연결과 사람 단계
 
 - 이 PC adapter: `npm run build`, `node dist/orca.test.js` PASS, `adapters/dist/plugin.js` SHA256 `22cab9edb2a82259d7c6f9830b6dcb605e2ad250b2d3d43973c1d6c46469fc76`.
-- `orca setup-connect https://link.knowslog.com %LOCALAPPDATA%\KnowsLink\orca-agent --host orca`를 실행해 `waiting`까지 확인했다. 링크는 02:01:02Z에 만료한다. 동의는 받지 못했다. 연결된 agent 이름·ID는 없다.
+- `orca setup-connect https://link.knowslog.com %LOCALAPPDATA%\KnowsLink\orca-agent --host orca`를 실행했다. 만료(02:01:02Z) 전에 `connected`·종료 0이 나왔다. agent `agent_b865fba924692fafbb27b8`, 이름 `Orca Bot`(요청한 `쿠어 (Orca)`와 다름), 지문 `SHA256:Im2nPfxt-GppujUkek5dXm2FPU4WSA_9nRw6dEw8i3Q`(ask에 적은 값과 같음). 누가 어떤 화면에서 동의했는지는 직접 확인하지 못했다.
 - ask `msg_e71dac575ae2`(동의, 맥북 Grok adapter 갱신). 코디네이터는 답 없이 멈추고 판단을 넘겼다(`msg_7721fdcdee4c`).
-- **선택:** 사람 단계를 자동화하지 않고 여기서 멈춘다. Grok 갱신 확인 전이라 grant도 만들지 않았다. 되돌릴 변경은 없다. 같은 과제를 다시 배정하면 이어진다.
+- **선택:** 사람 단계를 자동화하지 않는다. Grok 갱신 확인 전이라 grant를 만들지 않았다. 연결을 되돌리려면 주인이 웹 "내 에이전트"에서 이 agent를 해제한다.
 
 ### 남은 단계
 
-1. 주인이 자리에 있을 때 다시 배정한다(링크 유효 시간 약 10분).
-2. 위 `setup-connect`를 다시 실행하고 Google 동의·지문 비교·이름 `쿠어 (Orca)`. 만료된 시도 폴더는 지우지 않고 `.unused-<시각>`으로 옮겨진다.
-3. 맥북 Grok(`/workspace/.knowslink`) adapter를 `b4c76b64` 빌드로 갱신하고 agent 이름·`plugin.js` 경로·연결 폴더를 받는다.
-4. 주인이 grant 3개를 만든다.
-5. `orca watch <폴더> --bot 쿠어`, 왕복 1회, 도어벨 argv·`receive`·`--item` 기록.
+1. 주인이 `Orca Bot` agent가 본인 계정에 있는지 확인한다. 이름을 `쿠어 (Orca)`로 할지 정한다.
+2. 맥북 Grok(`/workspace/.knowslink`) adapter를 `b4c76b64` 빌드로 갱신하고 agent 이름·`plugin.js` 경로·연결 폴더를 받는다.
+3. 주인이 grant 3개를 만든다.
+4. `orca watch <폴더> --bot 쿠어`, 왕복 1회, 도어벨 argv·`receive`·`--item` 기록.
