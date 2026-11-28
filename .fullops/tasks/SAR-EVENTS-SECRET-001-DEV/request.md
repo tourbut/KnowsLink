@@ -1,0 +1,1 @@
+Events 구독 whsec 평문 저장 암호화와 Events 광고·배달 Beta 스펙 정렬(Dots 회귀)
