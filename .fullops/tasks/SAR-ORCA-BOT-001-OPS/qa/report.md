@@ -4,10 +4,14 @@ status: draft
 updated: 2026-11-28
 owner: ops
 tasks: [SAR-ORCA-BOT-001-OPS]
-summary: "미완료. 운영 서버 SSH가 권한 분류기에서 거부되어 배포하지 못했고, 직접 실행할 배포 스크립트와 남은 단계를 기록한다"
+summary: "미완료. 2차에서 b4c76b64를 운영에 배포했고, 사람 단계(Google 동의·Grok adapter 갱신) 답이 없어 agent 연결·grant·왕복은 하지 않았다"
 ---
 
 # SAR-ORCA-BOT-001-OPS 검증 보고
+
+현재 상태는 [2차](#2차-2026-11-28-운영-배포) 절이다. 그 앞은 1차 기록이다.
+
+## 1차 (SSH 거부)
 
 **결과: 미완료.** 운영 배포, 운영 agent 연결, grant 생성, Grok 왕복을 하지 않았다. 운영 서버는 바꾸지 않았다.
 
@@ -49,3 +53,37 @@ push, 서버 DB·`.env`·Tunnel·DNS·방화벽 변경은 하지 않았다.
 4. 웹 "내 에이전트"에서 grant 3개(사람 단계).
 5. `orca watch <폴더> --bot 쿠어`와 왕복 1회, 도어벨 argv·`receive` 출력·`--item` 기록.
 6. D12에 이번 적용 절 추가. 적용한 것이 없어 이번에는 고치지 않았다.
+
+## 2차 (2026-11-28, 운영 배포)
+
+**결과: 미완료.** 운영 배포는 끝났다. agent 연결, grant 생성, Grok 왕복은 하지 않았다.
+
+### 배포
+
+| 항목 | 결과 |
+|---|---|
+| 배포 SHA | `b4c76b646f315178852ce56650685ca64a4a343e` (직전 `40aafe6f`), 01:47:20Z, `deploy-history.log`에 1줄 |
+| 마이그레이션 | `40aafe6f..b4c76b64`의 `db/`·`compose.yaml`·`Dockerfile` diff 0 |
+| 백업 | `backups/40aafe6f-20261128T014719Z.dump`, 0600, 11300 bytes, TOC 25줄, `message_state_rows=0`, SHA256 `0d3d88b125440d43a5fb09224fcbbe365ad9bbb1cb030db4870734dda7100f8b` |
+| rollback 태그 | `knowslink-rollback:40aafe6f-relay-orcabot001` (`sha256:be0ff2162c71…`), `…-migrate-orcabot001` (`sha256:af8c10bf68bb…`) |
+| `verify.py local` | `health 200, unknown 404, owner/api 401, loopback-only relay, private Postgres, limits, 0600/0700` |
+| `verify.py public` | 종료 0. 미인증 `/healthz`·`/owner`·`/v1/registry` 404 |
+| relay | healthy, error 0줄(기동 직후와 약 1분 뒤) |
+| 공개 확인 | `/`·`/privacy`·`/terms`·OAuth metadata 200, `/home` 303, 미인증 POST `/home/grant-create`·`grant-revoke` 303, 없는 경로 404 |
+
+복귀는 하지 않았다. 필요하면 서버에서 `bash /home/shin/deploy/knowslink/deploy/knowslink/beta.sh deploy 40aafe6ff396db2681a9423c3b344732934756e0`. grant를 만든 뒤 복귀하면 grant가 사라질 것으로 본다(1차 추정).
+
+### 연결과 사람 단계
+
+- 이 PC adapter: `npm run build`, `node dist/orca.test.js` PASS, `adapters/dist/plugin.js` SHA256 `22cab9edb2a82259d7c6f9830b6dcb605e2ad250b2d3d43973c1d6c46469fc76`.
+- `orca setup-connect https://link.knowslog.com %LOCALAPPDATA%\KnowsLink\orca-agent --host orca`를 실행해 `waiting`까지 확인했다. 링크는 02:01:02Z에 만료한다. 동의는 받지 못했다. 연결된 agent 이름·ID는 없다.
+- ask `msg_e71dac575ae2`(동의, 맥북 Grok adapter 갱신). 코디네이터는 답 없이 멈추고 판단을 넘겼다(`msg_7721fdcdee4c`).
+- **선택:** 사람 단계를 자동화하지 않고 여기서 멈춘다. Grok 갱신 확인 전이라 grant도 만들지 않았다. 되돌릴 변경은 없다. 같은 과제를 다시 배정하면 이어진다.
+
+### 남은 단계
+
+1. 주인이 자리에 있을 때 다시 배정한다(링크 유효 시간 약 10분).
+2. 위 `setup-connect`를 다시 실행하고 Google 동의·지문 비교·이름 `쿠어 (Orca)`. 만료된 시도 폴더는 지우지 않고 `.unused-<시각>`으로 옮겨진다.
+3. 맥북 Grok(`/workspace/.knowslink`) adapter를 `b4c76b64` 빌드로 갱신하고 agent 이름·`plugin.js` 경로·연결 폴더를 받는다.
+4. 주인이 grant 3개를 만든다.
+5. `orca watch <폴더> --bot 쿠어`, 왕복 1회, 도어벨 argv·`receive`·`--item` 기록.
