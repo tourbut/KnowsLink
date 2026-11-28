@@ -9,6 +9,7 @@ import (
 	"fmt"
 	"io"
 	"net/http"
+	"slices"
 	"sort"
 	"strings"
 	"time"
@@ -42,6 +43,10 @@ func (s *Service) remoteMCP(w http.ResponseWriter, r *http.Request) {
 		writeJSON(w, 400, map[string]string{"error": "invalid_request"})
 		return
 	}
+	modern, ok := remoteEra(w, r, in)
+	if !ok {
+		return
+	}
 	var install string
 	_, err = s.transaction(r.Context(), func(st *State, now time.Time) (any, error) {
 		var e error
@@ -66,6 +71,11 @@ func (s *Service) remoteMCP(w http.ResponseWriter, r *http.Request) {
 		writeJSON(w, 400, map[string]string{"error": "invalid_request"})
 		return
 	}
+	// A modern client tells an absent method from a refusal by 404 -32601; a legacy client keeps the refusal reason.
+	if modern && !slices.Contains(remoteModernMethods, in.Method) {
+		remoteError(w, 404, in.ID, -32601, "Method not found", nil)
+		return
+	}
 	if in.Method == "events/subscribe" || in.Method == "events/unsubscribe" {
 		s.remoteSubscription(w, r, install, in)
 		return
@@ -85,13 +95,14 @@ func (s *Service) remoteMCP(w http.ResponseWriter, r *http.Request) {
 			if Strict(in.Params, &p) != nil {
 				return nil, fault("invalid_schema")
 			}
+			// The spec has the server answer the requested revision when it serves it, so an older client is not forced up.
 			version := "2025-11-25"
-			if p.Protocol == "2026-07-28" {
+			if slices.Contains(remoteVersions, p.Protocol) {
 				version = p.Protocol
 			}
-			return map[string]any{"protocolVersion": version, "capabilities": map[string]any{"tools": map[string]any{}}, "serverInfo": map[string]string{"name": "knowslink", "version": "1.0.0"}}, nil
+			return map[string]any{"protocolVersion": version, "capabilities": map[string]any{"tools": map[string]any{}}, "serverInfo": remoteServerInfo}, nil
 		case "server/discover":
-			return map[string]any{"resultType": "complete", "supportedVersions": []string{"2026-07-28"}, "capabilities": map[string]any{"tools": map[string]any{}, "events": map[string]any{}}, "serverInfo": map[string]string{"name": "knowslink", "version": "1.0.0"}}, nil
+			return map[string]any{"resultType": "complete", "supportedVersions": []string{remoteModern}, "capabilities": map[string]any{"tools": map[string]any{}, "events": map[string]any{}}, "serverInfo": remoteServerInfo, "instructions": remoteInstructions}, nil
 		case "ping":
 			return map[string]any{}, nil
 		case "tools/list":
@@ -117,6 +128,9 @@ func (s *Service) remoteMCP(w http.ResponseWriter, r *http.Request) {
 			return nil, fault("unsupported_method")
 		}
 	})
+	if modern && err == nil {
+		remoteModernResult(in.Method, v.(map[string]any))
+	}
 	remoteResult(w, in.ID, v, err)
 }
 
