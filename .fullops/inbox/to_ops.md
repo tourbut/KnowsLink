@@ -102,3 +102,13 @@ parallel: on
 브랜치 / SHA / 변경 이유 / 검토 필요 / 검증한 것과 못 한 것 / 스스로 정한 선택과 되돌리는 방법 / 산출물·로그 링크 / 남은 일.
 push가 승인됐다. 그래서 `fullops done`을 실행하고, 그 출력 한 줄을 worker_done 본문으로 쓴다.
 처리는 `fullops-work`, 회신은 `fullops-orca` 스킬을 따른다.
+
+- 브랜치: `fullops/ops`
+- SHA: `58bfdf2eff7c`(lint 통과 head). 운영 배포 SHA는 `8272fb911e1a0cf660e80390b7e6ef4ba32e2e3c`.
+- 변경 이유: `8272fb91` 운영 배포(복귀 없음). 코드 변경 없이 D12, 검증 보고, 배포·상태 확인 스크립트, ops 역할 지침만 바꿨다.
+- 검토 필요: D12가 상한 500줄을 넘는다(SIZE-001 경고, 702줄). 인수 내용과 달리 `connect_guide.go` 선택지 1줄도 서버 변경에 있었다.
+- 검증한 것: 백업 SHA256 `2619ad7b…e90bec`, `verify.py local`·`public`, relay error 0줄, agent 2개 `revoked=false`·grant 3개, 웹 항목(container binary 문자열과 template 렌더 ko·en), 설치본 bundle이 `8272fb91` 빌드와 동일, watch 1개, HKCU Run.
+- 못 한 것: 로그인한 운영 웹 화면, rollback 실행, 재부팅 자동 시작, decision 실발송.
+- 선택과 되돌리는 방법: bundle이 같아 `orca install`을 실행하지 않았다. 운영 복귀는 `beta.sh deploy 0899e5bd29cc11ba4ee8e70419185c97ffa536d1`.
+- 산출물·로그: [검증 보고](../tasks/SAR-ORCA-HOST-001-OPS/qa/report.md), [D12](../docs/operations/ops-guide.md).
+- 남은 일: 재부팅 자동 시작 확인(사람), grant 만료 2026-12-28T05:08Z.
