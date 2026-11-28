@@ -1,0 +1,1 @@
+Grok Bot 설치를 git clone + install_bot_mcp.sh 없이 한 줄 명령으로: CI가 버전별 Grok bundle(+SHA256SUMS) 릴리스, link.knowslog.com/install/grok.sh 같은 installer가 받아 체크섬 검증·설치·같은 명령으로 갱신, 웹 '내 에이전트 → Grok Bot'에 한 줄 명령 표시, README Grok 설치·업데이트 절 갱신

@@ -1,0 +1,148 @@
+{
+  "v": 1,
+  "key": "SAR-GROK-INSTALL-001-DEV",
+  "base": "88742a66e27fe82dcb052adad9d88a7bcbbc3f64",
+  "head": "ba339edd34ddd3db0737e4f1d9f3160e466e49f1",
+  "reviewer_session": "3141de4e-cd59-4189-8c0f-b37585ee0b90",
+  "implementer_session": "ec9b5eb0-61d0-4acd-a671-d0ebdfed2cd0",
+  "snapshot_path": "C:/Users/shin/orca/workspaces/KnowsLink/.fullops-review-38c622de",
+  "snapshot_head": "ba339edd34ddd3db0737e4f1d9f3160e466e49f1",
+  "read_only": true,
+  "conclusion": "accept",
+  "files": [
+    {
+      "path": ".fullops/docs/design-docs/mockups/service-member-ui.md",
+      "status": "M",
+      "review_status": "reviewed",
+      "reason": ""
+    },
+    {
+      "path": ".fullops/docs/operations/user-guide.md",
+      "status": "M",
+      "review_status": "reviewed",
+      "reason": ""
+    },
+    {
+      "path": ".fullops/tasks/SAR-GROK-INSTALL-001-DEV/dev.r0.md",
+      "status": "R",
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 기록이다. 파일마다 열람하지 않는다."
+    },
+    {
+      "path": "README.md",
+      "status": "M",
+      "review_status": "reviewed",
+      "reason": ""
+    },
+    {
+      "path": "adapters/README.md",
+      "status": "M",
+      "review_status": "reviewed",
+      "reason": ""
+    },
+    {
+      "path": "adapters/skills/knowslink/SKILL.md",
+      "status": "M",
+      "review_status": "reviewed",
+      "reason": ""
+    },
+    {
+      "path": "docs/README.md",
+      "status": "M",
+      "review_status": "reviewed",
+      "reason": ""
+    },
+    {
+      "path": "docs/system-design.md",
+      "status": "M",
+      "review_status": "reviewed",
+      "reason": ""
+    },
+    {
+      "path": "internal/relay/connect_guide.go",
+      "status": "M",
+      "review_status": "reviewed",
+      "reason": ""
+    },
+    {
+      "path": "internal/relay/human_pages.go",
+      "status": "M",
+      "review_status": "reviewed",
+      "reason": ""
+    },
+    {
+      "path": "internal/relay/i18n_en_human.go",
+      "status": "M",
+      "review_status": "reviewed",
+      "reason": ""
+    },
+    {
+      "path": "internal/relay/i18n_en_member.go",
+      "status": "M",
+      "review_status": "reviewed",
+      "reason": ""
+    },
+    {
+      "path": "internal/relay/landing_pages.go",
+      "status": "M",
+      "review_status": "reviewed",
+      "reason": ""
+    },
+    {
+      "path": "internal/relay/landing_test.go",
+      "status": "M",
+      "review_status": "reviewed",
+      "reason": ""
+    },
+    {
+      "path": "internal/relay/remote_auth.go",
+      "status": "M",
+      "review_status": "reviewed",
+      "reason": ""
+    },
+    {
+      "path": "internal/relay/remote_mcp.go",
+      "status": "M",
+      "review_status": "reviewed",
+      "reason": ""
+    },
+    {
+      "path": "internal/relay/remote_test.go",
+      "status": "M",
+      "review_status": "reviewed",
+      "reason": ""
+    },
+    {
+      "path": "tasks/SAR-GROK-INSTALL-001-DEV/qa/report.md",
+      "status": "A",
+      "review_status": "reviewed",
+      "reason": ""
+    }
+  ],
+  "findings": [
+    {
+      "path": "internal/relay/human_pages.go",
+      "start_line": 46,
+      "end_line": 46,
+      "severity": "low",
+      "resolved": false,
+      "content": "[정합] 웹 '내 에이전트 → Grok Bot (원격) → 기존 연결 계속'이 여전히 README `#grok-기존-설치-업데이트`(로컬 Command bundle 재설치·watcher 재시작 절차)만 링크한다. D066 뒤 Remote로 연결한 Grok 사용자는 Dots처럼 서버 쪽 갱신과 connector Refresh만 필요한데 로컬 설치 절차를 안내받는다. docs/README.md:20 '기존 업데이트' 열도 같다. continue 분기에 Remote 갱신(Refresh) 안내를 두고 로컬 절차는 '로컬 Command 설치 사용자'로 한정한다."
+    },
+    {
+      "path": "README.md",
+      "start_line": 78,
+      "end_line": 78,
+      "severity": "low",
+      "resolved": false,
+      "content": "[정합] '에이전트 이름을 정한다(기본 `Grok Bot`)'는 검증되지 않았다. remote_auth.go:318-321은 DCR `client_name`에 'grok'이 들어 있을 때만 기본 이름을 Grok Bot으로 한다. adapters/README.md는 Grok Bot이 Cursor connector backend로 DCR을 한다고 적으므로 client_name이 Cursor 쪽 이름이면 기본값은 'Dots'가 된다. 문구를 '클라이언트 이름에 따라 `Grok Bot` 또는 `Dots`, 필요하면 고친다'로 바꾸거나 실제 계정 연결 때 확인 항목에 넣는다."
+    },
+    {
+      "path": "internal/relay/remote_auth.go",
+      "start_line": 262,
+      "end_line": 262,
+      "severity": "nit",
+      "resolved": false,
+      "content": "[테스트] authorize의 `scope` 생략 허용 분기에 표적 테스트가 없다(remote_integration_test.go:93은 scope를 넣는다). 유일 scope `knowslink.text`만 발급하고 token 응답도 같은 scope라 권한 상승은 없다. 회귀 방지로 scope 없는 authorize→token 한 경로와 loopback redirect 정확 일치(포트 다르면 거절) 한 줄을 붙이면 충분하다."
+    }
+  ]
+}
