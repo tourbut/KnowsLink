@@ -2341,3 +2341,4 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 - 2026-11-28 16:55 SAR-MSG-TTL-1H-001-DEV → dev | claude/claude-opus-5-5/high | fresh | run run_b2458affdea1 | 재배정 2 | -
 - 2026-11-28 17:04 SAR-MSG-TTL-1H-001-DEV → dev | claude/claude-opus-5-5/medium | fresh | run run_b2458affdea1 | 재배정 3 | -
 - 2026-11-28 17:32 SAR-MCP-SPEC-CHECK-001-DEV → dev | claude/claude-opus-5-5/high | fresh | run run_b2458affdea1 | 재배정 0 | -
+- 2026-11-28 17:49 SAR-MCP-DEPLOY-001-OPS → ops | claude/claude-sonnet-5-5/high | fresh | run run_b2458affdea1 | 재배정 0 | -
