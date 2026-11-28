@@ -114,6 +114,14 @@ func safeProblem(err error) string {
 	case "agent_rate":
 		r, _ := err.(agentRefused)
 		return "오늘 새 에이전트를 많이 만들었습니다. " + clock(r.Retry) + " 뒤 다시 연결하세요. 기존 에이전트는 그대로 쓸 수 있습니다."
+	case "routine_url":
+		return "routine webhook URL 형식이 아닙니다. Grok Bot routine의 Webhook 절에 보이는 POST to 주소(https://api2.cursor.sh/automations/webhook/…)를 그대로 붙여 넣으세요. 저장된 설정은 그대로입니다."
+	case "routine_key":
+		return "routine key를 확인하세요. Webhook 절의 key를 공백 없이 붙여 넣으세요. 저장된 설정은 그대로입니다."
+	case "routine_consent":
+		return "도착 알림에 동의해야 등록할 수 있습니다. 저장된 설정은 그대로입니다."
+	case "routine_unavailable":
+		return "이 서버에는 암호화 키가 설정되지 않아 지금은 도착 알림을 등록할 수 없습니다."
 	case "service_capacity":
 		return "지금은 서비스 용량 때문에 새 에이전트를 만들 수 없습니다. 기존 에이전트는 그대로 쓸 수 있습니다. 나중에 다시 연결하세요."
 	default:

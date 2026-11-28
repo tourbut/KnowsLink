@@ -4,7 +4,7 @@ title: 데이터베이스설계서
 status: review
 updated: 2026-11-28
 owner: dev
-tasks: [SAR-MVP-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-SSE-INSTALL-001-DEV, SAR-HUMAN-PEER-001-DEV, SAR-REFACTOR-002-DEV, SAR-DB-WAIT-001, SAR-MSG-EPHEMERAL-001, SAR-REDIS-CAP-001-DEV, SAR-EVENTS-SECRET-001-DEV]
+tasks: [SAR-MVP-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-SSE-INSTALL-001-DEV, SAR-HUMAN-PEER-001-DEV, SAR-REFACTOR-002-DEV, SAR-DB-WAIT-001, SAR-MSG-EPHEMERAL-001, SAR-REDIS-CAP-001-DEV, SAR-EVENTS-SECRET-001-DEV, SAR-GROK-WAKE-002-DEV]
 upstream: [D02]
 summary: singleton Postgres 상태와 epoch CAS 및 처리량 한계를 정의한다
 ---
@@ -26,7 +26,7 @@ summary: singleton Postgres 상태와 epoch CAS 및 처리량 한계를 정의�
 - 운영 자원: Redis `mem_limit 192m`·`cpus 0.25`·read-only·cap_drop ALL. 근거: commit 중 Redis에는 사본이 최대 2개 있다. 사본 크기는 relay 256 MB 한도가 먼저 제한한다. 메시지가 빠져 상태 행이 작아지므로 행 lock 시간도 줄어든다. 2026-11-14 운영 이행에서 상태 행은 8894 bytes(`pg_column_size`)이고 메시지 부분은 0 bytes, Redis `used_memory`는 1.43 MiB였다(D12 SAR-RELEASE-004-OPS). 처리량은 측정하지 않았다.
 - LISTEN/NOTIFY는 유지한다. payload가 비어 있고 commit과 함께 보이므로 메시지를 담지 않는다.
 - migration 4(`00004_relay_state_no_messages.sql`)는 기존 행의 `Messages`·`Idempotency`·`Remote.Installs.*.Inbox`를 지운다(D052). 회원·친구·agent·키·권한·Dots 연결·`human_model`은 유지한다. Down은 실패 고정이다. 지운 행의 이전 tuple·WAL은 VACUUM·checkpoint 전까지 디스크에 남을 수 있다.
-- Postgres에 남는 메시지 관련 값은 본문 없는 metadata뿐이다: gate(ID·digest·from/to·상태, 요청 사본과 함께 삭제), Dots 구독의 마지막 event ID.
+- Postgres에 남는 메시지 관련 값은 본문 없는 metadata뿐이다: gate(ID·digest·from/to·상태, 요청 사본과 함께 삭제), Dots 구독의 마지막 event ID, Grok routine wake의 알린·알리는 중인 대기 메시지 ID 목록(`Seen`·`Pending`).
 
 ## SAR-DB-WAIT-001 저장 형식과 대기 상한
 
@@ -81,9 +81,16 @@ SAR-PUBLIC-IDENTITY-001은 새 migration 없이 같은 JSON에 Member·Identity�
 
 Remote와 Streams는 기존 relay_state JSON의 additive optional field다. 신규 SQL migration·새 DB/계정·운영 schema 변경은 없다. 과거 JSON은 nil map을 허용하고 최초 실제 remote consent가 설치만 추가한다. 기존 owner/agent/pair/message·generation은 유지한다. 새 서버 보관 개인키·callback secret은 DB 접근권한과 백업 비공개를 전제로 하며 Google token을 저장하지 않는다. 구독 상한128·설치당4, 설치 상한500을 둔다. 세부 만료/철회와 재시도는 REMOTE 기록을 따른다.
 
-**저장 secret 봉인(SAR-EVENTS-SECRET-001-DEV).** Events 구독의 `Secret`·`OldSecret`은 `sealed:v1:` + base64(nonce‖AES-256-GCM 암호문)다. 키는 env `KNOWSLINK_SEAL_KEY`(base64 32바이트)뿐이고 process 메모리에만 있다. AAD는 구독 ID라서 다른 구독으로 옮긴 값은 열리지 않는다. 공용 helper는 `internal/relay/seal.go`의 `Sealer.Seal/Open(plain, aad)`이며 다음 과제(routine webhook key)는 agent ID를 AAD로 같은 키를 쓴다. 키가 없으면 새 구독을 거절해 평문을 쓰지 않는다. 잘못된 키는 기동 실패다. 새 필드 `Beta`·`Message`(Beta 배달 `webhook-id`)는 additive optional이다. SQL migration은 없다.
+**저장 secret 봉인(SAR-EVENTS-SECRET-001-DEV).** Events 구독의 `Secret`·`OldSecret`은 `sealed:v1:` + base64(nonce‖AES-256-GCM 암호문)다. 키는 env `KNOWSLINK_SEAL_KEY`(base64 32바이트)뿐이고 process 메모리에만 있다. AAD는 구독 ID라서 다른 구독으로 옮긴 값은 열리지 않는다. 공용 helper는 `internal/relay/seal.go`의 `Sealer.Seal/Open(plain, aad)`이며 routine webhook key(SAR-GROK-WAKE-002-DEV)는 agent ID를 AAD로 같은 키를 쓴다. 키가 없으면 새 구독을 거절해 평문을 쓰지 않는다. 잘못된 키는 기동 실패다. 새 필드 `Beta`·`Message`(Beta 배달 `webhook-id`)는 additive optional이다. SQL migration은 없다.
 - **이행:** 배포 전 평문(`whsec_` 접두) 값은 읽기 fallback으로 계속 서명·비교한다. 같은 구독의 다음 subscribe/refresh가 성공하면 항상 봉인 값으로 다시 쓴다. 갱신되지 않은 평문 구독은 TTL(최대 1시간) 뒤 정리된다. 그래서 배포 뒤 약 1시간이 지나면 평문이 상태에 남지 않는다(백업·WAL의 이전 tuple은 보존 기간까지 남는다).
 - **키 분실·교체:** 봉인 값이 열리지 않으면 배달 때 구독을 410처럼 지운다. 호스트의 다음 refresh가 새 구독으로 검증하고 새 키로 봉인한다. 키 교체도 같은 경로로 수렴한다(최대 1시간 Events 공백).
+
+**Grok routine wake 등록(SAR-GROK-WAKE-002-DEV).** `Remote.Routines`는 agent ID → `routineWake` map이다(JSON additive optional, 이전 상태에서는 없음). SQL migration은 없다. 원격 agent당 등록 하나이고 값은 다음과 같다.
+- `URL`(평문, 화면에는 끝 4자만), `Key`(`sealed:v1:`, AAD는 agent ID), `Broken`(다시 등록 필요), `LastOK`(마지막 2xx).
+- 진행 상태: `Seen`·`Pending`(대기 메시지 ID를 쉼표로 이은 목록, 본문 없음), `Next`·`Last`(2분 간격), `Window`·`Count`(시간 창과 POST 수), `Attempts`, `Lease`·`LeaseUntil`(15초 lease). 다시 등록해도 `Last`·`Window`·`Count`는 이어져 시간당 상한을 초기화하지 않는다.
+- 원격 설치가 사라진 agent의 등록은 정리 때 지운다. 해제(`routine-remove`)는 항목을 지운다.
+- **키 분실·교체:** 봉인 key가 열리지 않으면 배달 때 `Broken`이 된다. 주인이 다시 등록해야 한다. 키가 없으면 등록·배달을 하지 않는다.
+- **되돌리기:** 이전 코드는 `Routines`를 모르는 필드로 버리고 저장한다. 등록이 사라지므로 다시 배포한 뒤 주인이 다시 등록한다.
 
 ## SAR-PUBLIC-AGENTS-001 저장 변경
 
