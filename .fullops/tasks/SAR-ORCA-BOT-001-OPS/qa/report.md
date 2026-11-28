@@ -4,7 +4,7 @@ status: draft
 updated: 2026-11-28
 owner: ops
 tasks: [SAR-ORCA-BOT-001-OPS]
-summary: "미완료. 0899e5bd까지 운영에 배포했다. 에이전트 전체 철회 뒤 쿠어를 새 ID로 다시 연결했고, Grok 재연결·grant·왕복은 하지 않았다"
+summary: "미완료. 0899e5bd까지 운영에 배포했다. 에이전트 전체 철회 뒤 쿠어를 새 ID로 다시 연결했고, Grok 재연결과 grant 3개를 확인했고 왕복은 하지 않았다"
 ---
 
 # SAR-ORCA-BOT-001-OPS 검증 보고
@@ -134,8 +134,20 @@ push, 서버 DB·`.env`·Tunnel·DNS·방화벽 변경은 하지 않았다.
 - 수신기: 터미널 `term_fa736957-2a41-4fe4-89b6-550d9ff0ca6a`(`--keep-open`), `node <ops worktree>/adapters/dist/plugin.js orca watch %LOCALAPPDATA%\KnowsLink\orca-agent-20261128 --bot 쿠어`. 실행 중이고 오류 출력은 없다.
 - grant 0개의 원인 추정(`msg_67bb5c936f6a`): grant 생성·철회는 5분 재인증이 필요하고, 재인증 없이 제출하면 '오류' 페이지만 뜨고 목록이 그대로다. 코드의 5분 제한은 확인했으나 이번에 실제로 그랬는지는 확인하지 못했다. 안내 개선은 `SAR-ORCA-GRANT-UX-001-DEV`.
 
+### grant 확인 (05:09:29Z, 읽기 전용, `msg_d5f64993411f`)
+
+Grok Bot `agent_2b73608560c8ba6e8c3d06`(원격 호스트, 생성 05:07:35Z)와 쿠어 `agent_5513ec51367fed3748903d`는 `revoked=false`이고 같은 주인이다. 전달받은 지문 앞자리 `38576d71`은 대조하지 않았다.
+
+| from → to | kind | 생성(Z) | 만료 |
+|---|---|---|---|
+| Grok Bot → 쿠어 | `orca.task.v1` | 05:08:40 | 2026-12-28T05:08Z |
+| Grok Bot → 쿠어 | `orca.answer.v1` | 05:08:54 | 2026-12-28T05:08Z |
+| 쿠어 → Grok Bot | `orca.decision.v1` | 05:08:56 | 2026-12-28T05:08Z |
+
+grant는 쿠어가 웹에서 만들었다(전달받은 내용). 시험 task 문구는 `msg_a396773da071`로 보냈다.
+
 ### 남은 단계
 
-1. 성철 님이 Grok Bot connector를 다시 추가하고, 쿠어가 grant 3개를 만든다(lead 신호 대기).
-2. grant 읽기 확인, 왕복 1회, 도어벨 argv·`receive` 출력·`--item` 기록.
+1. Grok 시험 task 발송(주인 요청), 도어벨 argv·`receive` 출력 기록.
+2. decision 발송, answer 도어벨의 `--item` 기록.
 3. D12 문구 갱신.
