@@ -1,0 +1,66 @@
+# Template: send main pushes, PR and issue events to a Grok Bot webhook routine.
+# Copy to <repo>/.github/workflows/grokbot-webhook-relay.yml and replaced BOT_ with the
+# target bot's secret prefix (e.g. NORI_, FULLO_, LINK_, ERDEN_DIRECTOR_).
+# Secrets (set with gh secret set, never commit values):
+#   LINK_WEBHOOK_URL   - the routine's webhook URL
+#   LINK_WEBHOOK_AUTH  - the Authorization header VALUE only, without the "Authorization:" prefix
+name: Grok Bot webhook relay
+
+on:
+  push:
+    branches: [main]
+  issues:
+    types: [opened, closed, reopened]
+  pull_request:
+    types: [opened, synchronize, closed]
+
+permissions: {}
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    steps:
+      - name: Send event to Grok Bot webhook
+        env:
+          WEBHOOK_URL: ${{ secrets.LINK_WEBHOOK_URL }}
+          WEBHOOK_AUTH: ${{ secrets.LINK_WEBHOOK_AUTH }}
+          EVENT: ${{ github.event_name }}
+          ACTION: ${{ github.event.action }}
+          REPO: ${{ github.repository }}
+          REF: ${{ github.ref }}
+          SHA: ${{ github.sha }}
+          ACTOR: ${{ github.actor }}
+          COMPARE: ${{ github.event.compare }}
+          HEAD_MSG: ${{ github.event.head_commit.message }}
+          ISSUE_NUM: ${{ github.event.issue.number }}
+          ISSUE_TITLE: ${{ github.event.issue.title }}
+          ISSUE_URL: ${{ github.event.issue.html_url }}
+          PR_NUM: ${{ github.event.pull_request.number }}
+          PR_TITLE: ${{ github.event.pull_request.title }}
+          PR_URL: ${{ github.event.pull_request.html_url }}
+        run: |
+          if [ -z "$WEBHOOK_URL" ]; then echo "webhook secret not set; skipping"; exit 0; fi
+          # jq slices by codepoint; GNU `cut -c` counts bytes and split Korean titles mid-character.
+          # `// ""`: split of an empty string is [], and .[0] would print "null".
+          cut200() { jq -rn --arg s "$1" '$s | (split("\n") | .[0] // "") | .[:200]'; }
+          case "$EVENT" in
+            push)
+              COUNT=$(jq '.commits | length' "$GITHUB_EVENT_PATH")
+              BODY=$(jq -n --arg e push --arg r "$REPO" --arg ref "$REF" --arg sha "$SHA" --arg a "$ACTOR" \
+                --arg u "$COMPARE" --arg s "$(cut200 "$HEAD_MSG")" --argjson c "$COUNT" \
+                '{event:$e, repo:$r, ref:$ref, sha:$sha, actor:$a, commits:$c, head_summary:$s, url:$u}') ;;
+            issues)
+              BODY=$(jq -n --arg e issues --arg act "$ACTION" --arg r "$REPO" --arg a "$ACTOR" \
+                --arg n "$ISSUE_NUM" --arg t "$(cut200 "$ISSUE_TITLE")" --arg u "$ISSUE_URL" \
+                '{event:$e, action:$act, repo:$r, actor:$a, issue:$n, title:$t, url:$u}') ;;
+            pull_request)
+              BODY=$(jq -n --arg e pull_request --arg act "$ACTION" --arg r "$REPO" --arg a "$ACTOR" \
+                --arg n "$PR_NUM" --arg t "$(cut200 "$PR_TITLE")" --arg u "$PR_URL" --arg sha "$SHA" \
+                '{event:$e, action:$act, repo:$r, actor:$a, pr:$n, title:$t, url:$u, sha:$sha}') ;;
+            *) echo "unhandled event $EVENT"; exit 0 ;;
+          esac
+          curl -sS --fail --max-time 20 -X POST "$WEBHOOK_URL" \
+            -H "Content-Type: application/json" \
+            ${WEBHOOK_AUTH:+-H "Authorization: $WEBHOOK_AUTH"} \
+            -d "$BODY" -o /dev/null -w "status %{http_code}\n"
