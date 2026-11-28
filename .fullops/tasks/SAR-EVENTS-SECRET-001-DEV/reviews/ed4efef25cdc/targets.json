@@ -1,0 +1,115 @@
+{
+  "v": 1,
+  "key": "SAR-EVENTS-SECRET-001-DEV",
+  "base": "4520d88ec290ff2203b7c587ab94051bf2f243bb",
+  "merge_base": "4520d88ec290ff2203b7c587ab94051bf2f243bb",
+  "head": "ed4efef25cdc6090a23e7badc3d6a0df34f3cade",
+  "policy_sha256": "cdce7f68e775893271409647f184d2fdc2e6f2e7bdcbe51998428cfa188c65ad",
+  "files": [
+    {
+      "path": ".env.example",
+      "status": "M",
+      "rule": null,
+      "preset": null,
+      "reason": ""
+    },
+    {
+      "path": ".fullops/docs/design-docs/database-design.md",
+      "status": "M",
+      "rule": "Check changed instructions and documents against actual behavior, requirements and linked sources. Identify contradictions, missing required artifacts and broken references. Preserve the project's document templates and tone; report only concrete defects.",
+      "preset": null,
+      "reason": ""
+    },
+    {
+      "path": ".fullops/docs/design-docs/interface-design.md",
+      "status": "M",
+      "rule": "Check changed instructions and documents against actual behavior, requirements and linked sources. Identify contradictions, missing required artifacts and broken references. Preserve the project's document templates and tone; report only concrete defects.",
+      "preset": null,
+      "reason": ""
+    },
+    {
+      "path": ".fullops/docs/operations/ops-guide.md",
+      "status": "M",
+      "rule": "Check changed instructions and documents against actual behavior, requirements and linked sources. Identify contradictions, missing required artifacts and broken references. Preserve the project's document templates and tone; report only concrete defects.",
+      "preset": null,
+      "reason": ""
+    },
+    {
+      "path": ".fullops/tasks/SAR-EVENTS-SECRET-001-DEV/dev.r0.md",
+      "status": "R",
+      "rule": "Check changed instructions and documents against actual behavior, requirements and linked sources. Identify contradictions, missing required artifacts and broken references. Preserve the project's document templates and tone; report only concrete defects.",
+      "preset": "skipped",
+      "reason": "검증 증거·하네스 기록이다. 파일마다 열람하지 않는다."
+    },
+    {
+      "path": ".fullops/tasks/SAR-EVENTS-SECRET-001-DEV/qa/report.md",
+      "status": "A",
+      "rule": "Check changed instructions and documents against actual behavior, requirements and linked sources. Identify contradictions, missing required artifacts and broken references. Preserve the project's document templates and tone; report only concrete defects.",
+      "preset": "skipped",
+      "reason": "검증 증거·하네스 기록이다. 파일마다 열람하지 않는다."
+    },
+    {
+      "path": "cmd/relay/main.go",
+      "status": "M",
+      "rule": null,
+      "preset": null,
+      "reason": ""
+    },
+    {
+      "path": "compose.yaml",
+      "status": "M",
+      "rule": null,
+      "preset": null,
+      "reason": ""
+    },
+    {
+      "path": "internal/relay/remote_era.go",
+      "status": "M",
+      "rule": null,
+      "preset": null,
+      "reason": ""
+    },
+    {
+      "path": "internal/relay/remote_events.go",
+      "status": "M",
+      "rule": null,
+      "preset": null,
+      "reason": ""
+    },
+    {
+      "path": "internal/relay/remote_integration_test.go",
+      "status": "M",
+      "rule": null,
+      "preset": null,
+      "reason": ""
+    },
+    {
+      "path": "internal/relay/remote_mcp.go",
+      "status": "M",
+      "rule": null,
+      "preset": null,
+      "reason": ""
+    },
+    {
+      "path": "internal/relay/seal.go",
+      "status": "A",
+      "rule": null,
+      "preset": null,
+      "reason": ""
+    },
+    {
+      "path": "internal/relay/seal_test.go",
+      "status": "A",
+      "rule": null,
+      "preset": null,
+      "reason": ""
+    },
+    {
+      "path": "internal/relay/store.go",
+      "status": "M",
+      "rule": null,
+      "preset": null,
+      "reason": ""
+    }
+  ]
+}
