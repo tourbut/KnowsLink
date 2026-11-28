@@ -4,12 +4,12 @@ status: draft
 updated: 2026-11-28
 owner: ops
 tasks: [SAR-ORCA-BOT-001-OPS]
-summary: "미완료. 2차에서 b4c76b64를 운영에 배포했고, Orca agent를 연결했다. 0899e5bd까지 배포했고 Grok Bot 연결 전이라 grant·왕복은 하지 않았다"
+summary: "미완료. 0899e5bd까지 운영에 배포했다. 에이전트 전체 철회 뒤 쿠어를 새 ID로 다시 연결했고, Grok 재연결·grant·왕복은 하지 않았다"
 ---
 
 # SAR-ORCA-BOT-001-OPS 검증 보고
 
-현재 상태는 [3차](#3차-2026-11-28-0899e5bd-배포와-수신기) 절이다. 그 앞은 이전 기록이다.
+현재 상태는 마지막 [4차](#4차-2026-11-28-전체-철회-뒤-재연결) 절이다. 그 앞은 이전 기록이며, 거기 적힌 agent ID·수신기·남은 단계는 유효하지 않다.
 
 ## 1차 (SSH 거부)
 
@@ -125,8 +125,17 @@ push, 서버 DB·`.env`·Tunnel·DNS·방화벽 변경은 하지 않았다.
 - 웹: 이 계정의 세션은 1개이고 마지막 요청이 03:32:45Z다. 그 뒤 이 relay에 로그인한 웹 요청은 없는 것으로 본다. `grant-create`는 Google 인증 후 5분이 지나면 재인증을 요구하고 저장하지 않는다.
 - 수신기: process 실행 중, 약 10초 간격 요청이 relay에 도달한다. 받을 메시지가 없어 도어벨은 시도하지 않았다. relay error 0줄.
 
+## 4차 (2026-11-28, 전체 철회 뒤 재연결)
+
+- `msg_67bb5c936f6a`: 쿠어가 이 계정 agent 6개를 웹에서 철회했다고 전달됐다. 05:00:52Z 운영 읽기 확인: 6개 모두 `revoked=true`(`agent_b865…`, `agent_bce1…` 포함), grant 0개.
+- 이전 수신기 터미널 `term_2d169c23-…`를 닫았다. 이전 폴더 `orca-agent`는 지우지 않았다.
+- 새 폴더 `%LOCALAPPDATA%\KnowsLink\orca-agent-20261128`에서 `orca setup-connect https://link.knowslog.com <폴더>`, `connected`·종료 0. 동의는 쿠어가 했다(D065, `msg_dcc62ec31835`: 화면 지문 일치, 이름 `쿠어`). 이 worker는 동의 화면을 보지 않았다.
+- 새 agent: `쿠어` `agent_5513ec51367fed3748903d`, 생성 05:02:27Z, 지문 `SHA256:Ne3GA9QHNdrLCorD-EDhSi3x9nk9NkTfXHdTB5vCCbk`. 운영 읽기 확인: 키 1개, `revoked=false`, 이전과 같은 주인.
+- 수신기: 터미널 `term_fa736957-2a41-4fe4-89b6-550d9ff0ca6a`(`--keep-open`), `node <ops worktree>/adapters/dist/plugin.js orca watch %LOCALAPPDATA%\KnowsLink\orca-agent-20261128 --bot 쿠어`. 실행 중이고 오류 출력은 없다.
+- grant 0개의 원인 추정(`msg_67bb5c936f6a`): grant 생성·철회는 5분 재인증이 필요하고, 재인증 없이 제출하면 '오류' 페이지만 뜨고 목록이 그대로다. 코드의 5분 제한은 확인했으나 이번에 실제로 그랬는지는 확인하지 못했다. 안내 개선은 `SAR-ORCA-GRANT-UX-001-DEV`.
+
 ### 남은 단계
 
-1. 주인이 Grok Bot에 custom connector를 추가·Authenticate하고 agent 이름·ID를 알린다.
-2. 주인이 grant 3개를 만든다.
-3. 왕복 1회, 도어벨 메일·`receive`·`--item` 기록.
+1. 성철 님이 Grok Bot connector를 다시 추가하고, 쿠어가 grant 3개를 만든다(lead 신호 대기).
+2. grant 읽기 확인, 왕복 1회, 도어벨 argv·`receive` 출력·`--item` 기록.
+3. D12 문구 갱신.
