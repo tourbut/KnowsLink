@@ -2350,3 +2350,4 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 - 2026-11-28 19:15 SAR-REDIS-CAP-001-DEV → dev | claude/claude-opus-5-5/high | fresh | run run_d8b959a59fed | 재배정 0 | -
 - 2026-11-28 19:36 SAR-EVENTS-SECRET-001-DEV → dev | claude/claude-opus-5-5/high | fresh | run run_d8b959a59fed | 재배정 0 | -
 - 2026-11-28 19:55 SAR-EVENTS-SECRET-001-DEV → dev | claude/claude-opus-5-5/high | fresh | run run_08a6c383bc4e | 재배정 1 | -
+- 2026-11-28 20:03 SAR-EVENTS-DEPLOY-001-OPS → ops | claude/claude-sonnet-5-5/high | fresh | run run_08a6c383bc4e | 재배정 0 | -
