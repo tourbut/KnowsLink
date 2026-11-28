@@ -890,7 +890,7 @@ Codex 실제 설치는 업데이트 전후 0.9.12다. 시작 시 coor 레포 적
 | SAR-ORCA-HOST-001-DEV | 완료(6943ee6) | dev |
 | SAR-ORCA-HOST-002-DEV | 완료(877ecf8) | dev |
 | SAR-MSG-TTL-1H-001-DEV | 완료(1bb4ae6) | dev |
-| SAR-MCP-SKILLS-001-DEV | 대기: 착수 전 https://modelcontextprotocol.io/extensions/overview로 갭 분석·순위·확장 상태·협상 방식 재확인(주인 지시 msg_6c53f29feb0c) | dev |
+| SAR-MCP-SKILLS-001-DEV | 대기: 착수 전 순위 재검토. ① Extensions 개요(https://modelcontextprotocol.io/extensions/overview)로 갭·확장 상태·협상 재확인(msg_6c53f29feb0c) ② Events 확장(https://modelcontextprotocol.io/extensions/events/overview): 상태, subscriptions/listen 관계, Claude Code v2·Grok Bot·Dots·Orca 봇 지원, Grok 채팅에 새 턴이 생기는지(README의 SSE·log notice 한계), 어느 클라이언트에 이득인지(msg_3f6af5fcff02). 결론·추천 순위를 lead에 먼저 보고 | dev |
 | SAR-MCP-STDIO-SDK2-001-DEV | 대기 선행: SAR-MCP-SKILLS-001-DEV | dev |
 | SAR-MSG-TTL-1H-002-DEV | 대기(2026-12-28 이후) 선행: SAR-MSG-TTL-1H-001-DEV | dev |
 | SAR-MSG-TTL-1H-003-DEV | 준비 | dev |
