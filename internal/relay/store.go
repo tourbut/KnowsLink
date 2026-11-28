@@ -564,7 +564,7 @@ func (st *State) ingest(agent string, e *Envelope, claim string, now time.Time) 
 	if parent != nil && exp.After(parent.Receipt.Exp) {
 		return nil, fault("expired")
 	}
-	if !st.messageCapacity(e.Intent == "relay.approval.request") {
+	if !st.messageCapacity(e.Intent == "relay.approval.request", e.From) {
 		return nil, fault("capacity")
 	}
 	if e.Intent == "relay.approval.request" {

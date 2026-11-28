@@ -82,6 +82,9 @@ func TestGrantAdmitsOnlyLiveOwnerForm(t *testing.T) {
 	}
 	// The hourly limit counts accepted sends only and frees after an hour.
 	for len(st.grantsOf("grok", "orca.answer.v1")[0].Sent) < grantHourly {
+		for _, m := range st.Messages { // orca receives them, so the owner queue limit (ownerQueueLimit) never binds here
+			m.Receipt.State = "delivered"
+		}
 		if err := send("grok", "orca", "orca.answer.v1", answerBody); err != nil {
 			t.Fatal("under hourly limit", err)
 		}

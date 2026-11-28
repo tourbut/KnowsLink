@@ -162,7 +162,7 @@ func (st *State) ingestPublicText(agent string, e *PublicText, now time.Time) (a
 			return nil, fault("approval_required")
 		}
 	}
-	if !st.messageCapacity(false) {
+	if !st.messageCapacity(false, e.From) {
 		return nil, fault("capacity")
 	}
 	m.Receipt.Exp = exp

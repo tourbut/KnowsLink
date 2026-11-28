@@ -81,12 +81,26 @@ func commandBody(r *http.Request) []byte {
 	return []byte("{}")
 }
 
-func (st *State) messageCapacity(gate bool) bool {
-	queue, pending := 0, 0
+// ownerQueueLimit is one owner's share of the 100 undelivered messages: with 1-hour self-agent delivery (D076) one
+// owner sending to an offline agent would otherwise hold the whole shared queue for an hour, so at least five owners fit.
+const ownerQueueLimit = 20
+
+func (st *State) messageCapacity(gate bool, from string) bool {
+	queue, pending, mine := 0, 0, 0
+	owner := ""
+	if a := st.Agents[from]; a != nil {
+		owner = a.Owner
+	}
 	for _, m := range st.Messages {
 		if m.Receipt.State == "queued" || m.Receipt.State == "leased" {
 			queue++
+			if a := st.Agents[m.Receipt.From]; owner != "" && a != nil && a.Owner == owner {
+				mine++
+			}
 		}
+	}
+	if mine >= ownerQueueLimit {
+		return false
 	}
 	for _, g := range st.Gates {
 		if g.State == "pending" {

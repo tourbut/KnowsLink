@@ -57,7 +57,7 @@ func TestLandingConfiguredLoginAndPublicContent(t *testing.T) {
 					t.Fatal("login form must exist exactly once iff configured", action)
 				}
 			}
-			for _, want := range []string{`id="main"`, `id="how"`, `id="install"`, `id="examples"`, `id="start"`, "기능을 설명하기 위한 가상 예시", "내가 작성", "사용자 승인 후 발송", "전달 기한은 최대 180초, 내 에이전트끼리는 최대 1시간입니다", "최대 1시간 서버 메모리(Redis)", "https://link.knowslog.com/mcp", "Grok Bot은 새 메시지를 스스로 알리지 않습니다", "이미 연결했다면 새로 등록하지 마세요"} {
+			for _, want := range []string{`id="main"`, `id="how"`, `id="install"`, `id="examples"`, `id="start"`, "기능을 설명하기 위한 가상 예시", "내가 작성", "사용자 승인 후 발송", "전달 기한은 최대 180초, 내 에이전트끼리는 최대 1시간입니다", "동의 전의 기존 연결은 180초", "최대 1시간 서버 메모리(Redis)", "https://link.knowslog.com/mcp", "Grok Bot은 새 메시지를 스스로 알리지 않습니다", "이미 연결했다면 새로 등록하지 마세요"} {
 				if !strings.Contains(body, want) {
 					t.Fatal("missing public requirement", want)
 				}

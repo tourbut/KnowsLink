@@ -160,3 +160,46 @@ eslint: 오류 없음
 - 문구: landing_test, policy_pages_test(ko·en 새 문구와 2026-12-28 고지), human_pages_test(composer "최대 1시간" 포함).
 
 못 한 것: integration 태그 테스트(postgres·redis)는 이번에 다시 돌리지 않았다. 바뀐 integration 단언은 base로 돌린 301s 한 줄과 상수 이름 한 줄뿐이다. 배포 뒤 Grok 확인은 범위 밖(쿠어).
+
+## 재작업 2차 (리뷰 4ef924cdbd8b 후속, 2026-11-28)
+
+### S1. medium — 소유자별 미배달 상한
+
+- `internal/relay/capacity.go` `messageCapacity(gate, from)`: 보내는 agent의 owner가 가진 queued·leased 메시지가 `ownerQueueLimit`(20) 이상이면 그 owner만 `capacity`로 거부한다. 전역 100건·20000건·gate 100건 상한은 그대로다.
+- 값 20의 근거: 전역 미배달 100건의 1/5. 한 owner가 오프라인 자기 agent에 1시간 쌓아도 최소 다섯 owner가 계속 보낼 수 있다. Orca 봇 결정 왕복처럼 정상 사용은 수신 측이 받으면 바로 비므로 20건에 닿지 않는다.
+- 호출 세 곳(text `public_text.go`, `/v1/send` `store.go`, 웹 발송 `human_messages.go`)이 모두 송신 agent를 넘긴다. owner를 모르는 송신(agent 기록 없음)은 전역 상한만 적용된다.
+- 영향: 사전 승인 시간당 30건(`grantHourly`)보다 작다. 수신 측이 오프라인이면 21번째부터 `capacity`다. 의도한 동작이며 `grants_test.go`의 시간당 한도 루프는 배달을 흉내 내도록 고쳤다.
+- 되돌리기: `ownerQueueLimit`를 100으로 올리면 이전과 같다.
+
+### S2. low 1 — 만료 뒤 receipt
+
+바꾸지 않았다. 이유: 개인정보 방침 29행이 전달 기록을 "서비스가 받은 때부터 최대 1시간"으로 정한다. 자기 agent 사이 기한(수락+1시간)이 이 보관 창 전체와 같아서, 만료된 receipt를 남기려면 기록 보관을 1시간 넘게 늘리거나(방침 변경, 불리 여부 검토 필요) 자기 agent 기한을 1시간보다 짧게 줄여야(주인 결정 D076 값 변경) 한다. 둘 다 이 과제의 승인 범위 밖이다. 180초 쌍은 만료 뒤 약 57분 동안 `failed:expired`가 그대로 보인다.
+후속 후보: 2026-12-28 전체 1시간 전환 전에 (a) 자기 agent 기한 55분 + receipt 5분 유예, 또는 (b) 본문 없는 receipt만 수락+1시간 5분 보관(방침 문구 갱신) 중 하나를 결정한다. adapter는 지금도 Exp 지난 ID가 없으면 만료로 볼 수 있다.
+
+### S3. low 2 — SelfConnect 미동의 legacy 예외 문구
+
+| 위치 | 이전 | 새 |
+|---|---|---|
+| 랜딩 ko | 전달 기한은 최대 180초, 내 에이전트끼리는 최대 1시간입니다. | …최대 1시간입니다(내 에이전트 연결 방식 동의 전의 기존 연결은 180초). |
+| 랜딩 en | …or at most 1 hour between your own agents. | …(180 seconds for an earlier link made before agreeing to connect all your agents). |
+| 방침 ko 29행 | …(에이전트 업무 요청은 최대 300초)입니다. | 뒤에 "내 에이전트끼리는 내 에이전트 연결 방식에 동의한 경우이며, 동의 전의 기존 연결은 180초입니다." 추가 |
+| 방침 en 29행 | …(agent task requests at most 300 seconds), and other records… | …; "between your own agents" means after you agreed to connect all your agents, and an earlier link made before that keeps 180 seconds; other records… |
+
+실제 동작(`selfAgents`: 같은 owner·`self:` scope)을 설명하는 보충이고 보관을 늘리지 않으므로 `policyEffective`는 2026-11-28 그대로 둔다. README 42행은 이미 "친구·기존 연결 사이 최대 180초"라 고치지 않았다.
+
+### S4. low 3 — 배포 순서
+
+README 44행에 "relay 먼저, adapter 나중"과 이유(3590초 adapter는 이전 relay에서 `ttl_too_long`)를 한 줄로 적었다.
+
+### S5. 테스트 발췌
+
+```
+go test ./internal/relay/ -count=1 -run 'TestOwnerQueueLimit|TestSharedCapacities'   ok
+go test ./internal/relay/ -count=1                                                    ok  2.784s
+go test ./internal/relay/ -count=1 -run 'Landing|Policy|HumanPages|I18n|Lang'          ok
+go vet ./internal/relay/                                                              ok
+```
+
+- 새 `TestOwnerQueueLimit`: owner A 20건이면 A 거부, B·C 허용, 1건 배달되면 A 다시 허용.
+- landing·policy 문구 테스트에 legacy 예외 문구 단언을 더했다.
+- 못 한 것: integration 태그 테스트와 adapter 테스트는 다시 돌리지 않았다(lite, adapter 변경 없음).

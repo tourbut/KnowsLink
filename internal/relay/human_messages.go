@@ -56,7 +56,7 @@ func (st *State) sendOwnerText(member, from, to, body, attempt string, now time.
 		}
 		return old, nil
 	}
-	if !st.messageCapacity(false) {
+	if !st.messageCapacity(false, from) {
 		return nil, fault("capacity")
 	}
 	message := &Message{Receipt: Receipt{ID: remoteUUID(now), From: from, To: to, Intent: publicTextIntent, Digest: digest, Exp: now.Add(st.deliveryTTL(from, to, peerTextTTL)), Accepted: now, State: "queued"}, Key: key, Scope: scope, Generation: generation, Deliver: "agent"}
