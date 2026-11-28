@@ -28,6 +28,17 @@ parallel: on
 - 추가 승인이 필요한 행위: 원격 push, 운영 배포(운영 `knowslink-state/install/`에 파일 올리기 포함), GitHub Release·CI secret 생성. 하지 않고 완료 보고의 `남은 일`에 적는다.
 - 상위 의도: 없음(단일 과제). 배경은 [SAR-ORCA-BOT-001](../docs/planning/intents/SAR-ORCA-BOT-001.md)의 운영 왕복이 Grok Bot 설치에서 막힌 것이다.
 
+## 방향 정정 (2026-11-28, 쿠어 msg_f8e7259e989e) — 아래 본문보다 우선한다
+
+주인이 방향을 다시 정했다. '웹 한 줄 curl' 대신 Grok Bot의 **Setup → Plugins → Add**로 설치·갱신하는 Grok Bot 플러그인으로 배포한다([Team Bots 공식 문서](https://docs.x.ai/grok-bot/team-bots#set-up-what-the-bot-needs)).
+
+1. 공식 문서로 Grok Bot 플러그인의 형식, 배포 위치(마켓플레이스나 URL), 버전 갱신 방식을 확인하고 근거 URL을 남긴다. 기존 관측은 `adapters/README.md` `Grok Bot 앱 등록` 절에 있다: Plugins의 custom MCP 종류는 Remote HTTPS와 Command이고, Marketplace 등록에는 팀 marketplace나 공개 발행 승인이 필요하다.
+2. KnowsLink(MCP와 bundle)를 그 형식의 플러그인으로 만들고, 릴리스로 배포하는 계획과 산출물 빌드를 만든다. 되돌릴 수 있는 결정은 추천안으로 정한다. 형식상 공개 marketplace 발행이나 Remote HTTPS endpoint가 꼭 필요하면 만들지 말고 `ask`로 선택지와 추천을 보낸다.
+3. 웹 '내 에이전트 → Grok Bot'과 README를 '플러그인 추가 → 연결 동의' 기준으로 고친다. git clone과 `install_bot_mcp.sh`는 사용자 경로에서 뺀다(개발자용으로만 남긴다).
+4. 공개 배포, 운영 배포, push는 하지 않는다. 승인 대상이다.
+
+아래 '해야 할 일'의 curl installer 항목은 이 정정으로 대체한다. Node 고정·체크섬·기존 설치 보존 같은 보안 기준은 그대로 적용한다. 증명 방법은 "공식 형식 검증(문서 근거)과 산출물 구조·체크섬, 가능하면 로컬 Grok 도구로 설치 검사"로 바꾼다. 실제 Grok Bot 계정에서 Add하는 것은 사람 단계이므로 완료 보고에 절차만 적는다.
+
 ## 현재 상황과 확인 근거
 
 - 지금 Grok Bot 설치: Bot 컴퓨터에서 레포를 clone하고 `sh scripts/install_bot_mcp.sh`를 실행한다. Node `v22.22.2`를 고정 SHA256으로 받고, bundle을 빌드·검증해 `/workspace/.knowslink/{node,knowslink}`로 교체한다(`adapters/README.md`의 `Grok Bot 앱 등록` 절).
