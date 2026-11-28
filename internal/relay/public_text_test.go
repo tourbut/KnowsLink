@@ -181,6 +181,7 @@ func TestPublicTextTTLAndLeaseFailures(t *testing.T) {
 		t.Fatal("attempt exhaustion")
 	}
 }
+
 // One owner's undelivered messages refuse only that owner; other owners keep sending, and delivery frees the share.
 func TestOwnerQueueLimit(t *testing.T) {
 	st, _, _ := textFixture()
