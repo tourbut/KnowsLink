@@ -7,6 +7,7 @@ import { join } from "node:path";
 import { uuid7 } from "./core.js";
 import { AutoReceiver, Inbox } from "./inbox.js";
 import { privateDirectory } from "./private-files.js";
+import { registerOrcaTools } from "./orca-mcp.js";
 import { DEFAULT_KEYS } from "./defaults.js";
 import {
   OrcaWake,
@@ -189,6 +190,50 @@ try {
   assert.equal(plain.body, "plain text");
   assert.equal(plain.kind, null);
   assert.equal(plain.untrusted, true);
+
+  // 4b. Orca MCP tools: receive reads the watch's inbox as untrusted parsed JSON; a bad body is invalid_schema before any send.
+  const tools: Record<
+    string,
+    (a: unknown) => Promise<{ content: { text: string }[]; isError: boolean }>
+  > = {};
+  registerOrcaTools(
+    {
+      registerTool: ((name: string, _d: unknown, h: never) =>
+        void (tools[name] = h)) as never,
+    },
+    folder,
+    () => ({
+      content: [{ type: "text" as const, text: "failure" }],
+      isError: true,
+    }),
+  );
+  const decision = msg(
+    orcaBody("orca.decision.v1", {
+      bot: "쿠어",
+      item: 7,
+      question: secret,
+      options: ["a"],
+    }),
+    "orca.decision.v1",
+  );
+  await inbox.store(decision);
+  const got = await tools.knowslink_receive!({});
+  assert.deepEqual(JSON.parse(got.content[0]!.text), {
+    state: "received",
+    message: { ...orcaView(decision), item: 7 },
+  });
+  assert.equal(JSON.parse(got.content[0]!.text).message.untrusted, true);
+  const bad = await tools.knowslink_send!({
+    to: "agent_x",
+    kind: "orca.task.v1",
+    body: { text: "x", extra: 1 },
+    idempotency_key: "k".repeat(16),
+  });
+  assert.equal(bad.isError, true);
+  assert.deepEqual(JSON.parse(bad.content[0]!.text), {
+    state: "invalid_schema",
+    error: "invalid orca body",
+  });
 
   // 5. Fixed install (SAR-ORCA-HOST-001): defaults hold no secret and only keys defaults.ts reads; MCP does not
   // auto-receive; Run value add/delete argv; one live watch per folder, and a lock from before boot is stale.

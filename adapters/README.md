@@ -464,7 +464,7 @@ ode.exe <설치>\dist\plugin.js" --name knowslink
   ```
 
 - 중복 실행 방지: watch는 시작할 때 `<연결 폴더>\orca-watch.lock`(pid·시작 시각)을 잡는다. 살아 있는 watch가 잡고 있으면 `orca watch already running`으로 끝난다. 이번 부팅 전에 쓴 잠금과 죽은 pid의 잠금은 버린다.
-- 수신자는 watch 하나다. 봇 MCP는 `KNOWSLINK_AUTO_RECEIVE=off`라 자기 수신 loop를 돌리지 않는다. `knowslink_text_receive`는 같은 Inbox에서 읽고, 비었을 때만 relay에서 1건을 받는다(`orca receive`와 같다). 고정 형식 발송은 지금처럼 `orca send`다. 로컬 MCP의 `knowslink_text_send`는 일반 text이고 발송마다 승인한다.
+- 수신자는 watch 하나다. 봇 MCP는 `KNOWSLINK_AUTO_RECEIVE=off`라 자기 수신 loop를 돌리지 않는다. `knowslink_text_receive`는 같은 Inbox에서 읽고, 비었을 때만 relay에서 1건을 받는다(`orca receive`와 같다). `KNOWSLINK_HOST=orca`인 MCP에는 원격 `/mcp`와 같은 이름의 도구 둘이 더 있다. `knowslink_send`(`to`, `kind`, `body` 객체, `idempotency_key`)는 `orca send`와 같은 스키마 검사 뒤 grant 경로로 보낸다. 형식이 틀리면 `invalid_schema`, grant 밖이면 `relay HTTP 403 approval_required`다. `knowslink_receive`는 `orca receive`와 같은 `{id,from,kind,item?,body,untrusted:true}`를 `message`로 낸다. 일반 text는 `knowslink_text_send`이고 발송마다 승인한다. `knowslink_status`의 `state`는 relay에 연결하지 않고 설정만 읽으므로 늘 `public_node_configured_unverified`다.
 - 끄기: `<설치>
 ode.exe <설치>\dist\plugin.js orca autostart off`는 Run 값을 지우고 watch를 멈춘다. `orca stop`은 watch만 멈추고 `orca start`·`orca autostart on`으로 다시 켠다. 세 명령은 `defaults.json`의 폴더와 봇 이름을 쓴다.
 - 도어벨의 receive 명령은 설치된 `node.exe`의 전체 경로를 쓴다. 봇 셸의 PATH에 node가 없어도 된다.

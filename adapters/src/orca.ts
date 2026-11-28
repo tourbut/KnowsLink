@@ -288,14 +288,32 @@ async function watch(folder: string, bot: string, from?: string) {
   setInterval(() => {}, 1 << 30);
 }
 
-async function receive(folder: string) {
+// The oldest message from the shared Inbox the watch fills, else one pulled now; shared by the CLI and the Orca MCP tool.
+export async function orcaReceive(folder: string) {
   const inbox = await Inbox.open(folder);
   let m = await inbox.take();
   if (!m) {
     await (await memberTransport(folder)).receive((r) => inbox.store(r));
     m = await inbox.take();
   }
-  say(m ? orcaView(m) : null);
+  return m ? orcaView(m) : null;
+}
+// Schema check, then a signed fixed-form send the relay passes only under the owner's grant.
+export async function orcaSend(
+  folder: string,
+  to: string,
+  kind: string,
+  body: unknown,
+  key: string,
+) {
+  const text = orcaBody(kind, body);
+  const sent = await (
+    await memberTransport(folder)
+  ).sendKind(to, kind, text, key);
+  process.stderr.write(
+    `${JSON.stringify({ event: "knowslink_orca_sent", id: sent.id, kind, size: Buffer.byteLength(text) })}\n`,
+  );
+  return sent;
 }
 
 async function send(folder: string, argv: string[]) {
@@ -311,13 +329,8 @@ async function send(folder: string, argv: string[]) {
   } catch {
     throw new Error("invalid orca body");
   }
-  const text = orcaBody(kind, body);
-  const t = await memberTransport(folder);
-  const sent = await t.sendKind(to, kind, text, key);
+  const sent = await orcaSend(folder, to, kind, body, key);
   say({ id: sent.id, transport: sent.transport });
-  process.stderr.write(
-    `${JSON.stringify({ event: "knowslink_orca_sent", id: sent.id, kind, size: Buffer.byteLength(text) })}\n`,
-  );
 }
 
 // Fixed install (SAR-ORCA-HOST-001): bundle, node and defaults.json under <root>\orca, so nothing depends on a worktree.
@@ -465,7 +478,7 @@ export async function orcaMain(argv: string[]): Promise<void> {
       const bot = flag(argv, "--bot");
       if (!bot) throw new Error("usage");
       await watch(first, bot, flag(argv, "--from"));
-    } else if (cmd === "receive" && first) await receive(first);
+    } else if (cmd === "receive" && first) say(await orcaReceive(first));
     else if (cmd === "install" && first) await install(first, argv.slice(2));
     else if (cmd === "start") await start();
     else if (cmd === "stop") say({ state: await stop(configured().folder) });
