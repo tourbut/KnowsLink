@@ -188,14 +188,14 @@ func TestOwnerQueueLimit(t *testing.T) {
 	for i := 0; i < ownerQueueLimit; i++ {
 		st.Messages[fmt.Sprint(i)] = &Message{Receipt: Receipt{From: "agent_a", State: "queued"}}
 	}
-	if st.messageCapacity(false, "agent_a") {
+	if st.messageCapacity(false, "agent_a", 0) {
 		t.Fatal("owner limit")
 	}
-	if !st.messageCapacity(false, "agent_b") || !st.messageCapacity(false, "agent_c") {
+	if !st.messageCapacity(false, "agent_b", 0) || !st.messageCapacity(false, "agent_c", 0) {
 		t.Fatal("other owners must keep sending")
 	}
 	st.Messages["0"].Receipt.State = "delivered"
-	if !st.messageCapacity(false, "agent_a") {
+	if !st.messageCapacity(false, "agent_a", 0) {
 		t.Fatal("owner limit boundary")
 	}
 }
@@ -205,27 +205,27 @@ func TestSharedCapacitiesAndCleanupClassification(t *testing.T) {
 	for i := 0; i < 100; i++ {
 		st.Messages[fmt.Sprint(i)] = &Message{Receipt: Receipt{State: "queued"}}
 	}
-	if st.messageCapacity(false, "") {
+	if st.messageCapacity(false, "", 0) {
 		t.Fatal("queue cap")
 	}
 	st.Messages["0"].Receipt.State = "delivered"
-	if !st.messageCapacity(false, "") {
+	if !st.messageCapacity(false, "", 0) {
 		t.Fatal("queue capacity before cap")
 	}
 	for i := 0; i < 100; i++ {
 		st.Gates[fmt.Sprint(i)] = &Gate{State: "pending"}
 	}
-	if st.messageCapacity(true, "") || !st.messageCapacity(false, "") {
+	if st.messageCapacity(true, "", 0) || !st.messageCapacity(false, "", 0) {
 		t.Fatal("gate cap")
 	}
 	for i := 100; i < 20000; i++ {
 		st.Messages[fmt.Sprint(i)] = &Message{Receipt: Receipt{State: "delivered"}}
 	}
-	if st.messageCapacity(false, "") {
+	if st.messageCapacity(false, "", 0) {
 		t.Fatal("receipt cap")
 	}
 	delete(st.Messages, "19999")
-	if !st.messageCapacity(false, "") {
+	if !st.messageCapacity(false, "", 0) {
 		t.Fatal("receipt cap boundary")
 	}
 	for i := 0; i < 4; i++ {

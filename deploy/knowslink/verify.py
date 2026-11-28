@@ -69,6 +69,26 @@ def local():
     for path in (".env", "tunnel"):
         need(os.stat(os.path.join(STATE, path)).st_mode & 0o077 == 0, f"{path} not private")
     print("local checks ok: health 200, unknown 404, owner/api 401, loopback-only relay, private Postgres, limits, 0600/0700")
+    redis()
+
+
+def redis_memory(info):
+    """used_memory, maxmemory and policy from `redis-cli INFO memory` (CRLF lines)."""
+    fields = dict(line.split(":", 1) for line in info.splitlines() if ":" in line)
+    return int(fields["used_memory"]), int(fields["maxmemory"]), fields["maxmemory_policy"].strip()
+
+
+def redis():
+    """Read-only Redis memory check (SAR-REDIS-CAP-001). The relay keeps one message copy within 32 MiB and holds two
+    during a commit, so a 128 MiB Redis stays near 26% between commits and at most about 51% during one.
+    Warn from 40% (above any steady state: stale copies or a full budget), fail from 75% (writes near refusal)."""
+    used, limit, policy = redis_memory(run("docker", "exec", "knowslink-redis-1", "redis-cli", "INFO", "memory"))
+    need(limit > 0 and policy == "noeviction", f"Redis maxmemory {limit} policy {policy}")
+    ratio = used / limit
+    print(f"redis used_memory {used / 2**20:.1f} MiB / maxmemory {limit / 2**20:.0f} MiB ({ratio:.0%})")
+    if ratio >= 0.4:
+        print(f"WARNING: Redis used_memory {ratio:.0%} >= 40% of maxmemory", file=sys.stderr)
+    need(ratio < 0.75, f"Redis used_memory {ratio:.0%} >= 75% of maxmemory")
 
 
 def public():
@@ -81,4 +101,4 @@ def public():
 
 
 if __name__ == "__main__":
-    {"baseline": baseline, "regression": regression, "local": local, "public": public}[sys.argv[1] if len(sys.argv) > 1 else ""]()
+    {"baseline": baseline, "regression": regression, "local": local, "public": public, "redis": redis}[sys.argv[1] if len(sys.argv) > 1 else ""]()

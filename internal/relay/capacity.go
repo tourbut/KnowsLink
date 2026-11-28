@@ -85,7 +85,8 @@ func commandBody(r *http.Request) []byte {
 // owner sending to an offline agent would otherwise hold the whole shared queue for an hour, so at least five owners fit.
 const ownerQueueLimit = 20
 
-func (st *State) messageCapacity(gate bool, from string) bool {
+// messageCapacity admits a new record of add bytes (messageBytes) from agent from.
+func (st *State) messageCapacity(gate bool, from string, add int) bool {
 	queue, pending, mine := 0, 0, 0
 	owner := ""
 	if a := st.Agents[from]; a != nil {
@@ -100,6 +101,10 @@ func (st *State) messageCapacity(gate bool, from string) bool {
 		}
 	}
 	if mine >= ownerQueueLimit {
+		return false
+	}
+	total, ownerBytes := st.retainedBytes(owner)
+	if total+add > messageBytesLimit || (owner != "" && ownerBytes+add > ownerMessageBytesLimit) {
 		return false
 	}
 	for _, g := range st.Gates {

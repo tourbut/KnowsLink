@@ -56,15 +56,15 @@ func (st *State) sendOwnerText(member, from, to, body, attempt string, now time.
 		}
 		return old, nil
 	}
-	if !st.messageCapacity(false, from) {
-		return nil, fault("capacity")
-	}
 	message := &Message{Receipt: Receipt{ID: remoteUUID(now), From: from, To: to, Intent: publicTextIntent, Digest: digest, Exp: now.Add(st.deliveryTTL(from, to, peerTextTTL)), Accepted: now, State: "queued"}, Key: key, Scope: scope, Generation: generation, Deliver: "agent"}
 	st.copyConversation(message, body, "owner")
 	if message.Conversation == nil || !st.current(message) {
 		return nil, fault("sender_not_allowed")
 	}
 	message.Envelope, _ = json.Marshal(OwnerText{V: "knowslink.owner-text.v1", ID: message.Receipt.ID, From: from, To: to, Text: body, Exp: message.Receipt.Exp.UTC().Format(time.RFC3339), Key: key, Authorship: "owner"})
+	if !st.messageCapacity(false, from, messageBytes(message)) {
+		return nil, fault("capacity")
+	}
 	st.Messages[message.Receipt.ID] = message
 	st.Idempotency[from+"/"+key] = message.Receipt.ID
 	return message, nil

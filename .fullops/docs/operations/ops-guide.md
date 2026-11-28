@@ -4,12 +4,20 @@ title: 운영자설명서
 status: draft
 updated: 2026-11-28
 owner: dev
-tasks: [SAR-PUBLISH-001-OPS, SAR-DEPLOY-001-OPS, SAR-BETA-001-OPS, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX, SAR-MVP-003-BIDIRECTIONAL, SAR-MVP-003-BIDIRECTIONAL-OPS, SAR-MVP-003-BIDIRECTIONAL-OPS-RENEW, SAR-PUBLIC-SERVICE-OPS-READINESS, SAR-PUBLIC-SERVICE-OPEN-PREP, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV, SAR-AUTO-RECEIVE-001-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SSE-INSTALL-001-TESTER, SAR-SSE-INSTALL-001-OPS, SAR-SSE-INSTALL-001-OAUTH-RETURN-DEV, SAR-SSE-INSTALL-001-OAUTH-RETURN-OPS, SAR-GROK-WEBHOOK-001-DEV, SAR-SERVICE-UI-001-OPS, SAR-HUMAN-PEER-001-DEV, SAR-HUMAN-PEER-001-OPS, SAR-REFACTOR-001-OPS, SAR-REFACTOR-002-OPS, SAR-RELEASE-001-OPS, SAR-RELEASE-002-OPS, SAR-RELEASE-003-OPS, SAR-PUBLISH-001-DEV, SAR-PUBLISH-001-RETENTION, SAR-PUBLISH-001-P03-DEPLOY, SAR-CONNECT-SIMPLE-001-DEV, SAR-CONNECT-SIMPLE-001-FIX-DEV, SAR-CONNECT-SIMPLE-001-OPS, SAR-CONNECT-SIMPLE-001-FOLLOWUP-DEV, SAR-AUTOSETUP-001-O04-DEV, SAR-AUTOSETUP-001-OPS, SAR-DB-WAIT-001, SAR-MSG-EPHEMERAL-001, SAR-VULTR-MIGRATE-001, SAR-RELEASE-004-OPS, SAR-ORCA-BOT-001-OPS, SAR-ORCA-HOST-001-OPS, SAR-MCP-DEPLOY-001-OPS]
+tasks: [SAR-PUBLISH-001-OPS, SAR-DEPLOY-001-OPS, SAR-BETA-001-OPS, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX, SAR-MVP-003-BIDIRECTIONAL, SAR-MVP-003-BIDIRECTIONAL-OPS, SAR-MVP-003-BIDIRECTIONAL-OPS-RENEW, SAR-PUBLIC-SERVICE-OPS-READINESS, SAR-PUBLIC-SERVICE-OPEN-PREP, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV, SAR-AUTO-RECEIVE-001-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SSE-INSTALL-001-TESTER, SAR-SSE-INSTALL-001-OPS, SAR-SSE-INSTALL-001-OAUTH-RETURN-DEV, SAR-SSE-INSTALL-001-OAUTH-RETURN-OPS, SAR-GROK-WEBHOOK-001-DEV, SAR-SERVICE-UI-001-OPS, SAR-HUMAN-PEER-001-DEV, SAR-HUMAN-PEER-001-OPS, SAR-REFACTOR-001-OPS, SAR-REFACTOR-002-OPS, SAR-RELEASE-001-OPS, SAR-RELEASE-002-OPS, SAR-RELEASE-003-OPS, SAR-PUBLISH-001-DEV, SAR-PUBLISH-001-RETENTION, SAR-PUBLISH-001-P03-DEPLOY, SAR-CONNECT-SIMPLE-001-DEV, SAR-CONNECT-SIMPLE-001-FIX-DEV, SAR-CONNECT-SIMPLE-001-OPS, SAR-CONNECT-SIMPLE-001-FOLLOWUP-DEV, SAR-AUTOSETUP-001-O04-DEV, SAR-AUTOSETUP-001-OPS, SAR-DB-WAIT-001, SAR-MSG-EPHEMERAL-001, SAR-VULTR-MIGRATE-001, SAR-RELEASE-004-OPS, SAR-ORCA-BOT-001-OPS, SAR-ORCA-HOST-001-OPS, SAR-MCP-DEPLOY-001-OPS, SAR-REDIS-CAP-001-DEV]
 upstream: [D02, D03]
 summary: 서버 관찰 이력과 본인 전용 합성 베타 배포 구성·검증·복귀 절차 및 held 항목을 기록한다
 ---
 
 # KnowsLink 운영자설명서 (D12) — 현재 서버 배포 계획
+
+## SAR-REDIS-CAP-001-DEV Redis 메시지 바이트 상한과 관측 (2026-11-28, 운영 미적용)
+
+relay가 Redis 메시지 사본 한 개를 32 MiB, 보내는 owner 하나를 6 MiB로 묶는다. commit 중 사본 2개라 정점은 `maxmemory` 128 MiB의 약 51%(기본 1.5 MiB 포함)이고, commit 사이에는 약 26%다. 넘으면 그 owner(전체가 넘으면 모두)의 새 발송만 `capacity`(429)다. 수신·ACK·정리는 막지 않는다. Redis 설정은 바꾸지 않는다. 설계와 계산은 [D07](../design-docs/database-design.md)·[QA 보고](../../tasks/SAR-REDIS-CAP-001-DEV/qa/report.md)다.
+
+- **관측:** 서버에서 `python3 deploy/knowslink/verify.py redis`. `INFO memory`의 `used_memory`·`maxmemory`·`maxmemory_policy`만 읽고 `redis used_memory 1.5 MiB / maxmemory 128 MiB (1%)`처럼 출력한다. `verify.py local`(배포 때 `beta.sh deploy`가 실행)도 끝에 같은 검사를 한다.
+- **경고 기준:** 40% 이상이면 stderr에 `WARNING`을 쓰고 통과한다. commit 사이 정상 최대(26%)를 넘었다는 뜻이다: 지우지 못한 이전 사본(`retire` 실패, TTL 1시간 뒤 사라짐)이나 예산이 가득 찬 순간이다. 75% 이상이거나 `maxmemory`가 0, 정책이 `noeviction`이 아니면 실패(종료 1)다. 쓰기 거부(`unavailable`)가 가깝다.
+- **대응:** 경고가 이어지면 `redis-cli --scan --pattern 'knowslink:messages:*'` 키 수를 본다(정상 1개, commit 중 2개). 여러 개면 relay 로그의 Redis 오류를 확인한다. `maxmemory` 상향은 필요하지 않다(추천: 현행 유지).
 
 ## SAR-MCP-DEPLOY-001-OPS 운영 적용 결과 (2026-11-28)
 
@@ -498,7 +506,7 @@ SAR-REFACTOR-003에서 owner-only Access 도구(`access_apply.py`, `access_trial
 | `compose.ops.yaml` | restart `unless-stopped`, 자원 제한(postgres 512m·1 CPU, relay 256m·0.5 CPU, cloudflared 128m), 로그 10m×3, relay/migrate/cloudflared의 cap_drop ALL·no-new-privileges·read_only. 값은 기술 설정이며 상품 정책이 아니다 |
 | `tunnel/public-ingress.yml` | member allowlist rule. `render-public-config`가 `http_status:404` catch-all을 붙인 후보를 만든다 |
 | `beta.sh` | prepare·up·stop·unexpose·backup·deploy·restore-verify·tunnel-create·render-public-config |
-| `verify.py` | baseline·regression(공유 서비스)·local·public(미인증 probe 모두 404) |
+| `verify.py` | baseline·regression(공유 서비스)·local(끝에 redis 포함)·public(미인증 probe 모두 404)·redis(Redis 사용량, 읽기 전용) |
 
 배포 체크아웃은 `/home/shin/deploy/knowslink`(detached)다. 상태는 `/home/shin/deploy/knowslink-state`(0700)에 둔다: `.env`(0600), `tunnel/`, `backups/`, `access.aud`. 체크아웃은 항상 깨끗하다. Compose project는 `knowslink`다.
 
