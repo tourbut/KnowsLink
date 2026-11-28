@@ -14,7 +14,7 @@ import (
 
 const publicTextIntent = "knowslink.text"
 const rawEnvelopeLimit = 32768
-const publicTextTTL = 180 * time.Second
+const publicTextTTL = messageRetention
 
 type PublicText struct {
 	V       string    `json:"v"`

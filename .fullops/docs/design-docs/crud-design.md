@@ -42,7 +42,7 @@ Remote callback의 마지막 lease 만료 후 기존 event의 3회 예산을 종
 | accept/deny/cancel/expire | 정확한 참여자와 generation 검사. 수락은 양측 활성 이름·현재 한도 검사. 실패는 pending 유지 |
 | remove/block/unblock | remove/block은 SuppressLegacy=true, current 전달·claim/gate 즉시 차단. unblock은 친구 복원 없음 |
 | 재요청·재수락 | 새 generation. 과거 메시지/lease/claim/gate/idempotency는 새 권한을 얻지 못함 |
-| 웹 owner text / signed agent root text | 현재 출처·세대·키·신원 검사, Message+멱등+Conversation 원자 저장. 각 발송 독립180s |
+| 웹 owner text / signed agent root text | 현재 출처·세대·키·신원 검사, Message+멱등+Conversation 원자 저장. 각 발송 독립 기한 최대 1시간(`/v1/send`도 같음, `relay.approval.request`는 최대 300초) |
 | 대화 기록 GET | 유효 세션 owner가 사본의 참여자인지 검사. 당시 이름/본문만24h. 현재 친구 정보·키·발송 권한을 재생성하지 않음 |
 | ACK/TTL/철회/24h | transport Envelope/Inbox는 기존 즉시삭제; Conversation은24h까지, 이후 Message+멱등과 함께 sweep |
 

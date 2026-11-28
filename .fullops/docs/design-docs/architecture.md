@@ -38,7 +38,7 @@ Remote claim은 한 호출 안에서만 같은 agent의 pending 검색을 공유
 
 회원 세션은 사람을, agent/key credential은 개별 클라이언트를 인증한다. `authority(from,to)`가 자기 회원의 명시적 SelfConnect, 활성 사람 Friend, 기존 정확한 Pair를 구별한 출처/세대를 반환한다. send·keys·lease·persist·ACK·claim·gate·result·SSE·remote가 현재 인가를 재사용한다. 해제/차단은 legacy fallback도 막고 재수락은 새 세대로 진행한다. 친구 수락으로 과거 legacy 메시지/claim/gate를 되살리지 않는다.
 
-웹 발송은 세션으로 인증한 owner 작성 wire다. agent 개인키를 서버로 가져오거나 agent 서명을 가장하지 않는다. signed `knowslink.text.v1`의 서명 검증은 그대로다. 매 새 발송은 새 ID·멱등키·독립 180초 기한을 가지며 긴 대화는 새 root text를 반복한다. 기존 one-related-reply API는 호환 경로다.
+웹 발송은 세션으로 인증한 owner 작성 wire다. agent 개인키를 서버로 가져오거나 agent 서명을 가장하지 않는다. signed `knowslink.text.v1`의 서명 검증은 그대로다. 매 새 발송은 새 ID·멱등키·독립 1시간 기한을 가지며 긴 대화는 새 root text를 반복한다. 기존 one-related-reply API는 호환 경로다.
 
 새 text만 Message.Conversation에 당시 참여 owner/사람 이름/agent 이름/본문/작성자 종류를 저장한다. 유효 참여 세션은 수락부터 24시간 이내 복사본을 읽는다. transport Envelope/Inbox의 ACK·TTL·철회 삭제와 분리되며, 과거 사본은 실행/전달/최신 목록 조회 권한이 아니다. 업무 M/H/R과 이미 삭제된 원문은 복구하지 않는다.
 
@@ -198,7 +198,7 @@ PS-04–07·해당 PS-11과 UX-04–05를 구현한다. 기존 singleton 직렬�
 ## SAR-PUBLIC-MESSAGES-001 일반 text·gate·보호
 
 PS-08–11·UX-06/07의 일반 회원 text는 `knowslink.text.v1`·`/v1/text/*`로 업무 relay.v1과 분리한다. 시험 allowlist·Service Auth·owner 공유 자격을 쓰지 않는다. 양쪽 검증 회원 owner·현재 agent/key·active pair·관계 세대를 수락·lease·persist·ACK·답장마다 확인한다. text는 business claim/H/R 부모가 되지 않는다.
-명시 송신·한 원요청의 관련 답장 1회만 지원한다. 최대 4096 UTF-8 bytes·TTL 180s다. 원문은 수신 persist→ACK 또는 만료·철회·3회 lease 실패에 지운다. ACK 후 출력 전에 client가 죽으면 text 표시를 잃을 수 있다. 자동 재송신·재답장·wake·장기 타임라인은 없다. receipt·멱등 metadata는 24h 보존한다.
+명시 송신·한 원요청의 관련 답장 1회만 지원한다. 최대 4096 UTF-8 bytes·TTL 최대 1시간이다. 보관 기한 1시간(주인 결정 2026-11-28, SAR-MSG-TTL-1H-001). 원문은 수신 persist→ACK 또는 만료·철회·3회 lease 실패에 지운다. ACK 후 출력 전에 client가 죽으면 text 표시를 잃을 수 있다. 자동 재송신·재답장·wake·장기 타임라인은 없다. receipt·멱등 metadata는 24h 보존한다.
 공통 수락 경계가 queue100·pending gate100·receipt20000과 claim4를 검사한다. high priority와 재시작도 상한을 우회하지 못한다. replay는 새 slot을 쓰지 않는다. H/R이 포화하면 수락하지 않는다. 이미 수락한 부모는 TTL에서 failed:expired로 안전 종료하고 claim을 해제한다. 성공 처리를 약속하지 않는다.
 HTTP 신규16·정리4는 즉시 거부하는 프로세스 채널과 공유 JSONB 입장 기록으로 제한한다. 정상 종료는 기록을 지우고 crash는 30s 뒤 회수한다. DB context·socket body read는 10s다. 8/32KiB 상한 본문은 모든 슬롯보다 먼저 같은 10s 기한 안에서 수신한다. 느린 송신자는 자기 연결만 점유한다. 이 점유는 header 수신과 같은 연결 계층이며 DB·공유 상태를 만들지 않는다. 모든 입장 요청의 신원별 rate를 schema·CSRF·route 검사 전에 한 번 차감한다. 입장 전 로컬 동시 상한 거부는 DB 대기열을 만들지 않는다. 정리 입장(로컬 정리 채널·공유 Clean 기록·cleanup rate)은 검증된 principal이 같은 출처·gate CSRF·유효 본문으로 자기 기록을 정리할 때만 쓴다. 익명·잘못된 자격·타 owner 기록·CSRF·잘못된 본문은 신규로 집계한다. 로컬 채널은 이 프로세스의 마지막 커밋 상태 snapshot에서 자격 색인과 자기 기록 대조(cleanupTarget)를 모두 통과한 요청만 정리 채널로 고른다. 타 owner·lease 없는·위조 정리는 DB 입장을 기다리는 동안에도 신규 채널만 쓴다(SAR-PUBLIC-MESSAGES-001-DEV-FIX-2 H-2). 공정성 단위는 owner 자신의 제어(철회·unpair·deny·logout)와 그 owner의 agent ACK 두 개다. 각 단위는 로컬 정리 채널과 공유 Clean 기록에서 각각 동시 1개만 쓴다. agent의 ACK 반복은 owner의 자기 agent 철회를 막지 못한다. 자기 대상 반복·rate 초과 정리도 다른 owner의 정리를 막지 못한다. transaction이 다시 판정하며 판정이 신규로 바뀌면 정리 슬롯을 신규 슬롯으로 돌려준다. snapshot은 (DB commit 시각, epoch) 순서로만 교체한다. 같은 commit 시각에도 늦게 저장된 이전 snapshot이 최신을 덮지 않는다. 신규 채널이 가득 찬 상태에서 snapshot이 정리 자격을 증명하지 못하면 거부 전에 커밋 상태를 한 번 다시 읽는다(SAR-PUBLIC-MESSAGES-001-DEV-FIX-3). 신규 채널에 여유가 있으면 신규로 대기하고 transaction이 공유 budget을 판정한다. 이 읽기는 lock·슬롯 없는 단일 조회이며 프로세스당 동시 1개다. 요청 도착 뒤 시작한 읽기를 공유한다. 다른 프로세스의 새 자격과 재시작 직후 빈 snapshot도 1s sweep을 기다리지 않는다. 위조·타 owner 정리는 다시 읽어도 신규 채널을 쓴다. 종료 transaction이 실패한 공유 기록은 30s 만료 전에 같은 프로세스의 다음 commit이 지운다. 명시 deny 경로는 신규 슬롯이 포화해도 수신한다. gate 결정 뒤에는 정식 gate 화면으로 303한다.
 회원 gate GET/POST가 검증본문·서명·digest·현재 세대·기한을 검사한다. hint는 escaped 참고 데이터다. approve는 인간 게이트만 통과시키며 query disclosure deny·commit 실행 불가를 유지한다.
@@ -247,7 +247,7 @@ Node가 각 클라이언트에서 키와 임의 token을 만들고 서명한 시
 - Cursor staff는 외부 wake를 “working on” 상태로 답했다([포럼 요청](https://forum.cursor.com/t/let-a-grok-bot-computer-wake-its-own-agent-chat/168260)). 같은 답변이 미문서화 loopback gateway workaround를 연결했다. 이 경로의 선택형 사용은 아래 절이 정한다.
 - Command MCP process의 대화 사이 생존 여부는 공식 문서에 없다. 그래서 Bot 컴퓨터의 상시 수신은 `node dist/plugin.js watch <폴더>`(또는 `dist/text.js watch`)로도 제공한다. 같은 inbox를 MCP가 읽는다.
 
-따라서 기본 구현은 자동 수신·보존·표준 알림까지다. 공식 노우 턴 자동 시작은 공식 호스트 기능(MCP 알림 기반 wake 또는 외부 trigger)이 생길 때까지 없다. 5분 routine은 TTL 180s 안의 답장을 보장하지 못하고 사용량을 소비하므로 해결로 인정하지 않는다.
+따라서 기본 구현은 자동 수신·보존·표준 알림까지다. 공식 노우 턴 자동 시작은 공식 호스트 기능(MCP 알림 기반 wake 또는 외부 trigger)이 생길 때까지 없다. 5분 routine은 TTL 1시간 안에 답할 수는 있어도 즉시 wake가 아니고 사용량을 소비하므로 해결로 인정하지 않는다.
 
 ### 선택형 loopback wake — 미문서화 gateway (attempt 0305914f)
 

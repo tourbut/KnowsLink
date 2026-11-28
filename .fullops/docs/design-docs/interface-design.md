@@ -36,9 +36,9 @@ agent 자격(Bearer)으로 grant를 만들거나 끄는 경로는 없다. 모델
 `POST /mcp`는 legacy(`initialize`, 2025-03-26·2025-06-18·2025-11-25)와 modern(2026-07-28, 요청마다 `_meta`)을 같은 endpoint에서 받는다. 세션·GET SSE·DELETE는 없다.
 
 - era 판정: body `params._meta["io.modelcontextprotocol/protocolVersion"]`이 있으면 modern이다. modern은 `2026-07-28`만 받는다.
-- 헤더 검사(인증 전): `MCP-Protocol-Version`·`Mcp-Method`·`Mcp-Name`(Base64 sentinel 해독)이 있고 body와 다르면 400 `-32020`. 모르는 버전은 400 `-32022` + `data.supported`·`data.requested`. modern 요청에 헤더가 없는 것은 허용한다(헤더로 라우팅하는 계층이 없음).
+- 헤더 검사(인증 전): `MCP-Protocol-Version`·`Mcp-Method`·`Mcp-Name`(Base64 sentinel 해독)이 있고 body와 다르면 400 `-32020`. 모르는 버전은 400 `-32022` + `data.supported`·`data.requested`. modern 요청에 헤더가 없는 것은 허용한다(헤더로 라우팅하는 계층이 없음). `Mcp-Name`은 `params.name`을 가진 method(`tools/call`·`prompts/get`·`events/subscribe`·`events/unsubscribe`)에서만 `params.name`과 비교한다. 다른 method(예: `resources/read`)는 `Mcp-Name`을 무시하고, 미지원이면 404 `-32601`이다.
 - legacy `initialize`: 요청 버전이 지원 목록에 있으면 그대로, 아니면 `2025-11-25`. 결과 모양은 이전과 같다.
-- modern 결과: 모두 `resultType:"complete"`와 `_meta["io.modelcontextprotocol/serverInfo"]`. `server/discover`·`*/list`는 `ttlMs:300000`, `cacheScope:"public"`. `server/discover`는 `instructions`(본문 untrusted, 명시 요청 때만 발송)를 준다.
+- modern 결과: `events/subscribe`·`events/unsubscribe`를 포함한 모든 modern 성공 결과에 `resultType:"complete"`와 `_meta["io.modelcontextprotocol/serverInfo"]`. `server/discover`·`*/list`는 `ttlMs:300000`, `cacheScope:"public"`. `server/discover`는 `instructions`(본문 untrusted, 명시 요청 때만 발송)를 준다.
 - modern에서 제공하지 않는 메서드는 404 `-32601`. 모르는 tool 이름은 이전처럼 200 거부(`unsupported_method`)다. legacy의 모르는 메서드도 이전처럼 200 거부다.
 
 ## SAR-MSG-EPHEMERAL-001 저장 장애의 오류 의미
@@ -355,7 +355,7 @@ MCP `knowslink_test_send` 입력은 `{text,idempotency_key}`다. recipient·URL�
 
 정리 입장 경로(ACK·키/agent/owner 철회·unpair·cancel·invite/gate deny·logout)는 검증된 자격·같은 출처·gate CSRF·유효 본문·자기 기록을 모두 만족할 때만 정리 budget을 쓴다. 나머지 요청은 같은 경로라도 신규 입장·신규 rate다. 이 분류는 DB 입장 전 로컬 채널 선택에도 같은 커밋 snapshot으로 적용한다. owner 자신의 제어와 그 owner의 agent ACK는 각각 동시 정리 입장 1개이며 초과 요청은 DB 호출 없이 기존 `429 capacity`(Retry-After 1)다. ACK는 handler와 같이 persist된 lease만 정리다. persist 전 ACK는 신규 입장이다. 신규 입장이 가득 찼을 때 snapshot이 증명하지 못한 정리 자격은 커밋 상태를 한 번 다시 읽은 뒤 판정한다(SAR-PUBLIC-MESSAGES-001-DEV-FIX-3). `POST /v1/invite-decision`의 `decision:deny`도 `/home/invite-decision` deny와 같은 정리 경로다(SAR-PUBLIC-MESSAGES-001-DEV-FIX-2). 응답 코드와 wire는 바꾸지 않았다. 본문은 입장 전에 10s 기한·8/32KiB 상한(웹 대화 발송 폼 `POST /home/conversation/send`는 16KiB, SAR-REFACTOR-003)으로 수신한다.
 
-text wire의 필수 필드는 `v,id,from,to,text,exp,idempotency_key,sig`다. `reply_to`만 선택이다. v는 `knowslink.text.v1`, sig는 `{alg:Ed25519,kid,value}`다. ID는 UUIDv7, key는 printable ASCII 16–128자다. raw 최대32768 bytes, text 최대4096 UTF-8 bytes다. 시간은 UTC 초 형식이며 TTL≤180s다. reply_to의 null·빈 값·미지 필드·중복 JSON·lone surrogate는 거부한다.
+text wire의 필수 필드는 `v,id,from,to,text,exp,idempotency_key,sig`다. `reply_to`만 선택이다. v는 `knowslink.text.v1`, sig는 `{alg:Ed25519,kid,value}`다. ID는 UUIDv7, key는 printable ASCII 16–128자다. raw 최대32768 bytes, text 최대4096 UTF-8 bytes다. 시간은 UTC 초 형식이며 TTL≤1시간(3600s)이다(주인 결정 2026-11-28, SAR-MSG-TTL-1H-001). reply_to의 null·빈 값·미지 필드·중복 JSON·lone surrogate는 거부한다.
 서명 bytes는 `KNOWSLINK-TEXT\0knowslink.text.v1\0Ed25519\0<kid>\0`와 JCS(`v,id,from,to,text,exp,idempotency_key,reply_to`)다. reply_to 부재는 서명에서 빈 문자열로 정규화한다. digest는 JCS(`v,from,to,text,reply_to`)의 SHA256 base64url이다. ID·exp는 재시도 digest에 넣지 않는다. 업무 wire·registry는 바꾸지 않았다.
 관련 답장은 실제 persist/ACK된 원요청의 endpoint를 반전하고 같은 현재 세대·부모 기한 안에서 한 번만 수락한다. 같은 key/내용은 현재 인가 뒤 receipt만 반환한다. 다른 내용은409 idempotency_conflict다. 답장의 ACK 뒤 부모 completion은 reply_received다. queued·leased는 수신 완료가 아니다.
 한도는409 capacity, HTTP 동시/rate는429·retry_at/Retry-After, TTL은422 expired/ttl_too_long, 키는401 invalid_auth 또는422 invalid_signature, 관계·세대는403이다. 한도 실패는 새 receipt를 만들지 않는다. `/home`은 가능한 복구 동작을 표시한다. agent receipt는 현재 인가가 없으면403이고 자기 회원 화면에서 실패를 조회한다.

@@ -306,6 +306,17 @@ func (st *State) current(m *Message) bool {
 	scope, generation, ok := st.authority(m.Receipt.From, m.Receipt.To)
 	return ok && scope == m.Scope && generation == m.Generation
 }
+
+// approvalTTL keeps the human approval wait at its earlier 300 s; only message delivery moved to messageRetention.
+const approvalTTL = 300 * time.Second
+
+func envelopeTTL(intent string) time.Duration {
+	if intent == "relay.approval.request" {
+		return approvalTTL
+	}
+	return messageRetention
+}
+
 func (st *State) sweep(now time.Time) {
 	st.sweepFriends(now)
 	st.sweepRemote(now)
@@ -546,7 +557,7 @@ func (st *State) ingest(agent string, e *Envelope, claim string, now time.Time) 
 	if !exp.After(now) {
 		return nil, fault("expired")
 	}
-	if exp.After(now.Add(300 * time.Second)) {
+	if exp.After(now.Add(envelopeTTL(e.Intent))) {
 		return nil, fault("ttl_too_long")
 	}
 	if st.Messages[e.ID] != nil {

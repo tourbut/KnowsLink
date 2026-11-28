@@ -14,7 +14,7 @@ import { MESSAGE_ID } from "./core.js";
 import { exists, privateDirectory, privatePath } from "./private-files.js";
 import type { ReceivedText, TextTransport } from "./text.js";
 
-const KEEP_READ_MS = 24 * 3600 * 1000; // Relay TTL is 180s, so a read marker only needs to outlive any re-lease of the same ID.
+const KEEP_READ_MS = 24 * 3600 * 1000; // Relay TTL is at most 1 hour, so a read marker only needs to outlive any re-lease of the same ID.
 
 export class Inbox {
   private constructor(private readonly dir: string) {}

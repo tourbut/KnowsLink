@@ -9,7 +9,7 @@ import { readFile } from "node:fs/promises";
 import { createHash, generateKeyPairSync, sign } from "node:crypto";
 import { Adapter, signingBytes, uuid7, type Envelope } from "./core.js";
 import { TestTransport } from "./test-transport.js";
-import { TextTransport } from "./text.js";
+import { SEND_TTL_MS, TextTransport } from "./text.js";
 
 async function textBoundaries() {
   const { privateKey } = generateKeyPairSync("ed25519");
@@ -26,9 +26,11 @@ async function textBoundaries() {
   const key = "synthetic-text-boundary";
   const originalFetch = globalThis.fetch;
   let requests = 0;
+  let lastExp = "";
   try {
-    globalThis.fetch = async () => {
+    globalThis.fetch = async (_url, init) => {
       requests++;
+      lastExp = JSON.parse(String(init?.body ?? "{}")).exp ?? lastExp;
       return new Response("{}");
     };
     for (const text of [
@@ -40,6 +42,10 @@ async function textBoundaries() {
       await member.sendText("b", text, key, true);
     }
     assert.equal(requests, 6, "both transports accept 4096 UTF-8 bytes");
+    // SAR-MSG-TTL-1H-001: member text expires just under the relay's 1-hour ceiling.
+    assert.equal(SEND_TTL_MS, 3590000);
+    const ttl = Date.parse(lastExp) - Date.now();
+    assert.ok(ttl > 3580000 && ttl <= SEND_TTL_MS, `send TTL ${ttl}`);
     for (const text of [
       "",
       " \n",

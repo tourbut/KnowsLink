@@ -147,17 +147,18 @@ func TestPublicTextRoundtripAndCurrentAuth(t *testing.T) {
 	}
 }
 func TestPublicTextTTLAndLeaseFailures(t *testing.T) {
-	for _, offset := range []time.Duration{0, 180 * time.Second, 181 * time.Second} {
+	// SAR-MSG-TTL-1H-001: the delivery ceiling is the 1-hour retention; past it is ttl_too_long.
+	for _, offset := range []time.Duration{0, 180 * time.Second, messageRetention, messageRetention + time.Second} {
 		st, keys, now := textFixture()
 		e := signedText(firstID, "agent_a", "agent_b", "public-text-key-01", "", "ping", now.Add(offset), keys["agent_a"])
 		_, err := st.ingestPublicText("agent_a", e, now)
-		if (err == nil) != (offset == 180*time.Second) {
+		if (err == nil) != (offset > 0 && offset <= messageRetention) || (offset > messageRetention && err.Error() != "ttl_too_long") {
 			t.Fatal("TTL boundary", offset, err)
 		}
 		if err == nil {
 			st.sweep(now.Add(offset))
-			m := st.Messages[firstID]
-			if m.Receipt.State != "failed:expired" || len(m.Envelope) > 0 {
+			// At the 1-hour deadline retention removes the record itself, which the 24-hour sweep below also checks.
+			if m := st.Messages[firstID]; offset < messageRetention && (m.Receipt.State != "failed:expired" || len(m.Envelope) > 0) {
 				t.Fatal("expiry")
 			}
 			st.sweep(now.Add(24 * time.Hour))
