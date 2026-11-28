@@ -28,7 +28,24 @@ parallel: on
 - 추가 승인이 필요한 행위: 원격 push, 운영 배포(운영 `knowslink-state/install/`에 파일 올리기 포함), GitHub Release·CI secret 생성. 하지 않고 완료 보고의 `남은 일`에 적는다.
 - 상위 의도: 없음(단일 과제). 배경은 [SAR-ORCA-BOT-001](../docs/planning/intents/SAR-ORCA-BOT-001.md)의 운영 왕복이 Grok Bot 설치에서 막힌 것이다.
 
-## 방향 정정 (2026-11-28, 쿠어 msg_f8e7259e989e) — 아래 본문보다 우선한다
+## 2차 지시 (2026-11-28, 주인 결정 D066) — 이 절이 아래 모든 절보다 우선한다
+
+1차 결과 `b52f2c17`(팀 marketplace 안)은 병합하지 않는다. 주인은 질문 msg_335ad363cab3에서 **Remote HTTPS**를 골랐다. Grok 계정은 Teams/Enterprise 플랜이 아니다. Grok Bot에는 기존 `https://link.knowslog.com/mcp`를 custom connector URL로 추가한다. 키는 서버에 보관한다(Dots 모델).
+
+- 1차에서 유지할 것은 `b52f2c17`에서 골라 쓴다. 예: `install_bot_mcp.sh`의 중복 제거, Node 고정 런처. 팀 marketplace 배포 경로, `--grok-release`, 웹·README의 marketplace 안내는 사용자 경로에서 뺀다. 개발자용으로 남길 가치가 없으면 지운다.
+- 해야 할 일:
+  1. **Grok OAuth 호환 검증.** 공식 문서와 relay의 `/mcp` OAuth metadata·동적 등록·redirect 규칙을 대조한다. Grok custom connector(Remote HTTPS)가 이 endpoint로 연결할 수 있는지 판정한다. 막히는 점이 있으면 바로 `ask`로 보고한다. 실제 계정 연결은 사람 단계다.
+  2. **서버 보관 agent의 grant.** Remote MCP(Dots 모델) agent가 같은 주인의 `self:` 자기 agent로 잡히는지 확인한다. SAR-ORCA-BOT-001 grant(2 KB, 시간당 30건, 30일)가 그대로 적용되는지 확인한다. 안 되면 최소 변경으로 맞추고 표적 테스트를 붙인다.
+  3. **Remote MCP 도구의 orca 형식 송수신.** 지금 Grok skill은 `node plugin.js orca send`(로컬 CLI)를 쓰는데 Remote MCP에는 이 경로가 없다. Remote MCP 도구에서 다음 둘을 할 수 있게 한다.
+     - `orca.task.v1`·`orca.answer.v1`을 스키마 검사와 grant 경로로 보내기
+     - 받은 메시지의 `kind`·`untrusted`를 보이기
+     
+     Grok skill 지시도 이 도구 기준으로 고친다. 키 경계와 승인 규칙은 완화하지 않는다.
+  4. **안내 문구.** 웹 '내 에이전트 → Grok Bot'(ko·en)과 README를 'Grok Bot → custom connector 추가 → URL `https://link.knowslog.com/mcp` → 로그인·동의' 기준으로 고친다. git clone과 `install_bot_mcp.sh`는 사용자 경로에서 뺀다.
+  5. **사람 단계 목록.** 주인이 Grok Bot에서 할 일(URL 추가, 로그인·동의, 이름)을 3~5줄로 보고에 적는다.
+- 운영 배포와 push는 하지 않는다. 승인 대상이다. 완료 보고에 배포가 필요한 SHA를 적는다.
+
+## 방향 정정 (2026-11-28, 쿠어 msg_f8e7259e989e) — 2차 지시로 대체됨
 
 주인이 방향을 다시 정했다. '웹 한 줄 curl' 대신 Grok Bot의 **Setup → Plugins → Add**로 설치·갱신하는 Grok Bot 플러그인으로 배포한다([Team Bots 공식 문서](https://docs.x.ai/grok-bot/team-bots#set-up-what-the-bot-needs)).
 
