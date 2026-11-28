@@ -4,7 +4,7 @@ status: review
 updated: 2026-11-28
 owner: ops
 tasks: [SAR-ORCA-BOT-001-OPS]
-summary: "0899e5bd를 운영에 배포하고 쿠어와 Grok Bot을 연결해 grant 3개로 운영 왕복 1회를 확인했다"
+summary: 0899e5bd를 운영에 배포하고 쿠어와 Grok Bot을 연결해 grant 3개로 운영 왕복 1회를 확인했다
 ---
 
 # SAR-ORCA-BOT-001-OPS 검증 보고
