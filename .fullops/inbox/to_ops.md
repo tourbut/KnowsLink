@@ -105,5 +105,11 @@ parallel: on
 
 ## 완료 보고
 
+- 결과: `65a752fe` 운영 배포 완료, `verify.py local`·`public`·`redis` 통과, relay error 0줄, rollback 안 함. `KNOWSLINK_SEAL_KEY` 주입(값 길이 44), 백업 SHA256 `691d66b2…976442b`.
+- 확인: 기동 로그 `events webhook configured=true`, Redis 1.5 MiB / 128 MiB(1%), agent 2·grant 3 유지. 구독 0건·평문 0건(11:09:45Z까지).
+- 미확인: 배포 1시간 뒤(12:09Z 이후) 평문 0건. 절차는 qa 보고에 있다. 실제 Dots 갱신·배달.
+- 남은 일: 키의 서버 밖 사본 없음. 추천은 주인이 비밀번호 관리자에 보관(D12).
+- 근거: `tasks/SAR-EVENTS-DEPLOY-001-OPS/qa/report.md`, D12.
+
 `fullops done`을 실행하고, 그 출력 한 줄을 worker_done 본문으로 쓴다.
 처리는 `fullops-work`, 회신은 `fullops-orca` 스킬을 따른다.
