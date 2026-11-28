@@ -1,0 +1,128 @@
+{
+  "v": 1,
+  "key": "SAR-GROK-WAKE-002-DEV",
+  "base": "1539c6c9594becc18850835ef9d494aadc49bf6b",
+  "head": "932a4df2ff602ff8c372bbef0f088fe3f4067dc4",
+  "reviewer_session": "term_54db7ff4-b47a-4859-8912-345eab2bc4ec",
+  "implementer_session": "8b76158d-4ac5-4370-b6ee-acae41024ffe",
+  "snapshot_path": "C:/Users/shin/orca/workspaces/KnowsLink/.fullops-review-424f5ea9",
+  "snapshot_head": "932a4df2ff602ff8c372bbef0f088fe3f4067dc4",
+  "read_only": true,
+  "conclusion": "accept",
+  "files": [
+    {
+      "path": ".fullops/docs/design-docs/database-design.md",
+      "status": "M",
+      "review_status": "reviewed",
+      "reason": ""
+    },
+    {
+      "path": ".fullops/docs/design-docs/interface-design.md",
+      "status": "M",
+      "review_status": "reviewed",
+      "reason": ""
+    },
+    {
+      "path": ".fullops/docs/operations/ops-guide.md",
+      "status": "M",
+      "review_status": "reviewed",
+      "reason": ""
+    },
+    {
+      "path": ".fullops/tasks/SAR-GROK-WAKE-002-DEV/dev.r0.md",
+      "status": "R",
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 기록이다. 파일마다 열람하지 않는다."
+    },
+    {
+      "path": ".fullops/tasks/SAR-GROK-WAKE-002-DEV/qa/report.md",
+      "status": "A",
+      "review_status": "skipped",
+      "reason": "검증 증거·하네스 기록이다. 파일마다 열람하지 않는다."
+    },
+    {
+      "path": "README.md",
+      "status": "M",
+      "review_status": "reviewed",
+      "reason": ""
+    },
+    {
+      "path": "adapters/README.md",
+      "status": "M",
+      "review_status": "reviewed",
+      "reason": ""
+    },
+    {
+      "path": "internal/relay/human_http.go",
+      "status": "M",
+      "review_status": "reviewed",
+      "reason": ""
+    },
+    {
+      "path": "internal/relay/human_pages.go",
+      "status": "M",
+      "review_status": "reviewed",
+      "reason": ""
+    },
+    {
+      "path": "internal/relay/i18n_en_human.go",
+      "status": "M",
+      "review_status": "reviewed",
+      "reason": ""
+    },
+    {
+      "path": "internal/relay/member_agents.go",
+      "status": "M",
+      "review_status": "reviewed",
+      "reason": ""
+    },
+    {
+      "path": "internal/relay/remote_auth.go",
+      "status": "M",
+      "review_status": "reviewed",
+      "reason": ""
+    },
+    {
+      "path": "internal/relay/remote_events.go",
+      "status": "M",
+      "review_status": "reviewed",
+      "reason": ""
+    },
+    {
+      "path": "internal/relay/routine_integration_test.go",
+      "status": "A",
+      "review_status": "reviewed",
+      "reason": ""
+    },
+    {
+      "path": "internal/relay/routine_wake.go",
+      "status": "A",
+      "review_status": "reviewed",
+      "reason": ""
+    },
+    {
+      "path": "internal/relay/routine_wake_test.go",
+      "status": "A",
+      "review_status": "reviewed",
+      "reason": ""
+    }
+  ],
+  "findings": [
+    {
+      "path": "internal/relay/routine_wake.go",
+      "start_line": 112,
+      "end_line": 118,
+      "severity": "low",
+      "resolved": false,
+      "content": "[상한] setRoutine(107)은 다시 등록 때 Last·Window·Count를 이어 받지만 removeRoutine(117)은 항목을 통째로 지운다. 해제 뒤 바로 등록하면 2분 간격과 시간당 20회 창이 0부터 다시 시작한다. 주인 세션·5분 재확인이 필요해 외부 우회는 아니지만 D05·README의 '다시 등록해도 시간당 횟수는 이어진다'와 다르다. 해제 때 URL·Key만 비우고 카운터는 남기거나(Broken 표시), 문서를 '해제 뒤 등록은 새로 센다'로 고친다."
+    },
+    {
+      "path": "internal/relay/routine_wake.go",
+      "start_line": 191,
+      "end_line": 209,
+      "severity": "low",
+      "resolved": false,
+      "content": "[중복] 첫 POST를 보낸 뒤 finishRoutine 트랜잭션(2초)이 실패하거나 프로세스가 죽으면 15초 lease가 끝난 뒤 Attempts=1이라 같은 집합을 한 번 더 POST한다. '보냈지만 응답 없음은 재시도 안 함' 원칙과 달리 routine run이 두 번 시작될 수 있다. 드문 경로이고 상한(2분·시간당 20) 안이라 폭주는 없다. 막으려면 claim 때 lease가 끝난 Attempts>=1 집합을 응답 미상으로 보고 Seen으로 넘기거나, 문서에 'relay 장애 때 1회 중복 가능'을 적는다."
+    }
+  ]
+}

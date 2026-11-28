@@ -895,7 +895,7 @@ Codex 실제 설치는 업데이트 전후 0.9.12다. 시작 시 coor 레포 적
 | SAR-MSG-TTL-1H-002-DEV | 대기(2026-12-28 이후) 선행: SAR-MSG-TTL-1H-001-DEV | dev |
 | SAR-MSG-TTL-1H-003-DEV | 준비 | dev |
 | SAR-REDIS-CAP-001-DEV | 완료(772de5b) | dev |
-| SAR-GROK-WAKE-002-DEV | 대기(순서 ④): ① 수동 확인 성공(routine run 453bbe9d → receive → answer item 17은 주인이 직접 고름, routine 단독 답 없음 msg_50e0899444ac). 선행 확인 끝 | dev |
+| SAR-GROK-WAKE-002-DEV | 완료(932a4df) | dev |
 | SAR-EVENTS-SECRET-001-DEV | 완료(ed4efef) | dev |
 
 과거 완료 메시지 세 건을 기존 PLANS의 실제 메시지 ID와 SHA로 공용 integration 기록에 회수했다. 사유·담당·재개 조건을 갖춘 hold를 적용했다. pending이 비어도 hold의 제품 작업이 통합 완료됐다는 의미는 아니다. 다른 오래된 역할 SHA의 main 미포함 이력도 보존한다. 상설·임시 워크트리와 기존 Run run_8ca8bc058ab7을 유지한다. 새 제품 worker는 시작하지 않는다. 전체 제품 수락·실제 배포·새 기능은 이번 업데이트 범위 밖이다.
@@ -2351,3 +2351,5 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 - 2026-11-28 19:36 SAR-EVENTS-SECRET-001-DEV → dev | claude/claude-opus-5-5/high | fresh | run run_d8b959a59fed | 재배정 0 | -
 - 2026-11-28 19:55 SAR-EVENTS-SECRET-001-DEV → dev | claude/claude-opus-5-5/high | fresh | run run_08a6c383bc4e | 재배정 1 | -
 - 2026-11-28 20:03 SAR-EVENTS-DEPLOY-001-OPS → ops | claude/claude-sonnet-5-5/high | fresh | run run_08a6c383bc4e | 재배정 0 | -
+- 2026-11-28 20:12 SAR-GROK-WAKE-002-DEV → dev | claude/claude-opus-5-5/high | fresh | run run_08a6c383bc4e | 재배정 0 | -
+- 2026-11-28 20:29 SAR-GROK-WAKE-002-DEV → dev | claude/claude-opus-5-5/high | fresh | run run_41d23d1c785c | 재배정 1 | -
