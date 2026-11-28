@@ -883,7 +883,7 @@ Codex 실제 설치는 업데이트 전후 0.9.12다. 시작 시 coor 레포 적
 | coor | 5b94be5, 미추적 리뷰 증거 | 누적 미수락 제품 조상을 main에 일괄 병합하지 않는다. 운영 준비 main을 merge하고 미추적 증거는 보존한다. |
 | MEMO-TIDY-20261127 | 대기 | dev |
 | SAR-ORCA-BOT-002-DEV | 대기 선행: SAR-ORCA-BOT-001-DEV | dev |
-| SAR-ORCA-BOT-001-OPS | 진행(3차: 0899e5bd 배포 → Grok Remote 연결 → grant·왕복) | ops |
+| SAR-ORCA-BOT-001-OPS | 완료(3a1df15) | ops |
 | SAR-GROK-INSTALL-002-DEV | 대기 선행: SAR-ORCA-BOT-001-OPS | dev |
 | SAR-MCP-UPGRADE-001 | 대기 선행: SAR-ORCA-BOT-001-OPS | dev |
 | SAR-ORCA-GRANT-UX-001-DEV | 대기 선행: SAR-ORCA-BOT-001-OPS | dev |
@@ -2322,3 +2322,5 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 - 2026-11-27 17:01 SAR-ORCA-BOT-001-DEV → dev | claude/claude-opus-5-5/high | fresh | run run_106052d1f96a | 재배정 1 | -
 - 2026-11-28 10:59 SAR-GROK-INSTALL-001-DEV → dev | claude/claude-opus-5-5/high | fresh | run run_0784d15ab6de | 재배정 0 | -
 - 2026-11-28 11:19 SAR-GROK-INSTALL-001-DEV → dev | claude/claude-opus-5-5/high | fresh | run run_0784d15ab6de | 재배정 1 | -
+- 2026-11-28 10:27 SAR-ORCA-BOT-001-OPS → ops | claude/claude-sonnet-5-5/high | fresh | run run_b8ce4825be7b | 재배정 0 | -
+- 2026-11-28 10:46 SAR-ORCA-BOT-001-OPS → ops | claude/claude-sonnet-5-5/high | fresh | run run_0784d15ab6de | 재배정 1 | -
