@@ -4,14 +4,25 @@ title: 운영자설명서
 status: draft
 updated: 2026-11-28
 owner: dev
-tasks: [SAR-PUBLISH-001-OPS, SAR-DEPLOY-001-OPS, SAR-BETA-001-OPS, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX, SAR-MVP-003-BIDIRECTIONAL, SAR-MVP-003-BIDIRECTIONAL-OPS, SAR-MVP-003-BIDIRECTIONAL-OPS-RENEW, SAR-PUBLIC-SERVICE-OPS-READINESS, SAR-PUBLIC-SERVICE-OPEN-PREP, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV, SAR-AUTO-RECEIVE-001-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SSE-INSTALL-001-TESTER, SAR-SSE-INSTALL-001-OPS, SAR-SSE-INSTALL-001-OAUTH-RETURN-DEV, SAR-SSE-INSTALL-001-OAUTH-RETURN-OPS, SAR-GROK-WEBHOOK-001-DEV, SAR-SERVICE-UI-001-OPS, SAR-HUMAN-PEER-001-DEV, SAR-HUMAN-PEER-001-OPS, SAR-REFACTOR-001-OPS, SAR-REFACTOR-002-OPS, SAR-RELEASE-001-OPS, SAR-RELEASE-002-OPS, SAR-RELEASE-003-OPS, SAR-PUBLISH-001-DEV, SAR-PUBLISH-001-RETENTION, SAR-PUBLISH-001-P03-DEPLOY, SAR-CONNECT-SIMPLE-001-DEV, SAR-CONNECT-SIMPLE-001-FIX-DEV, SAR-CONNECT-SIMPLE-001-OPS, SAR-CONNECT-SIMPLE-001-FOLLOWUP-DEV, SAR-AUTOSETUP-001-O04-DEV, SAR-AUTOSETUP-001-OPS, SAR-DB-WAIT-001, SAR-MSG-EPHEMERAL-001, SAR-VULTR-MIGRATE-001, SAR-RELEASE-004-OPS, SAR-ORCA-BOT-001-OPS, SAR-ORCA-HOST-001-OPS, SAR-MCP-DEPLOY-001-OPS, SAR-REDIS-CAP-001-DEV, SAR-EVENTS-SECRET-001-DEV]
+tasks: [SAR-PUBLISH-001-OPS, SAR-DEPLOY-001-OPS, SAR-BETA-001-OPS, SAR-MVP-002-BOT-CATALOG-DEV, SAR-MVP-002-BOT-CATALOG-DEV-FIX, SAR-MVP-003-BIDIRECTIONAL, SAR-MVP-003-BIDIRECTIONAL-OPS, SAR-MVP-003-BIDIRECTIONAL-OPS-RENEW, SAR-PUBLIC-SERVICE-OPS-READINESS, SAR-PUBLIC-SERVICE-OPEN-PREP, SAR-GOOGLE-CONNECT-001-DEV, SAR-GOOGLE-CONNECT-002-DEV, SAR-AUTO-RECEIVE-001-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SSE-INSTALL-001-TESTER, SAR-SSE-INSTALL-001-OPS, SAR-SSE-INSTALL-001-OAUTH-RETURN-DEV, SAR-SSE-INSTALL-001-OAUTH-RETURN-OPS, SAR-GROK-WEBHOOK-001-DEV, SAR-SERVICE-UI-001-OPS, SAR-HUMAN-PEER-001-DEV, SAR-HUMAN-PEER-001-OPS, SAR-REFACTOR-001-OPS, SAR-REFACTOR-002-OPS, SAR-RELEASE-001-OPS, SAR-RELEASE-002-OPS, SAR-RELEASE-003-OPS, SAR-PUBLISH-001-DEV, SAR-PUBLISH-001-RETENTION, SAR-PUBLISH-001-P03-DEPLOY, SAR-CONNECT-SIMPLE-001-DEV, SAR-CONNECT-SIMPLE-001-FIX-DEV, SAR-CONNECT-SIMPLE-001-OPS, SAR-CONNECT-SIMPLE-001-FOLLOWUP-DEV, SAR-AUTOSETUP-001-O04-DEV, SAR-AUTOSETUP-001-OPS, SAR-DB-WAIT-001, SAR-MSG-EPHEMERAL-001, SAR-VULTR-MIGRATE-001, SAR-RELEASE-004-OPS, SAR-ORCA-BOT-001-OPS, SAR-ORCA-HOST-001-OPS, SAR-MCP-DEPLOY-001-OPS, SAR-REDIS-CAP-001-DEV, SAR-EVENTS-SECRET-001-DEV, SAR-EVENTS-DEPLOY-001-OPS]
 upstream: [D02, D03]
 summary: 서버 관찰 이력과 본인 전용 합성 베타 배포 구성·검증·복귀 절차 및 held 항목을 기록한다
 ---
 
 # KnowsLink 운영자설명서 (D12) — 현재 서버 배포 계획
 
-## SAR-EVENTS-SECRET-001-DEV Events secret 봉인 키와 이행 (2026-11-28, 운영 미적용)
+## SAR-EVENTS-DEPLOY-001-OPS 운영 적용 결과 (2026-11-28)
+
+현재 운영 제품은 `65a752fe2e88e0da1cbf1a844cb0000c51595295`다. 직전 `d3670f2f`에서 `beta.sh deploy`했다(11:05:49Z, relay 기동 11:08:14Z). Redis 바이트 상한과 Events secret 봉인이 들어갔다. `.env`에 `KNOWSLINK_SEAL_KEY` 한 줄을 더했다(450→514 bytes, 0600, 값 길이 44). 마이그레이션은 없고 Tunnel·DNS·방화벽·Redis 설정은 바꾸지 않았다. 근거는 [검증 보고](../../tasks/SAR-EVENTS-DEPLOY-001-OPS/qa/report.md)다.
+
+- **백업:** `backups/d3670f2f-20261128T110546Z.dump`(12846 bytes, SHA256 `691d66b292d8cba400dede667d9f5a19914254e576df3727a0565d76e976442b`). 이전 env는 `eventsdeploy001-20261128/env.pre-eventsdeploy001`(0600, 키 없음).
+- **rollback(미실행):** `beta.sh deploy d3670f2fa3c85a8d320542055188296948aa783b`. 태그는 `knowslink-rollback:d3670f2f-{relay,migrate}-eventsdeploy001`. 키 줄은 남겨도 이전 코드가 읽지 않는다.
+- **키 위치:** 서버 `/home/shin/deploy/knowslink-state/.env`의 `KNOWSLINK_SEAL_KEY` 줄 하나뿐이다. 서버 밖 사본은 없고 DB 백업에도 들어 있지 않다.
+- **키 백업 절차(추천, 주인 몫, 미실행):** 주인이 자기 터미널(agent 세션·`!` 입력 아님)에서 `ssh shin@64.176.237.173 "grep '^KNOWSLINK_SEAL_KEY=' /home/shin/deploy/knowslink-state/.env"`를 실행해 그 줄을 이미 쓰는 비밀번호 관리자에 넣는다. 복원은 같은 줄을 `.env`(0600)에 다시 넣고 `beta.sh up`이다.
+- **평문 확인:** 배포 직후까지 Events 구독 0건, 평문 0건이다. 1시간 뒤(12:09Z 이후) 확인은 미확인이며 절차는 검증 보고에 있다.
+- **이행 확인 SQL:** 위 절 4번 예시는 `OldSecret`을 보지 않는다. `OldSecret`까지 세는 읽기 전용 쿼리는 [state-check.sh](../../tasks/SAR-EVENTS-DEPLOY-001-OPS/qa/state-check.sh)다.
+
+## SAR-EVENTS-SECRET-001-DEV Events secret 봉인 키와 이행 (2026-11-28)
 
 Events webhook secret을 `KNOWSLINK_SEAL_KEY`로 봉인해 저장한다. 설계는 [D07](../design-docs/database-design.md)·[D05](../design-docs/interface-design.md), 검증은 [QA 보고](../../tasks/SAR-EVENTS-SECRET-001-DEV/qa/report.md)다. **키 없이 배포하면 Dots의 다음 구독 갱신이 거절된다.** 반드시 키를 먼저 넣는다.
 
@@ -22,7 +33,7 @@ Events webhook secret을 `KNOWSLINK_SEAL_KEY`로 봉인해 저장한다. 설계�
 - **키 분실·교체:** 저장된 봉인 값이 열리지 않아 구독이 지워진다. Dots의 다음 갱신이 새 구독을 만들 때까지(최대 1시간) Events가 쉰다. 메시지는 잃지 않는다.
 - **되돌리기:** 이전 이미지로 코드만 되돌리면 봉인 값을 서명 secret으로 읽지 못해 서명이 실패한다. 되돌린 뒤 Dots 구독을 다시 만들거나 1시간 TTL로 정리되기를 기다린다.
 
-## SAR-REDIS-CAP-001-DEV Redis 메시지 바이트 상한과 관측 (2026-11-28, 운영 미적용)
+## SAR-REDIS-CAP-001-DEV Redis 메시지 바이트 상한과 관측 (2026-11-28)
 
 relay가 Redis 메시지 사본 한 개를 32 MiB, 보내는 owner 하나를 6 MiB로 묶는다. commit 중 사본 2개라 정점은 `maxmemory` 128 MiB의 약 51%(기본 1.5 MiB 포함)이고, commit 사이에는 약 26%다. 넘으면 그 owner(전체가 넘으면 모두)의 새 발송만 `capacity`(429)다. 수신·ACK·정리는 막지 않는다. Redis 설정은 바꾸지 않는다. 설계와 계산은 [D07](../design-docs/database-design.md)·[QA 보고](../../tasks/SAR-REDIS-CAP-001-DEV/qa/report.md)다.
 
@@ -32,7 +43,7 @@ relay가 Redis 메시지 사본 한 개를 32 MiB, 보내는 owner 하나를 6 M
 
 ## SAR-MCP-DEPLOY-001-OPS 운영 적용 결과 (2026-11-28)
 
-현재 운영 제품은 `d3670f2fa3c85a8d320542055188296948aa783b`다. 직전 `8272fb91`에서 `beta.sh deploy`했다(08:50:17Z). 원격 `/mcp` 2026-07-28 dual-era, 자기 agent 사이 메시지 1시간 보관·owner별 미배달 20건 상한, 개인정보 방침 개정(시행 2026-11-28, 2026-12-28 변경 고지)이 들어갔다. 마이그레이션은 없고 Tunnel·DNS·`.env`·방화벽·Redis 설정은 바꾸지 않았다. 근거는 [검증 보고](../../tasks/SAR-MCP-DEPLOY-001-OPS/qa/report.md)다.
+당시 운영 제품은 `d3670f2fa3c85a8d320542055188296948aa783b`였다. 직전 `8272fb91`에서 `beta.sh deploy`했다(08:50:17Z). 원격 `/mcp` 2026-07-28 dual-era, 자기 agent 사이 메시지 1시간 보관·owner별 미배달 20건 상한, 개인정보 방침 개정(시행 2026-11-28, 2026-12-28 변경 고지)이 들어갔다. 마이그레이션은 없고 Tunnel·DNS·`.env`·방화벽·Redis 설정은 바꾸지 않았다. 근거는 [검증 보고](../../tasks/SAR-MCP-DEPLOY-001-OPS/qa/report.md)다.
 
 - **백업:** `backups/8272fb91-20261128T085016Z.dump`(12714 bytes, SHA256 `57d7b7dc07935bece249f70b5f29e91a2c162eab47b40b367a7a18c26f064c43`).
 - **rollback(미실행):** `beta.sh deploy 8272fb911e1a0cf660e80390b7e6ef4ba32e2e3c`. 태그는 `knowslink-rollback:8272fb91-{relay,migrate}-mcpdeploy001`. 3590초 TTL adapter를 설치한 뒤에는 이전 relay가 그 발송을 `ttl_too_long`으로 거부한다.

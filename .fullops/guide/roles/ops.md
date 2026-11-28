@@ -148,3 +148,8 @@ adapter 빌드는 `.devtools`의 Node 22.22.2를 PATH 앞에 둔다. 시스템 N
 ## 2026-11-28 — SAR-MCP-DEPLOY-001-OPS
 
 `/mcp`의 `initialize`는 OAuth token이 있어야 응답한다. 배포 후 확인 항목에 버전 협상이 있으면 운영에서는 401·-32022까지만 보이므로 격리 `TestRemote`(먼저 `cmd/migrate`)로 확인한다.
+
+## 2026-11-28 — SAR-EVENTS-DEPLOY-001-OPS
+
+`.env`에 새 비밀을 더할 때는 서버 스크립트 변수와 `printf` builtin으로 append하고 `head -n -1 | cmp`로 나머지가 같은지 본다. 서버는 origin fetch가 다시 된다. [보고](../../tasks/SAR-EVENTS-DEPLOY-001-OPS/qa/report.md)
+1시간 뒤 확인 같은 시간 대기 항목은 Stop hook이 완료 보고를 먼저 요구한다. 배정할 때 후속 확인으로 나눈다.
