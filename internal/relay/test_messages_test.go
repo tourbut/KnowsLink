@@ -49,7 +49,7 @@ func TestTrialMessageSafety(t *testing.T) {
 	if _, err = st.ingest("agent_a", conflict, "", now); err == nil || err.Error() != "idempotency_conflict" {
 		t.Fatal("duplicate conflict", err)
 	}
-	for _, expiry := range []time.Time{now, now.Add(301 * time.Second)} {
+	for _, expiry := range []time.Time{now, now.Add(peerEnvelopeTTL + time.Second)} {
 		if _, err = st.ingest("agent_a", message(secondID, "trial-expiry-key", "ping", expiry), "", now); err == nil {
 			t.Fatal("invalid TTL")
 		}

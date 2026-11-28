@@ -50,13 +50,21 @@ func activeKids(a *Agent) []string {
 	return kids
 }
 
+// selfAgents reports whether from and to are two active agents of one owner under self authority. Owner grants and
+// the 1-hour delivery ceiling (D076) both rest on this one test.
+func (st *State) selfAgents(from, to string) bool {
+	a, b := st.Agents[from], st.Agents[to]
+	if a == nil || b == nil || a.Owner != b.Owner {
+		return false
+	}
+	scope, _, ok := st.authority(from, to)
+	return ok && strings.HasPrefix(scope, "self:")
+}
+
 // grantLive reports whether a stored grant still has the same owner, self authority and every snapshotted key.
 func (st *State) grantLive(g *Grant, now time.Time) bool {
 	a, b := st.Agents[g.From], st.Agents[g.To]
-	if !now.Before(g.Exp) || a == nil || b == nil || a.Owner != g.Owner || b.Owner != g.Owner {
-		return false
-	}
-	if scope, _, ok := st.authority(g.From, g.To); !ok || !strings.HasPrefix(scope, "self:") {
+	if !now.Before(g.Exp) || a == nil || b == nil || a.Owner != g.Owner || b.Owner != g.Owner || !st.selfAgents(g.From, g.To) {
 		return false
 	}
 	for agent, kids := range map[*Agent][]string{a: g.FromKeys, b: g.ToKeys} {
@@ -89,10 +97,7 @@ func (st *State) sweepGrants(now time.Time) {
 // count carries over so renewing never resets the rate.
 func (st *State) createGrant(owner, from, to, kind string, now time.Time) error {
 	a, b := st.Agents[from], st.Agents[to]
-	if !grantKind(kind) || a == nil || b == nil || a.Owner != owner || b.Owner != owner {
-		return fault("sender_not_allowed")
-	}
-	if scope, _, ok := st.authority(from, to); !ok || !strings.HasPrefix(scope, "self:") {
+	if !grantKind(kind) || a == nil || b == nil || a.Owner != owner || b.Owner != owner || !st.selfAgents(from, to) {
 		return fault("sender_not_allowed")
 	}
 	fromKeys, toKeys := activeKids(a), activeKids(b)

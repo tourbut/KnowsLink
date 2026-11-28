@@ -147,17 +147,20 @@ func TestPublicTextRoundtripAndCurrentAuth(t *testing.T) {
 	}
 }
 func TestPublicTextTTLAndLeaseFailures(t *testing.T) {
-	for _, offset := range []time.Duration{0, 180 * time.Second, 181 * time.Second} {
+	// D076: a legacy pair keeps the 180 s ceiling. Up to 1 hour is cut to it; past 1 hour is ttl_too_long.
+	for _, offset := range []time.Duration{0, 180 * time.Second, messageRetention, messageRetention + time.Second} {
 		st, keys, now := textFixture()
 		e := signedText(firstID, "agent_a", "agent_b", "public-text-key-01", "", "ping", now.Add(offset), keys["agent_a"])
-		_, err := st.ingestPublicText("agent_a", e, now)
-		if (err == nil) != (offset == 180*time.Second) {
+		r, err := st.ingestPublicText("agent_a", e, now)
+		if (err == nil) != (offset > 0 && offset <= messageRetention) || (offset > messageRetention && err.Error() != "ttl_too_long") {
 			t.Fatal("TTL boundary", offset, err)
 		}
 		if err == nil {
-			st.sweep(now.Add(offset))
-			m := st.Messages[firstID]
-			if m.Receipt.State != "failed:expired" || len(m.Envelope) > 0 {
+			if !r.(Receipt).Exp.Equal(now.Add(peerTextTTL)) {
+				t.Fatal("clamp", offset, r)
+			}
+			st.sweep(now.Add(peerTextTTL))
+			if m := st.Messages[firstID]; m.Receipt.State != "failed:expired" || len(m.Envelope) > 0 {
 				t.Fatal("expiry")
 			}
 			st.sweep(now.Add(24 * time.Hour))

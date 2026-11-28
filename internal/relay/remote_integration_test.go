@@ -256,4 +256,9 @@ func remoteEraChecks(t *testing.T, s *Service, token string) {
 	expect(t, modern("tools/call", "knowslink_nope", `"name":"knowslink_nope","arguments":{},`), 200, "unsupported_method")
 	expect(t, modern("resources/list", "", ""), 404, `"code":-32601`)
 	expect(t, modern("initialize", "", ""), 404, `"code":-32601`)
+	expect(t, modern("resources/read", "file:///x", `"uri":"file:///x",`), 404, `"code":-32601`)
+	// SAR-MSG-TTL-1H-001: events/unsubscribe is a modern result too.
+	w = modern("events/unsubscribe", "knowslink.text.arrived", `"name":"knowslink.text.arrived","arguments":{},"delivery":{"mode":"webhook","url":"https://127.0.0.1/callback"},`)
+	expect(t, w, 200, `"resultType":"complete"`, "io.modelcontextprotocol/serverInfo")
+	refuse(w, "ttlMs")
 }

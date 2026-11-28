@@ -62,6 +62,10 @@ export function textSigningBytes(e: TextEnvelope): Buffer {
     `KNOWSLINK-TEXT\0knowslink.text.v1\0Ed25519\0${e.sig.kid}\0${canonical({ v: e.v, id: e.id, from: e.from, to: e.to, text: e.text, exp: e.exp, idempotency_key: e.idempotency_key, reply_to: e.reply_to ?? "", ...(e.kind ? { kind: e.kind } : {}) })}`,
   );
 }
+// 10 s under the relay's strict 1-hour ceiling so a slightly fast client clock is not ttl_too_long. The adapter cannot
+// tell a self agent from a friend, so the relay cuts this to the pair's ceiling (180 s outside self agents, D076).
+export const SEND_TTL_MS = 3590000;
+
 export class TextTransport extends Adapter {
   // The name chosen at connection (agent.json); the fallback when the relay contact lookup fails (A-06).
   localName = "";
@@ -127,7 +131,7 @@ export class TextTransport extends Adapter {
       (replyTo !== undefined && !MESSAGE_ID.test(replyTo))
     )
       throw new Error("invalid explicit text request");
-    let expiry = Date.now() + 170000; // under the relay's strict 180 s ceiling so a slightly fast client clock is not ttl_too_long
+    let expiry = Date.now() + SEND_TTL_MS;
     if (replyTo) {
       const parent = await this.receipt(replyTo);
       if (
@@ -162,7 +166,7 @@ export class TextTransport extends Adapter {
       peer === this.agent
     )
       throw new Error("invalid orca send request");
-    return this.post(peer, text, key, Date.now() + 170000, { kind });
+    return this.post(peer, text, key, Date.now() + SEND_TTL_MS, { kind });
   }
   private post(
     peer: string,

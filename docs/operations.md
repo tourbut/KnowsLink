@@ -125,7 +125,7 @@ Events 목록 변경도 rescan한다. 기존 앱·설치·자동화를 삭제해
 | `held`·로컬 도구 없음 | Command/Arguments·Node·bundle·mode 확인. 신규 설치만 Google connect 진행 |
 | `configured_unverified` | 설정 상태일 뿐이다. 기존 자격·웹 agent·연결 완료 기록을 대조 |
 | `queued`·수신 없음 | 상대 process, 현재 친구/자기 권한·키·기한 확인. queued를 delivered로 보고하지 않음 |
-| `failed:expired` | 최대 180초 전달 기한 경과. 현재 연결을 복구하고 새 승인 뒤 새 메시지 발송 |
+| `failed:expired` | 전달 기한(자기 agent 사이 1시간, 그 밖 180초) 경과. 현재 연결을 복구하고 새 승인 뒤 새 메시지 발송 |
 | `autoReceive: off/stopped/backoff` | 자동 수신 환경·private 폴더·process·lastError 확인. 비밀값 출력 금지 |
 | 로컬 Inbox pending·화면 없음 | 수신과 저장은 진행됨. host notice와 채팅 턴을 별도로 확인 |
 | `hostNotice: sent_unverified` | MCP notice 전송만 의미. 화면 표시·새 턴 성공이 아님 |

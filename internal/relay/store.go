@@ -306,6 +306,15 @@ func (st *State) current(m *Message) bool {
 	scope, generation, ok := st.authority(m.Receipt.From, m.Receipt.To)
 	return ok && scope == m.Scope && generation == m.Generation
 }
+
+// envelopeTTL is a /v1/send ceiling: the human approval wait stays 300 s, and only self-agent delivery gets 1 hour.
+func (st *State) envelopeTTL(e *Envelope) time.Duration {
+	if e.Intent == "relay.approval.request" {
+		return peerEnvelopeTTL
+	}
+	return st.deliveryTTL(e.From, e.To, peerEnvelopeTTL)
+}
+
 func (st *State) sweep(now time.Time) {
 	st.sweepFriends(now)
 	st.sweepRemote(now)
@@ -546,7 +555,7 @@ func (st *State) ingest(agent string, e *Envelope, claim string, now time.Time) 
 	if !exp.After(now) {
 		return nil, fault("expired")
 	}
-	if exp.After(now.Add(300 * time.Second)) {
+	if exp.After(now.Add(st.envelopeTTL(e))) {
 		return nil, fault("ttl_too_long")
 	}
 	if st.Messages[e.ID] != nil {

@@ -128,7 +128,7 @@ Postgres 행은 그 Redis 키 이름만 저장하고, 같은 행 lock 안에서 
 Redis가 재시작하면 그 전 메시지는 사라진다. Redis 장애 중에는 메시지 기록이 있거나 새로 쓰는 요청이 `unavailable`이다.
 | 데이터 | 보관 경계 |
 |---|---|
-| 전달 text 원문 | 최대 180초 기한. ACK·만료·철회 시 transport 원문 제거 |
+| 전달 text 원문 | 자기 agent 사이 최대 1시간, 그 밖 최대 180초 기한(D076). 2026-12-28 전환은 별도 과제, 날짜 분기 코드 없음. ACK·만료·철회 시 transport 원문 제거 |
 | 새 웹 대화 사본 | Redis에만. 수락 시점부터 최대 1시간. 참여 회원 세션만 조회 |
 | receipt·멱등 | Redis에만. 최대 1시간 |
 | gate metadata | Postgres. 요청 사본이 Redis에서 사라지면 삭제 |

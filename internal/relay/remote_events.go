@@ -62,7 +62,7 @@ func remoteSubscriptionID(install string, in remoteSubscriptionInput) string {
 	return "sub_" + hashToken(install+"\x00"+remoteEvent+"\x00"+in.Delivery.URL+"\x00{}")
 }
 
-func (s *Service) remoteSubscription(w http.ResponseWriter, r *http.Request, install string, in remoteRequest) {
+func (s *Service) remoteSubscription(w http.ResponseWriter, r *http.Request, install string, in remoteRequest, modern bool) {
 	var p remoteSubscriptionInput
 	if Strict(in.Params, &p) != nil || p.Name != remoteEvent || p.Delivery.Mode != "webhook" || !remoteURL(p.Delivery.URL) || !remoteEmpty(p.Arguments) || (len(p.Cursor) > 0 && string(p.Cursor) != "null") {
 		remoteResult(w, in.ID, nil, fault("invalid_schema"))
@@ -78,7 +78,7 @@ func (s *Service) remoteSubscription(w http.ResponseWriter, r *http.Request, ins
 			delete(st.remote().Subscriptions, id)
 			return nil, nil
 		})
-		remoteResult(w, in.ID, map[string]any{}, err)
+		remoteReply(w, in, modern, map[string]any{}, err)
 		return
 	}
 	if _, err := remoteSecret(p.Delivery.Secret); err != nil {
@@ -172,7 +172,7 @@ func (s *Service) remoteSubscription(w http.ResponseWriter, r *http.Request, ins
 	if err == nil {
 		s.remoteNotify(r.Context())
 	}
-	remoteResult(w, in.ID, v, err)
+	remoteReply(w, in, modern, v, err)
 }
 
 func (s *Service) remoteNotify(ctx context.Context) {

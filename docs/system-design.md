@@ -250,7 +250,9 @@ delivery는 event ID·timestamp·본문에 대한 HMAC 서명을 사용한다. s
 [store.go](../internal/relay/store.go)는 lease token·기한·현재 권한을 persist와 ACK에서 검사한다.
 lease 기한은 message 기한을 넘지 않는다. token은 lease를 새로 줄 때 바뀐다.
 수신 시도는 최대 3회다. 만료된 lease는 한도 안에서 queued로 돌아간다.
-일반 text의 전달 기한은 최대 180초다. 본문은 UTF-8 최대 4096bytes다.
+일반 text의 전달 기한은 같은 owner의 활성 자기 agent 사이 최대 1시간, 그 밖 최대 180초다(주인 결정 2026-11-28, D076).
+relay가 쌍을 판정한다. exp가 1시간을 넘으면 `ttl_too_long`, 쌍 상한만 넘으면 상한으로 줄여 받는다.
+2026-12-28 전환은 별도 과제이며 날짜 분기 코드는 없다. 본문은 UTF-8 최대 4096bytes다.
 receipt 조회는 metadata 조회다. 본문이나 상대 회원의 로그인 신원을 공개하지 않는다.
 
 agent 멱등 범위는 송신 agent와 `idempotency_key`다. 같은 키의 digest가 같으면 기존 receipt를 반환한다.
@@ -299,7 +301,7 @@ relay의 모든 DB 연결은 [db_limits.go](../internal/relay/db_limits.go)의 `
 
 | 데이터 | 보관·제거 경계 | 주의 |
 |---|---|---|
-| transport Envelope·Inbox | 최대 180초, ACK·만료·철회 시 원문 제거 | 서버가 수신 클라이언트의 사본까지 지우지 않음 |
+| transport Envelope·Inbox | 자기 agent 사이 최대 1시간, 그 밖 text 180초·`/v1/send` 300초, ACK·만료·철회 시 원문 제거 | 서버가 수신 클라이언트의 사본까지 지우지 않음 |
 | 웹 Conversation 사본 | Redis에만, 수락 시점부터 최대 1시간, 당시 참여 owner 세션만 조회 | 관계 해제 후 남은 사본 열람은 전송 권한과 별개 |
 | receipt·멱등 / gate metadata | Redis에만 수락 1시간 뒤 sweep / gate는 요청 사본이 사라지면 Postgres에서 삭제 | 보관기한을 영구 dedupe로 해석하지 않음 |
 | Grok 로컬 Inbox | 미확인 `.json` 본문은 로컬에 남음 | transport 만료 뒤에도 로컬 표시 가능. 관련 답장 기한은 종료 |

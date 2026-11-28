@@ -186,3 +186,45 @@ func (st *State) grantsOf(from, kind string) []*Grant {
 	}
 	return out
 }
+
+// D076: the relay, not the sender, gives 1 hour only between one owner's active self agents; others keep 180 s/300 s.
+func TestDeliveryCeilingBySelfAgents(t *testing.T) {
+	st, keys, now := grantFixture(t)
+	n := 0
+	send := func(to string, ttl time.Duration) (time.Duration, error) {
+		n++
+		e := signedText(fmt.Sprintf("0199a3f2-4c10-7a11-8b33-%012d", n), "grok", to, fmt.Sprintf("ceiling-test-key-%04d", n), "", "ping", now.Add(ttl), keys["grok"])
+		r, err := st.ingestPublicText("grok", e, now)
+		if err != nil {
+			return 0, err
+		}
+		return r.(Receipt).Exp.Sub(now), nil
+	}
+	for _, c := range []struct {
+		to       string
+		ask, got time.Duration
+	}{
+		{"orca", messageRetention, messageRetention},
+		{"peer", messageRetention, peerTextTTL},        // a 1-hour adapter request to a friend is cut, not refused
+		{"peer", 170 * time.Second, 170 * time.Second}, // an older client's 170 s stays as sent
+	} {
+		if got, err := send(c.to, c.ask); err != nil || got != c.got {
+			t.Fatalf("%s %v: got %v %v, want %v", c.to, c.ask, got, err, c.got)
+		}
+	}
+	for _, to := range []string{"orca", "peer"} {
+		if _, err := send(to, messageRetention+time.Second); err == nil || err.Error() != "ttl_too_long" {
+			t.Fatalf("%s past 1 hour: %v", to, err)
+		}
+	}
+	envelope := func(to, intent string) time.Duration {
+		return st.envelopeTTL(&Envelope{From: "grok", To: to, Intent: intent})
+	}
+	if envelope("orca", "relay.request") != messageRetention || envelope("peer", "relay.request") != peerEnvelopeTTL || envelope("orca", "relay.approval.request") != peerEnvelopeTTL {
+		t.Fatal("envelope ceilings")
+	}
+	st.Members["m_owner_1"].SelfConnect = false // no self authority, no 1 hour, whatever the sender asks
+	if st.selfAgents("grok", "orca") || st.deliveryTTL("grok", "orca", peerTextTTL) != peerTextTTL {
+		t.Fatal("self test without self authority")
+	}
+}

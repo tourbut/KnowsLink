@@ -154,7 +154,7 @@ func TestHumanConversationKeepsDetailsAndDisambiguatesNames(t *testing.T) {
 			t.Fatal("send target must name people and disambiguate only equal endpoint names", target)
 		}
 		details := strings.Index(body, `<details class="conversation-details">`)
-		if details < strings.Index(body, `<button class="primary">보내기</button>`) || strings.Contains(body[:details], "UTF-8 bytes") || !strings.Contains(body[details:], "4096 UTF-8 bytes") || !strings.Contains(body[details:], "180초") || !strings.Contains(body[details:], "Node 로컬 / a001") {
+		if details < strings.Index(body, `<button class="primary">보내기</button>`) || strings.Contains(body[:details], "UTF-8 bytes") || !strings.Contains(body[details:], "4096 UTF-8 bytes") || !strings.Contains(body[details:], "최대 1시간") || !strings.Contains(body[details:], "Node 로컬 / a001") {
 			t.Fatal("technical limits and full target must remain in closed details after send")
 		}
 	}

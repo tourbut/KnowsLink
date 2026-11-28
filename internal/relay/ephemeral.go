@@ -11,7 +11,8 @@ import (
 	"github.com/redis/go-redis/v9"
 )
 
-// messageRetention bounds every message record kept in Redis, including the web conversation copy (D049).
+// messageRetention bounds every message record kept in Redis, including the web conversation copy (D049), and is also
+// the delivery ceiling between one owner's self agents (D076, deliveryTTL).
 const messageRetention = time.Hour
 
 // ephemeral is the Redis value. The Postgres row keeps only its random key name (State.Ephemeral), so a row commit
