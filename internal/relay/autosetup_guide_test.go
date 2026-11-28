@@ -23,16 +23,18 @@ func TestAutosetupGuideOnlyForClaudeAndCodex(t *testing.T) {
 		"ko": {
 			"claude": {"자동 설정 · 시험 환경 확인 (Claude Code 2.1.302, Windows 11)", "이 컴퓨터의 PowerShell에서 실행할 명령", "메시지를 받을 세션에서 <code>/knowslink-session on</code>, 보낼 때마다 발송 승인.", "수동 설치 문서"},
 			"codex":  {"자동 설정 · 시험 환경 확인 (Codex CLI 0.163.0, Windows 11) · 도착 알림 없음", "Codex 승인 모드는 바꾸지 않습니다.", "(예: <code>approval_policy = &#34;on-request&#34;</code>)로 Codex를 열고", "Codex 화면에는 도착 알림이 없습니다."},
+			"orca":   {"수동 설치 · Windows 11 · 도어벨 자동 시작", "<code>orca install</code>로 고정 폴더에 bundle 설치와 도어벨 자동 시작", "<code>orca bot tools add</code> 한 줄 실행", "#고정-위치-설치와-자동-시작--sar-orca-host-001-dev"},
 			"other":  {"Hermes Agent, 그 밖의 호스트", "아직 연결 방법을 확인하는 중입니다."},
 		},
 		"en": {
 			"claude": {"Automatic setup · Checked in a test environment (Claude Code 2.1.302, Windows 11)", "Command to run in PowerShell on this computer", "run <code>/knowslink-session on</code> in the session that should receive; approve every send.", "Manual install guide (in Korean)"},
 			"codex":  {"Automatic setup · Checked in a test environment (Codex CLI 0.163.0, Windows 11) · No arrival notice", "It does not change Codex's approval mode.", "(for example <code>approval_policy = &#34;on-request&#34;</code>) and connect the session.", "Codex shows no arrival notice"},
+			"orca":   {"Manual install · Windows 11 · Doorbell starts automatically", "Run <code>orca install</code> to install the bundle in a fixed folder and start the doorbell automatically.", "run the <code>orca bot tools add</code> line", "Orca bot install guide (in Korean)"},
 			"other":  {"Hermes Agent and other hosts", "The connection method is still being confirmed."},
 		},
 	}
 	for lang, pages := range map[string]*template.Template{"ko": memberPages, "en": memberPagesEN} {
-		for _, use := range []string{"web", "grok", "dots", "claude", "codex", "other"} {
+		for _, use := range []string{"web", "grok", "dots", "claude", "codex", "orca", "other"} {
 			for _, start := range []string{"first", "continue"} {
 				v := humanPageFixture()
 				v["Use"], v["Start"] = use, start

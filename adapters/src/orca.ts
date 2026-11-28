@@ -1,16 +1,25 @@
 // Orca bot host (SAR-ORCA-BOT-001): watcher with a local Orca mail doorbell, receive as untrusted data, and send of the
 // three owner-granted fixed forms. Doorbells, stdout and logs carry only IDs, kind, size and counts, never text or senders.
-import { execFile, type ExecFileOptions } from "node:child_process";
+import { execFile, spawn, type ExecFileOptions } from "node:child_process";
 import { randomBytes } from "node:crypto";
 import { existsSync } from "node:fs";
-import { readFile, stat } from "node:fs/promises";
-import { homedir } from "node:os";
-import { delimiter, join } from "node:path";
+import {
+  copyFile,
+  mkdir,
+  open,
+  readFile,
+  rm,
+  stat,
+  writeFile,
+} from "node:fs/promises";
+import { homedir, uptime } from "node:os";
+import { delimiter, dirname, join, resolve } from "node:path";
 import { promisify } from "node:util";
 import { MESSAGE_ID, canonical } from "./core.js";
 import { root } from "./defaults.js";
 import type { WakeResult } from "./grok-wake.js";
 import { AutoReceiver, Inbox, safeError } from "./inbox.js";
+import { alive } from "./session-lock.js";
 import { setupConnect } from "./setup-connect.js";
 import { memberTransport, type ReceivedText } from "./text.js";
 
@@ -211,14 +220,53 @@ const flag = (argv: string[], name: string) => {
 const say = (event: unknown) =>
   process.stdout.write(JSON.stringify(event) + "\n");
 
+// One watch per agent folder (SAR-ORCA-HOST-001): the watch is the folder's only automatic receiver.
+// A lock from before this boot, or of a dead pid, is stale; a pid reused within the same boot still reads as live.
+type WatchLock = { pid: number; since: string };
+export const watchLock = (folder: string) => join(folder, "orca-watch.lock");
+export async function liveWatch(folder: string): Promise<WatchLock | null> {
+  try {
+    const l = JSON.parse(
+      await readFile(watchLock(folder), "utf8"),
+    ) as WatchLock;
+    const boot = Date.now() - uptime() * 1000;
+    return Number.isInteger(l.pid) && Date.parse(l.since) > boot && alive(l.pid)
+      ? l
+      : null;
+  } catch {
+    return null;
+  }
+}
+// Resolves the live holder that blocks this watch, or null once this process holds the lock.
+export async function claimWatch(folder: string): Promise<WatchLock | null> {
+  const mine = JSON.stringify({
+    pid: process.pid,
+    since: new Date().toISOString(),
+  });
+  for (let i = 0; i < 2; i++) {
+    try {
+      await writeFile(watchLock(folder), mine, { flag: "wx", mode: 0o600 });
+      return null;
+    } catch (e) {
+      if ((e as NodeJS.ErrnoException).code !== "EEXIST") throw e;
+    }
+    const held = await liveWatch(folder);
+    if (held) return held;
+    await rm(watchLock(folder), { force: true });
+  }
+  throw new Error("orca watch already running");
+}
+
 async function watch(folder: string, bot: string, from?: string) {
   const transport = await memberTransport(folder);
   const inbox = await Inbox.open(folder);
+  if (await claimWatch(folder)) throw new Error("orca watch already running");
   const wake = new OrcaWake(
     bot,
     from,
     inbox,
-    `node "${process.argv[1]}" orca receive "${folder}"`,
+    // The full node path: an Orca bot shell may have no node on PATH.
+    `"${process.execPath}" "${process.argv[1]}" orca receive "${folder}"`,
     execAsync,
     say,
   );
@@ -272,8 +320,125 @@ async function send(folder: string, argv: string[]) {
   );
 }
 
+// Fixed install (SAR-ORCA-HOST-001): bundle, node and defaults.json under <root>\orca, so nothing depends on a worktree.
+// defaults.json carries only modes, the relay URL, the folder path and the bot name; keys stay in the agent folder.
+export function orcaDefaults(folder: string, bot: string, relay: string) {
+  return {
+    KNOWSLINK_MODE: "public-node",
+    RELAY_URL: relay,
+    KNOWSLINK_HOST: "orca",
+    KNOWSLINK_AGENT_FOLDER: folder,
+    KNOWSLINK_ORCA_BOT: bot,
+    // The watch is the one automatic receiver; the bot's MCP reads the shared inbox and pulls only when asked.
+    KNOWSLINK_AUTO_RECEIVE: "off",
+  };
+}
+// shortcut: a path with spaces is quoted, and Orca's tools-add parsing of quoted paths is unchecked; check it if a profile path has spaces.
+const quote = (p: string) => (/\s/.test(p) ? `"${p}"` : p);
+export const installedCommand = (dir: string, ...args: string[]) =>
+  [join(dir, "node.exe"), join(dir, "dist", "plugin.js"), ...args]
+    .map(quote)
+    .join(" ");
+const RUN_KEY = "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Run";
+export const RUN_VALUE = "KnowsLinkOrcaWatch";
+// Per-user logon start without admin rights: reg.exe argv for the HKCU Run value, or its removal.
+export const autostartArgs = (command?: string) =>
+  command
+    ? ["add", RUN_KEY, "/v", RUN_VALUE, "/t", "REG_SZ", "/d", command, "/f"]
+    : ["delete", RUN_KEY, "/v", RUN_VALUE, "/f"];
+const quiet = { shell: false, windowsHide: true, timeout: 20000 };
+
+const installed = () => dirname(dirname(resolve(process.argv[1]!)));
+const configured = () => {
+  const folder = process.env.KNOWSLINK_AGENT_FOLDER;
+  const bot = process.env.KNOWSLINK_ORCA_BOT;
+  if (!folder || !argValue(bot, 80)) throw new Error("usage");
+  return { folder, bot };
+};
+
+// Starts the configured watch detached and hidden, unless one already holds the folder.
+async function start() {
+  const { folder, bot } = configured();
+  const held = await liveWatch(folder);
+  if (held) return say({ state: "running", pid: held.pid });
+  // shortcut: watch.log only grows (IDs, kinds and sizes per message); rotate it if it ever gets large.
+  const log = await open(join(installed(), "watch.log"), "a", 0o600);
+  try {
+    const child = spawn(
+      process.execPath,
+      [process.argv[1]!, "orca", "watch", folder, "--bot", bot],
+      { detached: true, windowsHide: true, stdio: ["ignore", log.fd, log.fd] },
+    );
+    child.unref();
+    say({ state: "started", pid: child.pid });
+  } finally {
+    await log.close();
+  }
+}
+
+async function stop(folder: string) {
+  const held = await liveWatch(folder);
+  if (!held) return "not_running";
+  process.kill(held.pid);
+  await rm(watchLock(folder), { force: true });
+  return "stopped";
+}
+
+async function install(folder: string, argv: string[]) {
+  if (process.platform !== "win32")
+    throw new Error("orca install is Windows only");
+  const bot = flag(argv, "--bot");
+  if (!argValue(bot, 80)) throw new Error("invalid orca bot or handle");
+  // A connected folder only: memberTransport checks the private files; the relay URL comes from the folder itself.
+  const t = await memberTransport(folder);
+  const { relay } = JSON.parse(
+    await readFile(join(folder, "agent.json"), "utf8"),
+  ) as { relay: string };
+  const dir = flag(argv, "--dir") ?? (root && join(root, "orca"));
+  if (!dir) throw new Error("usage");
+  for (const f of new Set([folder, process.env.KNOWSLINK_AGENT_FOLDER]))
+    if (f) await stop(f);
+  await mkdir(join(dir, "dist"), { recursive: true });
+  const plugin = join(dir, "dist", "plugin.js");
+  if (resolve(process.argv[1]!) !== resolve(plugin))
+    await copyFile(process.argv[1]!, plugin);
+  const node = join(dir, "node.exe");
+  // A running bot MCP keeps node.exe open, so the same build is not copied again.
+  const size = (p: string) =>
+    stat(p).then(
+      (s) => s.size,
+      () => -1,
+    );
+  if (
+    resolve(process.execPath) !== resolve(node) &&
+    (await size(process.execPath)) !== (await size(node))
+  )
+    await copyFile(process.execPath, node);
+  await writeFile(
+    join(dir, "defaults.json"),
+    JSON.stringify(orcaDefaults(resolve(folder), bot, relay), null, 2) + "\n",
+  );
+  await execAsync(
+    "reg.exe",
+    autostartArgs(installedCommand(dir, "orca", "start")),
+    quiet,
+  );
+  const started = (await execAsync(node, [plugin, "orca", "start"], quiet)) as {
+    stdout: string;
+  };
+  const mcp = installedCommand(dir);
+  say({
+    installed: dir,
+    agent: t.agentId,
+    autostart: RUN_VALUE,
+    watch: JSON.parse(started.stdout.trim()) as unknown,
+    mcp,
+    toolsAdd: `orca bot tools add "${mcp}" --name knowslink`,
+  });
+}
+
 const USAGE =
-  "usage: orca setup-connect <relay URL> [<folder>] [--lang ko|en] [--fresh] | orca watch <folder> --bot <name> [--from <handle>] | orca receive <folder> | orca send <folder> --to <agent> --kind <orca.task.v1|orca.decision.v1|orca.answer.v1> --file <json> [--key <key>]";
+  "usage: orca setup-connect <relay URL> [<folder>] [--lang ko|en] [--fresh] | orca watch <folder> --bot <name> [--from <handle>] | orca receive <folder> | orca install <folder> --bot <name> [--dir <path>] | orca start | orca stop | orca autostart on|off | orca send <folder> --to <agent> --kind <orca.task.v1|orca.decision.v1|orca.answer.v1> --file <json> [--key <key>]";
 
 // `plugin.js orca <cmd>`. Errors print fixed text only: never body text, keys or credentials.
 export async function orcaMain(argv: string[]): Promise<void> {
@@ -301,12 +466,31 @@ export async function orcaMain(argv: string[]): Promise<void> {
       if (!bot) throw new Error("usage");
       await watch(first, bot, flag(argv, "--from"));
     } else if (cmd === "receive" && first) await receive(first);
-    else if (cmd === "send" && first) await send(first, argv.slice(2));
+    else if (cmd === "install" && first) await install(first, argv.slice(2));
+    else if (cmd === "start") await start();
+    else if (cmd === "stop") say({ state: await stop(configured().folder) });
+    else if (cmd === "autostart" && (first === "on" || first === "off")) {
+      const { folder } = configured();
+      await execAsync(
+        "reg.exe",
+        autostartArgs(
+          first === "on"
+            ? installedCommand(installed(), "orca", "start")
+            : undefined,
+        ),
+        quiet,
+      );
+      // Off also ends the running watch, so nothing receives until autostart or start runs again.
+      say({
+        autostart: first,
+        watch: first === "off" ? await stop(folder) : undefined,
+      });
+    } else if (cmd === "send" && first) await send(first, argv.slice(2));
     else throw new Error("usage");
   } catch (e) {
     const local =
       e instanceof Error &&
-      /^(usage|invalid orca (body|bot or handle|send request)|orca body too large)$/.test(
+      /^(usage|invalid orca (body|bot or handle|send request)|orca body too large|orca watch already running|orca install is Windows only)$/.test(
         e.message,
       )
         ? e.message

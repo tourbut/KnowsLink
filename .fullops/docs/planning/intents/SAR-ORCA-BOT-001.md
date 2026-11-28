@@ -29,6 +29,7 @@ Orca 봇이 주인 Google 계정의 자기 agent `쿠어 (Orca)`로 KnowsLink에
    - `receive <폴더>`: Inbox에서 하나를 읽어 `untrusted: true`로 출력한다(형식 이름, item, 본문).
    - `send <폴더> --to <agent> --kind <세 형식> --file <json>`: 스키마 검사 뒤 사전 승인 경로로 보낸다.
    - Orca 봇 채팅 안 MCP는 쓰지 않는다(orca-helm 6.4절).
+   - 2026-11-28 변경(SAR-ORCA-HOST-001-DEV, 주인 요청 msg_e7c4b453e028): 고정 설치 뒤 봇에 `orca bot tools add`로 stdio MCP를 붙인다. 수신자는 자동 시작 watch 하나이고 MCP는 자동 수신을 끈다.
 2. 인증: 기존 Ed25519 agent 키·credential, 자기 agent(`self:` 출처). 키는 agent 폴더에만 두고 argv·로그·메일에 넣지 않는다.
 3. 도어벨 메일: ACK 뒤 `orca orchestration send --to bot:<이름> --type status --subject "KnowsLink: 새 메시지 N건" --body "<고정 문장>"`. 본문에는 검증한 ID, 대기 수, receive 명령만 넣는다. item이 있는 `orca.answer.v1`은 `--item <n>`을 붙인다. 메시지 본문과 발신자 이름은 넣지 않는다. 같은 ID는 한 번만 깨운다(기존 wake marker). 메일이 실패하면 다음 polling에서 다시 보낸다. `orca` 실행 파일 찾기는 orca-helm `lib/orca.mjs`의 `resolveOrcaBin`·`runOrca`를 참고한다.
 4. 사전 승인(relay·웹·adapter)

@@ -16,6 +16,7 @@ var useChoices = []useChoice{
 	{"dots", "Dots (원격)", "연결 안내 있음 · 기존 계정 사용 확인"},
 	{"claude", "Claude Code 작업 세션 (내 컴퓨터)", "자동 설정 · 시험 환경 확인 (Claude Code 2.1.302, Windows 11)"},
 	{"codex", "Codex 작업 세션 (내 컴퓨터)", "자동 설정 · 시험 환경 확인 (Codex CLI 0.163.0, Windows 11) · 도착 알림 없음"},
+	{"orca", "Orca 봇 (내 컴퓨터)", "수동 설치 · Windows 11 · 도어벨 자동 시작"},
 	{"other", "지원 확인이 필요한 호스트", "Hermes Agent, 그 밖의 호스트"},
 }
 
