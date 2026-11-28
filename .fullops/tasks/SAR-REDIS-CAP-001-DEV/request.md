@@ -1,0 +1,1 @@
+보관 1시간 Redis 용량 상한(이론 최악 150MiB > 128MiB noeviction)
