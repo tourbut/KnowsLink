@@ -46,7 +46,9 @@ lead 승인 `msg_adfdbb26e504`(2026-11-28). 순서: 기존 watch 중지 → inst
 | MCP | 설치된 node+bundle을 `KNOWSLINK_*` 환경 없이 stdio로 띄워 `knowslink_status`: `me.agent` `agent_5513ec51367fed3748903d`(이름 쿠어), `autoReceive.state` `off` |
 | agent·grant | 새 agent 없음(install·MCP 둘 다 같은 ID). install은 grant 경로를 부르지 않는다. 서버의 grant 3개는 이 worker가 다시 읽지 않았고 쿠어 확인을 요청했다 |
 
-미확인: 쿠어 봇의 `tools add` 결과, 재부팅 뒤 자동 시작(사람 단계).
+- 쿠어용 ask `msg_ce655a143a82`는 coordinator가 답 없이 멈췄다(`msg_5876c6c26f0e`). **선택:** 이 worker가 `orca bot tools add ... --name knowslink --bot 쿠어`를 실행했다. 결과는 `toolNameTaken`이었다. `orca bot tools --bot 쿠어`의 `knowslink` `detail`이 이미 `C:\Users\shin\AppData\Local\KnowsLink\orca\node.exe C:\Users\shin\AppData\Local\KnowsLink\orca\dist\plugin.js`였다(쿠어 쪽에서 먼저 붙인 것으로 본다). 되돌리려면 `orca bot tools rm knowslink --bot 쿠어`.
+
+미확인: 쿠어 대화 안에서 부른 `knowslink_status`(같은 명령의 stdio 호출로 대신 확인), 서버의 grant 3개 재조회, 재부팅 뒤 자동 시작(사람 단계).
 
 ## 스스로 정한 선택과 되돌리는 방법
 
