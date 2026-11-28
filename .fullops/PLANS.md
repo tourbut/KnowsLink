@@ -894,7 +894,7 @@ Codex 실제 설치는 업데이트 전후 0.9.12다. 시작 시 coor 레포 적
 | SAR-MCP-STDIO-SDK2-001-DEV | 대기 선행: SAR-MCP-SKILLS-001-DEV | dev |
 | SAR-MSG-TTL-1H-002-DEV | 대기(2026-12-28 이후) 선행: SAR-MSG-TTL-1H-001-DEV | dev |
 | SAR-MSG-TTL-1H-003-DEV | 준비 | dev |
-| SAR-REDIS-CAP-001-DEV | 준비 선행: SAR-MCP-DEPLOY-001-OPS | dev |
+| SAR-REDIS-CAP-001-DEV | 완료(772de5b) | dev |
 | SAR-GROK-WAKE-002-DEV | 대기(순서 ④): ① 수동 확인 성공(routine run 453bbe9d → receive → answer item 17은 주인이 직접 고름, routine 단독 답 없음 msg_50e0899444ac). 선행 확인 끝 | dev |
 | SAR-EVENTS-SECRET-001-DEV | 준비(순서 ③): whsec 암호화 + Events 광고·배달을 Beta 스펙(extensions 키, _meta, events/poll·stream)에 맞춤, Dots 회귀 확인. 도착 이벤트(knowslink.text.arrived)는 이미 있음, 본문·발신자 미포함 유지(주인 결정 msg_17037c7513a0) | dev |
 
@@ -2347,3 +2347,4 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 - 2026-11-28 17:49 SAR-MCP-DEPLOY-001-OPS → ops | claude/claude-sonnet-5-5/high | fresh | run run_b2458affdea1 | 재배정 0 | -
 - 2026-11-28 18:03 SAR-ORCA-MCP-SEND-001-DEV → dev | claude/claude-opus-5-5/high | fresh | run run_9690e8647340 | 재배정 0 | -
 - 2026-11-28 18:22 SAR-GROK-WAKE-001-DEV → dev | claude/claude-opus-5-5/high | fresh | run run_e7819ff844e8 | 재배정 0 | -
+- 2026-11-28 19:15 SAR-REDIS-CAP-001-DEV → dev | claude/claude-opus-5-5/high | fresh | run run_d8b959a59fed | 재배정 0 | -
