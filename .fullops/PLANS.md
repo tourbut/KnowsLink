@@ -895,6 +895,8 @@ Codex 실제 설치는 업데이트 전후 0.9.12다. 시작 시 coor 레포 적
 | SAR-MSG-TTL-1H-002-DEV | 대기(2026-12-28 이후) 선행: SAR-MSG-TTL-1H-001-DEV | dev |
 | SAR-MSG-TTL-1H-003-DEV | 준비 | dev |
 | SAR-REDIS-CAP-001-DEV | 준비 선행: SAR-MCP-DEPLOY-001-OPS | dev |
+| SAR-GROK-WAKE-002-DEV | 대기: 주인 확인 전 선행: SAR-REDIS-CAP-001-DEV | dev |
+| SAR-EVENTS-SECRET-001-DEV | 준비(순서 ③): whsec 암호화 + Events 광고·배달을 Beta 스펙(extensions 키, _meta, events/poll·stream)에 맞춤, Dots 회귀 확인. 도착 이벤트(knowslink.text.arrived)는 이미 있음, 본문·발신자 미포함 유지(주인 결정 msg_17037c7513a0) | dev |
 
 과거 완료 메시지 세 건을 기존 PLANS의 실제 메시지 ID와 SHA로 공용 integration 기록에 회수했다. 사유·담당·재개 조건을 갖춘 hold를 적용했다. pending이 비어도 hold의 제품 작업이 통합 완료됐다는 의미는 아니다. 다른 오래된 역할 SHA의 main 미포함 이력도 보존한다. 상설·임시 워크트리와 기존 Run run_8ca8bc058ab7을 유지한다. 새 제품 worker는 시작하지 않는다. 전체 제품 수락·실제 배포·새 기능은 이번 업데이트 범위 밖이다.
 
