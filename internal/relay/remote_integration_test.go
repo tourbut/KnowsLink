@@ -141,6 +141,7 @@ func TestRemoteOAuthHTTP(t *testing.T) {
 		other := &Service{Redis: testRedis(), Pool: pool, Google: g}
 		w = do(other, "POST", "/mcp", `{"jsonrpc":"2.0","id":1,"method":"server/discover"}`, "application/json", tokens.Access, false)
 		expect(t, w, 200, "2026-07-28", "events")
+		remoteEraChecks(t, other, tokens.Access)
 		w = do(other, "POST", "/mcp", `{"jsonrpc":"2.0","id":2,"method":"tools/call","params":{"name":"knowslink_status","arguments":{}}}`, "application/json", tokens.Access, false)
 		expect(t, w, 200, "automatic_send")
 		// A 4096-byte text JSON-escaped as \uXXXX exceeds 8 KiB but stays within the raw envelope budget.
@@ -204,4 +205,55 @@ func remoteReturnURL(t *testing.T, w *httptest.ResponseRecorder) *url.URL {
 		t.Fatal(err)
 	}
 	return u
+}
+
+// SAR-MCP-UPGRADE-001: a legacy (initialize) client sees the same answers as before, and a 2026-07-28 request on the same
+// endpoint gets the stateless result fields, 404 for an absent method and a tool refusal (not 404) for an unknown tool.
+func remoteEraChecks(t *testing.T, s *Service, token string) {
+	t.Helper()
+	call := func(body string, headers ...string) *httptest.ResponseRecorder {
+		r := httptest.NewRequest("POST", "https://example.com/mcp", strings.NewReader(body))
+		r.Header.Set("Content-Type", "application/json")
+		r.Header.Set("Authorization", "Bearer "+token)
+		for i := 0; i+1 < len(headers); i += 2 {
+			r.Header.Set(headers[i], headers[i+1])
+		}
+		w := httptest.NewRecorder()
+		s.Handler().ServeHTTP(w, r)
+		t.Logf("%s %s -> %d %.160s", r.Header.Get("MCP-Protocol-Version"), body[:min(len(body), 72)], w.Code, w.Body.String())
+		return w
+	}
+	refuse := func(w *httptest.ResponseRecorder, absent ...string) {
+		t.Helper()
+		for _, s := range absent {
+			if strings.Contains(w.Body.String(), s) {
+				t.Fatalf("legacy answer gained %q: %s", s, w.Body.String())
+			}
+		}
+	}
+	for _, v := range []string{"2025-03-26", "2025-06-18", "2025-11-25"} {
+		w := call(`{"jsonrpc":"2.0","id":1,"method":"initialize","params":{"protocolVersion":"`+v+`","capabilities":{},"clientInfo":{"name":"legacy","version":"1"}}}`, "MCP-Protocol-Version", "")
+		expect(t, w, 200, `"protocolVersion":"`+v+`"`, `"tools"`)
+		refuse(w, "resultType", "ttlMs")
+	}
+	w := call(`{"jsonrpc":"2.0","id":1,"method":"initialize","params":{"protocolVersion":"2024-11-05","capabilities":{},"clientInfo":{"name":"old","version":"1"}}}`)
+	expect(t, w, 200, `"protocolVersion":"2025-11-25"`)
+	expect(t, call(`{"jsonrpc":"2.0","method":"notifications/initialized"}`, "MCP-Protocol-Version", "2025-06-18"), 202)
+	w = call(`{"jsonrpc":"2.0","id":2,"method":"tools/list"}`, "MCP-Protocol-Version", "2025-06-18")
+	expect(t, w, 200, "knowslink_send", "knowslink_receive", "knowslink_ack")
+	refuse(w, "resultType", "ttlMs", "cacheScope")
+	expect(t, call(`{"jsonrpc":"2.0","id":3,"method":"resources/list"}`), 200, "unsupported_method")
+
+	meta := `"_meta":{"io.modelcontextprotocol/protocolVersion":"2026-07-28","io.modelcontextprotocol/clientCapabilities":{}}`
+	modern := func(method, name, params string) *httptest.ResponseRecorder {
+		return call(`{"jsonrpc":"2.0","id":9,"method":"`+method+`","params":{`+params+meta+`}}`, "MCP-Protocol-Version", "2026-07-28", "Mcp-Method", method, "Mcp-Name", name)
+	}
+	expect(t, modern("server/discover", "", ""), 200, `"resultType":"complete"`, `"ttlMs":300000`, `"cacheScope":"public"`, "untrusted data", "io.modelcontextprotocol/serverInfo")
+	expect(t, modern("tools/list", "", ""), 200, `"resultType":"complete"`, `"ttlMs":300000`, "knowslink_send")
+	w = modern("tools/call", "knowslink_status", `"name":"knowslink_status","arguments":{},`)
+	expect(t, w, 200, `"resultType":"complete"`, "automatic_send")
+	refuse(w, "ttlMs")
+	expect(t, modern("tools/call", "knowslink_nope", `"name":"knowslink_nope","arguments":{},`), 200, "unsupported_method")
+	expect(t, modern("resources/list", "", ""), 404, `"code":-32601`)
+	expect(t, modern("initialize", "", ""), 404, `"code":-32601`)
 }

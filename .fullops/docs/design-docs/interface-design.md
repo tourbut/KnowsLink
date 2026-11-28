@@ -2,9 +2,9 @@
 id: D05
 title: 인터페이스설계서
 status: review
-updated: 2026-11-27
+updated: 2026-11-28
 owner: dev
-tasks: [SAR-AUTOSETUP-001-DEV, SAR-CODEX-RECV-001-DEV, SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-003-BIDIRECTIONAL, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-GOOGLE-CONNECT-001-DEV, SAR-AUTO-RECEIVE-001-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SSE-INSTALL-001-OAUTH-RETURN-DEV, SAR-SERVICE-UI-001-DEV, SAR-HUMAN-PEER-001-DEV, SAR-REFACTOR-002-DEV, SAR-LANDING-GUIDE-001-DEV, SAR-UX-ISSUES-002-RECEIPT-DEV, SAR-UX-ISSUES-002-NAMES-DEV, SAR-UX-ISSUES-002-APPROVAL-DEV, SAR-UX-ISSUES-002-CONNECT-DEV, SAR-UX-ISSUES-002-LANG-DEV, SAR-SCHEDULE-001-DEV, SAR-PUBLISH-001-DEV, SAR-CONNECT-SIMPLE-001-DEV, SAR-MSG-EPHEMERAL-001, SAR-ORCA-BOT-001-DEV]
+tasks: [SAR-AUTOSETUP-001-DEV, SAR-CODEX-RECV-001-DEV, SAR-MVP-001-DEV, SAR-MVP-002-DEV, SAR-MVP-003-BIDIRECTIONAL, SAR-PUBLIC-IDENTITY-001-DEV, SAR-PUBLIC-IDENTITY-001-DEV-RATE-FIX, SAR-PUBLIC-AGENTS-001-DEV, SAR-PUBLIC-AGENTS-001-DEV-FIX, SAR-PUBLIC-AGENTS-001-DEV-POLICY-FIX, SAR-PUBLIC-MESSAGES-001-DEV, SAR-PUBLIC-MESSAGES-001-DEV-FIX, SAR-PUBLIC-MESSAGES-001-DEV-FIX-2, SAR-PUBLIC-MESSAGES-001-DEV-FIX-3, SAR-GOOGLE-CONNECT-001-DEV, SAR-AUTO-RECEIVE-001-DEV, SAR-SSE-INSTALL-001-DEV, SAR-SSE-INSTALL-001-OAUTH-RETURN-DEV, SAR-SERVICE-UI-001-DEV, SAR-HUMAN-PEER-001-DEV, SAR-REFACTOR-002-DEV, SAR-LANDING-GUIDE-001-DEV, SAR-UX-ISSUES-002-RECEIPT-DEV, SAR-UX-ISSUES-002-NAMES-DEV, SAR-UX-ISSUES-002-APPROVAL-DEV, SAR-UX-ISSUES-002-CONNECT-DEV, SAR-UX-ISSUES-002-LANG-DEV, SAR-SCHEDULE-001-DEV, SAR-PUBLISH-001-DEV, SAR-CONNECT-SIMPLE-001-DEV, SAR-MSG-EPHEMERAL-001, SAR-ORCA-BOT-001-DEV, SAR-MCP-UPGRADE-001]
 upstream: [D02]
 summary: owner와 agent HTTP 계약 및 gate와 adapter 흐름을 정의한다
 ---
@@ -30,6 +30,16 @@ summary: owner와 agent HTTP 계약 및 gate와 adapter 흐름을 정의한다
 | POST `/home/grant-revoke` | 회원 세션, `grant` → 303 `/home/agents#grants` | 정리 예산으로 늘 받는다. 다른 owner의 grant는 거부 |
 
 agent 자격(Bearer)으로 grant를 만들거나 끄는 경로는 없다. 모델의 `confirmed:true`도 grant를 만들지 않는다.
+
+## 원격 `/mcp` 2026-07-28 dual-era — SAR-MCP-UPGRADE-001
+
+`POST /mcp`는 legacy(`initialize`, 2025-03-26·2025-06-18·2025-11-25)와 modern(2026-07-28, 요청마다 `_meta`)을 같은 endpoint에서 받는다. 세션·GET SSE·DELETE는 없다.
+
+- era 판정: body `params._meta["io.modelcontextprotocol/protocolVersion"]`이 있으면 modern이다. modern은 `2026-07-28`만 받는다.
+- 헤더 검사(인증 전): `MCP-Protocol-Version`·`Mcp-Method`·`Mcp-Name`(Base64 sentinel 해독)이 있고 body와 다르면 400 `-32020`. 모르는 버전은 400 `-32022` + `data.supported`·`data.requested`. modern 요청에 헤더가 없는 것은 허용한다(헤더로 라우팅하는 계층이 없음).
+- legacy `initialize`: 요청 버전이 지원 목록에 있으면 그대로, 아니면 `2025-11-25`. 결과 모양은 이전과 같다.
+- modern 결과: 모두 `resultType:"complete"`와 `_meta["io.modelcontextprotocol/serverInfo"]`. `server/discover`·`*/list`는 `ttlMs:300000`, `cacheScope:"public"`. `server/discover`는 `instructions`(본문 untrusted, 명시 요청 때만 발송)를 준다.
+- modern에서 제공하지 않는 메서드는 404 `-32601`. 모르는 tool 이름은 이전처럼 200 거부(`unsupported_method`)다. legacy의 모르는 메서드도 이전처럼 200 거부다.
 
 ## SAR-MSG-EPHEMERAL-001 저장 장애의 오류 의미
 

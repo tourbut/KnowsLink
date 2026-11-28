@@ -120,6 +120,7 @@ Dots는 relay 자체의 Remote OAuth를 사용한다. Google 로그인 뒤 사�
 [remote_auth.go](../internal/relay/remote_auth.go)는 PKCE `S256`, 등록된 redirect, resource `/mcp`, scope `knowslink.text`를 묶는다.
 code는 한 번 사용한다. access token은 1시간이며 refresh는 회전한다. 설치 수명은 30일이며 token 교환 시 갱신한다.
 설치 권한 검사에는 owner·agent·현재 키·설치 만료가 포함된다. Remote token을 일반 `/v1` credential로 사용하지 않는다.
+`/mcp`는 MCP 2026-07-28 요청 헤더(`MCP-Protocol-Version`·`Mcp-Method`·`Mcp-Name`)가 body와 다르면 인증 전에 400으로 거부한다. 경로마다 다른 값을 믿는 혼동을 막는다.
 서버 보관 개인키와 callback secret 때문에 DB와 백업 접근자는 신뢰 경계 안에 있다.
 서명은 종단 간 암호화를 뜻하지 않는다. relay는 본문을 읽고 웹 사본을 만들 수 있다.
 
