@@ -35,19 +35,22 @@ func remoteHeader(v string) string {
 }
 
 // remoteEra checks the 2026-07-28 request metadata headers against the body and reports a modern (per-request _meta)
-// request. A present header that disagrees with the body is refused in either era, so no layer acts on a different value.
-// shortcut: a modern request missing Mcp-Method/Mcp-Name is admitted because nothing here routes on headers; refuse it when a gateway does.
+// request. A present header that disagrees with the body is refused in either era, so no layer acts on a different value;
+// a modern request must also carry Mcp-Method, and Mcp-Name on tools/call (SAR-MCP-SPEC-CHECK-001: spec MUST, -32020).
 func remoteEra(w http.ResponseWriter, r *http.Request, in remoteRequest) (modern, ok bool) {
 	var p struct {
 		Name string `json:"name"`
 		Meta struct {
-			Version string `json:"io.modelcontextprotocol/protocolVersion"`
+			Version      string          `json:"io.modelcontextprotocol/protocolVersion"`
+			Capabilities json.RawMessage `json:"io.modelcontextprotocol/clientCapabilities"`
 		} `json:"_meta"`
 	}
 	_ = json.Unmarshal(in.Params, &p)
 	header, body := r.Header.Get("MCP-Protocol-Version"), p.Meta.Version
 	method, name := r.Header.Get("Mcp-Method"), r.Header.Get("Mcp-Name")
-	if (header != "" && body != "" && header != body) || (method != "" && method != in.Method) || (name != "" && slices.Contains(remoteNamedMethods, in.Method) && remoteHeader(name) != p.Name) {
+	// Mcp-Name is required on tools/call, resources/read and prompts/get; only tools/call is served, the others answer 404.
+	missing := body != "" && (method == "" || (in.Method == "tools/call" && name == ""))
+	if missing || (header != "" && body != "" && header != body) || (method != "" && method != in.Method) || (name != "" && slices.Contains(remoteNamedMethods, in.Method) && remoteHeader(name) != p.Name) {
 		remoteError(w, 400, in.ID, -32020, "Header mismatch", nil)
 		return false, false
 	}
@@ -58,6 +61,11 @@ func remoteEra(w http.ResponseWriter, r *http.Request, in remoteRequest) (modern
 	// Per-request _meta is the modern era, so it must name the modern revision; a header alone keeps the legacy session shape.
 	if (requested != "" && !slices.Contains(remoteVersions, requested)) || (body != "" && body != remoteModern) {
 		remoteError(w, 400, in.ID, -32022, "Unsupported protocol version", map[string]any{"supported": remoteVersions, "requested": requested})
+		return false, false
+	}
+	// A modern request declares its capabilities on every call (spec MUST: -32602, HTTP 400).
+	if body != "" && len(p.Meta.Capabilities) == 0 {
+		remoteError(w, 400, in.ID, -32602, "Missing io.modelcontextprotocol/clientCapabilities", nil)
 		return false, false
 	}
 	return body != "", true
