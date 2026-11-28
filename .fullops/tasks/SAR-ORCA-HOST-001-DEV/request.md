@@ -1,0 +1,1 @@
+쿠어(Orca 봇)에 KnowsLink stdio MCP 커넥터를 붙이고 Orca 봇을 지원 호스트로 서비스한다: 고정 위치 설치·자동 시작 watch, orca bot tools add 한 줄 명령(기존 agent·grant 재사용), 웹 '어디에서 사용할까요' 항목과 README.
