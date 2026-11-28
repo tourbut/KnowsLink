@@ -4,7 +4,7 @@ status: review
 updated: 2026-11-28
 owner: ops
 tasks: [SAR-EVENTS-DEPLOY-001-OPS]
-summary: KNOWSLINK_SEAL_KEY를 운영 env에 넣고 65a752fe를 배포해 verify, 기동 로그, agent·grant 유지를 확인했다
+summary: "KNOWSLINK_SEAL_KEY를 운영 env에 넣고 65a752fe를 배포해 verify, 기동 로그, agent·grant 유지를 확인했다"
 ---
 
 # SAR-EVENTS-DEPLOY-001-OPS 검증 보고
