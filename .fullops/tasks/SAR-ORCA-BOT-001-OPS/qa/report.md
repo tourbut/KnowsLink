@@ -117,6 +117,14 @@ push, 서버 DB·`.env`·Tunnel·DNS·방화벽 변경은 하지 않았다.
 - adapter: `plugin.js` SHA256 `22cab9ed…`. `b4c76b64..0899e5bd`의 `adapters/` 변경은 문서 2개뿐이라 다시 빌드하지 않았다.
 - **선택:** 수신기는 이 ops worktree의 build를 쓴다. worktree를 지우면 수신기와 도어벨의 `receive` 명령 경로가 깨진다. 멈추려면 그 터미널을 닫는다.
 
+### Grok 등록과 grant 확인 (읽기 전용, 본문·키·토큰 미조회)
+
+- Grok agent 등록 확인: `agent_bce13b6103af001d83b842`(`Grok bot`, 원격 호스트, 2026-11-28T03:32:45Z), 쿠어 `agent_b865fba924692fafbb27b8`와 같은 주인. 안내 `msg_cf9b0e7cc211`.
+- `msg_d1695a29f5d3`은 grant 3개와 task 발송을 알렸으나 03:55:18Z 운영 상태는 **grant 0개**(`Grants` 키 없음)다.
+- task: 메시지 기록이 없다(Redis `DBSIZE` 0, 상태의 메시지 pointer 없음, 보존 1시간). accepted된 발송은 없다. Grok 쪽 `knowslink_send` 결과는 서버에 남지 않아 확인하지 못했다. grant가 없는 고정 형식 발송은 `approval_required`가 된다(코드 확인).
+- 웹: 이 계정의 세션은 1개이고 마지막 요청이 03:32:45Z다. 그 뒤 이 relay에 로그인한 웹 요청은 없는 것으로 본다. `grant-create`는 Google 인증 후 5분이 지나면 재인증을 요구하고 저장하지 않는다.
+- 수신기: process 실행 중, 약 10초 간격 요청이 relay에 도달한다. 받을 메시지가 없어 도어벨은 시도하지 않았다. relay error 0줄.
+
 ### 남은 단계
 
 1. 주인이 Grok Bot에 custom connector를 추가·Authenticate하고 agent 이름·ID를 알린다.
