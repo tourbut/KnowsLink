@@ -81,9 +81,18 @@ push, 서버 DB·`.env`·Tunnel·DNS·방화벽 변경은 하지 않았다.
 - **선택:** 사람 단계를 자동화하지 않는다. Grok 갱신 확인 전이라 grant를 만들지 않았다. 연결을 되돌리려면 주인이 웹 "내 에이전트"에서 이 agent를 해제한다.
 - 두 번째 ask `msg_84a6c1b61bcb`(agent 확인, Grok 갱신)도 코디네이터 중지로 답이 없다(`msg_cb3c95224786`). **선택:** agent 이름은 그대로 두고, grant·`watch`·왕복은 보류한 채 미완료로 보고한다. 인박스를 닫지 않으려고 `fullops done`은 실행하지 않았다.
 
+### Grok CLI 설치 준비 (계획 변경 `msg_d2da8acc2304`)
+
+- Grok은 맥북이 아니라 이 PC의 grok CLI 1.0.92다. 위 `msg_84a6c1b61bcb`의 보류 선택은 이 답으로 바뀌었다.
+- 주인이 웹에서 `agent_b865fba924692fafbb27b8`의 이름을 바꿨다(`msg_b40681b4a7c0`). 새 이름은 전달받지 못했다. 기록은 ID를 쓴다.
+- `python scripts/package_plugin.py --host grok --install-dir %LOCALAPPDATA%\KnowsLink\grok-plugin-b4c76b64 --connect --verify`(Node 22.22.2): MCP 경계 검사 exit 0, `grok plugin validate` 통과. `plugin.js` SHA256은 위 Orca 빌드와 같다.
+- **선택:** 생성된 `.mcp.json`·`mcp.json`의 agent 폴더를 `%LOCALAPPDATA%\KnowsLink\grok-agent`로 바꿨다. `node.exe` 22.22.2를 설치 폴더에 복사해 `command`로 지정했다(`.devtools` 정리에 영향받지 않게). 되돌리려면 `grok plugin uninstall knowslink` 뒤 설치 폴더를 지운다. `~/.grok` 설정과 다른 plugin은 바꾸지 않았다.
+- 리뷰 low 1의 실제 값: `<plugin.js>` = `%LOCALAPPDATA%\KnowsLink\grok-plugin-b4c76b64\knowslink\dist\plugin.js`, `<this agent folder>` = `%LOCALAPPDATA%\KnowsLink\grok-agent`, `<Orca agent>` = `agent_b865fba924692fafbb27b8`.
+- 사람 단계 ask `msg_ba0c13a412f6`: `grok plugin install <설치 폴더>\knowslink --trust`, Google 동의(링크 만료 02:05:03Z).
+
 ### 남은 단계
 
-1. 주인이 `Orca Bot` agent가 본인 계정에 있는지 확인한다. 이름을 `쿠어 (Orca)`로 할지 정한다.
-2. 맥북 Grok(`/workspace/.knowslink`) adapter를 `b4c76b64` 빌드로 갱신하고 agent 이름·`plugin.js` 경로·연결 폴더를 받는다.
+1. 주인이 `grok plugin install ... --trust`를 실행하고 Grok 연결에 동의한다. 만료되면 `setup-connect ... grok-agent --host grok`을 다시 실행한다.
+2. `grok mcp doctor knowslink`로 MCP 서버를 확인한다.
 3. 주인이 grant 3개를 만든다.
 4. `orca watch <폴더> --bot 쿠어`, 왕복 1회, 도어벨 argv·`receive`·`--item` 기록.
