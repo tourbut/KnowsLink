@@ -885,7 +885,7 @@ Codex 실제 설치는 업데이트 전후 0.9.12다. 시작 시 coor 레포 적
 | SAR-ORCA-BOT-002-DEV | 대기 선행: SAR-ORCA-BOT-001-DEV | dev |
 | SAR-ORCA-BOT-001-OPS | 완료(3a1df15) | ops |
 | SAR-GROK-INSTALL-002-DEV | 대기 선행: SAR-ORCA-BOT-001-OPS | dev |
-| SAR-MCP-UPGRADE-001 | 대기 선행: SAR-ORCA-BOT-001-OPS | dev |
+| SAR-MCP-UPGRADE-001 | 완료(6881d23) | dev |
 | SAR-ORCA-GRANT-UX-001-DEV | 대기 선행: SAR-ORCA-BOT-001-OPS | dev |
 | SAR-ORCA-HOST-001-DEV | 완료(6943ee6) | dev |
 | SAR-ORCA-HOST-002-DEV | 완료(877ecf8) | dev |
@@ -2330,3 +2330,4 @@ DEV는 일반 회원 Node 로컬 연결·키별 credential·회전/선택 철회
 - 2026-11-28 15:03 SAR-ORCA-HOST-002-DEV → dev | claude/claude-opus-5-5/medium | fresh | run run_06249106ad70 | 재배정 0 | -
 - 2026-11-28 15:35 SAR-ORCA-HOST-001-OPS → ops | claude/claude-sonnet-5-5/high | fresh | run run_6c6b6e07c005 | 재배정 0 | -
 - 2026-11-28 16:01 SAR-ORCA-DIAG-001-OPS → ops | claude/claude-sonnet-5-5/high | fresh | run run_9931355ef011 | 재배정 0 | -
+- 2026-11-28 15:48 SAR-MCP-UPGRADE-001 → dev | claude/claude-opus-5-5/high | fresh | run run_9931355ef011 | 재배정 0 | -
