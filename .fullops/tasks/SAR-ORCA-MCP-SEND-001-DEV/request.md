@@ -1,0 +1,1 @@
+쿠어 로컬 MCP knowslink_send(orca.decision.v1)가 sent/queued인데 원격 Grok Bot knowslink_receive에 0건: 격리 relay로 재현하고 원인 수정
