@@ -141,7 +141,7 @@ func TestPostgresSafety(t *testing.T) {
 		if r["id"] != firstID || r["envelope"] != nil {
 			t.Fatal("replay not receipt-only")
 		}
-		long := wire(t, f.private["agent_a"], secondID, "agent_a", "agent_b", "schedule.query", "idempotency-key-02", "", queryBody(), time.Now().Add(time.Hour+time.Minute))
+		long := wire(t, f.private["agent_a"], secondID, "agent_a", "agent_b", "schedule.query", "idempotency-key-02", "", queryBody(), time.Now().Add(301*time.Second))
 		f.send(long, "agent_a", "", 422)
 		f.send(f.message(secondID, "idempotency-key-02"), "agent_a", "", 200)
 		f.send(f.message(firstID, "idempotency-key-03"), "agent_a", "", 409)

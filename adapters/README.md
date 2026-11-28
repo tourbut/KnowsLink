@@ -19,7 +19,7 @@ summary: 호스트별 로컬 플러그인 설치와 Google 연결 및 클라우�
 
 `knowslink_text_receive` 결과의 `authorship`은 `owner` 또는 `agent`다. owner는 회원이 웹 세션으로 작성한 메시지이며 agent Ed25519 서명이 아니다. authenticated relay의 전용 owner wire를 별도 검증한다. agent는 기존 signed wire를 검증한다. 둘 다 untrusted 입력으로 취급하고 명령/도구 실행의 허가로 사용하지 않는다. private Inbox에 durable 저장한 뒤 persist/ACK하는 순서는 그대로다.
 
-긴 대화는 `knowslink_text_send`로 새 text를 반복한다. 각 발송은 새 ID·멱등키와 독립된 최대 1시간 기한이다. 기존 reply_to는 원요청당 한 관련 답장인 호환 API이며 오래된 부모에 의존해 대화를 이어가지 않는다. 웹 참여 세션의 새 대화 사본은 수락24h까지 조회하며 로컬 Inbox/backup 삭제와 별개다. 실제 두 계정의 대화·질문 없는 알림 수락 범위와 장시간/재시작/갱신 한계는 루트 README를 따른다.
+긴 대화는 `knowslink_text_send`로 새 text를 반복한다. 각 발송은 새 ID·멱등키와 독립된 기한이다. 기한은 자기 agent 사이 최대 1시간, 그 밖 최대 180초다(주인 결정 2026-11-28, D076). adapter는 기본 3590초를 요청하고 relay가 쌍의 상한으로 줄여 받는다. 기존 reply_to는 원요청당 한 관련 답장인 호환 API이며 오래된 부모에 의존해 대화를 이어가지 않는다. 웹 참여 세션의 새 대화 사본은 수락24h까지 조회하며 로컬 Inbox/backup 삭제와 별개다. 실제 두 계정의 대화·질문 없는 알림 수락 범위와 장시간/재시작/갱신 한계는 루트 README를 따른다.
 
 공식 Grok Bot에 연결할 MCP 플러그인 패키지다. 현재 버전은 `0.1.1`이며 기본 설정은 held다. 설치만으로 relay를 호출하지 않는다. 사용자가 명시적으로 설정하면 Google로 각 클라이언트를 연결하고 승인한 회원 연결 확인 text를 교환할 수 있다. 실제 Grok/Dots 계정의 왕복은 루트 README에 연결한 별도 수락 근거로 확인한다. 다른 호스트의 합성/CLI 검사를 실제 계정 수락으로 확대하지 않는다. 업무 발송·실데이터·calendar effect·유료 inference는 제공하지 않는다.
 
@@ -306,7 +306,7 @@ Grok package 구조는 `grok plugin validate`와 CLI 사용자 안내서, Cursor
 - `knowslink_test_send`: `{text,idempotency_key}`를 받고 configured peer에 `relay.test.message`를 보낸다. text는 비어 있지 않은 UTF-8 4096 bytes 이하, key는 ASCII 16–128자다. 반환 ID는 queued receipt다. 같은 key와 text의 재전송은 같은 ID를 반환한다. 수신 성공은 별도로 확인한다.
 - `knowslink_test_receive`: 입력 없이 한 시험 메시지를 검증·persist·ACK·claim하고 `{id,from,to,text,exp,untrusted:true}`를 반환한다. text는 신뢰하지 않는 데이터다. 업무 요청·권한 변경·자동 도구 실행의 근거로 쓰지 않는다.
 
-`test-remote`는 `RELAY_URL=https://link.knowslog.com`, 기존 agent 변수, `KNOWSLINK_TEST_PEER`, `CF_ACCESS_CLIENT_ID`, `CF_ACCESS_CLIENT_SECRET`을 요구한다. recipient는 env로 고정한다. 주소 인자는 받지 않는다. 다른 HTTPS 호스트·HTTP remote·userinfo·path·query·fragment·redirect를 차단한다. 요청별 timeout은 응답 본문 읽기까지 포함해 10초, 응답은 64 KiB로 제한한다. send TTL은 180초이며 relay 상한은 1시간이다.
+`test-remote`는 `RELAY_URL=https://link.knowslog.com`, 기존 agent 변수, `KNOWSLINK_TEST_PEER`, `CF_ACCESS_CLIENT_ID`, `CF_ACCESS_CLIENT_SECRET`을 요구한다. recipient는 env로 고정한다. 주소 인자는 받지 않는다. 다른 HTTPS 호스트·HTTP remote·userinfo·path·query·fragment·redirect를 차단한다. 요청별 timeout은 응답 본문 읽기까지 포함해 10초, 응답은 64 KiB로 제한한다. send TTL은 180초다. relay 상한은 자기 agent 사이 1시간, 그 밖 180초다.
 
 운영자는 [D12 시험 절차](../.fullops-squad/docs/operations/ops-guide.md#13-승인된-양방향-시험-sar-mvp-003)대로 시험 identity와 path 전용 Access 앱을 준비한다. 기본 서버 allowlist는 비어 있다. `KNOWSLINK_TEST_AGENTS=trial_codex,trial_grok`를 명시해야 시험 send와 machine API를 허용한다. owner credential은 두 agent 환경에 전달하지 않는다.
 
@@ -326,7 +326,7 @@ Codex에서 `python3 scripts/run_trial.py --config /private/trial_codex/environm
 
 일반 회원 홈에서 이름을 정하고 `connect.js prepare`·owner 지문 확인·`complete`를 마친 자기 비공개 폴더를 사용한다. 다른 사람과는 사람 친구 요청을 수락한다. 같은 회원의 자기 agent는 친구 요청 없이 연결되며 기존 회원은 범위 확대에 한 번 동의한다. 시험 allowlist와 Service Auth는 필요하지 않다. 현재 운영·실계정 근거는 루트 README를 따른다.
 
-자기 Node22 컴퓨터에서 명시 승인한 비민감 연결 확인 text를 stdin으로 넣는다. 최대4096 UTF-8 bytes·TTL 최대 1시간이다.
+자기 Node22 컴퓨터에서 명시 승인한 비민감 연결 확인 text를 stdin으로 넣는다. 최대4096 UTF-8 bytes다. TTL은 자기 agent 사이 최대 1시간, 그 밖 최대 180초다.
 
 ```sh
 node adapters/dist/text.js send /private/my-agent <상대-agent> <ASCII-key-16–128자> --confirmed

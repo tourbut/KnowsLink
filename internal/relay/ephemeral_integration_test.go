@@ -52,7 +52,7 @@ func TestMessagesLiveOnlyInRedis(t *testing.T) {
 	const id, needle = "0199a3f2-4c10-7a11-8b22-ephemeral0001", "합성 휘발 본문 ephemeral-needle"
 	envelope := json.RawMessage(`{"text":"` + needle + `"}`)
 	if _, err := f.s.transaction(ctx, func(st *State, now time.Time) (any, error) {
-		st.Messages[id] = &Message{Receipt: Receipt{ID: id, From: "agent_a", To: "agent_b", Intent: publicTextIntent, Accepted: now, Exp: now.Add(publicTextTTL), State: "queued"},
+		st.Messages[id] = &Message{Receipt: Receipt{ID: id, From: "agent_a", To: "agent_b", Intent: publicTextIntent, Accepted: now, Exp: now.Add(peerTextTTL), State: "queued"},
 			Key: "ephemeral-key-01", Kid: "key1", Deliver: "agent", Envelope: envelope, Inbox: envelope, Conversation: &ConversationCopy{Text: needle, Authorship: "agent"}}
 		st.Idempotency["agent_a/ephemeral-key-01"] = id
 		st.remote().Installs["install_ephemeral"] = &remoteInstall{Owner: "x", Agent: "agent_none", Exp: now.Add(time.Hour), Inbox: map[string]json.RawMessage{id: envelope}}

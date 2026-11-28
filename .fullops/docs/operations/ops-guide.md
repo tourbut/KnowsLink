@@ -562,7 +562,7 @@ python3 scripts/run_trial.py --config /home/shin/deploy/knowslink-state/trial-SA
 
 Codex 송신은 표준 입력에 시험 text만 주고 `send sar-mvp-003-codex-round-1`을 사용한다. uncertain retry는 같은 text와 key만 사용한다. Grok Command 등록은 Python launcher·config 경로·고정 Node 경로·standalone bundle 경로만 argv에 넣는다. 비밀값은 argv에 넣지 않는다. owner/admin이 기존 `user-knowslink` 등록의 Command·환경 지원을 확인한 뒤 교체한다. 미지원이면 같은 launcher의 CLI 수동 pull을 사용한다. Grok 부모 컴퓨터의 hostname/loopback을 서버로 오인하지 않는다.
 
-Grok 수신 ID는 Codex send ID와 같아야 한다. Grok 회신 text에는 첫 ID를 포함한다. Grok reply ID는 Codex receive ID와 같아야 한다. 각 단계는 1시간 TTL 안에 수행한다. `empty`는 네트워크 성공이나 유실 확정이 아니다. 기본 모드를 held로 바꾸면 송수신 도구가 멈춘다. 네트워크 queue가 대화를 자동 wake하지 않는다.
+Grok 수신 ID는 Codex send ID와 같아야 한다. Grok 회신 text에는 첫 ID를 포함한다. Grok reply ID는 Codex receive ID와 같아야 한다. 각 단계는 그 쌍의 전달 기한(자기 agent 사이 1시간, 그 밖 180초) 안에 수행한다. `empty`는 네트워크 성공이나 유실 확정이 아니다. 기본 모드를 held로 바꾸면 송수신 도구가 멈춘다. 네트워크 queue가 대화를 자동 wake하지 않는다.
 
 ### 13.4 중단·복귀와 차단 조건
 

@@ -19,7 +19,7 @@ summary: singleton Postgres 상태와 epoch CAS 및 처리량 한계를 정의�
 - Redis 값: `ephemeral{Messages, Idempotency, Inboxes}` JSON 한 개. 키는 `knowslink:messages:<무작위 이름>`, TTL 1시간. Postgres 행은 이름(`State.Ephemeral`)만 저장한다. 이름은 내용과 무관한 random token이다.
 - 원자성: transaction은 먼저 Postgres 행 lock을 잡는다. 같은 lock 안에서 Redis 사본을 읽는다. 사본이 바뀌면 새 키에 SET하고 SaveRelay·commit한 뒤 이전 키를 DEL한다. commit이 실패하면 행은 이전 이름을 가리키므로 이전 사본이 그대로 현재다. 여러 relay process의 lease·claim·ACK·멱등은 지금처럼 행 lock 순서로 직렬화된다. 사본이 바뀌지 않은 transaction은 Redis에 쓰지 않는다.
 - 장애: Redis 읽기·쓰기 실패와 미설정은 `unavailable`이다. Postgres로 대신 저장하지 않는다. 키가 없으면(Redis 재시작·TTL) 빈 저장소로 읽고 다음 commit이 이름을 지운다. 복구 뒤 새 송신은 정상이다.
-- 보관: text와 서명 agent 업무 envelope `/v1/send`의 전달 기한은 최대 1시간이다(`relay.approval.request`는 최대 300초, 주인 결정 2026-11-28). 모든 메시지 기록은 수락 1시간 뒤 sweep이 지운다(`messageRetention`). Redis TTL 1시간은 상한 보조다. 요청 사본이 Redis에서 사라진 gate는 sweep이 지운다.
+- 보관: 전달 기한은 같은 owner의 활성 자기 agent 사이 최대 1시간이다. 그 밖은 text 최대 180초, 서명 agent 업무 envelope `/v1/send` 최대 300초다. `relay.approval.request`는 항상 최대 300초다(주인 결정 2026-11-28, D076). 2026-12-28 전환은 별도 과제이며 날짜 분기 코드는 없다. 모든 메시지 기록은 수락 1시간 뒤 sweep이 지운다(`messageRetention`). Redis TTL 1시간은 상한 보조다. 요청 사본이 Redis에서 사라진 gate는 sweep이 지운다.
 - 상한: 전체 20,000건·대기 100건·pending gate 100건·claim 4건을 그대로 메모리 상태에서 센다.
 - Redis 설정: `--save ""`, `--appendonly no`, `--maxmemory 128mb`, `--maxmemory-policy noeviction`, 포트 미게시, `database` internal network. 가득 차면 쓰기를 거부하므로 relay는 `unavailable`로 끝낸다.
 - 운영 자원: Redis `mem_limit 192m`·`cpus 0.25`·read-only·cap_drop ALL. 근거: commit 중 Redis에는 사본이 최대 2개 있다. 사본 크기는 relay 256 MB 한도가 먼저 제한한다. 메시지가 빠져 상태 행이 작아지므로 행 lock 시간도 줄어든다. 2026-11-14 운영 이행에서 상태 행은 8894 bytes(`pg_column_size`)이고 메시지 부분은 0 bytes, Redis `used_memory`는 1.43 MiB였다(D12 SAR-RELEASE-004-OPS). 처리량은 측정하지 않았다.

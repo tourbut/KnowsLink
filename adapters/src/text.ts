@@ -62,7 +62,8 @@ export function textSigningBytes(e: TextEnvelope): Buffer {
     `KNOWSLINK-TEXT\0knowslink.text.v1\0Ed25519\0${e.sig.kid}\0${canonical({ v: e.v, id: e.id, from: e.from, to: e.to, text: e.text, exp: e.exp, idempotency_key: e.idempotency_key, reply_to: e.reply_to ?? "", ...(e.kind ? { kind: e.kind } : {}) })}`,
   );
 }
-// 10 s under the relay's strict 1-hour ceiling so a slightly fast client clock is not ttl_too_long.
+// 10 s under the relay's strict 1-hour ceiling so a slightly fast client clock is not ttl_too_long. The adapter cannot
+// tell a self agent from a friend, so the relay cuts this to the pair's ceiling (180 s outside self agents, D076).
 export const SEND_TTL_MS = 3590000;
 
 export class TextTransport extends Adapter {

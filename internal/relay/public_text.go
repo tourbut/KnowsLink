@@ -14,7 +14,20 @@ import (
 
 const publicTextIntent = "knowslink.text"
 const rawEnvelopeLimit = 32768
-const publicTextTTL = messageRetention
+
+// Delivery ceilings (owner decision D076, 2026-11-28): a message between one owner's active self agents waits up to
+// messageRetention; friend, legacy and cross-owner messages keep their earlier ceilings. No date switch lives here.
+const (
+	peerTextTTL     = 180 * time.Second
+	peerEnvelopeTTL = 300 * time.Second
+)
+
+func (st *State) deliveryTTL(from, to string, peer time.Duration) time.Duration {
+	if st.selfAgents(from, to) {
+		return messageRetention
+	}
+	return peer
+}
 
 type PublicText struct {
 	V       string    `json:"v"`
@@ -119,8 +132,13 @@ func (st *State) ingestPublicText(agent string, e *PublicText, now time.Time) (a
 	if !now.Before(exp) {
 		return nil, fault("expired")
 	}
-	if exp.After(now.Add(publicTextTTL)) {
+	if exp.After(now.Add(messageRetention)) {
 		return nil, fault("ttl_too_long")
+	}
+	// An adapter cannot tell a self agent from a friend, so it asks for the 1-hour maximum and the relay cuts it to the
+	// pair's ceiling; the signed exp stays as sent and the receipt carries the real deadline.
+	if limit := now.Add(st.deliveryTTL(e.From, e.To, peerTextTTL)); exp.After(limit) {
+		exp = limit
 	}
 	if st.Messages[e.ID] != nil {
 		return nil, fault("id_collision")

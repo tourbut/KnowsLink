@@ -10,7 +10,8 @@ import (
 )
 
 // policyEffective is the effective date both languages show (P-01); ops changes only this value if the deploy moves.
-const policyEffective = "2026-10-22"
+// 2026-11-28: the self-agent 1-hour delivery clause takes effect at once by owner decision D076.
+const policyEffective = "2026-11-28"
 
 //go:embed policy/*.html
 var policyFiles embed.FS

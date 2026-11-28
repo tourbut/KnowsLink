@@ -49,13 +49,10 @@ func TestTrialMessageSafety(t *testing.T) {
 	if _, err = st.ingest("agent_a", conflict, "", now); err == nil || err.Error() != "idempotency_conflict" {
 		t.Fatal("duplicate conflict", err)
 	}
-	for _, expiry := range []time.Time{now, now.Add(messageRetention + time.Second)} {
+	for _, expiry := range []time.Time{now, now.Add(peerEnvelopeTTL + time.Second)} {
 		if _, err = st.ingest("agent_a", message(secondID, "trial-expiry-key", "ping", expiry), "", now); err == nil {
 			t.Fatal("invalid TTL")
 		}
-	}
-	if envelopeTTL("relay.request") != time.Hour || envelopeTTL("relay.approval.request") != 300*time.Second {
-		t.Fatal("envelope TTL ceilings: messages 1 hour, human approval wait unchanged at 300 s")
 	}
 	lease, err := st.operate("test-pull", "token-b", command{}, now)
 	if err != nil {
