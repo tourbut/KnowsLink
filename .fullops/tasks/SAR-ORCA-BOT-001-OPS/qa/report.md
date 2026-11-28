@@ -79,6 +79,7 @@ push, 서버 DB·`.env`·Tunnel·DNS·방화벽 변경은 하지 않았다.
 - `orca setup-connect https://link.knowslog.com %LOCALAPPDATA%\KnowsLink\orca-agent --host orca`를 실행했다. 만료(02:01:02Z) 전에 `connected`·종료 0이 나왔다. agent `agent_b865fba924692fafbb27b8`, 이름 `Orca Bot`(요청한 `쿠어 (Orca)`와 다름), 지문 `SHA256:Im2nPfxt-GppujUkek5dXm2FPU4WSA_9nRw6dEw8i3Q`(ask에 적은 값과 같음). 누가 어떤 화면에서 동의했는지는 직접 확인하지 못했다.
 - ask `msg_e71dac575ae2`(동의, 맥북 Grok adapter 갱신). 코디네이터는 답 없이 멈추고 판단을 넘겼다(`msg_7721fdcdee4c`).
 - **선택:** 사람 단계를 자동화하지 않는다. Grok 갱신 확인 전이라 grant를 만들지 않았다. 연결을 되돌리려면 주인이 웹 "내 에이전트"에서 이 agent를 해제한다.
+- 두 번째 ask `msg_84a6c1b61bcb`(agent 확인, Grok 갱신)도 코디네이터 중지로 답이 없다(`msg_cb3c95224786`). **선택:** agent 이름은 그대로 두고, grant·`watch`·왕복은 보류한 채 미완료로 보고한다. 인박스를 닫지 않으려고 `fullops done`은 실행하지 않았다.
 
 ### 남은 단계
 
