@@ -30,6 +30,8 @@ parallel: on
 
 ## 현재 상황과 확인 근거
 
+- 2차(2026-11-28): 1차는 운영 SSH가 auto mode에 막혀 서버를 건드리지 않고 멈췄다. 배포 스크립트는 `fullops/ops` `d25a5d08`에 있다. 이후 주인이 이 워크트리의 `.claude/settings.local.json`에 `ssh`·`scp` `shin@64.176.237.173` 허용 규칙을 넣었다(D064). 이 규칙은 Bash 도구 형식이므로 서버 명령은 Bash 도구로 실행한다.
+
 - 운영: Vultr `knowslink-relay-01`, 제품 `40aafe6f`(goose 4, Redis). 접속·경로·compose 호출은 [D12](../docs/operations/ops-guide.md)의 SAR-VULTR-MIGRATE-001·SAR-RELEASE-004-OPS 절을 따른다.
 - 배포 대상 `b4c76b64`(origin/main 조상)에는 SAR-ORCA-BOT-001-DEV(grant·Orca adapter)와 SAR-WIN-LINT-001-OPS가 들어 있다. `40aafe6f..b4c76b64` 사이에 `db/` 변경이 없다. 마이그레이션 없는 배포 경로를 쓰되 직접 다시 확인한다.
 - 리뷰 low 2(`.fullops/tasks/SAR-ORCA-BOT-001-DEV/reviews/73f3ac3eb3f9/report.md`): 이전 버전 adapter는 `kind`가 있는 envelope를 버린다. 받는 쪽 adapter(Grok 역할 agent와 Orca 역할 agent 양쪽)를 새 버전으로 갱신하기 전에 grant를 만들지 않는다.
@@ -52,7 +54,7 @@ parallel: on
 
 - [ ] 배포 전 `beta.sh backup`과 rollback 태그. 해시·크기를 기록한다.
 - [ ] `b4c76b64` 배포. `verify.py local`·`public` 통과, relay error 0줄을 확인한다.
-- [ ] 받는 쪽 adapter 갱신: 이 PC의 Grok 역할 agent 설치와 새 Orca agent 폴더가 `b4c76b64`의 adapter를 쓰는지 확인한다.
+- [ ] 받는 쪽 adapter 갱신: 이 PC의 Orca agent는 `b4c76b64` 빌드(`adapters/dist/plugin.js`)를 쓴다. Grok은 이 PC에 없다. 맥북 쪽 Grok Bot 컴퓨터(`/workspace/.knowslink`)에 있고, 갱신·연결은 lead가 쿠어를 거쳐 주인에게 맡긴다(D065). Grok 쪽 완료 신호가 올 때까지 grant 단계로 가지 않는다.
 - [ ] `plugin.js orca setup-connect https://<운영 URL> %LOCALAPPDATA%\KnowsLink\orca-agent --host orca`로 `쿠어 (Orca)`를 연결한다. 브라우저 Google 동의·지문 비교·이름은 사람 단계다(아래 '사람 단계').
 - [ ] grant 생성: 웹 "내 에이전트"에서 주인이 만든다. Grok→쿠어는 `orca.task.v1`·`orca.answer.v1`, 쿠어→Grok은 `orca.decision.v1`이다(사람 단계).
 - [ ] `watch --host orca --bot 쿠어` 실행과 운영 왕복 1회: task → 쿠어 도어벨 메일 → receive, decision → Grok → answer → `--item` 메일.
