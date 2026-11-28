@@ -1,9 +1,10 @@
 ---
 id: qa-SAR-EVENTS-SECRET-001-DEV
 title: SAR-EVENTS-SECRET-001-DEV QA 보고
-status: done
+status: approved
 updated: 2026-11-28
 owner: dev
+summary: Events secret 봉인·Beta dual 광고·poll의 표적 검증 결과
 ---
 
 # SAR-EVENTS-SECRET-001-DEV QA 보고
