@@ -42,7 +42,7 @@ summary: Skills·Tasks·Elicitation·File Uploads·2026-07-28 stateless를 원�
 
 ## 1순위 구현 요약
 
-- 위치: `internal/relay/remote_mcp.go`(`remoteEra`, `remoteError`, `remoteHeader`, 결과 장식), 인터페이스 정본 [D05](../../docs/design-docs/interface-design.md)의 dual-era 절.
-- 선택: modern 요청에 `Mcp-Method`·`Mcp-Name`이 없어도 받는다(헤더로 라우팅하는 계층이 없음). 값이 있고 다르면 era와 관계없이 거부한다. 되돌리기: `remoteEra`의 `method != ""`·`name != ""` 조건을 modern일 때 필수로 바꾼다(코드의 `shortcut:` 주석).
+- 위치: `internal/relay/remote_era.go`(`remoteEra`, `remoteError`, `remoteHeader`, `remoteModernResult`)와 `remote_mcp.go`의 호출, 테스트 `remote_era_test.go`·`remote_integration_test.go`, 인터페이스 정본 [D05](../../docs/design-docs/interface-design.md)의 dual-era 절.
+- 선택: modern 요청에 `Mcp-Method`·`Mcp-Name`이 없어도 받는다(헤더로 라우팅하는 계층이 없음). 값이 있고 다르면 era와 관계없이 거부한다. 되돌리기: `remote_era.go` `remoteEra`의 `method != ""`·`name != ""` 조건을 modern일 때 필수로 바꾼다(코드의 `shortcut:` 주석).
 - 선택: 캐시는 `ttlMs:300000`, `cacheScope:"public"`(도구 목록·discover는 설치와 무관하게 같다). 배포로 바뀔 수 있어 5분으로 짧게 둔다.
 - 하지 않은 것: `events/subscribe` 결과의 `resultType`(클라이언트는 없으면 `complete`로 본다), `subscriptions/listen`, MRTR, Base64 sentinel의 `Mcp-Param-*`(`x-mcp-header`를 쓰는 도구가 없다).
