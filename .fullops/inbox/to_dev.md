@@ -118,3 +118,16 @@ parallel: on
 브랜치 / SHA / 변경 이유 / 검토 필요 / 검증한 것과 못 한 것 / 스스로 정한 선택과 되돌리는 방법 / 산출물·로그 링크 / 남은 일.
 항목당 1~2줄로 쓰고 상세는 `tasks/SAR-GROK-INSTALL-001-DEV/qa/report.md` 링크로 대신한다. 원격 push는 승인 전이므로 `fullops done` 대신 로컬 커밋 뒤 worker_done만 보낸다. 첫 줄은 `[완료] SAR-GROK-INSTALL-001-DEV | 브랜치 fullops/dev | SHA <HEAD>` 한 줄이다.
 처리는 `fullops-work`, 회신은 `fullops-orca` 스킬을 따른다.
+
+### 완료 보고 (2차, 2026-11-28)
+
+[완료] SAR-GROK-INSTALL-001-DEV | 브랜치 fullops/dev | SHA 46586eb6
+
+- 변경 이유: D066. Grok Bot을 기존 `https://link.knowslog.com/mcp` custom connector(Remote HTTPS, 키는 서버 보관)로 연결한다. 1차 marketplace 안은 `3f1c4d40`에서 되돌렸다.
+- 구현: `/mcp` `knowslink_send`의 `kind`·`body`가 orca 고정 형식을 서버에서 스키마 검사·JCS 정규화·설치 키 서명한 뒤 기존 grant 경로로 보낸다. `knowslink_receive`는 `kinds`·`untrusted`를 낸다. Remote agent는 같은 주인의 `self:` agent라 grant(2 KB·시간당 30건·30일)를 코드 변경 없이 그대로 받는다.
+- OAuth 호환: 공식 문서상 막는 점은 없지만 미확정이다. Cursor backend가 desktop loopback redirect를 함께 등록하므로 등록이 loopback http redirect를 받게 했다(MCP 인가 규칙, PKCE 유지). authorize `scope` 생략은 기본 scope로 본다. `resource`는 필수 그대로이고 webhook은 HTTPS 전용이다.
+- 검토 필요: `internal/relay/remote_auth.go` redirect·scope 완화, `remote_mcp.go` send 분기.
+- 검증: 표적 테스트 2개(형식 경계 6개 포함)와 `fullops lint --from b3b9cc38` 통과. 실제 Grok 계정 연결은 하지 않았다. 상세는 [QA 보고](../../tasks/SAR-GROK-INSTALL-001-DEV/qa/report.md).
+- 스스로 정한 선택: 기본 이름은 DCR client_name에 grok이 있으면 `Grok Bot`이다(되돌리기: remoteConsent의 host 분기 삭제). 1차 런처·dedup은 쓰지 않고 개발자 clone 경로를 기준 그대로 뒀다(되돌리기: revert `3f1c4d40`).
+- 사람 단계(Grok Bot): ① Connect apps → Add a custom connector ② Name `KnowsLink`, Type Remote HTTPS, Server URL `https://link.knowslog.com/mcp`, headers·OAuth Client ID는 비움 → Add plugin ③ Authenticate → Google 로그인·서버 보관 동의(10분 안), 에이전트 이름 확인(기본 Grok Bot) ④ 웹 내 에이전트 → Orca 봇 사전 승인에서 Grok↔Orca 형식별 grant 생성.
+- 남은 일: 운영 배포 필요(SHA 46586eb6, relay 이미지만, state `install/` 변경 없음). 배포 뒤 Dots는 Orca 형식을 쓸 때만 Refresh. push 승인. 실계정에서 DCR redirect·resource·POST 전용 transport 수용 확인.
