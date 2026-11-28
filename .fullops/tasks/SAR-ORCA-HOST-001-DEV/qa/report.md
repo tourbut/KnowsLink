@@ -48,6 +48,14 @@ lead 승인 `msg_adfdbb26e504`(2026-11-28). 순서: 기존 watch 중지 → inst
 
 - 쿠어용 ask `msg_ce655a143a82`는 coordinator가 답 없이 멈췄다(`msg_5876c6c26f0e`). **선택:** 이 worker가 `orca bot tools add ... --name knowslink --bot 쿠어`를 실행했다. 결과는 `toolNameTaken`이었다. `orca bot tools --bot 쿠어`의 `knowslink` `detail`이 이미 `C:\Users\shin\AppData\Local\KnowsLink\orca\node.exe C:\Users\shin\AppData\Local\KnowsLink\orca\dist\plugin.js`였다(쿠어 쪽에서 먼저 붙인 것으로 본다). 되돌리려면 `orca bot tools rm knowslink --bot 쿠어`.
 
+### 후속: 로컬 MCP 고정 형식 도구 (`msg_14350a9779e2`)
+
+- 쿠어 확인(`msg_2371aed70d79`): serverInfo `knowslink 0.1.1`, `me` `agent_5513ec51367fed3748903d`, `autoReceive` off, 새 agent 없음, grant 3개 그대로. tools/list에 고정 형식 도구가 없었다.
+- 추가: [orca-mcp.ts](../../../../adapters/src/orca-mcp.ts)가 `KNOWSLINK_HOST=orca`·public-node·폴더가 있을 때만 `knowslink_send`(`to`, `kind`, `body`, `idempotency_key`)와 `knowslink_receive`를 등록한다. `orca.ts`의 `orcaSend`(스키마 검사·`sendKind`)와 `orcaReceive`(Inbox→없으면 1건 pull→`orcaView`)를 CLI와 같이 쓴다. 다른 호스트의 도구 목록은 그대로다.
+- 테스트: `orca.test.js` 4b — fake server로 receive가 Inbox의 decision을 `{state:"received", message:{...untrusted:true, item:7}}`로 내고, 정의 밖 키 body는 전송 전에 `invalid_schema`. `mcp.test.js`·`connect-simple.test.js` PASS. `fullops lint` 통과(e3407964, ERROR 0).
+- 설치본 갱신: install 재실행 종료 0, 같은 agent, watch 69852→96412. 설치본 `plugin.js` SHA256 `14F365CD…FA918`이 빌드와 같다. 설치 명령 stdio tools/list에 `knowslink_send`·`knowslink_receive`가 있다. 쿠어의 MCP 프로세스(PID 94184)는 갱신 전에 뜬 것이라 봇 도구를 다시 띄워야 새 도구가 보인다.
+- `state: public_node_configured_unverified`는 정상이다. `knowslink_status`는 relay에 연결하지 않고 설정만 읽으므로(`mcp.ts` `status()`의 `actualConnection: configured_unverified`) public-node에서는 늘 이 값이다. 실제 연결 확인은 수신·발송 결과로 한다.
+
 미확인: 쿠어 대화 안에서 부른 `knowslink_status`(같은 명령의 stdio 호출로 대신 확인), 서버의 grant 3개 재조회, 재부팅 뒤 자동 시작(사람 단계).
 
 ## 스스로 정한 선택과 되돌리는 방법
