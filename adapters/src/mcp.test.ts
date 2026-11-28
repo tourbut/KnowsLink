@@ -72,10 +72,7 @@ async function textBoundaries() {
     // SAR-ORCA-MCP-SEND-001: the Orca fixed-form send (MCP and CLI) asks the same TTL; a 170 s bundle lost unread decisions.
     await member.sendKind("b", "orca.decision.v1", '{"bot":"x"}', key);
     const kindTtl = Date.parse(lastExp) - Date.now();
-    assert.ok(
-      kindTtl > 3580000 && kindTtl <= SEND_TTL_MS,
-      `orca send TTL ${kindTtl}`,
-    );
+    assert.ok(kindTtl > 3580000 && kindTtl <= SEND_TTL_MS, `TTL ${kindTtl}`);
   } finally {
     globalThis.fetch = originalFetch;
   }

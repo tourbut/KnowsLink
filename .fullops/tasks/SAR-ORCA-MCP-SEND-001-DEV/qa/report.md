@@ -1,3 +1,11 @@
+---
+title: SAR-ORCA-MCP-SEND-001-DEV QA 보고
+status: draft
+updated: 2026-11-28
+owner: dev
+summary: "Orca 고정 양식 미수신 원인: 설치본 옛 빌드의 170초 TTL. 표적 테스트와 설치본 갱신"
+---
+
 # SAR-ORCA-MCP-SEND-001-DEV QA 보고
 
 - 작성: 2026-11-28, dev
@@ -45,4 +53,19 @@ return this.post(peer, text, key, Date.now() + 17e4, { kind });
 
 ## 설치본 갱신
 
-(아래 절에 install 결과를 적는다.)
+18:14 KST에 이 워크트리 HEAD 번들로 갱신했다. 설치본 `node.exe`로 실행해 쿠어 MCP가 잡고 있는 `node.exe`는 다시 복사하지 않았다.
+
+```
+<설치본>\node.exe adapters\dist\plugin.js orca install <쿠어 agent 폴더> --bot 쿠어 --dir <설치본>
+→ agent agent_5513ec51367fed3748903d(그대로), watch started pid 148828
+```
+
+- watch 프로세스: 1개(18:14:21 시작). 옛 watch는 install이 멈췄다.
+- defaults.json: 값 변화 없음(public-node, link.knowslog.com, 같은 폴더, 쿠어, auto receive off).
+- 설치 번들: `var SEND_TTL_MS = 359e4;`, `sendKind` → `Date.now() + SEND_TTL_MS`.
+
+## 남은 일 (lead)
+
+- 쿠어 채팅의 상시 MCP(14:40 시작, pid 94184)는 아직 옛 코드를 메모리에 들고 있다. 쿠어 채팅 MCP를 다시 시작해야 `knowslink_send`·`knowslink_receive`가 보이고 새 TTL을 쓴다. 쿠어가 `mcp-send.mjs`처럼 새 프로세스로 부르면 이미 새 번들을 쓴다.
+- 재시험: 쿠어가 decision을 보내고 3분 넘게 기다린 뒤 Grok이 receive한다. receipt exp가 accepted_at + 약 1시간이면 정상이다.
+- 다른 PC·호스트의 adapter 설치본도 e48c4206 이전 빌드면 같은 170초 제한이 남는다. relay만 배포하고 adapter를 갱신하지 않으면 같은 증상이 난다.
