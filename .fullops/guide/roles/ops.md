@@ -134,3 +134,7 @@ Git Bash가 `/home/...` 인자를 Windows 경로로 바꿔 sftp put이 ENOENT로
 
 Windows `make`는 `scripts/make.py`가 프로세스 PATH에만 도구를 붙여 실행한다(w64devkit은 뒤에 둔다. busybox sh는 `PATH=dir:$PATH` stub을 못 찾는다). 0600 검사는 NTFS에서 성립하지 않아 Linux 컨테이너로 돌린다. [근거](../../tasks/SAR-WIN-LINT-001-OPS/qa/report.md)
 `.gitattributes` 이전에 체크아웃된 CRLF 파일은 `checkout-index --force`가 안 고친다. blob 해시가 같은 LF 변환 뒤 `git add -u`로 stat을 갱신했다.
+
+## 2026-11-28 — SAR-ORCA-BOT-001-OPS
+
+배정받은 worker의 운영 서버 SSH는 auto mode 분류기가 거부할 수 있다(읽기 1회는 통과, 다음 명령은 거부). 우회하지 않는다. 운영 과제는 배정 전에 주인의 ssh/scp 허용 규칙을 확인한다. [보고](../../tasks/SAR-ORCA-BOT-001-OPS/qa/report.md)
